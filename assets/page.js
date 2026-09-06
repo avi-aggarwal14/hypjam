@@ -233,11 +233,18 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
 
   /* ---------- booking: google calendar appointment schedule, loaded only when asked for ---------- */
   (() => {
-    const BOOK = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2RXwUF95RF4StXDvlphdkP8hZGhSSuQUfyHoV8r_igNgn5L-s1g8oYSeiJEDTOfOGGogAyfkir?gv=true';
+    /* one switch for the whole site: fill CAL in with '<user>/<event>' to move booking to cal.com,
+       leave it empty to keep the google calendar appointment schedule. /book in vercel.json follows. */
+    const CAL = '';
+    const GCAL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2RXwUF95RF4StXDvlphdkP8hZGhSSuQUfyHoV8r_igNgn5L-s1g8oYSeiJEDTOfOGGogAyfkir?gv=true';
+    const KIND = CAL ? 'cal' : 'gcal';
+    const BOOK = CAL ? `https://cal.com/${CAL}?embed=true&theme=dark&layout=month_view` : GCAL;
     const load = host => {
       if (!host) return null; if (host.dataset.live) return host.querySelector('iframe');
-      const f = document.createElement('iframe'); f.src = BOOK; f.title = 'book a 30 minute intro call with hypjam on google calendar'; f.referrerPolicy = 'strict-origin-when-cross-origin';
-      host.dataset.live = 'loading'; f.addEventListener('load', () => { host.dataset.live = 'on'; }, { once: true }); host.appendChild(f); return f;
+      const f = document.createElement('iframe'); f.src = BOOK; f.title = 'book a 30 minute intro call with hypjam'; f.referrerPolicy = 'strict-origin-when-cross-origin';
+      f.allow = 'camera; microphone; fullscreen; clipboard-write; payment';
+      host.dataset.src = KIND; host.dataset.live = 'loading';
+      f.addEventListener('load', () => { host.dataset.live = 'on'; }, { once: true }); host.appendChild(f); return f;
     };
     window.__hypjamBook = load;
     const inline = document.getElementById('cal-embed');

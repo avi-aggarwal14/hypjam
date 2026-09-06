@@ -43,3 +43,12 @@ Inside `index.html`:
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Booking provider
+
+Booking is driven by one constant near the top of the booking block in `index.html`:
+
+- `CAL` empty → the Google Calendar appointment schedule is embedded (inverted to sit on the dark UI).
+- `CAL = '<user>/<event>'` → cal.com is embedded instead, in its own dark theme with no inversion.
+
+Change `CAL`, then point the `/book` redirect in `vercel.json` at the same booking page.

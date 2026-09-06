@@ -46,8 +46,12 @@
 ]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap">
+<link rel="preload" href="/assets/fonts/chillax-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/chillax-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap">
 <style>
+@font-face{font-family:"Chillax";src:url("/assets/fonts/chillax-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:"Chillax";src:url("/assets/fonts/chillax-500.woff2") format("woff2");font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:"Chillax";src:url("/assets/fonts/chillax-600.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}@font-face{font-family:"Chillax";src:url("/assets/fonts/chillax-700.woff2") format("woff2");font-weight:700;font-style:normal;font-display:swap}
+
 [hidden]{display:none!important}
 :root{
   --ground:#0a0a0a;--ground-2:#121212;--surface:#1c1c1c;--surface-2:#2a2a2a;--line:#3d3d3d;--dim:#6a6a6a;--dot:#555555;
@@ -58,7 +62,7 @@
   --ease:cubic-bezier(.22,1,.36,1);--slow:cubic-bezier(.16,1,.35,1);--spring:cubic-bezier(.34,1.3,.5,1);
   --edge:clamp(24px,5vw,88px);--nav-room:128px;--band-top:clamp(44px,8vh,96px);--band-max:760px;
   --band-h:min(calc(100vh - var(--band-top) - var(--nav-room)),var(--band-max));
-  --font-display:"Outfit",ui-sans-serif,system-ui,"Helvetica Neue",Arial,sans-serif;
+  --font-display:"Chillax",ui-sans-serif,system-ui,"Helvetica Neue",Arial,sans-serif;
   --font-body:"DM Sans",ui-sans-serif,system-ui,"Helvetica Neue",Arial,sans-serif;
   color-scheme:dark;
 }
@@ -103,6 +107,70 @@ button{font:inherit;color:inherit}
 .hl .g{display:inline-block;width:.95em;height:.95em;vertical-align:-.13em;margin-right:.26em;color:var(--hl)}
 .hl.quiet .g{color:var(--text-3);margin-right:.22em}
 .hl .g svg{width:100%;height:100%;display:block}
+
+/* ---------- peek: hover card on a highlighted word ---------- */
+.peek{position:fixed;z-index:115;top:0;left:0;width:330px;padding:8px;border-radius:18px;background:var(--ground-2);box-shadow:inset 0 0 0 1px var(--hair-2),0 34px 70px -34px rgba(0,0,0,.92);opacity:0;visibility:hidden;transform:translate3d(0,9px,0) scale(.972);transform-origin:20% 0;transition:opacity .26s var(--ease),transform .55s var(--spring),visibility 0s .28s;pointer-events:none;will-change:transform}
+.peek[data-open]{opacity:1;visibility:visible;transform:none;transition:opacity .26s var(--ease),transform .55s var(--spring),visibility 0s}
+.peek[data-flip]{transform-origin:20% 100%;transform:translate3d(0,-9px,0) scale(.972)}
+.peek[data-flip][data-open]{transform:none}
+.peek-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;border-radius:12px;overflow:hidden}
+.peek-cell{position:relative;aspect-ratio:1/1.14;background:var(--surface);overflow:hidden;opacity:0;transform:scale(1.06);transition:opacity .42s var(--ease),transform .8s var(--slow)}
+.peek[data-open] .peek-cell{opacity:1;transform:none}
+.peek[data-open] .peek-cell:nth-child(2){transition-delay:.06s}
+.peek[data-open] .peek-cell:nth-child(3){transition-delay:.12s}
+.peek-cap{margin:0;padding:9px 10px 3px;text-align:center;font-size:11.5px;line-height:1.4;color:var(--text-3)}
+.peek-cap b{color:var(--text-2);font-weight:600}
+.peek .pk-sheet{position:absolute;left:13%;right:13%;top:14%;bottom:14%;display:grid;align-content:start;gap:4px;padding:8px 7px;border-radius:6px;background:linear-gradient(180deg,rgba(244,244,244,.95),rgba(206,206,206,.84))}
+.peek .pk-sheet i{display:block;height:3px;border-radius:2px;background:rgba(10,10,10,.26)}
+.peek .pk-sheet i.s{width:56%}.peek .pk-sheet i.x{width:76%}
+.peek .pk-sheet i.j{width:44%;height:4px;background:var(--jam)}
+.peek .pk-chip{position:absolute;left:8%;bottom:8%;padding:2px 6px;border-radius:6px;background:rgba(10,10,10,.74);color:#f4f4f4;font-size:9.5px;font-weight:600;letter-spacing:.02em}
+.peek .pk-wave{position:absolute;left:10%;right:10%;top:48%;display:flex;align-items:center;gap:2px;height:28px;transform:translateY(-50%)}
+.peek .pk-wave i{flex:1;border-radius:1px;background:rgba(244,244,244,.5)}
+.peek .pk-bar{position:absolute;left:10%;right:10%;bottom:15%;height:3px;border-radius:2px;background:rgba(244,244,244,.2)}
+.peek .pk-bar i{display:block;height:100%;border-radius:2px;background:var(--jam)}
+.peek .pk-ico{position:absolute;inset:0 0 22% 0;display:grid;place-items:center;color:var(--text)}
+.peek .pk-ico svg{width:24px;height:24px}
+.peek .pk-mark{position:absolute;left:50%;top:40%;width:34px;height:34px;transform:translate(-50%,-50%);display:grid;place-items:center;border-radius:10px;background:var(--jam);color:#0a0a0a;font-family:var(--font-display);font-weight:700;font-size:15px}
+.peek .pk-ratio{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);border-radius:5px;background:rgba(255,111,31,.12);box-shadow:inset 0 0 0 1.5px var(--jam)}
+.peek .pk-grid{position:absolute;inset:14%;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:3px}
+.peek .pk-grid span{border-radius:3px;background:rgba(244,244,244,.14)}
+.peek .pk-grid span.on{background:var(--jam);opacity:.85}
+.peek-dia{position:relative;padding:14px 13px 12px;border-radius:12px;background:var(--ground);box-shadow:inset 0 0 0 1px var(--hair);opacity:0;transform:translateY(6px);transition:opacity .4s var(--ease),transform .7s var(--slow)}
+.peek[data-open] .peek-dia{opacity:1;transform:none}
+.pk-wires{position:absolute;inset:0;width:100%;height:100%;overflow:visible;fill:none;stroke:var(--hair-2);stroke-width:1.2;pointer-events:none}
+.dia-contract{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px}
+.pk-node{position:relative;z-index:1;padding:5px 9px;border-radius:8px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--hair-2);font-size:10.5px;color:var(--text-2);white-space:nowrap}
+.pk-doc{position:relative;z-index:1;display:grid;gap:4px;padding:9px 9px 10px;border-radius:9px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--hair-2)}
+.pk-doc b{display:flex;align-items:center;gap:5px;font-family:var(--font-display);font-size:11px;font-weight:700;color:var(--text)}
+.pk-doc b svg{width:11px;height:11px;color:var(--jam)}
+.pk-doc i{display:block;height:2.5px;border-radius:2px;background:var(--hair-2)}
+.pk-doc i.s{width:62%}
+.pk-tick{position:absolute;right:-7px;bottom:-7px;display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--jam);color:#0a0a0a}
+.pk-tick svg{width:10px;height:10px}
+.pk-fan{position:relative;z-index:1;display:grid;gap:4px;justify-items:start}
+.pk-fan span{padding:4px 8px;border-radius:7px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--hair-2);font-size:10px;color:var(--text-2);white-space:nowrap}
+.dia-steps{display:grid;gap:9px}
+.pk-track{position:relative;display:block;height:3px;border-radius:2px;background:var(--hair)}
+.pk-track i{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:2px;background:var(--jam);transition:width 1s .15s var(--slow)}
+.peek[data-open] .pk-track i{width:var(--w,60%)}
+.dia-steps ol{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin:0;padding:0;list-style:none}
+.dia-steps li{display:grid;justify-items:center;gap:5px;font-size:9.5px;color:var(--text-3)}
+.dia-steps li:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--hair-2)}
+.dia-steps li[data-on]{color:var(--text-2)}
+.dia-steps li[data-on]:before{background:var(--jam);box-shadow:none}
+.dia-track{display:grid;gap:8px}
+.dia-track svg{width:100%;height:64px;overflow:visible}
+.dia-track .ln{fill:none;stroke:var(--jam);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:260;stroke-dashoffset:260;transition:stroke-dashoffset 1.2s .1s var(--slow)}
+.peek[data-open] .dia-track .ln{stroke-dashoffset:0}
+.dia-track .ar{fill:url(#pk-fill);opacity:0;transition:opacity .7s .5s var(--ease)}
+.peek[data-open] .dia-track .ar{opacity:1}
+.dia-track .dt{fill:var(--jam);opacity:0;transition:opacity .4s .9s var(--ease)}
+.peek[data-open] .dia-track .dt{opacity:1}
+.dia-track .gl{stroke:var(--hair);stroke-width:1;stroke-dasharray:2 4}
+.pk-legend{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:10px;color:var(--text-3)}
+.pk-legend b{color:var(--text-2);font-weight:600;font-variant-numeric:tabular-nums}
+@media (max-width:900px){.peek{display:none}}
 
 /* ---------- buttons ---------- */
 .ctas{display:inline-flex;align-items:center;gap:8px}
@@ -178,7 +246,7 @@ button{font:inherit;color:inherit}
 .mq:hover .mq-belt{animation-play-state:paused}
 .mq-run{display:flex;align-items:center;gap:clamp(22px,2.4vw,40px);padding-right:clamp(22px,2.4vw,40px)}
 .trust-item{display:inline-flex;align-items:center;gap:12px;white-space:nowrap}
-.trust-item .logo{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;box-shadow:inset 0 0 0 1px var(--hair-2);font-family:var(--font-display);font-weight:800;font-size:13px;color:var(--ground);transition:transform .5s var(--spring)}
+.trust-item .logo{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;box-shadow:inset 0 0 0 1px var(--hair-2);font-family:var(--font-display);font-weight:700;font-size:13px;color:var(--ground);transition:transform .5s var(--spring)}
 .trust-item:hover .logo{transform:rotate(-6deg) scale(1.06)}
 .trust-item span.n{font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-.01em;color:var(--text-2);transition:color .3s var(--ease)}
 .trust-item:hover span.n{color:var(--text)}
@@ -309,7 +377,7 @@ button{font:inherit;color:inherit}
 .quote-frame figcaption{padding-left:40px}
 .founder{display:inline-flex;align-items:center;gap:12px;width:fit-content;padding:6px 12px 6px 6px;border-radius:13px;background:var(--ground-2);box-shadow:inset 0 0 0 1px var(--hair-2);transition:background .35s var(--ease),box-shadow .35s var(--ease)}
 .founder:hover{background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
-.founder .ava{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:linear-gradient(150deg,var(--jam),#2a2a2a);font-family:var(--font-display);font-weight:800;font-size:13px;color:#fff}
+.founder .ava{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:linear-gradient(150deg,var(--jam),#2a2a2a);font-family:var(--font-display);font-weight:700;font-size:13px;color:#fff}
 .founder>span.who{display:grid;line-height:1.15}
 .founder b{font-size:14px;font-weight:600;color:var(--text)}
 .founder em{font-size:12px;font-style:normal;color:var(--text-3)}
@@ -333,7 +401,7 @@ button{font:inherit;color:inherit}
 .voice-glyph svg{width:30px;height:30px}
 .voice-quote p{margin:0;font-family:var(--font-display);font-weight:700;font-size:clamp(1rem,1.3vw,1.5rem);line-height:1.22;letter-spacing:-.02em;text-wrap:pretty}
 .voice-by{display:inline-flex;align-items:center;gap:12px}
-.voice-by .ava{display:grid;place-items:center;width:44px;height:44px;border-radius:13px;background:linear-gradient(150deg,#3a3a3a,#111111);box-shadow:inset 0 0 0 1px var(--hair-2);font-family:var(--font-display);font-weight:800;font-size:15px;color:#fff}
+.voice-by .ava{display:grid;place-items:center;width:44px;height:44px;border-radius:13px;background:linear-gradient(150deg,#3a3a3a,#111111);box-shadow:inset 0 0 0 1px var(--hair-2);font-family:var(--font-display);font-weight:700;font-size:15px;color:#fff}
 .voice-by>span{display:grid;line-height:1.25}
 .voice-by b{font-size:15px;font-weight:600}
 .voice-by em{font-size:13px;font-style:normal;color:var(--text-3)}
@@ -375,12 +443,13 @@ button{font:inherit;color:inherit}
 .cal-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .cal-head b{font-family:var(--font-display);font-size:15px}
 .cal-head .who{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-2)}
-.cal-head .who .ava{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(150deg,var(--jam),#2a2a2a);font-family:var(--font-display);font-weight:800;font-size:11px;color:#fff}
+.cal-head .who .ava{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(150deg,var(--jam),#2a2a2a);font-family:var(--font-display);font-weight:700;font-size:11px;color:#fff}
 .cal-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12.5px;color:var(--text-3)}
 .cal-foot .pick{color:var(--text)}
 /* real booking: google calendar appointment schedule, loaded only when asked for */
 .cal-embed{position:relative;min-height:clamp(280px,54vh,640px);border-radius:12px;overflow:hidden;background:var(--ground-2);box-shadow:inset 0 0 0 1px var(--hair)}
 .cal-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;filter:invert(.92);opacity:0;transition:opacity .7s var(--ease)}
+.cal-embed[data-src="cal"] iframe{filter:none}
 .cal-embed[data-live="on"] iframe{opacity:1}
 .cal-gate{position:absolute;inset:0;z-index:1;display:grid;align-content:center;justify-items:center;gap:14px;padding:24px;text-align:center;background:var(--ground-2);transition:opacity .45s var(--ease),visibility 0s .45s}
 .cal-embed[data-live] .cal-gate{opacity:0;visibility:hidden;pointer-events:none}
@@ -651,11 +720,11 @@ html.msg-open{overflow:hidden}
   <h1 class="h1"><span class="h1-line">our creators have <span class="hollow">2,400,000,000+</span> views.</span><br>yours could be next.</h1>
   <p class="sub"><b>the all-in-one <span class="jam">ugc</span> <span class="engine" data-cur="tiktok"><span class="sr-only">for tiktok, reels and shorts</span><span class="engine-well" aria-hidden="true"><svg viewBox="0 0 24 24" class="engine-mark" data-state="in" style="inset:4%;width:92%;height:92%"><use href="#i-tiktok"/></svg><svg viewBox="0 0 24 24" class="engine-mark" data-state="wait"><use href="#i-ig"/></svg><svg viewBox="0 0 24 24" class="engine-mark" data-state="wait"><use href="#i-yt"/></svg></span></span> agency.</b>
     <span>not just a creator, a full team for any short-form ad, from
-    <span class="hl ember quiet"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pen"/></svg></span>brief</span> to
-    <span class="hl slate quiet"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-face"/></svg></span>cast</span>,
-    <span class="hl amber quiet"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-play"/></svg></span>shot</span>,
-    <span class="hl violet quiet"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-wave"/></svg></span>edited</span>, with
-    <span class="hl jamhl quiet"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-hook"/></svg></span>hooks</span> that convert.</span></p>
+    <span class="hl ember quiet" data-peek="brief" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pen"/></svg></span>brief</span> to
+    <span class="hl slate quiet" data-peek="cast" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-face"/></svg></span>cast</span>,
+    <span class="hl amber quiet" data-peek="shot" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-play"/></svg></span>shot</span>,
+    <span class="hl violet quiet" data-peek="edited" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-wave"/></svg></span>edited</span>, with
+    <span class="hl jamhl quiet" data-peek="hooks" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-hook"/></svg></span>hooks</span> that convert.</span></p>
 
   <div class="cta-row">
     <div class="ctas">
@@ -689,7 +758,7 @@ html.msg-open{overflow:hidden}
 
   <div class="trust">
     <div class="trust-row">
-      <p class="trust-label">the <span class="hl jamhl">brands</span> the work shipped into</p>
+      <p class="trust-label">the <span class="hl jamhl" data-peek="brands" data-cur="peek" tabindex="0">brands</span> the work shipped into</p>
       <div class="mq" style="--mq-s:32s"><div class="mq-belt">
         <div class="mq-run">
           <a class="trust-item" href="#words"><span class="logo" style="background:#e6e6e6">g</span><span class="n">glow labs</span></a>
@@ -714,7 +783,7 @@ html.msg-open{overflow:hidden}
       </div></div>
     </div>
     <div class="trust-row">
-      <p class="trust-label">the <span class="hl amber">platforms</span> we ship to</p>
+      <p class="trust-label">the <span class="hl amber" data-peek="platforms" data-cur="peek" tabindex="0">platforms</span> we ship to</p>
       <div class="mq" data-reverse style="--mq-s:24s"><div class="mq-belt">
         <div class="mq-run">
           <span class="trust-item trust-plat"><span class="logo"><svg><use href="#i-tiktok"/></svg></span><span class="n">tiktok</span></span>
@@ -743,7 +812,7 @@ html.msg-open{overflow:hidden}
     <canvas class="goo" aria-hidden="true"></canvas>
     <article class="index" data-goo>
       <h2 class="h1">our <span class="jam">work</span>.</h2>
-      <p class="sub work-sub"><span class="hl jamhl quiet"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-play"/></svg></span>five pieces</span>, <span class="hl amber quiet"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-layers"/></svg></span>every format</span>. the rest of the <span class="hl violet quiet"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-people"/></svg></span>roster's</span> work is on the <span class="hl slate quiet"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-eye"/></svg></span>wall</span>.</p>
+      <p class="sub work-sub"><span class="hl jamhl quiet" data-peek="pieces" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-play"/></svg></span>five pieces</span>, <span class="hl amber quiet" data-peek="formats" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-layers"/></svg></span>every format</span>. the rest of the <span class="hl violet quiet" data-peek="roster" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-people"/></svg></span>roster's</span> work is on the <span class="hl slate quiet" data-peek="wall" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-eye"/></svg></span>wall</span>.</p>
       <ul class="index-list">
         <li data-for="c1" data-goo-for="1"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-hook"/></svg></span><span class="index-title">hooks &amp; ads</span><span class="index-credit">15s · 30s · 60s cutdowns</span></span></li>
         <li data-for="c2" data-goo-for="2"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-box"/></svg></span><span class="index-title">testimonials</span><span class="index-credit">unboxing · demos · reviews</span></span></li>
@@ -863,7 +932,7 @@ html.msg-open{overflow:hidden}
   </div>
   <p class="studio-brand"><svg class="mark" aria-hidden="true"><use href="#mark"/></svg><span>hypjam<em>the all-in-one ugc agency</em></span></p>
   <h2 class="h1 studio-title">you're not hiring a creator.<br>you're hiring the people who <span class="jam">direct</span> them.</h2>
-  <p class="sub studio-prose">the founders <span class="hl amber"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pen"/></svg></span>creative-direct</span> every brief, start to finish. you sign <span class="hl slate"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-badge"/></svg></span>one contract</span> with hypjam, not forty creators. every campaign runs on <span class="hl violet"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-layers"/></svg></span>milestones</span> and a live <span class="hl jamhl"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-eye"/></svg></span>tracker</span>. oatside already works with us this way.</p>
+  <p class="sub studio-prose">the founders <span class="hl amber" data-peek="direct" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pen"/></svg></span>creative-direct</span> every brief, start to finish. you sign <span class="hl slate" data-peek="contract" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-badge"/></svg></span>one contract</span> with hypjam, not forty creators. every campaign runs on <span class="hl violet" data-peek="milestones" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-layers"/></svg></span>milestones</span> and a live <span class="hl jamhl" data-peek="tracker" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-eye"/></svg></span>tracker</span>. oatside already works with us this way.</p>
   <figure class="quote-frame">
     <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
     <blockquote class="founder-quote"><span class="quote-mark"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-quote"/></svg></span><p>don't just hire creators. hire a team that scripts, casts and ships the <span class="jam">whole pipeline</span>.</p></blockquote>
@@ -1007,6 +1076,7 @@ html.msg-open{overflow:hidden}
     </div>
   </div>
 </dialog>
+<div class="peek" id="peek" role="tooltip" aria-hidden="true"></div>
 <div class="route-wipe" aria-hidden="true"></div>
 <div class="cur-root" aria-hidden="true">
   <div class="cur-arrow"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M5 3 L23 14 L14 16 L11 24 Z" fill="#f4f4f4" stroke="#0a0a0a" stroke-width="1" stroke-linejoin="round"/></svg></div>
@@ -1372,13 +1442,132 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
     }
   })();
 
+  /* ---------- peek: hover card on a highlighted word ---------- */
+  (() => {
+    const card = document.getElementById('peek'); if (!card || !fine) return;
+    const sky = '<span class="sky"></span>', grain = '<span class="grain"></span>';
+    const cell = (bg, inner) => `<span class="peek-cell"><span class="shot" style="--bg:${bg}">${sky}${inner}${grain}</span></span>`;
+    const who = g => `<span class="person" style="background:linear-gradient(180deg,${g})"><span class="head"></span></span>`;
+    const blob = st => `<span class="blob" style="${st}"></span>`;
+    const ico = n => `<svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#${n}"/></svg>`;
+    const sheet = (rows, chip) => `<span class="pk-sheet">${rows}</span><span class="pk-chip">${chip}</span>`;
+    const wave = n => `<span class="pk-wave">${Array.from({ length: 16 }, (_, i) => `<i style="height:${18 + Math.round(70 * Math.abs(Math.sin(i * 1.7 + n)))}%"></i>`).join('')}</span>`;
+    const row = (...c) => `<div class="peek-row">${c.join('')}</div>`;
+    const G = ['linear-gradient(160deg,#2c2c2c,#0f0f0f)', 'linear-gradient(150deg,#3a2f1a,#120d08)', 'linear-gradient(170deg,#252525,#0b0b0b)', 'linear-gradient(140deg,#332a1d,#131313)'];
+
+    const DATA = {
+      brief: { cap: 'scripts, hooks and a shot list, before anyone films', body: row(
+        cell(G[0], sheet('<i class="j"></i><i></i><i class="x"></i><i></i><i class="s"></i>', 'script')),
+        cell(G[1], sheet('<i class="j"></i><i class="x"></i><i class="s"></i><i class="x"></i>', 'hooks')),
+        cell(G[2], sheet('<i class="j"></i><i></i><i class="s"></i><i class="x"></i><i class="s"></i>', 'shot list'))) },
+      cast: { cap: 'creators picked to look like your customer', body: row(
+        cell(G[0], blob('left:-18%;top:6%;width:74%;height:66%;background:#ff6f1f;opacity:.5') + who('#282828,#0d0d0d') + '<span class="ui"><b>@maya.films</b></span>'),
+        cell(G[1], blob('right:-20%;top:12%;width:76%;height:62%;background:#ffb347;opacity:.42') + who('#2c2c2c,#101010') + '<span class="ui"><b>@dan.eats</b></span>'),
+        cell(G[2], blob('left:-12%;bottom:-14%;width:80%;height:64%;background:#e6e6e6;opacity:.28') + who('#242424,#0f0f0f') + '<span class="ui"><b>@nia.home</b></span>')) },
+      shot: { cap: 'filmed on their own phones, directed by us', body: row(
+        cell(G[1], blob('left:-14%;top:10%;width:70%;height:60%;background:#ff6f1f;opacity:.45') + who('#2a2a2a,#0e0e0e') + '<span class="rec">rec</span><span class="side"><span class="h"></span><span></span></span>'),
+        cell(G[0], blob('right:-16%;top:18%;width:72%;height:58%;background:#e6e6e6;opacity:.24') + who('#262626,#101010') + '<span class="rec">rec</span><span class="tc">00:12</span>'),
+        cell(G[3], blob('left:-10%;bottom:-10%;width:76%;height:60%;background:#ffb347;opacity:.4') + who('#2b2b2b,#0d0d0d') + '<span class="rec">rec</span><span class="side"><span class="h"></span><span></span></span>')) },
+      edited: { cap: 'cut, captioned and graded for the feed', body: row(
+        cell(G[0], wave(0) + '<span class="pk-bar"><i style="width:38%"></i></span>'),
+        cell(G[2], wave(1.1) + '<span class="pk-bar"><i style="width:64%"></i></span>'),
+        cell(G[1], wave(2.3) + '<span class="pk-bar"><i style="width:88%"></i></span>')) },
+      hooks: { cap: 'eight openings per script, all of them tested', body: row(
+        cell(G[1], blob('left:-16%;top:8%;width:74%;height:64%;background:#ff6f1f;opacity:.45') + who('#2a2a2a,#0f0f0f') + '<span class="ui"><span class="cap">okay so this is the <i>only</i> one i repurchase</span></span>'),
+        cell(G[0], blob('right:-18%;top:14%;width:72%;height:60%;background:#e6e6e6;opacity:.22') + who('#272727,#101010') + '<span class="ui"><span class="cap">i was <i>wrong</i> about this</span></span>'),
+        cell(G[3], blob('left:-12%;bottom:-12%;width:78%;height:62%;background:#ffb347;opacity:.4') + who('#2b2b2b,#0e0e0e') + '<span class="ui"><span class="cap">three weeks in. <i>look</i>.</span></span>')) },
+      brands: { cap: 'where the work has already shipped', body: row(
+        cell(G[0], '<span class="pk-mark">s</span><span class="pk-chip">sipwell</span>'),
+        cell(G[2], '<span class="pk-mark">n</span><span class="pk-chip">nomad co</span>'),
+        cell(G[1], '<span class="pk-mark">k</span><span class="pk-chip">kettle &amp; co</span>')) },
+      platforms: { cap: 'one shoot, cut for every placement', body: row(
+        cell(G[0], `<span class="pk-ico">${ico('i-tiktok')}</span><span class="pk-chip">tiktok</span>`),
+        cell(G[2], `<span class="pk-ico">${ico('i-ig')}</span><span class="pk-chip">reels</span>`),
+        cell(G[1], `<span class="pk-ico">${ico('i-yt')}</span><span class="pk-chip">shorts</span>`)) },
+      pieces: { cap: 'five cuts, one campaign, one brief', body: row(
+        cell(G[0], blob('left:-16%;top:8%;width:74%;height:64%;background:#ff6f1f;opacity:.45') + who('#282828,#0d0d0d') + '<span class="pk-chip">unboxing</span>'),
+        cell(G[3], blob('right:-18%;top:14%;width:72%;height:60%;background:#ffb347;opacity:.4') + who('#2c2c2c,#101010') + '<span class="pk-chip">routine</span>'),
+        cell(G[2], blob('left:-12%;bottom:-12%;width:78%;height:62%;background:#e6e6e6;opacity:.26') + who('#242424,#0f0f0f') + '<span class="pk-chip">review</span>')) },
+      formats: { cap: '9:16, 4:5 and 1:1 out of the same shoot', body: row(
+        cell(G[0], '<span class="pk-ratio" style="width:34%;aspect-ratio:9/16"></span><span class="pk-chip">9:16</span>'),
+        cell(G[2], '<span class="pk-ratio" style="width:48%;aspect-ratio:4/5"></span><span class="pk-chip">4:5</span>'),
+        cell(G[1], '<span class="pk-ratio" style="width:54%;aspect-ratio:1"></span><span class="pk-chip">1:1</span>')) },
+      roster: { cap: 'everyday creators, paid per delivered video', body: row(
+        cell(G[2], blob('left:-14%;top:10%;width:72%;height:62%;background:#e6e6e6;opacity:.26') + who('#262626,#101010') + '<span class="ui"><b>leeds</b></span>'),
+        cell(G[1], blob('right:-16%;top:12%;width:74%;height:60%;background:#ff6f1f;opacity:.42') + who('#2b2b2b,#0e0e0e') + '<span class="ui"><b>manchester</b></span>'),
+        cell(G[0], blob('left:-10%;bottom:-12%;width:76%;height:62%;background:#ffb347;opacity:.38') + who('#242424,#0f0f0f') + '<span class="ui"><b>london</b></span>')) },
+      wall: { cap: 'the full wall of delivered work', body: row(
+        cell(G[0], '<span class="pk-grid"><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span></span>'),
+        cell(G[2], '<span class="pk-grid"><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span></span>'),
+        cell(G[1], '<span class="pk-grid"><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span></span>')) },
+      direct: { cap: 'we write it, cast it and call the shots', body: row(
+        cell(G[1], sheet('<i class="j"></i><i></i><i class="s"></i><i class="x"></i>', 'brief')),
+        cell(G[0], blob('right:-16%;top:12%;width:72%;height:60%;background:#ff6f1f;opacity:.45') + who('#2a2a2a,#0e0e0e') + '<span class="pk-chip">direction</span>'),
+        cell(G[2], wave(0.6) + '<span class="pk-bar"><i style="width:72%"></i></span><span class="pk-chip">the cut</span>')) },
+      contract: { cap: 'one line to you, however many hands', dia: `<div class="peek-dia dia-contract">
+        <svg class="pk-wires" viewBox="0 0 100 60" preserveAspectRatio="none" aria-hidden="true"><path d="M13 30 H33"/><path d="M67 30 H75 M75 12 V48 M75 12 H86 M75 30 H86 M75 48 H86"/></svg>
+        <span class="pk-node">you</span>
+        <span class="pk-doc"><b>${ico('i-badge')}one contract</b><i></i><i class="s"></i><i></i><span class="pk-tick">${ico('i-arrow')}</span></span>
+        <span class="pk-fan"><span>creator</span><span>editor</span><span>media buyer</span></span></div>` },
+      milestones: { cap: 'every brief runs on the same five gates', dia: `<div class="peek-dia dia-steps">
+        <span class="pk-track" style="--w:62%"><i></i></span>
+        <ol><li data-on>brief</li><li data-on>cast</li><li data-on>shoot</li><li>cut</li><li>ship</li></ol></div>` },
+      tracker: { cap: 'views, hold rate and cost per view, live', dia: `<div class="peek-dia dia-track">
+        <svg viewBox="0 0 200 64" preserveAspectRatio="none" aria-hidden="true">
+          <defs><linearGradient id="pk-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6f1f" stop-opacity=".34"/><stop offset="1" stop-color="#ff6f1f" stop-opacity="0"/></linearGradient></defs>
+          <path class="gl" d="M0 52 H200 M0 30 H200"/>
+          <path class="ar" d="M2 54 C40 52 62 46 92 36 C126 25 150 16 198 6 L198 62 L2 62 Z"/>
+          <path class="ln" d="M2 54 C40 52 62 46 92 36 C126 25 150 16 198 6"/>
+          <circle class="dt" cx="198" cy="6" r="3.4"/></svg>
+        <span class="pk-legend"><b>2.4m</b> views <b>41%</b> hold <b>&pound;0.006</b> cpv</span></div>` }
+    };
+
+    let anchor = null, tin = 0, tout = 0, raf = 0;
+    const place = () => {
+      if (!anchor) return;
+      const r = anchor.getBoundingClientRect(), w = card.offsetWidth, h = card.offsetHeight, m = 14;
+      const x = Math.max(m, Math.min(r.left - 12, innerWidth - w - m));
+      const below = r.bottom + 10, flip = below + h > innerHeight - m && r.top - h - 10 > m;
+      card.toggleAttribute('data-flip', flip);
+      card.style.left = x + 'px';
+      card.style.top = (flip ? r.top - h - 10 : below) + 'px';
+      card.style.transformOrigin = `${Math.max(14, Math.min(r.left + r.width / 2 - x, w - 14))}px ${flip ? '100%' : '0px'}`;
+      raf = requestAnimationFrame(place);
+    };
+    const hide = () => { clearTimeout(tin); cancelAnimationFrame(raf); raf = 0; anchor = null; card.removeAttribute('data-open'); };
+    const show = el => {
+      const d = DATA[el.dataset.peek]; if (!d) return;
+      cancelAnimationFrame(raf); anchor = el;
+      card.innerHTML = (d.dia || d.body) + `<p class="peek-cap">${d.cap}</p>`;
+      card.removeAttribute('data-open'); card.style.visibility = 'hidden';
+      place(); cancelAnimationFrame(raf);
+      requestAnimationFrame(() => { card.style.visibility = ''; card.setAttribute('data-open', ''); raf = requestAnimationFrame(place); });
+    };
+    document.querySelectorAll('[data-peek]').forEach(el => {
+      el.addEventListener('pointerenter', () => { clearTimeout(tout); clearTimeout(tin); tin = setTimeout(() => show(el), 90); });
+      el.addEventListener('pointerleave', () => { clearTimeout(tin); tout = setTimeout(hide, 140); });
+      el.addEventListener('focus', () => show(el));
+      el.addEventListener('blur', hide);
+    });
+    addEventListener('keydown', e => { if (e.key === 'Escape') hide(); });
+    addEventListener('blur', hide);
+    addEventListener('resize', hide);
+  })();
+
   /* ---------- booking: google calendar appointment schedule, loaded only when asked for ---------- */
   (() => {
-    const BOOK = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2RXwUF95RF4StXDvlphdkP8hZGhSSuQUfyHoV8r_igNgn5L-s1g8oYSeiJEDTOfOGGogAyfkir?gv=true';
+    /* one switch for the whole site: fill CAL in with '<user>/<event>' to move booking to cal.com,
+       leave it empty to keep the google calendar appointment schedule. /book in vercel.json follows. */
+    const CAL = '';
+    const GCAL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2RXwUF95RF4StXDvlphdkP8hZGhSSuQUfyHoV8r_igNgn5L-s1g8oYSeiJEDTOfOGGogAyfkir?gv=true';
+    const KIND = CAL ? 'cal' : 'gcal';
+    const BOOK = CAL ? `https://cal.com/${CAL}?embed=true&theme=dark&layout=month_view` : GCAL;
     const load = host => {
       if (!host) return null; if (host.dataset.live) return host.querySelector('iframe');
-      const f = document.createElement('iframe'); f.src = BOOK; f.title = 'book a 30 minute intro call with hypjam on google calendar'; f.referrerPolicy = 'strict-origin-when-cross-origin';
-      host.dataset.live = 'loading'; f.addEventListener('load', () => { host.dataset.live = 'on'; }, { once: true }); host.appendChild(f); return f;
+      const f = document.createElement('iframe'); f.src = BOOK; f.title = 'book a 30 minute intro call with hypjam'; f.referrerPolicy = 'strict-origin-when-cross-origin';
+      f.allow = 'camera; microphone; fullscreen; clipboard-write; payment';
+      host.dataset.src = KIND; host.dataset.live = 'loading';
+      f.addEventListener('load', () => { host.dataset.live = 'on'; }, { once: true }); host.appendChild(f); return f;
     };
     window.__hypjamBook = load;
     const inline = document.getElementById('cal-embed');
