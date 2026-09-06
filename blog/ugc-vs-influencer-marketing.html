@@ -95,7 +95,7 @@
       <a href="/#words" data-id="words" data-cur="brands"><span class="nav-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-quote"/></svg></span><span>brands</span></a>
     </div>
     <div class="nav-end">
-      <a class="btn btn-solid btn-nav" href="/#contact" data-cur="book"><span class="btn-in"><span class="btn-ico"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cal"/></svg></span><span>book a call</span></span></a>
+      <a class="btn btn-solid btn-nav" href="/book" data-cur="book" data-book-sheet><span class="btn-in"><span class="btn-ico"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cal"/></svg></span><span>book a call</span></span></a>
     </div>
   </div>
 </nav>
@@ -144,9 +144,11 @@
       <div class="msg-head">
         <div class="msg-tabs" role="tablist" aria-label="what is this about" data-side="hire">
           <button type="button" role="tab" id="msg-title-hire" class="h2 msg-tab" aria-selected="true" aria-controls="msg-side-hire" data-cur="hire">hire <span class="jam">hypjam</span></button>
+          <button type="button" role="tab" id="msg-title-book" class="h2 msg-tab" aria-selected="false" aria-controls="msg-side-book" tabindex="-1" data-cur="book">book a <span class="jam">call</span></button>
           <button type="button" role="tab" id="msg-title-join" class="h2 msg-tab" aria-selected="false" aria-controls="msg-side-join" tabindex="-1" data-cur="join">join the <span class="jam">roster</span></button>
         </div>
         <p class="msg-blurb" data-for="hire">tell us what you sell and where you want it seen. we reply within two working days with a brief and a price.</p>
+        <p class="msg-blurb" data-for="book" hidden>thirty minutes on google meet with avi, london time. pick any free slot and the invite lands in your inbox straight away.</p>
         <p class="msg-blurb" data-for="join" hidden>everyday creators, paid per video, directed by a team. no follower count needed, just a phone and a face people trust.</p>
       </div>
       <div class="msg-side" id="msg-side-hire" role="tabpanel">
@@ -156,6 +158,10 @@
         <label class="fld"><span>monthly budget</span><select name="budget"><option value="">pick a band</option><option>under £2k</option><option>£2k to £5k</option><option>£5k to £15k</option><option>£15k+</option></select></label>
         <label class="fld"><span>what do you need?</span><textarea name="need" rows="3" placeholder="8 hooks for a new flavour launch, spark ads ready, by the 20th…" required></textarea></label>
         <label class="fld"><span>email</span><input name="email" type="email" placeholder="you@brand.com" autocomplete="email" required></label>
+      </div>
+      <div class="msg-side msg-side-book" id="msg-side-book" role="tabpanel" hidden>
+        <div class="cal-embed msg-embed" data-book><span class="cal-wait" aria-hidden="true"></span></div>
+        <p class="msg-book-alt">calendar not showing? <a href="/book" target="_blank" rel="noopener" data-cur="open">open it in a new tab</a>. bookings run on google calendar, so google's <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-cur="read">privacy policy</a> applies to that step.</p>
       </div>
       <div class="msg-side" id="msg-side-join" role="tabpanel" hidden>
         <label class="fld"><span>name</span><input name="name" type="text" placeholder="first name is fine" autocomplete="given-name"></label>

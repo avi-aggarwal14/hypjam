@@ -30,7 +30,7 @@ Inside `index.html`:
 
 - **Horizontal glide** – `html { overflow: auto hidden }`, a `width: max-content` body and a flex `.track` of `100dvh` panels. A `wheel` listener converts vertical deltas into a lerped `window.scrollTo` glide, so the page keeps native horizontal scrolling and keyboard access.
 - **Fixed chrome** – dotted top and bottom bands, a pointer-reactive dot field on a canvas, a progress bar, and the bottom navigation pill with a sliding active blob.
-- **Panels** – hero, work shelf, services, agency, brand voices, and contact with a working week-view slot picker.
+- **Panels** – hero, work shelf, services, agency, brand voices, and contact with a real booking calendar (Google Calendar appointment schedule with Google Meet, loaded on request).
 - **Motion** – page-load choreography, 3D tilt on the hero card and work cards, marquees, an auto-cycling services preview, and a drawn-on ROAS chart. Everything respects `prefers-reduced-motion`.
 - **Placeholder footage** – the "video" frames are generated with CSS gradients and shapes so the page ships with zero image assets. Replace the `.shot` blocks with real clips or stills.
 
@@ -38,7 +38,7 @@ Inside `index.html`:
 
 - Colours are CSS custom properties at the top of the stylesheet (`--jam` is the accent).
 - Copy, brand names, creator handles and the founder card are plain HTML.
-- Point the "send a message" link and the calendar at your own email and booking tool.
+- Point the "send a message" link at your own email, and swap the appointment-schedule URL (search for `appointments/schedules` in `index.html` and `vercel.json`) for your own Google Calendar booking page.
 
 ## License
 

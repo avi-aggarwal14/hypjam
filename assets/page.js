@@ -231,15 +231,28 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
     draw();
   })();
 
+  /* ---------- booking: google calendar appointment schedule, loaded only when asked for ---------- */
+  (() => {
+    const BOOK = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2RXwUF95RF4StXDvlphdkP8hZGhSSuQUfyHoV8r_igNgn5L-s1g8oYSeiJEDTOfOGGogAyfkir?gv=true';
+    const load = host => {
+      if (!host) return null; if (host.dataset.live) return host.querySelector('iframe');
+      const f = document.createElement('iframe'); f.src = BOOK; f.title = 'book a 30 minute intro call with hypjam on google calendar'; f.referrerPolicy = 'strict-origin-when-cross-origin';
+      host.dataset.live = 'loading'; f.addEventListener('load', () => { host.dataset.live = 'on'; }, { once: true }); host.appendChild(f); return f;
+    };
+    window.__hypjamBook = load;
+    const inline = document.getElementById('cal-embed');
+    document.querySelectorAll('[data-book-load]').forEach(b => b.addEventListener('click', () => load(inline)));
+  })();
+
   /* ---------- message sheet ---------- */
   (() => {
     const dlg = document.getElementById('msg'); if (!dlg || !dlg.showModal) return;
-    const tabs = [...dlg.querySelectorAll('.msg-tab')], sides = { hire: dlg.querySelector('#msg-side-hire'), join: dlg.querySelector('#msg-side-join') }, form = dlg.querySelector('.msg-form'), done = dlg.querySelector('.msg-done'), err = dlg.querySelector('.msg-err'), send = dlg.querySelector('.msg-foot .btn'); let side = 'hire', last = null;
-    const show = which => { side = which; tabs.forEach(t => { const on = t.dataset.cur === which; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; }); Object.entries(sides).forEach(([k, el]) => el.hidden = k !== which); dlg.querySelectorAll('[data-for]').forEach(el => { if (el.classList.contains('msg-blurb') || el.classList.contains('msg-note')) el.hidden = el.dataset.for !== which; }); dlg.querySelector('.msg-tabs').dataset.side = which; dlg.setAttribute('aria-labelledby', 'msg-title-' + which); err.hidden = true; };
-    const open = (which, from) => { last = from || document.activeElement; show(which); form.hidden = false; done.hidden = true; form.reset(); root.classList.add('msg-open'); dlg.showModal(); const f = sides[which].querySelector('input,textarea,select'); f && setTimeout(() => f.focus(), 60); };
+    const tabs = [...dlg.querySelectorAll('.msg-tab')], sides = { hire: dlg.querySelector('#msg-side-hire'), book: dlg.querySelector('#msg-side-book'), join: dlg.querySelector('#msg-side-join') }, order = ['hire', 'book', 'join'], form = dlg.querySelector('.msg-form'), done = dlg.querySelector('.msg-done'), err = dlg.querySelector('.msg-err'), send = dlg.querySelector('.msg-foot .btn'); let side = 'hire', last = null;
+    const show = which => { side = which; tabs.forEach(t => { const on = t.dataset.cur === which; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; }); Object.entries(sides).forEach(([k, el]) => el.hidden = k !== which); dlg.querySelectorAll('[data-for]').forEach(el => { if (el.classList.contains('msg-blurb') || el.classList.contains('msg-note')) el.hidden = el.dataset.for !== which; }); dlg.querySelector('.msg-tabs').dataset.side = which; dlg.dataset.side = which; dlg.setAttribute('aria-labelledby', 'msg-title-' + which); err.hidden = true; if (which === 'book' && window.__hypjamBook) window.__hypjamBook(dlg.querySelector('.msg-embed')); };
+    const open = (which, from) => { last = from || document.activeElement; show(which); form.hidden = false; done.hidden = true; form.reset(); root.classList.add('msg-open'); dlg.showModal(); const f = sides[which].querySelector('input,textarea,select,iframe,a'); f && setTimeout(() => f.focus(), 60); };
     const close = () => { dlg.close(); root.classList.remove('msg-open'); last && last.focus && last.focus(); };
     tabs.forEach(t => t.addEventListener('click', () => show(t.dataset.cur)));
-    dlg.querySelector('.msg-tabs').addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); show(side === 'hire' ? 'join' : 'hire'); tabs.find(t => t.dataset.cur === side).focus(); } });
+    dlg.querySelector('.msg-tabs').addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); show(order[(order.indexOf(side) + (e.key === 'ArrowRight' ? 1 : order.length - 1)) % order.length]); tabs.find(t => t.dataset.cur === side).focus(); } });
     dlg.querySelector('.msg-x').addEventListener('click', close); dlg.querySelector('.msg-back').addEventListener('click', close);
     dlg.addEventListener('click', e => { if (e.target === dlg) close(); }); dlg.addEventListener('cancel', e => { e.preventDefault(); close(); });
     form.addEventListener('submit', e => { e.preventDefault(); err.hidden = true; const box = sides[side]; let bad = null;
@@ -250,6 +263,7 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
       setTimeout(() => { send.disabled = false; dlg.querySelector('.msg-send-label').textContent = 'send it'; form.hidden = true; done.hidden = false; dlg.querySelector('.msg-done-copy').textContent = side === 'hire' ? 'we read every brief ourselves. expect a reply within two working days, usually sooner.' : 'thanks for applying. if your videos fit a live brief we will be in touch within a week.'; dlg.querySelector('.msg-back').focus(); }, 900);
     });
     document.querySelectorAll('a[data-cur="write"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); open('hire', a); }));
+    document.querySelectorAll('[data-book-sheet]').forEach(a => a.addEventListener('click', e => { if (e.metaKey || e.ctrlKey || e.button) return; e.preventDefault(); open('book', a); }));
     document.querySelectorAll('a[href="#contact"].foot-join, a[data-cur="say hi"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); open(a.classList.contains('foot-join') ? 'join' : 'hire', a); }));
     const joinLink = [...document.querySelectorAll('.foot-links a')].find(a => /join the roster/.test(a.textContent)); if (joinLink) { joinLink.setAttribute('data-cur', 'join'); joinLink.addEventListener('click', e => { e.preventDefault(); open('join', joinLink); }); }
     window.__hypjamMsg = open;
@@ -271,6 +285,7 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
     addEventListener('pointermove', e => { x = e.clientX; y = e.clientY; setLabel(e.target); arrow.style.transform = `translate3d(${x}px,${y}px,0)`; arrow.style.opacity = '1'; pill.style.opacity = '1'; if (px < -9000) { px = x; py = y; } }, { passive: true });
     const hide = () => { arrow.style.opacity = '0'; pill.style.opacity = '0'; };
     document.addEventListener('pointerleave', hide); addEventListener('blur', hide);
+    document.addEventListener('pointerover', e => { if (e.target && e.target.tagName === 'IFRAME') hide(); }, { passive: true });
     addEventListener('pointerdown', () => arrow.classList.add('is-down')); addEventListener('pointerup', () => arrow.classList.remove('is-down'));
     const loop = () => { px += (x - px) * .18; py += (y - py) * .18; pill.style.transform = `translate3d(${px + 13}px,${py + 11}px,0)`; requestAnimationFrame(loop); }; loop();
   })();

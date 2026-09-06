@@ -35,7 +35,7 @@
 {"@context":"https://schema.org","@graph":[
  {"@type":"Organization","@id":"https://hypjam.vercel.app/#org","name":"hypjam","url":"https://hypjam.vercel.app/","logo":"https://hypjam.vercel.app/hook-icon-512.png","description":"hypjam is a UGC (user-generated content) marketing agency: everyday creators, directed by a team, making short-form video ads for brands.","founder":{"@type":"Person","name":"Avi Aggarwal"},"areaServed":"GB","knowsAbout":["UGC marketing","TikTok ads","Instagram Reels ads","creator whitelisting","Spark Ads","short-form video advertising"]},
  {"@type":"WebSite","@id":"https://hypjam.vercel.app/#site","url":"https://hypjam.vercel.app/","name":"hypjam","publisher":{"@id":"https://hypjam.vercel.app/#org"},"inLanguage":"en-GB"},
- {"@type":"ProfessionalService","@id":"https://hypjam.vercel.app/#service","name":"hypjam","url":"https://hypjam.vercel.app/","image":"https://hypjam.vercel.app/og.png","priceRange":"££","serviceType":"UGC video advertising","description":"Briefing, scripting, casting, filming, editing and whitelisting of short-form UGC ads for TikTok, Reels, Shorts, Snap, Pinterest and Meta.","areaServed":"GB","parentOrganization":{"@id":"https://hypjam.vercel.app/#org"}},
+ {"@type":"ProfessionalService","@id":"https://hypjam.vercel.app/#service","name":"hypjam","url":"https://hypjam.vercel.app/","image":"https://hypjam.vercel.app/og.png","priceRange":"££","serviceType":"UGC video advertising","description":"Briefing, scripting, casting, filming, editing and whitelisting of short-form UGC ads for TikTok, Reels, Shorts, Snap, Pinterest and Meta.","areaServed":"GB","parentOrganization":{"@id":"https://hypjam.vercel.app/#org"},"potentialAction":{"@type":"ReserveAction","name":"book a 30 minute intro call","target":{"@type":"EntryPoint","urlTemplate":"https://hypjam.vercel.app/book","actionPlatform":["http://schema.org/DesktopWebPlatform","http://schema.org/MobileWebPlatform"]},"result":{"@type":"Reservation","name":"30 minute intro call on google meet"}}},
  {"@type":"FAQPage","mainEntity":[
   {"@type":"Question","name":"what does a ugc agency actually do?","acceptedAnswer":{"@type":"Answer","text":"we write the brief and the hooks, cast everyday creators who fit your customer, direct the shoot on their phones, edit the cuts, and deliver paid-ready videos with usage rights sorted. one contract, one team."}},
   {"@type":"Question","name":"how fast is turnaround?","acceptedAnswer":{"@type":"Answer","text":"a first batch typically ships inside 14 days of the brief being signed off, then we iterate on what performs."}},
@@ -48,6 +48,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap">
 <style>
+[hidden]{display:none!important}
 :root{
   --ground:#0a0a0a;--ground-2:#121212;--surface:#1c1c1c;--surface-2:#2a2a2a;--line:#3d3d3d;--dim:#6a6a6a;--dot:#555555;
   --text:#f4f4f4;--text-2:#cfcfcf;--text-3:#8f8f8f;
@@ -358,7 +359,7 @@ button{font:inherit;color:inherit}
 .g-step{font-size:10.5px}
 
 /* ---------- book ---------- */
-.book{--tail:26vw;width:calc(100vw + var(--tail));display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr) var(--tail);align-items:center;gap:clamp(32px,4vw,72px);padding:var(--band-top) 0 var(--nav-room) var(--edge)}
+.book{--tail:26vw;width:calc(100vw + var(--tail));display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr) var(--tail);align-items:center;gap:clamp(32px,4vw,72px);padding:var(--band-top) 0 var(--nav-room) var(--edge)}
 .book>*{position:relative;z-index:1}
 .book-back{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .book-mark{position:absolute;left:calc(var(--edge) + 6vw);top:50%;width:min(34vw,460px);height:auto;opacity:.07;transform:translateY(-56%)}
@@ -370,22 +371,28 @@ button{font:inherit;color:inherit}
 .book-or{margin:0;font-size:clamp(1rem,1.2vw,1.2rem);color:var(--text-2)}
 .cal-frame{position:relative;grid-column:2;height:min(100%,var(--band-max));min-height:420px;padding:14px;border-radius:20px;background:var(--ground-2);box-shadow:inset 0 0 0 1px var(--hair-2);margin-right:calc(var(--edge) - clamp(32px,4vw,72px))}
 .cal-frame .tick.tl,.cal-frame .tick.bl{left:-18px}.cal-frame .tick.tr,.cal-frame .tick.br{right:-18px}
-.cal{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:14px;padding:16px;border-radius:12px;background:var(--ground);box-shadow:inset 0 0 0 1px var(--hair)}
+.cal{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:12px;padding:14px;border-radius:12px;background:var(--ground);box-shadow:inset 0 0 0 1px var(--hair)}
 .cal-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .cal-head b{font-family:var(--font-display);font-size:15px}
 .cal-head .who{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-2)}
 .cal-head .who .ava{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(150deg,var(--jam),#2a2a2a);font-family:var(--font-display);font-weight:800;font-size:11px;color:#fff}
-.cal-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;min-height:0}
-.cal-day{display:grid;grid-template-rows:auto minmax(0,1fr);gap:8px;min-height:0}
-.cal-day h4{margin:0;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);text-align:center}
-.cal-day h4 b{display:block;font-family:var(--font-display);font-size:16px;letter-spacing:0;color:var(--text);margin-top:2px}
-.slots{display:grid;gap:6px;align-content:start;overflow:auto;padding-right:2px}
-.slot{height:34px;border-radius:8px;border:0;background:var(--surface);color:var(--text-2);font-size:12.5px;font-variant-numeric:tabular-nums;cursor:pointer;box-shadow:inset 0 0 0 1px var(--hair);transition:background .25s var(--ease),color .25s var(--ease),transform .4s var(--spring)}
-.slot:hover{background:var(--surface-2);color:var(--text);transform:translateY(-1px)}
-.slot[aria-pressed="true"]{background:var(--jam);color:var(--on-jam);box-shadow:none;font-weight:600}
-.slot.busy{opacity:.32;cursor:not-allowed;text-decoration:line-through}
 .cal-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12.5px;color:var(--text-3)}
 .cal-foot .pick{color:var(--text)}
+/* real booking: google calendar appointment schedule, loaded only when asked for */
+.cal-embed{position:relative;min-height:clamp(280px,54vh,640px);border-radius:12px;overflow:hidden;background:var(--ground-2);box-shadow:inset 0 0 0 1px var(--hair)}
+.cal-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;filter:invert(.92);opacity:0;transition:opacity .7s var(--ease)}
+.cal-embed[data-live="on"] iframe{opacity:1}
+.cal-gate{position:absolute;inset:0;z-index:1;display:grid;align-content:center;justify-items:center;gap:14px;padding:24px;text-align:center;background:var(--ground-2);transition:opacity .45s var(--ease),visibility 0s .45s}
+.cal-embed[data-live] .cal-gate{opacity:0;visibility:hidden;pointer-events:none}
+.cal-gate-ico{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--surface);color:var(--jam);box-shadow:inset 0 0 0 1px var(--hair)}
+.cal-gate-ico svg{width:18px;height:18px}
+.cal-gate-copy{margin:0;max-width:30ch;font-size:14.5px;line-height:1.5;color:var(--text-2)}
+.cal-gate-copy b{color:var(--text);font-weight:600}
+.cal-gate-alt{font-size:13px;color:var(--text-3);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;transition:color .3s var(--ease)}
+.cal-gate-alt:hover{color:var(--jam)}
+.cal-wait{position:absolute;left:50%;top:50%;z-index:0;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;border:2px solid var(--hair-2);border-top-color:var(--jam);opacity:0;animation:cal-spin 1s linear infinite}
+.cal-embed[data-live="loading"] .cal-wait{opacity:1}
+@keyframes cal-spin{to{transform:rotate(360deg)}}
 .foot{grid-column:1/3;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;align-self:end;padding-right:var(--edge)}
 .foot-brand{display:flex;align-items:center;gap:10px}
 .foot-brand .mark{width:22px;height:22px}
@@ -439,7 +446,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   .make{padding:24px 20px 120px}.make-body{grid-template-columns:1fr;height:auto}.make-print{height:80vw;max-height:520px}
   .studio{padding:40px 20px 120px}.studio-arrow{display:none}
   .words{padding:40px 20px 120px}.voice{max-width:none}.belts-mask{display:none}
-  .book{grid-template-columns:1fr;width:100vw;padding:40px 20px 140px;gap:24px}.cal-frame{margin-right:0;min-height:0;height:auto}.cal-grid{grid-template-columns:repeat(3,1fr)}.cal-day:nth-child(n+4){display:none}.foot{grid-column:1;flex-direction:column;align-items:flex-start;padding-right:0}
+  .book{grid-template-columns:1fr;width:100vw;padding:40px 20px 140px;gap:24px}.cal-frame{grid-column:1;margin-right:0;min-height:0;height:auto;width:100%}.cal-embed{min-height:min(72vh,720px)}.foot{grid-column:1;flex-direction:column;align-items:flex-start;padding-right:0}
   .book-arrow,.book-dots{display:none}
   .nav-links{display:none}
   .progress{display:none}
@@ -504,6 +511,13 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 .msg-blurb{margin:0;color:var(--text-2);font-size:15px;max-width:56ch}
 .msg-side{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
 .msg-side .fld:nth-last-child(-n+2){grid-column:1/-1}
+.msg-side-book{grid-template-columns:1fr;gap:12px}
+.msg-embed{height:clamp(440px,64vh,700px)}
+.msg-book-alt{margin:0;font-size:13px;line-height:1.5;color:var(--text-3)}
+.msg-book-alt a{color:var(--text-2);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;transition:color .3s var(--ease)}
+.msg-book-alt a:hover{color:var(--jam)}
+.msg[data-side="book"]{max-width:min(94vw,1000px)}
+.msg[data-side="book"] .msg-foot,.msg[data-side="book"] .msg-err{display:none}
 .fld{display:grid;gap:6px;min-width:0;margin:0;padding:0;border:0}
 .fld>span,.fld legend{font-size:12.5px;letter-spacing:.02em;color:var(--text-3)}
 .fld input,.fld select,.fld textarea{width:100%;font:inherit;font-size:15px;color:var(--text);background:var(--ground);border:0;border-radius:10px;padding:11px 13px;box-shadow:inset 0 0 0 1px var(--hair-2);transition:box-shadow .25s var(--ease)}
@@ -625,7 +639,7 @@ html.msg-open{overflow:hidden}
       <a href="#words" data-id="words" data-cur="brands"><span class="nav-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-quote"/></svg></span><span>brands</span></a>
     </div>
     <div class="nav-end">
-      <a class="btn btn-solid btn-nav" href="#contact" data-cur="book"><span class="btn-in"><span class="btn-ico"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cal"/></svg></span><span>book a call</span></span></a>
+      <a class="btn btn-solid btn-nav" href="/book" data-cur="book" data-book-sheet><span class="btn-in"><span class="btn-ico"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cal"/></svg></span><span>book a call</span></span></a>
     </div>
   </div>
 </nav>
@@ -646,7 +660,7 @@ html.msg-open{overflow:hidden}
   <div class="cta-row">
     <div class="ctas">
       <a href="#contact" class="btn" data-cur="write"><span class="btn-in"><span class="btn-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mail"/></svg></span>send a message</span></a>
-      <a href="#contact" class="btn btn-solid" data-cur="book"><span class="btn-in"><span class="btn-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cal"/></svg></span><span class="btn-you" aria-hidden="true"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-plus"/></svg><span class="btn-you-tag">you</span></span>book a call</span><svg class="btn-head" viewBox="0 0 22 52" preserveAspectRatio="none" aria-hidden="true"><path d="M-1 0 L19.2 23.6 Q21.4 26 19.2 28.4 L-1 52 Z"/></svg></a>
+      <a href="/book" class="btn btn-solid" data-cur="book" data-book-sheet><span class="btn-in"><span class="btn-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cal"/></svg></span><span class="btn-you" aria-hidden="true"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-plus"/></svg><span class="btn-you-tag">you</span></span>book a call</span><svg class="btn-head" viewBox="0 0 22 52" preserveAspectRatio="none" aria-hidden="true"><path d="M-1 0 L19.2 23.6 Q21.4 26 19.2 28.4 L-1 52 Z"/></svg></a>
     </div>
     <svg class="cta-tip" viewBox="0 0 29 68" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0.5 L28.5 34 L0 67.5" vector-effect="non-scaling-stroke"/></svg>
   </div>
@@ -915,7 +929,7 @@ html.msg-open{overflow:hidden}
     <p class="book-or">pick a time on the calendar, or write to us.</p>
     <div class="ctas">
       <a href="mailto:hello@hypjam.com" class="btn" data-cur="write"><span class="btn-in"><span class="btn-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mail"/></svg></span>send a message</span></a>
-      <a href="#contact" class="btn btn-solid" data-cur="book" id="book-cta"><span class="btn-in"><span class="btn-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cal"/></svg></span><span class="btn-you" aria-hidden="true"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-plus"/></svg><span class="btn-you-tag">you</span></span>book a call</span><svg class="btn-head" viewBox="0 0 22 52" preserveAspectRatio="none" aria-hidden="true"><path d="M-1 0 L19.2 23.6 Q21.4 26 19.2 28.4 L-1 52 Z"/></svg></a>
+      <a href="#contact" class="btn btn-solid" data-cur="book" id="book-cta" data-book-load><span class="btn-in"><span class="btn-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cal"/></svg></span><span class="btn-you" aria-hidden="true"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-plus"/></svg><span class="btn-you-tag">you</span></span>book a call</span><svg class="btn-head" viewBox="0 0 22 52" preserveAspectRatio="none" aria-hidden="true"><path d="M-1 0 L19.2 23.6 Q21.4 26 19.2 28.4 L-1 52 Z"/></svg></a>
     </div>
   </div>
   <div class="cal-frame">
@@ -923,8 +937,16 @@ html.msg-open{overflow:hidden}
     <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
     <div class="cal" id="cal">
       <div class="cal-head"><b>30 min · intro call</b><span class="who"><span class="ava">av</span>with avi · london time</span></div>
-      <div class="cal-grid" id="cal-grid"></div>
-      <div class="cal-foot"><span id="cal-pick">pick a slot to hold it.</span><span>free · google meet</span></div>
+      <div class="cal-embed" id="cal-embed" data-book>
+        <span class="cal-wait" aria-hidden="true"></span>
+        <div class="cal-gate">
+          <span class="cal-gate-ico" aria-hidden="true"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cal"/></svg></span>
+          <p class="cal-gate-copy"><b>pick any free slot.</b> the invite and the google meet link land in your inbox straight away.</p>
+          <button type="button" class="btn btn-solid btn-square" data-cur="open" data-book-load><span class="btn-in"><span class="btn-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cal"/></svg></span>open the calendar</span></button>
+          <a class="cal-gate-alt" href="/book" target="_blank" rel="noopener" data-cur="open">or open it in a new tab</a>
+        </div>
+      </div>
+      <div class="cal-foot"><span id="cal-pick">30 min · free · google meet</span><span>runs on google calendar</span></div>
     </div>
   </div>
   <footer class="foot">
@@ -943,9 +965,11 @@ html.msg-open{overflow:hidden}
       <div class="msg-head">
         <div class="msg-tabs" role="tablist" aria-label="what is this about" data-side="hire">
           <button type="button" role="tab" id="msg-title-hire" class="h2 msg-tab" aria-selected="true" aria-controls="msg-side-hire" data-cur="hire">hire <span class="jam">hypjam</span></button>
+          <button type="button" role="tab" id="msg-title-book" class="h2 msg-tab" aria-selected="false" aria-controls="msg-side-book" tabindex="-1" data-cur="book">book a <span class="jam">call</span></button>
           <button type="button" role="tab" id="msg-title-join" class="h2 msg-tab" aria-selected="false" aria-controls="msg-side-join" tabindex="-1" data-cur="join">join the <span class="jam">roster</span></button>
         </div>
         <p class="msg-blurb" data-for="hire">tell us what you sell and where you want it seen. we reply within two working days with a brief and a price.</p>
+        <p class="msg-blurb" data-for="book" hidden>thirty minutes on google meet with avi, london time. pick any free slot and the invite lands in your inbox straight away.</p>
         <p class="msg-blurb" data-for="join" hidden>everyday creators, paid per video, directed by a team. no follower count needed, just a phone and a face people trust.</p>
       </div>
       <div class="msg-side" id="msg-side-hire" role="tabpanel">
@@ -955,6 +979,10 @@ html.msg-open{overflow:hidden}
         <label class="fld"><span>monthly budget</span><select name="budget"><option value="">pick a band</option><option>under £2k</option><option>£2k to £5k</option><option>£5k to £15k</option><option>£15k+</option></select></label>
         <label class="fld"><span>what do you need?</span><textarea name="need" rows="3" placeholder="8 hooks for a new flavour launch, spark ads ready, by the 20th…" required></textarea></label>
         <label class="fld"><span>email</span><input name="email" type="email" placeholder="you@brand.com" autocomplete="email" required></label>
+      </div>
+      <div class="msg-side msg-side-book" id="msg-side-book" role="tabpanel" hidden>
+        <div class="cal-embed msg-embed" data-book><span class="cal-wait" aria-hidden="true"></span></div>
+        <p class="msg-book-alt">calendar not showing? <a href="/book" target="_blank" rel="noopener" data-cur="open">open it in a new tab</a>. bookings run on google calendar, so google's <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-cur="read">privacy policy</a> applies to that step.</p>
       </div>
       <div class="msg-side" id="msg-side-join" role="tabpanel" hidden>
         <label class="fld"><span>name</span><input name="name" type="text" placeholder="first name is fine" autocomplete="given-name"></label>
@@ -1344,14 +1372,17 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
     }
   })();
 
-  /* ---------- calendar ---------- */
+  /* ---------- booking: google calendar appointment schedule, loaded only when asked for ---------- */
   (() => {
-    const grid = document.getElementById('cal-grid'), pick = document.getElementById('cal-pick'); if (!grid) return;
-    const now = new Date(); const mon = new Date(now); mon.setDate(now.getDate() + ((8 - now.getDay()) % 7 || 7));
-    const days = ['mon', 'tue', 'wed', 'thu', 'fri'], times = ['10:00', '10:30', '11:30', '13:00', '14:30', '16:00'];
-    const busy = new Set(['0-1', '1-3', '2-0', '2-4', '3-2', '4-5', '4-1']);
-    grid.innerHTML = days.map((d, i) => { const dt = new Date(mon); dt.setDate(mon.getDate() + i); return `<div class="cal-day"><h4>${d}<b>${dt.getDate()}</b></h4><div class="slots">${times.map((t, k) => `<button class="slot${busy.has(i + '-' + k) ? ' busy' : ''}" data-d="${d} ${dt.getDate()}" data-t="${t}" aria-pressed="false" ${busy.has(i + '-' + k) ? 'disabled' : ''}>${t}</button>`).join('')}</div></div>`; }).join('');
-    grid.addEventListener('click', e => { const b = e.target.closest('.slot'); if (!b || b.disabled) return; grid.querySelectorAll('.slot').forEach(s => s.setAttribute('aria-pressed', 'false')); b.setAttribute('aria-pressed', 'true'); pick.innerHTML = `holding <span class="pick">${b.dataset.d} · ${b.dataset.t}</span> for you. hit book a call to confirm.`; });
+    const BOOK = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2RXwUF95RF4StXDvlphdkP8hZGhSSuQUfyHoV8r_igNgn5L-s1g8oYSeiJEDTOfOGGogAyfkir?gv=true';
+    const load = host => {
+      if (!host) return null; if (host.dataset.live) return host.querySelector('iframe');
+      const f = document.createElement('iframe'); f.src = BOOK; f.title = 'book a 30 minute intro call with hypjam on google calendar'; f.referrerPolicy = 'strict-origin-when-cross-origin';
+      host.dataset.live = 'loading'; f.addEventListener('load', () => { host.dataset.live = 'on'; }, { once: true }); host.appendChild(f); return f;
+    };
+    window.__hypjamBook = load;
+    const inline = document.getElementById('cal-embed');
+    document.querySelectorAll('[data-book-load]').forEach(b => b.addEventListener('click', () => load(inline)));
   })();
 
   /* ---------- custom cursor with labels (reference behaviour) ---------- */
@@ -1362,6 +1393,7 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
     addEventListener('pointermove', e => { x = e.clientX; y = e.clientY; setLabel(e.target); arrow.style.transform = `translate3d(${x}px,${y}px,0)`; arrow.style.opacity = '1'; pill.style.opacity = '1'; if (px < -9000) { px = x; py = y; } }, { passive: true });
     const hide = () => { arrow.style.opacity = '0'; pill.style.opacity = '0'; };
     document.addEventListener('pointerleave', hide); addEventListener('blur', hide);
+    document.addEventListener('pointerover', e => { if (e.target && e.target.tagName === 'IFRAME') hide(); }, { passive: true });
     addEventListener('pointerdown', () => arrow.classList.add('is-down')); addEventListener('pointerup', () => arrow.classList.remove('is-down'));
     const loop = () => { px += (x - px) * .18; py += (y - py) * .18; pill.style.transform = `translate3d(${px + 13}px,${py + 11}px,0)`; requestAnimationFrame(loop); }; loop();
   })();
@@ -1393,12 +1425,12 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
   /* ---------- message sheet ---------- */
   (() => {
     const dlg = document.getElementById('msg'); if (!dlg || !dlg.showModal) return;
-    const tabs = [...dlg.querySelectorAll('.msg-tab')], sides = { hire: dlg.querySelector('#msg-side-hire'), join: dlg.querySelector('#msg-side-join') }, form = dlg.querySelector('.msg-form'), done = dlg.querySelector('.msg-done'), err = dlg.querySelector('.msg-err'), send = dlg.querySelector('.msg-foot .btn'); let side = 'hire', last = null;
-    const show = which => { side = which; tabs.forEach(t => { const on = t.dataset.cur === which; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; }); Object.entries(sides).forEach(([k, el]) => el.hidden = k !== which); dlg.querySelectorAll('[data-for]').forEach(el => { if (el.classList.contains('msg-blurb') || el.classList.contains('msg-note')) el.hidden = el.dataset.for !== which; }); dlg.querySelector('.msg-tabs').dataset.side = which; dlg.setAttribute('aria-labelledby', 'msg-title-' + which); err.hidden = true; };
-    const open = (which, from) => { last = from || document.activeElement; show(which); form.hidden = false; done.hidden = true; form.reset(); root.classList.add('msg-open'); dlg.showModal(); const f = sides[which].querySelector('input,textarea,select'); f && setTimeout(() => f.focus(), 60); };
+    const tabs = [...dlg.querySelectorAll('.msg-tab')], sides = { hire: dlg.querySelector('#msg-side-hire'), book: dlg.querySelector('#msg-side-book'), join: dlg.querySelector('#msg-side-join') }, order = ['hire', 'book', 'join'], form = dlg.querySelector('.msg-form'), done = dlg.querySelector('.msg-done'), err = dlg.querySelector('.msg-err'), send = dlg.querySelector('.msg-foot .btn'); let side = 'hire', last = null;
+    const show = which => { side = which; tabs.forEach(t => { const on = t.dataset.cur === which; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; }); Object.entries(sides).forEach(([k, el]) => el.hidden = k !== which); dlg.querySelectorAll('[data-for]').forEach(el => { if (el.classList.contains('msg-blurb') || el.classList.contains('msg-note')) el.hidden = el.dataset.for !== which; }); dlg.querySelector('.msg-tabs').dataset.side = which; dlg.dataset.side = which; dlg.setAttribute('aria-labelledby', 'msg-title-' + which); err.hidden = true; if (which === 'book' && window.__hypjamBook) window.__hypjamBook(dlg.querySelector('.msg-embed')); };
+    const open = (which, from) => { last = from || document.activeElement; show(which); form.hidden = false; done.hidden = true; form.reset(); root.classList.add('msg-open'); dlg.showModal(); const f = sides[which].querySelector('input,textarea,select,iframe,a'); f && setTimeout(() => f.focus(), 60); };
     const close = () => { dlg.close(); root.classList.remove('msg-open'); last && last.focus && last.focus(); };
     tabs.forEach(t => t.addEventListener('click', () => show(t.dataset.cur)));
-    dlg.querySelector('.msg-tabs').addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); show(side === 'hire' ? 'join' : 'hire'); tabs.find(t => t.dataset.cur === side).focus(); } });
+    dlg.querySelector('.msg-tabs').addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); show(order[(order.indexOf(side) + (e.key === 'ArrowRight' ? 1 : order.length - 1)) % order.length]); tabs.find(t => t.dataset.cur === side).focus(); } });
     dlg.querySelector('.msg-x').addEventListener('click', close); dlg.querySelector('.msg-back').addEventListener('click', close);
     dlg.addEventListener('click', e => { if (e.target === dlg) close(); }); dlg.addEventListener('cancel', e => { e.preventDefault(); close(); });
     form.addEventListener('submit', e => { e.preventDefault(); err.hidden = true; const box = sides[side]; let bad = null;
@@ -1409,6 +1441,7 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
       setTimeout(() => { send.disabled = false; dlg.querySelector('.msg-send-label').textContent = 'send it'; form.hidden = true; done.hidden = false; dlg.querySelector('.msg-done-copy').textContent = side === 'hire' ? 'we read every brief ourselves. expect a reply within two working days, usually sooner.' : 'thanks for applying. if your videos fit a live brief we will be in touch within a week.'; dlg.querySelector('.msg-back').focus(); }, 900);
     });
     document.querySelectorAll('a[data-cur="write"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); open('hire', a); }));
+    document.querySelectorAll('[data-book-sheet]').forEach(a => a.addEventListener('click', e => { if (e.metaKey || e.ctrlKey || e.button) return; e.preventDefault(); open('book', a); }));
     document.querySelectorAll('a[href="#contact"].foot-join, a[data-cur="say hi"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); open(a.classList.contains('foot-join') ? 'join' : 'hire', a); }));
     const joinLink = [...document.querySelectorAll('.foot-links a')].find(a => /join the roster/.test(a.textContent)); if (joinLink) { joinLink.setAttribute('data-cur', 'join'); joinLink.addEventListener('click', e => { e.preventDefault(); open('join', joinLink); }); }
     window.__hypjamMsg = open;

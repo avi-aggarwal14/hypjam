@@ -1,4 +1,5 @@
 
+[hidden]{display:none!important}
 :root{
   --ground:#0a0a0a;--ground-2:#121212;--surface:#1c1c1c;--surface-2:#2a2a2a;--line:#3d3d3d;--dim:#6a6a6a;--dot:#555555;
   --text:#f4f4f4;--text-2:#cfcfcf;--text-3:#8f8f8f;
@@ -309,7 +310,7 @@ button{font:inherit;color:inherit}
 .g-step{font-size:10.5px}
 
 /* ---------- book ---------- */
-.book{--tail:26vw;width:calc(100vw + var(--tail));display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr) var(--tail);align-items:center;gap:clamp(32px,4vw,72px);padding:var(--band-top) 0 var(--nav-room) var(--edge)}
+.book{--tail:26vw;width:calc(100vw + var(--tail));display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr) var(--tail);align-items:center;gap:clamp(32px,4vw,72px);padding:var(--band-top) 0 var(--nav-room) var(--edge)}
 .book>*{position:relative;z-index:1}
 .book-back{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
 .book-mark{position:absolute;left:calc(var(--edge) + 6vw);top:50%;width:min(34vw,460px);height:auto;opacity:.07;transform:translateY(-56%)}
@@ -321,22 +322,28 @@ button{font:inherit;color:inherit}
 .book-or{margin:0;font-size:clamp(1rem,1.2vw,1.2rem);color:var(--text-2)}
 .cal-frame{position:relative;grid-column:2;height:min(100%,var(--band-max));min-height:420px;padding:14px;border-radius:20px;background:var(--ground-2);box-shadow:inset 0 0 0 1px var(--hair-2);margin-right:calc(var(--edge) - clamp(32px,4vw,72px))}
 .cal-frame .tick.tl,.cal-frame .tick.bl{left:-18px}.cal-frame .tick.tr,.cal-frame .tick.br{right:-18px}
-.cal{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:14px;padding:16px;border-radius:12px;background:var(--ground);box-shadow:inset 0 0 0 1px var(--hair)}
+.cal{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:12px;padding:14px;border-radius:12px;background:var(--ground);box-shadow:inset 0 0 0 1px var(--hair)}
 .cal-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .cal-head b{font-family:var(--font-display);font-size:15px}
 .cal-head .who{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-2)}
 .cal-head .who .ava{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(150deg,var(--jam),#2a2a2a);font-family:var(--font-display);font-weight:800;font-size:11px;color:#fff}
-.cal-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;min-height:0}
-.cal-day{display:grid;grid-template-rows:auto minmax(0,1fr);gap:8px;min-height:0}
-.cal-day h4{margin:0;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);text-align:center}
-.cal-day h4 b{display:block;font-family:var(--font-display);font-size:16px;letter-spacing:0;color:var(--text);margin-top:2px}
-.slots{display:grid;gap:6px;align-content:start;overflow:auto;padding-right:2px}
-.slot{height:34px;border-radius:8px;border:0;background:var(--surface);color:var(--text-2);font-size:12.5px;font-variant-numeric:tabular-nums;cursor:pointer;box-shadow:inset 0 0 0 1px var(--hair);transition:background .25s var(--ease),color .25s var(--ease),transform .4s var(--spring)}
-.slot:hover{background:var(--surface-2);color:var(--text);transform:translateY(-1px)}
-.slot[aria-pressed="true"]{background:var(--jam);color:var(--on-jam);box-shadow:none;font-weight:600}
-.slot.busy{opacity:.32;cursor:not-allowed;text-decoration:line-through}
 .cal-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12.5px;color:var(--text-3)}
 .cal-foot .pick{color:var(--text)}
+/* real booking: google calendar appointment schedule, loaded only when asked for */
+.cal-embed{position:relative;min-height:clamp(280px,54vh,640px);border-radius:12px;overflow:hidden;background:var(--ground-2);box-shadow:inset 0 0 0 1px var(--hair)}
+.cal-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;filter:invert(.92);opacity:0;transition:opacity .7s var(--ease)}
+.cal-embed[data-live="on"] iframe{opacity:1}
+.cal-gate{position:absolute;inset:0;z-index:1;display:grid;align-content:center;justify-items:center;gap:14px;padding:24px;text-align:center;background:var(--ground-2);transition:opacity .45s var(--ease),visibility 0s .45s}
+.cal-embed[data-live] .cal-gate{opacity:0;visibility:hidden;pointer-events:none}
+.cal-gate-ico{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--surface);color:var(--jam);box-shadow:inset 0 0 0 1px var(--hair)}
+.cal-gate-ico svg{width:18px;height:18px}
+.cal-gate-copy{margin:0;max-width:30ch;font-size:14.5px;line-height:1.5;color:var(--text-2)}
+.cal-gate-copy b{color:var(--text);font-weight:600}
+.cal-gate-alt{font-size:13px;color:var(--text-3);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;transition:color .3s var(--ease)}
+.cal-gate-alt:hover{color:var(--jam)}
+.cal-wait{position:absolute;left:50%;top:50%;z-index:0;width:22px;height:22px;margin:-11px 0 0 -11px;border-radius:50%;border:2px solid var(--hair-2);border-top-color:var(--jam);opacity:0;animation:cal-spin 1s linear infinite}
+.cal-embed[data-live="loading"] .cal-wait{opacity:1}
+@keyframes cal-spin{to{transform:rotate(360deg)}}
 .foot{grid-column:1/3;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;align-self:end;padding-right:var(--edge)}
 .foot-brand{display:flex;align-items:center;gap:10px}
 .foot-brand .mark{width:22px;height:22px}
@@ -390,7 +397,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   .make{padding:24px 20px 120px}.make-body{grid-template-columns:1fr;height:auto}.make-print{height:80vw;max-height:520px}
   .studio{padding:40px 20px 120px}.studio-arrow{display:none}
   .words{padding:40px 20px 120px}.voice{max-width:none}.belts-mask{display:none}
-  .book{grid-template-columns:1fr;width:100vw;padding:40px 20px 140px;gap:24px}.cal-frame{margin-right:0;min-height:0;height:auto}.cal-grid{grid-template-columns:repeat(3,1fr)}.cal-day:nth-child(n+4){display:none}.foot{grid-column:1;flex-direction:column;align-items:flex-start;padding-right:0}
+  .book{grid-template-columns:1fr;width:100vw;padding:40px 20px 140px;gap:24px}.cal-frame{grid-column:1;margin-right:0;min-height:0;height:auto;width:100%}.cal-embed{min-height:min(72vh,720px)}.foot{grid-column:1;flex-direction:column;align-items:flex-start;padding-right:0}
   .book-arrow,.book-dots{display:none}
   .nav-links{display:none}
   .progress{display:none}
@@ -455,6 +462,13 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 .msg-blurb{margin:0;color:var(--text-2);font-size:15px;max-width:56ch}
 .msg-side{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
 .msg-side .fld:nth-last-child(-n+2){grid-column:1/-1}
+.msg-side-book{grid-template-columns:1fr;gap:12px}
+.msg-embed{height:clamp(440px,64vh,700px)}
+.msg-book-alt{margin:0;font-size:13px;line-height:1.5;color:var(--text-3)}
+.msg-book-alt a{color:var(--text-2);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;transition:color .3s var(--ease)}
+.msg-book-alt a:hover{color:var(--jam)}
+.msg[data-side="book"]{max-width:min(94vw,1000px)}
+.msg[data-side="book"] .msg-foot,.msg[data-side="book"] .msg-err{display:none}
 .fld{display:grid;gap:6px;min-width:0;margin:0;padding:0;border:0}
 .fld>span,.fld legend{font-size:12.5px;letter-spacing:.02em;color:var(--text-3)}
 .fld input,.fld select,.fld textarea{width:100%;font:inherit;font-size:15px;color:var(--text);background:var(--ground);border:0;border-radius:10px;padding:11px 13px;box-shadow:inset 0 0 0 1px var(--hair-2);transition:box-shadow .25s var(--ease)}

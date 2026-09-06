@@ -47,6 +47,11 @@
       "source": "/studio",
       "destination": "/agency",
       "permanent": true
+    },
+    {
+      "source": "/book",
+      "destination": "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2RXwUF95RF4StXDvlphdkP8hZGhSSuQUfyHoV8r_igNgn5L-s1g8oYSeiJEDTOfOGGogAyfkir",
+      "permanent": false
     }
   ]
 }
