@@ -1,6 +1,6 @@
 # hypjam
 
-**Live:** <https://avi-aggarwal14.github.io/hypjam/>
+**Live:** <https://hypjam.vercel.app> (also mirrored on GitHub Pages at <https://avi-aggarwal14.github.io/hypjam/>)
 
 Landing page for **hypjam**, an all-in-one UGC (user-generated content) studio: everyday creators, directed by a team, making short-form ads that convert.
 
