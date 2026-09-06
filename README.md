@@ -1,5 +1,7 @@
 # hypjam
 
+**Live:** <https://avi-aggarwal14.github.io/hypjam/>
+
 Landing page for **hypjam**, an all-in-one UGC (user-generated content) studio: everyday creators, directed by a team, making short-form ads that convert.
 
 The whole site is one horizontal track. Scrolling the wheel or trackpad up and down glides the page to the **right**, panel by panel, with eased momentum. Arrow keys, Page Down and Space work too, and the bottom pill navigation glides you straight to a panel. On screens under 900px it falls back to a normal vertical page.
