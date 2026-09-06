@@ -20,7 +20,13 @@ Then open <http://localhost:8000>. Opening `index.html` directly from disk also 
 
 ## What's inside
 
-Everything lives in `index.html`:
+The home page lives in `index.html`. The rest of the site is static too:
+
+- `/work`, `/hire`, `/join`, `/studio`, `/blog` and eight articles under `/blog/*` share `assets/page.css` and `assets/page.js`, which reuse the home page's tokens, nav pill, dot bands, halftone field, cursor and message sheet.
+- `sitemap.xml`, `robots.txt`, `site.webmanifest`, Open Graph image and icons, plus JSON-LD on every page.
+- `brand/brand-guide.md` holds the name, voice, palette, type and logo rules.
+
+Inside `index.html`:
 
 - **Horizontal glide** – `html { overflow: auto hidden }`, a `width: max-content` body and a flex `.track` of `100dvh` panels. A `wheel` listener converts vertical deltas into a lerped `window.scrollTo` glide, so the page keeps native horizontal scrolling and keyboard access.
 - **Fixed chrome** – dotted top and bottom bands, a pointer-reactive dot field on a canvas, a progress bar, and the bottom navigation pill with a sliding active blob.
