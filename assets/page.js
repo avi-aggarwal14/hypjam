@@ -184,26 +184,54 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
   /* reveal on scroll */
   const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.setAttribute('data-in', ''); io.unobserve(en.target); } }), { rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
-  /* ---------- dot bands + book dots ---------- */
-  function dots(canvas, hot) {
-    const ctx = canvas.getContext('2d'); let w, h, dpr, t = 0;
-    const size = () => { dpr = Math.min(devicePixelRatio || 1, 2); w = canvas.clientWidth; h = canvas.clientHeight; canvas.width = w * dpr; canvas.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
-    size(); addEventListener('resize', size);
-    const draw = () => {
-      ctx.clearRect(0, 0, w, h); t += .004;
-      const gap = 41, off = (window.scrollX * .35) % gap;
-      for (let y = gap / 2; y < h; y += gap) for (let x = -off; x < w + gap; x += gap) {
-        const k = Math.sin(x * .05 + t * 3) * Math.cos(y * .07 - t * 2);
-        const hotDot = hot && k > .93;
-        ctx.fillStyle = hotDot ? 'rgba(255,111,31,.85)' : `rgba(244,244,244,${.16 + (k + 1) * .07})`;
-        ctx.beginPath(); ctx.arc(x, y, hotDot ? 2.2 : 1.4, 0, 6.283); ctx.fill();
-      }
-      if (!reduce) requestAnimationFrame(draw);
+  /* ---------- dot bands + book dots: a still grid that wakes near the pointer ---------- */
+  function dots(canvas) {
+    const ctx = canvas.getContext('2d'); if (!ctx) return;
+    const GAP = 22, OFF = 11, RAD = 105, PUSH = 35.7, R0 = 1.1, DR = 1.5, A0 = .28, DA = .6;
+    const INK = [244, 244, 244], HOT = [255, 111, 31];
+    let pts = [], w = 0, h = 0, tick = 0, cx = -9e3, cy = -9e3;
+    const size = () => {
+      const b = canvas.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
+      w = b.width; h = b.height; if (!w || !h) return;
+      canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      pts = [];
+      for (let y = OFF; y < h; y += GAP) for (let x = OFF; x < w; x += GAP) pts.push({ x, y });
     };
-    draw();
+    const draw = () => {
+      if (!w || !h) { tick = 0; return; }
+      const b = canvas.getBoundingClientRect(), mx = cx - b.left, my = cy - b.top;
+      ctx.clearRect(0, 0, w, h);
+      let awake = false;
+      for (const p of pts) {
+        const dx = p.x - mx, dy = p.y - my, d = Math.hypot(dx, dy);
+        let x = p.x, y = p.y, r = R0, a = A0, t = 0;
+        if (d < RAD) {
+          awake = true; t = (1 - d / RAD) ** 2;
+          const k = PUSH * t / (d || 1);
+          x += dx * k; y += dy * k; r = R0 + DR * t; a = A0 + DA * t;
+        }
+        ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283);
+        ctx.fillStyle = t > 0
+          ? `rgba(${Math.round(INK[0] + (HOT[0] - INK[0]) * t)},${Math.round(INK[1] + (HOT[1] - INK[1]) * t)},${Math.round(INK[2] + (HOT[2] - INK[2]) * t)},${a})`
+          : `rgba(${INK[0]},${INK[1]},${INK[2]},${a})`;
+        ctx.fill();
+      }
+      tick = (awake && !reduce) ? requestAnimationFrame(draw) : 0;
+    };
+    const kick = () => { if (!tick) tick = requestAnimationFrame(draw); };
+    size(); kick();
+    if (fine && !reduce) {
+      addEventListener('pointermove', e => { cx = e.clientX; cy = e.clientY; kick(); }, { passive: true });
+      document.addEventListener('pointerleave', () => { cx = cy = -9e3; kick(); });
+      addEventListener('blur', () => { cx = cy = -9e3; kick(); });
+      addEventListener('scroll', kick, { passive: true });
+    }
+    addEventListener('resize', () => { size(); kick(); });
+    if (window.ResizeObserver) new ResizeObserver(() => { size(); kick(); }).observe(canvas);
   }
-  document.querySelectorAll('.band canvas').forEach(c => dots(c, true));
-  const bd = document.querySelector('.book-dots canvas'); if (bd) dots(bd, true);
+  document.querySelectorAll('.band canvas').forEach(c => dots(c));
+  const bd = document.querySelector('.book-dots canvas'); if (bd) dots(bd);
 
   /* ---------- fixed field: dots that wake near the pointer ---------- */
   (() => {
@@ -235,7 +263,7 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
   (() => {
     /* one switch for the whole site: fill CAL in with '<user>/<event>' to move booking to cal.com,
        leave it empty to keep the google calendar appointment schedule. /book in vercel.json follows. */
-    const CAL = '';
+    const CAL = 'avi-aggarwal-hypjam/intro';
     const GCAL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2RXwUF95RF4StXDvlphdkP8hZGhSSuQUfyHoV8r_igNgn5L-s1g8oYSeiJEDTOfOGGogAyfkir?gv=true';
     const KIND = CAL ? 'cal' : 'gcal';
     const BOOK = CAL ? `https://cal.com/${CAL}?embed=true&theme=dark&layout=month_view` : GCAL;
