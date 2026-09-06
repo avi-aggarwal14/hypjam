@@ -55,10 +55,10 @@ hypjam sounds like a sharp creative producer texting a client, not a marketing d
 | ⬜ | text | `#f4f4f4` | primary text on dark backgrounds. headlines, body copy, buttons. |
 | ⬜ | text-2 | `#cfcfcf` | secondary text — subheads, captions, muted body copy. |
 | ⬜ | text-3 | `#8f8f8f` | tertiary text — timestamps, placeholder copy, disabled states. |
-| 🟩 | accent — acid green | `#b6ff3b` | the hypjam colour. CTAs, links, highlights, the play-triangle, key stats. use it to draw the eye, not to fill space — never as a background for large blocks of body text. |
+| 🟩 | accent — vivid orange | `#ff6f1f` | the hypjam colour. CTAs, links, highlights, the play-triangle, key stats. use it to draw the eye, not to fill space — never as a background for large blocks of body text. |
 | 🟧 | amber | `#f0b46a` | sparing use only — warnings, "limited" badges, a single accent moment when green is already doing the primary job nearby. never the dominant colour on a page. |
 
-**never use pink, purple, or blue** anywhere in the brand system — no gradients, no icon tints, no chart series colours. if a chart needs a second categorical colour beyond acid green, reach for amber, then for greys from the palette above, before inventing a new hue.
+**never use pink, purple, or blue** anywhere in the brand system — no gradients, no icon tints, no chart series colours. if a chart needs a second categorical colour beyond vivid orange, reach for amber, then for greys from the palette above, before inventing a new hue.
 
 ## 6. typography
 
@@ -76,7 +76,7 @@ hypjam sounds like a sharp creative producer texting a client, not a marketing d
 | Body small / caption | DM Sans 400 | 13–14px | 13px | 1.5 | captions, metadata, footnotes |
 | Button / label | DM Sans 500 | 14–16px | 14–16px | 1 | CTAs, tags, form labels |
 
-set body copy in text-2 or text on ground/ground-2 backgrounds; never set long paragraphs in acid green (fails readability and looks like an alert).
+set body copy in text-2 or text on ground/ground-2 backgrounds; never set long paragraphs in vivid orange (fails readability and looks like an alert).
 
 ## 7. logo
 
@@ -93,7 +93,7 @@ the hypjam mark is a sticker-style rounded square containing a black speech bubb
 
 **don'ts**
 - don't recolour the speech bubble anything other than black-on-sticker or the approved reverse (light bubble on dark sticker for dark-mode use).
-- don't change the play triangle to any colour other than acid green `#b6ff3b`.
+- don't change the play triangle to any colour other than vivid orange `#ff6f1f`.
 - don't stretch, skew, rotate, or add a drop shadow, bevel, or outer glow to the mark.
 - don't place the mark on busy photography or low-contrast backgrounds without a solid colour plate behind it.
 - don't recreate the wordmark in any typeface other than Outfit 700 lowercase.

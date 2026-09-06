@@ -92,7 +92,7 @@ void main(){
       let W = 0, H = 0, dpr = 1, rects = [], channels = [], junctions = [], travellers = [], heat = items.map(() => 0), swell = items.map(e => e.classList.contains('card') ? 10 : 0), radii = items.map(e => parseFloat(getComputedStyle(e).borderTopLeftRadius) || 20);
       let hot = [], px = -999, py = -999, pr = 0, mx = -999, my = -999, inside = false, raf = 0, visible = false, dirty = true, t0 = performance.now();
       const V = new Float32Array(32), Y = new Float32Array(24), G = new Float32Array(160);
-      const theme = () => { const cs = getComputedStyle(host); const g = parseCol(cs.getPropertyValue('--goo-ground').trim() || '#121212'); const r = parseCol(cs.getPropertyValue('--goo-rim').trim() || '#f4f4f4'); const m = parseCol(cs.getPropertyValue('--goo-mint').trim() || '#b6ff3b');
+      const theme = () => { const cs = getComputedStyle(host); const g = parseCol(cs.getPropertyValue('--goo-ground').trim() || '#121212'); const r = parseCol(cs.getPropertyValue('--goo-rim').trim() || '#f4f4f4'); const m = parseCol(cs.getPropertyValue('--goo-mint').trim() || '#ff6f1f');
         gl.uniform4f(U.uGround, g[0], g[1], g[2], Number(cs.getPropertyValue('--goo-ground-a')) || 0.6); gl.uniform1f(U.uTexA, Number(cs.getPropertyValue('--goo-tex-a')) || 0.35);
         gl.uniform3f(U.uRim, r[0], r[1], r[2]); gl.uniform1f(U.uRimA, Number(cs.getPropertyValue('--goo-rim-a')) || 0.26); gl.uniform1f(U.uHaloA, Number(cs.getPropertyValue('--goo-halo-a')) || 0.07); gl.uniform3f(U.uMint, m[0], m[1], m[2]);
         gl.uniform3f(U.uGrey, 0.11, 0.11, 0.11); gl.uniform3f(U.uWhite, 0.62, 0.62, 0.62); dirty = true; };
@@ -195,7 +195,7 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
       for (let y = gap / 2; y < h; y += gap) for (let x = -off; x < w + gap; x += gap) {
         const k = Math.sin(x * .05 + t * 3) * Math.cos(y * .07 - t * 2);
         const hotDot = hot && k > .93;
-        ctx.fillStyle = hotDot ? 'rgba(182,255,59,.85)' : `rgba(244,244,244,${.16 + (k + 1) * .07})`;
+        ctx.fillStyle = hotDot ? 'rgba(255,111,31,.85)' : `rgba(244,244,244,${.16 + (k + 1) * .07})`;
         ctx.beginPath(); ctx.arc(x, y, hotDot ? 2.2 : 1.4, 0, 6.283); ctx.fill();
       }
       if (!reduce) requestAnimationFrame(draw);
@@ -223,7 +223,7 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
         const dx = x - sx, dy = y - sy, d = Math.hypot(dx, dy);
         const n = Math.max(0, 1 - d / 190);
         const r = .9 + n * 1.9;
-        ctx.fillStyle = n > .02 ? `rgba(${Math.round(244 - (244 - 182) * n)},${Math.round(244 + (255 - 244) * n)},${Math.round(244 - (244 - 59) * n)},${.08 + n * .8})` : 'rgba(244,244,244,.08)';
+        ctx.fillStyle = n > .02 ? `rgba(${Math.round(244 + (255 - 244) * n)},${Math.round(244 - (244 - 111) * n)},${Math.round(244 - (244 - 31) * n)},${.08 + n * .8})` : 'rgba(244,244,244,.08)';
         ctx.beginPath(); ctx.arc(x - dx * n * .12, y - dy * n * .12, r, 0, 6.283); ctx.fill();
       }
       if (!reduce) requestAnimationFrame(draw);

@@ -48,9 +48,9 @@
 :root{
   --ground:#0a0a0a;--ground-2:#121212;--surface:#1c1c1c;--surface-2:#2a2a2a;--line:#3d3d3d;--dim:#6a6a6a;--dot:#555555;
   --text:#f4f4f4;--text-2:#cfcfcf;--text-3:#8f8f8f;
-  --jam:#b6ff3b;--on-jam:#0a0a0a;--hype:#e6e6e6;
+  --jam:#ff6f1f;--on-jam:#0a0a0a;--hype:#e6e6e6;
   --hair:rgba(244,244,244,.10);--hair-2:rgba(244,244,244,.18);--glass:rgba(18,18,18,.78);--shadow:rgba(0,0,0,.55);
-  --hue-violet:#bdbdbd;--hue-amber:#f0b46a;--hue-olive:#e6e6e6;--hue-slate:#d9d9d9;--hue-ember:#ffb347;--hue-jam:#cfff7a;
+  --hue-violet:#bdbdbd;--hue-amber:#f0b46a;--hue-olive:#e6e6e6;--hue-slate:#d9d9d9;--hue-ember:#ffb347;--hue-jam:#ffb380;
   --ease:cubic-bezier(.22,1,.36,1);--slow:cubic-bezier(.16,1,.35,1);--spring:cubic-bezier(.34,1.3,.5,1);
   --edge:clamp(24px,5vw,88px);--nav-room:128px;--band-top:clamp(44px,8vh,96px);--band-max:760px;
   --band-h:min(calc(100vh - var(--band-top) - var(--nav-room)),var(--band-max));
@@ -81,7 +81,7 @@ button{font:inherit;color:inherit}
 .track{display:flex;gap:15vw;height:100dvh;position:relative;z-index:1}
 .panel{flex:none;height:100dvh;position:relative}
 .panel+.panel:before{content:"";position:absolute;top:9vh;bottom:9vh;left:calc(-7.5vw - 1px);width:2px;z-index:0;pointer-events:none;background:repeating-linear-gradient(to bottom,transparent 0 34px,var(--hair-2) 34px 42px),repeating-linear-gradient(to bottom,transparent 0 116px,var(--jam) 116px 118px,transparent 118px 124px);-webkit-mask-image:linear-gradient(#0000,#000 12% 88%,#0000);mask-image:linear-gradient(#0000,#000 12% 88%,#0000)}
-.panel+.panel:after{content:"";position:absolute;top:9vh;bottom:9vh;left:calc(-7.5vw - 7px);width:14px;z-index:0;pointer-events:none;opacity:.85;background-image:radial-gradient(circle,var(--jam) 0 2.6px,rgba(182,255,59,.25) 3.2px 5px,transparent 5.6px);background-size:14px 124px;background-position:0 110px;background-repeat:repeat-y;-webkit-mask-image:linear-gradient(#0000,#000 12% 88%,#0000);mask-image:linear-gradient(#0000,#000 12% 88%,#0000)}
+.panel+.panel:after{content:"";position:absolute;top:9vh;bottom:9vh;left:calc(-7.5vw - 7px);width:14px;z-index:0;pointer-events:none;opacity:.85;background-image:radial-gradient(circle,var(--jam) 0 2.6px,rgba(255,111,31,.25) 3.2px 5px,transparent 5.6px);background-size:14px 124px;background-position:0 110px;background-repeat:repeat-y;-webkit-mask-image:linear-gradient(#0000,#000 12% 88%,#0000);mask-image:linear-gradient(#0000,#000 12% 88%,#0000)}
 
 /* ---------- type ---------- */
 .h1{font-family:var(--font-display);font-weight:700;letter-spacing:-.035em;line-height:1;margin:0;font-size:clamp(2rem,3.55vw,3.9rem);text-wrap:balance;font-variant-numeric:tabular-nums}
@@ -110,7 +110,7 @@ button{font:inherit;color:inherit}
 .btn:active .btn-in{transform:scale(.985)}
 .btn-solid{--head:22px;height:52px;padding:0 14px 0 9px;margin-right:var(--head);border-radius:11px 0 0 11px;background:var(--jam);color:var(--on-jam);font-size:15.5px;font-weight:700;box-shadow:none;overflow:visible;transition:padding .5s var(--spring),background .35s var(--ease),box-shadow .35s var(--ease)}
 .btn-solid .btn-ico{width:34px;height:34px;border-radius:9px;background:var(--on-jam);color:var(--jam)}
-.btn-solid:hover{background:var(--jam);padding-right:20px;box-shadow:0 12px 30px -12px rgba(182,255,59,.6)}
+.btn-solid:hover{background:var(--jam);padding-right:20px;box-shadow:0 12px 30px -12px rgba(255,111,31,.6)}
 .btn-solid:hover .btn-ico{background:var(--on-jam)}
 .btn-head{position:absolute;top:0;left:100%;width:var(--head);height:100%;fill:var(--jam);pointer-events:none;overflow:visible}
 .btn-you{display:inline-flex;align-items:center;gap:6px;max-width:0;margin-left:-11px;opacity:0;overflow:hidden;transform:translateX(-8px);transition:max-width .55s var(--spring),margin .55s var(--spring),opacity .3s var(--ease),transform .55s var(--spring)}
@@ -455,7 +455,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 .cur-arrow.is-down svg{transform:scale(.86);transform-origin:20% 20%}
 .cur-arrow svg{transition:transform .25s var(--spring)}
 /* liquid hosts: the canvas paints the bodies, so the elements themselves go transparent */
-.shelf,.liquid-host{--goo-ground:#121212;--goo-ground-a:.6;--goo-tex-a:.17;--goo-rim:#f4f4f4;--goo-rim-a:.46;--goo-halo-a:.14;--goo-mint:#b6ff3b}
+.shelf,.liquid-host{--goo-ground:#121212;--goo-ground-a:.6;--goo-tex-a:.17;--goo-rim:#f4f4f4;--goo-rim-a:.46;--goo-halo-a:.14;--goo-mint:#ff6f1f}
 .make-body{--goo-tex-a:.28}
 .shelf:not([data-flat]) .index,.shelf:not([data-flat]) .card,.make-body:not([data-flat]) .make-frame,.make-body:not([data-flat]) .make-list{background:transparent;box-shadow:none}
 .shelf:not([data-flat]) .index:before{display:none}
@@ -547,7 +547,7 @@ html.msg-open{overflow:hidden}
       <rect x="34" y="34" width="132" height="132" rx="38" fill="#f4f4f4" stroke="#f4f4f4" stroke-width="27" stroke-linejoin="round"/>
       <rect x="34" y="34" width="132" height="132" rx="38" fill="#f4f4f4"/>
       <path d="M62 60 h76 a14 14 0 0 1 14 14 v46 a14 14 0 0 1 -14 14 h-44 l-24 22 v-22 h-8 a14 14 0 0 1 -14 -14 v-46 a14 14 0 0 1 14 -14z" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="9" stroke-linejoin="round"/>
-      <path d="M90 78 l30 19 l-30 19z" fill="#b6ff3b"/>
+      <path d="M90 78 l30 19 l-30 19z" fill="#ff6f1f"/>
     </symbol>
     <symbol id="i-mail" viewBox="0 0 16 16"><rect x="2" y="3.6" width="12" height="8.8" rx="1.7"/><path d="m2.6 5.2 4.6 3.2a1.4 1.4 0 0 0 1.6 0l4.6-3.2"/></symbol>
     <symbol id="i-cal" viewBox="0 0 16 16"><rect x="2.2" y="3.4" width="11.6" height="10.2" rx="1.7"/><path d="M2.2 6.6h11.6M5.4 2v2.6M10.6 2v2.6M5.4 9.6h2.2"/></symbol>
@@ -633,7 +633,7 @@ html.msg-open{overflow:hidden}
         <span class="slab-img">
           <span class="shot" style="--bg:linear-gradient(160deg,#2a2a2a 0%,#0f0f0f 55%,#0a0a0a 100%)">
             <span class="sky"></span>
-            <span class="blob" style="left:-10%;top:10%;width:55%;height:60%;background:#b6ff3b"></span>
+            <span class="blob" style="left:-10%;top:10%;width:55%;height:60%;background:#ff6f1f"></span>
             <span class="blob" style="right:-10%;bottom:-10%;width:60%;height:60%;background:#e6e6e6;opacity:.45"></span>
             <span class="person" style="background:linear-gradient(180deg,#242424,#0f0b18)"><span class="head"></span></span>
             <span class="prod" style="left:22%;bottom:18%;width:12%;aspect-ratio:1/1.6;transform:rotate(-8deg)"></span>
@@ -661,7 +661,7 @@ html.msg-open{overflow:hidden}
           <a class="trust-item" href="#words"><span class="logo" style="background:#d9d9d9">d</span><span class="n">driftwear</span></a>
           <a class="trust-item" href="#words"><span class="logo" style="background:#ffb347">p</span><span class="n">plantly</span></a>
           <a class="trust-item" href="#words"><span class="logo" style="background:#f4f4f4">o</span><span class="n">oatside</span></a>
-          <a class="trust-item" href="#words"><span class="logo" style="background:#b6ff3b;color:#fff">l</span><span class="n">lumen skin</span></a>
+          <a class="trust-item" href="#words"><span class="logo" style="background:#ff6f1f;color:#fff">l</span><span class="n">lumen skin</span></a>
         </div>
         <div class="mq-run" aria-hidden="true">
           <a class="trust-item" href="#words"><span class="logo" style="background:#e6e6e6">g</span><span class="n">glow labs</span></a>
@@ -671,7 +671,7 @@ html.msg-open{overflow:hidden}
           <a class="trust-item" href="#words"><span class="logo" style="background:#d9d9d9">d</span><span class="n">driftwear</span></a>
           <a class="trust-item" href="#words"><span class="logo" style="background:#ffb347">p</span><span class="n">plantly</span></a>
           <a class="trust-item" href="#words"><span class="logo" style="background:#f4f4f4">o</span><span class="n">oatside</span></a>
-          <a class="trust-item" href="#words"><span class="logo" style="background:#b6ff3b;color:#fff">l</span><span class="n">lumen skin</span></a>
+          <a class="trust-item" href="#words"><span class="logo" style="background:#ff6f1f;color:#fff">l</span><span class="n">lumen skin</span></a>
         </div>
       </div></div>
     </div>
@@ -720,7 +720,7 @@ html.msg-open{overflow:hidden}
     <a class="card card-1" id="c1" href="#work" data-tilt data-cur="open" data-goo>
       <span class="frame"><span class="shot" style="--bg:linear-gradient(120deg,#222222 0%,#1a1a1a 45%,#151515 100%)">
         <span class="sky"></span>
-        <span class="blob" style="left:5%;top:-20%;width:40%;height:90%;background:#b6ff3b;opacity:.55"></span>
+        <span class="blob" style="left:5%;top:-20%;width:40%;height:90%;background:#ff6f1f;opacity:.55"></span>
         <span class="blob" style="right:0;bottom:-30%;width:45%;height:80%;background:#e6e6e6;opacity:.35"></span>
         <span class="person" style="left:30%;width:22%;background:linear-gradient(180deg,#242424,#0f0b18)"><span class="head"></span></span>
         <span class="person" style="left:62%;width:20%;bottom:-8%;background:linear-gradient(180deg,#2a2a2a,#0b0f18)"><span class="head"></span></span>
@@ -783,7 +783,7 @@ html.msg-open{overflow:hidden}
         <p class="sub make-sub">if it goes in a feed, we can make it.</p>
       </div>
       <div class="make-print" aria-live="polite">
-        <a class="make-shot" data-on href="#work" data-cur="open"><span class="shot" style="--bg:linear-gradient(160deg,#2a2a2a,#0f0f0f 55%,#0a0a0a)"><span class="sky"></span><span class="blob" style="left:-10%;top:10%;width:55%;height:60%;background:#b6ff3b"></span><span class="person" style="background:linear-gradient(180deg,#242424,#0f0b18)"><span class="head"></span></span><span class="prod" style="left:22%;bottom:22%;width:14%;aspect-ratio:1/1.6;transform:rotate(-8deg)"></span><span class="rec">rec</span><span class="ui"><span class="cap">the <i>only</i> serum i repurchase</span><b>@maya.films</b></span><span class="grain"></span></span></a>
+        <a class="make-shot" data-on href="#work" data-cur="open"><span class="shot" style="--bg:linear-gradient(160deg,#2a2a2a,#0f0f0f 55%,#0a0a0a)"><span class="sky"></span><span class="blob" style="left:-10%;top:10%;width:55%;height:60%;background:#ff6f1f"></span><span class="person" style="background:linear-gradient(180deg,#242424,#0f0b18)"><span class="head"></span></span><span class="prod" style="left:22%;bottom:22%;width:14%;aspect-ratio:1/1.6;transform:rotate(-8deg)"></span><span class="rec">rec</span><span class="ui"><span class="cap">the <i>only</i> serum i repurchase</span><b>@maya.films</b></span><span class="grain"></span></span></a>
         <a class="make-shot" href="#work" data-cur="open"><span class="shot" style="--bg:linear-gradient(170deg,#262626,#141414 60%,#0b0b0b)"><span class="sky"></span><span class="blob" style="left:-20%;top:20%;width:80%;height:50%;background:#e6e6e6;opacity:.5"></span><span class="person" style="background:linear-gradient(180deg,#2a2a2a,#0e0e0e)"><span class="head"></span></span><span class="prod" style="left:18%;bottom:30%;width:22%;aspect-ratio:1/1.3;transform:rotate(-10deg)"></span><span class="ui"><span class="cap">unboxing the <i>plantly</i> kit</span><b>@rin.glow</b></span><span class="grain"></span></span></a>
         <a class="make-shot" href="#work" data-cur="open"><span class="shot" style="--bg:linear-gradient(150deg,#3a2f1a,#20170e 60%,#0d0a08)"><span class="sky"></span><span class="blob" style="right:-10%;top:-10%;width:60%;height:70%;background:#e6e6e6;opacity:.45"></span><span class="person" style="background:linear-gradient(180deg,#3a2e22,#150f0a)"><span class="head"></span></span><span class="ui"><span class="cap">why i started <i>kettle &amp; co</i></span><b>@jules.kettle</b></span><span class="grain"></span></span></a>
         <a class="make-shot" href="#work" data-cur="open"><span class="shot" style="--bg:linear-gradient(150deg,#2a2a2a,#222222 55%,#0c0c0c)"><span class="sky"></span><span class="blob" style="left:-10%;bottom:-20%;width:70%;height:70%;background:#bdbdbd;opacity:.5"></span><span class="person" style="left:34%;width:34%;background:linear-gradient(180deg,#232323,#111111)"><span class="head"></span></span><span class="person" style="left:68%;width:34%;background:linear-gradient(180deg,#262626,#0b0b0b)"><span class="head"></span></span><span class="ui"><span class="cap">the hoodie in <i>every</i> weather</span><b>@tomlifts × @sana.walks</b></span><span class="grain"></span></span></a>
@@ -815,7 +815,7 @@ html.msg-open{overflow:hidden}
 <section class="panel studio" id="studio">
   <div class="studio-arrow" aria-hidden="true">
     <svg viewBox="0 0 1000 600" preserveAspectRatio="none">
-      <defs><linearGradient id="tip" x1="820" y1="0" x2="996" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#b6ff3b" stop-opacity="0"/><stop offset="1" stop-color="#b6ff3b" stop-opacity=".75"/></linearGradient></defs>
+      <defs><linearGradient id="tip" x1="820" y1="0" x2="996" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ff6f1f" stop-opacity="0"/><stop offset="1" stop-color="#ff6f1f" stop-opacity=".75"/></linearGradient></defs>
       <g class="liquid"><ellipse class="lq-a" cx="300" cy="200" rx="170" ry="110"/><ellipse class="lq-b" cx="620" cy="380" rx="200" ry="120"/><ellipse class="lq-c" cx="180" cy="440" rx="140" ry="90"/></g>
       <path d="M0 0 H850 L996 300 L850 600 H0" vector-effect="non-scaling-stroke" class="arrow-fill"/>
       <path d="M0 0 H850 L996 300 L850 600 H0" vector-effect="non-scaling-stroke"/>
@@ -850,8 +850,8 @@ html.msg-open{overflow:hidden}
       <div class="voice-graph" role="img" aria-label="return on ad spend over a campaign's life: flat when left alone, climbing steeply with hypjam through brief, scripts, shoot, ship and iterate">
         <svg viewBox="0 0 520 164" preserveAspectRatio="none">
           <defs>
-            <linearGradient id="gfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b6ff3b" stop-opacity=".34"/><stop offset=".7" stop-color="#b6ff3b" stop-opacity=".04"/><stop offset="1" stop-color="#b6ff3b" stop-opacity="0"/></linearGradient>
-            <linearGradient id="gline" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b6ff3b" stop-opacity=".25"/><stop offset=".55" stop-color="#b6ff3b" stop-opacity=".9"/><stop offset="1" stop-color="#e6e6e6"/></linearGradient>
+            <linearGradient id="gfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6f1f" stop-opacity=".34"/><stop offset=".7" stop-color="#ff6f1f" stop-opacity=".04"/><stop offset="1" stop-color="#ff6f1f" stop-opacity="0"/></linearGradient>
+            <linearGradient id="gline" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ff6f1f" stop-opacity=".25"/><stop offset=".55" stop-color="#ff6f1f" stop-opacity=".9"/><stop offset="1" stop-color="#e6e6e6"/></linearGradient>
             <filter id="gblur" x="-10%" y="-40%" width="120%" height="180%"><feGaussianBlur stdDeviation="3.5"/></filter>
           </defs>
           <line x1="0" x2="520" y1="36" y2="36" class="g-rule"/><line x1="0" x2="520" y1="70" y2="70" class="g-rule"/><line x1="0" x2="520" y1="104" y2="104" class="g-rule"/><line x1="0" x2="520" y1="138" y2="138" class="g-base"/>
@@ -879,7 +879,7 @@ html.msg-open{overflow:hidden}
     <div class="book-arrow" aria-hidden="true">
       <div class="fill book-fill liquid-host"><canvas class="goo" aria-hidden="true"></canvas><span class="fill-body" data-goo></span></div>
       <svg viewBox="0 0 1000 600" preserveAspectRatio="none">
-        <defs><linearGradient id="btip" x1="200" y1="0" x2="4" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#b6ff3b" stop-opacity="0"/><stop offset="1" stop-color="#b6ff3b" stop-opacity=".9"/></linearGradient></defs>
+        <defs><linearGradient id="btip" x1="200" y1="0" x2="4" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ff6f1f" stop-opacity="0"/><stop offset="1" stop-color="#ff6f1f" stop-opacity=".9"/></linearGradient></defs>
         <g class="liquid"><ellipse class="lq-b" cx="520" cy="180" rx="220" ry="120"/><ellipse class="lq-c" cx="700" cy="440" rx="180" ry="100"/></g>
         <path d="M1000 0 H150 L4 300 L150 600 H1000" class="arrow-fill"/>
         <path d="M1000 0 H150 L4 300 L150 600 H1000" vector-effect="non-scaling-stroke"/>
@@ -1054,7 +1054,7 @@ void main(){
       let W = 0, H = 0, dpr = 1, rects = [], channels = [], junctions = [], travellers = [], heat = items.map(() => 0), swell = items.map(e => e.classList.contains('card') ? 10 : 0), radii = items.map(e => parseFloat(getComputedStyle(e).borderTopLeftRadius) || 20);
       let hot = [], px = -999, py = -999, pr = 0, mx = -999, my = -999, inside = false, raf = 0, visible = false, dirty = true, t0 = performance.now();
       const V = new Float32Array(32), Y = new Float32Array(24), G = new Float32Array(160);
-      const theme = () => { const cs = getComputedStyle(host); const g = parseCol(cs.getPropertyValue('--goo-ground').trim() || '#121212'); const r = parseCol(cs.getPropertyValue('--goo-rim').trim() || '#f4f4f4'); const m = parseCol(cs.getPropertyValue('--goo-mint').trim() || '#b6ff3b');
+      const theme = () => { const cs = getComputedStyle(host); const g = parseCol(cs.getPropertyValue('--goo-ground').trim() || '#121212'); const r = parseCol(cs.getPropertyValue('--goo-rim').trim() || '#f4f4f4'); const m = parseCol(cs.getPropertyValue('--goo-mint').trim() || '#ff6f1f');
         gl.uniform4f(U.uGround, g[0], g[1], g[2], Number(cs.getPropertyValue('--goo-ground-a')) || 0.6); gl.uniform1f(U.uTexA, Number(cs.getPropertyValue('--goo-tex-a')) || 0.35);
         gl.uniform3f(U.uRim, r[0], r[1], r[2]); gl.uniform1f(U.uRimA, Number(cs.getPropertyValue('--goo-rim-a')) || 0.26); gl.uniform1f(U.uHaloA, Number(cs.getPropertyValue('--goo-halo-a')) || 0.07); gl.uniform3f(U.uMint, m[0], m[1], m[2]);
         gl.uniform3f(U.uGrey, 0.11, 0.11, 0.11); gl.uniform3f(U.uWhite, 0.62, 0.62, 0.62); dirty = true; };
@@ -1230,7 +1230,7 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
       for (let y = gap / 2; y < h; y += gap) for (let x = -off; x < w + gap; x += gap) {
         const k = Math.sin(x * .05 + t * 3) * Math.cos(y * .07 - t * 2);
         const hotDot = hot && k > .93;
-        ctx.fillStyle = hotDot ? 'rgba(182,255,59,.85)' : `rgba(244,244,244,${.16 + (k + 1) * .07})`;
+        ctx.fillStyle = hotDot ? 'rgba(255,111,31,.85)' : `rgba(244,244,244,${.16 + (k + 1) * .07})`;
         ctx.beginPath(); ctx.arc(x, y, hotDot ? 2.2 : 1.4, 0, 6.283); ctx.fill();
       }
       if (!reduce) requestAnimationFrame(draw);
@@ -1258,7 +1258,7 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
         const dx = x - sx, dy = y - sy, d = Math.hypot(dx, dy);
         const n = Math.max(0, 1 - d / 190);
         const r = .9 + n * 1.9;
-        ctx.fillStyle = n > .02 ? `rgba(${Math.round(244 - (244 - 182) * n)},${Math.round(244 + (255 - 244) * n)},${Math.round(244 - (244 - 59) * n)},${.08 + n * .8})` : 'rgba(244,244,244,.08)';
+        ctx.fillStyle = n > .02 ? `rgba(${Math.round(244 + (255 - 244) * n)},${Math.round(244 - (244 - 111) * n)},${Math.round(244 - (244 - 31) * n)},${.08 + n * .8})` : 'rgba(244,244,244,.08)';
         ctx.beginPath(); ctx.arc(x - dx * n * .12, y - dy * n * .12, r, 0, 6.283); ctx.fill();
       }
       if (!reduce) requestAnimationFrame(draw);
@@ -1311,7 +1311,7 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
   /* ---------- belts of tiles behind the testimonial ---------- */
   (() => {
     const host = document.getElementById('belts'); if (!host) return;
-    const pal = [['#2a2a2a', '#0f0f0f', '#b6ff3b'], ['#262626', '#0b0b0b', '#e6e6e6'], ['#3a2f1a', '#0d0a08', '#e6e6e6'], ['#2a2a2a', '#0c0c0c', '#bdbdbd'], ['#2b2b2b', '#0b0b0b', '#ffb347'], ['#2a2a2a', '#0a0a0a', '#d9d9d9']];
+    const pal = [['#2a2a2a', '#0f0f0f', '#ff6f1f'], ['#262626', '#0b0b0b', '#e6e6e6'], ['#3a2f1a', '#0d0a08', '#e6e6e6'], ['#2a2a2a', '#0c0c0c', '#bdbdbd'], ['#2b2b2b', '#0b0b0b', '#ffb347'], ['#2a2a2a', '#0a0a0a', '#d9d9d9']];
     const caps = [['oatside · 2.1m', '@cafe.hannah'], ['sipwell · 880k', '@devfromdenver'], ['plantly · 1.4m', '@rin.glow'], ['glow labs · 3.3m', '@maya.films'], ['driftwear · 620k', '@tomlifts'], ['kettle & co · 410k', '@jules.kettle'], ['lumen skin · 1.9m', '@sana.walks'], ['nomad co · 740k', '@leo.packs']];
     const tile = k => { const p = pal[k % pal.length], c = caps[k % caps.length]; return `<span class="tile"><span class="shot" style="--bg:linear-gradient(165deg,${p[0]},${p[1]})"><span class="sky"></span><span class="blob" style="left:-20%;top:${(k * 23) % 60}%;width:90%;height:55%;background:${p[2]};opacity:.5"></span><span class="person" style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(0,0,0,.6))"><span class="head"></span></span><span class="grain"></span></span><span class="meta"><b>${c[0]}</b><span>${c[1]}</span></span></span>`; };
     for (let b = 0; b < 3; b++) {
