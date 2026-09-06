@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="hypjam">
+  <rect x="34" y="34" width="132" height="132" rx="38" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="34" stroke-linejoin="round"/>
+  <rect x="34" y="34" width="132" height="132" rx="38" fill="#f4f4f4" stroke="#f4f4f4" stroke-width="27" stroke-linejoin="round"/>
+  <rect x="34" y="34" width="132" height="132" rx="38" fill="#f4f4f4"/>
+  <path d="M62 60 h76 a14 14 0 0 1 14 14 v46 a14 14 0 0 1 -14 14 h-44 l-24 22 v-22 h-8 a14 14 0 0 1 -14 -14 v-46 a14 14 0 0 1 14 -14z" fill="#0a0a0a" stroke="#0a0a0a" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M90 78 l30 19 l-30 19z" fill="#b6ff3b"/>
+</svg>

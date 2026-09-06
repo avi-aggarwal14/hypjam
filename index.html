@@ -5,7 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="hypjam, the all-in-one UGC studio. Everyday creators, directed by a team, making short-form ads that convert.">
 <meta name="theme-color" content="#0a0a0a">
-<title>hypjam</title>
+<title>hypjam · the all-in-one ugc studio</title>
+<link rel="canonical" href="https://hypjam.vercel.app/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="hypjam">
+<meta name="keywords" content="ugc agency, ugc ads, ugc creators, tiktok ads, short-form video ads, ugc marketing agency uk">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="hypjam">
+<meta property="og:title" content="hypjam · the all-in-one ugc studio">
+<meta property="og:description" content="everyday creators, directed by a team. briefs, hooks, casting, shooting, editing and whitelisting for short-form ads that convert.">
+<meta property="og:url" content="https://hypjam.vercel.app/">
+<meta property="og:image" content="https://hypjam.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="hypjam: our creators have 2,400,000,000+ views. yours could be next.">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="hypjam · the all-in-one ugc studio">
+<meta name="twitter:description" content="everyday creators, directed by a team. short-form ads that convert, from brief to whitelisted.">
+<meta name="twitter:image" content="https://hypjam.vercel.app/og.png">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Organization","@id":"https://hypjam.vercel.app/#org","name":"hypjam","url":"https://hypjam.vercel.app/","logo":"https://hypjam.vercel.app/icon-512.png","description":"hypjam is a UGC (user-generated content) marketing agency: everyday creators, directed by a team, making short-form video ads for brands.","founder":{"@type":"Person","name":"Avi Aggarwal"},"areaServed":"GB","knowsAbout":["UGC marketing","TikTok ads","Instagram Reels ads","creator whitelisting","Spark Ads","short-form video advertising"]},
+ {"@type":"WebSite","@id":"https://hypjam.vercel.app/#site","url":"https://hypjam.vercel.app/","name":"hypjam","publisher":{"@id":"https://hypjam.vercel.app/#org"},"inLanguage":"en-GB"},
+ {"@type":"ProfessionalService","@id":"https://hypjam.vercel.app/#service","name":"hypjam","url":"https://hypjam.vercel.app/","image":"https://hypjam.vercel.app/og.png","priceRange":"££","serviceType":"UGC video advertising","description":"Briefing, scripting, casting, filming, editing and whitelisting of short-form UGC ads for TikTok, Reels, Shorts, Snap, Pinterest and Meta.","areaServed":"GB","parentOrganization":{"@id":"https://hypjam.vercel.app/#org"}},
+ {"@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"what does a ugc agency actually do?","acceptedAnswer":{"@type":"Answer","text":"we write the brief and the hooks, cast everyday creators who fit your customer, direct the shoot on their phones, edit the cuts, and deliver paid-ready videos with usage rights sorted. one contract, one team."}},
+  {"@type":"Question","name":"how fast is turnaround?","acceptedAnswer":{"@type":"Answer","text":"a first batch typically ships inside 14 days of the brief being signed off, then we iterate on what performs."}},
+  {"@type":"Question","name":"who owns the content?","acceptedAnswer":{"@type":"Answer","text":"you do, for the usage window in your agreement. whitelisting and spark ads are set up so you can run creator-handle ads too."}},
+  {"@type":"Question","name":"which platforms do you make ads for?","acceptedAnswer":{"@type":"Answer","text":"tiktok, instagram reels, youtube shorts, snap, pinterest and meta ads, cut to each platform's native format."}},
+  {"@type":"Question","name":"how do we start?","acceptedAnswer":{"@type":"Answer","text":"book a 30-minute intro call or send a message with your brand, platforms and budget band. we come back with a brief within two working days."}}
+ ]}
+]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap">
 <style>
@@ -405,6 +441,102 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   .nav-links{display:none}
   .progress{display:none}
 }
+
+/* ===== parity pass ===== */
+.skip-link{position:fixed;top:1rem;left:1rem;z-index:300;padding:.75rem 1rem;background:var(--text);color:var(--ground);border-radius:8px;font-weight:600;transform:translateY(-150%)}
+.skip-link:focus{transform:none}
+.engine{display:inline-block;position:relative;width:.8em;height:.72em;vertical-align:-.04em}
+.engine-well{position:absolute;inset:0}
+.engine-mark{position:absolute;inset:0;width:100%;height:100%;color:var(--text);opacity:0;transform:translateY(42%) scale(.82);transition:transform .65s var(--slow),opacity .45s var(--ease)}
+.engine-mark[data-state="in"]{opacity:1;transform:none}
+.engine-mark[data-state="out"]{opacity:0;transform:translateY(-42%) scale(.82)}
+.nav-links a[data-active] .nav-ico{opacity:1}
+.cur-arrow{transition:opacity .14s,transform 0s}
+.cur-arrow.is-down svg{transform:scale(.86);transform-origin:20% 20%}
+.cur-arrow svg{transition:transform .25s var(--spring)}
+/* liquid hosts: the canvas paints the bodies, so the elements themselves go transparent */
+.shelf,.liquid-host{--goo-ground:#121212;--goo-ground-a:.6;--goo-tex-a:.17;--goo-rim:#f4f4f4;--goo-rim-a:.46;--goo-halo-a:.14;--goo-mint:#b6ff3b}
+.make-body{--goo-tex-a:.28}
+.shelf:not([data-flat]) .index,.shelf:not([data-flat]) .card,.make-body:not([data-flat]) .make-frame,.make-body:not([data-flat]) .make-list{background:transparent;box-shadow:none}
+.shelf:not([data-flat]) .index:before{display:none}
+.shelf[data-flat] .goo,.liquid-host[data-flat] .goo{display:none}
+.make-body .goo{z-index:0}
+.make-frame,.make-list{z-index:1}
+.fill{position:absolute;inset:0;border-radius:inherit;overflow:hidden;z-index:0;pointer-events:none}
+.fill .goo{position:absolute;inset:0;width:100%;height:100%}
+.fill-body{position:absolute;inset:0;border-radius:2px}
+.book-fill{clip-path:polygon(100% 0,15% 0,.4% 50%,15% 100%,100% 100%);opacity:.5;--goo-ground-a:.35}
+.book-fill[data-flat]{display:none}
+.cal-frame{position:relative;overflow:visible}
+.cal-fill{border-radius:18px}
+.cal-frame:has(.cal-fill:not([data-flat])){background:transparent;box-shadow:none}
+.cal-frame>.cal{position:relative;z-index:1}
+.cal-frame>.tick{z-index:2}
+/* services list: rows share the column, the open one takes 2.3fr */
+.make-list{transition:grid-template-rows .7s var(--slow)}
+/* belts: blurred mats fused with the goo filter behind the tiles */
+.belt-mats{position:absolute;top:0;left:0;filter:url(#goo-f);opacity:.9}
+.belt-mats .tile{background:var(--surface);box-shadow:none}
+.belt-mats .tile *{visibility:hidden}
+/* route wipe */
+.route-wipe{position:fixed;z-index:180;border-radius:50%;background:var(--jam);pointer-events:none;transform:scale(0)}
+.route-wipe[data-state="covering"]{pointer-events:auto;transform:scale(1);transition:transform .5s cubic-bezier(.5,0,.15,1)}
+.route-wipe[data-state="leaving"]{transform:scale(1);opacity:0;transition:opacity .45s 80ms}
+/* message sheet */
+.msg{border:0;padding:0;margin:auto;background:transparent;max-width:min(92vw,720px);width:100%;color:var(--text)}
+.msg::backdrop{background:rgba(10,10,10,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.msg[open]{animation:msg-in .5s var(--slow) both}
+@keyframes msg-in{0%{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+.msg-card{position:relative;padding:clamp(22px,3vw,36px) clamp(22px,3.4vw,40px);border-radius:20px;background:var(--ground-2);box-shadow:inset 0 0 0 1px var(--hair-2),0 40px 90px -40px rgba(0,0,0,.8)}
+.msg-card .tick{z-index:1}.msg-card .tick.tl,.msg-card .tick.bl{left:-14px}.msg-card .tick.tr,.msg-card .tick.br{right:-14px}
+.msg-x{position:absolute;top:14px;right:14px;display:grid;place-items:center;width:34px;height:34px;border:0;border-radius:9px;background:var(--surface);color:var(--text);cursor:pointer;transition:transform .5s var(--spring),background .3s var(--ease)}
+.msg-x svg{transform:rotate(45deg)}
+.msg-x:hover{background:var(--surface-2);transform:rotate(90deg)}
+.msg-head{display:grid;gap:12px;margin-bottom:18px;padding-right:44px}
+.msg-tabs{display:flex;flex-wrap:wrap;gap:6px 22px}
+.msg-tab{border:0;background:transparent;padding:0;cursor:pointer;color:var(--text-3);font-size:clamp(1.3rem,2.2vw,1.9rem);transition:color .45s var(--ease)}
+.msg-tab .jam{color:inherit;transition:color .45s var(--ease)}
+.msg-tab[aria-selected="true"]{color:var(--text)}
+.msg-tab[aria-selected="true"] .jam{color:var(--jam)}
+.msg-blurb{margin:0;color:var(--text-2);font-size:15px;max-width:56ch}
+.msg-side{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
+.msg-side .fld:nth-last-child(-n+2){grid-column:1/-1}
+.fld{display:grid;gap:6px;min-width:0;margin:0;padding:0;border:0}
+.fld>span,.fld legend{font-size:12.5px;letter-spacing:.02em;color:var(--text-3)}
+.fld input,.fld select,.fld textarea{width:100%;font:inherit;font-size:15px;color:var(--text);background:var(--ground);border:0;border-radius:10px;padding:11px 13px;box-shadow:inset 0 0 0 1px var(--hair-2);transition:box-shadow .25s var(--ease)}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:0;box-shadow:inset 0 0 0 1.5px var(--jam)}
+.fld input::placeholder,.fld textarea::placeholder{color:var(--dim)}
+.fld select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M2.5 5.5l5.5 5 5.5-5' fill='none' stroke='%23cfcfcf' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
+.fld.is-bad input,.fld.is-bad textarea{box-shadow:inset 0 0 0 1.5px #ff6d5a;animation:field-shake .4s}
+@keyframes field-shake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(3px)}30%,50%,70%{transform:translateX(-5px)}40%,60%{transform:translateX(5px)}}
+.chips{grid-column:1/-1}
+.chips legend{margin-bottom:6px}
+.chips label{display:inline-flex;align-items:center;gap:8px;margin:0 8px 8px 0;padding:7px 12px 7px 8px;border-radius:9px;background:var(--ground);box-shadow:inset 0 0 0 1px var(--hair-2);font-size:13.5px;cursor:pointer;transition:background .25s var(--ease),box-shadow .25s var(--ease)}
+.chips label:hover{background:var(--surface)}
+.chips input{position:absolute;opacity:0;width:0;height:0}
+.chips i{width:16px;height:16px;border-radius:5px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--hair-2);display:grid;place-items:center;transition:background .25s var(--ease)}
+.chips input:checked+i{background:var(--jam);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%230a0a0a' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.chips input:focus-visible+i{outline:2px solid var(--jam);outline-offset:2px}
+.msg-err{margin:12px 0 0;color:#ff8f80;font-size:13.5px;animation:error-in .3s var(--ease)}
+@keyframes error-in{0%{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+.msg-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px;padding-top:16px;border-top:1px solid var(--hair-2)}
+.msg-note{font-size:13px;color:var(--text-3)}
+.msg-foot .btn[disabled]{opacity:.6;cursor:progress;animation:btn-loading 1s ease-in-out infinite}
+@keyframes btn-loading{0%,to{opacity:.58}50%{opacity:.82}}
+.msg-done{display:grid;justify-items:start;gap:14px;padding:12px 0 4px;animation:msg-in .45s var(--slow) both}
+.msg-done-ico{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--jam);color:var(--on-jam)}
+.msg-done-copy{margin:0;color:var(--text-2);max-width:44ch}
+@media (max-width:640px){.msg-side{grid-template-columns:1fr}.msg-foot{flex-direction:column;align-items:stretch}.msg-card .tick{display:none}}
+html.msg-open{overflow:hidden}
+
+.index-list{align-self:start}
+.index-row{padding:9px 2px}
+.work-sub{max-width:30ch}
+.fld.chips{display:block}
+.chips label{margin:0 6px 6px 0}
+
+.make-mini .shot{background:var(--bg,var(--surface))}
+.make-mini .shot:after{content:"";position:absolute;inset:0;background:radial-gradient(55% 60% at 50% 42%,rgba(255,255,255,.14),transparent 70%)}
 </style>
 </head>
 <body>
@@ -443,7 +575,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   </defs>
 </svg>
 
-<a class="sr-only" href="#main">skip to content</a>
+<a class="skip-link" href="#main">skip to content</a>
 <canvas class="field" aria-hidden="true"></canvas>
 <div class="band band-top" aria-hidden="true"><canvas class="dots"></canvas></div>
 <div class="band band-bottom" aria-hidden="true"><canvas class="dots"></canvas></div>
@@ -479,7 +611,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 <!-- ================= HERO ================= -->
 <section class="panel hero" id="top">
   <h1 class="h1"><span class="h1-line">our creators have <span class="hollow">2,400,000,000+</span> views.</span><br>yours could be next.</h1>
-  <p class="sub"><b>the all-in-one <span class="jam">ugc</span> studio.</b>
+  <p class="sub"><b>the all-in-one <span class="jam">ugc</span> <span class="engine" data-cur="tiktok"><span class="sr-only">for tiktok, reels and shorts</span><span class="engine-well" aria-hidden="true"><svg viewBox="0 0 24 24" class="engine-mark" data-state="in" style="inset:4%;width:92%;height:92%"><use href="#i-tiktok"/></svg><svg viewBox="0 0 24 24" class="engine-mark" data-state="wait"><use href="#i-ig"/></svg><svg viewBox="0 0 24 24" class="engine-mark" data-state="wait"><use href="#i-yt"/></svg></span></span> studio.</b>
     <span>not just a creator, a full team for any short-form ad, from
     <span class="hl ember quiet"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pen"/></svg></span>brief</span> to
     <span class="hl slate quiet"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-face"/></svg></span>cast</span>,
@@ -571,21 +703,21 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 <section class="panel work" id="work">
   <div class="shelf">
     <canvas class="goo" aria-hidden="true"></canvas>
-    <article class="index">
+    <article class="index" data-goo>
       <h2 class="h1">our <span class="jam">work</span>.</h2>
       <p class="sub work-sub"><span class="hl jamhl quiet"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-play"/></svg></span>five pieces</span>, <span class="hl amber quiet"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-layers"/></svg></span>every format</span>. the rest of the <span class="hl violet quiet"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-people"/></svg></span>roster's</span> work is on the <span class="hl slate quiet"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-eye"/></svg></span>wall</span>.</p>
       <ul class="index-list">
-        <li data-for="c1"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-hook"/></svg></span><span class="index-title">hooks &amp; ads</span><span class="index-credit">15s · 30s · 60s cutdowns</span></span></li>
-        <li data-for="c2"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-box"/></svg></span><span class="index-title">testimonials</span><span class="index-credit">unboxing · demos · reviews</span></span></li>
-        <li data-for="c3"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-face"/></svg></span><span class="index-title">founder-led</span><span class="index-credit">talking head · day in the life</span></span></li>
-        <li data-for="c4"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-wave"/></svg></span><span class="index-title">trends &amp; sounds</span><span class="index-credit">formats · duets · stitches</span></span></li>
-        <li data-for="c5"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-badge"/></svg></span><span class="index-title">whitelisting</span><span class="index-credit">spark ads · creator licensing</span></span></li>
-        <li data-for="c1"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pen"/></svg></span><span class="index-title">scripts + edits</span><span class="index-credit">hooks · captions · thumbnails</span></span></li>
+        <li data-for="c1" data-goo-for="1"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-hook"/></svg></span><span class="index-title">hooks &amp; ads</span><span class="index-credit">15s · 30s · 60s cutdowns</span></span></li>
+        <li data-for="c2" data-goo-for="2"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-box"/></svg></span><span class="index-title">testimonials</span><span class="index-credit">unboxing · demos · reviews</span></span></li>
+        <li data-for="c3" data-goo-for="3"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-face"/></svg></span><span class="index-title">founder-led</span><span class="index-credit">talking head · day in the life</span></span></li>
+        <li data-for="c4" data-goo-for="4"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-wave"/></svg></span><span class="index-title">trends &amp; sounds</span><span class="index-credit">formats · duets · stitches</span></span></li>
+        <li data-for="c5" data-goo-for="5"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-badge"/></svg></span><span class="index-title">whitelisting</span><span class="index-credit">spark ads · creator licensing</span></span></li>
+        <li data-for="c1" data-goo-for="1"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pen"/></svg></span><span class="index-title">scripts + edits</span><span class="index-credit">hooks · captions · thumbnails</span></span></li>
       </ul>
       <a class="btn index-cta" href="#work" data-cur="see"><span class="btn-in"><span class="btn-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-eye"/></svg></span>see the wall</span><span class="index-cta-arrow"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></span></a>
     </article>
 
-    <a class="card card-1" id="c1" href="#work" data-tilt data-cur="open">
+    <a class="card card-1" id="c1" href="#work" data-tilt data-cur="open" data-goo>
       <span class="frame"><span class="shot" style="--bg:linear-gradient(120deg,#222222 0%,#1a1a1a 45%,#151515 100%)">
         <span class="sky"></span>
         <span class="blob" style="left:5%;top:-20%;width:40%;height:90%;background:#b6ff3b;opacity:.55"></span>
@@ -599,7 +731,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
       </span></span>
       <span class="chip">3 reasons i switched <em>· @devfromdenver</em></span>
     </a>
-    <a class="card card-2" id="c2" href="#work" data-tilt data-cur="open">
+    <a class="card card-2" id="c2" href="#work" data-tilt data-cur="open" data-goo>
       <span class="frame"><span class="phone"><span class="body"><span class="notch"></span><span class="shot" style="--bg:linear-gradient(170deg,#262626 0%,#141414 60%,#0b0b0b 100%)">
         <span class="sky"></span><span class="blob" style="left:-20%;top:20%;width:80%;height:50%;background:#e6e6e6;opacity:.5"></span>
         <span class="person" style="background:linear-gradient(180deg,#2a2a2a,#0e0e0e)"><span class="head"></span></span>
@@ -609,7 +741,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
       </span></span></span></span>
       <span class="chip">plantly starter kit unboxing <em>· @rin.glow</em></span>
     </a>
-    <a class="card card-3" id="c3" href="#work" data-tilt data-cur="open">
+    <a class="card card-3" id="c3" href="#work" data-tilt data-cur="open" data-goo>
       <span class="frame"><span class="shot" style="--bg:linear-gradient(150deg,#3a2f1a 0%,#20170e 60%,#0d0a08 100%)">
         <span class="sky"></span><span class="blob" style="right:-10%;top:-10%;width:60%;height:70%;background:#e6e6e6;opacity:.45"></span>
         <span class="person" style="left:38%;width:30%;background:linear-gradient(180deg,#3a2e22,#150f0a)"><span class="head"></span></span>
@@ -618,7 +750,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
       </span></span>
       <span class="chip">why i started kettle &amp; co <em>· founder-led</em></span>
     </a>
-    <a class="card card-4" id="c4" href="#work" data-tilt data-cur="open">
+    <a class="card card-4" id="c4" href="#work" data-tilt data-cur="open" data-goo>
       <span class="frame"><span class="shot" style="--bg:linear-gradient(150deg,#2a2a2a 0%,#222222 55%,#0c0c0c 100%)">
         <span class="sky"></span><span class="blob" style="left:-10%;bottom:-20%;width:70%;height:70%;background:#bdbdbd;opacity:.5"></span>
         <span class="person" style="left:26%;width:24%;background:linear-gradient(180deg,#232323,#111111)"><span class="head"></span></span>
@@ -628,7 +760,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
       </span></span>
       <span class="chip">driftwear in every weather <em>· duet</em></span>
     </a>
-    <a class="card card-5" id="c5" href="#work" data-tilt data-cur="open">
+    <a class="card card-5" id="c5" href="#work" data-tilt data-cur="open" data-goo>
       <span class="frame"><span class="phone"><span class="body"><span class="notch"></span><span class="shot" style="--bg:linear-gradient(170deg,#2b2b2b 0%,#141414 60%,#0b0b0b 100%)">
         <span class="sky"></span><span class="blob" style="right:-20%;top:0;width:80%;height:50%;background:#ffb347;opacity:.5"></span>
         <span class="person" style="background:linear-gradient(180deg,#262626,#0c0c0c)"><span class="head"></span></span>
@@ -642,14 +774,15 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 
 <!-- ================= MAKE ================= -->
 <section class="panel make" id="make">
-  <div class="make-body">
-    <div class="make-frame">
+  <div class="make-body liquid-host">
+    <canvas class="goo" aria-hidden="true"></canvas>
+    <div class="make-frame" data-goo>
       <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
       <div class="make-head">
         <h2 class="h1">we make <span class="jam">everything</span>.</h2>
         <p class="sub make-sub">if it goes in a feed, we can make it.</p>
       </div>
-      <div class="make-print">
+      <div class="make-print" aria-live="polite">
         <a class="make-shot" data-on href="#work" data-cur="open"><span class="shot" style="--bg:linear-gradient(160deg,#2a2a2a,#0f0f0f 55%,#0a0a0a)"><span class="sky"></span><span class="blob" style="left:-10%;top:10%;width:55%;height:60%;background:#b6ff3b"></span><span class="person" style="background:linear-gradient(180deg,#242424,#0f0b18)"><span class="head"></span></span><span class="prod" style="left:22%;bottom:22%;width:14%;aspect-ratio:1/1.6;transform:rotate(-8deg)"></span><span class="rec">rec</span><span class="ui"><span class="cap">the <i>only</i> serum i repurchase</span><b>@maya.films</b></span><span class="grain"></span></span></a>
         <a class="make-shot" href="#work" data-cur="open"><span class="shot" style="--bg:linear-gradient(170deg,#262626,#141414 60%,#0b0b0b)"><span class="sky"></span><span class="blob" style="left:-20%;top:20%;width:80%;height:50%;background:#e6e6e6;opacity:.5"></span><span class="person" style="background:linear-gradient(180deg,#2a2a2a,#0e0e0e)"><span class="head"></span></span><span class="prod" style="left:18%;bottom:30%;width:22%;aspect-ratio:1/1.3;transform:rotate(-10deg)"></span><span class="ui"><span class="cap">unboxing the <i>plantly</i> kit</span><b>@rin.glow</b></span><span class="grain"></span></span></a>
         <a class="make-shot" href="#work" data-cur="open"><span class="shot" style="--bg:linear-gradient(150deg,#3a2f1a,#20170e 60%,#0d0a08)"><span class="sky"></span><span class="blob" style="right:-10%;top:-10%;width:60%;height:70%;background:#e6e6e6;opacity:.45"></span><span class="person" style="background:linear-gradient(180deg,#3a2e22,#150f0a)"><span class="head"></span></span><span class="ui"><span class="cap">why i started <i>kettle &amp; co</i></span><b>@jules.kettle</b></span><span class="grain"></span></span></a>
@@ -660,7 +793,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
       <p class="make-ledge"><b>kitchen counter unboxing</b><span>by @maya.films</span><em>go to work</em></p>
     </div>
 
-    <ol class="make-list">
+    <ol class="make-list" data-goo>
       <span class="make-marker" aria-hidden="true"></span>
       <li data-on data-shot="0"><button type="button" class="make-row" aria-expanded="true" data-cur="show"><span class="make-words"><span class="make-title"><span class="make-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-hook"/></svg></span>hooks &amp; ads</span><span class="make-detail">15s · 30s · 60s cutdowns · paid-ready</span></span></button>
         <span class="make-strip"><button class="make-mini" data-shot="0" data-on><span class="shot" style="--bg:linear-gradient(160deg,#2a2a2a,#0f0f0f)"></span></button><button class="make-mini" data-shot="5"><span class="shot" style="--bg:linear-gradient(160deg,#2a2a2a,#0a0a0a)"></span></button><button class="make-mini" data-shot="1"><span class="shot" style="--bg:linear-gradient(170deg,#262626,#0b0b0b)"></span></button><button class="make-mini" data-shot="4"><span class="shot" style="--bg:linear-gradient(170deg,#2b2b2b,#0b0b0b)"></span></button><button class="make-mini" data-shot="3"><span class="shot" style="--bg:linear-gradient(150deg,#2a2a2a,#0c0c0c)"></span></button></span></li>
@@ -702,6 +835,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 
 <!-- ================= WORDS ================= -->
 <section class="panel words" id="words">
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><filter id="goo-f" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur in="SourceGraphic" stdDeviation="9" result="b"/><feColorMatrix in="b" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -10" result="g"/><feComposite in="SourceGraphic" in2="g" operator="atop"/></filter></defs></svg>
   <div class="belts-mask" aria-hidden="true"><div class="belts" id="belts"></div></div>
   <div class="voice">
     <h2 class="h2 words-title">what <span class="jam">brands</span> say.</h2>
@@ -743,6 +877,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   <div class="book-dots" aria-hidden="true"><canvas class="dots"></canvas></div>
   <div class="close">
     <div class="book-arrow" aria-hidden="true">
+      <div class="fill book-fill liquid-host"><canvas class="goo" aria-hidden="true"></canvas><span class="fill-body" data-goo></span></div>
       <svg viewBox="0 0 1000 600" preserveAspectRatio="none">
         <defs><linearGradient id="btip" x1="200" y1="0" x2="4" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#b6ff3b" stop-opacity="0"/><stop offset="1" stop-color="#b6ff3b" stop-opacity=".9"/></linearGradient></defs>
         <g class="liquid"><ellipse class="lq-b" cx="520" cy="180" rx="220" ry="120"/><ellipse class="lq-c" cx="700" cy="440" rx="180" ry="100"/></g>
@@ -760,6 +895,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
     </div>
   </div>
   <div class="cal-frame">
+    <div class="fill cal-fill liquid-host" aria-hidden="true"><canvas class="goo"></canvas><span class="fill-body" data-goo></span></div>
     <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
     <div class="cal" id="cal">
       <div class="cal-head"><b>30 min · intro call</b><span class="who"><span class="ava">av</span>with avi · london time</span></div>
@@ -775,11 +911,228 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 
 </main>
 
+<dialog class="msg" id="msg" aria-labelledby="msg-title-hire">
+  <div class="msg-card">
+    <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
+    <button type="button" class="msg-x" aria-label="close" data-cur="close"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-plus"/></svg></button>
+    <form class="msg-form" novalidate>
+      <div class="msg-head">
+        <div class="msg-tabs" role="tablist" aria-label="what is this about" data-side="hire">
+          <button type="button" role="tab" id="msg-title-hire" class="h2 msg-tab" aria-selected="true" aria-controls="msg-side-hire" data-cur="hire">hire <span class="jam">hypjam</span></button>
+          <button type="button" role="tab" id="msg-title-join" class="h2 msg-tab" aria-selected="false" aria-controls="msg-side-join" tabindex="-1" data-cur="join">join the <span class="jam">roster</span></button>
+        </div>
+        <p class="msg-blurb" data-for="hire">tell us what you sell and where you want it seen. we reply within two working days with a brief and a price.</p>
+        <p class="msg-blurb" data-for="join" hidden>everyday creators, paid per video, directed by a team. no follower count needed, just a phone and a face people trust.</p>
+      </div>
+      <div class="msg-side" id="msg-side-hire" role="tabpanel">
+        <label class="fld"><span>brand</span><input name="brand" type="text" placeholder="e.g. oatside" autocomplete="organization" required></label>
+        <label class="fld"><span>website or shop</span><input name="site" type="url" placeholder="https://" inputmode="url"></label>
+        <fieldset class="fld chips"><legend>platforms</legend><label><input type="checkbox" name="p" value="tiktok" checked><i></i>tiktok</label><label><input type="checkbox" name="p" value="reels"><i></i>reels</label><label><input type="checkbox" name="p" value="shorts"><i></i>shorts</label><label><input type="checkbox" name="p" value="meta"><i></i>meta ads</label><label><input type="checkbox" name="p" value="snap"><i></i>snap</label></fieldset>
+        <label class="fld"><span>monthly budget</span><select name="budget"><option value="">pick a band</option><option>under £2k</option><option>£2k to £5k</option><option>£5k to £15k</option><option>£15k+</option></select></label>
+        <label class="fld"><span>what do you need?</span><textarea name="need" rows="3" placeholder="8 hooks for a new flavour launch, spark ads ready, by the 20th…" required></textarea></label>
+        <label class="fld"><span>email</span><input name="email" type="email" placeholder="you@brand.com" autocomplete="email" required></label>
+      </div>
+      <div class="msg-side" id="msg-side-join" role="tabpanel" hidden>
+        <label class="fld"><span>name</span><input name="name" type="text" placeholder="first name is fine" autocomplete="given-name"></label>
+        <label class="fld"><span>handle</span><input name="handle" type="text" placeholder="@you" autocomplete="off"></label>
+        <label class="fld"><span>city</span><input name="city" type="text" placeholder="where you film" autocomplete="address-level2"></label>
+        <fieldset class="fld chips"><legend>niches</legend><label><input type="checkbox" name="n" value="beauty"><i></i>beauty</label><label><input type="checkbox" name="n" value="food"><i></i>food &amp; drink</label><label><input type="checkbox" name="n" value="fitness"><i></i>fitness</label><label><input type="checkbox" name="n" value="home"><i></i>home</label><label><input type="checkbox" name="n" value="tech"><i></i>tech</label><label><input type="checkbox" name="n" value="fashion"><i></i>fashion</label></fieldset>
+        <label class="fld"><span>links to 2 or 3 videos you made</span><textarea name="links" rows="2" placeholder="tiktok, reels or a drive folder"></textarea></label>
+        <label class="fld"><span>email</span><input name="email2" type="email" placeholder="you@email.com" autocomplete="email"></label>
+      </div>
+      <p class="msg-err" role="alert" hidden></p>
+      <div class="msg-foot">
+        <span class="msg-note" data-for="hire">no retainer talk until we have seen your product.</span>
+        <span class="msg-note" data-for="join" hidden>we pay per delivered video, rights included, within 14 days.</span>
+        <button type="submit" class="btn btn-solid btn-square" data-cur="send"><span class="btn-in"><span class="btn-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mail"/></svg></span><span class="msg-send-label">send it</span></span></button>
+      </div>
+    </form>
+    <div class="msg-done" hidden>
+      <span class="msg-done-ico" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mail"/></svg></span>
+      <h2 class="h2">got it.</h2>
+      <p class="msg-done-copy">we read every message ourselves. expect a reply within two working days, usually sooner.</p>
+      <button type="button" class="btn msg-back" data-cur="close"><span class="btn-in">back to the site</span></button>
+    </div>
+  </div>
+</dialog>
+<div class="route-wipe" aria-hidden="true"></div>
 <div class="cur-root" aria-hidden="true">
   <div class="cur-arrow"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M5 3 L23 14 L14 16 L11 24 Z" fill="#f4f4f4" stroke="#0a0a0a" stroke-width="1" stroke-linejoin="round"/></svg></div>
   <div class="cur-pill">scroll</div>
 </div>
 <script>
+  /* ---- WebGL liquid ("goo") backdrops + halftone plasma field, ported from the reference ---- */
+  (() => {
+    const lerp = (a, b, t) => a + (b - a) * t, clampN = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+    const reduceM = matchMedia('(prefers-reduced-motion: reduce)').matches, fineP = matchMedia('(pointer: fine)').matches;
+    const parseCol = s => { const m = /rgba?\(([^)]+)\)/.exec(s); if (m) { const [r = 0, g = 0, b = 0, a = 1] = m[1].split(/[\s,\/]+/).filter(Boolean).map(Number); return [r / 255, g / 255, b / 255, a]; } const h = (s || '').trim().replace('#', ''); if (/^[0-9a-f]{3,6}$/i.test(h)) { const x = parseInt(h.length === 3 ? h.split('').map(c => c + c).join('') : h, 16); return [((x >> 16) & 255) / 255, ((x >> 8) & 255) / 255, (x & 255) / 255, 1]; } return [0, 0, 0, 1]; };
+    const PLASMA = `
+float field(vec2 uv){
+  vec2 c = 2.0 * uv - 1.0;
+  c.x = c.x * 1.6 + uTime * 0.35;
+  float ds = 1.35;
+  c += ds * 0.4 * sin(c.yx + vec2(1.2, 3.4) + uTime);
+  c += ds * 0.2 * sin(5.2 * c.yx + vec2(3.5, 0.4) + uTime);
+  c += ds * 0.3 * sin(3.5 * c.yx + vec2(1.2, 3.1) + uTime);
+  c += ds * 1.6 * sin(0.4 * c.yx + vec2(0.8, 2.4) + uTime);
+  float L = length(c);
+  float v = 0.0;
+  for (int i = 0; i < 4; i++) v = mix(v, float(i) / 3.0, cos(float(i) * L));
+  return clamp(v, 0.0, 1.0);
+}`;
+    /* ---------- goo (WebGL1) ---------- */
+    const GOO_FS = `
+precision highp float;
+uniform vec2 uSize; uniform float uDpr;
+uniform vec4 uRect[8]; uniform vec3 uRectX[8]; uniform int uNR;
+uniform vec4 uBall[40]; uniform int uNB; uniform float uK;
+uniform vec4 uGround; uniform float uTexA; uniform vec3 uRim; uniform float uRimA; uniform float uHaloA; uniform vec3 uMint;
+uniform float uTime; uniform float uField; uniform vec3 uGrey; uniform vec3 uWhite; uniform float uMode;
+${PLASMA}
+float halftone(vec2 p){
+  float px = 15.0;
+  vec2 baseCell = floor(p / px);
+  float minDist = 1.0e5;
+  for (int dx = -1; dx <= 1; dx++){
+    for (int dy = -1; dy <= 1; dy++){
+      vec2 cell = baseCell + vec2(float(dx), float(dy));
+      if (mod(cell.x + cell.y, 2.0) > 0.5) continue;
+      vec2 centre = (cell + 0.5) * px;
+      float luma = field((cell + 0.5) * px / (uField > 0.5 ? vec2(uField) : uSize));
+      float v = clamp((luma - 0.5) * 1.25 + 0.5, 0.0, 1.0);
+      float r = v * px * 0.5 + px * 0.05;
+      float d = length(p - centre) - r;
+      float k = 0.9 * px; float h = max(k - abs(minDist - d), 0.0) / k;
+      minDist = min(minDist, d) - h * h * k * 0.25;
+    }
+  }
+  return 1.0 - smoothstep(-0.8, 0.8, minDist);
+}
+float sdRR(vec2 p, vec2 b, float r){ vec2 q = abs(p) - b + r; return length(max(q, 0.)) + min(max(q.x, q.y), 0.) - r; }
+float smin(float a, float b, float k){ float h = max(k - abs(a - b), 0.) / k; return min(a, b) - h * h * k * 0.25; }
+void main(){
+  vec2 p = gl_FragCoord.xy / uDpr; p.y = uSize.y - p.y;
+  float d = 1e5; float heat = 0.;
+  for (int i = 0; i < 8; i++){ if (i >= uNR) break; vec4 r = uRect[i]; float sw = uRectX[i].y * uRectX[i].z;
+    float di = sdRR(p - r.xy, r.zw + sw, uRectX[i].x + sw); d = smin(d, di, uK); heat = max(heat, uRectX[i].y * (1. - smoothstep(-10., 70., di))); }
+  for (int i = 0; i < 40; i++){ if (i >= uNB) break; vec4 b = uBall[i]; d = smin(d, sdRR(p - b.xy, vec2(b.z), b.w), uK); }
+  float body = 1. - smoothstep(-0.75, 0.75, d);
+  float rim = 1. - smoothstep(0., 1.6, abs(d + 0.6));
+  float halo = exp(-max(d, 0.) / 16.) * step(0., d);
+  float inner = 1. - smoothstep(0., 30., -d);
+  float dot = uMode > 0.5 ? halftone(p) : 0.55 * field(p / (uField > 0.5 ? vec2(uField) : uSize));
+  vec3 tex = mix(uGrey, uWhite, dot);
+  vec3 col = uGround.rgb * uGround.a; float a = uGround.a;
+  col = tex * uTexA + col * (1. - uTexA); a = uTexA + a * (1. - uTexA);
+  float vy = p.y / uSize.y;
+  vec3 light = vec3(0.98, 0.965, 0.94);
+  col += light * (0.07 * (1. - vy) + 0.10 * inner) * a;
+  col *= 1. - 0.16 * vy;
+  vec3 rimCol = mix(uRim, uMint, heat * 0.9);
+  float rimA = uRimA * (1. + heat * 0.9);
+  vec3 outCol = col * body + rimCol * (rim * rimA + halo * uHaloA * (1. + heat));
+  float outA = a * body + rim * rimA + halo * uHaloA * (1. + heat);
+  outA = clamp(outA, 0., 1.);
+  gl_FragColor = vec4(min(outCol, vec3(outA)), outA);
+}`;
+    function mkProgram(gl, vs, fs) {
+      const sh = (t, s) => { const o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o) || 'shader'); return o; };
+      const p = gl.createProgram(); gl.attachShader(p, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(p);
+      if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p) || 'link');
+      gl.useProgram(p); const buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      return p;
+    }
+    function initGoo(host, opts = {}) {
+      const canvas = host.querySelector(':scope > canvas.goo'); if (!canvas) return;
+      const gl = canvas.getContext('webgl', { premultipliedAlpha: true, alpha: true, antialias: false, depth: false, stencil: false, powerPreference: 'low-power' });
+      if (!gl) { host.dataset.flat = ''; return; }
+      let prog; try { prog = mkProgram(gl, 'attribute vec2 aPos; void main(){ gl_Position = vec4(aPos, 0., 1.); }', GOO_FS); } catch (e) { host.dataset.flat = ''; return; }
+      const loc = gl.getAttribLocation(prog, 'aPos'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      const U = {}; ['uSize', 'uDpr', 'uRect', 'uRectX', 'uNR', 'uBall', 'uNB', 'uK', 'uGround', 'uTexA', 'uRim', 'uRimA', 'uHaloA', 'uMint', 'uTime', 'uField', 'uGrey', 'uWhite', 'uMode'].forEach(n => U[n] = gl.getUniformLocation(prog, n));
+      gl.uniform1f(U.uK, 23); gl.uniform1f(U.uField, opts.fieldPx || 0); gl.uniform1f(U.uMode, opts.mode === 'plasma' ? 0 : 1);
+      const items = Array.from(host.querySelectorAll('[data-goo]')), cards = items.filter(e => e.classList.contains('card')), fors = Array.from(host.querySelectorAll('[data-goo-for]'));
+      let W = 0, H = 0, dpr = 1, rects = [], channels = [], junctions = [], travellers = [], heat = items.map(() => 0), swell = items.map(e => e.classList.contains('card') ? 10 : 0), radii = items.map(e => parseFloat(getComputedStyle(e).borderTopLeftRadius) || 20);
+      let hot = [], px = -999, py = -999, pr = 0, mx = -999, my = -999, inside = false, raf = 0, visible = false, dirty = true, t0 = performance.now();
+      const V = new Float32Array(32), Y = new Float32Array(24), G = new Float32Array(160);
+      const theme = () => { const cs = getComputedStyle(host); const g = parseCol(cs.getPropertyValue('--goo-ground').trim() || '#121212'); const r = parseCol(cs.getPropertyValue('--goo-rim').trim() || '#f4f4f4'); const m = parseCol(cs.getPropertyValue('--goo-mint').trim() || '#b6ff3b');
+        gl.uniform4f(U.uGround, g[0], g[1], g[2], Number(cs.getPropertyValue('--goo-ground-a')) || 0.6); gl.uniform1f(U.uTexA, Number(cs.getPropertyValue('--goo-tex-a')) || 0.35);
+        gl.uniform3f(U.uRim, r[0], r[1], r[2]); gl.uniform1f(U.uRimA, Number(cs.getPropertyValue('--goo-rim-a')) || 0.26); gl.uniform1f(U.uHaloA, Number(cs.getPropertyValue('--goo-halo-a')) || 0.07); gl.uniform3f(U.uMint, m[0], m[1], m[2]);
+        gl.uniform3f(U.uGrey, 0.11, 0.11, 0.11); gl.uniform3f(U.uWhite, 0.62, 0.62, 0.62); dirty = true; };
+      const layout = () => {
+        W = host.clientWidth; H = host.clientHeight; dpr = Math.min(devicePixelRatio || 1, 2); canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr); gl.viewport(0, 0, canvas.width, canvas.height); gl.uniform2f(U.uSize, W, H); gl.uniform1f(U.uDpr, dpr);
+        rects = items.map(e => ({ x: e.offsetLeft, y: e.offsetTop, w: e.offsetWidth, h: e.offsetHeight }));
+        channels = []; const gapOk = g => g > 4 && g < 100;
+        for (let i = 0; i < rects.length; i++) for (let j = 0; j < rects.length; j++) { if (i === j) continue; const a = rects[i], b = rects[j];
+          const gx = b.x - (a.x + a.w); if (gapOk(gx)) { const top = Math.max(a.y, b.y), bot = Math.min(a.y + a.h, b.y + b.h); if (bot - top > 40) channels.push({ x1: a.x + a.w + gx / 2, y1: top + 20, x2: a.x + a.w + gx / 2, y2: bot - 20, vertical: true, lo: top - 70, hi: bot + 70, gap: gx }); }
+          const gy = b.y - (a.y + a.h); if (gapOk(gy)) { const l = Math.max(a.x, b.x), r = Math.min(a.x + a.w, b.x + b.w); if (r - l > 40) channels.push({ x1: l + 20, y1: a.y + a.h + gy / 2, x2: r - 20, y2: a.y + a.h + gy / 2, vertical: false, lo: l - 70, hi: r + 70, gap: gy }); } }
+        junctions = []; const addJ = (x, y, r) => { if (!junctions.some(j => Math.hypot(j.x - x, j.y - y) < 48)) junctions.push({ x, y, r }); };
+        for (const v of channels) if (v.vertical) for (const h of channels) if (!h.vertical && v.x1 >= h.lo && v.x1 <= h.hi && h.y1 >= v.lo && h.y1 <= v.hi) addJ(v.x1, h.y1, Math.max(v.gap, h.gap) / 2 + 8);
+        channels.forEach((c, i) => { if (Math.hypot(c.x2 - c.x1, c.y2 - c.y1) < 120) return; const s = i % 2 ? 0.62 : 0.38; addJ(lerp(c.x1, c.x2, s), lerp(c.y1, c.y2, s), c.gap / 2 + 4); });
+        travellers = []; channels.forEach((c, i) => { const n = Math.max(1, Math.min(2, Math.round(Math.hypot(c.x2 - c.x1, c.y2 - c.y1) / 520))); for (let s = 0; s < n; s++) travellers.push({ channel: i, phase: (s + 0.5) / n + ((0.17 * i) % 1), speed: 0.04 + ((3 * i + s) % 4) * 0.011, r: c.gap / 2 + 4 + ((7 * i + 5 * s) % 3), dir: (i + s) % 2 ? 1 : -1 }); });
+        dirty = true; frame(performance.now());
+      };
+      const frame = now => {
+        gl.uniform1f(U.uTime, reduceM ? 2.4 : (now / 1000) * 0.42); const t = (now - t0) / 1000; let animating = !reduceM;
+        items.forEach((e, i) => { const target = hot.includes(i) ? 1 : 0; const v = reduceM ? target : lerp(heat[i], target, 0.09); if (Math.abs(v - heat[i]) > 5e-4) dirty = true; heat[i] = Math.abs(v - target) < 0.001 ? target : v; });
+        rects.forEach((r, i) => { if (i >= 8) return; V[4 * i] = r.x + r.w / 2; V[4 * i + 1] = r.y + r.h / 2; V[4 * i + 2] = r.w / 2; V[4 * i + 3] = r.h / 2; Y[3 * i] = radii[i] ?? 20; Y[3 * i + 1] = heat[i]; Y[3 * i + 2] = swell[i] ?? 0; });
+        let nb = 0; G.fill(0); const ball = (x, y, r) => { if (nb >= 40) return; G[4 * nb] = x; G[4 * nb + 1] = y; G[4 * nb + 2] = r; G[4 * nb + 3] = 0.42 * r; nb++; };
+        junctions.forEach((j, i) => ball(j.x, j.y, reduceM ? j.r : j.r * (1 + 0.05 * Math.sin(0.8 * t + 1.7 * i))));
+        travellers.forEach((tr, i) => { const c = channels[tr.channel]; const f = reduceM ? tr.phase % 1 : 0.5 + 0.42 * Math.sin((t * tr.speed * tr.dir + tr.phase) * Math.PI * 2); ball(lerp(c.x1, c.x2, f), lerp(c.y1, c.y2, f), tr.r * (reduceM ? 1 : 1 + 0.06 * Math.sin(1.2 * t + i))); });
+        if (fineP && !reduceM) { let near = null; if (inside) for (const c of channels) { const ax = c.vertical ? c.x1 : clampN(mx, c.x1, c.x2), ay = c.vertical ? clampN(my, c.y1, c.y2) : c.y1; const d = Math.hypot(mx - ax, my - ay); if (!near || d < near.d) near = { x: ax, y: ay, d, gap: c.gap }; }
+          const snap = near && near.d < 110; const nx = lerp(px, snap ? near.x : mx, 0.14), ny = lerp(py, snap ? near.y : my, 0.14), nr = lerp(pr, snap ? near.gap / 2 + 10 : 0, 0.1);
+          if (Math.abs(nx - px) > 0.05 || Math.abs(ny - py) > 0.05 || Math.abs(nr - pr) > 0.02) dirty = true; px = nx; py = ny; pr = nr; if (pr > 0.3) ball(px, py, pr); }
+        if (reduceM && !dirty) animating = false;
+        if (dirty || animating) { gl.uniform4fv(U.uRect, V); gl.uniform3fv(U.uRectX, Y); gl.uniform1i(U.uNR, Math.min(rects.length, 8)); gl.uniform4fv(U.uBall, G); gl.uniform1i(U.uNB, nb); gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT); gl.drawArrays(gl.TRIANGLES, 0, 3); dirty = false; }
+      };
+      const loop = now => { cards.forEach(c => c.style.setProperty('--gs', '0')); frame(now); raf = requestAnimationFrame(loop); };
+      const schedule = () => { cancelAnimationFrame(raf); raf = 0; if (visible && !document.hidden) raf = requestAnimationFrame(reduceM ? frame : loop); };
+      const setHot = list => { if (list.length === hot.length && list.every((v, i) => v === hot[i])) return; hot = list; items.forEach((e, i) => hot.includes(i) ? e.setAttribute('data-hot', '') : e.removeAttribute('data-hot'));
+        fors.forEach(f => { const ids = (f.dataset.gooFor || '').split(',').filter(Boolean).map(Number); ids.length && ids.every(i => hot.includes(i)) && hot.length === ids.length ? f.setAttribute('data-hot', '') : f.removeAttribute('data-hot'); }); dirty = true; schedule(); };
+      host.addEventListener('pointerover', e => { const f = e.target.closest('[data-goo-for]'); if (f) return setHot((f.dataset.gooFor || '').split(',').filter(Boolean).map(Number)); const g = e.target.closest('[data-goo]'); setHot(g ? [items.indexOf(g)] : []); });
+      host.addEventListener('pointerout', e => { const r = e.relatedTarget; if (!(r && host.contains(r))) setHot([]); });
+      if (fineP) { addEventListener('pointermove', e => { const b = host.getBoundingClientRect(); mx = e.clientX - b.left; my = e.clientY - b.top; inside = mx > -30 && my > -30 && mx < b.width + 30 && my < b.height + 30; if (px < -900) { px = mx; py = my; } }, { passive: true }); addEventListener('blur', () => { inside = false; }); }
+      const ro = new ResizeObserver(layout); ro.observe(host); items.forEach(e => ro.observe(e));
+      new IntersectionObserver(([en]) => { visible = !!(en && en.isIntersecting); schedule(); }, { rootMargin: '240px' }).observe(host);
+      document.addEventListener('visibilitychange', schedule);
+      theme(); layout(); schedule();
+    }
+    /* ---------- halftone plasma field (WebGL2, fixed) ---------- */
+    function initHalftoneField(canvas) {
+      const gl = canvas.getContext('webgl2', { antialias: false, alpha: false, powerPreference: 'low-power' }); if (!gl) return false;
+      const VS = `#version 300 es
+in vec2 p; out vec2 vUv; void main(){ vUv = p * 0.5 + 0.5; gl_Position = vec4(p, 0.0, 1.0); }`;
+      const FS = `#version 300 es
+precision highp float; in vec2 vUv; out vec4 outColor;
+uniform vec2 uResolution; uniform float uTime; uniform float uAmplitude; uniform float uPixelSize; uniform float uGooeyness; uniform float uContrast; uniform float uBias; uniform vec3 uBg; uniform vec3 uFg; uniform float uFade;
+float field(vec2 uv){ vec2 c = 2.0 * uv - 1.0; c.x = c.x * 1.6 + uTime * 0.35; float ds = uAmplitude;
+  c += ds * 0.4 * sin(c.yx + vec2(1.2, 3.4) + uTime); c += ds * 0.2 * sin(5.2 * c.yx + vec2(3.5, 0.4) + uTime); c += ds * 0.3 * sin(3.5 * c.yx + vec2(1.2, 3.1) + uTime); c += ds * 1.6 * sin(0.4 * c.yx + vec2(0.8, 2.4) + uTime);
+  float L = length(c); float v = 0.0; for (int i = 0; i < 4; i++) v = mix(v, float(i) / 3.0, cos(float(i) * L)); return clamp(v, 0.0, 1.0); }
+float lumaToRadius(float luma, float px){ float v = clamp((luma - 0.5 + uBias) * uContrast + 0.5, 0.0, 1.0); return v * px * 0.6 + px * 0.05; }
+float smin(float a, float b, float k){ if (k <= 0.001) return min(a, b); float h = max(k - abs(a - b), 0.0) / k; return min(a, b) - h * h * k * 0.25; }
+void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize); float minDist = 1.0e5; float k = uGooeyness * 1.5;
+  for (int dx = -1; dx <= 1; dx++){ for (int dy = -1; dy <= 1; dy++){ vec2 cell = baseCell + vec2(float(dx), float(dy)); if (mod(cell.x + cell.y, 2.0) > 0.5) continue; vec2 centre = (cell + 0.5) * uPixelSize; float luma = field((cell + 0.5) * uPixelSize / uResolution); float d = length(px - centre) - lumaToRadius(luma, uPixelSize); minDist = smin(minDist, d, k * uPixelSize); } }
+  float aa = max(fwidth(minDist), 0.0001); float shape = 1.0 - smoothstep(-aa, aa, minDist);
+  float bottom = smoothstep(0.72, 0.18, vUv.y); float right = smoothstep(0.35, 0.9, vUv.x); float m = clamp(max(bottom, right) * smoothstep(1.0, 0.86, vUv.y), 0.0, 1.0);
+  outColor = vec4(mix(uBg, uFg, shape * m * uFade), 1.0); }`;
+      let prog; try { prog = mkProgram(gl, VS, FS); } catch (e) { return false; }
+      const loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      const u = n => gl.getUniformLocation(prog, n); const uRes = u('uResolution'), uTime = u('uTime'), uFade = u('uFade'), uBg = u('uBg'), uFg = u('uFg');
+      gl.uniform1f(u('uAmplitude'), 1.35); gl.uniform1f(u('uPixelSize'), 8); gl.uniform1f(u('uGooeyness'), 0.3); gl.uniform1f(u('uContrast'), 1.45); gl.uniform1f(u('uBias'), 0);
+      let raf = 0, time = 0, fade = 0, on = true, last = performance.now();
+      const draw = () => gl.drawArrays(gl.TRIANGLES, 0, 3);
+      const colours = () => { const cs = getComputedStyle(document.documentElement); const bg = parseCol(cs.getPropertyValue('--ground').trim() || '#0a0a0a'), fg = parseCol(cs.getPropertyValue('--dot').trim() || '#555555'); gl.uniform3f(uBg, bg[0], bg[1], bg[2]); gl.uniform3f(uFg, fg[0], fg[1], fg[2]); if (reduceM) draw(); };
+      const size = () => { const b = canvas.getBoundingClientRect(); const w = Math.max(1, Math.round(b.width)), h = Math.max(1, Math.round(b.height)); if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; gl.viewport(0, 0, w, h); gl.uniform2f(uRes, w, h); if (reduceM) draw(); } };
+      const tick = now => { const s = Math.min((now - last) / 16.667, 3); last = now; time += 0.0024 * s; fade = Math.min(1, fade + 0.02 * s); gl.uniform1f(uTime, time); gl.uniform1f(uFade, fade); draw(); raf = on && !reduceM ? requestAnimationFrame(tick) : 0; };
+      const wake = () => { if (!raf && on && !reduceM) { last = performance.now(); raf = requestAnimationFrame(tick); } };
+      colours(); size();
+      if (reduceM) { gl.uniform1f(uTime, 2.4); gl.uniform1f(uFade, 1); draw(); } else raf = requestAnimationFrame(tick);
+      document.addEventListener('visibilitychange', () => { on = !document.hidden; wake(); });
+      new ResizeObserver(() => { size(); wake(); }).observe(canvas);
+      return true;
+    }
+    window.__hypjamGoo = { initGoo, initHalftoneField };
+  })();
+
 (() => {
   const doc = document.scrollingElement || document.documentElement;
   const root = document.documentElement;
@@ -789,13 +1142,13 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 
   /* ---------- vertical wheel -> horizontal glide ---------- */
   const maxX = () => Math.max(0, Math.max(doc.scrollWidth, root.scrollWidth, document.body.scrollWidth) - innerWidth);
-  let target = window.scrollX, current = target, raf = 0, external = false;
+  let target = window.scrollX, current = target, raf = 0, external = false, lastSet = target;
   const clamp = v => Math.max(0, Math.min(maxX(), v));
   const tick = () => {
     if (external) { raf = 0; return; }
     const d = target - current;
-    current = Math.abs(d) < .4 ? target : current + d * (reduce ? 1 : .11);
-    window.scrollTo(current, 0);
+    current = Math.abs(d) < .4 ? target : current + d * (reduce ? 1 : .06);
+    window.scrollTo(current, 0); lastSet = current;
     if (current !== target) raf = requestAnimationFrame(tick); else raf = 0;
   };
   const go = () => { if (!raf) raf = requestAnimationFrame(tick); };
@@ -804,12 +1157,12 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
     if (e.ctrlKey) return;
     e.preventDefault();
     const unit = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? innerHeight : 1;
-    const d = (Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX) * unit;
+    const d = (Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX) * unit * 0.7;
     external = false;
     target = clamp(target + d);
     go();
   }, { passive: false });
-  addEventListener('scroll', () => { if (!raf) { current = target = window.scrollX; } paint(); }, { passive: true });
+  addEventListener('scroll', () => { const sx = window.scrollX; if (!raf || Math.abs(sx - lastSet) > 1.5) { current = target = sx; } paint(); }, { passive: true });
   addEventListener('keydown', e => {
     if (!isWide() || e.target.closest('input,textarea,select,button,[contenteditable]')) return;
     const step = innerHeight * .8;
@@ -844,15 +1197,25 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
     let cur = panels[0];
     for (const p of panels) if (p.offsetLeft - innerWidth * .15 <= mid) cur = p;
     const id = cur.id === 'top' || cur.id === 'contact' ? null : cur.id;
-    if (id === activeId) return;
-    activeId = id;
-    const idx = links.findIndex(l => l.dataset.id === id);
-    if (idx < 0) { blob.style.opacity = 0; return; }
-    const l = links[idx];
-    blob.style.opacity = 1;
-    blob.style.width = l.offsetWidth + 'px';
-    blob.style.transform = `translateX(${l.offsetLeft}px)`;
-    ghost.style.transform = `translateX(${-l.offsetLeft}px)`;
+    if (id !== activeId) {
+      activeId = id;
+      links.forEach(l => { const on = l.dataset.id === id; on ? (l.setAttribute('data-active', 'true'), l.setAttribute('aria-current', 'location')) : (l.removeAttribute('data-active'), l.removeAttribute('aria-current')); });
+    }
+    // fractional progress: 0 = hero, 1 = first nav section, ... n = last; blob morphs between pills like a drop of liquid
+    let prog = 0;
+    for (let i = 0; i < panels.length - 1; i++) { const a = panels[i].offsetLeft, b = panels[i + 1].offsetLeft; if (mid >= b) prog = i + 1; else if (mid > a) { prog = i + (mid - a) / (b - a); break; } }
+    morphBlob(prog);
+  }
+  function morphBlob(p) {
+    const s = links; if (!s.length) return;
+    const a = Math.min(Math.max(p - 1, 0), s.length - 1), r = s[Math.floor(a)], n = s[Math.min(Math.ceil(a), s.length - 1)], l = a - Math.floor(a), o = r.offsetHeight;
+    const d = Math.min(Math.max((l - .34) / .32, 0), 1), h = Math.pow(Math.sin(d * Math.PI), 1.4), m = d < .5 ? 16 * d ** 5 : 1 - Math.pow(-2 * d + 2, 5) / 2;
+    const pc = r.offsetLeft + r.offsetWidth / 2, nc = n.offsetLeft + n.offsetWidth / 2, x = d > .6 ? 7 * Math.sin(((d - .6) / .4) * Math.PI) : 0;
+    const g = r.offsetWidth + (n.offsetWidth - r.offsetWidth) * m, f = g + (o - g) * h + x, v = pc + (nc - pc) * m - f / 2, j = Math.min(Math.max((p - .42) / .16, 0), 1);
+    blob.style.transition = 'none';
+    blob.style.transform = `translateX(${v.toFixed(1)}px) scaleY(${(1 - .08 * h + .008 * x).toFixed(3)})`;
+    blob.style.width = `${f.toFixed(1)}px`; blob.style.borderRadius = `${(10 + (o / 2 - 10) * h).toFixed(1)}px`; blob.style.opacity = j.toFixed(2);
+    ghost.style.transition = 'none'; ghost.style.transform = `translateX(${(-v).toFixed(1)}px)`; ghost.style.opacity = (1 - Math.min(1, 1.25 * h)).toFixed(2);
   }
   paint();
 
@@ -880,6 +1243,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   /* ---------- fixed field: dots that wake near the pointer ---------- */
   (() => {
     const canvas = document.querySelector('.field'); if (!canvas) return;
+    if (window.__hypjamGoo && window.__hypjamGoo.initHalftoneField(canvas)) return;
     const ctx = canvas.getContext('2d'); let w, h, dpr, px = -9e3, py = -9e3, sx = px, sy = py;
     const size = () => { dpr = Math.min(devicePixelRatio || 1, 1.5); w = innerWidth; h = innerHeight; canvas.width = w * dpr; canvas.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
     size(); addEventListener('resize', size);
@@ -966,14 +1330,73 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
     grid.addEventListener('click', e => { const b = e.target.closest('.slot'); if (!b || b.disabled) return; grid.querySelectorAll('.slot').forEach(s => s.setAttribute('aria-pressed', 'false')); b.setAttribute('aria-pressed', 'true'); pick.innerHTML = `holding <span class="pick">${b.dataset.d} · ${b.dataset.t}</span> for you. hit book a call to confirm.`; });
   })();
 
-  /* ---------- custom cursor with labels ---------- */
+  /* ---------- custom cursor with labels (reference behaviour) ---------- */
   if (fine && !reduce) (() => {
-    const arrow = document.querySelector('.cur-arrow'), pill = document.querySelector('.cur-pill'); let x = 0, y = 0, ax = 0, ay = 0, shown = false;
+    const arrow = document.querySelector('.cur-arrow'), pill = document.querySelector('.cur-pill'); let x = -9999, y = -9999, px = -9999, py = -9999;
     root.classList.add('has-cursor');
-    addEventListener('pointermove', e => { x = e.clientX; y = e.clientY; if (!shown) { shown = true; arrow.style.opacity = 1; } const t = e.target.closest('[data-cur]'); if (t) { pill.textContent = t.dataset.cur; pill.style.opacity = 1; } else pill.style.opacity = 0; }, { passive: true });
-    addEventListener('pointerleave', () => { arrow.style.opacity = 0; pill.style.opacity = 0; shown = false; });
-    const loop = () => { ax += (x - ax) * .6; ay += (y - ay) * .6; arrow.style.transform = `translate3d(${ax}px,${ay}px,0)`; pill.style.transform = `translate3d(${ax + 18}px,${ay + 18}px,0)`; requestAnimationFrame(loop); };
-    loop();
+    const setLabel = t => { const c = t && t.closest ? t.closest('[data-cur]') : null; pill.textContent = c ? (c.dataset.cur || 'scroll') : (t && t.closest && t.closest('a, button, summary') ? 'open' : 'scroll'); };
+    addEventListener('pointermove', e => { x = e.clientX; y = e.clientY; setLabel(e.target); arrow.style.transform = `translate3d(${x}px,${y}px,0)`; arrow.style.opacity = '1'; pill.style.opacity = '1'; if (px < -9000) { px = x; py = y; } }, { passive: true });
+    const hide = () => { arrow.style.opacity = '0'; pill.style.opacity = '0'; };
+    document.addEventListener('pointerleave', hide); addEventListener('blur', hide);
+    addEventListener('pointerdown', () => arrow.classList.add('is-down')); addEventListener('pointerup', () => arrow.classList.remove('is-down'));
+    const loop = () => { px += (x - px) * .18; py += (y - py) * .18; pill.style.transform = `translate3d(${px + 13}px,${py + 11}px,0)`; requestAnimationFrame(loop); }; loop();
+  })();
+
+  /* ---------- liquid backdrops ---------- */
+  (() => {
+    const G = window.__hypjamGoo; if (!G) return;
+    const shelf = document.querySelector('.shelf'); if (shelf) G.initGoo(shelf, { mode: 'plasma' });
+    const mk = document.querySelector('.make-body'); if (mk) G.initGoo(mk);
+    document.querySelectorAll('.fill.liquid-host').forEach(f => G.initGoo(f, { fieldPx: 1400 }));
+  })();
+  /* ---------- hero platform rotator ---------- */
+  (() => {
+    const eng = document.querySelector('.engine'); if (!eng || reduce) return;
+    const marks = [...eng.querySelectorAll('.engine-mark')], names = ['tiktok', 'reels', 'shorts']; let i = 0;
+    setInterval(() => { const prev = i; i = (i + 1) % marks.length; marks.forEach((m, k) => m.setAttribute('data-state', k === i ? 'in' : k === prev ? 'out' : 'wait')); eng.dataset.cur = names[i]; }, 2600);
+  })();
+  /* ---------- services list: hover/focus opens, rows re-flow ---------- */
+  (() => {
+    const list = document.querySelector('.make-list'); if (!list) return;
+    const items = [...list.querySelectorAll(':scope > li')];
+    const rows = () => { list.style.gridTemplateRows = items.map(li => li.hasAttribute('data-on') ? 'minmax(0,2.3fr)' : 'minmax(0,1fr)').join(' '); };
+    items.forEach(li => { const row = li.querySelector('.make-row'); const openIt = () => { if (li.hasAttribute('data-on')) return; row.click(); };
+      li.addEventListener('pointerenter', openIt); row.addEventListener('focus', openIt); });
+    new MutationObserver(rows).observe(list, { attributes: true, subtree: true, attributeFilter: ['data-on'] }); rows();
+  })();
+  /* ---------- belts: goo mats behind tiles ---------- */
+  (() => { document.querySelectorAll('.belt').forEach(b => { const belt = b.querySelector('.mq-belt'); if (!belt) return; const mats = belt.cloneNode(true); mats.classList.add('belt-mats'); mats.setAttribute('aria-hidden', 'true'); mats.querySelectorAll('[data-cur]').forEach(x => x.removeAttribute('data-cur')); belt.parentNode.insertBefore(mats, belt); }); })();
+  /* ---------- message sheet ---------- */
+  (() => {
+    const dlg = document.getElementById('msg'); if (!dlg || !dlg.showModal) return;
+    const tabs = [...dlg.querySelectorAll('.msg-tab')], sides = { hire: dlg.querySelector('#msg-side-hire'), join: dlg.querySelector('#msg-side-join') }, form = dlg.querySelector('.msg-form'), done = dlg.querySelector('.msg-done'), err = dlg.querySelector('.msg-err'), send = dlg.querySelector('.msg-foot .btn'); let side = 'hire', last = null;
+    const show = which => { side = which; tabs.forEach(t => { const on = t.dataset.cur === which; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; }); Object.entries(sides).forEach(([k, el]) => el.hidden = k !== which); dlg.querySelectorAll('[data-for]').forEach(el => { if (el.classList.contains('msg-blurb') || el.classList.contains('msg-note')) el.hidden = el.dataset.for !== which; }); dlg.querySelector('.msg-tabs').dataset.side = which; dlg.setAttribute('aria-labelledby', 'msg-title-' + which); err.hidden = true; };
+    const open = (which, from) => { last = from || document.activeElement; show(which); form.hidden = false; done.hidden = true; form.reset(); root.classList.add('msg-open'); dlg.showModal(); const f = sides[which].querySelector('input,textarea,select'); f && setTimeout(() => f.focus(), 60); };
+    const close = () => { dlg.close(); root.classList.remove('msg-open'); last && last.focus && last.focus(); };
+    tabs.forEach(t => t.addEventListener('click', () => show(t.dataset.cur)));
+    dlg.querySelector('.msg-tabs').addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); show(side === 'hire' ? 'join' : 'hire'); tabs.find(t => t.dataset.cur === side).focus(); } });
+    dlg.querySelector('.msg-x').addEventListener('click', close); dlg.querySelector('.msg-back').addEventListener('click', close);
+    dlg.addEventListener('click', e => { if (e.target === dlg) close(); }); dlg.addEventListener('cancel', e => { e.preventDefault(); close(); });
+    form.addEventListener('submit', e => { e.preventDefault(); err.hidden = true; const box = sides[side]; let bad = null;
+      box.querySelectorAll('.fld').forEach(f => f.classList.remove('is-bad'));
+      box.querySelectorAll('input[required],textarea[required],input[type=email]').forEach(inp => { if (bad) return; const v = inp.value.trim(); const need = inp.required || inp.type === 'email'; if (need && (!v || (inp.type === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)))) bad = inp; });
+      if (bad) { bad.closest('.fld').classList.add('is-bad'); err.textContent = bad.type === 'email' ? 'that email does not look right.' : 'fill in ' + (bad.closest('.fld').querySelector('span')?.textContent || 'that field') + ' first.'; err.hidden = false; bad.focus(); return; }
+      send.disabled = true; dlg.querySelector('.msg-send-label').textContent = 'sending…';
+      setTimeout(() => { send.disabled = false; dlg.querySelector('.msg-send-label').textContent = 'send it'; form.hidden = true; done.hidden = false; dlg.querySelector('.msg-done-copy').textContent = side === 'hire' ? 'we read every brief ourselves. expect a reply within two working days, usually sooner.' : 'thanks for applying. if your videos fit a live brief we will be in touch within a week.'; dlg.querySelector('.msg-back').focus(); }, 900);
+    });
+    document.querySelectorAll('a[data-cur="write"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); open('hire', a); }));
+    document.querySelectorAll('a[href="#contact"].foot-join, a[data-cur="say hi"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); open(a.classList.contains('foot-join') ? 'join' : 'hire', a); }));
+    const joinLink = [...document.querySelectorAll('.foot-links a')].find(a => /join the roster/.test(a.textContent)); if (joinLink) { joinLink.setAttribute('data-cur', 'join'); joinLink.addEventListener('click', e => { e.preventDefault(); open('join', joinLink); }); }
+    window.__hypjamMsg = open;
+  })();
+  /* ---------- route wipe for internal page links (data-wipe) ---------- */
+  (() => {
+    const w = document.querySelector('.route-wipe'); if (!w || reduce) return;
+    document.addEventListener('click', e => { const a = e.target.closest('a[data-wipe]'); if (!a || e.metaKey || e.ctrlKey || e.button) return; e.preventDefault();
+      const r = a.getBoundingClientRect(); const cx = r.left + r.width / 2, cy = r.top + r.height / 2; const rad = Math.hypot(Math.max(cx, innerWidth - cx), Math.max(cy, innerHeight - cy)) + 40;
+      Object.assign(w.style, { left: (cx - rad) + 'px', top: (cy - rad) + 'px', width: rad * 2 + 'px', height: rad * 2 + 'px' }); w.dataset.state = 'covering';
+      setTimeout(() => { location.href = a.href; }, 520); });
+    addEventListener('pageshow', () => { if (w.dataset.state) { w.dataset.state = 'leaving'; setTimeout(() => { delete w.dataset.state; w.style.opacity = ''; }, 600); } });
   })();
 })();
 </script>
