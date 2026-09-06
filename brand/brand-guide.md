@@ -16,13 +16,13 @@
 > hypjam directs everyday creators into short-form ads that convert.
 
 **30-word description**
-> hypjam is a UGC production studio for DTC and ecommerce brands. we brief, cast, direct, shoot, and edit everyday creators into scroll-stopping short-form ads, ready for Spark Ads and whitelisting.
+> hypjam is a UGC agency for DTC and ecommerce brands. we brief, cast, direct, shoot, and edit everyday creators into scroll-stopping short-form ads, ready for Spark Ads and whitelisting.
 
 *(30 words exactly)*
 
 ## 3. positioning statement
 
-> for DTC and ecommerce brands who need short-form ads that actually convert, hypjam is the UGC studio that directs everyday creators like a production house would — brief, scripted hooks, casting, phone shoots, and edits — unlike UGC marketplaces, which hand you a list of creators and leave the direction to you. you're not hiring a creator, you're hiring the people who direct them.
+> for DTC and ecommerce brands who need short-form ads that actually convert, hypjam is the UGC agency that directs everyday creators like a production house would — brief, scripted hooks, casting, phone shoots, and edits — unlike UGC marketplaces, which hand you a list of creators and leave the direction to you. you're not hiring a creator, you're hiring the people who direct them.
 
 ## 4. voice rules
 
@@ -101,9 +101,9 @@ the hypjam mark is a sticker-style rounded square containing a black speech bubb
 
 ## 8. imagery direction
 
-hypjam's imagery should always look like it came from a phone in a real creator's hand, never from a studio lighting rig or a stock library.
+hypjam's imagery should always look like it came from a phone in a real creator's hand, never from a professional lighting rig or a stock library.
 
-- **real creators, not models.** people who look like they'd actually be a customer of the brand being advertised — varied ages, homes, kitchens, cars, bathrooms. no white-cyc studio backdrops.
+- **real creators, not models.** people who look like they'd actually be a customer of the brand being advertised — varied ages, homes, kitchens, cars, bathrooms. no white-cyc backdrops.
 - **phone-shot, not cinema-shot.** vertical 9:16 as the default frame. handheld energy, natural light, a bit of grain is good — it should read as authentic, not polished to the point of looking like a TV ad.
 - **captions on, always.** burned-in captions are part of the shot, not an afterthought — bold, high-contrast, positioned to survive TikTok/Instagram UI overlays (avoid the bottom 20% and top 15% of frame for key text).
 - **hooks visible in the first frame.** thumbnail-worthy: a facial expression, an on-screen text hook, or a held-up product in the first still frame, since that's what most people will actually see before they decide to watch.
@@ -123,7 +123,7 @@ hypjam's imagery should always look like it came from a phone in a real creator'
 *(137 characters)*
 
 **LinkedIn** (220 char limit)
-> hypjam is a UGC production studio for DTC brands. We brief, cast, direct, shoot and edit everyday creators into short-form ads that convert. You're not hiring a creator, you're hiring the people who direct them.
+> hypjam is a UGC agency for DTC brands. We brief, cast, direct, shoot and edit everyday creators into short-form ads that convert. You're not hiring a creator, you're hiring the people who direct them.
 
 *(211 characters)*
 
