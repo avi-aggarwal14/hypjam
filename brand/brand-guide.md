@@ -80,7 +80,7 @@ set body copy in text-2 or text on ground/ground-2 backgrounds; never set long p
 
 ## 7. logo
 
-the hypjam mark is a sticker-style rounded square containing a black speech bubble with a green play triangle inside it — the "we speak, you watch" idea in one glyph.
+the hypjam mark is a sticker-style rounded square containing a the j-hook with an orange play triangle inside it — the "we speak, you watch" idea in one glyph.
 
 **clear space**
 - minimum clear space around the mark on all sides equals the height of the rounded square itself (1x unit). nothing — text, other logos, edges of the frame — should enter that zone.
@@ -92,7 +92,7 @@ the hypjam mark is a sticker-style rounded square containing a black speech bubb
 - below these sizes the play triangle loses legibility — don't shrink further; use the mark-only version or a simplified favicon variant instead.
 
 **don'ts**
-- don't recolour the speech bubble anything other than black-on-sticker or the approved reverse (light bubble on dark sticker for dark-mode use).
+- don't recolour the hook anything other than black-on-sticker or the approved reverse (light bubble on dark sticker for dark-mode use).
 - don't change the play triangle to any colour other than vivid orange `#ff6f1f`.
 - don't stretch, skew, rotate, or add a drop shadow, bevel, or outer glow to the mark.
 - don't place the mark on busy photography or low-contrast backgrounds without a solid colour plate behind it.
