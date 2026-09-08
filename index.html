@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://hypjam.vercel.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="hypjam: our creators have 2,400,000,000+ views. yours could be next.">
+<meta property="og:image:alt" content="hypjam: everyday creators, directed. ugc ads scripted, cast and shipped by one team.">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="hypjam · the all-in-one ugc agency">
@@ -35,14 +35,7 @@
 {"@context":"https://schema.org","@graph":[
  {"@type":"Organization","@id":"https://hypjam.vercel.app/#org","name":"hypjam","url":"https://hypjam.vercel.app/","logo":"https://hypjam.vercel.app/hook-icon-512.png","description":"hypjam is a UGC (user-generated content) marketing agency: everyday creators, directed by a team, making short-form video ads for brands.","founder":{"@type":"Person","name":"Avi Aggarwal"},"areaServed":"GB","knowsAbout":["UGC marketing","TikTok ads","Instagram Reels ads","creator whitelisting","Spark Ads","short-form video advertising"]},
  {"@type":"WebSite","@id":"https://hypjam.vercel.app/#site","url":"https://hypjam.vercel.app/","name":"hypjam","publisher":{"@id":"https://hypjam.vercel.app/#org"},"inLanguage":"en-GB"},
- {"@type":"ProfessionalService","@id":"https://hypjam.vercel.app/#service","name":"hypjam","url":"https://hypjam.vercel.app/","image":"https://hypjam.vercel.app/og.png","priceRange":"££","serviceType":"UGC video advertising","description":"Briefing, scripting, casting, filming, editing and whitelisting of short-form UGC ads for TikTok, Reels, Shorts, Snap, Pinterest and Meta.","areaServed":"GB","parentOrganization":{"@id":"https://hypjam.vercel.app/#org"},"potentialAction":{"@type":"ReserveAction","name":"book a 30 minute intro call","target":{"@type":"EntryPoint","urlTemplate":"https://hypjam.vercel.app/book","actionPlatform":["http://schema.org/DesktopWebPlatform","http://schema.org/MobileWebPlatform"]},"result":{"@type":"Reservation","name":"30 minute intro call on google meet"}}},
- {"@type":"FAQPage","mainEntity":[
-  {"@type":"Question","name":"what does a ugc agency actually do?","acceptedAnswer":{"@type":"Answer","text":"we write the brief and the hooks, cast everyday creators who fit your customer, direct the shoot on their phones, edit the cuts, and deliver paid-ready videos with usage rights sorted. one contract, one team."}},
-  {"@type":"Question","name":"how fast is turnaround?","acceptedAnswer":{"@type":"Answer","text":"a first batch typically ships inside 14 days of the brief being signed off, then we iterate on what performs."}},
-  {"@type":"Question","name":"who owns the content?","acceptedAnswer":{"@type":"Answer","text":"you do, for the usage window in your agreement. whitelisting and spark ads are set up so you can run creator-handle ads too."}},
-  {"@type":"Question","name":"which platforms do you make ads for?","acceptedAnswer":{"@type":"Answer","text":"tiktok, instagram reels, youtube shorts, snap, pinterest and meta ads, cut to each platform's native format."}},
-  {"@type":"Question","name":"how do we start?","acceptedAnswer":{"@type":"Answer","text":"book a 30-minute intro call or send a message with your brand, platforms and budget band. we come back with a brief within two working days."}}
- ]}
+ {"@type":"ProfessionalService","@id":"https://hypjam.vercel.app/#service","name":"hypjam","url":"https://hypjam.vercel.app/","image":"https://hypjam.vercel.app/og.png","priceRange":"££","serviceType":"UGC video advertising","description":"Briefing, scripting, casting, filming, editing and whitelisting of short-form UGC ads for TikTok, Reels, Shorts, Snap, Pinterest and Meta.","areaServed":"GB","parentOrganization":{"@id":"https://hypjam.vercel.app/#org"},"potentialAction":{"@type":"ReserveAction","name":"book a 30 minute intro call","target":{"@type":"EntryPoint","urlTemplate":"https://hypjam.vercel.app/book","actionPlatform":["http://schema.org/DesktopWebPlatform","http://schema.org/MobileWebPlatform"]},"result":{"@type":"Reservation","name":"30 minute intro call on google meet"}}}
 ]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -131,6 +124,7 @@ button{font:inherit;color:inherit}
 .peek .pk-bar i{display:block;height:100%;border-radius:2px;background:var(--jam)}
 .peek .pk-ico{position:absolute;inset:0 0 22% 0;display:grid;place-items:center;color:var(--text)}
 .peek .pk-ico svg{width:24px;height:24px}
+.peek .pk-slot{position:absolute;inset:22% 18%;border-radius:8px;border:1px dashed var(--line)}
 .peek .pk-mark{position:absolute;left:50%;top:40%;width:34px;height:34px;transform:translate(-50%,-50%);display:grid;place-items:center;border-radius:10px;background:var(--jam);color:#0a0a0a;font-family:var(--font-display);font-weight:700;font-size:15px}
 .peek .pk-ratio{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);border-radius:5px;background:rgba(255,111,31,.12);box-shadow:inset 0 0 0 1.5px var(--jam)}
 .peek .pk-grid{position:absolute;inset:14%;display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:3px}
@@ -229,17 +223,19 @@ button{font:inherit;color:inherit}
 .cta-tip path{stroke-dasharray:92;stroke-dashoffset:92;animation:dash .3s var(--ease) forwards .55s}
 .cta-row .btn{animation:strike .55s cubic-bezier(.2,.9,.3,1) .5s both}
 .cta-row .btn-solid{animation-delay:.58s}
-.stage{grid-area:2/2/5;position:relative;perspective:1400px;animation:from-right .85s var(--slow) both .8s}
+.stage{grid-area:2/2/5;position:relative;perspective:1400px;animation:slide-right .85s var(--slow) both .3s}
 .slab{--tx:0deg;--ty:0deg;position:absolute;top:0;bottom:4%;left:8%;width:128%;display:block;transform:rotateX(var(--tx)) rotateY(calc(-2deg + var(--ty)));transform-origin:30% 50%;transform-style:preserve-3d;will-change:transform}
 .slab-face{position:absolute;inset:0;display:flex;flex-direction:column;padding:6px;border-radius:22px;background:var(--ground-2);box-shadow:inset 0 0 0 1px var(--hair-2),1px 1px 0 var(--ground),2px 2px 0 var(--surface-2),3px 3px 0 var(--surface-2),4px 4px 0 var(--surface-2),5px 5px 0 var(--surface-2),6px 6px 0 var(--surface-2),7px 7px 0 var(--surface-2),8px 8px 0 var(--line),30px 50px 100px -40px var(--shadow)}
 .slab-img{position:relative;flex:1;min-height:0;border-radius:16px;overflow:hidden;background:var(--surface)}
 .slab-ledge{display:flex;align-items:baseline;gap:10px;padding:10px 10px 6px;font-size:13px}
 .slab-ledge b{color:var(--text);font-weight:600}
 .slab-ledge em{color:var(--text-3);font-style:normal}
-.hero .h1,.hero .sub,.trust{animation:from-left .75s var(--slow) both .8s}
+.hero .h1,.hero .sub{animation:slide-left .7s var(--slow) both}
+.trust{animation:from-left .75s var(--slow) both .8s}
 .trust{grid-area:4/1;place-self:end stretch;display:grid;gap:16px;min-width:0;max-width:100%;padding-right:clamp(24px,4vw,64px)}
 .trust-row{display:grid;gap:10px;min-width:0}
 .trust-label{margin:0;font-size:13.5px;color:var(--text-3)}
+.trust-note{margin:2px 0 0}
 .mq{min-width:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,#0000,#000 9% 91%,#0000);mask-image:linear-gradient(90deg,#0000,#000 9% 91%,#0000)}
 .mq-belt{display:flex;width:max-content;animation:mq var(--mq-s,26s) linear infinite;will-change:transform}
 .mq[data-reverse] .mq-belt{animation-direction:reverse}
@@ -404,6 +400,17 @@ button{font:inherit;color:inherit}
 .voice-by .ava{display:grid;place-items:center;width:44px;height:44px;border-radius:13px;background:linear-gradient(150deg,#3a3a3a,#111111);box-shadow:inset 0 0 0 1px var(--hair-2);font-family:var(--font-display);font-weight:700;font-size:15px;color:#fff}
 .voice-by>span{display:grid;line-height:1.25}
 .voice-by b{font-size:15px;font-weight:600}
+/* unfilled: spaces held open until there is something real to put in them */
+.voice-empty{position:relative;display:grid;justify-items:start;gap:12px;max-width:46ch;padding:clamp(20px,2.6vh,30px) clamp(22px,2.4vw,34px);border-radius:18px;border:1px dashed var(--line);background:color-mix(in oklab,var(--ground-2) 55%,transparent)}
+.voice-empty .voice-glyph{opacity:.34}
+.voice-empty-line{margin:0;font-family:var(--font-display);font-weight:700;font-size:clamp(1rem,1.25vw,1.35rem);line-height:1.2;letter-spacing:-.02em;color:var(--text-2)}
+.voice-empty-sub{margin:0;font-size:14px;line-height:1.5;color:var(--text-3);max-width:42ch}
+.tag-soon{display:inline-flex;align-items:center;gap:7px;padding:4px 10px;border-radius:999px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--hair-2);font-size:11.5px;letter-spacing:.04em;text-transform:lowercase;color:var(--text-3)}
+.tag-soon:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--jam);opacity:.7}
+.trust-slots{display:flex;flex-wrap:wrap;gap:10px}
+.trust-slot{display:grid;place-items:center;width:104px;height:38px;border-radius:10px;border:1px dashed var(--line);background:color-mix(in oklab,var(--ground-2) 45%,transparent)}
+.trust-slot i{display:block;width:16px;height:16px;color:var(--text-3);opacity:.4}
+.trust-slot i svg{width:100%;height:100%;display:block}
 .voice-by em{font-size:13px;font-style:normal;color:var(--text-3)}
 .voice-sums{display:grid;grid-template-columns:auto auto;justify-content:start;align-items:end;gap:clamp(18px,2.4vh,26px) clamp(32px,4vw,64px);margin:clamp(6px,1.4vh,14px) 0 0}
 .voice-sums>div{display:grid;gap:6px}
@@ -468,7 +475,8 @@ button{font:inherit;color:inherit}
 .foot-brand span{display:grid;font-family:var(--font-display);font-weight:700;font-size:15px;line-height:1.15}
 .foot-brand em{font-family:var(--font-body);font-style:normal;font-weight:400;font-size:12px;color:var(--text-3)}
 .foot-end{display:grid;gap:6px;justify-items:end}
-.foot-links{display:flex;gap:18px;font-size:13px;color:var(--text-2)}
+.foot-links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:8px 18px;font-size:13px;color:var(--text-2)}
+.foot-soon{color:var(--dim)}
 .foot-links a:hover{color:var(--text)}
 .foot-legal{font-size:12px;color:var(--text-3)}
 
@@ -487,6 +495,8 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 @keyframes strike{0%{opacity:0;transform:translateX(-44px) scale(.96)}50%{opacity:1;transform:translateX(7px) scale(1.015)}68%{transform:translateX(-4px)}84%{transform:translateX(2px)}to{opacity:1;transform:none}}
 @keyframes from-left{0%{opacity:0;transform:translateX(-48px)}to{opacity:1;transform:none}}
 @keyframes from-right{0%{opacity:0;transform:translateX(64px)}to{opacity:1;transform:none}}
+@keyframes slide-left{0%{transform:translateX(-48px)}to{transform:none}}
+@keyframes slide-right{0%{transform:translateX(64px)}to{transform:none}}
 @keyframes rise{0%{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes fade{0%{opacity:0}to{opacity:1}}
 @keyframes g-draw{to{stroke-dashoffset:0}}
@@ -612,6 +622,8 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 .msg-done{display:grid;justify-items:start;gap:14px;padding:12px 0 4px;animation:msg-in .45s var(--slow) both}
 .msg-done-ico{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--jam);color:var(--on-jam)}
 .msg-done-copy{margin:0;color:var(--text-2);max-width:44ch}
+.msg-done-alt{margin:0;font-size:13px;color:var(--text-3);max-width:44ch}
+.msg-done-alt a{color:var(--jam);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
 @media (max-width:640px){.msg-side{grid-template-columns:1fr}.msg-foot{flex-direction:column;align-items:stretch}.msg-card .tick{display:none}}
 html.msg-open{overflow:hidden}
 
@@ -717,7 +729,7 @@ html.msg-open{overflow:hidden}
 
 <!-- ================= HERO ================= -->
 <section class="panel hero" id="top">
-  <h1 class="h1"><span class="h1-line">our creators have <span class="hollow">2,400,000,000+</span> views.</span><br>yours could be next.</h1>
+  <h1 class="h1"><span class="h1-line">everyday creators, <span class="hollow">directed</span>.</span><br>ugc ads, scripted, cast and shipped.</h1>
   <p class="sub"><b>the all-in-one <span class="jam">ugc</span> <span class="engine" data-cur="tiktok"><span class="sr-only">for tiktok, reels and shorts</span><span class="engine-well" aria-hidden="true"><svg viewBox="0 0 24 24" class="engine-mark" data-state="in" style="inset:4%;width:92%;height:92%"><use href="#i-tiktok"/></svg><svg viewBox="0 0 24 24" class="engine-mark" data-state="wait"><use href="#i-ig"/></svg><svg viewBox="0 0 24 24" class="engine-mark" data-state="wait"><use href="#i-yt"/></svg></span></span> agency.</b>
     <span>not just a creator, a full team for any short-form ad, from
     <span class="hl ember quiet" data-peek="brief" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pen"/></svg></span>brief</span> to
@@ -758,29 +770,9 @@ html.msg-open{overflow:hidden}
 
   <div class="trust">
     <div class="trust-row">
-      <p class="trust-label">the <span class="hl jamhl" data-peek="brands" data-cur="peek" tabindex="0">brands</span> the work shipped into</p>
-      <div class="mq" style="--mq-s:32s"><div class="mq-belt">
-        <div class="mq-run">
-          <a class="trust-item" href="#words"><span class="logo" style="background:#e6e6e6">g</span><span class="n">glow labs</span></a>
-          <a class="trust-item" href="#words"><span class="logo" style="background:#e6e6e6">s</span><span class="n">sipwell</span></a>
-          <a class="trust-item" href="#words"><span class="logo" style="background:#f0b46a">n</span><span class="n">nomad co</span></a>
-          <a class="trust-item" href="#words"><span class="logo" style="background:#bdbdbd">k</span><span class="n">kettle &amp; co</span></a>
-          <a class="trust-item" href="#words"><span class="logo" style="background:#d9d9d9">d</span><span class="n">driftwear</span></a>
-          <a class="trust-item" href="#words"><span class="logo" style="background:#ffb347">p</span><span class="n">plantly</span></a>
-          <a class="trust-item" href="#words"><span class="logo" style="background:#f4f4f4">o</span><span class="n">oatside</span></a>
-          <a class="trust-item" href="#words"><span class="logo" style="background:#ff6f1f;color:#fff">l</span><span class="n">lumen skin</span></a>
-        </div>
-        <div class="mq-run" aria-hidden="true">
-          <a class="trust-item" href="#words"><span class="logo" style="background:#e6e6e6">g</span><span class="n">glow labs</span></a>
-          <a class="trust-item" href="#words"><span class="logo" style="background:#e6e6e6">s</span><span class="n">sipwell</span></a>
-          <a class="trust-item" href="#words"><span class="logo" style="background:#f0b46a">n</span><span class="n">nomad co</span></a>
-          <a class="trust-item" href="#words"><span class="logo" style="background:#bdbdbd">k</span><span class="n">kettle &amp; co</span></a>
-          <a class="trust-item" href="#words"><span class="logo" style="background:#d9d9d9">d</span><span class="n">driftwear</span></a>
-          <a class="trust-item" href="#words"><span class="logo" style="background:#ffb347">p</span><span class="n">plantly</span></a>
-          <a class="trust-item" href="#words"><span class="logo" style="background:#f4f4f4">o</span><span class="n">oatside</span></a>
-          <a class="trust-item" href="#words"><span class="logo" style="background:#ff6f1f;color:#fff">l</span><span class="n">lumen skin</span></a>
-        </div>
-      </div></div>
+      <p class="trust-label">the <span class="hl jamhl" data-peek="brands" data-cur="peek" tabindex="0">brands</span> the work ships into</p>
+      <div class="trust-slots" role="img" aria-label="no client logos yet: this space is filled in once the first campaigns ship"><span class="trust-slot" aria-hidden="true"><i><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-hook"/></svg></i></span><span class="trust-slot" aria-hidden="true"><i><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-hook"/></svg></i></span><span class="trust-slot" aria-hidden="true"><i><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-hook"/></svg></i></span><span class="trust-slot" aria-hidden="true"><i><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-hook"/></svg></i></span><span class="trust-slot" aria-hidden="true"><i><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-hook"/></svg></i></span></div>
+      <p class="trust-note"><span class="tag-soon">filled in at launch</span></p>
     </div>
     <div class="trust-row">
       <p class="trust-label">the <span class="hl amber" data-peek="platforms" data-cur="peek" tabindex="0">platforms</span> we ship to</p>
@@ -812,7 +804,7 @@ html.msg-open{overflow:hidden}
     <canvas class="goo" aria-hidden="true"></canvas>
     <article class="index" data-goo>
       <h2 class="h1">our <span class="jam">work</span>.</h2>
-      <p class="sub work-sub"><span class="hl jamhl quiet" data-peek="pieces" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-play"/></svg></span>five pieces</span>, <span class="hl amber quiet" data-peek="formats" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-layers"/></svg></span>every format</span>. the rest of the <span class="hl violet quiet" data-peek="roster" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-people"/></svg></span>roster's</span> work is on the <span class="hl slate quiet" data-peek="wall" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-eye"/></svg></span>wall</span>.</p>
+      <p class="sub work-sub"><span class="hl jamhl quiet" data-peek="pieces" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-play"/></svg></span>five pieces</span>, <span class="hl amber quiet" data-peek="formats" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-layers"/></svg></span>every format</span>. concept cuts, made to show how the work reads. more from the <span class="hl violet quiet" data-peek="roster" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-people"/></svg></span>roster</span> is on the <span class="hl slate quiet" data-peek="wall" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-eye"/></svg></span>wall</span>.</p>
       <ul class="index-list">
         <li data-for="c1" data-goo-for="1"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-hook"/></svg></span><span class="index-title">hooks &amp; ads</span><span class="index-credit">15s · 30s · 60s cutdowns</span></span></li>
         <li data-for="c2" data-goo-for="2"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-box"/></svg></span><span class="index-title">testimonials</span><span class="index-credit">unboxing · demos · reviews</span></span></li>
@@ -821,10 +813,10 @@ html.msg-open{overflow:hidden}
         <li data-for="c5" data-goo-for="5"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-badge"/></svg></span><span class="index-title">whitelisting</span><span class="index-credit">spark ads · creator licensing</span></span></li>
         <li data-for="c1" data-goo-for="1"><span class="index-row"><span class="index-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pen"/></svg></span><span class="index-title">scripts + edits</span><span class="index-credit">hooks · captions · thumbnails</span></span></li>
       </ul>
-      <a class="btn index-cta" href="#work" data-cur="see"><span class="btn-in"><span class="btn-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-eye"/></svg></span>see the wall</span><span class="index-cta-arrow"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></span></a>
+      <a class="btn index-cta" href="/work" data-wipe data-cur="see"><span class="btn-in"><span class="btn-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-eye"/></svg></span>see the wall</span><span class="index-cta-arrow"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-arrow"/></svg></span></a>
     </article>
 
-    <a class="card card-1" id="c1" href="#work" data-tilt data-cur="open" data-goo>
+    <a class="card card-1" id="c1" href="/work" data-wipe data-tilt data-cur="open" data-goo>
       <span class="frame"><span class="shot" style="--bg:linear-gradient(120deg,#222222 0%,#1a1a1a 45%,#151515 100%)">
         <span class="sky"></span>
         <span class="blob" style="left:5%;top:-20%;width:40%;height:90%;background:#ff6f1f;opacity:.55"></span>
@@ -833,41 +825,41 @@ html.msg-open{overflow:hidden}
         <span class="person" style="left:62%;width:20%;bottom:-8%;background:linear-gradient(180deg,#2a2a2a,#0b0f18)"><span class="head"></span></span>
         <span class="prod" style="left:47%;bottom:22%;width:7%;aspect-ratio:1/1.5;transform:rotate(-6deg)"></span>
         <span class="rec">rec</span><span class="tc">00:07:22</span>
-        <span class="ui"><span class="cap">3 reasons i <i>switched</i> (and stayed)</span><b>@devfromdenver · for sipwell</b></span>
+        <span class="ui"><span class="cap">3 reasons i <i>switched</i> (and stayed)</span><b>@devfromdenver · concept cut</b></span>
         <span class="grain"></span>
       </span></span>
       <span class="chip">3 reasons i switched <em>· @devfromdenver</em></span>
     </a>
-    <a class="card card-2" id="c2" href="#work" data-tilt data-cur="open" data-goo>
+    <a class="card card-2" id="c2" href="/work" data-wipe data-tilt data-cur="open" data-goo>
       <span class="frame"><span class="phone"><span class="body"><span class="notch"></span><span class="shot" style="--bg:linear-gradient(170deg,#262626 0%,#141414 60%,#0b0b0b 100%)">
         <span class="sky"></span><span class="blob" style="left:-20%;top:20%;width:80%;height:50%;background:#e6e6e6;opacity:.5"></span>
         <span class="person" style="background:linear-gradient(180deg,#2a2a2a,#0e0e0e)"><span class="head"></span></span>
         <span class="prod" style="left:18%;bottom:30%;width:22%;aspect-ratio:1/1.3;transform:rotate(-10deg)"></span>
         <span class="rec">rec</span><span class="side"><span class="h"></span><span></span><span></span></span>
-        <span class="ui"><span class="cap">unboxing the <i>plantly</i> starter kit</span><b>@rin.glow</b></span><span class="grain"></span>
+        <span class="ui"><span class="cap">unboxing the <i>starter kit</i></span><b>@rin.glow</b></span><span class="grain"></span>
       </span></span></span></span>
-      <span class="chip">plantly starter kit unboxing <em>· @rin.glow</em></span>
+      <span class="chip">starter kit unboxing <em>· @rin.glow</em></span>
     </a>
-    <a class="card card-3" id="c3" href="#work" data-tilt data-cur="open" data-goo>
+    <a class="card card-3" id="c3" href="/work" data-wipe data-tilt data-cur="open" data-goo>
       <span class="frame"><span class="shot" style="--bg:linear-gradient(150deg,#3a2f1a 0%,#20170e 60%,#0d0a08 100%)">
         <span class="sky"></span><span class="blob" style="right:-10%;top:-10%;width:60%;height:70%;background:#e6e6e6;opacity:.45"></span>
         <span class="person" style="left:38%;width:30%;background:linear-gradient(180deg,#3a2e22,#150f0a)"><span class="head"></span></span>
         <span class="rec">rec</span><span class="tc">00:41:10</span>
-        <span class="ui"><span class="cap">why i started <i>kettle &amp; co</i></span><b>founder-led · @jules.kettle</b></span><span class="grain"></span>
+        <span class="ui"><span class="cap">why i started <i>the brand</i></span><b>founder-led · @jules.kettle</b></span><span class="grain"></span>
       </span></span>
-      <span class="chip">why i started kettle &amp; co <em>· founder-led</em></span>
+      <span class="chip">why i started the brand <em>· founder-led</em></span>
     </a>
-    <a class="card card-4" id="c4" href="#work" data-tilt data-cur="open" data-goo>
+    <a class="card card-4" id="c4" href="/work" data-wipe data-tilt data-cur="open" data-goo>
       <span class="frame"><span class="shot" style="--bg:linear-gradient(150deg,#2a2a2a 0%,#222222 55%,#0c0c0c 100%)">
         <span class="sky"></span><span class="blob" style="left:-10%;bottom:-20%;width:70%;height:70%;background:#bdbdbd;opacity:.5"></span>
         <span class="person" style="left:26%;width:24%;background:linear-gradient(180deg,#232323,#111111)"><span class="head"></span></span>
         <span class="person" style="left:66%;width:24%;background:linear-gradient(180deg,#262626,#0b0b0b)"><span class="head"></span></span>
         <span class="rec">rec</span><span class="tc">00:00:09</span>
-        <span class="ui"><span class="cap">pov: the <i>driftwear</i> hoodie in every weather</span><b>duet · @tomlifts × @sana.walks</b></span><span class="grain"></span>
+        <span class="ui"><span class="cap">pov: the <i>hoodie</i> in every weather</span><b>duet · @tomlifts × @sana.walks</b></span><span class="grain"></span>
       </span></span>
-      <span class="chip">driftwear in every weather <em>· duet</em></span>
+      <span class="chip">the hoodie in every weather <em>· duet</em></span>
     </a>
-    <a class="card card-5" id="c5" href="#work" data-tilt data-cur="open" data-goo>
+    <a class="card card-5" id="c5" href="/work" data-wipe data-tilt data-cur="open" data-goo>
       <span class="frame"><span class="phone"><span class="body"><span class="notch"></span><span class="shot" style="--bg:linear-gradient(170deg,#2b2b2b 0%,#141414 60%,#0b0b0b 100%)">
         <span class="sky"></span><span class="blob" style="right:-20%;top:0;width:80%;height:50%;background:#ffb347;opacity:.5"></span>
         <span class="person" style="background:linear-gradient(180deg,#262626,#0c0c0c)"><span class="head"></span></span>
@@ -891,8 +883,8 @@ html.msg-open{overflow:hidden}
       </div>
       <div class="make-print" aria-live="polite">
         <a class="make-shot" data-on href="#work" data-cur="open"><span class="shot" style="--bg:linear-gradient(160deg,#2a2a2a,#0f0f0f 55%,#0a0a0a)"><span class="sky"></span><span class="blob" style="left:-10%;top:10%;width:55%;height:60%;background:#ff6f1f"></span><span class="person" style="background:linear-gradient(180deg,#242424,#0f0b18)"><span class="head"></span></span><span class="prod" style="left:22%;bottom:22%;width:14%;aspect-ratio:1/1.6;transform:rotate(-8deg)"></span><span class="rec">rec</span><span class="ui"><span class="cap">the <i>only</i> serum i repurchase</span><b>@maya.films</b></span><span class="grain"></span></span></a>
-        <a class="make-shot" href="#work" data-cur="open"><span class="shot" style="--bg:linear-gradient(170deg,#262626,#141414 60%,#0b0b0b)"><span class="sky"></span><span class="blob" style="left:-20%;top:20%;width:80%;height:50%;background:#e6e6e6;opacity:.5"></span><span class="person" style="background:linear-gradient(180deg,#2a2a2a,#0e0e0e)"><span class="head"></span></span><span class="prod" style="left:18%;bottom:30%;width:22%;aspect-ratio:1/1.3;transform:rotate(-10deg)"></span><span class="ui"><span class="cap">unboxing the <i>plantly</i> kit</span><b>@rin.glow</b></span><span class="grain"></span></span></a>
-        <a class="make-shot" href="#work" data-cur="open"><span class="shot" style="--bg:linear-gradient(150deg,#3a2f1a,#20170e 60%,#0d0a08)"><span class="sky"></span><span class="blob" style="right:-10%;top:-10%;width:60%;height:70%;background:#e6e6e6;opacity:.45"></span><span class="person" style="background:linear-gradient(180deg,#3a2e22,#150f0a)"><span class="head"></span></span><span class="ui"><span class="cap">why i started <i>kettle &amp; co</i></span><b>@jules.kettle</b></span><span class="grain"></span></span></a>
+        <a class="make-shot" href="#work" data-cur="open"><span class="shot" style="--bg:linear-gradient(170deg,#262626,#141414 60%,#0b0b0b)"><span class="sky"></span><span class="blob" style="left:-20%;top:20%;width:80%;height:50%;background:#e6e6e6;opacity:.5"></span><span class="person" style="background:linear-gradient(180deg,#2a2a2a,#0e0e0e)"><span class="head"></span></span><span class="prod" style="left:18%;bottom:30%;width:22%;aspect-ratio:1/1.3;transform:rotate(-10deg)"></span><span class="ui"><span class="cap">unboxing the <i>starter kit</i></span><b>@rin.glow</b></span><span class="grain"></span></span></a>
+        <a class="make-shot" href="#work" data-cur="open"><span class="shot" style="--bg:linear-gradient(150deg,#3a2f1a,#20170e 60%,#0d0a08)"><span class="sky"></span><span class="blob" style="right:-10%;top:-10%;width:60%;height:70%;background:#e6e6e6;opacity:.45"></span><span class="person" style="background:linear-gradient(180deg,#3a2e22,#150f0a)"><span class="head"></span></span><span class="ui"><span class="cap">why i started <i>the brand</i></span><b>@jules.kettle</b></span><span class="grain"></span></span></a>
         <a class="make-shot" href="#work" data-cur="open"><span class="shot" style="--bg:linear-gradient(150deg,#2a2a2a,#222222 55%,#0c0c0c)"><span class="sky"></span><span class="blob" style="left:-10%;bottom:-20%;width:70%;height:70%;background:#bdbdbd;opacity:.5"></span><span class="person" style="left:34%;width:34%;background:linear-gradient(180deg,#232323,#111111)"><span class="head"></span></span><span class="person" style="left:68%;width:34%;background:linear-gradient(180deg,#262626,#0b0b0b)"><span class="head"></span></span><span class="ui"><span class="cap">the hoodie in <i>every</i> weather</span><b>@tomlifts × @sana.walks</b></span><span class="grain"></span></span></a>
         <a class="make-shot" href="#work" data-cur="open"><span class="shot" style="--bg:linear-gradient(170deg,#2b2b2b,#141414 60%,#0b0b0b)"><span class="sky"></span><span class="blob" style="right:-20%;top:0;width:80%;height:50%;background:#ffb347;opacity:.5"></span><span class="person" style="background:linear-gradient(180deg,#262626,#0c0c0c)"><span class="head"></span></span><span class="ui"><span class="cap">the viral <i>oat latte</i></span><b>@cafe.hannah</b></span><span class="grain"></span></span></a>
         <a class="make-shot" href="#work" data-cur="open"><span class="shot" style="--bg:linear-gradient(160deg,#2a2a2a,#141414 60%,#0a0a0a)"><span class="sky"></span><span class="blob" style="left:20%;top:20%;width:60%;height:60%;background:#e6e6e6;opacity:.35"></span><span class="prod" style="left:34%;bottom:28%;width:32%;aspect-ratio:1/1.2;transform:rotate(-4deg)"></span><span class="ui"><span class="cap">hook test 04 · <i>"wait for it"</i></span><b>script + edit · hypjam</b></span><span class="grain"></span></span></a>
@@ -932,7 +924,7 @@ html.msg-open{overflow:hidden}
   </div>
   <p class="studio-brand"><svg class="mark" aria-hidden="true"><use href="#mark"/></svg><span>hypjam<em>the all-in-one ugc agency</em></span></p>
   <h2 class="h1 studio-title">you're not hiring a creator.<br>you're hiring the people who <span class="jam">direct</span> them.</h2>
-  <p class="sub studio-prose">the founders <span class="hl amber" data-peek="direct" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pen"/></svg></span>creative-direct</span> every brief, start to finish. you sign <span class="hl slate" data-peek="contract" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-badge"/></svg></span>one contract</span> with hypjam, not forty creators. every campaign runs on <span class="hl violet" data-peek="milestones" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-layers"/></svg></span>milestones</span> and a live <span class="hl jamhl" data-peek="tracker" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-eye"/></svg></span>tracker</span>. oatside already works with us this way.</p>
+  <p class="sub studio-prose">the founders <span class="hl amber" data-peek="direct" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-pen"/></svg></span>creative-direct</span> every brief, start to finish. you sign <span class="hl slate" data-peek="contract" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-badge"/></svg></span>one contract</span> with hypjam, not forty creators. every campaign runs on <span class="hl violet" data-peek="milestones" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-layers"/></svg></span>milestones</span> and a live <span class="hl jamhl" data-peek="tracker" data-cur="peek" tabindex="0"><span class="g"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-eye"/></svg></span>tracker</span>. every brand we sign works this way from day one.</p>
   <figure class="quote-frame">
     <span class="tick tl"></span><span class="tick tr"></span><span class="tick bl"></span><span class="tick br"></span>
     <blockquote class="founder-quote"><span class="quote-mark"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-quote"/></svg></span><p>don't just hire creators. hire a team that scripts, casts and ships the <span class="jam">whole pipeline</span>.</p></blockquote>
@@ -946,15 +938,16 @@ html.msg-open{overflow:hidden}
   <div class="belts-mask" aria-hidden="true"><div class="belts" id="belts"></div></div>
   <div class="voice">
     <h2 class="h2 words-title">what <span class="jam">brands</span> say.</h2>
-    <blockquote class="voice-quote">
+    <div class="voice-empty">
       <span class="voice-glyph"><svg fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-quote"/></svg></span>
-      <p>hypjam took us from zero creator content to forty ads a month. the hooks land, the turnaround is fast, and we never had to chase a single creator. it felt like an in-house team that happened to live in everyone's feed.</p>
-      <footer class="voice-by"><span class="ava">pn</span><span><b>priya n.</b><em>growth lead, oatside</em></span></footer>
-    </blockquote>
+      <p class="voice-empty-line">this space is held for a real client quote.</p>
+      <p class="voice-empty-sub">hypjam is taking its first briefs. the first testimonial goes here once a brand we have actually shipped for gives us one. we would rather leave it empty than write one ourselves.</p>
+      <span class="tag-soon">filled in at launch</span>
+    </div>
     <dl class="voice-sums">
-      <div><dt>2.4b</dt><dd>views across the ads our creators made</dd></div>
-      <div><dt><span class="live" aria-hidden="true"></span>38k</dt><dd>orders driven this month, live</dd></div>
-      <div class="voice-graph" role="img" aria-label="return on ad spend over a campaign's life: flat when left alone, climbing steeply with hypjam through brief, scripts, shoot, ship and iterate">
+      <div><dt>14</dt><dd>days from a signed brief to your first batch of cuts</dd></div>
+      <div><dt><span class="live" aria-hidden="true"></span>open</dt><dd>booking new brands this month</dd></div>
+      <div class="voice-graph" role="img" aria-label="illustrative sketch of return on ad spend over a campaign's life: flat when left alone, climbing with hypjam through brief, scripts, shoot, ship and iterate. not measured data.">
         <svg viewBox="0 0 520 164" preserveAspectRatio="none">
           <defs>
             <linearGradient id="gfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff6f1f" stop-opacity=".34"/><stop offset=".7" stop-color="#ff6f1f" stop-opacity=".04"/><stop offset="1" stop-color="#ff6f1f" stop-opacity="0"/></linearGradient>
@@ -968,7 +961,7 @@ html.msg-open{overflow:hidden}
           <path class="g-curve" pathLength="1" d="M0 138 C 21.7 137.3, 90 136.3, 130 134 C 170 131.7, 206.7 129, 240 124 C 273.3 119, 301.7 113.7, 330 104 C 358.3 94.3, 386.3 78.3, 410 66 C 433.7 53.7, 454.3 39.7, 472 30 C 489.7 20.3, 508.7 11.7, 516 8"/>
           <g class="g-mark"><circle cx="130" cy="134" r="3.2"/></g><g class="g-mark"><circle cx="240" cy="124" r="3.2"/></g><g class="g-mark"><circle cx="330" cy="104" r="3.2"/></g><g class="g-mark"><line x1="410" x2="410" y1="66" y2="138" class="g-drop"/><circle cx="410" cy="66" r="3.2"/></g><g class="g-mark"><circle cx="472" cy="30" r="3.2"/></g>
           <g><circle cx="516" cy="8" r="9" class="g-end-ring"/><circle cx="516" cy="8" r="3.4" class="g-end-dot"/></g>
-          <text x="0" y="14" class="g-label">roas, over a campaign's life</text>
+          <text x="0" y="14" class="g-label">illustrative: roas over a campaign's life</text>
           <text x="516" y="116" class="g-label" text-anchor="end">left alone</text>
           <text x="458" y="20" class="g-label jam" text-anchor="end">with hypjam</text>
           <text x="130" y="156" class="g-label g-step" text-anchor="middle">brief</text><text x="240" y="156" class="g-label g-step" text-anchor="middle">scripts</text><text x="330" y="156" class="g-label g-step" text-anchor="middle">shoot</text><text x="410" y="156" class="g-label g-step" text-anchor="middle">ship</text><text x="472" y="156" class="g-label g-step" text-anchor="middle">iterate</text>
@@ -1020,7 +1013,7 @@ html.msg-open{overflow:hidden}
   </div>
   <footer class="foot">
     <a class="foot-brand" href="#top"><svg class="mark" aria-hidden="true"><use href="#mark-icon"/></svg><span>hypjam<em>the all-in-one ugc agency</em></span></a>
-    <span class="foot-end"><nav class="foot-links" aria-label="footer"><a href="#work">work</a><a href="#words">brands</a><a href="#top">blog</a><a href="#contact">join the roster</a><a href="#top">tiktok</a><a href="#top">instagram</a><a href="/privacy" data-cur="read">privacy</a><a href="/terms" data-cur="read">terms</a></nav><span class="foot-legal">© 2026 hypjam</span></span>
+    <span class="foot-end"><nav class="foot-links" aria-label="footer"><a href="/work" data-wipe data-cur="see">work</a><a href="/hire" data-wipe data-cur="read">hire</a><a href="/join">join the roster</a><a href="/agency" data-wipe data-cur="read">agency</a><a href="/blog" data-wipe data-cur="read">blog</a><a href="#words">brands</a><a href="/privacy" data-cur="read">privacy</a><a href="/terms" data-cur="read">terms</a><span class="foot-soon">tiktok soon</span><span class="foot-soon">instagram soon</span></nav><span class="foot-legal">© 2026 hypjam</span></span>
   </footer>
 </section>
 
@@ -1037,12 +1030,12 @@ html.msg-open{overflow:hidden}
           <button type="button" role="tab" id="msg-title-book" class="h2 msg-tab" aria-selected="false" aria-controls="msg-side-book" tabindex="-1" data-cur="book">book a <span class="jam">call</span></button>
           <button type="button" role="tab" id="msg-title-join" class="h2 msg-tab" aria-selected="false" aria-controls="msg-side-join" tabindex="-1" data-cur="join">join the <span class="jam">roster</span></button>
         </div>
-        <p class="msg-blurb" data-for="hire">tell us what you sell and where you want it seen. we reply within two working days with a brief and a price.</p>
+        <p class="msg-blurb" data-for="hire">tell us what you sell and where you want it seen. this writes the email for you and opens it in your mail app &mdash; nothing leaves until you press send. we reply within two working days.</p>
         <p class="msg-blurb" data-for="book" hidden>thirty minutes on google meet with avi, london time. pick any free slot and the invite lands in your inbox straight away.</p>
-        <p class="msg-blurb" data-for="join" hidden>everyday creators, paid per video, directed by a team. no follower count needed, just a phone and a face people trust.</p>
+        <p class="msg-blurb" data-for="join" hidden>everyday creators, paid per video, directed by a team. no follower count needed, just a phone and a face people trust. this writes the email for you and opens it in your mail app.</p>
       </div>
       <div class="msg-side" id="msg-side-hire" role="tabpanel">
-        <label class="fld"><span>brand</span><input name="brand" type="text" placeholder="e.g. oatside" autocomplete="organization" required></label>
+        <label class="fld"><span>brand</span><input name="brand" type="text" placeholder="your brand name" autocomplete="organization" required></label>
         <label class="fld"><span>website or shop</span><input name="site" type="url" placeholder="https://" inputmode="url"></label>
         <fieldset class="fld chips"><legend>platforms</legend><label><input type="checkbox" name="p" value="tiktok" checked><i></i>tiktok</label><label><input type="checkbox" name="p" value="reels"><i></i>reels</label><label><input type="checkbox" name="p" value="shorts"><i></i>shorts</label><label><input type="checkbox" name="p" value="meta"><i></i>meta ads</label><label><input type="checkbox" name="p" value="snap"><i></i>snap</label></fieldset>
         <label class="fld"><span>monthly budget</span><select name="budget"><option value="">pick a band</option><option>under £2k</option><option>£2k to £5k</option><option>£5k to £15k</option><option>£15k+</option></select></label>
@@ -1065,13 +1058,14 @@ html.msg-open{overflow:hidden}
       <div class="msg-foot">
         <span class="msg-note" data-for="hire">no retainer talk until we have seen your product.</span>
         <span class="msg-note" data-for="join" hidden>we pay per delivered video, rights included, within 14 days.</span>
-        <button type="submit" class="btn btn-solid btn-square" data-cur="send"><span class="btn-in"><span class="btn-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mail"/></svg></span><span class="msg-send-label">send it</span></span></button>
+        <button type="submit" class="btn btn-solid btn-square" data-cur="mail"><span class="btn-in"><span class="btn-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mail"/></svg></span><span class="msg-send-label">open in mail</span></span></button>
       </div>
     </form>
     <div class="msg-done" hidden>
       <span class="msg-done-ico" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mail"/></svg></span>
-      <h2 class="h2">got it.</h2>
-      <p class="msg-done-copy">we read every message ourselves. expect a reply within two working days, usually sooner.</p>
+      <h2 class="h2">one press away.</h2>
+      <p class="msg-done-copy">your mail app should have opened with everything already written. press send and it lands with avi.</p>
+      <p class="msg-done-alt">nothing opened? <a href="mailto:hello@hypjam.com" data-cur="open">write to hello@hypjam.com</a> instead.</p>
       <button type="button" class="btn msg-back" data-cur="close"><span class="btn-in">back to the site</span></button>
     </div>
   </div>
@@ -1439,7 +1433,7 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
   (() => {
     const list = document.querySelector('.make-list'); if (!list) return;
     const items = [...list.querySelectorAll(':scope > li')], shots = [...document.querySelectorAll('.make-shot')], marker = list.querySelector('.make-marker'), ledge = document.querySelector('.make-ledge');
-    const names = [['kitchen counter unboxing', 'by @maya.films'], ['plantly starter kit', 'by @rin.glow'], ['why i started kettle & co', 'by @jules.kettle'], ['driftwear in every weather', 'by @tomlifts × @sana.walks'], ['the viral oat latte', 'by @cafe.hannah'], ['hook test 04', 'script + edit by hypjam']];
+    const names = [['kitchen counter unboxing', 'by @maya.films'], ['starter kit unboxing', 'by @rin.glow'], ['why i started the brand', 'by @jules.kettle'], ['the hoodie in every weather', 'by @tomlifts × @sana.walks'], ['the viral oat latte', 'by @cafe.hannah'], ['hook test 04', 'script + edit by hypjam']];
     const showShot = i => { shots.forEach((s, k) => k === i ? s.setAttribute('data-on', '') : s.removeAttribute('data-on')); if (ledge) { ledge.querySelector('b').textContent = names[i][0]; ledge.querySelector('span').textContent = names[i][1]; } };
     const placeMarker = li => { marker.style.height = li.offsetHeight + 'px'; marker.style.transform = `translateY(${li.offsetTop}px)`; };
     const open = (li, viaUser) => {
@@ -1462,7 +1456,7 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
   (() => {
     const host = document.getElementById('belts'); if (!host) return;
     const pal = [['#2a2a2a', '#0f0f0f', '#ff6f1f'], ['#262626', '#0b0b0b', '#e6e6e6'], ['#3a2f1a', '#0d0a08', '#e6e6e6'], ['#2a2a2a', '#0c0c0c', '#bdbdbd'], ['#2b2b2b', '#0b0b0b', '#ffb347'], ['#2a2a2a', '#0a0a0a', '#d9d9d9']];
-    const caps = [['oatside · 2.1m', '@cafe.hannah'], ['sipwell · 880k', '@devfromdenver'], ['plantly · 1.4m', '@rin.glow'], ['glow labs · 3.3m', '@maya.films'], ['driftwear · 620k', '@tomlifts'], ['kettle & co · 410k', '@jules.kettle'], ['lumen skin · 1.9m', '@sana.walks'], ['nomad co · 740k', '@leo.packs']];
+    const caps = [['spark ad', 'concept frame'], ['testimonial', 'concept frame'], ['unboxing', 'concept frame'], ['routine', 'concept frame'], ['duet', 'concept frame'], ['founder story', 'concept frame'], ['before / after', 'concept frame'], ['pov trend', 'concept frame']];
     const tile = k => { const p = pal[k % pal.length], c = caps[k % caps.length]; return `<span class="tile"><span class="shot" style="--bg:linear-gradient(165deg,${p[0]},${p[1]})"><span class="sky"></span><span class="blob" style="left:-20%;top:${(k * 23) % 60}%;width:90%;height:55%;background:${p[2]};opacity:.5"></span><span class="person" style="background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(0,0,0,.6))"><span class="head"></span></span><span class="grain"></span></span><span class="meta"><b>${c[0]}</b><span>${c[1]}</span></span></span>`; };
     for (let b = 0; b < 3; b++) {
       const run = Array.from({ length: 8 }, (_, k) => tile(k + b * 3)).join('');
@@ -1504,10 +1498,10 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
         cell(G[1], blob('left:-16%;top:8%;width:74%;height:64%;background:#ff6f1f;opacity:.45') + who('#2a2a2a,#0f0f0f') + '<span class="ui"><span class="cap">okay so this is the <i>only</i> one i repurchase</span></span>'),
         cell(G[0], blob('right:-18%;top:14%;width:72%;height:60%;background:#e6e6e6;opacity:.22') + who('#272727,#101010') + '<span class="ui"><span class="cap">i was <i>wrong</i> about this</span></span>'),
         cell(G[3], blob('left:-12%;bottom:-12%;width:78%;height:62%;background:#ffb347;opacity:.4') + who('#2b2b2b,#0e0e0e') + '<span class="ui"><span class="cap">three weeks in. <i>look</i>.</span></span>')) },
-      brands: { cap: 'where the work has already shipped', body: row(
-        cell(G[0], '<span class="pk-mark">s</span><span class="pk-chip">sipwell</span>'),
-        cell(G[2], '<span class="pk-mark">n</span><span class="pk-chip">nomad co</span>'),
-        cell(G[1], '<span class="pk-mark">k</span><span class="pk-chip">kettle &amp; co</span>')) },
+      brands: { cap: 'no client logos yet, this fills in after the first campaigns ship', body: row(
+        cell(G[0], '<span class="pk-slot"></span>'),
+        cell(G[2], '<span class="pk-slot"></span>'),
+        cell(G[1], '<span class="pk-slot"></span>')) },
       platforms: { cap: 'one shoot, cut for every placement', body: row(
         cell(G[0], `<span class="pk-ico">${ico('i-tiktok')}</span><span class="pk-chip">tiktok</span>`),
         cell(G[2], `<span class="pk-ico">${ico('i-ig')}</span><span class="pk-chip">reels</span>`),
@@ -1524,7 +1518,7 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
         cell(G[2], blob('left:-14%;top:10%;width:72%;height:62%;background:#e6e6e6;opacity:.26') + who('#262626,#101010') + '<span class="ui"><b>leeds</b></span>'),
         cell(G[1], blob('right:-16%;top:12%;width:74%;height:60%;background:#ff6f1f;opacity:.42') + who('#2b2b2b,#0e0e0e') + '<span class="ui"><b>manchester</b></span>'),
         cell(G[0], blob('left:-10%;bottom:-12%;width:76%;height:62%;background:#ffb347;opacity:.38') + who('#242424,#0f0f0f') + '<span class="ui"><b>london</b></span>')) },
-      wall: { cap: 'the full wall of delivered work', body: row(
+      wall: { cap: 'every cut we have made, in one place', body: row(
         cell(G[0], '<span class="pk-grid"><span class="on"></span><span></span><span></span><span></span><span class="on"></span><span></span></span>'),
         cell(G[2], '<span class="pk-grid"><span></span><span class="on"></span><span></span><span class="on"></span><span></span><span></span></span>'),
         cell(G[1], '<span class="pk-grid"><span></span><span></span><span class="on"></span><span></span><span></span><span class="on"></span></span>')) },
@@ -1650,12 +1644,27 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
     dlg.querySelector('.msg-tabs').addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); show(order[(order.indexOf(side) + (e.key === 'ArrowRight' ? 1 : order.length - 1)) % order.length]); tabs.find(t => t.dataset.cur === side).focus(); } });
     dlg.querySelector('.msg-x').addEventListener('click', close); dlg.querySelector('.msg-back').addEventListener('click', close);
     dlg.addEventListener('click', e => { if (e.target === dlg) close(); }); dlg.addEventListener('cancel', e => { e.preventDefault(); close(); });
+    const MAIL = 'hello@hypjam.com';
+    const compose = () => {
+      const box = sides[side], v = n => { const el = box.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ''; };
+      const picked = n => [...box.querySelectorAll('input[name="' + n + '"]:checked')].map(i => i.value).join(', ');
+      const L = []; let subj;
+      if (side === 'hire') { subj = 'brief for ' + (v('brand') || 'a new brand');
+        L.push('brand: ' + v('brand'), 'site: ' + (v('site') || '-'), 'platforms: ' + (picked('p') || '-'), 'monthly budget: ' + (v('budget') || '-'), '', 'what we need:', v('need'), '', 'reply to: ' + v('email'));
+      } else { subj = 'roster application' + (v('handle') ? ' from ' + v('handle') : '');
+        L.push('name: ' + (v('name') || '-'), 'handle: ' + (v('handle') || '-'), 'city: ' + (v('city') || '-'), 'niches: ' + (picked('n') || '-'), '', 'videos:', v('links') || '-', '', 'reply to: ' + (v('email2') || '-'));
+      }
+      L.push('', 'sent from hypjam.vercel.app');
+      return 'mailto:' + MAIL + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(L.join('\n'));
+    };
     form.addEventListener('submit', e => { e.preventDefault(); err.hidden = true; const box = sides[side]; let bad = null;
       box.querySelectorAll('.fld').forEach(f => f.classList.remove('is-bad'));
       box.querySelectorAll('input[required],textarea[required],input[type=email]').forEach(inp => { if (bad) return; const v = inp.value.trim(); const need = inp.required || inp.type === 'email'; if (need && (!v || (inp.type === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)))) bad = inp; });
       if (bad) { bad.closest('.fld').classList.add('is-bad'); err.textContent = bad.type === 'email' ? 'that email does not look right.' : 'fill in ' + (bad.closest('.fld').querySelector('span')?.textContent || 'that field') + ' first.'; err.hidden = false; bad.focus(); return; }
-      send.disabled = true; dlg.querySelector('.msg-send-label').textContent = 'sending…';
-      setTimeout(() => { send.disabled = false; dlg.querySelector('.msg-send-label').textContent = 'send it'; form.hidden = true; done.hidden = false; dlg.querySelector('.msg-done-copy').textContent = side === 'hire' ? 'we read every brief ourselves. expect a reply within two working days, usually sooner.' : 'thanks for applying. if your videos fit a live brief we will be in touch within a week.'; dlg.querySelector('.msg-back').focus(); }, 900);
+      const href = compose(); const alt = dlg.querySelector('.msg-done-alt a'); if (alt) alt.href = href;
+      form.hidden = true; done.hidden = false;
+      dlg.querySelector('.msg-done-copy').textContent = side === 'hire' ? 'your mail app should have opened with the brief already written. press send and it lands with avi — we read every brief ourselves.' : 'your mail app should have opened with your application already written. press send and it lands with avi.';
+      dlg.querySelector('.msg-back').focus(); location.href = href;
     });
     document.querySelectorAll('a[data-cur="write"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); open('hire', a); }));
     document.querySelectorAll('[data-book-sheet]').forEach(a => a.addEventListener('click', e => { if (e.metaKey || e.ctrlKey || e.button) return; e.preventDefault(); open('book', a); }));
@@ -1666,7 +1675,7 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
   /* ---------- route wipe for internal page links (data-wipe) ---------- */
   (() => {
     const w = document.querySelector('.route-wipe'); if (!w || reduce) return;
-    document.addEventListener('click', e => { const a = e.target.closest('a[data-wipe]'); if (!a || e.metaKey || e.ctrlKey || e.button) return; e.preventDefault();
+    document.addEventListener('click', e => { const a = e.target.closest('a[data-wipe]'); if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.button) return; e.preventDefault();
       const r = a.getBoundingClientRect(); const cx = r.left + r.width / 2, cy = r.top + r.height / 2; const rad = Math.hypot(Math.max(cx, innerWidth - cx), Math.max(cy, innerHeight - cy)) + 40;
       Object.assign(w.style, { left: (cx - rad) + 'px', top: (cy - rad) + 'px', width: rad * 2 + 'px', height: rad * 2 + 'px' }); w.dataset.state = 'covering';
       setTimeout(() => { location.href = a.href; }, 520); });

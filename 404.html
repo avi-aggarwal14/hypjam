@@ -16,7 +16,7 @@
 <link rel="preload" href="/assets/fonts/chillax-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap">
 <link rel="stylesheet" href="/assets/page.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "page not found · hypjam"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://hypjam.vercel.app/#org", "name": "hypjam", "url": "https://hypjam.vercel.app/", "email": "hello@hypjam.com", "logo": {"@type": "ImageObject", "url": "https://hypjam.vercel.app/hook-icon-512.png"}, "description": "hypjam is a UGC (user-generated content) marketing agency: everyday creators, directed by a team, making short-form video ads for brands.", "founder": {"@id": "https://hypjam.vercel.app/#avi-aggarwal"}, "areaServed": "GB", "address": {"@type": "PostalAddress", "addressLocality": "London", "addressCountry": "GB"}, "knowsAbout": ["UGC marketing", "TikTok ads", "Instagram Reels ads", "creator whitelisting", "Spark Ads", "short-form video advertising"]}, {"@type": "Person", "@id": "https://hypjam.vercel.app/#avi-aggarwal", "name": "Avi Aggarwal", "givenName": "Avi", "familyName": "Aggarwal", "jobTitle": "founder", "url": "https://hypjam.vercel.app/agency", "worksFor": {"@id": "https://hypjam.vercel.app/#org"}, "address": {"@type": "PostalAddress", "addressLocality": "London", "addressCountry": "GB"}, "knowsAbout": ["UGC marketing", "short-form video advertising", "creator casting and direction"]}, {"@type": "WebSite", "@id": "https://hypjam.vercel.app/#site", "url": "https://hypjam.vercel.app/", "name": "hypjam", "publisher": {"@id": "https://hypjam.vercel.app/#org"}, "inLanguage": "en-GB"}, {"@type": "WebPage", "name": "page not found · hypjam", "url": "https://hypjam.vercel.app/404", "publisher": {"@id": "https://hypjam.vercel.app/#org"}, "inLanguage": "en-GB"}]}</script>
 </head><body data-page="">
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -80,8 +80,8 @@
 <nav class="nav" aria-label="primary">
   <div class="nav-pill">
     <div class="nav-social">
-      <a href="/" aria-label="hypjam on tiktok" data-cur="tiktok"><svg><use href="#i-tiktok"/></svg></a>
-      <a href="/" aria-label="hypjam on instagram" data-cur="instagram"><svg><use href="#i-ig"/></svg></a>
+      <span aria-label="hypjam on tiktok" role="img" title="profile coming soon"><svg><use href="#i-tiktok"/></svg></span>
+      <span aria-label="hypjam on instagram" role="img" title="profile coming soon"><svg><use href="#i-ig"/></svg></span>
     </div>
     <a class="nav-mark" href="/" aria-label="hypjam home" data-cur="top"><svg class="mark"><use href="#mark-icon"/></svg></a>
     <div class="nav-links">
@@ -91,9 +91,9 @@
         <span class="nav-ghost-item"><span class="nav-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-people"/></svg></span><span>agency</span></span>
         <span class="nav-ghost-item"><span class="nav-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-quote"/></svg></span><span>brands</span></span>
       </span></span>
-      <a href="/#work" data-id="work" data-cur="work"><span class="nav-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cube"/></svg></span><span>work</span></a>
-      <a href="/#make" data-id="make" data-cur="services"><span class="nav-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-layers"/></svg></span><span>services</span></a>
-      <a href="/#studio" data-id="studio" data-cur="agency"><span class="nav-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-people"/></svg></span><span>agency</span></a>
+      <a href="/work" data-id="work" data-cur="work"><span class="nav-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-cube"/></svg></span><span>work</span></a>
+      <a href="/hire" data-id="hire" data-cur="services"><span class="nav-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-layers"/></svg></span><span>services</span></a>
+      <a href="/agency" data-id="agency" data-cur="agency"><span class="nav-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-people"/></svg></span><span>agency</span></a>
       <a href="/#words" data-id="words" data-cur="brands"><span class="nav-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-quote"/></svg></span><span>brands</span></a>
     </div>
     <div class="nav-end">
@@ -119,12 +119,12 @@
           <button type="button" role="tab" id="msg-title-book" class="h2 msg-tab" aria-selected="false" aria-controls="msg-side-book" tabindex="-1" data-cur="book">book a <span class="jam">call</span></button>
           <button type="button" role="tab" id="msg-title-join" class="h2 msg-tab" aria-selected="false" aria-controls="msg-side-join" tabindex="-1" data-cur="join">join the <span class="jam">roster</span></button>
         </div>
-        <p class="msg-blurb" data-for="hire">tell us what you sell and where you want it seen. we reply within two working days with a brief and a price.</p>
+        <p class="msg-blurb" data-for="hire">tell us what you sell and where you want it seen. this writes the email for you and opens it in your mail app &mdash; nothing leaves until you press send. we reply within two working days.</p>
         <p class="msg-blurb" data-for="book" hidden>thirty minutes on google meet with avi, london time. pick any free slot and the invite lands in your inbox straight away.</p>
-        <p class="msg-blurb" data-for="join" hidden>everyday creators, paid per video, directed by a team. no follower count needed, just a phone and a face people trust.</p>
+        <p class="msg-blurb" data-for="join" hidden>everyday creators, paid per video, directed by a team. no follower count needed, just a phone and a face people trust. this writes the email for you and opens it in your mail app.</p>
       </div>
       <div class="msg-side" id="msg-side-hire" role="tabpanel">
-        <label class="fld"><span>brand</span><input name="brand" type="text" placeholder="e.g. oatside" autocomplete="organization" required></label>
+        <label class="fld"><span>brand</span><input name="brand" type="text" placeholder="your brand name" autocomplete="organization" required></label>
         <label class="fld"><span>website or shop</span><input name="site" type="url" placeholder="https://" inputmode="url"></label>
         <fieldset class="fld chips"><legend>platforms</legend><label><input type="checkbox" name="p" value="tiktok" checked><i></i>tiktok</label><label><input type="checkbox" name="p" value="reels"><i></i>reels</label><label><input type="checkbox" name="p" value="shorts"><i></i>shorts</label><label><input type="checkbox" name="p" value="meta"><i></i>meta ads</label><label><input type="checkbox" name="p" value="snap"><i></i>snap</label></fieldset>
         <label class="fld"><span>monthly budget</span><select name="budget"><option value="">pick a band</option><option>under £2k</option><option>£2k to £5k</option><option>£5k to £15k</option><option>£15k+</option></select></label>
@@ -147,13 +147,14 @@
       <div class="msg-foot">
         <span class="msg-note" data-for="hire">no retainer talk until we have seen your product.</span>
         <span class="msg-note" data-for="join" hidden>we pay per delivered video, rights included, within 14 days.</span>
-        <button type="submit" class="btn btn-solid btn-square" data-cur="send"><span class="btn-in"><span class="btn-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mail"/></svg></span><span class="msg-send-label">send it</span></span></button>
+        <button type="submit" class="btn btn-solid btn-square" data-cur="mail"><span class="btn-in"><span class="btn-ico"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mail"/></svg></span><span class="msg-send-label">open in mail</span></span></button>
       </div>
     </form>
     <div class="msg-done" hidden>
       <span class="msg-done-ico" aria-hidden="true"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#i-mail"/></svg></span>
-      <h2 class="h2">got it.</h2>
-      <p class="msg-done-copy">we read every message ourselves. expect a reply within two working days, usually sooner.</p>
+      <h2 class="h2">one press away.</h2>
+      <p class="msg-done-copy">your mail app should have opened with everything already written. press send and it lands with avi.</p>
+      <p class="msg-done-alt">nothing opened? <a href="mailto:hello@hypjam.com" data-cur="open">write to hello@hypjam.com</a> instead.</p>
       <button type="button" class="btn msg-back" data-cur="close"><span class="btn-in">back to the site</span></button>
     </div>
   </div>

@@ -290,12 +290,27 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
     dlg.querySelector('.msg-tabs').addEventListener('keydown', e => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); show(order[(order.indexOf(side) + (e.key === 'ArrowRight' ? 1 : order.length - 1)) % order.length]); tabs.find(t => t.dataset.cur === side).focus(); } });
     dlg.querySelector('.msg-x').addEventListener('click', close); dlg.querySelector('.msg-back').addEventListener('click', close);
     dlg.addEventListener('click', e => { if (e.target === dlg) close(); }); dlg.addEventListener('cancel', e => { e.preventDefault(); close(); });
+    const MAIL = 'hello@hypjam.com';
+    const compose = () => {
+      const box = sides[side], v = n => { const el = box.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ''; };
+      const picked = n => [...box.querySelectorAll('input[name="' + n + '"]:checked')].map(i => i.value).join(', ');
+      const L = []; let subj;
+      if (side === 'hire') { subj = 'brief for ' + (v('brand') || 'a new brand');
+        L.push('brand: ' + v('brand'), 'site: ' + (v('site') || '-'), 'platforms: ' + (picked('p') || '-'), 'monthly budget: ' + (v('budget') || '-'), '', 'what we need:', v('need'), '', 'reply to: ' + v('email'));
+      } else { subj = 'roster application' + (v('handle') ? ' from ' + v('handle') : '');
+        L.push('name: ' + (v('name') || '-'), 'handle: ' + (v('handle') || '-'), 'city: ' + (v('city') || '-'), 'niches: ' + (picked('n') || '-'), '', 'videos:', v('links') || '-', '', 'reply to: ' + (v('email2') || '-'));
+      }
+      L.push('', 'sent from hypjam.vercel.app');
+      return 'mailto:' + MAIL + '?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(L.join('\n'));
+    };
     form.addEventListener('submit', e => { e.preventDefault(); err.hidden = true; const box = sides[side]; let bad = null;
       box.querySelectorAll('.fld').forEach(f => f.classList.remove('is-bad'));
       box.querySelectorAll('input[required],textarea[required],input[type=email]').forEach(inp => { if (bad) return; const v = inp.value.trim(); const need = inp.required || inp.type === 'email'; if (need && (!v || (inp.type === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)))) bad = inp; });
       if (bad) { bad.closest('.fld').classList.add('is-bad'); err.textContent = bad.type === 'email' ? 'that email does not look right.' : 'fill in ' + (bad.closest('.fld').querySelector('span')?.textContent || 'that field') + ' first.'; err.hidden = false; bad.focus(); return; }
-      send.disabled = true; dlg.querySelector('.msg-send-label').textContent = 'sending…';
-      setTimeout(() => { send.disabled = false; dlg.querySelector('.msg-send-label').textContent = 'send it'; form.hidden = true; done.hidden = false; dlg.querySelector('.msg-done-copy').textContent = side === 'hire' ? 'we read every brief ourselves. expect a reply within two working days, usually sooner.' : 'thanks for applying. if your videos fit a live brief we will be in touch within a week.'; dlg.querySelector('.msg-back').focus(); }, 900);
+      const href = compose(); const alt = dlg.querySelector('.msg-done-alt a'); if (alt) alt.href = href;
+      form.hidden = true; done.hidden = false;
+      dlg.querySelector('.msg-done-copy').textContent = side === 'hire' ? 'your mail app should have opened with the brief already written. press send and it lands with avi — we read every brief ourselves.' : 'your mail app should have opened with your application already written. press send and it lands with avi.';
+      dlg.querySelector('.msg-back').focus(); location.href = href;
     });
     document.querySelectorAll('a[data-cur="write"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); open('hire', a); }));
     document.querySelectorAll('[data-book-sheet]').forEach(a => a.addEventListener('click', e => { if (e.metaKey || e.ctrlKey || e.button) return; e.preventDefault(); open('book', a); }));
@@ -306,7 +321,7 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
   /* ---------- route wipe for internal page links (data-wipe) ---------- */
   (() => {
     const w = document.querySelector('.route-wipe'); if (!w || reduce) return;
-    document.addEventListener('click', e => { const a = e.target.closest('a[data-wipe]'); if (!a || e.metaKey || e.ctrlKey || e.button) return; e.preventDefault();
+    document.addEventListener('click', e => { const a = e.target.closest('a[data-wipe]'); if (!a || e.defaultPrevented || e.metaKey || e.ctrlKey || e.button) return; e.preventDefault();
       const r = a.getBoundingClientRect(); const cx = r.left + r.width / 2, cy = r.top + r.height / 2; const rad = Math.hypot(Math.max(cx, innerWidth - cx), Math.max(cy, innerHeight - cy)) + 40;
       Object.assign(w.style, { left: (cx - rad) + 'px', top: (cy - rad) + 'px', width: rad * 2 + 'px', height: rad * 2 + 'px' }); w.dataset.state = 'covering';
       setTimeout(() => { location.href = a.href; }, 520); });
@@ -326,4 +341,8 @@ void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize)
   })();
 
 
+  /* the home-page message sheet hijacks any "join the roster" footer link and the founder
+     link into a modal. on sub-pages those are real crawlable pages, so hand them back:
+     replaceWith(cloneNode) drops the listener, every other handler here is delegated. */
+  document.querySelectorAll('.foot-links a[href="/join"], .founder[href="/hire"]').forEach(a => a.replaceWith(a.cloneNode(true)));
 })();
