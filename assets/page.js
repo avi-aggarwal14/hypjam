@@ -87,9 +87,9 @@ void main(){
       let prog; try { prog = mkProgram(gl, 'attribute vec2 aPos; void main(){ gl_Position = vec4(aPos, 0., 1.); }', GOO_FS); } catch (e) { host.dataset.flat = ''; return; }
       const loc = gl.getAttribLocation(prog, 'aPos'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
       const U = {}; ['uSize', 'uDpr', 'uRect', 'uRectX', 'uNR', 'uBall', 'uNB', 'uK', 'uGround', 'uTexA', 'uRim', 'uRimA', 'uHaloA', 'uMint', 'uTime', 'uField', 'uGrey', 'uWhite', 'uMode'].forEach(n => U[n] = gl.getUniformLocation(prog, n));
-      gl.uniform1f(U.uK, 23); gl.uniform1f(U.uField, opts.fieldPx || 0); gl.uniform1f(U.uMode, opts.mode === 'plasma' ? 0 : 1);
+      gl.uniform1f(U.uK, 5); gl.uniform1f(U.uField, opts.fieldPx || 0); gl.uniform1f(U.uMode, opts.mode === 'plasma' ? 0 : 1);
       const items = Array.from(host.querySelectorAll('[data-goo]')), cards = items.filter(e => e.classList.contains('card')), fors = Array.from(host.querySelectorAll('[data-goo-for]'));
-      let W = 0, H = 0, dpr = 1, rects = [], channels = [], junctions = [], travellers = [], heat = items.map(() => 0), swell = items.map(e => e.classList.contains('card') ? 10 : 0), radii = items.map(e => parseFloat(getComputedStyle(e).borderTopLeftRadius) || 20);
+      let W = 0, H = 0, dpr = 1, rects = [], channels = [], junctions = [], travellers = [], heat = items.map(() => 0), swell = items.map(e => e.classList.contains('card') ? 4 : 0), radii = items.map(e => parseFloat(getComputedStyle(e).borderTopLeftRadius) || 20);
       let hot = [], px = -999, py = -999, pr = 0, mx = -999, my = -999, inside = false, raf = 0, visible = false, dirty = true, t0 = performance.now();
       const V = new Float32Array(32), Y = new Float32Array(24), G = new Float32Array(160);
       const theme = () => { const cs = getComputedStyle(host); const g = parseCol(cs.getPropertyValue('--goo-ground').trim() || '#121212'); const r = parseCol(cs.getPropertyValue('--goo-rim').trim() || '#f4f4f4'); const m = parseCol(cs.getPropertyValue('--goo-mint').trim() || '#ff6f1f');
@@ -113,7 +113,7 @@ void main(){
         gl.uniform1f(U.uTime, reduceM ? 2.4 : (now / 1000) * 0.42); const t = (now - t0) / 1000; let animating = !reduceM;
         items.forEach((e, i) => { const target = hot.includes(i) ? 1 : 0; const v = reduceM ? target : lerp(heat[i], target, 0.09); if (Math.abs(v - heat[i]) > 5e-4) dirty = true; heat[i] = Math.abs(v - target) < 0.001 ? target : v; });
         rects.forEach((r, i) => { if (i >= 8) return; V[4 * i] = r.x + r.w / 2; V[4 * i + 1] = r.y + r.h / 2; V[4 * i + 2] = r.w / 2; V[4 * i + 3] = r.h / 2; Y[3 * i] = radii[i] ?? 20; Y[3 * i + 1] = heat[i]; Y[3 * i + 2] = swell[i] ?? 0; });
-        let nb = 0; G.fill(0); const ball = (x, y, r) => { if (nb >= 40) return; G[4 * nb] = x; G[4 * nb + 1] = y; G[4 * nb + 2] = r; G[4 * nb + 3] = 0.42 * r; nb++; };
+        let nb = 0; G.fill(0); const ball = (x, y, r) => { if (nb >= 40) return; G[4 * nb] = x; G[4 * nb + 1] = y; G[4 * nb + 2] = r; G[4 * nb + 3] = 0.12 * r; nb++; };
         junctions.forEach((j, i) => ball(j.x, j.y, reduceM ? j.r : j.r * (1 + 0.05 * Math.sin(0.8 * t + 1.7 * i))));
         travellers.forEach((tr, i) => { const c = channels[tr.channel]; const f = reduceM ? tr.phase % 1 : 0.5 + 0.42 * Math.sin((t * tr.speed * tr.dir + tr.phase) * Math.PI * 2); ball(lerp(c.x1, c.x2, f), lerp(c.y1, c.y2, f), tr.r * (reduceM ? 1 : 1 + 0.06 * Math.sin(1.2 * t + i))); });
         if (fineP && !reduceM) { let near = null; if (inside) for (const c of channels) { const ax = c.vertical ? c.x1 : clampN(mx, c.x1, c.x2), ay = c.vertical ? clampN(my, c.y1, c.y2) : c.y1; const d = Math.hypot(mx - ax, my - ay); if (!near || d < near.d) near = { x: ax, y: ay, d, gap: c.gap }; }
@@ -148,14 +148,17 @@ float field(vec2 uv){ vec2 c = 2.0 * uv - 1.0; c.x = c.x * 1.6 + uTime * 0.35; f
 float lumaToRadius(float luma, float px){ float v = clamp((luma - 0.5 + uBias) * uContrast + 0.5, 0.0, 1.0); return v * px * 0.6 + px * 0.05; }
 float smin(float a, float b, float k){ if (k <= 0.001) return min(a, b); float h = max(k - abs(a - b), 0.0) / k; return min(a, b) - h * h * k * 0.25; }
 void main(){ vec2 px = vUv * uResolution; vec2 baseCell = floor(px / uPixelSize); float minDist = 1.0e5; float k = uGooeyness * 1.5;
-  for (int dx = -1; dx <= 1; dx++){ for (int dy = -1; dy <= 1; dy++){ vec2 cell = baseCell + vec2(float(dx), float(dy)); if (mod(cell.x + cell.y, 2.0) > 0.5) continue; vec2 centre = (cell + 0.5) * uPixelSize; float luma = field((cell + 0.5) * uPixelSize / uResolution); float d = length(px - centre) - lumaToRadius(luma, uPixelSize); minDist = smin(minDist, d, k * uPixelSize); } }
+  for (int dy = -1; dy <= 1; dy++){ vec2 cell = baseCell + vec2(0.0, float(dy)); vec2 centre = (cell + 0.5) * uPixelSize;
+    float luma = field(centre / uResolution); float hw = uPixelSize * 0.11; float hh = lumaToRadius(luma, uPixelSize) * 1.5;
+    vec2 e = abs(px - centre) - vec2(hw, hh); float d = length(max(e, 0.0)) + min(max(e.x, e.y), 0.0) - hw * 0.9;
+    minDist = smin(minDist, d, k * uPixelSize); }
   float aa = max(fwidth(minDist), 0.0001); float shape = 1.0 - smoothstep(-aa, aa, minDist);
   float bottom = smoothstep(0.72, 0.18, vUv.y); float right = smoothstep(0.35, 0.9, vUv.x); float m = clamp(max(bottom, right) * smoothstep(1.0, 0.86, vUv.y), 0.0, 1.0);
   outColor = vec4(mix(uBg, uFg, shape * m * uFade), 1.0); }`;
       let prog; try { prog = mkProgram(gl, VS, FS); } catch (e) { return false; }
       const loc = gl.getAttribLocation(prog, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
       const u = n => gl.getUniformLocation(prog, n); const uRes = u('uResolution'), uTime = u('uTime'), uFade = u('uFade'), uBg = u('uBg'), uFg = u('uFg');
-      gl.uniform1f(u('uAmplitude'), 1.35); gl.uniform1f(u('uPixelSize'), 8); gl.uniform1f(u('uGooeyness'), 0.3); gl.uniform1f(u('uContrast'), 1.45); gl.uniform1f(u('uBias'), 0);
+      gl.uniform1f(u('uAmplitude'), 1.35); gl.uniform1f(u('uPixelSize'), 14); gl.uniform1f(u('uGooeyness'), 0.18); gl.uniform1f(u('uContrast'), 1.45); gl.uniform1f(u('uBias'), 0);
       let raf = 0, time = 0, fade = 0, on = true, last = performance.now();
       const draw = () => gl.drawArrays(gl.TRIANGLES, 0, 3);
       const colours = () => { const cs = getComputedStyle(document.documentElement); const bg = parseCol(cs.getPropertyValue('--ground').trim() || '#0a0a0a'), fg = parseCol(cs.getPropertyValue('--dot').trim() || '#555555'); gl.uniform3f(uBg, bg[0], bg[1], bg[2]); gl.uniform3f(uFg, fg[0], fg[1], fg[2]); if (reduceM) draw(); };
