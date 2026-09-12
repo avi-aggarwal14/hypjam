@@ -1,0 +1,375 @@
+{
+  "_schema": {
+    "_about": "Content for /blog and the /blog/<slug> article template. Structure follows the reference news page: a full-height dark hero (background image, small mark, display h1, sub), then a sand-m section with a row of category filter pills and a 3-column card grid (image area, then 'DATE  Title' in one line with the date in black and the title in grey). The eight articles are hypjam's existing markdown files; they are NOT rewritten. British English on the index copy; the article bodies are rendered as written.",
+    "meta": "{path, title, description, theme}",
+    "hero": "{background:{kind, alt}, mark, h1, sub} - background.kind = 'video-still-blur': a darkened blurred frame from the hero video (no photography exists). mark is the small hook mark file centred above the h1, as the reference places its mark.",
+    "filters": "[string] - the pill row; 'All' first and active by default. Filtering hides cards whose category does not match; no page reload.",
+    "articles": "[{slug, href, title, title_sentence, description, category, date, date_label, reading_minutes, words, sections, links_used, art, body}] in index order (newest-first is moot: all share a month, so this is editorial order). title is the article's title in sentence case (the reference's register), used everywhere: the card, <title>, the article h1 and the link_map labels; title_sentence carries the same value. The markdown's own lowercase H1 is stripped (see render.strip). description is the file's 'meta:' line verbatim (use for the card sub-line and the meta description). date is ISO year-month; date_label is what the card prints where the reference prints 'MM/DD'. art is a line-drawn motif key for the card's image area (the page agent draws it as a 16:10 sand tile with a 1px monoline SVG). body is the absolute path of the markdown to render on the article page.",
+    "link_map": "{path: {href, label}} - the article bodies contain [[link:PATH]] tokens. The renderer replaces each token with <a href=link_map[PATH].href>label</a>; for /blog/<slug> paths the label is that article's title (sentence case). /hire does not exist on this site; the bodies still contain [[link:/hire]] tokens, so the '/hire' key stays and maps to /book (the '/book' key is kept alongside it).",
+    "render": "{strip, features, tables} - what the markdown renderer must handle. Article bodies use ##/### headings, paragraphs, **bold**, bullet lists, numbered lists, [[link:]] tokens and pipe tables (five of the eight).",
+    "article_page": "{back:{label, href}, byline, related_count, cta:{h2, p, button:{label, href}}} - the article template: back link at top, h1 = title, byline line 'date_label · reading_minutes min read · category', the rendered body in a ~720px column, then related_count cards from the same or nearest category, then the CTA."
+  },
+  "meta": {
+    "path": "/blog",
+    "title": "Blog: guides on UGC ads, briefs, hooks and rights | hypjam",
+    "description": "Guides from hypjam on briefing creators, writing hooks, what UGC ads cost, Spark Ads and whitelisting, UGC for ecommerce, and becoming a paid creator.",
+    "theme": "dark"
+  },
+  "hero": {
+    "background": {
+      "kind": "video-still-blur",
+      "alt": ""
+    },
+    "mark": "/assets/brand/logos/hook-mark-on-dark.svg",
+    "h1": "Guides for brands running on creators",
+    "sub": "How to brief, what to pay, which hooks work, and how Spark Ads and usage rights actually function. Written by the people directing the shoots."
+  },
+  "filters": [
+    "All",
+    "Strategy",
+    "Briefing & hooks",
+    "Rights & paid",
+    "Costs",
+    "Creators"
+  ],
+  "articles": [
+    {
+      "slug": "what-is-ugc-marketing",
+      "href": "/blog/what-is-ugc-marketing",
+      "title": "What is UGC marketing? A plain-English guide",
+      "title_sentence": "What is UGC marketing? A plain-English guide",
+      "description": "what is ugc marketing? a plain-english guide to the ugc meaning, how user generated content marketing works, and how brands brief, cast and run it.",
+      "category": "Strategy",
+      "date": "2026-09",
+      "date_label": "Sep 2026",
+      "reading_minutes": 6,
+      "words": 1306,
+      "sections": [
+        "ugc meaning: what \"user generated content\" actually means",
+        "how user generated content marketing actually works",
+        "ugc content at a glance",
+        "what does it cost?",
+        "where ugc fits in your funnel",
+        "how to get started",
+        "faq"
+      ],
+      "links_used": [
+        "/blog/become-a-ugc-creator",
+        "/blog/how-much-do-ugc-ads-cost",
+        "/blog/how-to-brief-a-ugc-creator",
+        "/blog/spark-ads-and-whitelisting",
+        "/blog/ugc-for-ecommerce",
+        "/blog/ugc-vs-influencer-marketing",
+        "/book",
+        "/join",
+        "/work"
+      ],
+      "art": "phone-on-tripod",
+      "body": "/Users/vinee/Desktop/UGC Agency/hypjam-brand/blog/what-is-ugc-marketing.md"
+    },
+    {
+      "slug": "ugc-vs-influencer-marketing",
+      "href": "/blog/ugc-vs-influencer-marketing",
+      "title": "UGC vs influencer marketing: which one actually sells",
+      "title_sentence": "UGC vs influencer marketing: which one actually sells",
+      "description": "ugc vs influencer marketing: the real difference between ugc and influencer content, what each one is actually best for, and which one sells more overall.",
+      "category": "Strategy",
+      "date": "2026-09",
+      "date_label": "Sep 2026",
+      "reading_minutes": 5,
+      "words": 1174,
+      "sections": [
+        "the core difference between ugc and influencer marketing",
+        "difference between ugc and influencer: side-by-side",
+        "when ugc wins",
+        "when influencer marketing wins",
+        "can you combine them? whitelisting and spark ads",
+        "checklist: which one should you actually book?",
+        "cost and setup, in short",
+        "faq"
+      ],
+      "links_used": [
+        "/blog/how-much-do-ugc-ads-cost",
+        "/blog/spark-ads-and-whitelisting",
+        "/blog/ugc-for-ecommerce",
+        "/blog/ugc-hooks-that-convert",
+        "/blog/what-is-ugc-marketing",
+        "/book",
+        "/join",
+        "/work"
+      ],
+      "art": "two-phones",
+      "body": "/Users/vinee/Desktop/UGC Agency/hypjam-brand/blog/ugc-vs-influencer-marketing.md"
+    },
+    {
+      "slug": "how-to-brief-a-ugc-creator",
+      "href": "/blog/how-to-brief-a-ugc-creator",
+      "title": "How to brief a UGC creator: template and checklist",
+      "title_sentence": "How to brief a UGC creator: template and checklist",
+      "description": "how to brief a ugc creator so the first cut is the final cut: a copy-paste brief template, a pre-shoot checklist, and the details that cause reshoots.",
+      "category": "Briefing & hooks",
+      "date": "2026-09",
+      "date_label": "Sep 2026",
+      "reading_minutes": 6,
+      "words": 1257,
+      "sections": [
+        "why briefs (not calls) are what actually save you money",
+        "what a good brief actually contains",
+        "copy-paste ugc brief template",
+        "pre-shoot checklist",
+        "common brief mistakes that cause reshoots",
+        "faq"
+      ],
+      "links_used": [
+        "/blog/how-much-do-ugc-ads-cost",
+        "/blog/spark-ads-and-whitelisting",
+        "/blog/ugc-for-ecommerce",
+        "/blog/ugc-hooks-that-convert",
+        "/blog/ugc-vs-influencer-marketing",
+        "/blog/what-is-ugc-marketing",
+        "/book",
+        "/join",
+        "/work"
+      ],
+      "art": "brief-sheet",
+      "body": "/Users/vinee/Desktop/UGC Agency/hypjam-brand/blog/how-to-brief-a-ugc-creator.md"
+    },
+    {
+      "slug": "ugc-hooks-that-convert",
+      "href": "/blog/ugc-hooks-that-convert",
+      "title": "27 UGC hooks that stop the scroll (with scripts)",
+      "title_sentence": "27 UGC hooks that stop the scroll (with scripts)",
+      "description": "27 ugc hooks that stop the scroll, grouped by type with a one-line script for each, plus notes on when to use curiosity, pov and comparison hooks.",
+      "category": "Briefing & hooks",
+      "date": "2026-09",
+      "date_label": "Sep 2026",
+      "reading_minutes": 7,
+      "words": 1490,
+      "sections": [
+        "why the hook matters more than the product shot",
+        "the 27 hooks, grouped by type",
+        "how to brief creators on hooks",
+        "faq"
+      ],
+      "links_used": [
+        "/blog/how-much-do-ugc-ads-cost",
+        "/blog/how-to-brief-a-ugc-creator",
+        "/blog/ugc-for-ecommerce",
+        "/book",
+        "/join"
+      ],
+      "art": "hook-cards",
+      "body": "/Users/vinee/Desktop/UGC Agency/hypjam-brand/blog/ugc-hooks-that-convert.md"
+    },
+    {
+      "slug": "how-much-do-ugc-ads-cost",
+      "href": "/blog/how-much-do-ugc-ads-cost",
+      "title": "How much do UGC ads cost? 2026 rates and packages",
+      "title_sentence": "How much do UGC ads cost? 2026 rates and packages",
+      "description": "what ugc ads cost in 2026: typical uk and us creator rates per video, a package price comparison, and the six things that push a quote up or down.",
+      "category": "Costs",
+      "date": "2026-09",
+      "date_label": "Sep 2026",
+      "reading_minutes": 5,
+      "words": 1209,
+      "sections": [
+        "the short answer: typical ugc rate ranges",
+        "package comparison table",
+        "what actually drives the price",
+        "how to budget for your first ugc campaign",
+        "faq"
+      ],
+      "links_used": [
+        "/blog/how-to-brief-a-ugc-creator",
+        "/blog/spark-ads-and-whitelisting",
+        "/blog/ugc-hooks-that-convert",
+        "/blog/ugc-vs-influencer-marketing",
+        "/book",
+        "/join",
+        "/work"
+      ],
+      "art": "invoice-strip",
+      "body": "/Users/vinee/Desktop/UGC Agency/hypjam-brand/blog/how-much-do-ugc-ads-cost.md"
+    },
+    {
+      "slug": "ugc-for-ecommerce",
+      "href": "/blog/ugc-for-ecommerce",
+      "title": "UGC for ecommerce brands: the 30-day content engine",
+      "title_sentence": "UGC for ecommerce brands: the 30-day content engine",
+      "description": "a 30-day system for building ugc for ecommerce brands: briefing, casting, a hooks x formats x creators testing grid, and scaling the winners fast.",
+      "category": "Strategy",
+      "date": "2026-09",
+      "date_label": "Sep 2026",
+      "reading_minutes": 7,
+      "words": 1498,
+      "sections": [
+        "why ecommerce brands need an engine, not a project",
+        "what dtc ugc actually looks like",
+        "the 30-day content engine",
+        "the testing framework: hooks x formats x creators",
+        "whitelisting and spark ads: what to do with a winner",
+        "common mistakes brands make with ugc for ecommerce",
+        "build your engine with hypjam",
+        "faq"
+      ],
+      "links_used": [
+        "/agency",
+        "/blog/how-much-do-ugc-ads-cost",
+        "/blog/how-to-brief-a-ugc-creator",
+        "/blog/spark-ads-and-whitelisting",
+        "/blog/ugc-vs-influencer-marketing",
+        "/blog/what-is-ugc-marketing",
+        "/book",
+        "/join",
+        "/work"
+      ],
+      "art": "testing-grid",
+      "body": "/Users/vinee/Desktop/UGC Agency/hypjam-brand/blog/ugc-for-ecommerce.md"
+    },
+    {
+      "slug": "spark-ads-and-whitelisting",
+      "href": "/blog/spark-ads-and-whitelisting",
+      "title": "Spark Ads, whitelisting and usage rights explained",
+      "title_sentence": "Spark Ads, whitelisting and usage rights explained",
+      "description": "what spark ads, whitelisting and usage rights each mean, how authorisation works on tiktok and meta, typical windows, and what a creator agreement needs.",
+      "category": "Rights & paid",
+      "date": "2026-09",
+      "date_label": "Sep 2026",
+      "reading_minutes": 7,
+      "words": 1472,
+      "sections": [
+        "three different things, one confusing vocabulary",
+        "how authorisation works on tiktok",
+        "how authorisation works on meta",
+        "typical usage windows",
+        "what to put in a creator agreement (not legal advice)",
+        "where this fits in your ugc workflow",
+        "faq"
+      ],
+      "links_used": [
+        "/blog/how-to-brief-a-ugc-creator",
+        "/blog/ugc-vs-influencer-marketing",
+        "/blog/what-is-ugc-marketing",
+        "/book",
+        "/join",
+        "/work"
+      ],
+      "art": "handle-switch",
+      "body": "/Users/vinee/Desktop/UGC Agency/hypjam-brand/blog/spark-ads-and-whitelisting.md"
+    },
+    {
+      "slug": "become-a-ugc-creator",
+      "href": "/blog/become-a-ugc-creator",
+      "title": "How to become a paid UGC creator with no followers",
+      "title_sentence": "How to become a paid UGC creator with no followers",
+      "description": "how to become a paid ugc creator with zero followers: a starter kit checklist, how rates really work, portfolio tips, and applying to hypjam's roster.",
+      "category": "Creators",
+      "date": "2026-09",
+      "date_label": "Sep 2026",
+      "reading_minutes": 5,
+      "words": 1180,
+      "sections": [
+        "what is a ugc creator (and why followers don't matter)",
+        "the ugc creator starter kit checklist",
+        "how ugc creator rates actually work",
+        "building a portfolio with zero client experience",
+        "where to find ugc creator jobs (uk and beyond)",
+        "applying to hypjam's roster",
+        "faq"
+      ],
+      "links_used": [
+        "/blog/how-to-brief-a-ugc-creator",
+        "/blog/ugc-hooks-that-convert",
+        "/join"
+      ],
+      "art": "ring-light",
+      "body": "/Users/vinee/Desktop/UGC Agency/hypjam-brand/blog/become-a-ugc-creator.md"
+    }
+  ],
+  "link_map": {
+    "/hire": {
+      "href": "/book",
+      "label": "book a call"
+    },
+    "/book": {
+      "href": "/book",
+      "label": "book a call"
+    },
+    "/join": {
+      "href": "/join",
+      "label": "join the creator roster"
+    },
+    "/work": {
+      "href": "/work",
+      "label": "our work"
+    },
+    "/agency": {
+      "href": "/agency",
+      "label": "the agency"
+    },
+    "/blog/what-is-ugc-marketing": {
+      "href": "/blog/what-is-ugc-marketing",
+      "label": "What is UGC marketing? A plain-English guide"
+    },
+    "/blog/ugc-vs-influencer-marketing": {
+      "href": "/blog/ugc-vs-influencer-marketing",
+      "label": "UGC vs influencer marketing: which one actually sells"
+    },
+    "/blog/how-to-brief-a-ugc-creator": {
+      "href": "/blog/how-to-brief-a-ugc-creator",
+      "label": "How to brief a UGC creator: template and checklist"
+    },
+    "/blog/ugc-hooks-that-convert": {
+      "href": "/blog/ugc-hooks-that-convert",
+      "label": "27 UGC hooks that stop the scroll (with scripts)"
+    },
+    "/blog/how-much-do-ugc-ads-cost": {
+      "href": "/blog/how-much-do-ugc-ads-cost",
+      "label": "How much do UGC ads cost? 2026 rates and packages"
+    },
+    "/blog/ugc-for-ecommerce": {
+      "href": "/blog/ugc-for-ecommerce",
+      "label": "UGC for ecommerce brands: the 30-day content engine"
+    },
+    "/blog/spark-ads-and-whitelisting": {
+      "href": "/blog/spark-ads-and-whitelisting",
+      "label": "Spark Ads, whitelisting and usage rights explained"
+    },
+    "/blog/become-a-ugc-creator": {
+      "href": "/blog/become-a-ugc-creator",
+      "label": "How to become a paid UGC creator with no followers"
+    }
+  },
+  "render": {
+    "strip": [
+      "line 1: the 'meta: ...' line",
+      "the first '# ' heading (the template renders title as its h1)"
+    ],
+    "features": [
+      "## and ### headings",
+      "paragraphs",
+      "**bold**",
+      "- bullet lists",
+      "1. numbered lists",
+      "[[link:PATH]] tokens (see link_map)",
+      "| pipe tables |"
+    ],
+    "tables": "Render pipe tables as a real <table> inside an overflow-x:auto wrapper; the page body never scrolls sideways."
+  },
+  "article_page": {
+    "back": {
+      "label": "All articles",
+      "href": "/blog"
+    },
+    "byline": "{date_label} · {reading_minutes} min read · {category}",
+    "related_count": 3,
+    "cta": {
+      "h2": "Want ads like this made for your brand?",
+      "p": "Tell us what you're launching and we'll come back with formats, creators and a timeline.",
+      "button": {
+        "label": "Book a call",
+        "href": "/book"
+      }
+    }
+  }
+}

@@ -1,0 +1,133 @@
+/* ==========================================================================
+   90-footer.css — one-to-one port of Lance's <footer> (ref/shots/s31-s32,
+   ref/index.html): pt 128 / pb 40, 14px leading-none, headline 42/1.1/-.84,
+   36px CTA pill, 1px white/15 rule with 64px margins, left column flex 1.2 +
+   six-column grid flex 2 (gap-x clamp(.75rem,2.5vw,2.5rem), gap-y 40),
+   20px column gaps, bottom row mt 64 with the 280px HQ drawing and a badge.
+   Breakpoints: max-lp 1024, max-bp 800, max-tp 600.
+   ========================================================================== */
+
+.foot {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 128px var(--px-page, 28px) 40px;
+  background-color: #000;
+  color: #fff;
+  font-family: var(--font-body, 'Geist', Arial, Helvetica, sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+}
+@media (max-width: 800px) { .foot { padding-top: 80px; } }
+
+.foot-top {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+}
+@media (max-width: 800px) { .foot-top { flex-direction: column; align-items: flex-start; gap: 32px; } }
+
+.foot-headline {
+  margin: 0;
+  font-family: var(--font-display, 'Newsreader', Georgia, 'Times New Roman', serif);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 42px;
+  line-height: 1.1;
+  letter-spacing: -0.84px;
+  color: #fff;
+}
+@media (max-width: 600px) { .foot-headline { font-size: 28px; letter-spacing: -0.56px; } }
+
+.foot-cta {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 36px;
+  gap: 12px;
+  padding: 0 6px 0 18px;
+  border-radius: 9999px;
+  font-size: 14px;
+  line-height: 1;
+  color: #fff;
+  background-color: rgba(255, 255, 255, .12);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color .3s, color .3s;
+}
+.foot-cta:hover { background-color: rgba(255, 255, 255, .24); color: var(--sand-m, #dad9d4); }
+.foot-cta:focus-visible,
+.foot-link:focus-visible,
+.foot-col-title:focus-visible,
+.foot-logo-link:focus-visible { outline: 2px solid var(--jam, #ff6f1f); outline-offset: 2px; }
+.foot-cta-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  background-color: var(--jam, #ff6f1f);
+  color: #000;
+}
+.foot-cta-circle svg { display: block; flex-shrink: 0; }
+
+.foot-rule { margin: 64px 0; height: 1px; width: 100%; background-color: rgba(255, 255, 255, .15); }
+@media (max-width: 800px) { .foot-rule { margin: 40px 0; } }
+
+.foot-body { display: flex; width: 100%; gap: 48px; }
+@media (max-width: 1024px) { .foot-body { flex-direction: column; gap: 48px; } }
+
+.foot-brand { min-width: 0; flex: 1.2; }
+.foot-logo-link { display: inline-block; }
+.foot-logo { display: block; width: 184px; height: auto; }
+@media (max-width: 800px) { .foot-logo { width: 160px; } }
+
+.foot-grid {
+  display: grid;
+  flex: 2;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  column-gap: clamp(0.75rem, 2.5vw, 2.5rem);
+  row-gap: 40px;
+}
+@media (max-width: 1024px) { .foot-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 800px)  { .foot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.foot-col { display: flex; min-width: 0; flex-direction: column; gap: 20px; }
+.foot-col-title {
+  margin: 0;
+  color: var(--grey, #7b7b7b);
+  text-decoration: none;
+  transition: color .15s;
+}
+a.foot-col-title:hover { color: var(--sand-l, #bcbbb4); }
+.foot-link { color: #fff; text-decoration: none; transition: color .15s; }
+.foot-col--dim .foot-link { color: rgba(255, 255, 255, .7); }
+.foot-link:hover { color: var(--sand-l, #bcbbb4); }
+
+.foot-bottom {
+  margin-top: 64px;
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+}
+@media (max-width: 800px) { .foot-bottom { margin-top: 40px; flex-direction: column; align-items: flex-start; gap: 32px; } }
+
+.foot-left { display: flex; min-width: 0; flex-direction: column; gap: 20px; }
+.foot-hq-slot { display: block; width: 280px; max-width: 100%; min-height: 120px; }
+.foot-hq { display: block; width: 280px; max-width: 100%; height: auto; }
+.foot-hq.is-missing { visibility: hidden; } /* keeps the box until the drawing agent's file lands */
+@media (max-width: 800px) { .foot-hq-slot { width: 200px; min-height: 86px; } .foot-hq { width: 200px; } }
+.foot-copy { margin: 0; line-height: 1.5; color: var(--grey, #7b7b7b); }
+
+.foot-badge { display: flex; flex-shrink: 0; align-items: center; gap: 16px; color: var(--grey, #7b7b7b); }
+.foot-seal { display: block; width: 36px; height: 36px; flex-shrink: 0; }
+.foot-seal svg { display: block; width: 100%; height: 100%; }
+.foot-badge-text { font-size: 14px; line-height: 1; }

@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Panel 4 — shoot (321×152). Layout only; primitives live in _panels.css.
+   Static state = final state: the take is cut (REC dot still, timecode
+   frozen at 00:00:03:20), HOOK 03 ticked in jam, the header reads
+   "founder cut · take 1" and the last row "up next".
+   ========================================================================== */
+
+/* The phone: 70×140 at x0 y6 ------------------------------------------------ */
+.pnl-shoot__phone {
+  position: absolute;
+  top: 6px;
+  left: 0;
+}
+/* corner guides + the creator mid-take, one stroke colour at 35% white */
+.pnl-shoot__frame {
+  position: absolute;
+  inset: 0;
+  width: 70px;
+  height: 140px;
+  color: rgba(255, 255, 255, 0.35);
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+.pnl-shoot__guides {
+  opacity: 0.7;
+}
+.pnl-shoot__rec {
+  position: absolute;
+  top: 11px;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 8px;
+}
+.pnl-shoot__rec-lbl {
+  font-size: 8px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+}
+.pnl-shoot__tc {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 9px;
+  text-align: center;
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--pnl-ink-2);
+}
+
+/* The take list: x86–321 ------------------------------------------------------ */
+.pnl-shoot__list {
+  position: absolute;
+  top: 6px;
+  left: 86px;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+.pnl-shoot__hr {
+  margin-top: 4px;
+}
+.pnl-shoot__id {
+  flex: 0 0 80px;
+}
+.pnl-shoot__val {
+  font-size: 12px;
+  color: var(--pnl-ink-2);
+}
+.pnl-shoot__row--live .pnl-shoot__val {
+  color: var(--pnl-ink);
+}
+
+/* Two strings that crossfade in one slot: `a` is the first beat (hidden in the
+   static/final state), `b` stays in flow so the baseline is the real one. */
+.pnl-shoot__swap {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+}
+.pnl-shoot__swap-a {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+}
+.pnl-shoot__next-a {
+  color: var(--pnl-mute-2);
+}

@@ -1,0 +1,142 @@
+{
+  "_schema": {
+    "_about": "Content for /rights. Structure follows the reference security page one-to-one: a full-height sand hero (h1, sub, one pill CTA, a row of four seals), a black 3x2 grid of cells, a two-column questions block (heading + copy + CTA left, six-item accordion right), then the closing CTA strip and footer. British English. Nothing on this page is a certification; the seals are hypjam's own commitments drawn as line art.",
+    "meta": "{path, title, description, theme} - theme 'dark' means the nav lockup is the on-dark file below the hero; over the sand-m hero the nav must read as light (data-nav=light) exactly as the reference does.",
+    "hero": "{h1, sub, cta:{label, href}, badges:[{id, label, seal_text, seal_file, alt, kind}]} - badges render at 96px as our own line-drawn seals from seal_file, the root-relative path of the SVG under /assets/badges/ (drawn by the badges agent; if a file is missing render seal_text inside a 1px circle). seal_text is the engraved text, split on ' · ' into two lines. kind is always 'commitment': a promise, never an accreditation - no stars, no ribbons, no authority lookalikes.",
+    "grid": "{h2, cells:[{title, body, icon}]} - six cells, 3x2, on black, 1px sand-l/20 hairlines between them. title renders uppercase 12-13px tracked .08em (eyebrow style) with a short rule under it; body 14px/1.5 sand-l; icon is a key the page agent maps to a 24px monoline SVG bottom-left of the cell: document | signature | tag | checklist | lock | folder.",
+    "questions": "{h2, p, cta:{label, href}, items:[{q, a, link?:{label, href}}]} - the accordion. Hairline between rows, '+' at the right that rotates to 'x', one item open at a time, answer 14px sand-l; link is an optional small arrow link under the answer.",
+    "cta": "{h2, button:{label, href}} - the closing strip (display h2 left, pill right) above the footer. If the footer partial already carries this strip, skip it here."
+  },
+  "meta": {
+    "path": "/rights",
+    "title": "Rights and safety at every layer | hypjam",
+    "description": "How hypjam keeps UGC clean to run: usage rights in writing, signed creator releases, ASA and CAP disclosure built into every edit, claims checked before the shoot, and UK GDPR data handling.",
+    "theme": "dark"
+  },
+  "hero": {
+    "h1": "Rights and safety at every layer",
+    "sub": "Every video we make ships with its usage rights in writing, a signed creator release and the disclosure the ad needs. hypjam is built so the work is clean to run, for your brand and for the creators who make it.",
+    "cta": {
+      "label": "Talk to us",
+      "href": "/book"
+    },
+    "badges": [
+      {
+        "id": "usage",
+        "label": "Usage rights in writing",
+        "seal_text": "USAGE · RIGHTS",
+        "seal_file": "/assets/badges/usage-rights.svg",
+        "alt": "Seal: usage rights in writing",
+        "kind": "commitment"
+      },
+      {
+        "id": "release",
+        "label": "Signed creator releases",
+        "seal_text": "CREATOR · RELEASE",
+        "seal_file": "/assets/badges/releases.svg",
+        "alt": "Seal: signed creator releases",
+        "kind": "commitment"
+      },
+      {
+        "id": "disclosure",
+        "label": "ASA and CAP disclosure compliance",
+        "seal_text": "ASA · CAP",
+        "seal_file": "/assets/badges/disclosure.svg",
+        "alt": "Seal: ASA and CAP disclosure compliance",
+        "kind": "commitment"
+      },
+      {
+        "id": "gdpr",
+        "label": "UK GDPR data handling",
+        "seal_text": "UK · GDPR",
+        "seal_file": "/assets/badges/uk-gdpr.svg",
+        "alt": "Seal: UK GDPR data handling",
+        "kind": "commitment"
+      }
+    ]
+  },
+  "grid": {
+    "h2": "How we protect your brand and your creators",
+    "cells": [
+      {
+        "title": "Usage rights in writing",
+        "body": "Every deliverable comes with a written licence: which platforms, which territories, organic or paid, and for how long. Nothing is implied, and the licence lives in the same folder as the files.",
+        "icon": "document"
+      },
+      {
+        "title": "Creators sign before they film",
+        "body": "Each creator signs a release and a short agreement covering the brief, the fee, the usage window and whether the video can run from their own handle. No footage is shot on a handshake.",
+        "icon": "signature"
+      },
+      {
+        "title": "Disclosure built into the edit",
+        "body": "Paid content is labelled as paid. We follow the ASA's CAP Code on advertising disclosure, and Spark Ads and partnership ads carry the platform's own paid-partnership label, so nothing has to be bolted on after the fact.",
+        "icon": "tag"
+      },
+      {
+        "title": "Claims checked before the shoot",
+        "body": "Creators only say what the brief has cleared. If a claim needs evidence, we ask for it before the script is locked, not after the video is live. You approve every script before anyone presses record.",
+        "icon": "checklist"
+      },
+      {
+        "title": "Your data, handled under UK GDPR",
+        "body": "We collect only what you send us, use it only for your brief, and delete it when you ask. This site sets no cookies and runs no trackers; the booking calendar loads only on the page where you open it.",
+        "icon": "lock"
+      },
+      {
+        "title": "Footage and paperwork kept in order",
+        "body": "Raw takes, releases and licences are filed per brief and never reused for another brand. Ask at any time and we send you the lot.",
+        "icon": "folder"
+      }
+    ]
+  },
+  "questions": {
+    "h2": "Questions about rights?",
+    "p": "We're happy to walk through how usage, releases and disclosure work on a brief, and what changes when a video runs as a whitelisted ad.",
+    "cta": {
+      "label": "Book a call",
+      "href": "/book"
+    },
+    "items": [
+      {
+        "q": "Who owns the videos we pay for?",
+        "a": "You license them for the usage window in your package, for organic and paid use, on the platforms in the brief. We handle the paperwork with each creator so the rights are clean, not implied. If you want the window extended, we price that in upfront."
+      },
+      {
+        "q": "What usage is included as standard?",
+        "a": "Organic and paid usage for the term of your package, on the platforms the video was made for. Whitelisting, Spark Ads and longer usage windows are written into the brief before the shoot, so there is no scramble later.",
+        "link": {
+          "label": "Usage rights",
+          "href": "/services/usage-rights"
+        }
+      },
+      {
+        "q": "Can we run the ads from the creator's own handle?",
+        "a": "Yes. That is Spark Ads on TikTok and partnership ads on Meta. The creator authorises it from their account, the authorisation window is agreed in their agreement, and the fee reflects it. We set it up and show you where the switch lives.",
+        "link": {
+          "label": "Whitelisting and Spark Ads",
+          "href": "/services/whitelisting"
+        }
+      },
+      {
+        "q": "How is paid content disclosed?",
+        "a": "Every ad is labelled as an ad. Where a video runs from a creator's handle, the platform's paid-partnership label is switched on; where it runs from yours, it is an ad in your account. We follow the ASA's CAP Code and will not ship a cut that hides the relationship."
+      },
+      {
+        "q": "What happens when the usage window ends?",
+        "a": "You either renew it or stop running the video. We tell you the end date when we deliver, remind you before it arrives, and never charge for a renewal you did not ask for."
+      },
+      {
+        "q": "What do you do with our product, brief and data?",
+        "a": "We use them for your brief and nothing else. Your product goes to the creators cast for the shoot, your brief stays with the team working on it, and personal data is handled as our privacy policy sets out. Ask and we delete it."
+      }
+    ]
+  },
+  "cta": {
+    "h2": "Make ads that are clean to run.",
+    "button": {
+      "label": "Book a call",
+      "href": "/book"
+    }
+  }
+}

@@ -1,0 +1,129 @@
+<!-- home · features — Lance #features ("Run smarter, serve better.")
+     Section: bg-sand-s px-page py-[120px] · head row (h2 + grey sub | prev/next chevrons)
+     · four cards in a drag/arrow carousel (stacked ≤600) · each card: a 6px-radius
+     "screen" box (Lance: product photos; ours: CSS mocks, no images) + one 16/1.4
+     paragraph "Title(500) desc(grey)". Copy: content/home.json → features. -->
+<section id="features" class="feat section section--sand-s" data-nav="light" data-nav-fill="bg-grey-s" data-theme="sand">
+  <div class="feat-inner">
+
+    <div class="feat-head">
+      <div class="feat-copy">
+        <h2 class="feat-h2 t-h2">{{content:home.features.heading}}</h2>
+        <p class="feat-sub t-body">{{content:home.features.sub}}</p>
+      </div>
+      <div class="feat-nav" data-feat-nav>
+        <button type="button" class="feat-arrow" data-feat-prev disabled aria-label="{{content:home.features.prev|Previous}}"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M20.0001 24L12.0001 16L20.0001 8" stroke="currentColor" stroke-width="1.77778" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="feat-arrow" data-feat-next disabled aria-label="{{content:home.features.next|Next}}"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M12 24L20 16L12 8" stroke="currentColor" stroke-width="1.77778" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+
+    <div class="feat-carousel" data-feat-carousel aria-label="{{content:home.features.carouselLabel|Feature cards}}">
+      <div class="feat-track" data-feat-track>
+
+        <!-- 1 · hook sheet -->
+        <div class="feat-card" data-feat-card>
+          <div class="feat-media" role="img" aria-label="{{content:home.features.items.0.mockAlt}}">
+            <div class="feat-mock feat-mock--hooks" aria-hidden="true">
+              <div class="feat-screen">
+                <div class="feat-sh"><span class="feat-chip">Hook sheet</span><span class="feat-sh-title">your brand · spring launch</span><span class="feat-sh-meta">8 hooks</span></div>
+                <ol class="feat-hooks">
+                  <li class="feat-hook"><span class="feat-hook-n">01</span><span class="feat-hook-t">POV: you finally found one that works</span></li>
+                  <li class="feat-hook is-picked"><span class="feat-hook-n">02</span><span class="feat-hook-t">Stop scrolling if your skin does this</span><span class="feat-pick"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>picked</span></li>
+                  <li class="feat-hook"><span class="feat-hook-n">03</span><span class="feat-hook-t">I was wrong about this for two years</span></li>
+                  <li class="feat-hook"><span class="feat-hook-n">04</span><span class="feat-hook-t">Three things nobody tells you before you buy</span></li>
+                  <li class="feat-hook is-picked"><span class="feat-hook-n">05</span><span class="feat-hook-t">This is the one I keep coming back to</span><span class="feat-pick"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>picked</span></li>
+                  <li class="feat-hook"><span class="feat-hook-n">06</span><span class="feat-hook-t">Rating my morning routine, honestly</span></li>
+                  <li class="feat-hook"><span class="feat-hook-n">07</span><span class="feat-hook-t">The 7am test, no filter</span></li>
+                  <li class="feat-hook"><span class="feat-hook-n">08</span><span class="feat-hook-t">Reply to @— does it actually work?</span></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <p class="feat-text"><span class="feat-title">{{content:home.features.items.0.title}}</span> <span class="feat-desc">{{content:home.features.items.0.desc}}</span></p>
+        </div>
+
+        <!-- 2 · casting board -->
+        <div class="feat-card" data-feat-card>
+          <div class="feat-media" role="img" aria-label="{{content:home.features.items.1.mockAlt}}">
+            <div class="feat-mock feat-mock--cast" aria-hidden="true">
+              <div class="feat-screen">
+                <div class="feat-sh"><span class="feat-chip">Casting</span><span class="feat-sh-title">your brand · roster shortlist</span><span class="feat-sh-meta">3 of 8 shortlisted</span></div>
+                <div class="feat-cast">
+                  <div class="feat-cc is-short"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name"></span></div><span class="feat-cc-tags">skincare · 25–34 · London</span><span class="feat-short"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>shortlisted</span></div>
+                  <div class="feat-cc"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name feat-cc-name--s"></span></div><span class="feat-cc-tags">fitness · 18–24 · Manchester</span><span class="feat-short feat-short--off">roster</span></div>
+                  <div class="feat-cc is-short"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name feat-cc-name--l"></span></div><span class="feat-cc-tags">home · 35–44 · Leeds</span><span class="feat-short"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>shortlisted</span></div>
+                  <div class="feat-cc"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name"></span></div><span class="feat-cc-tags">food · 25–34 · London</span><span class="feat-short feat-short--off">roster</span></div>
+                  <div class="feat-cc is-short"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name feat-cc-name--s"></span></div><span class="feat-cc-tags">beauty · 18–24 · Bristol</span><span class="feat-short"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>shortlisted</span></div>
+                  <div class="feat-cc"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name feat-cc-name--l"></span></div><span class="feat-cc-tags">tech · 25–34 · London</span><span class="feat-short feat-short--off">roster</span></div>
+                  <div class="feat-cc"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name"></span></div><span class="feat-cc-tags">pets · 25–34 · Glasgow</span><span class="feat-short feat-short--off">roster</span></div>
+                  <div class="feat-cc"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name feat-cc-name--s"></span></div><span class="feat-cc-tags">travel · 35–44 · London</span><span class="feat-short feat-short--off">roster</span></div>
+                  <div class="feat-cc"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name feat-cc-name--l"></span></div><span class="feat-cc-tags">drinks · 18–24 · Leeds</span><span class="feat-short feat-short--off">roster</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="feat-text"><span class="feat-title">{{content:home.features.items.1.title}}</span> <span class="feat-desc">{{content:home.features.items.1.desc}}</span></p>
+        </div>
+
+        <!-- 3 · shoot sheet -->
+        <div class="feat-card" data-feat-card>
+          <div class="feat-media" role="img" aria-label="{{content:home.features.items.2.mockAlt}}">
+            <div class="feat-mock feat-mock--shoot" aria-hidden="true">
+              <div class="feat-screen">
+                <div class="feat-sh"><span class="feat-chip">Shoot sheet</span><span class="feat-sh-title">your brand · shoot day</span><span class="feat-sh-meta">hook 02 · take 2</span></div>
+                <div class="feat-shoot">
+                  <div class="feat-phone">
+                    <div class="feat-phone-scr">
+                      <span class="feat-rec">rec</span>
+                      <span class="feat-tc">00:12:07</span>
+                      <span class="feat-fig-head"></span>
+                      <span class="feat-fig-body"></span>
+                      <span class="feat-phone-lab">hook 02 · take 2</span>
+                    </div>
+                  </div>
+                  <ol class="feat-takes">
+                    <li class="feat-take is-done"><span class="feat-take-t">Hook 01 · take 1</span><span class="feat-take-st"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>done</span></li>
+                    <li class="feat-take is-done"><span class="feat-take-t">Hook 01 · take 2</span><span class="feat-take-st"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>done</span></li>
+                    <li class="feat-take is-done"><span class="feat-take-t">Hook 02 · take 1</span><span class="feat-take-st"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>done</span></li>
+                    <li class="feat-take is-live"><span class="feat-take-t">Hook 02 · take 2</span><span class="feat-take-st">recording</span></li>
+                    <li class="feat-take is-next"><span class="feat-take-t">Hook 03 · take 1</span><span class="feat-take-st">next</span></li>
+                    <li class="feat-take is-next"><span class="feat-take-t">Hook 03 · take 2</span><span class="feat-take-st">next</span></li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="feat-text"><span class="feat-title">{{content:home.features.items.2.title}}</span> <span class="feat-desc">{{content:home.features.items.2.desc}}</span></p>
+        </div>
+
+        <!-- 4 · edit timeline -->
+        <div class="feat-card" data-feat-card>
+          <div class="feat-media" role="img" aria-label="{{content:home.features.items.3.mockAlt}}">
+            <div class="feat-mock feat-mock--edit" aria-hidden="true">
+              <div class="feat-screen">
+                <div class="feat-sh"><span class="feat-chip">Edit</span><span class="feat-sh-title">your brand · hook 03 · 9:16</span><span class="feat-toggle"><i></i>Captions</span></div>
+                <div class="feat-ruler"><span>0:00</span><span>0:05</span><span>0:10</span><span>0:15</span><span>0:20</span></div>
+                <div class="feat-tl">
+                  <div class="feat-tr"><span class="feat-tr-l">V1</span><span class="feat-tr-b"><span class="feat-clip" style="width:29%"></span><span class="feat-clip" style="width:36%"></span><span class="feat-clip" style="width:24%"></span></span></div>
+                  <div class="feat-tr"><span class="feat-tr-l">CC</span><span class="feat-tr-b feat-tr-b--cc"><span class="feat-cap" style="width:14%"></span><span class="feat-cap" style="width:11%"></span><span class="feat-cap" style="width:17%"></span><span class="feat-cap" style="width:9%"></span><span class="feat-cap" style="width:15%"></span><span class="feat-cap" style="width:12%"></span></span></div>
+                  <div class="feat-tr"><span class="feat-tr-l">A1</span><span class="feat-tr-b"><span class="feat-wave"></span></span></div>
+                  <span class="feat-ph"></span>
+                </div>
+                <div class="feat-export">
+                  <span class="feat-export-l">Export</span>
+                  <span class="feat-pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>TikTok</span>
+                  <span class="feat-pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Reels</span>
+                  <span class="feat-pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Shorts</span>
+                </div>
+                <p class="feat-rights">Usage rights · organic and paid · in writing</p>
+              </div>
+            </div>
+          </div>
+          <p class="feat-text"><span class="feat-title">{{content:home.features.items.3.title}}</span> <span class="feat-desc">{{content:home.features.items.3.desc}}</span></p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

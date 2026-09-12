@@ -1,0 +1,212 @@
+/* =====================================================================
+   hypjam v2 · 32-stories.css — the brand-stories carousel (home)
+   One-to-one with Lance's "Trusted by leading hotels" section
+   (ref/index.html, ref/lance-css .story-carousel-*, ref/shots/s27–s28,
+   ref/mobile/m08). Numbers, in Lance's own utilities:
+     section   flex col justify-center overflow-hidden bg-black min-h-svh
+               py-[140px] · max-bp: min-h-0 py-20
+     head      flex items-end justify-between gap-8 px-page
+               h2 max-w-[560px] 42/1.1/-.84 (max-tp 28/-.56), line 2 white/40
+               buttons size-[45px] text-white/70 hover:text-white 200ms,
+               chevron 16×16 stroke 1.4, prev rotated 180 (plain chevrons —
+               no circle in the frames)
+     mask      mt-16 (max-bp mt-8) · padding-left var(--page-x) · overflow
+               hidden · cursor-grab / grabbing
+     track     flex items-start gap 30px width max-content will-change
+               transform · transition transform 620ms cubic-bezier(.22,1,.36,1)
+               (none under reduced motion — Lance has the same rule)
+     card      w-[min(377px,78vw)] gap-6 · max-bp w-[min(280px,78vw)] gap-4
+     media     h-[440px] (max-bp 360) rounded-[8px] shadow 0 14px 32px .25
+               inner: absolute inset-0 flex col justify-between p-5 pb-4
+               "Read" pill: gap-2 rounded-[6px] px/py-2.5 14px/1
+               quote 18/1.25/-.2 (max-tp 16) · attribution 13/1.35 white/75
+     foot      flex items-center justify-between gap-4 · logo h 24px
+               max-w 103px · meta 13/1.3 white/45 truncated right
+   Ours are the reserved slots of CONTRACT §10: the media box is a dashed
+   hairline frame on a dark surface with a line-drawn phone; the quote and
+   the jam-dotted attribution tag sit where Lance's hover overlay puts them,
+   shown at rest; "Read" is present but inert.
+   ===================================================================== */
+
+.sto {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 100svh;
+  padding-top: var(--section-y-stories);
+  padding-bottom: var(--section-y-stories);
+  background: var(--black);
+  color: var(--white);
+}
+
+/* ---------- head: h2 + arrows ---------- */
+.sto-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  padding-left: var(--px-page);
+  padding-right: var(--px-page);
+}
+.sto-h2 { max-width: var(--max-h2); color: var(--white); }
+.sto-h2-l1 { color: var(--white); }
+.sto-h2-l2 { color: var(--w40); }
+
+.sto-nav { display: flex; flex-shrink: 0; margin-bottom: 4px; }
+.sto-arrow {
+  display: flex;
+  width: 45px;
+  height: 45px;
+  align-items: center;
+  justify-content: center;
+  color: var(--w70);
+  transition: color var(--dur-fast);
+}
+.sto-arrow:hover { color: var(--white); }
+.sto-arrow svg { display: block; width: 16px; height: 16px; }
+.sto-arrow--prev svg { transform: rotate(180deg); }
+.sto-arrow:focus-visible { border-radius: 50%; outline-offset: -4px; }
+
+/* ---------- carousel ---------- */
+.sto-mask {
+  margin-top: 64px;
+  padding-left: var(--px-page);
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.sto-mask.is-dragging { cursor: grabbing; }
+.sto-track {
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  width: max-content;
+  will-change: transform;
+  transition: transform 620ms cubic-bezier(.22, 1, .36, 1);
+}
+.sto-track.is-still { transition: none; }
+
+/* ---------- card ---------- */
+.sto-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: min(377px, 78vw);
+  flex-shrink: 0;
+}
+
+/* the image box → a reserved slot: dashed hairline frame on a dark surface */
+.sto-media {
+  position: relative;
+  height: 440px;
+  overflow: hidden;
+  border-radius: var(--r-img);
+  border: 1px dashed var(--w20);
+  background: rgba(255, 255, 255, .06);     /* the "image" surface — Lance's box is bg-stone-900 under the photo */
+  box-shadow: var(--shadow-story);
+  transition: border-color var(--dur) ease-out, background-color var(--dur) ease-out;
+}
+.sto-card:hover .sto-media,
+.sto-card:focus-within .sto-media { border-color: var(--w40); background: rgba(255, 255, 255, .09); }
+
+.sto-media-in {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 20px 16px;
+}
+
+/* "Read" — Lance's hover pill, top-left. Present, inert. */
+.sto-read-row { display: flex; align-items: center; }
+.sto-read {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 6px;
+  background: var(--w08);
+  font-family: var(--font-body);
+  font-size: var(--fs-btn);
+  line-height: 1;
+  color: var(--white);
+  opacity: .45;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+.sto-read svg { display: block; flex-shrink: 0; width: 12px; height: 12px; }
+
+/* the line-drawn phone, centred in the free space between the pill and the text */
+.sto-phone {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+  color: var(--w40);
+  transition: color var(--dur) ease-out;
+}
+.sto-card:hover .sto-phone,
+.sto-card:focus-within .sto-phone { color: var(--w60); }
+.sto-phone-svg { display: block; width: 112px; height: auto; max-height: 100%; overflow: visible; }
+.sto-phone-screen { opacity: .55; stroke-dasharray: 3 5; }
+.sto-phone-side { opacity: .7; }
+
+/* quote + attribution, where Lance's overlay text sits (bottom-left of the box) */
+.sto-text { display: flex; flex-direction: column; gap: 8px; }
+.sto-quote { color: var(--white); text-wrap: pretty; }
+.sto-attr { line-height: 1; }
+
+/* the logo / meta row under the box */
+.sto-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.sto-mark {
+  display: block;
+  width: auto;
+  height: 24px;
+  max-width: 103px;
+  object-fit: contain;
+  object-position: left center;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+.sto-meta {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-meta);
+  color: var(--w45);
+}
+
+/* ---------- breakpoints (Lance's max-bp 800 / max-tp 600) ---------- */
+@media (max-width: 800px) {
+  .sto { min-height: 0; }                       /* max-bp:min-h-0 (py-20 comes from the token flip) */
+  .sto-mask { margin-top: 32px; }               /* max-bp:mt-8 */
+  .sto-card { width: min(280px, 78vw); gap: 16px; }
+  .sto-media { height: 360px; }
+  .sto-media-in { padding: 16px 16px 14px; }
+  .sto-phone-svg { width: 96px; }
+}
+@media (max-width: 600px) {
+  .sto-quote { font-size: 16px; }               /* max-tp:text-[16px] */
+}
+
+/* ---------- reduced motion: final states, no easing ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .sto-track { transition: none !important; }
+}

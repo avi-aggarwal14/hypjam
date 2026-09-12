@@ -1,0 +1,225 @@
+{
+  "_schema": {
+    "_about": "Content for /work. Structure follows the reference customers page: a black carousel hero, a sand-s facts grid, a white quote wall, a white logo-grid block, then the full-bleed photo CTA. Every proof element on the reference is a reserved slot or an offer fact here (CONTRACT §10): hypjam has no clients and invents none. After those blocks comes hypjam's own formats wall (the concept tiles carried over from the existing /work page, disclosure kept). British English.",
+    "sections_order": "The order the page agent should render: hero, facts, wall, platforms, formats, cta. (The task listed formats after the photo CTA; it is placed before so the full-bleed CTA closes the page as it does on the reference. Swap if the design lead prefers.)",
+    "meta": "{path, title, description, theme}",
+    "hero": "{h1, h1_break_after, sub_dim, controls:{prev, next}, cards:[{id, image:{kind, alt}, quote, attribution, meta, read:{label, inert}}]} - h1 wraps after h1_break_after on desktop, matching the reference's two-line heading; sub_dim sits under it at 40% opacity. The four cards keep the reference card anatomy exactly (image area 16:9, quote, attribution line, meta chip, 'Read' pill) but are reserved slots: dashed 1px sand-l/40 frame, a line-drawn phone silhouette in the image area (image.kind = phone-silhouette), and the strings given. 'Read' renders but is inert (no href, aria-disabled). This must look designed, not broken.",
+    "facts": "{h2, p, animate, cells:[{value, suffix, label}]} - replaces the reference's 3x2 stats grid. Same numeral styling (display serif ~64px, sand-l) with the count-up from 0 when animate is true; the copy is commitments and offer facts, never results.",
+    "wall": "{h2, p, cards:[{quote, name, role}]} - replaces the reference's quote wall. Kept minimal: three reserved cards in the same card style as the reference (sand-s tile, 18px serif quote, name, role), 'Filled in at launch' as the name and 'reserved' as the role.",
+    "platforms": "{groups:[{label, tiles:[{id, text, render}]}]} - replaces the reference's logo grids. Group 1 is the row of five large tiles, group 2 the grid of smaller tiles. render = 'text' means the tile shows the name set typographically in Geist 500 at 60% opacity, monochrome (the same treatment as the hero marquee wordmarks). No third-party logo files.",
+    "formats": "{eyebrow, h2, intro, formats:[{id, name, blurb, tags}], samples_label, samples:[{brand, format_id, hook, note, creator_brief, status}]} - hypjam's own formats wall. intro carries the honesty disclosure and must stay. samples are concept tiles: brand names are invented and disclosed as such; status is always 'illustrative' and renders as a small chip on every tile; creator_brief describes who we would cast rather than naming a handle.",
+    "cta": "{h2, p, button:{label, href}, background:{kind, alt}} - the full-height photo CTA. We have no photography: background.kind = 'video-still' means the page agent uses a darkened blurred frame from the hero video (or a black-to-sand gradient if the video is missing)."
+  },
+  "meta": {
+    "path": "/work",
+    "title": "Work: UGC ad formats and sample hooks | hypjam",
+    "description": "The UGC ad formats hypjam makes, shown as concept tiles: hook-led ads, testimonials, founder-led video, trend edits, whitelisted Spark Ads and scripted edits. The brand names are invented; we are new.",
+    "theme": "dark"
+  },
+  "hero": {
+    "h1": "Built for brands launching on TikTok, Reels and Shorts",
+    "h1_break_after": "launching",
+    "sub_dim": "The stories are held open until we have shipped them.",
+    "controls": { "prev": "Previous story", "next": "Next story" },
+    "cards": [
+      {
+        "id": "reserved-1",
+        "image": { "kind": "phone-silhouette", "alt": "" },
+        "quote": "The first brand story goes here.",
+        "attribution": "Filled in at launch",
+        "meta": "reserved",
+        "read": { "label": "Read", "inert": true }
+      },
+      {
+        "id": "reserved-2",
+        "image": { "kind": "phone-silhouette", "alt": "" },
+        "quote": "The first brand story goes here.",
+        "attribution": "Filled in at launch",
+        "meta": "reserved",
+        "read": { "label": "Read", "inert": true }
+      },
+      {
+        "id": "reserved-3",
+        "image": { "kind": "phone-silhouette", "alt": "" },
+        "quote": "The first brand story goes here.",
+        "attribution": "Filled in at launch",
+        "meta": "reserved",
+        "read": { "label": "Read", "inert": true }
+      },
+      {
+        "id": "reserved-4",
+        "image": { "kind": "phone-silhouette", "alt": "" },
+        "quote": "The first brand story goes here.",
+        "attribution": "Filled in at launch",
+        "meta": "reserved",
+        "read": { "label": "Read", "inert": true }
+      }
+    ]
+  },
+  "facts": {
+    "h2": "What every brief comes with",
+    "p": "Commitments, not results. Each number here is something we put in writing before a shoot.",
+    "animate": true,
+    "cells": [
+      { "value": 14, "suffix": " days", "label": "From a signed brief to your first cuts" },
+      { "value": 8, "suffix": " hooks", "label": "Written and tested per script" },
+      { "value": 5, "suffix": " formats", "label": "Per shoot, each cut for the platform it is going to" },
+      { "value": 1, "suffix": " contract", "label": "One invoice, every creator and editor behind it" },
+      { "value": 30, "suffix": " min", "label": "Intro call, no deck" },
+      { "value": 1, "suffix": " round", "label": "Of revisions included on every video" }
+    ]
+  },
+  "wall": {
+    "h2": "What brands say",
+    "p": "This wall stays empty until a brand we have shipped for says something about it. We would rather leave the space than fill it.",
+    "cards": [
+      { "quote": "The first brand quote goes here.", "name": "Filled in at launch", "role": "reserved" },
+      { "quote": "The first brand quote goes here.", "name": "Filled in at launch", "role": "reserved" },
+      { "quote": "The first brand quote goes here.", "name": "Filled in at launch", "role": "reserved" }
+    ]
+  },
+  "platforms": {
+    "groups": [
+      {
+        "label": "Platforms",
+        "tiles": [
+          { "id": "tiktok", "text": "TikTok", "render": "text" },
+          { "id": "reels", "text": "Instagram Reels", "render": "text" },
+          { "id": "shorts", "text": "YouTube Shorts", "render": "text" },
+          { "id": "snapchat", "text": "Snapchat", "render": "text" },
+          { "id": "pinterest", "text": "Pinterest", "render": "text" },
+          { "id": "meta-ads", "text": "Meta ads", "render": "text" }
+        ]
+      },
+      {
+        "label": "Placements we cut for",
+        "tiles": [
+          { "id": "tiktok-in-feed", "text": "TikTok in-feed", "render": "text" },
+          { "id": "tiktok-spark", "text": "TikTok Spark Ads", "render": "text" },
+          { "id": "ig-reels", "text": "Instagram Reels", "render": "text" },
+          { "id": "ig-stories", "text": "Instagram Stories", "render": "text" },
+          { "id": "meta-partnership", "text": "Meta partnership ads", "render": "text" },
+          { "id": "yt-shorts", "text": "YouTube Shorts", "render": "text" },
+          { "id": "snap-ads", "text": "Snap Ads", "render": "text" },
+          { "id": "pinterest-video", "text": "Pinterest video pins", "render": "text" }
+        ]
+      }
+    ]
+  },
+  "formats": {
+    "eyebrow": "Formats",
+    "h2": "UGC ads that sound like a creator, not a brand deck.",
+    "intro": "This is what ‘directed, not just sourced’ looks like on a feed: the formats we build, and sample tiles showing how a hook, a creator and a format come together. The brand names below are invented. We are new, and we would rather show the shape of the work than borrow someone else's logo.",
+    "formats": [
+      {
+        "id": "hooks",
+        "name": "Hooks and ads",
+        "blurb": "The first three seconds decide everything, so that is where we spend most of our energy. We script, cast and shoot scroll-stopping hooks built for feed placement, not just brand safety.",
+        "tags": ["Hook testing", "Feed-first", "TikTok and Reels"]
+      },
+      {
+        "id": "testimonials",
+        "name": "Testimonials",
+        "blurb": "Real people, real phones, real opinions, just aimed properly. We brief creators like actors, not customers, so the review still feels unscripted where it counts.",
+        "tags": ["Social proof", "UGC", "Conversion"]
+      },
+      {
+        "id": "founder-led",
+        "name": "Founder-led",
+        "blurb": "Sometimes the best spokesperson is the person who built the thing. We direct founders through the same process as the roster, hooks, retakes and all, so they do not have to wing it on camera.",
+        "tags": ["Founder voice", "Authenticity", "Brand story"]
+      },
+      {
+        "id": "trends",
+        "name": "Trends and sounds",
+        "blurb": "We track what is actually moving on the app this week, not last quarter's trend report. Then we brief creators to bend it around your product instead of bolting your logo onto someone else's meme.",
+        "tags": ["Trend-led", "Sound strategy", "Timely"]
+      },
+      {
+        "id": "whitelisting",
+        "name": "Whitelisting",
+        "blurb": "Your best-performing organic content, running as paid from the creator's own handle. We handle the usage rights and the Spark Ads setup so the ad keeps the creator's credibility intact.",
+        "tags": ["Spark Ads", "Usage rights", "Paid social"]
+      },
+      {
+        "id": "scripts-edits",
+        "name": "Scripts and edits",
+        "blurb": "Every video starts as a proper script, not a vague vibe brief, and ends with an edit built for the platform it is going on. Same team end to end, so nothing gets lost in translation.",
+        "tags": ["Scriptwriting", "Editing", "Platform-native"]
+      }
+    ],
+    "samples_label": "Sample tiles",
+    "samples": [
+      {
+        "brand": "Brightbottle",
+        "format_id": "hooks",
+        "hook": "I did not expect this to actually work on my skin.",
+        "note": "Illustrative: the kind of hook we would test first for a skincare launch.",
+        "creator_brief": "A skincare creator, 25 to 34, London",
+        "status": "illustrative"
+      },
+      {
+        "brand": "Deskfizz",
+        "format_id": "trends",
+        "hook": "POV: your desk drink finally has a personality.",
+        "note": "Illustrative: a trend-led cut built around a sound, not bolted onto one.",
+        "creator_brief": "A deadpan comedy creator who films at a desk",
+        "status": "illustrative"
+      },
+      {
+        "brand": "Farhaul",
+        "format_id": "testimonials",
+        "hook": "I have packed this bag for four flights and one very questionable hostel.",
+        "note": "Illustrative: a testimonial written to survive a fast scroll.",
+        "creator_brief": "A travel creator who actually travels light",
+        "status": "illustrative"
+      },
+      {
+        "brand": "Slowboil",
+        "format_id": "founder-led",
+        "hook": "Our founder explains why this kettle took two years to get right.",
+        "note": "Illustrative: a founder explainer cut as the anchor of a launch sequence.",
+        "creator_brief": "The founder, directed by us",
+        "status": "illustrative"
+      },
+      {
+        "brand": "Wearabout",
+        "format_id": "whitelisting",
+        "hook": "The jacket I wear when I want people to ask where it is from.",
+        "note": "Illustrative: shaped to run as a whitelisted Spark Ad from the creator's handle.",
+        "creator_brief": "A menswear creator with an engaged comment section",
+        "status": "illustrative"
+      },
+      {
+        "brand": "Hardleaf",
+        "format_id": "scripts-edits",
+        "hook": "Three plants that survived me, a serial plant killer.",
+        "note": "Illustrative: a scripted hook-to-payoff structure, written before anyone films.",
+        "creator_brief": "A home creator with a small flat and good window light",
+        "status": "illustrative"
+      },
+      {
+        "brand": "Spare Oats",
+        "format_id": "hooks",
+        "hook": "I switched my coffee order and nobody at the café noticed.",
+        "note": "Illustrative: one of four hook variants we would carry into a test.",
+        "creator_brief": "A food creator who films in cafés",
+        "status": "illustrative"
+      },
+      {
+        "brand": "Nofuss Skin",
+        "format_id": "testimonials",
+        "hook": "The one product I did not post about until it actually worked.",
+        "note": "Illustrative: a testimonial-led cut built for paid social.",
+        "creator_brief": "A skincare creator, 35 to 44, remote",
+        "status": "illustrative"
+      }
+    ]
+  },
+  "cta": {
+    "h2": "See what hypjam can do for your brand",
+    "p": "Tell us what you are launching and we will come back with formats, creators and a timeline. No vague proposals.",
+    "button": { "label": "Book a call", "href": "/book" },
+    "background": { "kind": "video-still", "alt": "" }
+  }
+}

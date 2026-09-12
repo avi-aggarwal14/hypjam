@@ -1,0 +1,14 @@
+{
+  "name": "hypjam",
+  "short_name": "hypjam",
+  "description": "the all-in-one ugc agency. everyday creators, directed by a team, making short-form ads that convert.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    { "src": "/hook-icon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/hook-icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/hook-icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

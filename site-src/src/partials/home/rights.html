@@ -1,0 +1,52 @@
+<!-- ======================================================================
+     home/rights.html — Lance's "Privacy and Security at Every Layer"
+     (ref/index.html #security, ref/shots/s29–s30, ref/mobile/m09–m10) as
+     hypjam's "Rights and safety at every layer" (CONTRACT §10): sand-m
+     section, heading + sub + "Learn more »" top-left, then a four-column
+     hairline grid (border-l/t on the grid, border-r/b on each cell,
+     sand-l/60) with an uppercase title, a description and a 120px
+     line-drawn seal bottom-left (90px ≤1024). Seals are our own SVGs in
+     /assets/badges — none is a certification mark. Copy: content/home.json
+     → rights. The id→file map is fixed here because the JSON ids
+     (creator-releases, asa-cap) differ from the badge file names.
+     ====================================================================== -->
+<section id="rights" class="rights" data-nav="light" data-nav-fill="bg-sand-m" data-theme="sand-m">
+
+  <div class="rights-head">
+    <h2 class="rights-h2 t-h2">{{content:home.rights.heading}}</h2>
+    <p class="rights-sub">{{content:home.rights.sub}}</p>
+    <a href="{{content:home.rights.learnMore.href|/rights}}" class="rights-more">{{content:home.rights.learnMore.label|Learn more}}<span class="rights-more-mark" aria-hidden="true">»</span></a>
+  </div>
+
+  <ul class="rights-grid">
+    <li class="rights-cell" data-rights="{{content:home.rights.items.0.id|usage-rights}}">
+      <div class="rights-cell-text">
+        <h3 class="rights-title">{{content:home.rights.items.0.title}}</h3>
+        <p class="rights-desc">{{content:home.rights.items.0.desc}}</p>
+      </div>
+      <a href="{{content:home.rights.learnMore.href|/rights}}" class="rights-seal" aria-label="{{content:home.rights.items.0.title}} — {{content:home.rights.learnMore.label|Learn more}}"><img src="/assets/badges/usage-rights.svg" alt="{{content:home.rights.items.0.sealAlt}}" width="240" height="240" loading="lazy" decoding="async" draggable="false"></a>
+    </li>
+    <li class="rights-cell" data-rights="{{content:home.rights.items.1.id|creator-releases}}">
+      <div class="rights-cell-text">
+        <h3 class="rights-title">{{content:home.rights.items.1.title}}</h3>
+        <p class="rights-desc">{{content:home.rights.items.1.desc}}</p>
+      </div>
+      <a href="{{content:home.rights.learnMore.href|/rights}}" class="rights-seal" aria-label="{{content:home.rights.items.1.title}} — {{content:home.rights.learnMore.label|Learn more}}"><img src="/assets/badges/releases.svg" alt="{{content:home.rights.items.1.sealAlt}}" width="240" height="240" loading="lazy" decoding="async" draggable="false"></a>
+    </li>
+    <li class="rights-cell" data-rights="{{content:home.rights.items.2.id|asa-cap}}">
+      <div class="rights-cell-text">
+        <h3 class="rights-title">{{content:home.rights.items.2.title}}</h3>
+        <p class="rights-desc">{{content:home.rights.items.2.desc}}</p>
+      </div>
+      <a href="{{content:home.rights.learnMore.href|/rights}}" class="rights-seal" aria-label="{{content:home.rights.items.2.title}} — {{content:home.rights.learnMore.label|Learn more}}"><img src="/assets/badges/disclosure.svg" alt="{{content:home.rights.items.2.sealAlt}}" width="240" height="240" loading="lazy" decoding="async" draggable="false"></a>
+    </li>
+    <li class="rights-cell" data-rights="{{content:home.rights.items.3.id|uk-gdpr}}">
+      <div class="rights-cell-text">
+        <h3 class="rights-title">{{content:home.rights.items.3.title}}</h3>
+        <p class="rights-desc">{{content:home.rights.items.3.desc}}</p>
+      </div>
+      <a href="{{content:home.rights.learnMore.href|/rights}}" class="rights-seal" aria-label="{{content:home.rights.items.3.title}} — {{content:home.rights.learnMore.label|Learn more}}"><img src="/assets/badges/uk-gdpr.svg" alt="{{content:home.rights.items.3.sealAlt}}" width="240" height="240" loading="lazy" decoding="async" draggable="false"></a>
+    </li>
+  </ul>
+
+</section>

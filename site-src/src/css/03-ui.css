@@ -1,0 +1,380 @@
+/* =====================================================================
+   hypjam v2 · 03-ui.css
+   Shared UI atoms: .btn pill, .eyebrow, .container, .section, .hairline,
+   .arrow-link, .reserved + .tag-soon, .icon, .badge, .marquee, .glint,
+   .reveal. Everything is measured from Lance (see DESIGN.md §5–§8).
+   Section-specific components live in their owners' files.
+   ===================================================================== */
+
+/* ---------- .btn · the pill ----------
+   Lance nav "Book a Demo": group flex shrink-0 items-center rounded-full text-[14px]
+   leading-none transition-colors duration-300 h-8 gap-2.5 pl-4 pr-[5px] bg-white/12
+   text-white backdrop-blur-[6px] hover:bg-white/24 hover:text-sand-m
+   + <span class="rounded-full size-[22px] bg-white text-black"> with an 11px arrow.
+   Ours: same box; the circle is --jam on dark (Lance: white).
+   Hero size (.btn--lg): h-9 gap-3 pl-[18px] pr-[6px], circle size-6, arrow 12px. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  height: var(--btn-h);
+  gap: var(--btn-gap);
+  padding: 0 var(--btn-pr) 0 var(--btn-pl);
+  border: 0;
+  border-radius: var(--r-pill);
+  font-family: var(--font-body);
+  font-size: var(--fs-btn);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--pill-fg);
+  background: var(--pill-bg);
+  -webkit-backdrop-filter: blur(var(--btn-blur));
+  backdrop-filter: blur(var(--btn-blur));
+  cursor: pointer;
+  transition: color var(--dur), background-color var(--dur);
+}
+.btn:hover { background: var(--pill-bg-hover); color: var(--pill-fg-hover); }
+.btn:focus-visible { border-radius: var(--r-pill); outline-offset: 2px; }
+.btn:disabled, .btn[aria-disabled="true"] { opacity: .5; cursor: not-allowed; }
+.btn__ico {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--btn-ico);
+  height: var(--btn-ico);
+  border-radius: 50%;
+  background: var(--pill-ico-bg);
+  color: var(--pill-ico-fg);
+}
+.btn__ico svg, .btn__ico .icon { display: block; width: var(--btn-ico-svg); height: var(--btn-ico-svg); }
+.btn--lg { height: var(--btn-h-lg); gap: var(--btn-gap-lg); padding: 0 var(--btn-pr-lg) 0 var(--btn-pl-lg); }
+.btn--lg .btn__ico { width: var(--btn-ico-lg); height: var(--btn-ico-lg); }
+.btn--lg .btn__ico svg, .btn--lg .btn__ico .icon { width: var(--btn-ico-svg-lg); height: var(--btn-ico-svg-lg); }
+
+/* explicit variants (override whatever the theme scope says) */
+.btn--dark {
+  --pill-bg: var(--w12); --pill-bg-hover: var(--w24);
+  --pill-fg: var(--white); --pill-fg-hover: var(--sand-m);
+  --pill-ico-bg: var(--jam); --pill-ico-fg: var(--jam-ink);
+}
+/* light pages · measured on ref/pages/product.jpg + security.jpg: a black/8 pill,
+   black text, a BLACK circle with a white arrow (not a black pill). */
+.btn--light {
+  --pill-bg: var(--k08); --pill-bg-hover: var(--k14);
+  --pill-fg: var(--black); --pill-fg-hover: var(--black);
+  --pill-ico-bg: var(--black); --pill-ico-fg: var(--white);
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+/* solid black pill, white circle · for a light pill that must read as primary */
+.btn--solid {
+  --pill-bg: var(--black); --pill-bg-hover: #1a1a1a;
+  --pill-fg: var(--white); --pill-fg-hover: var(--white);
+  --pill-ico-bg: var(--white); --pill-ico-fg: var(--black);
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+/* force the jam circle on any variant */
+.btn--jam { --pill-ico-bg: var(--jam); --pill-ico-fg: var(--jam-ink); }
+/* ghost · Lance's nav text pills: h-8 rounded-full px-[14px] hover:bg-white/15 */
+.btn--ghost {
+  padding: 0 var(--nav-item-px);
+  background: transparent;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+  color: var(--fg);
+}
+.btn--ghost:hover { background: var(--ghost-hover); color: var(--fg); }
+.btn--ghost:has(.btn__ico) { padding-right: var(--btn-pr); }
+.btn--ghost .btn__ico { background: transparent; color: currentColor; box-shadow: inset 0 0 0 1px var(--hairline-strong); }
+/* text-only pill (nav "Log in": px-1.5 text-[13px], tp:px-[14px]) */
+.btn--text { padding: 0 6px; font-size: var(--fs-nav); background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; color: var(--fg); }
+.btn--text:hover { background: var(--ghost-hover); color: var(--fg); }
+@media (min-width: 601px) { .btn--text { padding: 0 var(--nav-item-px); } }
+.btn--full { width: 100%; justify-content: space-between; }
+
+/* ---------- .eyebrow · "— Operations" (product pages) ----------
+   measured: 20×1px dash, 12px gap, 13px --grey text. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-body);
+  font-size: var(--fs-dash-label);
+  line-height: 1;
+  letter-spacing: var(--ls-dash-label);
+  color: var(--grey);
+  white-space: nowrap;
+}
+.eyebrow::before { content: ""; flex-shrink: 0; width: 20px; height: 1px; background: currentColor; }
+.eyebrow--caps { text-transform: uppercase; font-size: var(--fs-eyebrow); letter-spacing: var(--ls-eyebrow); }
+.eyebrow--nodash::before { display: none; }
+.eyebrow--fg { color: var(--fg); }
+.eyebrow--dim { color: var(--fg-dim); }
+/* the standalone short rule under security-card titles (24px, 40%) */
+.dash { display: block; width: 24px; height: 1px; background: var(--fg-dim-40); }
+.dash--wide { width: 40px; }
+
+/* ---------- .container ---------- */
+.container { width: 100%; padding-left: var(--px-page); padding-right: var(--px-page); }
+.container--content { max-width: calc(var(--max-content) + 2 * var(--px-page)); margin-inline: auto; }
+.container--medium  { max-width: calc(var(--max-medium)  + 2 * var(--px-page)); margin-inline: auto; }
+.container--small   { max-width: calc(var(--max-small)   + 2 * var(--px-page)); margin-inline: auto; }
+.container--max     { max-width: calc(var(--max-container) + 2 * var(--px-page)); margin-inline: auto; }
+.container--flush   { padding-left: 0; padding-right: 0; }
+/* Lance's .left-page / .right-page anchors */
+.left-page  { left: var(--px-page); }
+.right-page { right: var(--px-page); }
+
+/* ---------- .section ----------
+   py-[120px] max-bp:py-20 · themed by data-theme or the .section--* aliases
+   (declared in 00-tokens.css so the semantic tokens flip with them). */
+.section {
+  position: relative;
+  width: 100%;
+  padding-top: var(--section-y);
+  padding-bottom: var(--section-y);
+  background: var(--bg);
+  color: var(--fg);
+}
+.section--quote   { padding-top: var(--section-y-quote);   padding-bottom: var(--section-y-quote); }   /* py-40 */
+.section--stories { padding-top: var(--section-y-stories); padding-bottom: var(--section-y-stories); } /* py-[140px] */
+.section--rights  { padding-top: 64px;  padding-bottom: 40px; }   /* pt-16 pb-10 */
+.section--footer  { padding-top: 128px; padding-bottom: 40px; }   /* pt-32 pb-10 · max-bp:pt-20 */
+.section--page-hero { padding-top: 150px; padding-bottom: 24px; } /* sub-page hero pt-[150px] pb-6 · max-bp:pt-[110px] */
+.section--tight   { padding-top: 56px; padding-bottom: 120px; }  /* pt-14 pb-[120px] · max-bp: pt-10 pb-16 */
+.section--flush   { padding-top: 0; padding-bottom: 0; }
+.section--fill    { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; }
+.section--clip    { overflow: hidden; }
+@media (max-width: 800px) {
+  .section--footer    { padding-top: 80px; }
+  .section--page-hero { padding-top: 110px; }
+  .section--tight     { padding-top: 40px; padding-bottom: 64px; }
+}
+
+/* ---------- .hairline ---------- */
+.hairline { display: block; width: 100%; height: 1px; margin: 0; border: 0; background: var(--hairline); }
+.hairline--strong { background: var(--hairline-strong); }
+.hairline--v { width: 1px; height: auto; align-self: stretch; }
+.hairline--hud { height: .5px; background: var(--grey-60); }       /* HUD card divider: h-[0.5px] bg-grey-m/60 */
+.hairline--sand { background: var(--sand-l-60); }                    /* border-sand-l/60 */
+.hairline--white15 { background: var(--w15); }                       /* footer rule: my-16 h-px bg-white/15 */
+
+/* ---------- .arrow-link · "Explore →" (13px) · "Learn More »" (16px) · "Read" (14px) ---------- */
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1;
+  color: var(--grey);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color var(--dur);
+}
+.arrow-link:hover { color: var(--fg); }
+.arrow-link svg, .arrow-link .icon { width: 12px; height: 12px; flex-shrink: 0; }
+.arrow-link__mark { font-size: 12px; line-height: 1; }              /* the » glyph */
+.arrow-link--lg { gap: 12px; font-size: 16px; padding-top: 12px; padding-bottom: 12px; }   /* Learn More: py-3 gap-3 text-[16px] */
+.arrow-link--btn { font-size: var(--fs-btn); color: var(--fg); }     /* "Read": 14px white */
+.arrow-link--fg { color: var(--fg); }
+.arrow-link--fg:hover { color: var(--fg-dim); }
+/* Lance's .cta-touch underline sweep */
+.arrow-link--underline { position: relative; padding-bottom: 4px; }
+.arrow-link--underline::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: var(--sand-m); transform-origin: 0; transform: scaleX(1); pointer-events: none;
+}
+.arrow-link--underline:hover::after { animation: ui-underline .55s var(--ease) forwards; }
+@keyframes ui-underline {
+  0%   { transform-origin: 100%; transform: scaleX(1); }
+  45%  { transform-origin: 100%; transform: scaleX(0); }
+  55%  { transform-origin: 0;    transform: scaleX(0); }
+  100% { transform-origin: 0;    transform: scaleX(1); }
+}
+/* arrow nudges on hover (feature/story cards) */
+.arrow-link--nudge svg { transition: transform var(--dur) var(--ease); }
+.arrow-link--nudge:hover svg { transform: translateX(3px); }
+
+/* ---------- .reserved · honest held-open slots (CONTRACT §10) ----------
+   dashed hairline frame + .tag-soon pill with a jam dot. Must look designed. */
+.reserved {
+  position: relative;
+  border: 1px dashed var(--hairline-strong);
+  border-radius: var(--r-img);
+  background: var(--reserved-fill);
+  color: var(--fg-dim);
+}
+.reserved--card   { border-radius: var(--r-card); }
+.reserved--square { border-radius: 0; }
+.reserved--inline { border-radius: var(--r-pill); padding: 6px 12px; display: inline-flex; align-items: center; gap: 10px; }
+.reserved__area {                       /* the image area of a card */
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 100%;
+}
+/* a line-drawn phone silhouette for image areas */
+.reserved__phone {
+  position: relative;
+  width: 84px;
+  aspect-ratio: 9 / 19;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+.reserved__phone::before {              /* speaker */
+  content: ""; position: absolute; top: 8px; left: 50%; width: 26px; height: 3px; margin-left: -13px;
+  border-radius: 2px; border: 1px solid var(--hairline-strong);
+}
+.reserved__phone::after {               /* home bar */
+  content: ""; position: absolute; bottom: 8px; left: 50%; width: 22px; height: 1px; margin-left: -11px;
+  background: var(--hairline-strong);
+}
+.reserved__phone--lg { width: 120px; border-radius: 18px; }
+.reserved__phone--sm { width: 40px; border-radius: 8px; }
+.reserved__phone--sm::before { top: 5px; width: 14px; margin-left: -7px; height: 2px; }
+.reserved__phone--sm::after { bottom: 5px; width: 12px; margin-left: -6px; }
+.reserved__label { color: var(--fg-dim); }
+.tag-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 22px;
+  padding: 0 10px 0 8px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--hairline-strong);
+  background: var(--reserved-fill);
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: .02em;
+  white-space: nowrap;
+  color: var(--fg-dim);
+}
+.tag-soon::before {
+  content: ""; flex-shrink: 0; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--jam);
+  animation: ui-live 2.4s ease-in-out infinite;
+}
+.tag-soon--static::before { animation: none; }
+.tag-soon--caps { text-transform: uppercase; font-size: 11px; letter-spacing: .06em; }
+@keyframes ui-live { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+/* a lone jam live dot */
+.live-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--jam); animation: ui-live 2.4s ease-in-out infinite; }
+
+/* ---------- .icon · for the inline sprite (src/partials/icons.html) ----------
+   <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg> */
+.icon {
+  display: inline-block;
+  width: 1em; height: 1em;
+  vertical-align: -.125em;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.icon--fill { fill: currentColor; stroke: none; }
+.icon--11 { width: 11px; height: 11px; }
+.icon--12 { width: 12px; height: 12px; }
+.icon--14 { width: 14px; height: 14px; }
+.icon--16 { width: 16px; height: 16px; }
+.icon--20 { width: 20px; height: 20px; }
+.icon--24 { width: 24px; height: 24px; }
+.icon--block { display: block; vertical-align: 0; }
+
+/* ---------- .badge · line-drawn seals (assets/badges/*.svg or #seal-* symbols) ----------
+   Lance: block size-[120px] bg-grey-m hover:bg-black max-lp:size-[90px] (mask-image PNGs).
+   Ours are stroke="currentColor" SVGs: inline them (sprite) to get the hover recolour. */
+.badge {
+  display: block;
+  width: var(--badge-size);
+  height: var(--badge-size);
+  color: var(--badge-ink);
+  transition: color var(--dur);
+}
+.badge svg, .badge img { display: block; width: 100%; height: 100%; }
+.badge:hover, a:hover > .badge, a:focus-visible > .badge { color: var(--badge-ink-hover); }
+.badge--footer { width: var(--badge-size-footer); height: var(--badge-size-footer); }
+.badge--sm { width: 64px; height: 64px; }
+@media (max-width: 1024px) { .badge:not(.badge--footer):not(.badge--sm) { width: var(--badge-size-m); height: var(--badge-size-m); } }
+/* footer "Shot on phones, directed by people" row · Lance: 36px seal + 14px --grey text */
+.badge-row { display: inline-flex; align-items: center; gap: 16px; font-family: var(--font-body); font-size: var(--fs-btn); line-height: 1; color: var(--grey); white-space: nowrap; }
+[data-theme="dark"] .badge, .section--black .badge, :root .badge--on-dark { --badge-ink: var(--grey); --badge-ink-hover: var(--white); }
+[data-theme="light"] .badge, [data-theme="sand"] .badge, [data-theme="sand-m"] .badge,
+.section--white .badge, .section--sand-s .badge, .section--sand-m .badge { --badge-ink: var(--grey); --badge-ink-hover: var(--black); }
+
+/* ---------- .marquee · Lance's .partner-carousel ----------
+   mask 24px edges · track = two identical groups · translate(-50%) over 90s · opacity .5
+   cells 260×72 · logo heights 22–42px (set --logo-h per cell) */
+.marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  opacity: var(--marquee-opacity);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--marquee-fade), #000 calc(100% - var(--marquee-fade)), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 var(--marquee-fade), #000 calc(100% - var(--marquee-fade)), transparent 100%);
+}
+.marquee__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+  animation: ui-marquee var(--marquee-dur) linear infinite;
+}
+.marquee__group { display: flex; align-items: center; flex-shrink: 0; }
+.marquee__cell {
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  width: var(--marquee-cell-w); height: var(--marquee-cell-h);
+  color: var(--fg);
+}
+.marquee__cell img, .marquee__cell svg { width: auto; height: var(--logo-h, 28px); max-width: none; object-fit: contain; -webkit-user-drag: none; }
+.marquee--compact { --marquee-fade: 56px; --marquee-dur: var(--marquee-dur-compact); }
+.marquee--full { --marquee-opacity: 1; }
+@media (hover: none) and (pointer: coarse) { .marquee__track { animation-duration: var(--marquee-dur-touch); } }
+@keyframes ui-marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+
+/* ---------- .glint · Lance's .product-ui-stroke rotating border ----------
+   place inside a position:relative rounded box:
+   <div class="glint" aria-hidden="true"><div class="glint__spin"></div></div>
+   conic: #fff 0° · #ffffff2e 90° · [jam] 180° · #ffffff2e 270° · #fff 360° (Lance: #ffffffd9 at 180°) */
+.glint {
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  padding: .5px;
+  overflow: hidden;
+  opacity: .6;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+  -webkit-mask-clip: content-box, border-box;
+  -webkit-mask-composite: xor;
+  mask-image: linear-gradient(#fff 0 0), linear-gradient(#fff 0 0);
+  mask-clip: content-box, border-box;
+  mask-composite: exclude;
+}
+.glint__spin {
+  position: absolute; left: 50%; top: 50%;
+  width: 220%; aspect-ratio: 1 / 1;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(#fff 0deg, rgba(255,255,255,.18) 90deg, var(--jam) 180deg, rgba(255,255,255,.18) 270deg, #fff 360deg);
+  animation: ui-glint var(--glint-dur) linear infinite;
+}
+.glint--white .glint__spin { background: conic-gradient(#fff 0deg, rgba(255,255,255,.18) 90deg, rgba(255,255,255,.85) 180deg, rgba(255,255,255,.18) 270deg, #fff 360deg); }
+@keyframes ui-glint { from { transform: translate(-50%,-50%) rotate(0); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+/* ---------- .reveal · Lance's scroll reveal (JS adds .is-shown) ---------- */
+.reveal { --reveal-delay: 0s; opacity: 0; transition: opacity var(--dur-reveal) ease var(--reveal-delay); }
+.reveal.is-shown { opacity: 1; }
+.reveal-text { --rt-from: var(--sand-l); --rt-to: var(--fg); }
+.reveal-text .rt-i { color: var(--rt-from); transition: color .6s ease; }
+.reveal-text.is-shown .rt-i { color: var(--rt-to); }
+
+/* ---------- reduced motion for the loops declared here ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track, .glint__spin, .tag-soon::before, .live-dot, .arrow-link--underline:hover::after { animation: none !important; }
+  .reveal { opacity: 1 !important; transition: none !important; }
+  .reveal-text .rt-i { color: var(--rt-to) !important; }
+}

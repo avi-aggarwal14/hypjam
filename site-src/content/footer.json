@@ -1,0 +1,99 @@
+{
+  "_schema": {
+    "_about": "Every footer string and href (CONTRACT §3). Mirrors Lance's footer one-to-one: headline row with the primary pill, a hairline, the big lockup left, six link columns right, the small HQ line drawing bottom-left over the copyright, a badge bottom-right. Hrefs match nav.json (canonical slugs).",
+    "headline": "string. 42px display (Lance: 'Bring collaborative AI to your hotel.' — 6 words).",
+    "cta": "{label, href}. Same primary pill as the nav.",
+    "logo": "{href, file, alt}. Big lockup, on-dark.",
+    "columns": "array[6] in order. {heading, href (heading link; null = plain label), items: [{label, href}]}. Services (9) · Solutions (6 by goal) · By brand (3) · Platform (4) · Company (3) · Legal (2).",
+    "drawing": "{alt}. The small HQ line drawing (src/drawing/hq.svg rendered small, as Lance's footer-buildings.png). Decorative in Lance (alt=''); ours carries alt text because CONTRACT §13 wants every image described.",
+    "copyright": "string, and copyrightLines[2] for Lance's two-line break.",
+    "badge": "{text, sealAlt}. Replaces Lance's 'Aligned with ISO 27001' with our own line-drawn seal — not a certification."
+  },
+
+  "headline": "Bring directed UGC to your brand.",
+  "cta": { "label": "Book a call", "href": "/book" },
+
+  "logo": {
+    "href": "/",
+    "file": "/assets/brand/logos/hypjam-lockup-on-dark.svg",
+    "alt": "hypjam"
+  },
+
+  "columns": [
+    {
+      "heading": "Services",
+      "href": "/services",
+      "items": [
+        { "label": "Briefing & scripts", "href": "/services/briefing" },
+        { "label": "Hook writing", "href": "/services/hooks" },
+        { "label": "Casting & roster", "href": "/services/casting" },
+        { "label": "Shoot direction", "href": "/services/shoot-direction" },
+        { "label": "Editing & captions", "href": "/services/editing" },
+        { "label": "Whitelisting & Spark Ads", "href": "/services/whitelisting" },
+        { "label": "Usage rights", "href": "/services/usage-rights" },
+        { "label": "Reporting", "href": "/services/reporting" },
+        { "label": "Founder-led video", "href": "/services/founder-led" }
+      ]
+    },
+    {
+      "heading": "Solutions",
+      "href": "/solutions",
+      "items": [
+        { "label": "Launches", "href": "/solutions/launches" },
+        { "label": "Always-on paid social", "href": "/solutions/always-on-paid-social" },
+        { "label": "Organic & trends", "href": "/solutions/organic-and-trends" },
+        { "label": "Founder-led", "href": "/solutions/founder-led" },
+        { "label": "Creative testing", "href": "/solutions/creative-testing" },
+        { "label": "Retention", "href": "/solutions/retention" }
+      ]
+    },
+    {
+      "heading": "By brand",
+      "href": null,
+      "items": [
+        { "label": "DTC & ecommerce", "href": "/solutions/dtc-ecommerce" },
+        { "label": "Apps & subscriptions", "href": "/solutions/apps-and-subscriptions" },
+        { "label": "Food & drink", "href": "/solutions/food-and-drink" }
+      ]
+    },
+    {
+      "heading": "Platform",
+      "href": null,
+      "items": [
+        { "label": "Overview", "href": "/" },
+        { "label": "FAQ", "href": "/faq" },
+        { "label": "Process", "href": "/process" },
+        { "label": "Rights", "href": "/rights" }
+      ]
+    },
+    {
+      "heading": "Company",
+      "href": null,
+      "items": [
+        { "label": "Agency", "href": "/agency" },
+        { "label": "Join the roster", "href": "/join" },
+        { "label": "Blog", "href": "/blog" }
+      ]
+    },
+    {
+      "heading": "Legal",
+      "href": null,
+      "items": [
+        { "label": "Privacy policy", "href": "/privacy" },
+        { "label": "Terms and conditions", "href": "/terms" }
+      ]
+    }
+  ],
+
+  "drawing": {
+    "alt": "Line drawing of hypjam's two HQ buildings"
+  },
+
+  "copyright": "© 2026 hypjam. All rights reserved.",
+  "copyrightLines": ["© 2026 hypjam.", "All rights reserved."],
+
+  "badge": {
+    "text": "Shot on phones, directed by people",
+    "sealAlt": "Line-drawn seal: a phone with a play triangle"
+  }
+}

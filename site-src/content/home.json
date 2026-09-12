@@ -1,0 +1,157 @@
+{
+  "_schema": {
+    "_about": "Copy for every home section after the hero, in page order: features → quotes → stories → rights. Hero copy lives in hero.json; nav/footer in nav.json/footer.json. Access with dot paths and numeric indices, e.g. {{content:home.features.items.0.title}}.",
+    "meta": "{title ≤60 chars, description ≤155 chars, ogTitle, ogDescription}. Head tags for /.",
+    "features": "Lance 'Run smarter, serve better.' {heading (4 words, 42px display), sub (16px grey, Lance 17 words), items[4]: {title (500 weight, inline before desc), desc (Lance 9–10 words), href (optional: the service page this card mirrors), mockAlt (alt text for the card's mock image; the features agent draws the mock — no real screenshots)}}.",
+    "quotes": "Lance's two big 36px quotes over full-bleed imagery. items[2]: {reserved: bool, text, name, role, tag (only on the reserved slot: a small jam-dotted tag), imageAlt}. Item 0 is the founder's real statement (CONTRACT §10); item 1 is the reserved slot with no invented name.",
+    "stories": "Lance 'Trusted by leading hotels / running every shift on Lance' carousel. {eyebrow (replaces Lance's '50+ hotels' stat with an offer fact, §10), heading: {line1 (white), line2 (rendered at 40% opacity)}, prev/next aria labels, cards[4]: {slot, reserved: true, quote, attribution, meta, read (inert), href (null = inert), format (hint for the phone silhouette's alt text only — not rendered), imageAlt}}. Cards keep Lance's anatomy but are designed reserved slots: dashed hairline frame, line-drawn phone silhouette.",
+    "rights": "Lance 'Privacy and Security at Every Layer' on sand. {heading (6 words), sub (Lance 11 words), learnMore: {label, href}, items[4]: {id, title (rendered uppercase eyebrow), desc (Lance 14–21 words), sealAlt (our own line-drawn seal; only UK GDPR is backed by the privacy policy — none is a certification)}}."
+  },
+
+  "meta": {
+    "title": "UGC agency in London: directed creator ads | hypjam",
+    "description": "hypjam is a London UGC agency: we brief, cast and direct creators, cut for TikTok, Reels and Shorts, and put usage rights in writing. From £1,800 a month.",
+    "ogTitle": "UGC agency in London: directed creator ads | hypjam",
+    "ogDescription": "hypjam is a London UGC agency: we brief, cast and direct creators, cut for TikTok, Reels and Shorts, and put usage rights in writing. From £1,800 a month."
+  },
+
+  "features": {
+    "heading": "Directed, not just sourced.",
+    "sub": "One team writes the brief, casts, directs and edits every video, so your creators deliver takes, not guesses.",
+    "items": [
+      {
+        "title": "Hook writing",
+        "desc": "Eight hooks per script, written before anyone presses record.",
+        "href": "/services/hooks",
+        "mockAlt": "Mock of a hook sheet: eight numbered hook lines, two ticked in orange"
+      },
+      {
+        "title": "Casting",
+        "desc": "Creators cast for fit, not follower count, from our roster.",
+        "href": "/services/casting",
+        "mockAlt": "Mock of a casting board: line-drawn creator cards with niche and age tags, three shortlisted"
+      },
+      {
+        "title": "Shoot direction",
+        "desc": "Shot lists, retakes and live notes, so nothing is guesswork.",
+        "href": "/services/shoot-direction",
+        "mockAlt": "Mock of a shoot sheet: a phone frame with a record dot and a take list being ticked off"
+      },
+      {
+        "title": "Editing & rights",
+        "desc": "Platform-native cuts, captions, and usage rights for organic and paid.",
+        "href": "/services/editing",
+        "mockAlt": "Mock of an edit timeline with a captions toggle and usage-rights terms attached to the export"
+      }
+    ]
+  },
+
+  "quotes": {
+    "items": [
+      {
+        "reserved": false,
+        "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
+        "name": "Avi Aggarwal",
+        "role": "Founder, hypjam",
+        "tag": "",
+        "imageAlt": "Blurred phone shoot: a ring light and a phone on a tripod over a kitchen counter"
+      },
+      {
+        "reserved": true,
+        "text": "The first brand quote goes here.",
+        "name": "",
+        "role": "",
+        "tag": "Filled in at launch",
+        "imageAlt": "Blurred shot of an empty sofa set, lit and waiting"
+      }
+    ]
+  },
+
+  "stories": {
+    "eyebrow": "Packages from £1,800 a month",
+    "heading": {
+      "line1": "Built for brands launching",
+      "line2": "on TikTok, Reels and Shorts"
+    },
+    "prev": "Previous story",
+    "next": "Next story",
+    "cards": [
+      {
+        "slot": 1,
+        "reserved": true,
+        "quote": "The first brand story goes here.",
+        "attribution": "Filled in at launch",
+        "meta": "reserved",
+        "read": "Read",
+        "href": null,
+        "format": "hook-led ad",
+        "imageAlt": "Line-drawn phone silhouette: slot reserved for a hook-led ad story"
+      },
+      {
+        "slot": 2,
+        "reserved": true,
+        "quote": "The first brand story goes here.",
+        "attribution": "Filled in at launch",
+        "meta": "reserved",
+        "read": "Read",
+        "href": null,
+        "format": "testimonial",
+        "imageAlt": "Line-drawn phone silhouette: slot reserved for a testimonial story"
+      },
+      {
+        "slot": 3,
+        "reserved": true,
+        "quote": "The first brand story goes here.",
+        "attribution": "Filled in at launch",
+        "meta": "reserved",
+        "read": "Read",
+        "href": null,
+        "format": "founder-led video",
+        "imageAlt": "Line-drawn phone silhouette: slot reserved for a founder-led video story"
+      },
+      {
+        "slot": 4,
+        "reserved": true,
+        "quote": "The first brand story goes here.",
+        "attribution": "Filled in at launch",
+        "meta": "reserved",
+        "read": "Read",
+        "href": null,
+        "format": "whitelisted Spark Ad",
+        "imageAlt": "Line-drawn phone silhouette: slot reserved for a whitelisted Spark Ad story"
+      }
+    ]
+  },
+
+  "rights": {
+    "heading": "Rights and safety at every layer",
+    "sub": "Protect your brand, your creators and your ad account before anyone presses record.",
+    "learnMore": { "label": "Learn more", "href": "/rights" },
+    "items": [
+      {
+        "id": "usage-rights",
+        "title": "Usage rights in writing",
+        "desc": "Organic and paid usage for the term of your package, written into the contract, not implied in a DM.",
+        "sealAlt": "Line-drawn seal: a signed page with a play triangle"
+      },
+      {
+        "id": "creator-releases",
+        "title": "Signed creator releases",
+        "desc": "Every creator signs a release before filming, covering the footage, usage window and whitelisting, so the rights are clean.",
+        "sealAlt": "Line-drawn seal: a pen signing a release form"
+      },
+      {
+        "id": "asa-cap",
+        "title": "ASA and CAP disclosure compliance",
+        "desc": "Paid partnerships are labelled and every ad follows the CAP Code the ASA enforces. Our practice, not a certification.",
+        "sealAlt": "Line-drawn seal: an ad label tag reading AD"
+      },
+      {
+        "id": "uk-gdpr",
+        "title": "UK GDPR data handling",
+        "desc": "Creator and client data handled under UK GDPR, as our privacy policy sets out. No cookies, no trackers.",
+        "sealAlt": "Line-drawn seal: a padlock inside a ring of twelve dots"
+      }
+    ]
+  }
+}

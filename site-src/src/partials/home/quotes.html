@@ -1,0 +1,63 @@
+<!-- home · quotes — Lance #testimonials
+     One min-h-svh section: stacked full-bleed backgrounds that crossfade (700ms),
+     a black/20 shade, and a centred frosted card (max-w 760, radius 12, white/16,
+     blur 30, padding 36 20 20 40). The active quote's words are spans revealed
+     line by line (420ms, 90ms per line; 260ms fade-out) by src/js/30-quotes.js,
+     which also runs the 5s autoplay and the 57×36 thumbnail switcher.
+     Slide 0 = the founder's statement · slide 1 = the reserved slot (CONTRACT §10).
+     Copy: content/home.json → quotes. -->
+<section id="quotes" class="quo section section--quote section--black" data-nav="image" data-theme="dark" data-quo data-quo-interval="5000">
+
+  <div class="quo-bgs" aria-hidden="true">
+    <img class="quo-bg is-active" data-quo-bg="0" src="/assets/img/stills/studio-blur.jpg" alt="" width="1280" height="720" style="object-position:50% 50%" loading="lazy" decoding="async">
+    <img class="quo-bg" data-quo-bg="1" src="/assets/img/stills/aerial-campus.jpg" alt="" width="1280" height="720" style="object-position:50% 50%" loading="lazy" decoding="async">
+  </div>
+  <div class="quo-shade" aria-hidden="true"></div>
+
+  <div class="quo-wrap">
+    <div class="quo-card" data-quo-card>
+      <span class="quo-frame" aria-hidden="true"></span>
+
+      <div class="quo-body">
+        <!-- invisible sizer: the longest quote + 88px + two attribution lines locks the card height (Lance) -->
+        <div class="quo-sizer" aria-hidden="true">
+          <p class="quo-text t-quote t-hanging">“{{content:home.quotes.items.0.text}}”</p>
+          <div class="quo-sizer-gap"></div>
+          <p class="quo-sig">{{content:home.quotes.items.0.name}}</p>
+          <div class="quo-attr-lines"><p class="quo-role">{{content:home.quotes.items.0.role}}</p></div>
+        </div>
+
+        <!-- slide 0 · founder -->
+        <figure class="quo-slide is-active" data-quo-slide="0">
+          <blockquote class="quo-quote"><p class="quo-text t-quote t-hanging" data-quo-words>“{{content:home.quotes.items.0.text}}”</p></blockquote>
+          <figcaption class="quo-attr">
+            <p class="quo-sig" data-quo-fade="0">{{content:home.quotes.items.0.name}}</p>
+            <div class="quo-attr-row">
+              <div class="quo-attr-lines">
+                <p class="quo-role" data-quo-fade="1">{{content:home.quotes.items.0.role}}</p>
+              </div>
+              <img class="quo-logo" data-quo-fade="1" src="/assets/brand/logos/hook-wordmark-on-dark.svg" alt="hypjam" width="88" height="32">
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- slide 1 · reserved (no invented name) -->
+        <figure class="quo-slide quo-slide--reserved" data-quo-slide="1" data-quo-reserved>
+          <p class="quo-text t-quote" data-quo-words>{{content:home.quotes.items.1.text}}</p>
+          <div class="quo-attr">
+            <div class="quo-attr-row">
+              <div class="quo-attr-lines"><span class="tag-soon" data-quo-fade="0">{{content:home.quotes.items.1.tag}}</span></div>
+            </div>
+          </div>
+        </figure>
+      </div>
+
+      <div class="quo-thumbs" data-quo-thumbs>
+        <span class="quo-thumb-frame" aria-hidden="true" data-quo-frame></span>
+        <button type="button" class="quo-thumb is-active" data-quo-thumb="0" aria-current="true" aria-label="{{content:home.quotes.showLabel|Show quote}} 1"><img src="/assets/img/stills/studio-blur.jpg" alt="{{content:home.quotes.items.0.imageAlt}}" width="57" height="36" loading="lazy" decoding="async"><span class="quo-thumb-shade" aria-hidden="true"></span></button>
+        <button type="button" class="quo-thumb" data-quo-thumb="1" aria-label="{{content:home.quotes.showLabel|Show quote}} 2"><img src="/assets/img/stills/aerial-campus.jpg" alt="{{content:home.quotes.items.1.imageAlt}}" width="57" height="36" loading="lazy" decoding="async"><span class="quo-thumb-shade" aria-hidden="true"></span></button>
+      </div>
+    </div>
+  </div>
+
+</section>

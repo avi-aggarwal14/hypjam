@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  hypjam HQ drawing - part template.  READ src/drawing/PLAN.md FIRST.
+
+  Copy this file to parts/<your part>.svg (shell-A.svg, shell-B.svg, room-1.svg ... room-5.svg).
+
+  ROOM AGENTS  keep two top-level groups, in this order:  <g id="#N-fade">  then  <g id="#N-<detail>">
+               (#1-front-of-house, #2-back-of-house, #3-sales, #4-food-and-beverage, #5-management).
+  SHELL AGENTS delete both groups and use exactly one:    <g id="fixed-A">  or  <g id="fixed-B">.
+
+  Rules the checker enforces (PLAN section 1):
+    - viewBox="0 0 44001 21918"; absolute canvas coordinates; NO transform anywhere
+    - only g path line rect circle ellipse polyline polygon; no text, image, defs, use, style
+    - every drawable carries exactly:
+        stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"
+      plus optionally stroke-opacity="0.4" (secondary line) or stroke-opacity="0.2" (background, rendered dashed)
+    - nothing else on an element (no opacity, style, class, dasharray); nested <g> may carry an id only
+    - rooms: everything inside your slot; shells: nothing inside any slot
+  Check:   python3 tools/check_drawing.py src/drawing/parts/<file>.svg
+  Look:    node tools/render_svg.js src/drawing/parts/<file>.svg out.png 2936 15078 10900 6131   (room 1's camera)
+  The examples below are room 1 (slot x 4026..12746, y 15716..20572) so this template passes the checker as-is
+  (with count warnings). Delete every example before you draw.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44001 21918" fill="none">
+
+<!-- ============ the simple exterior of the room, seen before the camera dives in (max 40 elements) ============ -->
+<g id="#1-fade">
+  <!-- example: the flat warehouse window recipe (PLAN 3.1) at x0 = 4026.3, opening 17228.2..19796.8 -->
+  <rect x="4026.3" y="17228.2" width="1184.1" height="2568.6" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- lintel: a 150-tall block 60 wider than the opening on each side -->
+  <rect x="3966.3" y="17077.5" width="1304.1" height="150.7" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- sill line -->
+  <line x1="3966.3" y1="19796.8" x2="5270.4" y2="19796.8" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- glazing bars are secondary lines: stroke-opacity="0.4" -->
+  <line x1="4618.3" y1="17228.2" x2="4618.3" y2="19796.8" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.4"/>
+  <line x1="4026.3" y1="17920.2" x2="5210.4" y2="17920.2" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.4"/>
+  <line x1="4026.3" y1="18544.2" x2="5210.4" y2="18544.2" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.4"/>
+  <!-- the pieces of exterior lines that cross the slot belong to the fade, not to the shell (PLAN 2.5) -->
+  <line x1="4026" y1="15716" x2="5990" y2="15716" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="4026" y1="20577" x2="6622" y2="20577" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+
+<!-- ============ the interior with the front wall cut away (300-900 elements) ============ -->
+<g id="#1-front-of-house">
+
+  <!-- 1. the interior box: four solid lines ON the slot edges, then a beam and a skirting at 0.4 (PLAN 4.5) -->
+  <g id="interior-box">
+    <line x1="4026" y1="15716" x2="12746" y2="15716" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="4026" y1="20572" x2="12746" y2="20572" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="4026" y1="15716" x2="4026" y2="20572" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="12746" y1="15716" x2="12746" y2="20572" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="4026" y1="15900" x2="12746" y2="15900" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.4"/>
+    <line x1="4026" y1="20420" x2="12746" y2="20420" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.4"/>
+  </g>
+
+  <!-- 2. a standing figure, 1700 tall, feet at (6720, 20572) - the recipe of PLAN 4.3, ~13 elements -->
+  <g id="example-figure">
+    <circle cx="6720" cy="18987" r="115" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M6615 18962Q6690 18867 6815 18932" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.4"/>
+    <line x1="6720" y1="19102" x2="6720" y2="19152" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M6480 19202Q6480 19152 6530 19152L6910 19152Q6960 19152 6960 19202L6925 19692L6515 19692Z" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="6485,19172 6430,19532 6455,19782" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="6455" cy="19817" r="35" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="6955,19172 7010,19532 6985,19782" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="6985" cy="19817" r="35" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="6540,19692 6545,20512" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="6900,19692 6895,20512" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="6685" y1="19692" x2="6660" y2="20512" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="6755" y1="19692" x2="6780" y2="20512" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="6470" y1="20572" x2="6660" y2="20572" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="6780" y1="20572" x2="6970" y2="20572" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 3. a phone on a tripod (PLAN 4.4): hub at (9850, 19400), legs to the floor, phone 130x270 -->
+  <g id="example-phone-on-tripod">
+    <line x1="9850" y1="19400" x2="9550" y2="20572" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="9850" y1="19400" x2="10150" y2="20572" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="9850" y1="19400" x2="9890" y2="20532" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="9850" y1="19400" x2="9850" y2="18950" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="9785" y="18680" width="130" height="270" rx="25" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="9815" y="18710" width="70" height="210" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.4"/>
+    <circle cx="9832" cy="18732" r="12" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.4"/>
+  </g>
+
+  <!-- 4. a hook-card on the wall (PLAN 4.4): 520x330, two text lines at 0.4, a pin, a "picked" tick -->
+  <g id="example-hook-card">
+    <rect x="7100" y="17200" width="520" height="330" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="7160" y1="17310" x2="7500" y2="17310" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.4"/>
+    <line x1="7160" y1="17400" x2="7500" y2="17400" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.4"/>
+    <circle cx="7140" cy="17240" r="28" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="7480,17450 7530,17500 7600,17380" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- 5. background texture at 0.2 (the engine draws these dashed): brick coursing, split around things in front -->
+  <g id="example-background">
+    <line x1="4026" y1="16100" x2="6300" y2="16100" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.2"/>
+    <line x1="4026" y1="16300" x2="6300" y2="16300" stroke="#969696" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.2"/>
+  </g>
+
+</g>
+</svg>

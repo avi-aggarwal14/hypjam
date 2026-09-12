@@ -1,0 +1,482 @@
+/* =====================================================================
+   hypjam v2 · 42-solutions.css
+   Solutions-only additions on top of 40-pages.css (the shared sub-page
+   vocabulary owned by the services agent). Prefix `.sol-`.
+
+   Everything the solutions pages share with /services — page hero, split
+   header, editorial image, platforms row, feature blocks, ↳ bullets,
+   problems grid, steps, "under the hood" compare grid, quote card, FAQ,
+   closing CTA card, .page-panel + .mock-* — comes from 40-pages.css and is
+   NOT redefined here. What lives here is what only /solutions has:
+
+     .sol-cards        index: "By goal" 3×2 and "By brand" 3×1 card grids
+     .sol-stats--3     three facts instead of Lance's four
+     .sol-behind       "the services behind it": four columns with rules
+     .sol-fits         brand pages: "Where hypjam fits" 2×2 with rules
+     .sol-hero-full    brand pages: full-viewport still hero, centred
+     .sol-band         brand pages: full-width still band with a centred h2
+     .sol-related      "Related" list under a full-width rule
+     .sol-quote-media  the HQ room line drawing inside the quote card
+
+   Numbers are measured on ref/pages/solutions.jpg,
+   solutions_front-of-house.jpg and solutions_independent.jpg at 1920.
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   INDEX · card grids
+   Lance at 1920: three columns in the 1864px content box → 602.67 each,
+   column gap 28, row gap 56. Tile 603×452 (4:3). Title 26px display with
+   "Explore →" on the same baseline, right-aligned; blurb 13/22 grey.
+   --------------------------------------------------------------------- */
+.sol-cards__head { margin-bottom: 64px; }
+.sol-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 28px;
+  row-gap: 56px;
+  list-style: none;
+}
+.sol-card { display: block; min-width: 0; color: inherit; text-decoration: none; }
+.sol-card__tile { aspect-ratio: 4 / 3; }
+.sol-card__icon { display: block; width: 64%; height: auto; color: #b0afaa; }
+.sol-card__still {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  object-fit: cover;
+  background: var(--sand-m);
+}
+.sol-card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 20px;
+}
+.sol-card__title {
+  min-width: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  -webkit-font-smoothing: auto;
+  text-rendering: geometricPrecision;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -.52px;
+  color: var(--black);
+  transition: color var(--dur);
+}
+.sol-card__explore { flex-shrink: 0; }
+.sol-card__blurb { margin-top: 12px; max-width: 400px; font-size: 13px; line-height: 22px; color: var(--grey); }
+.sol-card:hover .sol-card__title { color: var(--grey); }
+.sol-card:hover .arrow-link { color: var(--black); }
+
+@media (max-width: 1200px) {
+  .sol-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 48px; }
+  .sol-cards__head { margin-bottom: 48px; }
+}
+@media (max-width: 800px) {
+  .sol-cards { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
+  .sol-cards__head { margin-bottom: 32px; }
+  .sol-card__head { margin-top: 16px; }
+  .sol-card__title { font-size: 22px; letter-spacing: -.44px; }
+}
+
+/* Lance's index h1 needs a wider box than the sub-page default (560) */
+.sol--index .page-hero__title { max-width: 700px; }
+
+/* the by-goal section keeps Lance's pb-[140px] (max-bp: pb-20) */
+.sol-section--goal { padding-top: 0; padding-bottom: 140px; }
+@media (max-width: 800px) { .sol-section--goal { padding-bottom: 80px; } }
+
+/* ---------------------------------------------------------------------
+   DETAIL · three facts (Lance's stats row is four)
+   --------------------------------------------------------------------- */
+.sol-stats--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/* the values here are offer facts ("14 days", "6 placements"), not Lance's
+   short numerals, so they wrap rather than overflow their column */
+.sol-stats--3 .page-stat__num { white-space: normal; text-wrap: balance; }
+@media (max-width: 1440px) { .sol-stats--3 .page-stat__num { font-size: 52px; letter-spacing: -1.04px; } }
+@media (max-width: 1200px) { .sol-stats--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 32px; } }
+@media (max-width: 1024px) { .sol-stats--3 .page-stat__num { font-size: 40px; letter-spacing: -.8px; } }
+@media (max-width: 800px)  { .sol-stats--3 { grid-template-columns: minmax(0, 1fr); row-gap: 48px; }
+                             .sol-stats--3 .page-stat__num { font-size: 48px; letter-spacing: -.96px; } }
+@media (max-width: 600px)  { .sol-stats--3 .page-stat__num { font-size: 40px; letter-spacing: -.8px; } }
+
+/* ---------------------------------------------------------------------
+   GOAL PAGES · "The services behind it" — four columns, 1px rules between.
+   Cell text sits 28px inside its column (Lance: 57px from the page edge).
+   --------------------------------------------------------------------- */
+.sol-behind { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); list-style: none; }
+.sol-behind__cell {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 32px 28px 28px;
+  border-left: 1px solid var(--sand-l-60);
+}
+.sol-behind__cell:first-child { border-left: 0; }
+.sol-behind__n { font-size: 12px; line-height: 1; letter-spacing: .04em; color: var(--grey); font-variant-numeric: tabular-nums; }
+.sol-behind__name {
+  display: block;
+  margin-top: 22px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  -webkit-font-smoothing: auto;
+  text-rendering: geometricPrecision;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -.52px;
+  color: var(--black);
+  transition: color var(--dur);
+}
+a.sol-behind__name:hover { color: var(--grey); }
+.sol-behind__blurb { margin-top: 14px; font-size: 14px; line-height: 1.5; color: var(--grey); }
+.sol-behind__link { margin-top: auto; padding-top: 32px; }
+@media (max-width: 1024px) {
+  .sol-behind { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sol-behind__cell { border-left: 0; border-top: 1px solid var(--sand-l-60); padding: 28px 24px 28px 0; }
+  .sol-behind__cell:nth-child(2n) { padding-left: 24px; border-left: 1px solid var(--sand-l-60); }
+  .sol-behind__name { margin-top: 16px; }
+}
+@media (max-width: 600px) {
+  .sol-behind { grid-template-columns: minmax(0, 1fr); }
+  .sol-behind__cell, .sol-behind__cell:nth-child(2n) { border-left: 0; padding: 24px 0; }
+  .sol-behind__cell:first-child { border-top: 0; }
+  .sol-behind__name { font-size: 22px; letter-spacing: -.44px; }
+  .sol-behind__link { padding-top: 20px; }
+}
+
+/* ---------------------------------------------------------------------
+   BRAND PAGES · "Where hypjam fits" — 2×2, 1px rules both ways.
+   Title 26px display, a 24px hairline under it, body 14/1.5, ↳ link.
+   --------------------------------------------------------------------- */
+.sol-fits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); list-style: none; }
+.sol-fits__cell {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 38px 28px 44px;
+  border-left: 1px solid var(--sand-l-60);
+  border-top: 1px solid var(--sand-l-60);
+}
+.sol-fits__cell:nth-child(2n + 1) { border-left: 0; }
+.sol-fits__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  -webkit-font-smoothing: auto;
+  text-rendering: geometricPrecision;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -.52px;
+  color: var(--black);
+}
+.sol-fits__dash { display: block; width: 24px; height: 1px; margin: 20px 0 0; background: var(--sand-l); border: 0; }
+.sol-fits__body { margin-top: 22px; max-width: 840px; font-size: 14px; line-height: 1.5; color: var(--grey); }
+.sol-fits__link { margin-top: auto; padding-top: 28px; }
+@media (max-width: 800px) {
+  .sol-fits { grid-template-columns: minmax(0, 1fr); }
+  .sol-fits__cell, .sol-fits__cell:nth-child(2n + 1) { border-left: 0; padding: 28px 0 32px; }
+  .sol-fits__title { font-size: 22px; letter-spacing: -.44px; }
+  .sol-fits__link { padding-top: 20px; }
+}
+
+/* ---------------------------------------------------------------------
+   BRAND PAGES · full-viewport still hero (Lance /solutions/independent).
+   h-svh, min 560; 45% black scrim; content centred and anchored low.
+   --------------------------------------------------------------------- */
+.sol-hero-full {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100svh;
+  min-height: 560px;
+  max-height: 1100px;
+  padding: 28px var(--px-page) 48px;
+  overflow: hidden;
+  background: var(--black);
+  color: var(--white);
+  text-align: center;
+}
+.sol-hero-full__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.sol-hero-full__scrim { position: absolute; inset: 0; background: rgba(0, 0, 0, .45); }
+.sol-hero-full__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 720px;
+  padding-bottom: 56px;
+}
+.sol-hero-full__mark { display: block; width: 68px; height: auto; margin-bottom: 30px; }
+.sol-hero-full__eyebrow { font-size: 12px; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; color: var(--w70); }
+.sol-hero-full__title {
+  margin-top: 22px;
+  max-width: 640px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  -webkit-font-smoothing: auto;
+  text-rendering: geometricPrecision;
+  font-size: var(--fs-title);
+  line-height: var(--lh-title);
+  letter-spacing: var(--ls-title);
+  color: var(--white);
+  text-wrap: balance;
+}
+.sol-hero-full__intro { margin-top: 20px; max-width: 500px; font-size: 16px; line-height: 24px; color: var(--w75); text-wrap: pretty; }
+.sol-hero-full__cta { margin-top: 34px; }
+@media (max-width: 1024px) { .sol-hero-full__title { font-size: var(--fs-h1-lp); letter-spacing: -.96px; } }
+@media (max-width: 800px)  { .sol-hero-full__inner { padding-bottom: 24px; } .sol-hero-full__mark { width: 56px; margin-bottom: 22px; } }
+@media (max-width: 600px)  {
+  .sol-hero-full { min-height: 520px; padding-bottom: 40px; }
+  .sol-hero-full__title { font-size: var(--fs-title-tp); letter-spacing: var(--ls-title-tp); }
+  .sol-hero-full__intro { font-size: 14px; line-height: 1.5; }
+}
+
+/* ---------------------------------------------------------------------
+   BRAND PAGES · the full-width still band (Lance: 1864×517, radius 12)
+   --------------------------------------------------------------------- */
+.sol-band {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 517px;
+  border-radius: var(--r-img);
+  overflow: hidden;
+  background: var(--black);
+  color: var(--white);
+  text-align: center;
+}
+.sol-band__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.sol-band__scrim { position: absolute; inset: 0; background: rgba(0, 0, 0, .55); }
+.sol-band__inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; padding: 40px var(--px-page); }
+.sol-band__mark { display: block; width: 68px; height: auto; margin-bottom: 26px; }
+.sol-band__h2 {
+  max-width: 900px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  -webkit-font-smoothing: auto;
+  text-rendering: geometricPrecision;
+  font-size: var(--fs-title);
+  line-height: var(--lh-title);
+  letter-spacing: var(--ls-title);
+  color: var(--white);
+  text-wrap: balance;
+}
+.sol-band__sub { margin-top: 18px; max-width: 460px; font-size: 12px; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; color: var(--w75); text-wrap: pretty; }
+@media (max-width: 1024px) { .sol-band { height: 440px; } .sol-band__h2 { font-size: var(--fs-h1-lp); letter-spacing: -.96px; } }
+@media (max-width: 600px)  {
+  .sol-band { height: 360px; border-radius: 12px; }
+  .sol-band__mark { width: 52px; margin-bottom: 18px; }
+  .sol-band__h2 { font-size: var(--fs-title-tp); letter-spacing: var(--ls-title-tp); }
+}
+
+/* ---------------------------------------------------------------------
+   DETAIL · "Related" — a full-width rule, then eyebrow | list
+   --------------------------------------------------------------------- */
+.sol-section--related { padding-top: 0; padding-bottom: 100px; }
+.sol-related-rule { width: 100%; height: 1px; margin-bottom: 48px; background: var(--k10); border: 0; }
+.sol-related { display: flex; flex-direction: column; gap: 20px; list-style: none; }
+.sol-related__item { min-width: 0; }
+.sol-related__link { display: inline-flex; align-items: flex-start; gap: 10px; font-size: 14px; line-height: 1.4; color: var(--grey); transition: color var(--dur); }
+.sol-related__link::before { content: "↳"; flex-shrink: 0; width: 14px; font-size: 13px; line-height: 1.5; }
+.sol-related__link:hover { color: var(--black); }
+.sol-related__body { margin-top: 3px; padding-left: 24px; max-width: 560px; font-size: 13px; line-height: 1.45; color: var(--grey); }
+@media (max-width: 800px) { .sol-section--related { padding-bottom: 56px; } .sol-related-rule { margin-bottom: 32px; } }
+
+/* ---------------------------------------------------------------------
+   DETAIL · the quote card's right column
+   Goal pages show the HQ line drawing of the room that matches the stop
+   (CONTRACT §8) instead of Lance's customer photo; brand pages keep the
+   reserved slot from 40-pages.css (.page-quote--reserved).
+   --------------------------------------------------------------------- */
+.sol-quote-media { display: grid; place-items: center; padding: 44px; background: var(--sand-s); }
+.sol-room { display: block; width: 100%; height: auto; max-height: 100%; color: var(--line); }
+.sol-room path, .sol-room line, .sol-room rect, .sol-room circle,
+.sol-room ellipse, .sol-room polyline, .sol-room polygon { vector-effect: non-scaling-stroke; }
+@media (max-width: 800px) { .sol-quote-media { padding: 28px; min-height: 240px; } }
+
+/* the goal-page hero panel holds the same mock cards the service pages use */
+.sol .page-hero__visual .mock-stage { padding: 5% 6%; }
+.sol .page-hero__visual .mock-card { --w: 420px; }
+.sol .page-hero__visual .mock-card--wide { --w: 520px; }
+.sol .page-feature__visual .mock-card { --w: 400px; }
+.sol .page-feature__visual .mock-stage { padding: 8%; }
+@media (max-width: 1024px) { .sol .page-hero__visual .mock-card--wide { --w: 100%; } }
+
+/* the conversation mock: a bubble, a drawn connector and the hypjam mark */
+.sol-conv { display: flex; align-items: center; justify-content: center; gap: 0; width: 100%; padding: 6%; }
+.sol-conv__left { min-width: 0; max-width: 320px; }
+.sol-conv__meta { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; font-size: 13px; line-height: 1.3; color: var(--grey); }
+.sol-conv__meta svg { width: 18px; height: 18px; flex-shrink: 0; stroke: currentColor; fill: none; stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+.sol-conv__bubble {
+  position: relative;
+  padding: 14px 18px;
+  border-radius: 16px;
+  border: 1px solid var(--sand-m);
+  background: var(--white);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .08);
+  font-size: 16px;
+  line-height: 1.35;
+  color: var(--black);
+}
+.sol-conv__bubble::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  bottom: -7px;
+  width: 12px;
+  height: 12px;
+  background: var(--white);
+  border-right: 1px solid var(--sand-m);
+  border-bottom: 1px solid var(--sand-m);
+  transform: rotate(45deg);
+}
+.sol-conv__wire { flex-shrink: 0; width: 92px; height: 72px; color: var(--sand-l); }
+.sol-conv__wire svg { display: block; width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; }
+.sol-conv__right { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.sol-conv__mark { display: grid; place-items: center; width: 84px; height: 84px; border-radius: 20px; background: var(--black); }
+.sol-conv__mark img { width: 44px; height: 44px; }
+.sol-conv__label { margin-top: 14px; font-size: 16px; line-height: 1.3; font-weight: 500; color: var(--black); text-align: center; }
+.page-panel .sol-conv__bubble, .page-panel .sol-conv__right { opacity: 0; transform: translateY(6px); }
+.page-panel.is-in .sol-conv__bubble { animation: mock-in .6s cubic-bezier(.2,.8,.2,1) both; }
+.page-panel.is-in .sol-conv__right { animation: mock-in .5s .35s cubic-bezier(.2,.8,.2,1) both; }
+@media (max-width: 1024px) {
+  .sol-conv { flex-direction: column; gap: 8px; }
+  .sol-conv__wire { width: 56px; height: 40px; transform: rotate(90deg); }
+}
+@media (max-width: 600px) { .sol-conv__bubble { font-size: 14px; } .sol-conv__mark { width: 64px; height: 64px; border-radius: 16px; } .sol-conv__mark img { width: 34px; height: 34px; } }
+
+/* three casting cards side by side (the casting-board mock) */
+.sol-castcards { display: flex; align-items: stretch; justify-content: center; gap: 20px; width: 100%; padding: 6%; }
+.sol-castcard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 150px;
+  padding: 20px 14px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--sand-m);
+  background: var(--white);
+  text-align: center;
+}
+.sol-castcard--pick { box-shadow: 0 12px 24px rgba(0, 0, 0, .08); }
+.sol-castcard__av { width: 56px; height: 56px; color: var(--line); }
+.sol-castcard__av svg { display: block; width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.sol-castcard__handle { font-size: 14px; line-height: 1.2; color: var(--black); }
+.sol-castcard__tags { font-size: 12px; line-height: 1.4; color: var(--grey); }
+.sol-castcard__pick { margin-top: 2px; }
+.page-panel .sol-castcard { opacity: 0; transform: translateY(6px); }
+.page-panel.is-in .sol-castcard { animation: mock-in .5s cubic-bezier(.2,.8,.2,1) both; }
+.page-panel.is-in .sol-castcard:nth-child(2) { animation-delay: .25s; }
+.page-panel.is-in .sol-castcard:nth-child(3) { animation-delay: .5s; }
+@media (max-width: 600px) { .sol-castcards { gap: 10px; padding: 5%; } .sol-castcard { width: auto; flex: 1 1 0; padding: 14px 8px; } .sol-castcard__tags { font-size: 11px; } }
+
+/* the retention flow diagram */
+.sol-flow { display: flex; align-items: center; justify-content: center; gap: 14px; width: 100%; padding: 6%; }
+.sol-flow__node {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  width: 150px;
+  min-height: 90px;
+  padding: 16px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--sand-m);
+  background: var(--white);
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--black);
+}
+.sol-flow__play { display: block; width: 0; height: 0; border-left: 12px solid var(--jam); border-top: 7px solid transparent; border-bottom: 7px solid transparent; }
+.sol-flow__arrow { flex-shrink: 0; width: 46px; height: 14px; color: var(--sand-l); }
+.sol-flow__arrow svg { display: block; width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.page-panel .sol-flow__node { opacity: 0; transform: translateY(6px); }
+.page-panel.is-in .sol-flow__node { animation: mock-in .5s cubic-bezier(.2,.8,.2,1) both; }
+.page-panel.is-in .sol-flow__node:nth-child(3) { animation-delay: .3s; }
+.page-panel.is-in .sol-flow__node:nth-child(5) { animation-delay: .6s; }
+@media (max-width: 600px) { .sol-flow { flex-direction: column; gap: 8px; } .sol-flow__node { width: 100%; min-height: 0; } .sol-flow__arrow { transform: rotate(90deg); width: 28px; } }
+
+/* the trend board's small stitched phone */
+.sol-mini-phone { position: relative; flex-shrink: 0; width: 104px; aspect-ratio: 9 / 16; border-radius: 12px; border: 1px solid #a9a8a3; background: rgba(255,255,255,.5); overflow: hidden; display: flex; flex-direction: column; }
+.sol-mini-phone i { flex: 1; border-bottom: 1px dashed var(--k14); background: var(--sand-s); }
+.sol-mini-phone i:last-child { border-bottom: 0; background: var(--sand-m); }
+
+@media (prefers-reduced-motion: reduce) {
+  .page-panel .sol-conv__bubble, .page-panel .sol-conv__right,
+  .page-panel .sol-castcard, .page-panel .sol-flow__node { opacity: 1; transform: none; animation: none !important; }
+}
+
+/* ---------------------------------------------------------------------
+   Small pieces the solutions mocks need on top of 40-pages.css's .mock-*
+   --------------------------------------------------------------------- */
+.sol-stats__p { margin: 28px auto 0; max-width: 560px; }
+
+/* a wider mock card: the hook sheet and the brief card run to 520px */
+.sol-wide { --w: 520px; }
+.sol .page-feature__visual .sol-wide { --w: 520px; }
+@media (max-width: 1024px) { .sol .page-hero__visual .sol-wide, .sol .page-feature__visual .sol-wide { --w: 100%; } }
+
+/* label left (grey) · value right (black) — the inverse of .mock-row__t/__v */
+.sol-row-k { flex: 1 1 auto; min-width: 0; color: var(--grey); }
+.sol-row-v { flex-shrink: 0; margin-left: auto; font-size: 13px; color: var(--black); white-space: nowrap; }
+
+/* the eight-hook sheet: hooks are sentences, so let them sit on one line
+   without the ellipsis .mock-row__t would otherwise apply */
+.sol-hooks .mock-row { min-height: 32px; }
+.sol-hooks .mock-row__t { font-size: 13px; }
+
+/* tab strip (spark-toggle) */
+.sol-tabs { display: flex; gap: 20px; padding-bottom: 12px; }
+.sol-tab { font-size: 13px; line-height: 1.4; color: var(--grey); padding-bottom: 6px; }
+.sol-tab--on { color: var(--black); border-bottom: 1px solid var(--black); }
+
+/* the signed stamp on the rights sheet */
+.sol-stamp { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--jam); position: relative; }
+.sol-stamp::after { content: ""; position: absolute; inset: 5px; border-radius: 50%; border: 1px dashed var(--jam); }
+.page-panel .sol-stamp { opacity: 0; transform: scale(.9); }
+.page-panel.is-in .sol-stamp { animation: sol-stamp-in .4s 1.6s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes sol-stamp-in { from { opacity: 0; transform: scale(.9); } to { opacity: 1; transform: none; } }
+
+/* the read-back grid shades cells without printing a number in them */
+.sol-cell--2 { background: var(--sand-m); }
+.sol-cell--3 { background: var(--sand-l); }
+
+/* the founder prompt card cycles two hook lines through .mock-ticker */
+.sol-take .mock-ticker {
+  position: relative;
+  height: auto;
+  min-height: 46px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.3;
+  letter-spacing: -.1px;
+  text-transform: none;
+  color: var(--black);
+  text-align: left;
+}
+.sol-take .mock-ticker span { position: absolute; left: 0; right: 0; top: 0; }
+.sol-take__line { min-height: 46px; font-size: 15px; line-height: 1.3; letter-spacing: -.1px; color: var(--black); }
+
+@media (prefers-reduced-motion: reduce) {
+  .page-panel .sol-stamp { opacity: 1; transform: none; animation: none !important; }
+}

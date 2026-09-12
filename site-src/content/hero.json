@@ -1,0 +1,172 @@
+{
+ "_schema": {
+  "_about": "Copy and camera data for the home hero (CONTRACT §7). Every string here is visible copy; keep British English, sentence case, no 'studio', no client claims.",
+  "trust": "string. The 36px display paragraph on the first frame (Lance: 18 words / 132 chars). Words stagger in by the engine; render as one <p> and let the engine split words.",
+  "walkHint": "string. Bottom-right hint in the trust layer, next to the .hero-walk arrow.",
+  "skip": "string. The small link bottom-right of the HUD that jumps to the end of the pin.",
+  "video": "{src, poster, ariaLabel}. Root-relative paths with a leading slash, used as-is.",
+  "stops": "array[5] in camera order. {id: matches the drawing group suffix exactly ('1-front-of-house' → detail group id '#1-front-of-house', fade group '#1-fade'); label: HUD list button text; title: HUD card title (26px display); description: HUD card body (14px, Lance 10–17 words); panel: src/panels/<panel>.html name per CONTRACT §9; bbox: {x,y,w,h} of the room slot in SVG units (CONTRACT §8); camera: {cx, cy, w} = bbox centre and bbox.w × 1.25 in SVG units — the engine derives h = w / stageAspect}.",
+  "metrics": "{eyebrow, title, sub, items[3]}. eyebrow is intentionally empty: Lance renders no eyebrow above 'Measured in Outcomes' (ref/shots/s22) — render only if non-empty. title = 42px display; sub = 16px grey (Lance 7 words). items: {value: the big numeral; unit: the superscript where Lance has '%'; label: the 16px line under it (Lance 4–8 words)}. Commitments, never results (CONTRACT §10).",
+  "marquee": "{ariaLabel, items[6]: {name, file, alt}}. The six placements hypjam ships to (CONTRACT §10). file = monochrome typographic wordmark SVGs drawn by us, opacity .5, path relative to site root; they do not exist yet — the assets/marquee agent creates them at exactly these paths.",
+  "reducedMotion": "string. Alternative to walkHint when prefers-reduced-motion is set (the camera jumps between stops instead of scrubbing)."
+ },
+ "h1": "hypjam, a UGC agency in London: everyday creators, briefed, cast, directed and edited by one team",
+ "trust": "hypjam is built for brands that want everyday creators briefed properly, shoots directed, and ads that sound like people.",
+ "walkHint": "Scroll to walk through the agency",
+ "reducedMotion": "Use the list to move between rooms",
+ "skip": "(Skip)",
+ "video": {
+  "src": "/assets/video/hero-studio-web.mp4",
+  "poster": "/assets/video/hero-poster.jpg",
+  "ariaLabel": "Blurred footage of a phone shoot in progress"
+ },
+ "stops": [
+  {
+   "id": "1-front-of-house",
+   "label": "Brief desk",
+   "title": "Brief desk",
+   "description": "Turns your launch, offer and audience into one specific brief, locked before anyone films.",
+   "panel": "brief",
+   "bbox": {
+    "x": 4026,
+    "y": 15716,
+    "w": 8720,
+    "h": 4856
+   },
+   "camera": {
+    "cx": 8386,
+    "cy": 18144,
+    "w": 10900
+   }
+  },
+  {
+   "id": "2-back-of-house",
+   "label": "Writers' room",
+   "title": "Writers' room",
+   "description": "Writes eight hooks for every script, then picks the ones worth shooting.",
+   "panel": "hooks",
+   "bbox": {
+    "x": 3796,
+    "y": 7408,
+    "w": 7603,
+    "h": 3552
+   },
+   "camera": {
+    "cx": 7597.5,
+    "cy": 9184,
+    "w": 9503.75
+   }
+  },
+  {
+   "id": "3-sales",
+   "label": "Casting floor",
+   "title": "Casting floor",
+   "description": "Casts creators from our roster for fit, not follower count, and gets your shortlist approved before filming.",
+   "panel": "casting",
+   "bbox": {
+    "x": 27045,
+    "y": 3959,
+    "w": 13189,
+    "h": 4840
+   },
+   "camera": {
+    "cx": 33639.5,
+    "cy": 6379,
+    "w": 16486.25
+   }
+  },
+  {
+   "id": "4-food-and-beverage",
+   "label": "Shoot bay",
+   "title": "Shoot bay",
+   "description": "Directs every phone shoot, shot list to retake, until the hook lands.",
+   "panel": "shoot",
+   "bbox": {
+    "x": 27531,
+    "y": 17562,
+    "w": 12703,
+    "h": 4351
+   },
+   "camera": {
+    "cx": 33882.5,
+    "cy": 19737.5,
+    "w": 15878.75
+   }
+  },
+  {
+   "id": "5-management",
+   "label": "Edit suite",
+   "title": "Edit suite",
+   "description": "Cuts and captions every take for its platform, then ships with rights.",
+   "panel": "ship",
+   "bbox": {
+    "x": 6749,
+    "y": 3021,
+    "w": 8669,
+    "h": 3983
+   },
+   "camera": {
+    "cx": 11083.5,
+    "cy": 5012.5,
+    "w": 10836.25
+   }
+  }
+ ],
+ "metrics": {
+  "eyebrow": "",
+  "title": "Measured in commitments",
+  "sub": "Three promises written into every hypjam contract.",
+  "items": [
+   {
+    "value": "14",
+    "unit": "days",
+    "label": "from a signed brief to your first cuts"
+   },
+   {
+    "value": "8",
+    "unit": "hooks",
+    "label": "written and tested per script"
+   },
+   {
+    "value": "1",
+    "unit": "contract",
+    "label": "one invoice, every creator and editor behind it"
+   }
+  ]
+ },
+ "marquee": {
+  "ariaLabel": "Platforms hypjam ships to",
+  "items": [
+   {
+    "name": "TikTok",
+    "file": "/assets/img/platforms/tiktok.svg",
+    "alt": "TikTok"
+   },
+   {
+    "name": "Instagram Reels",
+    "file": "/assets/img/platforms/instagram.svg",
+    "alt": "Instagram Reels"
+   },
+   {
+    "name": "YouTube Shorts",
+    "file": "/assets/img/platforms/youtube.svg",
+    "alt": "YouTube Shorts"
+   },
+   {
+    "name": "Snapchat",
+    "file": "/assets/img/platforms/snapchat.svg",
+    "alt": "Snapchat"
+   },
+   {
+    "name": "Pinterest",
+    "file": "/assets/img/platforms/pinterest.svg",
+    "alt": "Pinterest"
+   },
+   {
+    "name": "Meta ads",
+    "file": "/assets/img/platforms/meta.svg",
+    "alt": "Meta ads"
+   }
+  ]
+ }
+}

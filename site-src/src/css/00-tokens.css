@@ -1,0 +1,312 @@
+/* =====================================================================
+   hypjam v2 · 00-tokens.css
+   Design tokens. Every number here was read out of Lance's compiled CSS
+   (ref/lance-css/2aw2dorymd3mg.css = the landing stylesheet,
+   ref/lance-css/0802v4mhdt9c4.css = the Tailwind build), ref/style_spec.json
+   or measured on ref/shots + ref/pages at 1920. The audit with sources is
+   DESIGN.md. Use the variables; never re-type the numbers.
+
+   Theme scoping: :root carries the DARK defaults (Lance's landing is
+   black). Put data-theme="light" | "sand" | "sand-m" | "dark" on any
+   section/page wrapper and the semantic tokens (--bg --fg --fg-body
+   --hairline --pill-*) flip for everything inside it.
+   ===================================================================== */
+
+:root {
+  /* ---------- colour · raw ---------- */
+  --black: #000;
+  --white: #fff;
+  --sand-s: #f7f6f4;          /* Lance --sand-s · .bg-sand-s · metrics beat, feature section */
+  --sand-m: #dad9d4;          /* Lance --sand-m · .bg-sand-m · rights section, security hero */
+  --sand-l: #bcbbb4;          /* Lance --sand-l · card description text, drawing strokes on sand */
+  --sand: #f0f1e9;            /* Lance --sand (unused on home, kept for parity) */
+  --grey: #7b7b7b;            /* Lance --grey-m / .text-grey-m: body copy on light, footer labels */
+  --grey-m: #5b5b5b;          /* CONTRACT divider tone (= --grey at 60% composited on black) */
+  --grey-s: #f5f5f5;          /* Lance --grey-s */
+  --line: #969696;            /* Lance --line: the drawing's stroke colour */
+  --jam: #ff6f1f;             /* the accent. Replaces Lance's #2bca95. Rationed. */
+  --jam-ink: #000;            /* text/arrow colour placed on a jam surface */
+
+  /* accent alphas (Lance had #2BCA95/5 · /10 · /12 · /15 · /20 · /30 · /40 · /70) */
+  --jam-05: rgba(255,111,31,.05);
+  --jam-10: rgba(255,111,31,.10);
+  --jam-12: rgba(255,111,31,.12);
+  --jam-15: rgba(255,111,31,.15);
+  --jam-20: rgba(255,111,31,.20);
+  --jam-30: rgba(255,111,31,.30);
+  --jam-40: rgba(255,111,31,.40);
+  --jam-70: rgba(255,111,31,.70);
+
+  /* white alphas Lance actually uses (bg-white/12, /15, /24, text-white/40 …) */
+  --w05: rgba(255,255,255,.05);
+  --w08: rgba(255,255,255,.08);
+  --w10: rgba(255,255,255,.10);
+  --w12: rgba(255,255,255,.12);
+  --w15: rgba(255,255,255,.15);
+  --w20: rgba(255,255,255,.20);
+  --w24: rgba(255,255,255,.24);
+  --w40: rgba(255,255,255,.40);
+  --w45: rgba(255,255,255,.45);
+  --w60: rgba(255,255,255,.60);
+  --w70: rgba(255,255,255,.70);
+  --w75: rgba(255,255,255,.75);
+
+  /* black alphas Lance uses (bg-black/5, /20, /[0.36] nav pill, /40 overlay …) */
+  --k05: rgba(0,0,0,.05);
+  --k08: rgba(0,0,0,.08);
+  --k10: rgba(0,0,0,.10);
+  --k14: rgba(0,0,0,.14);
+  --k20: rgba(0,0,0,.20);
+  --k36: rgba(0,0,0,.36);
+  --k40: rgba(0,0,0,.40);
+  --k80: rgba(0,0,0,.80);
+
+  /* sand-l/60 · grey/60 — Lance's hairlines on sand and the HUD divider */
+  --sand-l-60: rgba(188,187,180,.6);
+  --grey-60: rgba(123,123,123,.6);
+  --hud-card-bg: rgba(188,187,180,.12);   /* .bg-[rgba(188,187,180,0.12)] */
+
+  /* ---------- colour · semantic (dark defaults) ---------- */
+  --bg: var(--black);
+  --fg: var(--white);
+  --fg-body: var(--white);          /* paragraph colour · light pages use --grey */
+  --fg-dim: var(--w60);             /* secondary text on the current bg */
+  --fg-dim-40: var(--w40);
+  --hairline: var(--w15);           /* Lance: h-px bg-white/15 on black */
+  --hairline-strong: var(--w20);
+  --pill-bg: var(--w12);            /* .btn resting */
+  --pill-bg-hover: var(--w24);
+  --pill-fg: var(--white);
+  --pill-fg-hover: var(--sand-m);
+  --pill-ico-bg: var(--jam);        /* the trailing circle · jam on dark (Lance: white) */
+  --pill-ico-fg: var(--jam-ink);
+  --ghost-hover: var(--w15);        /* nav text pills: hover:bg-white/15 */
+  --nav-pill-bg: var(--k36);        /* open nav item: bg-black/[0.36] + blur 6px */
+  --reserved-fill: rgba(255,255,255,.04); /* held-open slots (.reserved, .tag-soon) */
+
+  /* ---------- type ---------- */
+  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;        /* Lance: publishSerif, Georgia, Times New Roman, serif */
+  --font-body: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; /* Lance: gtStandard, Arial, Helvetica, sans-serif */
+  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;        /* Lance: gtStandardMono, ui-monospace, monospace */
+
+  --fw-display: 400;   /* display is 400 only */
+  --fw-body: 400;
+  --fw-medium: 500;    /* feature titles, quote attribution name */
+
+  /* h1 · font-display text-[64px] leading-[1.05] tracking-[-1.28px] · max-lp 48/-.96 · max-tp 36/-.72 */
+  --fs-h1: 64px;  --lh-h1: 1.05; --ls-h1: -1.28px;
+  --fs-h1-lp: 48px; --ls-h1-lp: -.96px;
+  --fs-h1-tp: 36px; --ls-h1-tp: -.72px;
+  /* .title (sub-page hero) · 64/1/-1.28 · phones 40/-.8 */
+  --fs-title: 64px; --lh-title: 1; --ls-title: -1.28px;
+  --fs-title-tp: 40px; --ls-title-tp: -.8px;
+  /* h2 · 42/1.1/-.84 · max-tp 28/-.56 */
+  --fs-h2: 42px;  --lh-h2: 1.1;  --ls-h2: -.84px;
+  --fs-h2-tp: 28px; --ls-h2-tp: -.56px;
+  /* big quote (section 2) · 36/45px(1.25)/-.72 · max-tp 24/-.48 */
+  --fs-quote: 36px; --lh-quote: 1.25; --ls-quote: -.72px;
+  --fs-quote-tp: 24px; --ls-quote-tp: -.48px;
+  /* hero trust paragraph · 36/1.2/-.84 · max-tp 24/-.48 */
+  --fs-trust: 36px; --lh-trust: 1.2; --ls-trust: -.84px;
+  /* HUD card title · 26/1.2/-.52 */
+  --fs-card-title: 26px; --lh-card-title: 1.2; --ls-card-title: -.52px;
+  /* story card quote · 18/22.5px(1.25)/-.2 */
+  --fs-story-quote: 18px; --lh-story-quote: 1.25; --ls-story-quote: -.2px;
+  /* body · 16/24 · phones 14 */
+  --fs-body: 16px; --lh-body: 1.5; --fs-body-tp: 14px;
+  --lh-body-tight: 1.4;              /* 16/22.4 feature blurbs, rights labels */
+  --lh-body-loose: 1.5;
+  /* small · 14/1.4 (nav sub, hero p, HUD desc 14/1.35) */
+  --fs-small: 14px; --lh-small: 1.4;
+  --fs-hud: 14px;  --lh-hud: 1.5;     /* HUD stop buttons 14/21 */
+  --fs-hud-desc: 14px; --lh-hud-desc: 1.35;
+  --fs-nav: 13px;                     /* nav items 13/1 */
+  --fs-btn: 14px;                     /* buttons 14/1 */
+  --fs-caption: 13px; --lh-caption: 1.35;   /* attribution 13/17.55 · meta 13/16.9 (1.3) */
+  --lh-meta: 1.3;
+  --fs-eyebrow: 12px;  --ls-eyebrow: .08em;   /* small caps labels */
+  --fs-eyebrow-lg: 13px; --ls-eyebrow-lg: .06em; /* security-card titles: 13px uppercase */
+  --fs-dash-label: 13px; --ls-dash-label: .01em; /* "— Operations" product-page eyebrow */
+  --fs-micro: 11px;
+
+  /* ---------- layout ---------- */
+  --space: 4px;                      /* Tailwind --spacing: .25rem */
+  --px-page: 28px;                   /* Lance --page-x: 1.75rem */
+  --px-page-m: 14px;                 /* Lance: --page-x: 14px under 601px (contract said 20; Lance is 14) */
+  --section-y: 120px;                /* py-[120px] · --section-spacing */
+  --section-y-m: 80px;               /* max-bp:py-20 · --section-spacing-mobile */
+  --section-y-quote: 160px;          /* quote section py-40 */
+  --section-y-stories: 140px;        /* stories section py-[140px] */
+  --nav-h: 88px;
+  --nav-pad: 28px;                   /* nav padding: 28px var(--px-page) */
+  --nav-item-h: 32px;                /* h-8 rounded-full px-[14px] */
+  --nav-item-px: 14px;
+  --max-container: 1800px;
+  --max-content: 1280px;
+  --max-medium: 904px;
+  --max-small: 580px;
+  --max-trust: 717px;                /* hero paragraph max-w-[717px] (min(717px,47vw) under 1511) */
+  --max-h2: 560px;                   /* stories h2 max-w-[560px] */
+  --grid-gap: 24px;
+
+  /* ---------- breakpoints (documentation only — vars cannot drive @media) ----------
+     Lance (Tailwind v4 "not (min-width)" variants):
+       max-tp  → @media (max-width: 600px)    (not (min-width:37.5625rem))   phones
+       max-bp  → @media (max-width: 800px)    (not (min-width:50.0625rem))   small tablets
+       max-lp  → @media (max-width: 1024px)   (not (min-width:64.0625rem))   laptops / HUD collapses
+       max-nv  → @media (max-width: 1200px)   (not (min-width:75.0625rem))   4-col grids → 2
+       max-[1511px] → @media (max-width: 1511px)                            trust paragraph 47vw
+     min variants: tp (min-width:601px) · bp (min-width:801px) · lp (min-width:1025px) · nv (min-width:1201px)
+     Copy these literally; do not invent 768/1280. */
+  --bp-tp: 600px;
+  --bp-bp: 800px;
+  --bp-lp: 1024px;
+  --bp-nv: 1200px;
+  --bp-wide: 1511px;
+
+  /* ---------- radii ---------- */
+  --r-pill: 9999px;
+  --r-card: 12px;                    /* HUD card, feature images rounded-[12px] */
+  --r-panel: 6px;                    /* HUD product panel rounded-[6px] */
+  --r-img: 8px;                      /* story card image rounded-[8px] */
+  --r-img-lg: 16px;                  /* rounded-[16px] */
+  --r-tile: 4px;
+
+  /* ---------- buttons (.btn) ---------- */
+  --btn-h: 32px;    --btn-gap: 10px; --btn-pl: 16px; --btn-pr: 5px; --btn-ico: 22px; --btn-ico-svg: 11px;   /* nav "Book a Demo": h-8 gap-2.5 pl-4 pr-[5px] size-[22px] svg 11 */
+  --btn-h-lg: 36px; --btn-gap-lg: 12px; --btn-pl-lg: 18px; --btn-pr-lg: 6px; --btn-ico-lg: 24px; --btn-ico-svg-lg: 12px; /* hero: h-9 gap-3 pl-[18px] pr-[6px] size-6 svg 12 */
+  --btn-blur: 6px;                   /* backdrop-blur-[6px] */
+
+  /* ---------- HUD card / panels (hero) ---------- */
+  --hud-card-w: 357px;
+  --hud-card-h: 354px;
+  --hud-card-pad: 22px 18px 18px;
+  --hud-card-gap: 18px;
+  --hud-card-blur: 4px;
+  --hud-panel-w: 321px;
+  --hud-panel-h: 184px;
+  --hud-marker-w: 16px;
+  --hud-shift: 24px;                 /* active stop translateX(24px) */
+  --hud-gap: 36px;
+
+  /* ---------- marquee (.partner-carousel) ---------- */
+  --marquee-cell-w: 260px;
+  --marquee-cell-h: 72px;
+  --marquee-dur: 90s;                /* compact variant 28s · touch 180s */
+  --marquee-dur-compact: 28s;
+  --marquee-dur-touch: 180s;
+  --marquee-fade: 24px;              /* mask edge (compact: 56px) */
+  --marquee-opacity: .5;
+
+  /* ---------- badges / seals ---------- */
+  --badge-size: 120px;               /* size-[120px] · max-lp:size-[90px] */
+  --badge-size-m: 90px;
+  --badge-size-footer: 36px;
+  --badge-ink: var(--grey);          /* bg-grey-m · hover:bg-black */
+  --badge-ink-hover: var(--black);
+
+  /* ---------- shadows ---------- */
+  --shadow-card: 0 12px 12px rgba(0,0,0,.24);     /* HUD card */
+  --shadow-story: 0 14px 32px rgba(0,0,0,.25);    /* story card image */
+
+  /* ---------- motion ---------- */
+  --dur-fast: .2s;                   /* nav item colour */
+  --dur: .3s;                        /* transition-colors duration-300 */
+  --dur-slow: .5s;                   /* HUD opacity/transform */
+  --dur-reveal: .9s;                 /* .reveal */
+  --ease: cubic-bezier(.4,0,.2,1);   /* standard (hero-walk caret, cta underline) */
+  --ease-io: ease-in-out;
+  --ease-soft: cubic-bezier(.22,1,.36,1);   /* demo-booker-in */
+  --ease-pop: cubic-bezier(.2,.8,.2,1);     /* vd-pop */
+  --ease-camera: cubic-bezier(.48,0,.18,1); /* CustomEase "M0,0 C0.48,0 0.18,1 1,1" (first dive) */
+  --glint-dur: 10s;                  /* .product-ui-stroke-spin */
+
+  /* ---------- z-index ---------- */
+  --z-nav: 100;
+  --z-menu: 110;
+  --z-hud: 30;
+  --z-trust: 20;
+  --z-stage: 1;
+}
+
+/* ---------- theme scopes ---------- */
+[data-theme="light"], .section--white, .theme-light {
+  --bg: var(--white);
+  --fg: var(--black);
+  --fg-body: var(--grey);
+  --fg-dim: var(--grey);
+  --fg-dim-40: rgba(0,0,0,.4);
+  --hairline: var(--k10);
+  --hairline-strong: rgba(0,0,0,.18);
+  --pill-bg: var(--k08);
+  --pill-bg-hover: var(--k14);
+  --pill-fg: var(--black);
+  --pill-fg-hover: var(--black);
+  --pill-ico-bg: var(--black);
+  --pill-ico-fg: var(--white);
+  --ghost-hover: rgba(0,0,0,.06);
+  --nav-pill-bg: rgba(255,255,255,.6);
+  --reserved-fill: rgba(0,0,0,.03);
+}
+[data-theme="sand"], .section--sand-s, .theme-sand {
+  --bg: var(--sand-s);
+  --fg: var(--black);
+  --fg-body: var(--grey);
+  --fg-dim: var(--grey);
+  --fg-dim-40: rgba(0,0,0,.4);
+  --hairline: var(--sand-l-60);
+  --hairline-strong: var(--sand-l);
+  --pill-bg: var(--k08);
+  --pill-bg-hover: var(--k14);
+  --pill-fg: var(--black);
+  --pill-fg-hover: var(--black);
+  --pill-ico-bg: var(--black);
+  --pill-ico-fg: var(--white);
+  --ghost-hover: rgba(0,0,0,.06);
+  --nav-pill-bg: rgba(255,255,255,.6);
+  --reserved-fill: rgba(0,0,0,.03);
+}
+[data-theme="sand-m"], .section--sand-m, .theme-sand-m {
+  --bg: var(--sand-m);
+  --fg: var(--black);
+  --fg-body: var(--grey);
+  --fg-dim: var(--grey);
+  --fg-dim-40: rgba(0,0,0,.4);
+  --hairline: var(--sand-l-60);
+  --hairline-strong: var(--sand-l);
+  --pill-bg: var(--k08);
+  --pill-bg-hover: var(--k14);
+  --pill-fg: var(--black);
+  --pill-fg-hover: var(--black);
+  --pill-ico-bg: var(--black);
+  --pill-ico-fg: var(--white);
+  --ghost-hover: rgba(0,0,0,.06);
+  --nav-pill-bg: rgba(255,255,255,.6);
+  --reserved-fill: rgba(0,0,0,.03);
+}
+[data-theme="dark"], .section--black, .theme-dark {
+  --bg: var(--black);
+  --fg: var(--white);
+  --fg-body: var(--white);
+  --fg-dim: var(--w60);
+  --fg-dim-40: var(--w40);
+  --hairline: var(--w15);
+  --hairline-strong: var(--w20);
+  --pill-bg: var(--w12);
+  --pill-bg-hover: var(--w24);
+  --pill-fg: var(--white);
+  --pill-fg-hover: var(--sand-m);
+  --pill-ico-bg: var(--jam);
+  --pill-ico-fg: var(--jam-ink);
+  --ghost-hover: var(--w15);
+  --nav-pill-bg: var(--k36);
+  --reserved-fill: rgba(255,255,255,.04);
+}
+
+/* ---------- responsive token flips (Lance's own values) ---------- */
+@media (max-width: 800px) {           /* max-bp: py-20 */
+  :root { --section-y: var(--section-y-m); --section-y-stories: 80px; }
+}
+@media (max-width: 600px) {           /* max-tp: --page-x: 14px */
+  :root { --px-page: var(--px-page-m); }
+}

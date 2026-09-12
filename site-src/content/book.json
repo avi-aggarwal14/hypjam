@@ -1,0 +1,125 @@
+{
+  "_schema": {
+    "_about": "Content for /book. Structure follows the reference get-started page: a slim header (lockup left, one small link right), then a split layout - left column on sand-s with the h1 and, in place of the four-field form, the cal.com embed; right column a full-height dark photo area with a frosted quote card (quote, signature line, name, role, small mark) and, under the card, a row of platform wordmarks (where the reference had its client-logo row) and a small row of seals with a label (replaces 'Enterprise-level security'). The reference's '4:57 reserved' countdown is dropped entirely. British English.",
+    "meta": "{path, title, description, theme}",
+    "header": "{logo:{file, alt, href}, right:{label, href}} - the reference had a timer at the right; we put the contact email there.",
+    "left": "{h1, sub, embed:{provider, url, src, theme, layout, height_min, note, fallback:{label, href}}, expect:{label, items[]}, privacy:{text, link_label, href}} - embed.src is the exact iframe src. It has its own dark theme and must never be colour-inverted or restyled. The embed is the only third-party script on the site and loads only on this page (CONTRACT §11). fallback renders as a plain link under the iframe for viewers who block embeds. expect is a short list beside/under the h1 (14px grey).",
+    "right": "{background:{kind, alt}, quote:{text, name, role, signature, mark}, ships_to:{label, items:[{id, text}]}, rights:{label, badges:[{id, label, seal_file}]}} - background.kind = 'video-still': a darkened blurred frame from the hero video (no photography exists). quote is the founder's own statement (real; identical to home.json quotes.items[0].text and agency.json founder.quote). signature = 'name-text' means render the name in the display serif italic instead of a handwriting image. ships_to items render typographically at 60% opacity, monochrome. rights badges render as 40px seals; seal_file is the root-relative path of the SVG under /assets/badges/.",
+    "dropped": "The reference's reserved-time countdown and the four form fields (first name, last name, work email, company website) are intentionally absent; the calendar collects those."
+  },
+  "meta": {
+    "path": "/book",
+    "title": "Book a call | hypjam",
+    "description": "A thirty-minute intro call with hypjam. Tell us what you are launching; we will come back with formats, creators and a timeline.",
+    "theme": "light"
+  },
+  "header": {
+    "logo": {
+      "file": "/assets/brand/logos/hypjam-lockup-on-light.svg",
+      "alt": "hypjam",
+      "href": "/"
+    },
+    "right": {
+      "label": "hello@hypjam.com",
+      "href": "mailto:hello@hypjam.com"
+    }
+  },
+  "left": {
+    "h1": "Book a call",
+    "sub": "Thirty minutes, no deck. Tell us what you are launching and who it is for; we will tell you honestly whether UGC is the right call and what it would cost.",
+    "embed": {
+      "provider": "cal.com",
+      "url": "https://cal.com/avi-aggarwal-hypjam/intro",
+      "src": "https://cal.com/avi-aggarwal-hypjam/intro?embed=true&theme=dark&layout=month_view",
+      "theme": "dark",
+      "layout": "month_view",
+      "height_min": 640,
+      "note": "The calendar has its own dark theme. Never colour-invert it.",
+      "fallback": {
+        "label": "Open the calendar in a new tab",
+        "href": "https://cal.com/avi-aggarwal-hypjam/intro"
+      }
+    },
+    "expect": {
+      "label": "What we will cover",
+      "items": [
+        "What you are launching and who it is for",
+        "Whether UGC is the right call, honestly",
+        "Which package fits and what a first sprint looks like",
+        "The rights, disclosure and timeline you would be signing up to"
+      ]
+    },
+    "privacy": {
+      "text": "The calendar is provided by cal.com and loads only on this page. What you enter goes to cal.com and our calendar, as set out in our",
+      "link_label": "privacy policy",
+      "href": "/privacy"
+    }
+  },
+  "right": {
+    "background": {
+      "kind": "video-still",
+      "alt": ""
+    },
+    "quote": {
+      "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
+      "name": "Avi Aggarwal",
+      "role": "Founder, hypjam",
+      "signature": "name-text",
+      "mark": "/assets/brand/logos/hypjam-mark-on-dark.svg"
+    },
+    "ships_to": {
+      "label": "Ships to",
+      "items": [
+        {
+          "id": "tiktok",
+          "text": "TikTok"
+        },
+        {
+          "id": "reels",
+          "text": "Instagram Reels"
+        },
+        {
+          "id": "shorts",
+          "text": "YouTube Shorts"
+        },
+        {
+          "id": "snapchat",
+          "text": "Snapchat"
+        },
+        {
+          "id": "pinterest",
+          "text": "Pinterest"
+        },
+        {
+          "id": "meta-ads",
+          "text": "Meta ads"
+        }
+      ]
+    },
+    "rights": {
+      "label": "Rights and safety",
+      "badges": [
+        {
+          "id": "usage",
+          "label": "Usage rights in writing",
+          "seal_file": "/assets/badges/usage-rights.svg"
+        },
+        {
+          "id": "release",
+          "label": "Signed creator releases",
+          "seal_file": "/assets/badges/releases.svg"
+        },
+        {
+          "id": "disclosure",
+          "label": "ASA and CAP disclosure compliance",
+          "seal_file": "/assets/badges/disclosure.svg"
+        },
+        {
+          "id": "gdpr",
+          "label": "UK GDPR data handling",
+          "seal_file": "/assets/badges/uk-gdpr.svg"
+        }
+      ]
+    }
+  }
+}

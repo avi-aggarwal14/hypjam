@@ -1,0 +1,441 @@
+/* =====================================================================
+   hypjam v2 · 20-hero.css
+   The hero engine's stage (CONTRACT §7). Every number is Lance's, read
+   from the Tailwind class lists in ref/hero_dom.html / ref/hero_chunk
+   .pretty.js and the landing stylesheet (.hero-walk, .hotel-map,
+   .product-ui-stroke → .glint from 03-ui.css, .partner-carousel →
+   .marquee from 03-ui.css). Colours and type sizes come from tokens.
+   Two renderings: .hero-stage (pinned, > 1024px) and .hero-m (Lance's
+   phone experience, ≤ 1024px). The media queries below decide which one
+   is displayed; 20-hero.js mirrors that choice in [data-mode].
+   ===================================================================== */
+
+/* ---------- section + stage ---------- */
+.hero {
+  position: relative;
+  width: 100%;
+  background: var(--sand-s);            /* Lance: section.relative.w-full.bg-sand-s (shows once the pin ends) */
+  color: var(--white);
+}
+.hero-stage {
+  position: relative;
+  width: 100%;
+  height: 100vh;                        /* h-screen */
+  overflow: hidden;
+  background-color: #000;               /* JS: color-mix(in srgb, #f7f6f4 p%, #000) while sand animates */
+}
+.hero-layer { position: absolute; inset: 0; }
+
+/* 1 · video */
+.hero-video-layer { z-index: 1; will-change: filter, opacity; }
+.hero-video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  background: #000;
+}
+
+/* 2 · overlay */
+.hero-overlay { z-index: 2; pointer-events: none; background: rgba(0,0,0,.4); }
+
+/* 3 · the drawing */
+.hero-map-layer { z-index: 3; }
+.hero-map { position: absolute; inset: 0; }
+.hero-map svg { display: block; width: 100%; height: 100%; overflow: hidden; }
+.hero-map svg [stroke] { vector-effect: non-scaling-stroke; stroke-width: 1px; }
+.hero-stage[data-sand="1"] .hero-map svg [stroke] { stroke: var(--sand-l) !important; }
+
+/* 4 · edge gradients (Lance: w-[min(800px,calc(800/1512*100vw))] · h-[min(719px,calc(719/1512*100vw))]) */
+.hero-grad { position: absolute; z-index: 10; pointer-events: none; opacity: 0; }
+.hero-grad--left {
+  top: 0; bottom: 0; left: 0;
+  width: min(800px, calc(800 / 1512 * 100vw));
+  background: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+.hero-grad--top {
+  left: 0; right: 0; top: 0;
+  height: min(719px, calc(719 / 1512 * 100vw));
+  background: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+/* 5 · trust layer · absolute inset-0 z-20 pt-24 */
+.hero-trust { z-index: 20; padding-top: 96px; }
+.hero-trust-inner {
+  position: relative;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 72px var(--px-page) 180px;   /* pt-[72px] pb-[180px] px-page */
+}
+.hero-trust-p {
+  position: relative;
+  z-index: 10;
+  transform: translateY(-16px);         /* -translate-y-4 */
+  text-align: left;
+  color: var(--white);
+}
+.hero-trust-p > span { display: inline; }
+.trust-word { display: inline; opacity: 0; }   /* 20-hero.js splits the paragraph into these */
+
+/* the walk hint (Lance's .hero-walk) sits bottom-right above the marquee */
+.hero-walk-wrap {
+  position: absolute;
+  right: var(--px-page);
+  bottom: 122px;                        /* marquee bottom 26 + cell 72 + 24 */
+  z-index: 31;
+  opacity: 0;                           /* 20-hero.js fades it in on mount (Lance fades its intro row) */
+}
+.hero-walk {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1;
+  color: rgba(255,255,255,.4);          /* #fff6 */
+  transition: color .3s;
+}
+.hero-walk:hover { color: var(--white); }
+.hero-walk-arrow { display: flex; flex-shrink: 0; align-items: center; justify-content: center; width: 16px; height: 14px; }
+.hero-walk-arrow svg { display: block; opacity: 0; }
+.hero-walk--mark .hero-walk-arrow svg {
+  animation-name: hero-walk-caret;
+  animation-duration: var(--hero-walk-cycle, 3s);
+  animation-timing-function: cubic-bezier(.4,0,.2,1);
+  animation-iteration-count: infinite;
+}
+.hero-walk-label { opacity: 0; transition: opacity .5s; white-space: nowrap; }
+.hero-walk--label .hero-walk-label { opacity: 1; }
+@keyframes hero-walk-caret {
+  0%   { opacity: 0; transform: translateY(-1.5px); }
+  20%  { opacity: 1; transform: translateY(0); }
+  55%  { opacity: 1; transform: translateY(2px); }
+  80%  { opacity: 0; transform: translateY(5px); }
+  100% { opacity: 0; transform: translateY(-1.5px); }
+}
+@media (max-width: 600px) { .hero-walk { font-size: 13px; } }
+
+/* marquee · absolute bottom-[26px] left-0 right-0 z-30 flex flex-col gap-4 · .partner-carousel = .marquee */
+.hero-marquee-wrap {
+  position: absolute;
+  left: 0; right: 0; bottom: 26px;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  opacity: 0;                           /* G-driven: fades in over 1s from the first scroll */
+}
+.hero-marquee .marquee__cell { --logo-h: 26px; }   /* Lance's wordmarks: 22–42px; ours are one typographic family */
+.hero-marquee .marquee__cell img { height: var(--logo-h); width: auto; }
+
+/* 6 · HUD · absolute inset-0 z-30 (opacity + pointer-events from progress) */
+.hero-hud { z-index: 30; opacity: 0; pointer-events: none; }
+.hero-hud-inner {
+  position: absolute;
+  left: var(--px-page);                 /* left-page */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--hud-gap);                  /* 36px (eo) */
+}
+.hero-stops { position: relative; flex-shrink: 0; padding-right: 36px; }   /* pr-9 */
+.hero-marker-track { position: absolute; top: 0; bottom: 0; left: 0; width: 16px; pointer-events: none; }
+.hero-marker {
+  position: absolute; left: 0; top: 0;
+  width: var(--hud-marker-w); height: 1px;
+  background: var(--w60);               /* bg-white/60 */
+  transition: transform .5s ease-in-out;
+  transform: translateY(10.5px) translateY(-50%);
+}
+.hero-stop-list { display: flex; flex-direction: column; gap: 6px; }       /* gap-1.5 */
+.hero-stop {
+  display: block;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: var(--fs-hud);             /* 14px */
+  line-height: var(--lh-hud);           /* 1.5 */
+  color: var(--white);
+  opacity: .4;                          /* opacity-40 · active/hover .6 (Lance's data-[active=true]:opacity-60) */
+  transform: translateX(0);
+  transition: opacity .5s ease-in-out, transform .5s ease-in-out;
+  white-space: nowrap;
+}
+.hero-stop:hover, .hero-stop[data-active="true"], .hero-stop[data-active="true"]:hover { opacity: .6; }
+
+.hero-card-row { display: flex; align-items: flex-end; }
+.hero-card {
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  width: var(--hud-card-w);             /* 357 · JS tweens width/height between measured bodies */
+  height: var(--hud-card-h);            /* 354 */
+  border-radius: var(--r-card);         /* 12 */
+  background: var(--hud-card-bg);       /* rgba(188,187,180,.12) */
+  box-shadow: var(--shadow-card);       /* 0 12px 12px rgba(0,0,0,.24) */
+}
+.hero-card-blur {
+  position: absolute; inset: 0;
+  border-radius: var(--r-card);
+  -webkit-backdrop-filter: blur(var(--hud-card-blur));
+  backdrop-filter: blur(var(--hud-card-blur));
+  pointer-events: none;
+}
+.hero-card .glint { z-index: 1; }
+.hero-card-body {
+  position: absolute; left: 0; right: 0; top: 0;
+  z-index: 2;
+  padding: var(--hud-card-pad);         /* 22px 18px 18px */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.hero-card-stack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--hud-card-gap);             /* 18px */
+  width: 100%;
+  min-width: 0;
+}
+.hero-card-head { display: flex; flex-direction: column; gap: 6px; width: 100%; min-width: 0; flex-shrink: 0; }
+.hero-card-title { color: var(--white); }
+.hero-card-desc { width: 100%; }
+.hero-card-divider { flex-shrink: 0; width: 100%; height: .5px; background: var(--grey-60); }   /* h-[0.5px] bg-grey-m/60 */
+.hero-panel {
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  width: var(--hud-panel-w);            /* 321 */
+  max-width: 100%;
+  height: var(--hud-panel-h);           /* 184 · JS reads data-panel-height from the mounted panel */
+  border-radius: var(--r-panel);        /* 6 */
+}
+.hero-panel > .pnl { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.hero-skip {
+  flex-shrink: 0;
+  font-family: var(--font-body);
+  font-size: 14px;                      /* text-sm */
+  line-height: 20px;
+  color: var(--w60);                    /* text-white/60 */
+  transition: color .3s;
+  white-space: nowrap;
+}
+.hero-skip:hover { color: var(--white); }
+.hero-skip--inline { display: none; }                                   /* Lance: hidden max-tp:block (phones use .hero-m here) */
+.hero-skip--corner { position: absolute; bottom: 52px; right: var(--px-page); }   /* bottom-[52px] right-[var(--page-x)] */
+@media (max-width: 1200px) { .hero-skip--corner { bottom: 28px; } }          /* max-nv:bottom-7 */
+
+/* 7 · metrics · pointer-events-none absolute inset-0 z-30 · two reveals via custom properties */
+.hero-metrics {
+  z-index: 30;
+  pointer-events: none;
+  visibility: hidden;
+  --metrics-text: 0;
+  --metrics-nums: 0;
+  --metrics-gap: 28px;
+}
+.hero-metrics-inner {
+  position: absolute;
+  left: var(--px-page);
+  top: 120px;
+  right: var(--metrics-gap, 28px);
+  bottom: var(--metrics-gap, 28px);
+  display: flex;
+  flex-direction: column;
+}
+.hero-metrics-text { display: flex; flex-direction: column; gap: 12px; max-width: 480px; opacity: var(--metrics-text, 0); }   /* Lance: max-w-[420px]; +60 so "Measured in commitments" stays on one line like "Measured in Outcomes" */
+.hero-metrics-eyebrow:empty { display: none; }
+.hero-metrics-title { color: var(--black); }
+.hero-metrics-sub { font-family: var(--font-body); font-size: 16px; line-height: 1.5; color: var(--grey); }
+.hero-metrics-nums { display: flex; flex: 1; min-height: 0; margin-top: 24px; opacity: var(--metrics-nums, 0); }
+.hero-metrics-spacer { width: 50%; }
+.hero-metrics-col { display: flex; width: 50%; flex-direction: column; justify-content: flex-end; gap: 20px; align-self: stretch; }
+.hero-metric { display: flex; width: 100%; flex-direction: column; gap: 16px; }
+.hero-metric-in {
+  display: flex; flex-direction: column; gap: 4px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s ease calc(var(--i, 0) * 160ms), transform .7s cubic-bezier(.22,1,.36,1) calc(var(--i, 0) * 160ms);
+}
+[data-active="1"] .hero-metric-in { opacity: 1; transform: translateY(0); }
+.hero-metric-row { display: flex; align-items: flex-start; color: var(--black); }
+.hero-metric-num {
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  font-optical-sizing: auto;
+  font-size: 100px;                     /* text-[100px] leading-none tracking-[-2px] */
+  line-height: 1;
+  letter-spacing: -2px;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+/* Lance's "%" is 60px/1.1/-1.2px; our units are words ("days", "hooks"), set at the h2 size so they read as a unit, not a second numeral */
+.hero-metric-unit {
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  font-optical-sizing: auto;
+  font-size: var(--fs-h2);
+  line-height: 1.1;
+  letter-spacing: var(--ls-h2);
+  margin-left: 8px;
+  padding-top: 8px;
+}
+.hero-metric-unit:empty { display: none; }
+.hero-metric-label { font-family: var(--font-body); font-size: 16px; line-height: 1.3; color: var(--black); }
+.hero-metric-rule { width: 100%; height: 1px; overflow: hidden; background: transparent; }
+.hero-metric-rule i {
+  display: block; height: 1px;
+  transform-origin: left;
+  transform: scaleX(0);
+  background: var(--sand-l);
+  transition: transform .9s cubic-bezier(.22,1,.36,1) calc(var(--i, 0) * 160ms + 200ms);
+}
+[data-active="1"] .hero-metric-rule i { transform: scaleX(1); }
+@media (max-width: 1200px) {           /* max-nv: numbers become a row under the text */
+  .hero-metrics-nums { margin-top: auto; flex: none; }
+  .hero-metrics-spacer { display: none; }
+  .hero-metrics-col { width: 100%; flex-direction: row; align-items: flex-start; justify-content: space-between; gap: 16px; }
+  .hero-metric { width: auto; min-width: 0; flex: 1; gap: 8px; }
+  .hero-metric-rule { display: none; }
+}
+@media (max-width: 600px) {            /* max-tp:!block — Lance brings the hairlines back on phones */
+  .hero-metric-rule { display: block; }
+}
+
+/* ---------- which rendering shows ---------- */
+@media (max-width: 1024px) { .hero-stage { display: none; } }
+/* .hero-m's desktop `display:none` lives at the END of this file: the base
+   rule `.hero-m { display:block }` below has equal specificity, so the hiding
+   rule must come later in source order to win. (integration fix) */
+
+/* =====================================================================
+   mobile (≤ 1024px) · Lance's phone experience (ref/mobile/m00–m03)
+   ===================================================================== */
+.hero-m { display: block; width: 100%; background: var(--black); }
+
+.hero-m-video { position: relative; height: 100svh; width: 100%; overflow: hidden; background: var(--black); }
+.hero-m-vid { z-index: 1; }
+.hero-m-video .hero-overlay { position: absolute; inset: 0; z-index: 2; }
+.hero-m-video-grad {
+  position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.5) 100%);
+}
+.hero-m-video-content {
+  position: absolute; inset: 0; z-index: 20;
+  display: flex; flex-direction: column;
+  padding: 20px var(--px-page) 28px;    /* px-page pb-7 pt-5 */
+}
+.hero-m-video-inner {
+  position: relative;
+  display: flex; flex: 1; flex-direction: column;
+  align-items: flex-start; justify-content: flex-end;
+  gap: 24px;                            /* gap-6 */
+  padding: 24px 0;                      /* pt-6 pb-6 */
+  text-align: left;
+}
+.hero-m-p { color: var(--white); opacity: 0; }   /* 21-hero-mobile.js fades it in like Lance's h1 */
+.hero-m-video-row { position: relative; display: flex; width: 100%; flex-wrap: wrap; align-items: center; gap: 15px; }
+.hero-m-video-row .hero-walk { margin-left: auto; flex-shrink: 0; opacity: 0; }
+
+.hero-m-body { position: relative; width: 100%; background: var(--black); padding: 40px 0 64px; }   /* pt-10 pb-16 */
+.hero-m-marquee { margin-bottom: 48px; }                                                          /* mb-10 + the paragraph's mt-12 */
+.hero-m-drawing {
+  position: relative;
+  margin: 0 var(--px-page);
+  aspect-ratio: 44001 / 21918;
+  overflow: hidden;
+}
+.hero-m-acc {
+  display: flex; flex-direction: column;
+  width: auto;
+  margin: 56px var(--px-page) 0;        /* mt-14 px-page */
+  border-top: 1px solid var(--w15);     /* border-t border-white/15 */
+}
+.hero-m-item { border-bottom: 1px solid var(--w15); }
+.hero-m-row {
+  display: flex; width: 100%;
+  align-items: center; justify-content: space-between;
+  gap: 16px;
+  padding: 20px 0;                      /* py-5 */
+  text-align: left;
+  color: var(--white);
+}
+.hero-m-title {
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  font-optical-sizing: auto;
+  font-size: 24px; line-height: 1.2; letter-spacing: -.48px;
+}
+.hero-m-plus { position: relative; flex-shrink: 0; width: 20px; height: 20px; color: var(--sand-l); }
+.hero-m-plus i, .hero-m-plus b { position: absolute; left: 50%; top: 50%; display: block; background: currentColor; }
+.hero-m-plus i { width: 12px; height: 1px; transform: translate(-50%, -50%); }
+.hero-m-plus b { width: 1px; height: 12px; transform: translate(-50%, -50%) scaleY(1); transition: transform .3s ease-out; }
+.hero-m-row[aria-expanded="true"] .hero-m-plus b { transform: translate(-50%, -50%) scaleY(0); }
+.hero-m-region {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .5s cubic-bezier(.22,1,.36,1);
+}
+.hero-m-region[data-open="true"] { grid-template-rows: 1fr; }
+.hero-m-region-clip { min-height: 0; overflow: hidden; }
+.hero-m-region-inner { display: flex; flex-direction: column; gap: 20px; padding-bottom: 24px; }   /* gap-5 pb-6 */
+.hero-m-desc { font-family: var(--font-body); font-size: 14px; line-height: 1.45; color: var(--sand-l); }
+.hero-m-panel-box {
+  position: relative; width: 100%; overflow: hidden;
+  border-radius: var(--r-panel);
+  aspect-ratio: 321 / 184;              /* JS: 321 / data-panel-height */
+  background: var(--w05);
+}
+.hero-m-panel {
+  position: absolute; left: 0; top: 0;
+  width: 321px; height: 184px;          /* JS sets height + --pnl-scale */
+  max-width: none;
+  transform-origin: 0 0;
+  transform: scale(var(--pnl-scale, 1));
+}
+
+.hero-m-outcomes {
+  position: relative; width: 100%;
+  background: var(--white);
+  color: var(--black);
+  padding: 64px var(--px-page) 80px;    /* pt-16 pb-20 px-page */
+}
+.hero-m-outcomes-text { display: flex; flex-direction: column; gap: 12px; max-width: 420px; }
+.hero-m-outcomes-title {
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  font-optical-sizing: auto;
+  font-size: 28px; line-height: 1.1; letter-spacing: -.56px;
+  color: var(--black);
+}
+.hero-m-outcomes-sub { font-family: var(--font-body); font-size: 16px; line-height: 1.5; color: var(--grey); }
+.hero-m-nums { display: flex; flex-direction: column; gap: 20px; margin-top: 120px; }   /* mt-[7.5rem] gap-5 */
+.hero-metric-num--m { font-size: 64px; letter-spacing: -1.28px; }            /* text-[64px] leading-none tracking-[-1.28px] */
+.hero-metric-unit--m { font-size: 28px; letter-spacing: -.56px; padding-top: 5px; margin-left: 6px; }   /* Lance's "%": 38px */
+.hero-metric-label--m { font-size: 14px; line-height: 1.3; }
+.hero-metric-rule--m i { background: rgba(188,187,180,.35); }                /* bg-sand-l/35 */
+
+/* ---------- reduced motion: final states, no loops ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-walk-label { opacity: 1; }
+  .hero-walk-arrow svg, .hero-walk--mark .hero-walk-arrow svg { opacity: 1; animation: none; transform: none; }
+  .hero-walk-wrap, .hero-m-p, .hero-m-video-row .hero-walk { opacity: 1; }
+  .hero-metric-in { opacity: 1; transform: none; transition: none; }
+  .hero-metric-rule i { transform: scaleX(1); transition: none; }
+  .hero-m-region { transition: none; }
+  .hero-m-plus b { transition: none; }
+}
+
+/* ---------- which rendering shows (part 2, must stay last) ----------
+   Above 1024px only the pinned .hero-stage renders; .hero-m is the phone
+   rendering. This rule is last in the file on purpose — see the note beside
+   the .hero-stage rule above. */
+@media (min-width: 1025px) { .hero-m { display: none; } }

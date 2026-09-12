@@ -1,0 +1,416 @@
+/* ==========================================================================
+   Product panels — shared primitives (see src/panels/SPEC.md)
+   Everything is scoped under .pnl. Tokens fall back to CONTRACT §4 values
+   until src/css/00-tokens.css lands.
+   ========================================================================== */
+
+.pnl {
+  --pnl-ink: #fff;
+  --pnl-ink-2: #d9d9d9;
+  --pnl-mute: #a1a09a;
+  --pnl-mute-2: rgba(255, 255, 255, 0.45);
+  --pnl-line: rgba(255, 255, 255, 0.10);
+  --pnl-fill: rgba(255, 255, 255, 0.06);
+  --pnl-fill-2: rgba(255, 255, 255, 0.12);
+  --pnl-stroke: rgba(255, 255, 255, 0.14);
+  --pnl-jam: var(--jam, #ff6f1f);
+  --pnl-jam-a: rgba(255, 111, 31, 0.18);
+  --pnl-mono-stack: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-body, "Geist", system-ui, -apple-system, sans-serif);
+  font-size: 12px;
+  line-height: 1.35;
+  font-weight: 400;
+  color: var(--pnl-ink-2);
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  pointer-events: none;
+}
+.pnl,
+.pnl * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.pnl svg {
+  display: block;
+}
+
+/* --- beats: stacked states that crossfade ------------------------------ */
+.pnl-beat {
+  position: absolute;
+  inset: 0;
+}
+
+/* --- text ---------------------------------------------------------------- */
+.pnl-label {
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--pnl-mute);
+}
+.pnl-mono {
+  font-family: var(--pnl-mono-stack);
+  font-size: 11px;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--pnl-mute);
+  white-space: nowrap;
+}
+.pnl-mono--ink {
+  color: var(--pnl-ink);
+}
+.pnl-ink {
+  color: var(--pnl-ink);
+}
+.pnl-mute {
+  color: var(--pnl-mute);
+}
+
+/* --- head: 18px title row -------------------------------------------------- */
+.pnl-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  height: 18px;
+}
+.pnl-head__t {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  color: var(--pnl-ink);
+}
+
+/* --- rows ---------------------------------------------------------------- */
+.pnl-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 28px;
+  border-bottom: 0.5px solid var(--pnl-line);
+}
+.pnl-row--tall {
+  min-height: 34px;
+}
+.pnl-row--bare {
+  border-bottom: 0;
+}
+.pnl-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+.pnl-cell--grow {
+  flex: 1 1 auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.pnl-cell--end {
+  margin-left: auto;
+  justify-content: flex-end;
+}
+.pnl-hr {
+  height: 0.5px;
+  width: 100%;
+  background: var(--pnl-line);
+}
+
+/* --- chips ---------------------------------------------------------------- */
+.pnl-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 17px;
+  padding: 0 7px;
+  border-radius: 4px;
+  background: var(--pnl-fill-2);
+  font-size: 9px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pnl-ink-2);
+  white-space: nowrap;
+}
+.pnl-chip--jam {
+  background: var(--pnl-jam-a);
+  color: var(--pnl-jam);
+}
+.pnl-chip--ghost {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--pnl-stroke);
+  color: var(--pnl-mute);
+}
+
+/* --- avatar: line-drawn head and shoulders -------------------------------- */
+.pnl-avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.6);
+  overflow: hidden;
+}
+.pnl-avatar svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  stroke-width: 1.1;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pnl-avatar--lg {
+  width: 24px;
+  height: 24px;
+  flex-basis: 24px;
+}
+.pnl-avatar--lg svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* --- bubble + caret --------------------------------------------------------- */
+.pnl-bubble {
+  display: inline-block;
+  max-width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--pnl-fill);
+  box-shadow: inset 0 0 0 1px var(--pnl-stroke);
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--pnl-ink);
+}
+.pnl-cursor {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  margin-left: 1px;
+  vertical-align: -0.15em;
+  background: var(--pnl-ink);
+  animation: pnl-blink 1s steps(1, end) infinite;
+}
+.pnl-cursor[hidden] {
+  display: none;
+}
+@keyframes pnl-blink {
+  50% { opacity: 0; }
+}
+
+/* --- status line + spinner ------------------------------------------------ */
+.pnl-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  line-height: 1.3;
+  color: var(--pnl-mute);
+  white-space: nowrap;
+}
+.pnl-spin {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  border-top-color: transparent;
+  opacity: 0.8;
+  animation: pnl-spin 0.9s linear infinite;
+}
+@keyframes pnl-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* --- tick (draws via stroke-dashoffset; path length is 12) ---------------- */
+.pnl-tick {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 12px;
+  stroke: var(--pnl-jam);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+.pnl-tick path {
+  stroke-dasharray: 12;
+  stroke-dashoffset: 0;
+}
+.pnl-tick--mute {
+  stroke: var(--pnl-mute);
+}
+
+/* --- live dot ---------------------------------------------------------------- */
+.pnl-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+  background: var(--pnl-jam);
+  animation: pnl-pulse 1.2s ease-in-out infinite;
+}
+.pnl-dot--still {
+  animation: none;
+  opacity: 0.55;
+}
+@keyframes pnl-pulse {
+  50% { opacity: 0.35; }
+}
+
+/* --- toggle -------------------------------------------------------------------- */
+.pnl-toggle {
+  position: relative;
+  display: inline-block;
+  width: 26px;
+  height: 15px;
+  flex: 0 0 26px;
+  border-radius: 9999px;
+  background: var(--pnl-fill-2);
+  transition: background 0.28s ease-in-out;
+}
+.pnl-toggle::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--pnl-ink);
+  transition: transform 0.28s ease-in-out;
+}
+.pnl-toggle[data-on="true"] {
+  background: var(--pnl-jam);
+}
+.pnl-toggle[data-on="true"]::after {
+  transform: translateX(11px);
+}
+
+/* --- progress bar ---------------------------------------------------------------- */
+.pnl-bar {
+  position: relative;
+  height: 4px;
+  width: 100%;
+  border-radius: 2px;
+  background: var(--pnl-fill-2);
+  overflow: hidden;
+}
+.pnl-bar__fill {
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: var(--pnl-ink);
+}
+.pnl-bar--jam .pnl-bar__fill {
+  background: var(--pnl-jam);
+}
+
+/* --- phone frame ------------------------------------------------------------------ */
+.pnl-phone {
+  position: relative;
+  width: 70px;
+  height: 140px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+.pnl-phone::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  width: 18px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(-50%);
+}
+
+/* --- clipped list (scrolls its track; bottom fade like reference panel 4) ----------- */
+.pnl-clip {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(#000 calc(100% - 20px), transparent);
+  mask-image: linear-gradient(#000 calc(100% - 20px), transparent);
+}
+.pnl-clip__track {
+  will-change: transform;
+}
+
+/* --- stat tile ------------------------------------------------------------------------ */
+.pnl-tile {
+  padding: 8px 10px;
+  border-radius: 4px;
+  background: var(--pnl-fill);
+}
+.pnl-tile__num {
+  font-size: 20px;
+  line-height: 1.1;
+  color: var(--pnl-ink);
+  font-variant-numeric: tabular-nums;
+}
+.pnl-tile__lbl {
+  margin-top: 4px;
+  font-family: var(--pnl-mono-stack);
+  font-size: 8px;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pnl-mute);
+}
+
+/* --- button ------------------------------------------------------------------------------ */
+.pnl-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 30px;
+  width: 100%;
+  border-radius: 6px;
+  background: var(--pnl-fill);
+  font-size: 13px;
+  color: var(--pnl-mute);
+}
+
+/* --- inline icon ----------------------------------------------------------------------------- */
+.pnl-icon {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 12px;
+  stroke: currentColor;
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+/* --- reduced motion ---------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .pnl-cursor,
+  .pnl-spin,
+  .pnl-dot {
+    animation: none;
+  }
+  .pnl-toggle,
+  .pnl-toggle::after {
+    transition-duration: 0s;
+  }
+}

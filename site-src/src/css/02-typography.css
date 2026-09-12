@@ -1,0 +1,228 @@
+/* =====================================================================
+   hypjam v2 · 02-typography.css
+   One class per text style in CONTRACT §4 / ref/style_spec.json.
+   Display = Newsreader (opsz axis, font-optical-sizing:auto), 400 only.
+   Body = Geist. Responsive downshifts are Lance's exact max-lp / max-tp
+   overrides (h1: max-lp:text-[48px] max-tp:text-[36px]; h2/quote: max-tp).
+   ===================================================================== */
+
+/* shared display setup — Lance's [data-landing] .font-display */
+.t-display, .t-h1, .t-title, .t-h2, .t-h3, .t-quote, .t-trust, .t-card-title, .t-story-quote, .t-num {
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: geometricPrecision;
+}
+
+/* h1 · 64/1.05/-1.28 → ≤1024: 48/-.96 → ≤600: 36/-.72 */
+.t-h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+  letter-spacing: var(--ls-h1);
+}
+/* .title · sub-page hero 64/1/-1.28 → ≤600: 40/-.8 */
+.t-title {
+  font-size: var(--fs-title);
+  line-height: var(--lh-title);
+  letter-spacing: var(--ls-title);
+}
+/* h2 · 42/1.1/-.84 → ≤600: 28/-.56 */
+.t-h2 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2);
+}
+/* the second line of a two-line h2 at 40% ("running every shift on Lance") */
+.t-h2-dim { color: var(--fg-dim-40); }
+/* h3 · 18px display (stories page list titles, security cards use caps instead) */
+.t-h3 {
+  font-size: 18px;
+  line-height: 1.25;
+  letter-spacing: -.2px;
+}
+/* big quote · 36/1.25/-.72 → ≤600: 24/-.48 */
+.t-quote {
+  font-size: var(--fs-quote);
+  line-height: var(--lh-quote);
+  letter-spacing: var(--ls-quote);
+}
+/* hero trust paragraph · 36/1.2/-.84 → ≤600: 24/-.48 */
+.t-trust {
+  font-size: var(--fs-trust);
+  line-height: var(--lh-trust);
+  letter-spacing: var(--ls-trust);
+  max-width: var(--max-trust);
+}
+/* HUD card title · 26/1.2/-.52 */
+.t-card-title {
+  font-size: var(--fs-card-title);
+  line-height: var(--lh-card-title);
+  letter-spacing: var(--ls-card-title);
+}
+/* story card quote · 18/1.25/-.2 */
+.t-story-quote {
+  font-size: var(--fs-story-quote);
+  line-height: var(--lh-story-quote);
+  letter-spacing: var(--ls-story-quote);
+}
+/* big numerals (metrics beat) · display, tabular */
+.t-num {
+  font-size: 96px;
+  line-height: 1;
+  letter-spacing: -2.88px;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+/* hanging punctuation for opening quotes */
+.t-hanging { hanging-punctuation: first last allow-end; }
+@supports not (hanging-punctuation: first) { .t-hanging { text-indent: -.4em; } }
+
+/* ---------- body (Geist) ---------- */
+/* p · 16/24 · colour follows the theme (white on dark, --grey on light) · ≤600: 14px */
+.t-body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-weight: var(--fw-body);
+  letter-spacing: normal;
+  color: var(--fg-body);
+}
+/* 16/22.4 · feature blurbs, rights labels */
+.t-body-tight {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body-tight);
+  color: var(--fg-body);
+}
+/* the inline bold-ish title inside a feature blurb: 16/22.4 weight 500, black on light */
+.t-feature-title {
+  font-weight: var(--fw-medium);
+  color: var(--fg);
+}
+/* 14/1.4 · hero sub-line, nav dropdown copy, attribution name (500) */
+.t-small {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  line-height: var(--lh-small);
+}
+.t-small-medium {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  line-height: var(--lh-small);
+  font-weight: var(--fw-medium);
+}
+/* 14/1.35 · HUD card description (sand-l) */
+.t-hud-desc {
+  font-family: var(--font-body);
+  font-size: var(--fs-hud-desc);
+  line-height: var(--lh-hud-desc);
+  color: var(--sand-l);
+}
+/* 14/1.5 · HUD stop buttons */
+.t-hud {
+  font-family: var(--font-body);
+  font-size: var(--fs-hud);
+  line-height: var(--lh-hud);
+}
+/* 14/1 · buttons, footer links, "Read", "(Skip)" */
+.t-btn {
+  font-family: var(--font-body);
+  font-size: var(--fs-btn);
+  line-height: 1;
+}
+/* 13/1 · nav items */
+.t-nav {
+  font-family: var(--font-body);
+  font-size: var(--fs-nav);
+  line-height: 1;
+}
+/* 13/1.35 · attribution lines (white .75) */
+.t-caption {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+}
+/* 13/1.3 · meta ("Travellers' Choice", "100 keys") at .45 */
+.t-meta {
+  font-family: var(--font-body);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-meta);
+  color: var(--fg-dim-40);
+}
+/* 12px caps, tracking .08em · "PRODUCT", "LAUNCH FILM · 1 MIN 18 SEC" */
+.t-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow);
+  line-height: 1.4;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+/* 13px caps, tracking .06em, full-strength · security-card titles, rights labels */
+.t-eyebrow-lg {
+  font-family: var(--font-body);
+  font-size: var(--fs-eyebrow-lg);
+  line-height: 1.4;
+  letter-spacing: var(--ls-eyebrow-lg);
+  text-transform: uppercase;
+  color: var(--fg);
+}
+/* 16px caps 1.4 · rights section labels ("SOC 2 TYPE I") in --grey */
+.t-label-caps {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+/* 11px micro caps · tags, timecodes */
+.t-micro {
+  font-family: var(--font-body);
+  font-size: var(--fs-micro);
+  line-height: 1.2;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.t-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- colour helpers scoped to text ---------- */
+.t-fg { color: var(--fg); }
+.t-grey { color: var(--grey); }
+.t-dim { color: var(--fg-dim); }
+.t-dim-40 { color: var(--fg-dim-40); }
+.t-w40 { color: var(--w40); }
+.t-w45 { color: var(--w45); }
+.t-w60 { color: var(--w60); }
+.t-w70 { color: var(--w70); }
+.t-w75 { color: var(--w75); }
+.t-sand-l { color: var(--sand-l); }
+.t-sand-m { color: var(--sand-m); }
+.t-jam { color: var(--jam); }
+.t-center { text-align: center; }
+.t-balance { text-wrap: balance; }
+.t-pretty { text-wrap: pretty; }
+
+/* ---------- responsive downshifts (Lance's exact variants) ---------- */
+@media (max-width: 1024px) {          /* max-lp */
+  .t-h1 { font-size: var(--fs-h1-lp); letter-spacing: var(--ls-h1-lp); }
+  .t-num { font-size: 72px; letter-spacing: -2.16px; }
+  .t-trust { max-width: none; }
+}
+@media (max-width: 1511px) {          /* max-[1511px]: trust paragraph min(717px,47vw) */
+  .t-trust { max-width: min(var(--max-trust), 47vw); }
+}
+@media (max-width: 1024px) { .t-trust { max-width: none; } }
+@media (max-width: 600px) {           /* max-tp */
+  .t-h1 { font-size: var(--fs-h1-tp); letter-spacing: var(--ls-h1-tp); }
+  .t-title { font-size: var(--fs-title-tp); letter-spacing: var(--ls-title-tp); }
+  .t-h2 { font-size: var(--fs-h2-tp); letter-spacing: var(--ls-h2-tp); }
+  .t-quote { font-size: var(--fs-quote-tp); letter-spacing: var(--ls-quote-tp); }
+  .t-trust { font-size: var(--fs-quote-tp); letter-spacing: var(--ls-quote-tp); }
+  .t-body { font-size: var(--fs-body-tp); }
+  .t-num { font-size: 56px; letter-spacing: -1.68px; }
+}

@@ -1,0 +1,642 @@
+/* =====================================================================
+   hypjam v2 · 46-blog.css — /blog (index) and /blog/<slug> (article)
+   Structure and every number measured at 1920 on
+     ref/pages/news.jpg                (index)
+     ref/pages/hotels_aloft-dublin.jpg (long-form article)
+   with scratchpad/pw/blog2/probe.js (luminance runs) — the figures are in
+   the comments. Markup comes from tools/render_blog.py; copy from
+   content/blog.json. Prefix: .blog- (+ the .md-* prose classes that
+   tools/md.py emits, which only ever appear inside .blog-prose,
+   .legal-* and nowhere else).
+
+   INDEX (news.jpg)
+     hero        full viewport (1080 at 1920×1080), image + shade,
+                 mark 52 · h1 52/57.2 centred · sub 16/24, block bottom 100
+     list        sand-m, pt 104 / pb 300
+     filters     32px pills, 13px, 10px gap, centred; active = black on k06
+     grid        3 × 594.67 (28 | 663 | 1297), col-gap 40, row-gap 80
+     card        image 595×465 (32:25), caption mt 12, 16/24,
+                 date black · title grey
+   ARTICLE (hotels_aloft-dublin.jpg)
+     hero        h1 42/46.2 at the gutter, lede 16/24 ≤622, media mt 40
+     media       full width (28…1892), 16:9 (1864×1048), radius 16
+     body        grid calc(50% − 28px) | 1fr → content column starts at 932
+                 and is 960 wide, exactly like 40-pages.css's .page-split
+     rail        label 11 caps grey · value 13, item pitch 53
+     prose       h2 32 display · p 16/1.6 black · 26 between paragraphs
+     more        3 × 603, gap 28, tile 16:9
+   ===================================================================== */
+
+/* ---------- page wrapper ---------- */
+.blog {
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+
+/* =====================================================================
+   INDEX — hero
+   mark 697–753 · h1 ink 805–912 (two lines, 57px apart) · sub 942–980 ·
+   hero bottom 1080 → the block sits 100px off the bottom.
+   ===================================================================== */
+.blog-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 100vh;
+  padding: 120px var(--px-page) 100px;
+  overflow: hidden;
+  background: var(--black);
+  color: var(--white);
+  text-align: center;
+}
+.blog-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* content/blog.json: hero.background.kind = "video-still-blur" — the only
+     honest source of imagery we have is a frame of our own hero video. */
+  filter: blur(14px) saturate(.9);
+  transform: scale(1.12);
+}
+.blog-hero-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 34%, rgba(0,0,0,.72) 100%);
+}
+.blog-hero-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 860px;
+}
+.blog-hero-mark {
+  width: 52px;
+  height: 52px;
+  margin-bottom: 41px;                  /* mark bottom 753 → h1 box top 794 */
+  opacity: .9;
+}
+.blog-hero-h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  -webkit-font-smoothing: auto;
+  text-rendering: geometricPrecision;
+  font-size: 52px;                      /* cap 35, lines 57.2 apart */
+  line-height: 1.1;
+  letter-spacing: -1.04px;
+  color: var(--white);
+  text-wrap: balance;
+  max-width: 12em;
+}
+.blog-hero-sub {
+  margin-top: 24px;
+  max-width: 460px;                     /* measured line width 403 */
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--w70);
+  text-wrap: pretty;
+}
+
+/* =====================================================================
+   INDEX — list, filters, grid
+   ===================================================================== */
+.blog-list {
+  background: var(--sand-m);
+  color: var(--black);
+  padding: 104px var(--px-page) 300px;  /* pills 1184 (=1080+104) · last card 2368 → 2691 */
+}
+.blog-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;                            /* text runs 28–30 apart, pill padding 10 */
+  margin-bottom: 48px;                  /* pill bottom 1215 → grid 1262 */
+}
+.blog-filter {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1;
+  color: var(--grey);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--dur), background-color var(--dur);
+}
+.blog-filter:hover { color: var(--black); }
+.blog-filter[aria-pressed="true"] {
+  background: rgba(0,0,0,.06);          /* measured lum 210 on a 217 ground */
+  color: var(--black);
+}
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 40px;                     /* 623 → 663 */
+  row-gap: 80px;                        /* card 525 tall; row 2 top 1867 */
+}
+.blog-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.blog-card[hidden] { display: none; }
+.blog-card-art {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 595 / 465;              /* 594.67 × 465 measured */
+  background: var(--sand-s);
+  overflow: hidden;
+  transition: background-color var(--dur);
+}
+.blog-card:hover .blog-card-art { background: var(--white); }
+.blog-art {
+  width: 64%;
+  max-width: 340px;
+  height: auto;
+  color: var(--grey-m);
+  overflow: visible;
+}
+/* the two accent details inside every motif (CONTRACT §4: jam, rationed) */
+.blog-art .art-jam-fill { fill: var(--jam); stroke: var(--jam); }
+.blog-art .art-jam-stroke { stroke: var(--jam); }
+.blog-card-cap {
+  display: block;
+  margin-top: 12px;                     /* image 1726 → caption box 1738 */
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--grey);
+  text-wrap: pretty;
+}
+.blog-card-date {
+  font-weight: 500;
+  color: var(--black);
+  font-variant-numeric: tabular-nums;
+}
+.blog-card-title { transition: color var(--dur); }
+.blog-card:hover .blog-card-title { color: var(--black); }
+
+/* =====================================================================
+   ARTICLE — hero
+   Reference h1 box top 214; ours carries a back link and a byline above it.
+   ===================================================================== */
+.blog-article { background: var(--white); }
+.blog-art-hero { padding: 150px var(--px-page) 0; }
+.blog-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--grey);
+  text-decoration: none;
+  transition: color var(--dur);
+}
+.blog-back svg { flex-shrink: 0; }
+.blog-back:hover { color: var(--black); }
+.blog-art-eyebrow { display: block; margin-top: 40px; }
+.blog-art-title {
+  margin-top: 18px;
+  max-width: 1100px;
+  color: var(--black);
+  text-wrap: pretty;
+}
+.blog-art-desc {
+  margin-top: 24px;
+  max-width: 622px;                     /* reference lede wraps at 650 − 28 */
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--grey);
+  text-wrap: pretty;
+}
+.blog-art-banner {
+  display: grid;
+  place-items: center;
+  margin-top: 40px;                     /* lede box bottom 422 → media 460 */
+  width: 100%;
+  /* The reference plate is a 16:9 film (1864×1048). We have no article
+     photography and will not borrow any, so the plate is a line-drawn band:
+     the same full-bleed gesture at 1864×700 rather than 1048px of empty
+     ground around a drawing. */
+  aspect-ratio: 1864 / 700;
+  border-radius: var(--r-img-lg);
+  background: var(--sand-s);
+  overflow: hidden;
+}
+/* the motifs draw inside the middle ~80% of their 240×160 viewBox, so the
+   <svg> is sized off the banner's height */
+.blog-art-banner .blog-art {
+  width: auto;
+  max-width: 92%;
+  height: 66%;
+  color: var(--grey-m);
+}
+
+/* =====================================================================
+   ARTICLE — body: meta rail | prose
+   ===================================================================== */
+.blog-art-body {
+  display: grid;
+  grid-template-columns: calc(50% - var(--px-page)) minmax(0, 1fr);
+  align-items: start;
+  padding: 48px var(--px-page) 0;       /* media 1508 → rail/quote 1554 */
+}
+.blog-rail {
+  position: sticky;
+  top: 120px;
+  padding-right: 40px;
+  min-width: 0;
+}
+.blog-rail-list { margin: 0; }
+.blog-rail-item + .blog-rail-item { margin-top: 22px; }   /* item pitch 53 */
+.blog-rail-k {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--grey);
+  opacity: .72;                         /* reference ink floor 163 */
+}
+.blog-rail-v {
+  margin: 5px 0 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--grey-m);
+}
+.blog-rail-dim { color: var(--grey); }
+.blog-rail-toc {
+  list-style: none;
+  margin: 2px 0 0;
+  padding: 0;
+  counter-reset: toc;
+}
+.blog-rail-toc-i {
+  counter-increment: toc;
+  position: relative;
+  padding-left: 22px;
+  margin-top: 8px;
+}
+.blog-rail-toc-i::before {
+  content: counter(toc, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--grey);
+  opacity: .72;
+  font-variant-numeric: tabular-nums;
+}
+.blog-rail-toc-a {
+  display: inline-block;
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--grey);
+  text-decoration: none;
+  transition: color var(--dur);
+}
+.blog-rail-toc-a:hover { color: var(--black); }
+.blog-col { min-width: 0; }
+
+/* ---------- prose (tools/md.py output) ---------- */
+.blog-prose {
+  font-size: 16px;
+  line-height: 1.6;                     /* body lines 25.6 apart */
+  color: var(--black);
+}
+.blog-prose > :first-child { margin-top: 0; }
+.blog-prose > :last-child { margin-bottom: 0; }
+.md-p { margin: 0 0 26px; text-wrap: pretty; }
+.md-lede {
+  font-size: 20px;
+  line-height: 1.45;
+  color: var(--grey-m);
+  margin-bottom: 34px;
+}
+.md-h2 {
+  margin: 64px 0 20px;                  /* sub-head ink bottom 1821 → body 1841 */
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  -webkit-font-smoothing: auto;
+  text-rendering: geometricPrecision;
+  font-size: 32px;                      /* cap 23 → ≈33 */
+  line-height: 1.2;
+  letter-spacing: -.64px;
+  color: var(--black);
+  scroll-margin-top: 120px;
+  text-wrap: pretty;
+}
+.md-h3 {
+  margin: 40px 0 12px;
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: -.2px;
+  color: var(--black);
+  scroll-margin-top: 120px;
+}
+.md-h4 {
+  margin: 28px 0 8px;
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--black);
+}
+.md-strong { font-weight: 500; color: var(--black); }
+.md-em { font-style: italic; }
+.md-a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--k40);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--dur), text-decoration-color var(--dur);
+}
+.md-a:hover { color: var(--jam); text-decoration-color: var(--jam); }
+.md-ul, .md-ol { margin: 0 0 26px; padding: 0; list-style: none; }
+.md-li { position: relative; padding-left: 24px; margin-bottom: 10px; text-wrap: pretty; }
+.md-ul > .md-li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: .62em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--sand-l);
+}
+.md-ol { counter-reset: mdol; }
+.md-ol > .md-li { counter-increment: mdol; }
+.md-ol > .md-li::before {
+  content: counter(mdol) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--grey);
+  font-variant-numeric: tabular-nums;
+}
+.md-quote {
+  margin: 32px 0;
+  padding-left: 24px;
+  border-left: 1px solid var(--sand-m);
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.35;
+  letter-spacing: -.44px;
+  color: var(--black);
+}
+.md-hr { height: 1px; margin: 48px 0; border: 0; background: var(--k10); }
+.md-code {
+  font-family: var(--font-mono);
+  font-size: .875em;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: var(--sand-s);
+}
+.md-pre {
+  margin: 0 0 26px;
+  padding: 16px 18px;
+  border-radius: var(--r-panel);
+  background: var(--sand-s);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.md-tbl { margin: 0 0 26px; width: 100%; overflow-x: auto; }
+.md-table { width: 100%; border-collapse: collapse; text-align: left; }
+.md-th {
+  padding: 0 24px 10px 0;
+  border-bottom: 1px solid var(--k10);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--grey);
+  white-space: nowrap;
+}
+.md-td {
+  padding: 12px 24px 12px 0;
+  border-bottom: 1px solid var(--k10);
+  font-size: 14px;
+  line-height: 1.5;
+  vertical-align: top;
+  color: var(--black);
+}
+.md-table tr > :last-child { padding-right: 0; }
+.md-qa .md-strong { display: inline-block; margin-bottom: 2px; }
+
+/* ---------- the two facts under the prose ---------- */
+.blog-facts {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin-top: 64px;
+  padding-top: 28px;
+  border-top: 1px solid var(--k10);
+}
+.blog-fact { display: flex; align-items: baseline; gap: 12px; }
+.blog-fact-n {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-optical-sizing: auto;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -.64px;
+  color: var(--black);
+  font-variant-numeric: tabular-nums;
+}
+.blog-fact-l { font-size: 13px; line-height: 1.4; color: var(--grey); max-width: 260px; }
+.blog-fact-rule { flex: 0 0 1px; align-self: stretch; background: var(--k10); }
+
+/* =====================================================================
+   ARTICLE — "More guides" (reference: 3 × 603, gap 28, tile 16:9)
+   ===================================================================== */
+.blog-more { padding: 120px var(--px-page) 0; }
+.blog-more-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.blog-more-h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  -webkit-font-smoothing: auto;
+  text-rendering: geometricPrecision;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -.52px;
+  color: var(--black);
+}
+.blog-more-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+.blog-story {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+.blog-story-tile {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;                 /* 603 × 339 measured */
+  border-radius: var(--r-img);
+  background: var(--sand-s);
+  overflow: hidden;
+  transition: background-color var(--dur);
+}
+.blog-story:hover .blog-story-tile { background: var(--sand-m); }
+.blog-story-tile .blog-art { width: 46%; max-width: 240px; color: var(--grey-m); }
+.blog-story-quote {
+  display: block;
+  margin-top: 16px;                     /* image 3625 → attribution ink 3645 */
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  -webkit-font-smoothing: auto;
+  text-rendering: geometricPrecision;
+  font-size: 18px;
+  line-height: 1.25;
+  letter-spacing: -.2px;
+  color: var(--black);
+  text-wrap: pretty;
+}
+.blog-story-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 12px;
+}
+.blog-story-meta { display: block; min-width: 0; }
+.blog-story-cat { display: block; font-size: 13px; line-height: 1.35; color: var(--black); }
+.blog-story-sub { display: block; font-size: 13px; line-height: 1.35; color: var(--grey); }
+.blog-story-read { flex-shrink: 0; }
+.blog-story:hover .blog-story-read { color: var(--black); }
+
+/* =====================================================================
+   ARTICLE — closing band
+   ===================================================================== */
+.blog-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 120px;
+  padding: 120px var(--px-page);
+  background: var(--sand-s);
+  text-align: center;
+}
+.blog-cta-h2 { max-width: 720px; color: var(--black); text-wrap: balance; }
+.blog-cta-p {
+  margin: 20px 0 36px;
+  max-width: 560px;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--grey);
+  text-wrap: pretty;
+}
+
+/* =====================================================================
+   Responsive — Lance's breakpoints (DESIGN §4): 1200 / 1024 / 800 / 600
+   ===================================================================== */
+@media (max-width: 1200px) {
+  .blog-grid { column-gap: 28px; row-gap: 56px; }
+  .blog-art-title { max-width: none; }
+}
+@media (max-width: 1024px) {
+  .blog-hero-h1 { font-size: 44px; letter-spacing: -.88px; }
+  .blog-art-body {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 40px;
+    padding-top: 40px;
+  }
+  .blog-rail {
+    position: static;
+    padding-right: 0;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--k10);
+  }
+  .blog-rail-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 32px;
+  }
+  .blog-rail-item + .blog-rail-item { margin-top: 0; }
+  .blog-rail-item:last-child { grid-column: 1 / -1; }
+  .blog-more-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 800px) {
+  .blog-list { padding-top: 72px; padding-bottom: 120px; }
+  .blog-filters { margin-bottom: 36px; }
+  .blog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .blog-art-hero { padding-top: 110px; }
+  .blog-art-eyebrow { margin-top: 28px; }
+  .blog-art-banner { margin-top: 28px; border-radius: 12px; }
+  .blog-more { padding-top: 72px; }
+  .blog-cta { margin-top: 72px; padding-top: 72px; padding-bottom: 72px; }
+  .md-h2 { font-size: 26px; letter-spacing: -.52px; margin-top: 48px; }
+  .md-lede { font-size: 18px; }
+}
+@media (max-width: 600px) {
+  .blog-hero { min-height: 88vh; padding-bottom: 64px; }
+  .blog-hero-mark { width: 44px; height: 44px; margin-bottom: 28px; }
+  .blog-hero-h1 { font-size: 34px; letter-spacing: -.68px; }
+  .blog-hero-sub { font-size: 14px; line-height: 1.5; margin-top: 18px; }
+  .blog-list { padding-top: 56px; padding-bottom: 80px; }
+  .blog-filters {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    margin-inline: calc(var(--px-page) * -1);
+    padding-inline: var(--px-page);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .blog-filters::-webkit-scrollbar { display: none; }
+  .blog-grid { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
+  .blog-card-cap { font-size: 14px; line-height: 21px; }
+  .blog-art-banner { aspect-ratio: 4 / 3; }
+  .blog-art-banner .blog-art { width: 52%; }
+  .blog-art-desc { font-size: 14px; line-height: 1.5; }
+  .blog-rail-list { grid-template-columns: minmax(0, 1fr); }
+  .blog-prose { font-size: 15px; }
+  .blog-facts { flex-direction: column; gap: 20px; }
+  .blog-fact-rule { display: none; }
+  .blog-fact-l { max-width: none; }
+  .blog-more-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .blog-story-tile .blog-art { width: 40%; }
+  .blog-cta-p { margin-bottom: 28px; }
+}

@@ -1,0 +1,1494 @@
+{
+  "_schema": {
+    "file": "content/solutions.json",
+    "owner": "solutions content agent (this file only)",
+    "purpose": "All copy and visual specs for /solutions (index) and the nine /solutions/<slug> pages. Mirrors Lance's /solutions, /solutions/front-of-house (the 'goal' template, Lance's by-area page) and /solutions/independent (the 'brand' template, Lance's by-type page) field for field. A renderer (tools/render_solutions.py, not mine) reads this and emits src/pages/solutions/index.html and src/pages/solutions/<slug>.html.",
+    "conventions": {
+      "language": "British English, sentence case, full stops. 'hypjam' is always lowercase, even at the start of a sentence. Eyebrows are short labels rendered uppercase by CSS (source is sentence case).",
+      "links": "Every href is a clean site URL from CONTRACT §3. Service links are NOT written inline: fields named 'service' hold an id into the top-level 'services' map, so if the services agent picked different slugs you remap them in ONE place (services.<id>.href).",
+      "arrows": "Lance prefixes inline links and list titles with '↳' and card links with 'Explore →'. The glyphs are supplied by CSS (::before), not stored in copy, except where a field is literally named 'link_label'.",
+      "numbers": "Every numeral on these pages is an OFFER FACT (a commitment hypjam makes) taken from hypjam-brand/pages/hire.json or CONTRACT §10. None is a result, client count or performance figure. Do not add any.",
+      "quotes": "kind='founder' is the founder's own statement (Avi Aggarwal, founder, hypjam) — the single canonical statement shared with home.json, agency.json and book.json, flagged with 'sign_off': true. kind='reserved' is the held-open brand-quote slot from CONTRACT §10: same card, quote text 'The first brand quote goes here.', jam-dotted tag 'Filled in at launch'. No invented names, ever.",
+      "images": "Only files that exist under assets/ are referenced. Alt text describes what is in frame. The three shoot-bay stills are named studio-*.jpg on disk; that word never appears in copy or alt text, but a naive grep of the built HTML will hit the src attribute — see 'known_risks'."
+    },
+    "top_level": {
+      "services": "id → {label, href}. The nine services from CONTRACT §3 nav. Assumed slugs; remap here if the services agent chose others (CONTRACT §6 hints at short slugs like /services/casting).",
+      "platforms": "The placements hypjam ships to (CONTRACT §10 replaces Lance's 'Trusted by' logo row). Rendered as monochrome typographic wordmarks we draw ourselves, opacity .5, with a trailing '+ your own site' item where Lance has '+ others'.",
+      "mocks": "Named CSS/SVG mock UIs placed inside feature panels and hero panels. Referenced by id from visual.mock so one build serves every page that uses it.",
+      "index": "The /solutions page.",
+      "pages": "Nine page objects. group='goal' pages use the goal template (Lance by-area); group='brand' pages use the brand template (Lance by-type). Section order inside each object is the render order."
+    },
+    "index_fields": {
+      "meta": "title (≤ 70 chars, ends '| hypjam') and description (≤ 160).",
+      "hero": "eyebrow, h1 (two lines at 64px), intro (one paragraph), cta {label, href}. Section: white, pt 150 / pb 24 (max-bp: pt 110). Left column only, max-width 640.",
+      "editorial": "One full-width still, radius 12, height ~740 at 1920, object-cover. Section pt 56 / pb 120 (max-bp: pt 40 / pb 64). Then the platforms row: label left (12px grey), wordmarks right, opacity .5, 40px tall row.",
+      "by_goal": "eyebrow, h2 (right column, 42px), six cards in a 3×2 grid, gap 30/40. Card = tile (see visual.kind='tile-icon') + title (26px serif) with 'Explore →' (13px grey) on the same baseline right-aligned + blurb (14px grey, max 2 lines). Section white, pb 140.",
+      "by_brand": "Same anatomy on sand-s (#f7f6f4), py 120; three cards in one row; tile is a still (visual.kind='still') instead of an icon tile.",
+      "cta": "The shared closing card (see layout.cta)."
+    },
+    "goal_page_fields": {
+      "slug, group, title, short": "slug is the URL; title is the nav/footer label; short is the one-line index card blurb.",
+      "meta": "As index.",
+      "hero": "breadcrumb [parent, current] rendered 'SOLUTIONS / LAUNCHES' (12px uppercase, tracking .08em, parent grey, current black); h1 (64px, up to 3 lines, max-width 540); intro (16px grey, max-width 450); cta; visual (kind='panel', 1070×715 at 1920, right column). Section white, pt 112 / pb 56 (max-bp: pt 96 / pb 40). platforms_row: true renders the same row as the index directly under the hero.",
+      "facts": "Centred block: h2 (42px, max-width 800), p (16px grey, max-width 560), then three numerals. items[] = {value, label}. value is the big serif numeral (64px), label the 12px uppercase caption. Section white, pt 120 / pb 100 (max-bp: pb 64).",
+      "behind": "'The services behind it'. eyebrow, h2, p, items[] = {n:'01', service:<id>, anchor:'#brief', blurb, link_label:'Service page'}. Four columns with 1px sand-m vertical dividers, cell padding 28. Section sand-s, py 100 (max-bp: py 56).",
+      "features[]": "One block per service in 'behind', same order. {anchor, service, h2, p, points[3] = {title, body}, link_label, layout:'text-left'|'text-right', visual}. First point open (title black, body shown), others collapsed (title grey), all clickable accordions. Each block is its own section, white, py 72 (max-bp: py 48). Panel is 1070×855 (aspect 1.25), radius 12, gradient (see layout.gradient).",
+      "problems": "'Built for the problems a launch actually has.' h2 + p left; four cards right in a 2×2 grid (card 593×444 gradient tile with a line icon + baseline; then h3 16px/500 black, p 14px grey). Section white, py 120 (max-bp: py 64).",
+      "how": "'How it runs'. eyebrow, h2, steps[4] = {n, title, body}. Four columns with dividers, min-height 220, number top-left, title + body bottom-aligned. Section sand-s, py 120.",
+      "hood": "'Under the hood'. eyebrow, h2, p, items[6] = {label, value, body}, link {label, href}. 3×2 grid with 1px sand-m hairlines both ways; cell min-height 237, padding 28; label 12px uppercase, value 26px serif, body 14px grey pushed to the cell bottom; the link sits in the last cell. Section white, pt 120.",
+      "quote": "{kind, text, name, role, tag, visual}. Card full width, sand-s, radius 12, height 360; quote 36px serif with hanging open-quote; name 14px black + role 13px grey bottom-left; visual fills the right 620px.",
+      "faq": "eyebrow, h2, items[5] = {q, a}. Right column list, 1px sand-m rules, first item open by default.",
+      "related": "eyebrow, items[3] = {label, body, href | service}. Separated from FAQ by a full-width 1px sand-m rule.",
+      "cta": "h2, p, button {label, href}. See layout.cta."
+    },
+    "brand_page_fields": {
+      "hero": "Full-viewport still (h-svh, min 560) with a 45% black overlay; content centred and anchored to the lower third: the hypjam icon (/assets/brand/logos/hypjam-icon.svg, 68px), eyebrow 'Solutions · DTC & ecommerce' (12px uppercase, white .7), h1 (64px white, max-width 640, centred), intro (16px white .75, max-width 500), cta (translucent pill). Nav renders on dark.",
+      "facts": "As goal pages.",
+      "fits": "'Where hypjam fits'. eyebrow, h2, p, items[4] = {title, body, link {label, href | service}}. 2×2 grid, dividers both ways; title 26px serif with a 24px hairline under it; body 14px grey; link 14px grey with ↳. Section white, py 120.",
+      "band": "Full-width still, radius 12, height 570, 55% overlay; centred: icon 68px, h2 64px white, sub (12px uppercase white .75, two lines max, max-width 420). Section white, pb 120.",
+      "how, quote, faq (3 items), related, cta": "As goal pages. quote.kind is 'reserved' on all three brand pages."
+    },
+    "visual_kinds": {
+      "tile-icon": "{kind, icon, description} — a gradient tile (layout.gradient), radius 12, with a single line icon centred (stroke #969696, 1.5px, round caps/joins, fits a 260×190 box) and a 300px hairline 'floor' under it. 'description' says what to draw; the drawing agent makes the SVG.",
+      "still": "{kind, src, alt, position} — an existing file under assets/img/stills or assets/video, object-cover, focal position as CSS object-position.",
+      "panel": "{kind, mock, ...overrides} — the sand gradient panel with a named mock from top-level 'mocks' centred in it. Overrides (message, label, rows…) replace the mock's defaults for that page.",
+      "hq-drawing": "{kind} — the small line drawing of hypjam's HQ (src/drawing/hq.svg at 1px stroke, whole drawing) centred in a white inner card, as Lance's footer-buildings.png.",
+      "hq-room": "{kind, room} — a crop of one room of the HQ drawing (room 1–5 per CONTRACT §8 bbox), rendered at 1px stroke on sand-s, object-fit contain with 48px padding. Used where Lance has a photo of a customer.",
+      "reserved-phone": "{kind} — the dashed-hairline frame with a line-drawn phone silhouette from CONTRACT §10, for reserved brand-story slots."
+    },
+    "layout": {
+      "grid": "Two-column sections split at 50%: left column starts at the 28px gutter, right column starts at x=931 (1920 wide). Feature blocks split 780/1070 with the panel at x=821 when text-left, or the panel at x=28–1098 and text at x=1139 when text-right.",
+      "gradient": "linear-gradient(90deg, #e2e2e0 0%, #f5f5f5 45%, #e8e8e8 100%) — sampled from Lance's panels and tiles.",
+      "hairline": "1px #dad9d4 (--sand-m) on white; 1px #d5d1ce on sand-s.",
+      "eyebrow": "12px Geist, uppercase, tracking .08em, --grey, preceded by a 16px × 1px dash, 12px gap.",
+      "numerals": "64px Newsreader, -1.28px tracking, black; caption 12px uppercase tracking .08em --grey, 12px below.",
+      "cta": "Section pb 140 (max-bp: pb 80). Card radius 16, background #dad9d4 (--sand-m), padding 48 56; left: h2 36px serif, p 16px --grey (max-width 400) mt 20, pill button mt 96 (pill on sand: rgba(0,0,0,.06) bg, black text, black arrow circle); right: white inner card radius 12, 895×360, the hq-drawing centred at ~520px wide.",
+      "h1_widths": "Measured with the shipped Newsreader at 64px/1.05/-1.28px: every goal-page h1 here sets 3 lines at max-width 540 (Lance's own by-area h1 does the same at that width); every brand-page h1 sets 2 lines centred at max-width 640 (as Lance's); the index h1 sets 2 lines at 700 (Lance's index h1 needs a wider box, ~750). Facts captions all fit one line at 12px uppercase tracking .08em in a 600px column.",
+      "buttons": "Lance's pill (CONTRACT §4): height 32, 14px, gap 10, padding-left 16, trailing 22px circle. On white the pill is #efefef with a black circle and white arrow; on dark it is rgba(255,255,255,.12) with a --jam circle and black arrow.",
+      "mobile": "≤1024: every grid becomes one column, panels go full width at aspect 4:3, facts stack with 48px gaps, the hero panel sits under the copy, section paddings per CONTRACT §4 (80px)."
+    },
+    "known_risks": [
+      "Service hrefs are assumed slugs; confirm against content/services.json when it exists.",
+      "assets/img/stills/studio-*.jpg file names contain 'studio'. The word never appears in copy or alt text here, but a grep of built HTML will hit the src attribute; the asset owner may want to rename them (e.g. bay-*.jpg) and update the 'src' fields below.",
+      "Founder quotes are the founder's single canonical statement (identical to home.json quotes.items[0].text); each is flagged sign_off: true."
+    ]
+  },
+
+  "services": {
+    "briefing":     { "label": "Briefing & scripts",       "href": "/services/briefing" },
+    "hooks":        { "label": "Hook writing",             "href": "/services/hooks" },
+    "casting":      { "label": "Casting & roster",         "href": "/services/casting" },
+    "shoot":        { "label": "Shoot direction",          "href": "/services/shoot-direction" },
+    "editing":      { "label": "Editing & captions",       "href": "/services/editing" },
+    "whitelisting": { "label": "Whitelisting & Spark Ads", "href": "/services/whitelisting" },
+    "rights":       { "label": "Usage rights",             "href": "/services/usage-rights" },
+    "reporting":    { "label": "Reporting",                "href": "/services/reporting" },
+    "founder":      { "label": "Founder-led video",        "href": "/services/founder-led" }
+  },
+
+  "platforms": {
+    "label": "Ships to",
+    "items": [
+      { "name": "TikTok",          "wordmark": "tiktok" },
+      { "name": "Instagram Reels", "wordmark": "reels" },
+      { "name": "YouTube Shorts",  "wordmark": "shorts" },
+      { "name": "Snapchat",        "wordmark": "snapchat" },
+      { "name": "Pinterest",       "wordmark": "pinterest" },
+      { "name": "Meta ads",        "wordmark": "meta" }
+    ],
+    "trailing": "+ your own site"
+  },
+
+  "mocks": {
+    "conversation": {
+      "size": "fits a 1070×715 panel; group centred, ~480 wide",
+      "spec": "Top row: a 20px line phone-handset icon and a 14px --grey caption '{sender}'. Below it a white speech bubble (radius 16, 1px sand-m border, shadow 0 8px 24px rgba(0,0,0,.08), padding 14 18, 16px black text, 300px wide, tail bottom-left) containing '{message}'. A 1.5px --sand-l curved connector runs from the bubble's right edge to a black rounded square (84×84, radius 20) holding /assets/brand/logos/hypjam-icon.svg at 44px; under the square a 16px/500 black label '{label}'. Loop: the bubble fades and slides in (0.6s), the connector draws (0.5s), the square scales from .9 (0.4s), hold 3s, reset.",
+      "defaults": { "sender": "Client · your brand · 9:12", "message": "We are launching in March. Can we have hooks by the 20th?", "label": "Briefing & scripts" }
+    },
+    "brief-card": {
+      "size": "420×300 white card, radius 12, 1px sand-m, shadow 0 12px 24px rgba(0,0,0,.06)",
+      "spec": "Header 13px --grey 'Brief · your brand' with a 6px --jam dot and 'in progress' right-aligned. Five rows (14px, label --grey left, value black right, 1px sand-s rules): Product · 'the serum' | Goal · 'launch, March' | Platforms · three chips TikTok · Reels · Shorts (chip: 12px, 1px sand-m, radius 999) | Budget band · 'growth' | Hooks · '8'. Rows type in one at a time (0.35s each), hold 3s, reset."
+    },
+    "hook-list": {
+      "size": "460×330 sheet, white, radius 12, 1px sand-m",
+      "spec": "Eight rows: 12px --grey number '01'–'08' then a 14px black hook line. Lines: 'I did not expect this to actually work' · 'Stop scrolling if your skin does this in winter' · 'POV: you finally read the ingredients' · 'The one product I did not post until it worked' · 'Three things nobody tells you about serums' · 'I switched and nobody noticed. That is the point' · 'Wait for the second bottle' · 'My dermatologist friend asked what this was'. Rows type in at 0.3s each; then rows 02 and 07 get a --jam tick and a 12px 'picked for the shoot' tag; hold 3s; reset."
+    },
+    "casting-board": {
+      "size": "three cards 150×200 in a row, gap 20, white, radius 12, 1px sand-m",
+      "spec": "Each card: a 56px line-drawn avatar circle (stroke #969696 1.5px, simple head and shoulders), a 14px black handle '@—' (three dashes, no real names), and three 12px --grey tags 'skincare · 25–34 · London' / 'home · 35–44 · Leeds' / 'fitness · 18–24 · remote'. Cards slide in from the right 0.4s apart; the middle card lifts 8px and gets a --jam 'shortlisted' tag; hold 3s; reset."
+    },
+    "phone-rec": {
+      "size": "phone frame 280×580, radius 40, 8px white bezel, screen sand-s; take list 220 wide to its right",
+      "spec": "Top-left of the screen: a 8px --jam dot pulsing at 1Hz next to 12px 'REC 00:12:07' (timecode runs). At 70% height a caption bar (black, radius 6, 13px white) 'wait for the second hook'. Take list (14px): 'hook 03 — take 1' struck through --grey, 'hook 03 — take 2 ✓' black with a --jam tick, 'hook 05 — take 1' pending. Every 4s the tick moves down one line."
+    },
+    "timeline": {
+      "size": "640×220, white, radius 12, 1px sand-m",
+      "spec": "Three tracks (labels 12px --grey: video · captions · sound). Video track: four clip blocks (sand-m, radius 4) with 12px labels 'hook' 'demo' 'proof' 'cta'. Captions track: a 'CC' toggle in --jam, on. Sound track: a low waveform stroke. A 1px --jam playhead scrubs left to right over 3s. Under the tracks an export bar (4px, sand-m) fills --jam over 1.2s, then three 12px labels light in --jam with ticks: TikTok · Reels · Shorts. Hold 2s; reset."
+    },
+    "spark-toggle": {
+      "size": "420×260 white card, radius 12, 1px sand-m",
+      "spec": "Tabs 'TikTok' (active, 1px black underline) and 'Meta' (--grey). Row: 40px line avatar + '@—' handle + 12px --grey 'creator'. Row: 14px 'Authorise for Spark Ads' with a toggle (44×24) that flips to --jam. Row: 14px 'Ad code' with a dotted field '••••-••••' that fills to 'ready' in --jam. Loop 5s."
+    },
+    "rights-sheet": {
+      "size": "420×300 white card, radius 12, 1px sand-m",
+      "spec": "Title 14px black 'Usage rights · your brand × @—'. Rows 14px (label --grey, value black): Organic · ✓ | Paid · ✓ | Whitelisting · ✓ | Window · '6 months' | Territory · 'UK'. Bottom: a signature line (1px sand-m) with a 12px 'signed before the shoot' label and a --jam circle stamp (28px) that scales in at the end. Loop 5s."
+    },
+    "report-grid": {
+      "size": "3×3 grid, cells 100×70, gap 6, inside a 420×300 white card",
+      "spec": "Column headers 12px --grey 'hook 02 · hook 07 · hook 05'; row headers '@— · @— · @—'. Cells are sand-s and shade to sand-m/sand-l one by one (no numbers anywhere); one cell gets a 1.5px --jam outline and a 12px 'run this' tag. Footer 12px --grey: 'next brief: two more like hook 07'. Loop 6s."
+    },
+    "founder-take": {
+      "size": "phone frame 240×500 (as phone-rec) plus a 260-wide prompt card to its right",
+      "spec": "On the phone screen a simple line-drawn person (head, shoulders, one hand up holding a product box) and a caption bar 'take 3'. The prompt card (white, radius 12): 12px --grey 'Hook' then 16px black 'It took two years to get the lid right.' then 12px --grey 'Say it to the lens, not the notes.' Every 4s the caption goes 'take 4' and the card's hook line swaps to 'Nobody asked for this. We made it anyway.'"
+    },
+    "trend-board": {
+      "size": "440×300 white card, radius 12, 1px sand-m",
+      "spec": "Three rows, each: a 60×24 waveform stroke (#969696), 14px black 'sound 01/02/03', 12px --grey 'moving this week' with a --jam up-arrow on row 2 only. Right of the rows a 120×214 mini phone frame showing a 'stitched' split screen (two sand-m blocks). Row 2 gets a 12px 'brief sent' chip in --jam. Loop 5s."
+    },
+    "retention-flow": {
+      "size": "560×200 diagram",
+      "spec": "Three nodes (white, radius 12, 1px sand-m, 150×90) joined by 1.5px --sand-l arrows: 'Order' → 'Day 3 · how-to video' → 'Day 21 · reorder'. Each video node carries a --jam play triangle (12px). Arrows draw left to right (0.5s each), then the middle node's triangle pulses. Loop 5s."
+    }
+  },
+
+  "index": {
+    "meta": {
+      "title": "Solutions: hypjam by goal and by brand | hypjam",
+      "description": "hypjam by goal (launches, always-on paid social, organic and trends, founder-led, creative testing, retention) and by brand: DTC and ecommerce, apps and subscriptions, food and drink."
+    },
+    "hero": {
+      "eyebrow": "Solutions",
+      "h1": "hypjam for every goal, and every kind of brand.",
+      "intro": "hypjam solutions map the agency onto how a brand actually spends. By goal, they cover launches, always-on paid social, organic and trend-led content, founder-led video, creative testing and retention. By brand, they describe how DTC and ecommerce, apps and subscriptions, and food and drink brands run hypjam against their own calendar and their own numbers.",
+      "cta": { "label": "Book a call", "href": "/book" }
+    },
+    "editorial": {
+      "visual": {
+        "kind": "still",
+        "src": "/assets/img/stills/studio-wide.jpg",
+        "alt": "A creator talking to a phone on a tripod inside a ring light; an editor cutting at a desk behind her",
+        "position": "50% 40%"
+      }
+    },
+    "platforms_row": true,
+    "by_goal": {
+      "eyebrow": "By goal",
+      "h2": "One team, worked from every goal's side of the brief.",
+      "cards": [
+        {
+          "slug": "launches",
+          "title": "Launches",
+          "blurb": "Hooks, casting and first cuts ready before the product ships.",
+          "cta": "Explore",
+          "href": "/solutions/launches",
+          "visual": { "kind": "tile-icon", "icon": "launch", "description": "A 9:16 phone outline (rounded, 110×200) with a play triangle centred on its screen and three short motion lines trailing off its left edge; baseline under." }
+        },
+        {
+          "slug": "always-on-paid-social",
+          "title": "Always-on paid social",
+          "blurb": "A monthly supply of ads, briefed, cast, cut and whitelisted.",
+          "cta": "Explore",
+          "href": "/solutions/always-on-paid-social",
+          "visual": { "kind": "tile-icon", "icon": "loop", "description": "A month grid (5×4 small squares, 150 wide) with a circular repeat arrow (two arcs with heads, 90px) overlapping its bottom-right corner; baseline under." }
+        },
+        {
+          "slug": "organic-and-trends",
+          "title": "Organic & trends",
+          "blurb": "Trend-led content, briefed this week, shot on a phone.",
+          "cta": "Explore",
+          "href": "/solutions/organic-and-trends",
+          "visual": { "kind": "tile-icon", "icon": "trend", "description": "A rising polyline (five points, 200 wide) with a small arrowhead at its end and a music note (stem and two ovals, 60px) sitting on the second peak; baseline under." }
+        },
+        {
+          "slug": "founder-led",
+          "title": "Founder-led",
+          "blurb": "You on camera, directed like a creator, never like a brand deck.",
+          "cta": "Explore",
+          "href": "/solutions/founder-led",
+          "visual": { "kind": "tile-icon", "icon": "ring-light", "description": "A ring light (two concentric circles, 180 and 150) on a short tripod stem, with a small phone outline (40×70) at its centre; baseline under." }
+        },
+        {
+          "slug": "creative-testing",
+          "title": "Creative testing",
+          "blurb": "Hooks × creators × formats, tested one axis at a time.",
+          "cta": "Explore",
+          "href": "/solutions/creative-testing",
+          "visual": { "kind": "tile-icon", "icon": "grid-test", "description": "A 3×3 grid of small rounded frames (each 44×60, gap 12); two frames carry a tick, one carries a small filled circle at its corner; baseline under." }
+        },
+        {
+          "slug": "retention",
+          "title": "Retention",
+          "blurb": "How-to, onboarding and reorder video for customers you already have.",
+          "cta": "Explore",
+          "href": "/solutions/retention",
+          "visual": { "kind": "tile-icon", "icon": "retention", "description": "An envelope outline (180×120) with a play triangle on its flap and a curved return arrow looping from its right edge back under it; baseline under." }
+        }
+      ]
+    },
+    "by_brand": {
+      "eyebrow": "By brand",
+      "h2": "DTC, apps or food and drink: the same team, your standards.",
+      "cards": [
+        {
+          "slug": "dtc-ecommerce",
+          "title": "For DTC & ecommerce",
+          "blurb": "Feed-first ads for brands that sell on the scroll.",
+          "cta": "Explore",
+          "href": "/solutions/dtc-ecommerce",
+          "visual": { "kind": "still", "src": "/assets/img/stills/studio-creator.jpg", "alt": "A creator talking to a phone on a tripod, framed by a ring light", "position": "50% 30%" }
+        },
+        {
+          "slug": "apps-and-subscriptions",
+          "title": "For apps & subscriptions",
+          "blurb": "Walkthrough and onboarding video for apps people keep opening.",
+          "cta": "Explore",
+          "href": "/solutions/apps-and-subscriptions",
+          "visual": { "kind": "still", "src": "/assets/img/stills/aerial-close.jpg", "alt": "The arched windows of a brick warehouse at golden hour, seen from the air", "position": "50% 50%" }
+        },
+        {
+          "slug": "food-and-drink",
+          "title": "For food & drink",
+          "blurb": "Kitchen shoots, taste on camera, claims kept inside the rules.",
+          "cta": "Explore",
+          "href": "/solutions/food-and-drink",
+          "visual": { "kind": "still", "src": "/assets/img/stills/studio-wide.jpg", "alt": "A kitchen-counter set with a creator mid-take behind a ring light", "position": "50% 55%" }
+        }
+      ]
+    },
+    "cta": {
+      "h2": "Tell us what you are launching.",
+      "p": "A call starts with your product, your calendar and your ad account, not a generic pitch deck.",
+      "button": { "label": "Book a call", "href": "/book" },
+      "visual": { "kind": "hq-drawing" }
+    }
+  },
+
+  "pages": [
+    {
+      "slug": "launches",
+      "group": "goal",
+      "title": "Launches",
+      "short": "Hooks, casting and first cuts ready before the product ships.",
+      "meta": {
+        "title": "Launches: hooks, casting and cuts before the product ships | hypjam",
+        "description": "How hypjam runs a product launch: a brief on a call, eight hooks per script, creators cast from our roster and approved by you, a phone shoot, and first cuts inside fourteen days, cleared for organic and paid."
+      },
+      "hero": {
+        "breadcrumb": ["Solutions", "Launches"],
+        "h1": "A launch with its hooks written before it ships",
+        "intro": "hypjam takes the brief on a call, writes the hooks, casts the creators, directs the shoot and delivers first cuts inside fourteen days, cleared for organic and paid. Your team keeps the launch.",
+        "cta": { "label": "Book a call", "href": "/book" },
+        "visual": { "kind": "panel", "mock": "conversation", "sender": "Client · your brand · 9:12", "message": "We are launching the serum in March. Can we have hooks by the 20th?", "label": "Briefing & scripts" }
+      },
+      "platforms_row": true,
+      "facts": {
+        "h2": "Most launch content is briefed too late. Every part of this one is briefed first.",
+        "p": "On hypjam the script is locked before anyone films and the creators are cast before the product lands. Four services make that happen, in the order a launch actually needs them.",
+        "items": [
+          { "value": "14 days", "label": "From a signed brief to your first cuts" },
+          { "value": "8 hooks", "label": "Written and tested per script" },
+          { "value": "6 placements", "label": "TikTok, Reels, Shorts, Snap, Pinterest and Meta, cut natively" }
+        ]
+      },
+      "behind": {
+        "eyebrow": "The services behind it",
+        "h2": "The services behind the launch.",
+        "p": "Each one is a service on its own. Together they cover what happens before the shoot, on the shoot, and in the fortnight before the launch date.",
+        "items": [
+          { "n": "01", "service": "briefing", "anchor": "#brief",   "blurb": "Turns a call into a brief with a product, a goal, a date and a budget band.", "link_label": "Service page" },
+          { "n": "02", "service": "hooks",    "anchor": "#hooks",   "blurb": "Writes eight hooks per script and picks the ones worth filming.",         "link_label": "Service page" },
+          { "n": "03", "service": "casting",  "anchor": "#casting", "blurb": "Casts from our own roster for the product, and shows you the shortlist.",  "link_label": "Service page" },
+          { "n": "04", "service": "editing",  "anchor": "#cut",     "blurb": "Cuts each take for the placement it is going to, captions burned in.",    "link_label": "Service page" }
+        ]
+      },
+      "features": [
+        {
+          "anchor": "brief",
+          "service": "briefing",
+          "layout": "text-left",
+          "h2": "The brief is written on the first call, in your words.",
+          "p": "hypjam starts with a conversation, not an order form. What the product is, who it is for, what the launch date is, what you have already tried. By the end of the call the brief is on the tracker with a budget band and a date, and nothing is guessed.",
+          "points": [
+            { "title": "One brief, not a vibe",       "body": "The brief carries the product, the offer, the platforms, the tone and the date. It is the document the writer, the producer and the editor all work from, so the creator's take matches what you asked for." },
+            { "title": "A budget band, not a mystery", "body": "Packages start from £1,800 a month and the brief says which one fits. 'From' is honest: the final number is scoped once we know how many videos you need and how long you want the rights for." },
+            { "title": "Tracked live",                "body": "Every brief sits on a live tracker you can open. Casting, scripting, shooting and editing move across it during the sprint, so you never have to ask where things are." }
+          ],
+          "link_label": "Briefing & scripts service page",
+          "visual": { "kind": "panel", "mock": "brief-card" }
+        },
+        {
+          "anchor": "hooks",
+          "service": "hooks",
+          "layout": "text-right",
+          "h2": "Eight hooks are written before anyone presses record.",
+          "p": "The first three seconds decide whether the rest of the video is watched, so that is where the writing time goes. Every script starts as eight hooks of different kinds: curiosity, comparison, POV, a plain claim. Two or three are picked for the shoot. The rest are kept for round two.",
+          "points": [
+            { "title": "Hooks of different kinds",  "body": "A launch does not know which angle will land, so the eight are deliberately different: a question, a confession, a comparison, a 'wait for it'. The shoot covers more than one so the ad account has something to choose between." },
+            { "title": "Scripted, then loosened",   "body": "Each hook has a one-line script and a payoff. Creators get the script and the direction, and deliver it in their own timing and words. Directed, not read." },
+            { "title": "Kept for the next round",   "body": "The hooks that did not make the shoot stay in the brief. When the first cuts have run, the next round starts from what is already written." }
+          ],
+          "link_label": "Hook writing service page",
+          "visual": { "kind": "panel", "mock": "hook-list" }
+        },
+        {
+          "anchor": "casting",
+          "service": "casting",
+          "layout": "text-left",
+          "h2": "Casting is from our roster, and you approve the shortlist.",
+          "p": "Creators are cast from hypjam's own roster for tone, look and niche, not follower count. You see the shortlist before anyone shoots. The creator gets the brief, the script and the references, so they arrive knowing what the launch is for.",
+          "points": [
+            { "title": "Cast for the product",      "body": "Skincare, home, fitness, food, tech, parenting: the roster is organised by what people actually use and film. A launch is cast for the person your customer would believe, not the biggest account." },
+            { "title": "You see who, first",         "body": "The shortlist lands on the tracker with each creator's handle and previous work. Nobody films until you have said yes." },
+            { "title": "Paid by us, once",           "body": "Creators are paid out of your package fee on a set schedule. One contract, one invoice, no separate negotiations on your side." }
+          ],
+          "link_label": "Casting & roster service page",
+          "visual": { "kind": "panel", "mock": "casting-board" }
+        },
+        {
+          "anchor": "cut",
+          "service": "editing",
+          "layout": "text-right",
+          "h2": "Each take is cut for the placement it is going to.",
+          "p": "A TikTok cut and a Reels cut are not the same file with a different export. The editor cuts for how each feed is watched: pacing, captions, sound, where the product first appears. Captions are burned in and kept clear of the platform's own overlays.",
+          "points": [
+            { "title": "Native, not resized",        "body": "Every video is cut 9:16 for the platform it is going to, with the hook in the first frame and the caption inside the safe area. Six placements, six cuts if the brief needs them." },
+            { "title": "One revision round, included", "body": "Every package includes one full revision round per video. Most rounds get used on pacing or captions rather than reshoots, because the script was locked before anyone filmed." },
+            { "title": "Delivered with a note",       "body": "The cuts arrive with the usage rights and our read on what to run where. Then we watch what performs and brief the next round around it." }
+          ],
+          "link_label": "Editing & captions service page",
+          "visual": { "kind": "panel", "mock": "timeline" }
+        }
+      ],
+      "problems": {
+        "h2": "Built for the problems a launch actually has.",
+        "p": "Not a marketplace with a search box. hypjam is built around the launch date that will not move, the one hero film with no variants, and the rights that are not sorted the day the ad has to go live.",
+        "items": [
+          { "title": "The date is fixed, the content is not", "body": "Product is landing in six weeks and there is no video. The brief goes on a call this week and first cuts land inside fourteen days.", "visual": { "kind": "tile-icon", "icon": "calendar-pin", "description": "A calendar leaf (140×120) with one day circled and a small pin above it; baseline under." } },
+          { "title": "One hero ad, no variants",             "body": "A single polished film gives the ad account nothing to learn from. Eight hooks and a handful of creators give it a set.", "visual": { "kind": "tile-icon", "icon": "one-to-many", "description": "One large phone outline on the left with an arrow fanning to three small phone outlines on the right; baseline under." } },
+          { "title": "The brand voice on someone else's phone", "body": "Creators sound off-brand when nobody directs them. Ours get a script, references and notes, and a director on the call.", "visual": { "kind": "tile-icon", "icon": "speech-script", "description": "A speech bubble (150×100) with three text lines inside and a small clapperboard outline overlapping its corner; baseline under." } },
+          { "title": "Rights sorted after the fact",         "body": "An ad that has to come down because the licence was implied is a launch problem. Usage is in writing with the creator before they film.", "visual": { "kind": "tile-icon", "icon": "signed-doc", "description": "A document outline (110×140) with a folded corner, two text lines and a tick in a circle at its lower right; baseline under." } }
+        ]
+      },
+      "how": {
+        "eyebrow": "How it runs",
+        "h2": "From the first call to the first cuts.",
+        "steps": [
+          { "n": "01", "title": "The brief lands",       "body": "A thirty-minute call. Product, goal, date, budget band, and what you have already tried. It is on the tracker the same day." },
+          { "n": "02", "title": "Hooks and scripts",     "body": "Eight hooks per script, each with a one-line payoff. You pick with us which ones go to the shoot." },
+          { "n": "03", "title": "Cast and shot",         "body": "Creators are cast from the roster and approved by you, then directed through the takes on their own phones." },
+          { "n": "04", "title": "Cut, captioned, cleared", "body": "Each take is cut for its placement, captions burned in, and delivered with the rights and a note on what to run where." }
+        ]
+      },
+      "hood": {
+        "eyebrow": "Under the hood",
+        "h2": "On a phone, from a script, under a contract.",
+        "p": "The details a marketing lead asks about before signing a launch brief.",
+        "items": [
+          { "label": "Turnaround",  "value": "14 days",             "body": "From a signed brief to first cuts. Casting, shooting and editing all happen inside the sprint, tracked live." },
+          { "label": "Hooks",       "value": "8 per script",        "body": "Every script starts as eight hooks. Two or three are picked for the shoot; the rest are kept for the next round." },
+          { "label": "Casting",     "value": "You approve",         "body": "Creators come from our own roster, cast for the product. Nobody shoots until you have seen the shortlist." },
+          { "label": "Rights",      "value": "In writing",          "body": "Organic and paid usage for the term of your package, agreed with the creator before they film. Longer windows are scoped in the brief." },
+          { "label": "Revisions",   "value": "One round per video", "body": "Included in every package. Usually spent on pacing or captions, because the script was locked first." },
+          { "label": "Placements",  "value": "Six",                 "body": "TikTok, Instagram Reels, YouTube Shorts, Snapchat, Pinterest and Meta ads, each cut for where it is going." }
+        ],
+        "link": { "label": "Rights and safety", "href": "/rights" }
+      },
+      "quote": {
+        "kind": "founder",
+        "sign_off": true,
+        "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
+        "name": "Avi Aggarwal",
+        "role": "Founder, hypjam",
+        "visual": { "kind": "hq-room", "room": 1, "alt": "Line drawing of the brief desk at hypjam's HQ" }
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "h2": "Questions people ask before a launch brief.",
+        "items": [
+          { "q": "How fast can a launch actually turn around?",   "a": "Most sprints run fourteen days from brief to delivery, with casting, shooting and editing inside that. Rush timelines are possible; we will tell you honestly if the brief needs longer." },
+          { "q": "What do we get at the end of the sprint?",      "a": "The finished videos cut per placement, the usage rights in writing, and our read on what to run where. Then we watch what performs and brief the next round around it." },
+          { "q": "How many videos is a launch?",                  "a": "Six a month on Starter, twelve on Growth, twenty-four or more on Scale. A launch is best started on Growth so the ad account has variants to choose between." },
+          { "q": "Can we see the creators before they shoot?",    "a": "Yes. Casting is from our roster and you approve the shortlist before anyone films." },
+          { "q": "What if the product is late?",                  "a": "The brief and the hooks do not need the product in hand; the shoot does. We schedule creators around the delivery date and the tracker shows the shift." }
+        ]
+      },
+      "related": {
+        "eyebrow": "Related",
+        "items": [
+          { "service": "hooks",                  "body": "The eight-hook script at the heart of every launch." },
+          { "label": "Creative testing",         "body": "Reading the launch round as a grid, and briefing the next one.", "href": "/solutions/creative-testing" },
+          { "label": "Always-on paid social",    "body": "What happens after the launch, month by month.",            "href": "/solutions/always-on-paid-social" }
+        ]
+      },
+      "cta": {
+        "h2": "Tell us what is launching.",
+        "p": "Book a thirty-minute call. Bring the product and the date; we will come back with formats, creators and a timeline.",
+        "button": { "label": "Book a call", "href": "/book" }
+      }
+    },
+
+    {
+      "slug": "always-on-paid-social",
+      "group": "goal",
+      "title": "Always-on paid social",
+      "short": "A monthly supply of ads, briefed, cast, cut and whitelisted.",
+      "meta": {
+        "title": "Always-on paid social: monthly UGC ads, one contract | hypjam",
+        "description": "How hypjam runs always-on paid social: a monthly brief, creators cast from the roster, variants cut per placement, Spark Ads and whitelisting set up by us, and one invoice for everyone behind it."
+      },
+      "hero": {
+        "breadcrumb": ["Solutions", "Always-on paid social"],
+        "h1": "A monthly supply of ads, briefed, cut and whitelisted",
+        "intro": "hypjam runs the monthly brief, casts from a roster you have already approved, cuts variants for every placement, sets up whitelisting and Spark Ads, and sends one invoice. Your team keeps the ad account.",
+        "cta": { "label": "Book a call", "href": "/book" },
+        "visual": { "kind": "panel", "mock": "conversation", "sender": "Client · your brand · 8:40", "message": "The winner from last month is fading. What is next?", "label": "Briefing & scripts" }
+      },
+      "platforms_row": true,
+      "facts": {
+        "h2": "Ads fatigue in weeks. The supply has to be monthly, not a project.",
+        "p": "On hypjam you brief once a month and get a set of variants back, not a single film. Four services make that a routine rather than a scramble.",
+        "items": [
+          { "value": "6 to 24+", "label": "Videos a month, by package" },
+          { "value": "1 invoice", "label": "One contract, every creator and editor behind it" },
+          { "value": "1 month", "label": "Minimum term, then month to month" }
+        ]
+      },
+      "behind": {
+        "eyebrow": "The services behind it",
+        "h2": "The services behind always-on.",
+        "p": "Each one is a service on its own. Together they cover the brief at the start of the month, the shoot in the middle, and the ads running by the end of it.",
+        "items": [
+          { "n": "01", "service": "briefing",     "anchor": "#brief",     "blurb": "A monthly brief built from what ran last month and what is coming next.", "link_label": "Service page" },
+          { "n": "02", "service": "casting",      "anchor": "#roster",    "blurb": "A roster of creators you have approved, cast brief by brief.",              "link_label": "Service page" },
+          { "n": "03", "service": "editing",      "anchor": "#variants",  "blurb": "Variants cut per placement so the account has something to learn from.",  "link_label": "Service page" },
+          { "n": "04", "service": "whitelisting", "anchor": "#spark",     "blurb": "Spark Ads and Meta whitelisting set up so ads run from the creator's handle.", "link_label": "Service page" }
+        ]
+      },
+      "features": [
+        {
+          "anchor": "brief",
+          "service": "briefing",
+          "layout": "text-left",
+          "h2": "The monthly brief starts from what ran last month.",
+          "p": "Always-on is not the same brief twelve times. Each month starts with what performed, what fatigued and what is coming up on your calendar, and the brief is written from that. On Growth that is two briefs a month; on Scale it is weekly.",
+          "points": [
+            { "title": "Written from the debrief",  "body": "On Growth and Scale, the month closes with a performance read. The next brief is written from it: which hooks to carry, which creators to bring back, which format to retire." },
+            { "title": "Your calendar, in the brief", "body": "Sales, drops, seasonal moments and the boring weeks in between all go in the plan, so the ads for a promotion are shot before the promotion." },
+            { "title": "Tracked live",               "body": "Every brief sits on the live tracker. You can see the month's casting, scripting, shooting and editing move without asking." }
+          ],
+          "link_label": "Briefing & scripts service page",
+          "visual": { "kind": "panel", "mock": "brief-card" }
+        },
+        {
+          "anchor": "roster",
+          "service": "casting",
+          "layout": "text-right",
+          "h2": "A roster you have approved, cast brief by brief.",
+          "p": "The first month builds a shortlist of creators who fit the brand. After that, casting is a matter of picking from people you already know, and adding new faces when the account needs them. On Scale, the roster is dedicated to you.",
+          "points": [
+            { "title": "Approved once, cast often",  "body": "Creators you have said yes to stay on your roster. Each brief casts from it first, so the tone stays consistent month to month." },
+            { "title": "New faces when fatigue says so", "body": "When a creator's ads start to tire, the brief adds someone new from the wider roster. You still approve them before they shoot." },
+            { "title": "Paid by us, once",            "body": "Every creator is paid out of your package fee on a set schedule. One contract, one invoice, no separate deals." }
+          ],
+          "link_label": "Casting & roster service page",
+          "visual": { "kind": "panel", "mock": "casting-board" }
+        },
+        {
+          "anchor": "variants",
+          "service": "editing",
+          "layout": "text-left",
+          "h2": "Variants, cut per placement, so the account has a set.",
+          "p": "One take becomes several ads: a different hook on the front, a different caption treatment, a shorter cut for Shorts, a longer one for Reels. The editor cuts for how each feed is watched, captions burned in and kept clear of the platform's own overlays.",
+          "points": [
+            { "title": "Hook swaps",                 "body": "The same body with a different first three seconds is often the cheapest new ad. Each shoot captures more than one hook for exactly this." },
+            { "title": "Native, not resized",        "body": "Every video is cut 9:16 for the placement it is going to, with the hook in the first frame and the caption inside the safe area." },
+            { "title": "One revision round, included", "body": "Every package includes one full revision round per video. It is usually spent on pacing or captions, not reshoots." }
+          ],
+          "link_label": "Editing & captions service page",
+          "visual": { "kind": "panel", "mock": "timeline" }
+        },
+        {
+          "anchor": "spark",
+          "service": "whitelisting",
+          "layout": "text-right",
+          "h2": "Whitelisting and Spark Ads, set up by us, running from the creator's handle.",
+          "p": "The best-performing organic content runs as paid from the creator's own account, so the ad keeps the creator's credibility. hypjam handles the authorisation on TikTok and Meta and the usage rights that make it clean. Available on Growth and Scale.",
+          "points": [
+            { "title": "Authorised, not improvised",  "body": "Spark Ads codes and Meta partnership permissions are requested from the creator by us, as part of the brief, with the rights window agreed at the same time." },
+            { "title": "Rights that match the run",   "body": "A whitelisted ad needs a licence that covers paid use from the creator's handle for the whole period it runs. That is written into the creator agreement before the shoot." },
+            { "title": "Disclosed properly",          "body": "Paid partnership labels go on where the platform requires them, and the ad copy stays inside the CAP Code. We would rather lose a line than get you a letter." }
+          ],
+          "link_label": "Whitelisting & Spark Ads service page",
+          "visual": { "kind": "panel", "mock": "spark-toggle" }
+        }
+      ],
+      "problems": {
+        "h2": "Built for the problems an ad account actually has.",
+        "p": "Not one film and a hope. hypjam is built around the winner that fades in three weeks, the five creators on five invoices, and the month where nobody read the numbers back into the brief.",
+        "items": [
+          { "title": "The winner fatigues in three weeks",  "body": "Frequency climbs, the hook stops working. The next set is already shot because the brief was monthly.", "visual": { "kind": "tile-icon", "icon": "fading-curve", "description": "A curve that rises then falls (200 wide), drawn solid on the rise and dashed on the fall, with a small clock at the end; baseline under." } },
+          { "title": "Five creators, five invoices",        "body": "Managing freelancers is a job. With hypjam it is one contract and one invoice, and the creators are paid by us.", "visual": { "kind": "tile-icon", "icon": "one-invoice", "description": "Five small document outlines stacked in a fan on the left collapsing into one document with a tick on the right; baseline under." } },
+          { "title": "The account needs variants",         "body": "One film gives the algorithm nothing to choose between. Each shoot is cut into hook swaps and per-placement versions.", "visual": { "kind": "tile-icon", "icon": "variants", "description": "Three phone outlines side by side, each with a different short caption line on screen; baseline under." } },
+          { "title": "Nobody read the numbers",            "body": "A debrief that stays in a spreadsheet does not improve the next round. On Growth and Scale, it is written into the next brief.", "visual": { "kind": "tile-icon", "icon": "read-back", "description": "A small bar chart (four bars) with a curved arrow returning from the last bar to a document outline on the left; baseline under." } }
+        ]
+      },
+      "how": {
+        "eyebrow": "How it runs",
+        "h2": "One ordinary month on hypjam, from the brief to the ads running.",
+        "steps": [
+          { "n": "01", "title": "The month is briefed",   "body": "Written from last month's read and this month's calendar. One brief on Starter, two on Growth, weekly on Scale." },
+          { "n": "02", "title": "Cast from your roster",   "body": "Creators you have already approved are cast brief by brief; new faces are added when fatigue says so." },
+          { "n": "03", "title": "Shot and cut in variants", "body": "Each take is captured with more than one hook and cut per placement, captions burned in." },
+          { "n": "04", "title": "Whitelisted, run, read",  "body": "Spark Ads and Meta permissions are set up, the ads run from the creator's handle, and the month closes with a debrief." }
+        ]
+      },
+      "hood": {
+        "eyebrow": "Under the hood",
+        "h2": "Monthly, on one contract, from a roster you approved.",
+        "p": "The details a performance lead asks about before moving the channel to hypjam.",
+        "items": [
+          { "label": "Cadence",     "value": "Monthly briefs",     "body": "One brief a month on Starter, two on Growth, weekly on Scale. Each written from the last debrief and your calendar." },
+          { "label": "Volume",      "value": "6, 12 or 24+",       "body": "Videos a month by package: Starter, Growth and Scale. The final number is scoped once we know what the account needs." },
+          { "label": "Paperwork",   "value": "One contract",       "body": "One contract, one invoice. Creators are paid by us out of the package fee on a set schedule." },
+          { "label": "Whitelisting","value": "Set up by us",       "body": "Spark Ads and Meta partnership permissions are requested from the creator with the brief. Available on Growth and Scale." },
+          { "label": "Rights",      "value": "Organic and paid",   "body": "Included for the term of your package, in writing with the creator before they film. Longer windows are scoped upfront." },
+          { "label": "Term",        "value": "Month to month",     "body": "A one-month minimum, then rolling. No annual contract to find out whether it works." }
+        ],
+        "link": { "label": "Rights and safety", "href": "/rights" }
+      },
+      "quote": {
+        "kind": "founder",
+        "sign_off": true,
+        "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
+        "name": "Avi Aggarwal",
+        "role": "Founder, hypjam",
+        "visual": { "kind": "hq-room", "room": 2, "alt": "Line drawing of the writers' room at hypjam's HQ" }
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "h2": "Questions performance leads ask first.",
+        "items": [
+          { "q": "Is there a minimum term?",                       "a": "Packages run month to month with a one-month minimum, so you are not locked into a long contract just to see if it works." },
+          { "q": "Who owns the ads?",                              "a": "You do, for the usage window in your package. We handle the paperwork with creators so the rights are actually clean, not just implied." },
+          { "q": "How does whitelisting work with the creators?",  "a": "We request Spark Ads codes and Meta partnership permissions from the creator as part of the brief, and the licence for paid use from their handle is agreed before the shoot. It is included on Growth and Scale." },
+          { "q": "Do we get a performance read?",                  "a": "Growth and Scale include a monthly debrief that is written into the next brief. Starter includes the live tracker and our notes on what to run where." },
+          { "q": "Can we bring our own creators?",                 "a": "Yes. They are briefed, directed and paid through the same process as the roster, on the same contract." }
+        ]
+      },
+      "related": {
+        "eyebrow": "Related",
+        "items": [
+          { "service": "whitelisting",        "body": "Spark Ads and Meta whitelisting, set up and licensed properly." },
+          { "label": "Creative testing",      "body": "The grid that tells the monthly brief what to make next.", "href": "/solutions/creative-testing" },
+          { "label": "Launches",              "body": "Where most always-on accounts start.",                     "href": "/solutions/launches" }
+        ]
+      },
+      "cta": {
+        "h2": "Show us the ad account.",
+        "p": "Book a thirty-minute call. We will look at what is running, what is fading, and come back with a first month's plan.",
+        "button": { "label": "Book a call", "href": "/book" }
+      }
+    },
+
+    {
+      "slug": "organic-and-trends",
+      "group": "goal",
+      "title": "Organic & trends",
+      "short": "Trend-led content, briefed this week, shot on a phone.",
+      "meta": {
+        "title": "Organic and trends: trend-led UGC, briefed this week | hypjam",
+        "description": "How hypjam makes organic and trend-led content: sounds and formats tracked weekly, briefed around your product rather than bolted onto it, shot on creators' phones, cut native for TikTok, Reels and Shorts."
+      },
+      "hero": {
+        "breadcrumb": ["Solutions", "Organic & trends"],
+        "h1": "Trends, briefed this week and posted before they are over",
+        "intro": "hypjam tracks what is moving on the apps this week, briefs creators to bend it round your product, directs the shoot on their phones and cuts it native for each feed. Your team keeps the account.",
+        "cta": { "label": "Book a call", "href": "/book" },
+        "visual": { "kind": "panel", "mock": "conversation", "sender": "Client · your brand · 11:02", "message": "Everyone is doing that sound this week. Can we do it without looking desperate?", "label": "Hook writing" }
+      },
+      "platforms_row": true,
+      "facts": {
+        "h2": "A trend is a sound and a shape. It is bent round the product, not bolted on.",
+        "p": "On hypjam the content looks like it belongs on the feed because it was made the way the feed makes things: on a phone, fast, with a point of view. Four services make that happen.",
+        "items": [
+          { "value": "5 formats", "label": "Per shoot, each cut for the platform it is going to" },
+          { "value": "9:16", "label": "Native vertical, captions burned in, hook in the first frame" },
+          { "value": "14 days", "label": "From brief to delivery; faster when a trend needs it" }
+        ]
+      },
+      "behind": {
+        "eyebrow": "The services behind it",
+        "h2": "The services behind organic.",
+        "p": "Each one is a service on its own. Together they cover spotting the trend, writing it round your product, shooting it and cutting it before the moment passes.",
+        "items": [
+          { "n": "01", "service": "hooks",   "anchor": "#trend",   "blurb": "Writes the hook and the shape from what is moving this week.",           "link_label": "Service page" },
+          { "n": "02", "service": "casting", "anchor": "#casting", "blurb": "Casts the creator whose feed the trend already lives on.",                "link_label": "Service page" },
+          { "n": "03", "service": "shoot",   "anchor": "#shoot",   "blurb": "Directs the takes over a call while the creator films on their phone.",   "link_label": "Service page" },
+          { "n": "04", "service": "editing", "anchor": "#cut",     "blurb": "Cuts native for each feed, with the sound, the captions and the timing.", "link_label": "Service page" }
+        ]
+      },
+      "features": [
+        {
+          "anchor": "trend",
+          "service": "hooks",
+          "layout": "text-left",
+          "h2": "The hook is written from what is moving this week, not last quarter.",
+          "p": "A trend report is out of date by the time it is a PDF. hypjam watches the apps and writes the brief from what is actually moving: a sound, a format, a shape of joke. Then it is written round your product so it is yours, not a logo on someone else's meme.",
+          "points": [
+            { "title": "Bent round the product",  "body": "The trend supplies the shape; the product supplies the point. The hook is written so that the product is why the video exists, not an afterthought in the last second." },
+            { "title": "Written fast, still scripted", "body": "A trend brief is shorter than a launch brief, but it still has a hook, a payoff and a note on delivery. Fast is not the same as vague." },
+            { "title": "A no is allowed",           "body": "Some trends are wrong for the brand. When they are, we say so and brief something else." }
+          ],
+          "link_label": "Hook writing service page",
+          "visual": { "kind": "panel", "mock": "trend-board" }
+        },
+        {
+          "anchor": "casting",
+          "service": "casting",
+          "layout": "text-right",
+          "h2": "Cast the creator whose feed the trend already lives on.",
+          "p": "Trend content works when the person doing it would have done it anyway. Casting is for the creator whose own account already speaks that way, whether that is deadpan, chaotic or dead serious. You approve the shortlist, as always.",
+          "points": [
+            { "title": "Cast for the point of view", "body": "The roster is organised by niche and by voice. A trend brief is cast for the voice first, because a trend performed straight is just an ad." },
+            { "title": "Remote and quick",            "body": "Most of the roster is remote and shoots from home. A trend brief can be with the right creator the same day it is written." },
+            { "title": "Paid by us, once",            "body": "Creators are paid out of your package fee on a set schedule. One contract, one invoice." }
+          ],
+          "link_label": "Casting & roster service page",
+          "visual": { "kind": "panel", "mock": "casting-board" }
+        },
+        {
+          "anchor": "shoot",
+          "service": "shoot",
+          "layout": "text-left",
+          "h2": "Directed over a call, filmed on the creator's own phone.",
+          "p": "A director on the call, the creator at home with the script and the sound. Takes are run, notes are given, the hook is tried three ways. It looks handheld and natural because it is; it lands because someone was directing.",
+          "points": [
+            { "title": "Takes, not a single attempt", "body": "Each hook gets several takes with direction between them: timing, the look to the lens, where the product comes in. The creator's delivery, our notes." },
+            { "title": "Phone, natural light, captions on", "body": "No lighting rig, no hire budget. Vertical, handheld energy, captions burned in and kept out of the platform's own overlays." },
+            { "title": "Raw footage to our editors",  "body": "The creator sends the takes; the edit is ours. Nobody is learning an editing app on a deadline." }
+          ],
+          "link_label": "Shoot direction service page",
+          "visual": { "kind": "panel", "mock": "phone-rec" }
+        },
+        {
+          "anchor": "cut",
+          "service": "editing",
+          "layout": "text-right",
+          "h2": "Cut native for each feed, sound and timing included.",
+          "p": "A trend has a rhythm. The editor cuts to it: where the beat drops, where the caption lands, how long before the product appears. Then each feed gets its own version, because TikTok and Reels do not watch the same way.",
+          "points": [
+            { "title": "Five formats per shoot",     "body": "A single shoot is cut into up to five formats: the trend cut, a stitched version, a shorter Shorts cut, a testimonial-shaped edit, a paid-ready version with a clearer product beat." },
+            { "title": "Native, not resized",        "body": "Every cut is 9:16 for the platform it is going to, hook in the first frame, caption in the safe area." },
+            { "title": "One revision round, included", "body": "Included on every package. Usually spent on timing, because timing is the whole point of a trend." }
+          ],
+          "link_label": "Editing & captions service page",
+          "visual": { "kind": "panel", "mock": "timeline" }
+        }
+      ],
+      "problems": {
+        "h2": "Built for the problems an organic account actually has.",
+        "p": "Not a content calendar of stock. hypjam is built around the trend that is over by the time legal has seen it, the post that looks like an ad, and the account that has nothing to say between launches.",
+        "items": [
+          { "title": "The trend is over by Thursday",    "body": "A brief that takes a fortnight to approve misses the moment. Trend briefs are short, scripted and can shoot the same day.", "visual": { "kind": "tile-icon", "icon": "clock-wave", "description": "A clock face (120px) with a waveform stroke running out of its right side and fading to dashes; baseline under." } },
+          { "title": "It looks like an ad",              "body": "Polish reads as advertising. Phone, natural light and a creator with a point of view read as the feed.", "visual": { "kind": "tile-icon", "icon": "phone-handheld", "description": "A phone outline held by a simple line-drawn hand, slightly tilted, with a caption bar on screen; baseline under." } },
+          { "title": "Nothing to say between launches",  "body": "An account that only posts when there is news goes quiet. Weekly trend briefs keep it talking in the brand's voice.", "visual": { "kind": "tile-icon", "icon": "week-strip", "description": "Seven small squares in a row, three with a play triangle, joined by a thin line; baseline under." } },
+          { "title": "Your logo on someone else's meme", "body": "Bolting a product onto a format is the fastest way to look desperate. The hook is written so the product is the reason the video exists.", "visual": { "kind": "tile-icon", "icon": "bent-arrow", "description": "A wide U-shaped arrow wrapping round a small product-box outline in its centre; baseline under." } }
+        ]
+      },
+      "how": {
+        "eyebrow": "How it runs",
+        "h2": "From a sound on Monday to a post before the weekend.",
+        "steps": [
+          { "n": "01", "title": "The trend is spotted",   "body": "What is moving this week, on the apps, not in a report. The ones that fit the brand go into a short brief." },
+          { "n": "02", "title": "Written round the product", "body": "A hook, a payoff and a note on delivery, with the product as the reason the video exists." },
+          { "n": "03", "title": "Cast and directed",      "body": "The creator whose feed already sounds like this, directed over a call, filming on their phone." },
+          { "n": "04", "title": "Cut to the beat",        "body": "Native per feed, sound and captions timed, delivered with the rights and a note on where to post first." }
+        ]
+      },
+      "hood": {
+        "eyebrow": "Under the hood",
+        "h2": "Weekly, on a phone, with the rights sorted anyway.",
+        "p": "The details a social lead asks about before handing over the organic calendar.",
+        "items": [
+          { "label": "Formats",     "value": "Five per shoot",    "body": "Trend cut, stitch, Shorts cut, testimonial shape and a paid-ready version, from one shoot when the brief calls for them." },
+          { "label": "Frame",       "value": "9:16",              "body": "Native vertical, hook in the first frame, captions burned in and kept out of the top 15% and bottom 20%." },
+          { "label": "Turnaround",  "value": "14 days",           "body": "The standard sprint. Trend briefs can run faster; we tell you honestly when one cannot." },
+          { "label": "Rights",      "value": "Organic and paid",  "body": "Even organic-only posts are licensed in writing, so a post that takes off can be put behind spend without a scramble." },
+          { "label": "Sounds",      "value": "Checked",           "body": "Commercial sound libraries and licensing rules differ per platform and per account type; the brief says which sound is usable for a brand account." },
+          { "label": "Disclosure",  "value": "ASA and CAP",       "body": "Where a post is paid-for, it is labelled as the platform and the CAP Code require. Organic is organic." }
+        ],
+        "link": { "label": "Rights and safety", "href": "/rights" }
+      },
+      "quote": {
+        "kind": "founder",
+        "sign_off": true,
+        "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
+        "name": "Avi Aggarwal",
+        "role": "Founder, hypjam",
+        "visual": { "kind": "hq-room", "room": 4, "alt": "Line drawing of the shoot bay at hypjam's HQ" }
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "h2": "Questions social leads ask first.",
+        "items": [
+          { "q": "Do you post for us, or just make the content?",   "a": "We make it and tell you where to post it first. Posting stays on your account, with your team; the videos arrive cut per platform and captioned." },
+          { "q": "How quickly can a trend brief turn around?",       "a": "Faster than the fourteen-day sprint when it has to. Trend briefs are short and most of the roster shoots from home, so the same week is realistic. If a brief needs longer, we say so." },
+          { "q": "Can organic content be used in ads later?",        "a": "Yes. Usage rights for organic and paid are included for the term of your package, so a post that takes off can go behind spend without going back to the creator." },
+          { "q": "What about trending sounds and licensing?",        "a": "The brief says which sound is usable for a brand account on each platform. Where a sound is not cleared for commercial use, we brief an alternative rather than risk the post." },
+          { "q": "Will it look like our brand?",                     "a": "It will sound like your brand in a creator's voice. The hook is written round the product, the creator is cast for the point of view, and the direction keeps both." }
+        ]
+      },
+      "related": {
+        "eyebrow": "Related",
+        "items": [
+          { "service": "shoot",                "body": "Direction over a call while the creator films on their phone." },
+          { "label": "Founder-led",            "body": "When the point of view should be yours.",                       "href": "/solutions/founder-led" },
+          { "label": "Always-on paid social",  "body": "Putting the organic winners behind spend.",                   "href": "/solutions/always-on-paid-social" }
+        ]
+      },
+      "cta": {
+        "h2": "Show us the feed.",
+        "p": "Book a thirty-minute call. We will look at your account and at what is moving this week, and come back with the first three briefs.",
+        "button": { "label": "Book a call", "href": "/book" }
+      }
+    },
+
+    {
+      "slug": "founder-led",
+      "group": "goal",
+      "title": "Founder-led",
+      "short": "You on camera, directed like a creator, never like a brand deck.",
+      "meta": {
+        "title": "Founder-led video: directed on camera, not winging it | hypjam",
+        "description": "How hypjam directs founders on camera: hooks written for you, a script you can loosen, takes run over a call or at a directed London shoot, and cuts that sound like a person who built the thing rather than a brand deck."
+      },
+      "hero": {
+        "breadcrumb": ["Solutions", "Founder-led"],
+        "h1": "You on camera, directed like any creator",
+        "intro": "hypjam writes the hooks for you, runs the takes, and cuts the founder who built the thing into ads that sound like one. Same process as the creator roster: hooks, retakes and all. Your team keeps the company.",
+        "cta": { "label": "Book a call", "href": "/book" },
+        "visual": { "kind": "panel", "mock": "conversation", "sender": "Founder · your brand · 7:55", "message": "I am told I should be on camera. I would rather not wing it.", "label": "Founder-led video" }
+      },
+      "platforms_row": true,
+      "facts": {
+        "h2": "Sometimes the best spokesperson is the person who built the thing. They still need directing.",
+        "p": "A founder on hypjam gets the same treatment as the roster: hooks written for them, a script they can loosen, takes with notes in between, and an edit built for the feed. Four services make that happen.",
+        "items": [
+          { "value": "8 hooks", "label": "Written for you before you step in front of the phone" },
+          { "value": "1 round", "label": "Of revisions per video, included in every package" },
+          { "value": "30 minutes", "label": "The intro call, before any shoot day is booked" }
+        ]
+      },
+      "behind": {
+        "eyebrow": "The services behind it",
+        "h2": "The services behind founder-led.",
+        "p": "Each one is a service on its own. Together they cover what is written before the shoot, what happens in the takes, and what the edit does with them.",
+        "items": [
+          { "n": "01", "service": "founder", "anchor": "#founder", "blurb": "Directs you through the same process as the roster, hooks and retakes included.", "link_label": "Service page" },
+          { "n": "02", "service": "hooks",   "anchor": "#hooks",   "blurb": "Writes eight hooks in your voice, from things you actually say.",              "link_label": "Service page" },
+          { "n": "03", "service": "shoot",   "anchor": "#shoot",   "blurb": "Runs the takes over a call; a London shoot with the director in the room can be arranged.",                   "link_label": "Service page" },
+          { "n": "04", "service": "editing", "anchor": "#cut",     "blurb": "Cuts the good takes together so it sounds like you on a good day.",          "link_label": "Service page" }
+        ]
+      },
+      "features": [
+        {
+          "anchor": "founder",
+          "service": "founder",
+          "layout": "text-left",
+          "h2": "Directed, not coached. The same process as the roster.",
+          "p": "A founder on camera fails for one reason: nobody is directing. hypjam runs founders through exactly what a creator gets: a brief, hooks, a script, references, takes with notes, and an editor who chooses the good ones. You do not have to be a natural. You have to turn up.",
+          "points": [
+            { "title": "The brief says why you",     "body": "Origin story, a strong opinion, a product detail only the maker knows: the brief picks the reason a founder is the right voice, and the hooks follow from it." },
+            { "title": "Retakes are normal",          "body": "Nobody gets it on take one. The director runs the line several ways and moves on when it lands; the edit does the rest." },
+            { "title": "You never sound like a deck", "body": "The script is written from how you talk on a call, not from the website. If a line sounds like marketing, it is cut before you say it." }
+          ],
+          "link_label": "Founder-led video service page",
+          "visual": { "kind": "panel", "mock": "founder-take" }
+        },
+        {
+          "anchor": "hooks",
+          "service": "hooks",
+          "layout": "text-right",
+          "h2": "Eight hooks, in your voice, from things you actually say.",
+          "p": "The intro call is recorded with your permission, because founders say the best hook in passing: why the lid took two years, what the first customer complained about, the thing you would never put on the website. The eight hooks are written from that.",
+          "points": [
+            { "title": "Mined from the call",         "body": "The hook is usually already in how you describe the product to a friend. The writer's job is to hear it and cut it to one line." },
+            { "title": "A script you can loosen",     "body": "Each hook has a one-line script and a payoff. You deliver it in your own words and timing; the script is there so you never dry." },
+            { "title": "Kept for the next round",     "body": "Hooks that did not make the shoot stay in the brief. The next round starts from what is already written." }
+          ],
+          "link_label": "Hook writing service page",
+          "visual": { "kind": "panel", "mock": "hook-list" }
+        },
+        {
+          "anchor": "shoot",
+          "service": "shoot",
+          "layout": "text-left",
+          "h2": "Takes over a call, or a London shoot with the director in the room.",
+          "p": "The default founder shoot is a video call: you at your desk or in the warehouse, a phone on a stand, the director on the call. When the product needs a set, a London shoot with the director in the room can be arranged. Either way, someone is directing.",
+          "points": [
+            { "title": "Your place, your phone",       "body": "The office, the kitchen, the van. Real places read as real. The director sets the frame, the light and the eye-line, then runs the takes." },
+            { "title": "A London shoot when it helps",        "body": "A product that needs a clean counter, a pour or a close-up gets a London shoot with the director in the room, arranged where the brief needs it." },
+            { "title": "Raw footage to our editors",   "body": "You send the takes, or we bring them home. Nobody is learning an editing app on a deadline." }
+          ],
+          "link_label": "Shoot direction service page",
+          "visual": { "kind": "panel", "mock": "phone-rec" }
+        },
+        {
+          "anchor": "cut",
+          "service": "editing",
+          "layout": "text-right",
+          "h2": "The edit makes you sound like you on a good day.",
+          "p": "The editor's job is to choose the take where the line landed, tighten the pauses, put the product on screen at the right beat and burn the captions in. Expect to sound better than you think you do. That is the edit doing its job.",
+          "points": [
+            { "title": "Best take, every line",       "body": "Each line is cut from its best take, so a shoot with ten stumbles becomes a video with none." },
+            { "title": "Native, not resized",         "body": "Every cut is 9:16 for the placement it is going to, hook in the first frame, captions in the safe area." },
+            { "title": "One revision round, included", "body": "Included on every package. Usually spent on pacing, occasionally on a line you would rather not have said." }
+          ],
+          "link_label": "Editing & captions service page",
+          "visual": { "kind": "panel", "mock": "timeline" }
+        }
+      ],
+      "problems": {
+        "h2": "Built for the problems a founder on camera actually has.",
+        "p": "Not a media-training course. hypjam is built around the founder who freezes, the founder who reads, and the founder who has forty minutes on a Tuesday and nothing else.",
+        "items": [
+          { "title": "You freeze",             "body": "A script you can loosen and a director running takes means there is always a next attempt, and the edit only keeps the good ones.", "visual": { "kind": "tile-icon", "icon": "take-counter", "description": "A clapperboard outline (150×110) with 'take 3' lettered on it as strokes, and a small tick beside it; baseline under." } },
+          { "title": "You read",               "body": "Autocue makes founders sound like the website. The hooks are written from how you talk, and you say them to the lens, not the notes.", "visual": { "kind": "tile-icon", "icon": "eye-line", "description": "A phone outline with a simple eye drawn on screen and a dotted line from the eye to a small circle (the lens) above; baseline under." } },
+          { "title": "Forty minutes on a Tuesday", "body": "A call-based shoot with eight hooks pre-written gets a round of takes in one call. The rest is ours.", "visual": { "kind": "tile-icon", "icon": "short-clock", "description": "A clock face (120px) with a highlighted 40-minute arc and a phone outline beside it; baseline under." } },
+          { "title": "It sounds like a deck",  "body": "If a line sounds like marketing it is cut before you say it. What is left is a person who built the thing, saying why.", "visual": { "kind": "tile-icon", "icon": "cut-line", "description": "A document outline with four text lines, the third struck through by a diagonal stroke, and a pair of scissors (two circles and two lines) at its corner; baseline under." } }
+        ]
+      },
+      "how": {
+        "eyebrow": "How it runs",
+        "h2": "From the intro call to a founder who sounds like one.",
+        "steps": [
+          { "n": "01", "title": "The intro call",        "body": "Thirty minutes. What you built, why, what people ask you. Recorded with your permission, because the hooks are in it." },
+          { "n": "02", "title": "Hooks in your voice",   "body": "Eight hooks written from the call, each with a one-line script you can loosen. You pick with us which go to the shoot." },
+          { "n": "03", "title": "Takes, directed",       "body": "Over a call at your place, or a London shoot with the director in the room. Several takes per line, notes between them." },
+          { "n": "04", "title": "Cut and cleared",       "body": "Best take per line, captions burned in, cut per placement, delivered with the rights and a note on where to run it." }
+        ]
+      },
+      "hood": {
+        "eyebrow": "Under the hood",
+        "h2": "Written from you, shot with you, cut for the feed.",
+        "p": "The details a founder asks about before agreeing to be on camera.",
+        "items": [
+          { "label": "Prep",        "value": "8 hooks",         "body": "Written from the intro call before any shoot is booked. You see them, pick with us, and can veto any line." },
+          { "label": "Time on camera", "value": "One call", "body": "A round of takes over a call, with notes between them. A London shoot with the director in the room covers more formats." },
+          { "label": "Where",       "value": "Your place or London", "body": "Over a video call wherever you are, or a London shoot with the director in the room when the product needs a set." },
+          { "label": "Revisions",   "value": "One round per video", "body": "Included in every package. A line you regret comes out in the round." },
+          { "label": "Rights",      "value": "Yours",            "body": "You are the talent, so usage is yours by default. If a roster creator appears alongside you, their licence is in writing before the shoot." },
+          { "label": "Placements",  "value": "Six",              "body": "TikTok, Instagram Reels, YouTube Shorts, Snapchat, Pinterest and Meta ads, cut for where each is going." }
+        ],
+        "link": { "label": "Rights and safety", "href": "/rights" }
+      },
+      "quote": {
+        "kind": "founder",
+        "sign_off": true,
+        "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
+        "name": "Avi Aggarwal",
+        "role": "Founder, hypjam",
+        "visual": { "kind": "hq-room", "room": 4, "alt": "Line drawing of the shoot bay at hypjam's HQ" }
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "h2": "Questions founders ask before they agree to be on camera.",
+        "items": [
+          { "q": "I am not a natural on camera. Does this still work?",   "a": "Yes. That is what direction is for. The hooks are written from how you already talk, takes are run until a line lands, and the edit keeps only the good ones." },
+          { "q": "Do I have to come to London?",                          "a": "No. The default is a video call with your phone on a stand. A London shoot with the director in the room can be arranged when the product needs a set." },
+          { "q": "Can I veto lines?",                                     "a": "Every hook is yours to approve before the shoot, and the revision round is there for anything you would rather not have said." },
+          { "q": "How long do I need to give it?",                        "a": "A thirty-minute intro call, then one round of takes on a call, inside the fourteen-day sprint. The writing and the edit are ours." },
+          { "q": "Can a founder video run as a paid ad?",                 "a": "Yes. You are the talent, so usage is yours by default, and each cut is delivered per placement with captions burned in." }
+        ]
+      },
+      "related": {
+        "eyebrow": "Related",
+        "items": [
+          { "service": "founder",             "body": "The service page: how a founder shoot is run." },
+          { "label": "Launches",              "body": "A founder explainer as the anchor of a launch sequence.",   "href": "/solutions/launches" },
+          { "label": "Organic & trends",      "body": "When the founder is the point of view the feed needs.",    "href": "/solutions/organic-and-trends" }
+        ]
+      },
+      "cta": {
+        "h2": "Tell us why you built it.",
+        "p": "Book a thirty-minute call. That conversation is where the hooks come from; by the end of it you will know whether you want to be on camera.",
+        "button": { "label": "Book a call", "href": "/book" }
+      }
+    },
+
+    {
+      "slug": "creative-testing",
+      "group": "goal",
+      "title": "Creative testing",
+      "short": "Hooks × creators × formats, tested one axis at a time.",
+      "meta": {
+        "title": "Creative testing: hooks × creators × formats, read as a grid | hypjam",
+        "description": "How hypjam runs creative testing: eight hooks per script, two to five creators per brief, formats cut per placement, a testing grid your ad account can read, and a monthly debrief written into the next brief."
+      },
+      "hero": {
+        "breadcrumb": ["Solutions", "Creative testing"],
+        "h1": "Hooks, creators and formats, tested one axis at a time",
+        "intro": "hypjam writes the hooks, casts the creators, cuts the formats and lays them out so your ad account can test one thing at a time. Then it reads the grid and briefs the next round. Your team keeps the spend.",
+        "cta": { "label": "Book a call", "href": "/book" },
+        "visual": { "kind": "panel", "mock": "conversation", "sender": "Client · your brand · 14:20", "message": "We have budget to test. What should the first round actually test?", "label": "Hook writing" }
+      },
+      "platforms_row": true,
+      "facts": {
+        "h2": "A test needs variables you can name. The brief names them.",
+        "p": "On hypjam hooks are tested against hooks, creators against creators and formats against formats, one axis at a time, so the winner means something. Four services make that a grid rather than a pile.",
+        "items": [
+          { "value": "8 hooks", "label": "Per script, tested against each other" },
+          { "value": "2 to 5 creators", "label": "Cast per brief, by package" },
+          { "value": "1 debrief", "label": "A month, read back into the next brief" }
+        ]
+      },
+      "behind": {
+        "eyebrow": "The services behind it",
+        "h2": "The services behind the grid.",
+        "p": "Each one is a service on its own. Together they cover the variables, the people, the cuts and the reading.",
+        "items": [
+          { "n": "01", "service": "hooks",     "anchor": "#hooks",     "blurb": "Eight hooks per script, deliberately different, so the test has a range.",       "link_label": "Service page" },
+          { "n": "02", "service": "casting",   "anchor": "#creators",  "blurb": "Two to five creators per brief, cast to differ on one thing at a time.",         "link_label": "Service page" },
+          { "n": "03", "service": "editing",   "anchor": "#formats",   "blurb": "Formats cut per placement so the account is comparing like with like.",         "link_label": "Service page" },
+          { "n": "04", "service": "reporting", "anchor": "#read",      "blurb": "Reads the grid with you and writes the next brief from it.",                     "link_label": "Service page" }
+        ]
+      },
+      "features": [
+        {
+          "anchor": "hooks",
+          "service": "hooks",
+          "layout": "text-left",
+          "h2": "Eight hooks, deliberately different, so the test has a range.",
+          "p": "A test of three hooks that all say the same thing tells you nothing. The eight are written across kinds: a question, a confession, a comparison, a plain claim, a 'wait for it'. The shoot covers the ones you pick with us; the grid is built from them.",
+          "points": [
+            { "title": "One axis per round",        "body": "Round one tests hooks with the creator and format held steady. Round two holds the winning hook and tests creators. The brief says which axis is moving." },
+            { "title": "Written to be swapped",     "body": "Each hook is written so it can sit on the same body of footage. A hook swap is the cheapest new ad an account can get." },
+            { "title": "Kept for the next round",   "body": "Hooks that did not make the shoot stay in the brief for round two." }
+          ],
+          "link_label": "Hook writing service page",
+          "visual": { "kind": "panel", "mock": "hook-list" }
+        },
+        {
+          "anchor": "creators",
+          "service": "casting",
+          "layout": "text-right",
+          "h2": "Two to five creators per brief, cast to differ on one thing.",
+          "p": "Starter casts two creators per brief, growth four or five. They are cast to differ on the thing the round is testing: age, tone, setting, niche. You approve the shortlist, and each creator shoots the same hooks so the comparison is fair.",
+          "points": [
+            { "title": "Cast on the axis",           "body": "If the round tests tone, the creators differ in tone and match on everything else. If it tests setting, the kitchen and the car get the same script." },
+            { "title": "Same hooks, each creator",   "body": "Every creator in the round shoots the same picked hooks, so a creator winning means the creator won, not the line." },
+            { "title": "Paid by us, once",           "body": "Creators are paid out of your package fee on a set schedule. One contract, one invoice." }
+          ],
+          "link_label": "Casting & roster service page",
+          "visual": { "kind": "panel", "mock": "casting-board" }
+        },
+        {
+          "anchor": "formats",
+          "service": "editing",
+          "layout": "text-left",
+          "h2": "Formats cut per placement, so the account compares like with like.",
+          "p": "A hook that wins on TikTok and loses on Reels may just have been cut wrong for Reels. Every variant is cut native for the placement it is testing in, captions burned in, so the format is a variable you control rather than noise.",
+          "points": [
+            { "title": "Named variants",             "body": "Each cut is named for its grid position: hook, creator, format, placement. The ad account's naming matches the brief, so the read is quick." },
+            { "title": "Native, not resized",        "body": "9:16 for the placement, hook in the first frame, captions inside the safe area. Six placements, six cuts if the round needs them." },
+            { "title": "One revision round, included", "body": "Included on every package. Usually spent on captions, so that the caption is not the thing being tested by accident." }
+          ],
+          "link_label": "Editing & captions service page",
+          "visual": { "kind": "panel", "mock": "timeline" }
+        },
+        {
+          "anchor": "read",
+          "service": "reporting",
+          "layout": "text-right",
+          "h2": "The grid is read with you, and the next brief is written from it.",
+          "p": "On Growth and Scale, the month closes with a debrief: which hooks held attention, which creators carried the product, which formats the account should keep. It is not a deck for its own sake; it is the first page of the next brief.",
+          "points": [
+            { "title": "Your numbers, our read",     "body": "The performance data stays in your ad account. hypjam reads it with you and turns it into decisions: carry, retire, swap, scale." },
+            { "title": "Written into the brief",     "body": "The next round's brief opens with the read: two more like hook 07, bring back the kitchen creator, drop the long format." },
+            { "title": "Honest about noise",         "body": "Small tests are noisy. When a difference is not big enough to act on, the debrief says so rather than inventing a winner." }
+          ],
+          "link_label": "Reporting service page",
+          "visual": { "kind": "panel", "mock": "report-grid" }
+        }
+      ],
+      "problems": {
+        "h2": "Built for the problems a testing budget actually has.",
+        "p": "Not a pile of videos with a spreadsheet after. hypjam is built around the test that changed three things at once, the winner nobody can explain, and the debrief that never reached the next brief.",
+        "items": [
+          { "title": "Three things changed at once",  "body": "A new hook, a new creator and a new cut in the same ad means the winner cannot be explained. The brief moves one axis per round.", "visual": { "kind": "tile-icon", "icon": "one-axis", "description": "Three sliders in a column, the top one moved right with a small filled knob, the two below held at the left; baseline under." } },
+          { "title": "The winner nobody can explain", "body": "Named variants that match the ad account's naming make the read a five-minute job instead of an archaeology dig.", "visual": { "kind": "tile-icon", "icon": "labelled-grid", "description": "A 3×3 grid of small frames with one frame outlined heavier and a tag line pointing to it; baseline under." } },
+          { "title": "The debrief stayed in a deck",  "body": "A read that does not change the next brief was a report, not a test. On Growth and Scale, it is the first page of round two.", "visual": { "kind": "tile-icon", "icon": "deck-to-brief", "description": "A slide rectangle with a chart on it and an arrow into a document outline with three text lines; baseline under." } },
+          { "title": "Too small to call",            "body": "Some rounds do not produce a clear winner. The debrief says so, and the next round is designed to find one.", "visual": { "kind": "tile-icon", "icon": "noisy-bars", "description": "Four bars of nearly equal height with a dashed line across their tops and a question-mark stroke above; baseline under." } }
+        ]
+      },
+      "how": {
+        "eyebrow": "How it runs",
+        "h2": "From the first variable to the next brief.",
+        "steps": [
+          { "n": "01", "title": "The axis is chosen",     "body": "Hooks first, usually. The brief names what is moving this round and what is held steady." },
+          { "n": "02", "title": "Hooks and creators",     "body": "Eight hooks written, the picked ones shot by every creator in the round, cast to differ on the axis." },
+          { "n": "03", "title": "Cut and named",          "body": "Variants cut native per placement and named for their grid position, matching your ad account." },
+          { "n": "04", "title": "Read, then briefed",     "body": "The month closes with a debrief on Growth and Scale, and round two opens with it." }
+        ]
+      },
+      "hood": {
+        "eyebrow": "Under the hood",
+        "h2": "One axis at a time, named for the account, read honestly.",
+        "p": "The details a growth lead asks about before committing a testing budget.",
+        "items": [
+          { "label": "Hooks",       "value": "8 per script",       "body": "Written across kinds so the round has a range. The picked ones are shot by every creator in the round." },
+          { "label": "Creators",    "value": "2 to 5 per brief",   "body": "Two on Starter, four or five on Growth, a dedicated roster on Scale. Cast to differ on the axis being tested." },
+          { "label": "Naming",      "value": "Matches your account", "body": "Every variant is named for hook, creator, format and placement, in the convention your ad account already uses." },
+          { "label": "Debrief",     "value": "Monthly",             "body": "Included on Growth and Scale, written into the next brief. Starter includes the live tracker and our notes on what to run where." },
+          { "label": "Data",        "value": "Stays with you",      "body": "Performance data lives in your ad account. We read it with you; we do not hold it, and this site has no trackers." },
+          { "label": "Rights",      "value": "Organic and paid",    "body": "Every variant is licensed for organic and paid for the term, in writing with the creator before the shoot." }
+        ],
+        "link": { "label": "Rights and safety", "href": "/rights" }
+      },
+      "quote": {
+        "kind": "founder",
+        "sign_off": true,
+        "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
+        "name": "Avi Aggarwal",
+        "role": "Founder, hypjam",
+        "visual": { "kind": "hq-room", "room": 2, "alt": "Line drawing of the writers' room at hypjam's HQ" }
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "h2": "Questions growth leads ask first.",
+        "items": [
+          { "q": "How many variants does a round produce?",              "a": "It depends on the package and the axis. A Growth brief with three picked hooks, four creators and two placements is twenty-four named variants from one shoot; the brief sets the number before anyone films." },
+          { "q": "Do you run the ads?",                                  "a": "No. The spend and the account stay with your team. We deliver named variants cut per placement and read the results with you." },
+          { "q": "What if there is no clear winner?",                    "a": "Then the debrief says so. Small tests are noisy, and inventing a winner would make the next round worse. Round two is designed to separate the close ones." },
+          { "q": "Can we test with our own creators?",                   "a": "Yes. They shoot the same picked hooks as the roster creators in the round, on the same contract, so the comparison is fair." },
+          { "q": "How is a testing round priced?",                       "a": "By package: starter from £1,800 a month with six videos and two creators, growth from £3,600 with twelve videos and four or five creators. The final number is scoped once we know the grid." }
+        ]
+      },
+      "related": {
+        "eyebrow": "Related",
+        "items": [
+          { "service": "reporting",           "body": "The monthly read, written into the next brief." },
+          { "label": "Always-on paid social", "body": "Where the winners go once the grid has spoken.",       "href": "/solutions/always-on-paid-social" },
+          { "label": "Launches",              "body": "The first round to test with.",               "href": "/solutions/launches" }
+        ]
+      },
+      "cta": {
+        "h2": "Tell us what you want to learn.",
+        "p": "Book a thirty-minute call. Bring the ad account and the question; we will come back with the first round's axis, hooks and creators.",
+        "button": { "label": "Book a call", "href": "/book" }
+      }
+    },
+
+    {
+      "slug": "retention",
+      "group": "goal",
+      "title": "Retention",
+      "short": "How-to, onboarding and reorder video for customers you already have.",
+      "meta": {
+        "title": "Retention: how-to, onboarding and reorder video | hypjam",
+        "description": "How hypjam makes retention content: how-to and onboarding videos, reorder and subscription nudges, FAQ answers in a creator's voice, cut for email, your site and Shorts, licensed for wherever they run."
+      },
+      "hero": {
+        "breadcrumb": ["Solutions", "Retention"],
+        "h1": "The second order, briefed as carefully as the first",
+        "intro": "hypjam briefs the how-to, the onboarding, the 'day 21' nudge and the FAQ answered by a person, casts creators who use the product, and cuts it for email, your site and the feed. Your team keeps the CRM.",
+        "cta": { "label": "Book a call", "href": "/book" },
+        "visual": { "kind": "panel", "mock": "conversation", "sender": "Client · your brand · 10:15", "message": "Second orders are the problem, not first ones. Can video help?", "label": "Briefing & scripts" }
+      },
+      "platforms_row": true,
+      "facts": {
+        "h2": "Everyone briefs for the first purchase. Almost nobody briefs for the second.",
+        "p": "On hypjam the post-purchase flow is treated as a content calendar: what a customer needs to see on day one, day three and day twenty-one. Four services make that a set of videos rather than a plain-text email.",
+        "items": [
+          { "value": "14 days", "label": "From a signed brief to your first cuts" },
+          { "value": "1 contract", "label": "One invoice, every creator and editor behind it" },
+          { "value": "6 videos", "label": "The smallest monthly package, enough for a first flow" }
+        ]
+      },
+      "behind": {
+        "eyebrow": "The services behind it",
+        "h2": "The services behind retention.",
+        "p": "Each one is a service on its own. Together they cover what a customer sees after the order, who says it, how it is cut, and where it is allowed to run.",
+        "items": [
+          { "n": "01", "service": "briefing", "anchor": "#flow",    "blurb": "Maps the post-purchase flow into a brief: what to show on which day.",         "link_label": "Service page" },
+          { "n": "02", "service": "casting",  "anchor": "#casting", "blurb": "Casts creators who actually use the product, for how-to and honest FAQ.",     "link_label": "Service page" },
+          { "n": "03", "service": "editing",  "anchor": "#cut",     "blurb": "Cuts for email, your site and Shorts, where retention content actually runs.", "link_label": "Service page" },
+          { "n": "04", "service": "rights",   "anchor": "#rights",  "blurb": "Licenses the videos for email, site and CRM use, in writing, for the term.",   "link_label": "Service page" }
+        ]
+      },
+      "features": [
+        {
+          "anchor": "flow",
+          "service": "briefing",
+          "layout": "text-left",
+          "h2": "The brief is the post-purchase flow, day by day.",
+          "p": "A retention brief starts with the customer's calendar, not the brand's. What arrives with the order, what people get wrong in the first week, when they would reorder if reminded. Each moment becomes a video with a job, and the tracker shows the whole flow.",
+          "points": [
+            { "title": "Moments, not months",       "body": "Day one: unboxing and set-up. Day three: the how-to for the thing people get wrong. Day twenty-one: the reorder, said by a person. The brief names each moment and its video." },
+            { "title": "Written from support tickets", "body": "The best retention scripts are already in your inbox. The brief mines the questions customers actually ask and answers them on camera." },
+            { "title": "Tracked live",               "body": "The flow sits on the live tracker. You can see which moment is cast, shot and cut without asking." }
+          ],
+          "link_label": "Briefing & scripts service page",
+          "visual": { "kind": "panel", "mock": "retention-flow" }
+        },
+        {
+          "anchor": "casting",
+          "service": "casting",
+          "layout": "text-right",
+          "h2": "Cast people who use the product, because a how-to has to be true.",
+          "p": "An onboarding video from someone who has never opened the box is a demo. Retention creators are cast from the roster for genuine use and for the tone your customers trust after they have paid. You approve the shortlist, as always.",
+          "points": [
+            { "title": "Cast for use, not reach",     "body": "Follower count is irrelevant here. The roster is organised by what people actually use and film, so a how-to is delivered by someone who knows the product." },
+            { "title": "Honest by design",            "body": "A retention video that oversells creates a return. Creators are briefed to show the real routine, including the bit that takes practice." },
+            { "title": "Paid by us, once",            "body": "Creators are paid out of your package fee on a set schedule. One contract, one invoice." }
+          ],
+          "link_label": "Casting & roster service page",
+          "visual": { "kind": "panel", "mock": "casting-board" }
+        },
+        {
+          "anchor": "cut",
+          "service": "editing",
+          "layout": "text-left",
+          "h2": "Cut for where retention content actually runs.",
+          "p": "An email needs a thumbnail with a play triangle and a fifteen-second cut behind it. A product page needs a looping how-to without sound. Shorts needs the hook in the first frame. The editor cuts each moment for its channel, captions burned in.",
+          "points": [
+            { "title": "Email, site, feed",           "body": "Each video is delivered in the versions the flow needs: a short cut with a still for email, a silent loop for the site, a native vertical for Shorts and Reels." },
+            { "title": "Captions always on",          "body": "Most retention video is watched with the sound off, in an inbox or on a product page. Captions are burned in and kept clear of any player controls." },
+            { "title": "One revision round, included", "body": "Included on every package. Usually spent on the how-to's step order, because customers notice." }
+          ],
+          "link_label": "Editing & captions service page",
+          "visual": { "kind": "panel", "mock": "timeline" }
+        },
+        {
+          "anchor": "rights",
+          "service": "rights",
+          "layout": "text-right",
+          "h2": "Licensed for email, site and CRM, in writing, for the term.",
+          "p": "Retention content runs in places a standard creator licence does not always name: an email flow, a product page, an app screen. The usage rights are written for those channels before the shoot, so nothing has to be pulled from a flow six months in.",
+          "points": [
+            { "title": "Channels named in the licence", "body": "Email, your site, your app, your CRM, organic and paid. The agreement with the creator lists where the video may run, and for how long." },
+            { "title": "Windows that fit a flow",      "body": "A post-purchase flow runs for as long as customers keep buying. Longer usage windows are scoped in the brief, not renegotiated later." },
+            { "title": "The paperwork is ours",        "body": "Signed creator releases, the licence, the term. One contract with hypjam covers all of it; you never chase a creator for a signature." }
+          ],
+          "link_label": "Usage rights service page",
+          "visual": { "kind": "panel", "mock": "rights-sheet" }
+        }
+      ],
+      "problems": {
+        "h2": "Built for the problems a retention flow actually has.",
+        "p": "Not another welcome email. hypjam is built around the box that arrives without instructions, the plain-text nudge nobody opens, and the licence that never mentioned email.",
+        "items": [
+          { "title": "The box arrives, the video does not", "body": "Set-up is the moment most products are abandoned. A day-one how-to from someone who uses it is the cheapest retention there is.", "visual": { "kind": "tile-icon", "icon": "box-play", "description": "An open box outline (150×110) with a phone outline standing in it showing a play triangle; baseline under." } },
+          { "title": "The nudge nobody opens",             "body": "A plain-text reorder email is easy to ignore. A person on camera saying 'this is the point where I run out' is not.", "visual": { "kind": "tile-icon", "icon": "mail-thumb", "description": "An envelope outline with a small phone thumbnail and play triangle drawn inside its open flap; baseline under." } },
+          { "title": "The FAQ that reads like a manual",   "body": "Customers ask the same twelve questions after buying. Each one is answered on camera in a creator's voice, once.", "visual": { "kind": "tile-icon", "icon": "faq-bubbles", "description": "Three overlapping speech bubbles, one with a question-mark stroke, one with a tick; baseline under." } },
+          { "title": "The licence never said 'email'",     "body": "A creator video pulled from a flow because the rights were for 'social' is a retention problem. Channels are named in the licence before the shoot.", "visual": { "kind": "tile-icon", "icon": "licence-channels", "description": "A document outline with a list of four short lines, each with a small tick, and an envelope icon beside the last; baseline under." } }
+        ]
+      },
+      "how": {
+        "eyebrow": "How it runs",
+        "h2": "From the order confirmation to the second order.",
+        "steps": [
+          { "n": "01", "title": "The flow is mapped",     "body": "Day one, day three, day twenty-one. The brief names each moment, its job and its channel, from your support inbox and your CRM." },
+          { "n": "02", "title": "Cast for use",           "body": "Creators who actually use the product, approved by you, briefed to show the real routine." },
+          { "n": "03", "title": "Shot and cut per channel", "body": "Directed on their phones, then cut for email, the site and Shorts, captions burned in." },
+          { "n": "04", "title": "Licensed and delivered", "body": "Usage rights naming every channel, in writing, for the term. The videos drop into the flow and stay there." }
+        ]
+      },
+      "hood": {
+        "eyebrow": "Under the hood",
+        "h2": "Briefed from the inbox, licensed for the flow, cut for the sound off.",
+        "p": "The details a CRM lead asks about before putting video in a lifecycle flow.",
+        "items": [
+          { "label": "Turnaround",  "value": "14 days",             "body": "From a signed brief to first cuts. A first flow of six videos fits inside one starter month." },
+          { "label": "Channels",    "value": "Named in the licence", "body": "Email, site, app, CRM, organic and paid are listed in the creator agreement before the shoot, with the window." },
+          { "label": "Versions",    "value": "Per channel",         "body": "Short cut and still for email, silent loop for the site, native vertical for Shorts and Reels. Delivered together." },
+          { "label": "Captions",    "value": "Always on",           "body": "Burned in, high contrast, clear of player controls, because most of this is watched with the sound off." },
+          { "label": "Paperwork",   "value": "One contract",        "body": "One contract, one invoice. Releases and licences with creators are ours to hold; you never chase a signature." },
+          { "label": "Data",        "value": "UK GDPR",             "body": "Customer questions used for scripts are anonymised before they reach a creator. Creator and client data is handled under UK GDPR." }
+        ],
+        "link": { "label": "Rights and safety", "href": "/rights" }
+      },
+      "quote": {
+        "kind": "founder",
+        "sign_off": true,
+        "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
+        "name": "Avi Aggarwal",
+        "role": "Founder, hypjam",
+        "visual": { "kind": "hq-room", "room": 5, "alt": "Line drawing of the edit suite at hypjam's HQ" }
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "h2": "Questions CRM leads ask first.",
+        "items": [
+          { "q": "Can creator video run in our email flows?",           "a": "Yes, and the licence says so. Email, site, app and CRM are named channels in the creator agreement, with a usage window scoped in the brief." },
+          { "q": "How many videos is a first retention flow?",          "a": "Six is usually enough: set-up, the how-to for the thing people get wrong, two FAQ answers, the reorder nudge and a 'what to try next'. That is one starter month." },
+          { "q": "Do the videos need sound?",                            "a": "No. Every cut is delivered with captions burned in, and the site version is a silent loop." },
+          { "q": "Can our own customers appear?",                        "a": "If they agree to be briefed, directed and released like any creator, yes. Roster creators who already use the product are usually quicker and just as believable." },
+          { "q": "What happens to our support data?",                    "a": "Questions are anonymised before they reach a writer or a creator, and nothing personal leaves your systems. Data handling is under UK GDPR; the privacy policy says how." }
+        ]
+      },
+      "related": {
+        "eyebrow": "Related",
+        "items": [
+          { "service": "rights",                 "body": "Usage rights written for the channels a flow actually uses." },
+          { "label": "Apps & subscriptions",     "body": "Retention content for products people have to keep opening.", "href": "/solutions/apps-and-subscriptions" },
+          { "label": "Launches",                 "body": "The first purchase, and the content that gets it.",           "href": "/solutions/launches" }
+        ]
+      },
+      "cta": {
+        "h2": "Show us the post-purchase flow.",
+        "p": "Book a thirty-minute call. Bring the flow and the support inbox; we will come back with the six videos it is missing.",
+        "button": { "label": "Book a call", "href": "/book" }
+      }
+    },
+
+    {
+      "slug": "dtc-ecommerce",
+      "group": "brand",
+      "title": "DTC & ecommerce",
+      "short": "Feed-first ads for brands that sell on the scroll.",
+      "meta": {
+        "title": "hypjam for DTC and ecommerce brands | hypjam",
+        "description": "The full UGC set-up for DTC and ecommerce brands: briefing, eight-hook scripts, casting from a roster, phone shoots, native cuts per placement, whitelisting and usage rights, on one contract with a fourteen-day sprint."
+      },
+      "hero": {
+        "eyebrow": "Solutions · DTC & ecommerce",
+        "h1": "Built for brands that sell on the scroll",
+        "intro": "No marketplace, no five freelancers on five invoices. Briefing, hooks, casting, phone shoots, native cuts and usage rights, delivered inside fourteen days, owned end to end by one team.",
+        "cta": { "label": "Book a call", "href": "/book" },
+        "visual": { "kind": "still", "src": "/assets/img/stills/studio-creator.jpg", "alt": "A creator mid-take, talking to a phone on a tripod inside a ring light, at a kitchen-counter set", "position": "50% 35%" }
+      },
+      "facts": {
+        "h2": "The creative team of a big brand, run for a lean one.",
+        "p": "DTC brands do not have an in-house production unit to wait on. hypjam sits alongside whatever you already run and does the briefing, directing and editing a small marketing team cannot staff.",
+        "items": [
+          { "value": "14 days", "label": "From a signed brief to your first cuts" },
+          { "value": "6 placements", "label": "TikTok, Reels, Shorts, Snap, Pinterest and Meta, cut natively" },
+          { "value": "1 contract", "label": "One invoice, every creator and editor behind it" }
+        ]
+      },
+      "fits": {
+        "eyebrow": "Where hypjam fits",
+        "h2": "Where hypjam fits at a DTC brand.",
+        "p": "The four things a DTC team usually needs first, and what hypjam does about each.",
+        "items": [
+          { "title": "Ads that look like the feed",       "body": "Paid social works when it does not look like paid social. Creators are cast for the customer, shot on phones with natural light, and cut 9:16 for the placement, hook in the first frame.", "link": { "label": "How a launch is briefed", "href": "/solutions/launches" } },
+          { "title": "Variants, every month",             "body": "One film gives the ad account nothing to learn from. Monthly briefs produce hook swaps and per-placement cuts so there is always a next ad ready.", "link": { "label": "Always-on paid social", "href": "/solutions/always-on-paid-social" } },
+          { "title": "Whitelisting without the admin",    "body": "Spark Ads and Meta partnership permissions are requested from creators by us, with the rights window agreed at the same time, so the best organic runs as paid from the creator's handle.", "link": { "label": "Whitelisting & Spark Ads", "service": "whitelisting" } },
+          { "title": "Product-page video included",       "body": "Every shoot is also cut into a silent loop for the product page and a short with a still for email, licensed for the site and CRM as well as social.", "link": { "label": "Retention content", "href": "/solutions/retention" } }
+        ]
+      },
+      "band": {
+        "h2": "Fourteen days, not a quarter",
+        "sub": "From a signed brief to first cuts: cast, shot, cut and cleared, with no production company in between",
+        "visual": { "kind": "still", "src": "/assets/img/stills/aerial-campus.jpg", "alt": "A converted brick warehouse at golden hour, seen from the air", "position": "50% 45%" }
+      },
+      "how": {
+        "eyebrow": "How it runs",
+        "h2": "One ordinary sprint on hypjam, from the brief to the ads running.",
+        "steps": [
+          { "n": "01", "title": "The brief lands",       "body": "A thirty-minute call: product, offer, goal, date and budget band. It is on the live tracker the same day." },
+          { "n": "02", "title": "Hooks, then casting",   "body": "Eight hooks per script; two or three go to the shoot. Creators are cast from the roster and you approve the shortlist." },
+          { "n": "03", "title": "Shot and cut",          "body": "Directed on the creators' phones, then cut per placement with captions burned in, plus the site loop and the email cut." },
+          { "n": "04", "title": "Cleared and running",   "body": "Rights in writing, whitelisting set up where the package includes it, and a note on what to run where. Then the next brief." }
+        ]
+      },
+      "quote": {
+        "kind": "reserved",
+        "text": "The first brand quote goes here.",
+        "tag": "Filled in at launch",
+        "name": "",
+        "role": "",
+        "visual": { "kind": "reserved-phone", "alt": "Reserved space for a brand story" }
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "h2": "Questions ecommerce teams ask before they brief hypjam.",
+        "items": [
+          { "q": "Do we need an in-house creative team to work with hypjam?",  "a": "No. The brief, the hooks, the casting, the direction and the edit are ours. Your side is a thirty-minute call, approving the shortlist, and running the ads." },
+          { "q": "How quickly can a DTC brand get its first ads?",             "a": "Fourteen days from a signed brief to first cuts, with casting, shooting and editing inside that. Packages start from £1,800 a month for six videos; the final number is scoped once we know the plan." },
+          { "q": "Who owns the videos, and where can they run?",                "a": "You do, for the usage window in your package. Organic and paid are included as standard, and site, email and CRM are named in the licence when the brief needs them. We handle the paperwork with creators." }
+        ]
+      },
+      "related": {
+        "eyebrow": "Related",
+        "items": [
+          { "label": "Launches",              "body": "Hooks, casting and first cuts before the product ships.",  "href": "/solutions/launches" },
+          { "label": "Creative testing",      "body": "Hooks × creators × formats, read as a grid.",              "href": "/solutions/creative-testing" },
+          { "service": "whitelisting",        "body": "Spark Ads and Meta whitelisting, set up and licensed by us." }
+        ]
+      },
+      "cta": {
+        "h2": "See it run for your store.",
+        "p": "Book a thirty-minute call. We will look at the product page and the ad account, and come back with a first month: formats, creators and a timeline.",
+        "button": { "label": "Book a call", "href": "/book" }
+      }
+    },
+
+    {
+      "slug": "apps-and-subscriptions",
+      "group": "brand",
+      "title": "Apps & subscriptions",
+      "short": "Walkthrough and onboarding video for apps people keep opening.",
+      "meta": {
+        "title": "hypjam for apps and subscription brands | hypjam",
+        "description": "UGC for apps and subscriptions: screen-in-hand walkthroughs, onboarding and trial-to-paid video, cancel-moment content, shot on the phone the product runs on, cut native per placement, licensed for in-app and email use."
+      },
+      "hero": {
+        "eyebrow": "Solutions · Apps & subscriptions",
+        "h1": "Built for products people keep opening",
+        "intro": "No stock screen recordings, no explainer voiced by nobody. Walkthroughs in a creator's hand, onboarding that shows the first win, and the day-thirty nudge said by a person, all on one contract.",
+        "cta": { "label": "Book a call", "href": "/book" },
+        "visual": { "kind": "still", "src": "/assets/img/stills/studio-wide.jpg", "alt": "A creator holding a take at a kitchen-counter set, an editor at a desk behind her with a timeline on screen", "position": "50% 40%" }
+      },
+      "facts": {
+        "h2": "An install is not a customer. The content has to keep working after the download.",
+        "p": "Subscription products live or die on the second week. hypjam briefs the walkthrough, the first-win moment and the renewal nudge as a set, shot on the phone the product actually runs on.",
+        "items": [
+          { "value": "9:16", "label": "Shot on the phone your product runs on, screen in hand" },
+          { "value": "14 days", "label": "From a signed brief to your first cuts" },
+          { "value": "1 round", "label": "Of revisions per video, included in every package" }
+        ]
+      },
+      "fits": {
+        "eyebrow": "Where hypjam fits",
+        "h2": "Where hypjam fits at an app or subscription brand.",
+        "p": "The four things a product marketing team usually needs first, and what hypjam does about each.",
+        "items": [
+          { "title": "Walkthroughs in a real hand",        "body": "A screen recording with a cursor is a demo. A creator holding the phone, tapping through the thing they actually use, with the screen visible and their face in frame, is an ad. Creators are cast for genuine use.", "link": { "label": "How casting works", "service": "casting" } },
+          { "title": "Onboarding that shows the first win", "body": "The moment a new user gets value is the moment they stay. The brief finds it, and a creator shows it in under thirty seconds for the welcome flow and the app store page.", "link": { "label": "Retention content", "href": "/solutions/retention" } },
+          { "title": "Trial-to-paid, said by a person",     "body": "The upgrade nudge lands better from someone who upgraded. Cut for email, in-app and Shorts, captions burned in, licensed for every channel it runs in.", "link": { "label": "Usage rights", "service": "rights" } },
+          { "title": "Founder explainers that do not read like a deck", "body": "For a product that needs its maker to explain it, the founder is directed like any creator: hooks written from how they talk, takes over a call, the edit doing the rest.", "link": { "label": "Founder-led video", "href": "/solutions/founder-led" } }
+        ]
+      },
+      "band": {
+        "h2": "Shot on the phone it runs on",
+        "sub": "Screen in hand, face in frame, native for the feed and the app store page",
+        "visual": { "kind": "still", "src": "/assets/img/stills/studio-blur.jpg", "alt": "A soft-focus view of a shoot set: a ring light on a counter, plants, an editor's desk behind", "position": "50% 50%" }
+      },
+      "how": {
+        "eyebrow": "How it runs",
+        "h2": "One ordinary sprint on hypjam, from the install to the renewal.",
+        "steps": [
+          { "n": "01", "title": "The brief lands",       "body": "A thirty-minute call: what the product does, where new users drop off, what the first win is. On the tracker the same day." },
+          { "n": "02", "title": "Hooks and a screen plan", "body": "Eight hooks per script, plus a tap-by-tap plan for what the screen shows and when the face is in frame." },
+          { "n": "03", "title": "Cast and shot in hand",  "body": "Creators who use the product, approved by you, directed over a call while they film the screen and themselves." },
+          { "n": "04", "title": "Cut for every surface",  "body": "Native vertical for the feed, a version for the app store page, a short for the welcome email, all captioned and licensed." }
+        ]
+      },
+      "quote": {
+        "kind": "reserved",
+        "text": "The first brand quote goes here.",
+        "tag": "Filled in at launch",
+        "name": "",
+        "role": "",
+        "visual": { "kind": "reserved-phone", "alt": "Reserved space for a brand story" }
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "h2": "Questions product marketing teams ask before they switch it on.",
+        "items": [
+          { "q": "Can creators show the actual app screen?",          "a": "Yes, that is the point. Creators film with the screen in hand and their face in frame, from a tap-by-tap plan in the brief, so the walkthrough is real and the person is too." },
+          { "q": "Can the videos run in-app and in our emails?",       "a": "Yes. In-app, email, the app store page, site, organic and paid are named in the creator licence when the brief needs them, with the usage window scoped upfront." },
+          { "q": "What if the app changes next month?",                "a": "Then the next brief covers it. Packages are month to month with a one-month minimum, and a monthly brief keeps the walkthroughs current rather than a one-off production going stale." }
+        ]
+      },
+      "related": {
+        "eyebrow": "Related",
+        "items": [
+          { "label": "Retention",             "body": "The post-install flow, day by day.",                          "href": "/solutions/retention" },
+          { "label": "Founder-led",           "body": "When the maker is the one who should explain it.",           "href": "/solutions/founder-led" },
+          { "service": "editing",             "body": "Cuts for the feed, the app store page and the welcome email." }
+        ]
+      },
+      "cta": {
+        "h2": "See it run for your app.",
+        "p": "Book a thirty-minute call. Show us the onboarding and where people drop off; we will come back with the first set of walkthroughs and who should film them.",
+        "button": { "label": "Book a call", "href": "/book" }
+      }
+    },
+
+    {
+      "slug": "food-and-drink",
+      "group": "brand",
+      "title": "Food & drink",
+      "short": "Kitchen shoots, taste on camera, claims kept inside the rules.",
+      "meta": {
+        "title": "hypjam for food and drink brands | hypjam",
+        "description": "UGC for food and drink brands: kitchen-counter shoots in the creator's own kitchen or on a directed London shoot, taste and recipe formats, unboxing and reaction, cut native per placement, with claims kept inside the CAP Code."
+      },
+      "hero": {
+        "eyebrow": "Solutions · Food & drink",
+        "h1": "Built for products people taste on camera",
+        "intro": "No white tabletop, no stock pour. A creator in a real kitchen, the first bite in the first frame, and the claim on screen kept inside the rules, all on one contract inside fourteen days.",
+        "cta": { "label": "Book a call", "href": "/book" },
+        "visual": { "kind": "still", "src": "/assets/img/stills/studio-wide.jpg", "alt": "A kitchen-counter set, a creator mid-take behind a ring light, plants on the sill", "position": "50% 55%" }
+      },
+      "facts": {
+        "h2": "Food sells on the first bite. The shoot is built to get it.",
+        "p": "On hypjam, food and drink is shot in real kitchens, on phones, with a director on the call, so the pour, the crunch and the reaction land in the first three seconds. Five formats come out of one shoot.",
+        "items": [
+          { "value": "5 formats", "label": "Per shoot: taste, recipe, unboxing, reaction, testimonial" },
+          { "value": "14 days", "label": "From a signed brief to your first cuts" },
+          { "value": "1 contract", "label": "One invoice, every creator and editor behind it" }
+        ]
+      },
+      "fits": {
+        "eyebrow": "Where hypjam fits",
+        "h2": "Where hypjam fits at a food and drink brand.",
+        "p": "The four things a food and drink team usually needs first, and what hypjam does about each.",
+        "items": [
+          { "title": "Real kitchens, real light",             "body": "Creators are cast for the kitchen they already cook in, and directed over a call while they film on their phone. When the product needs a clean counter and a pour in close-up, a London shoot with the director in the room can be arranged.", "link": { "label": "How the shoot is directed", "service": "shoot" } },
+          { "title": "Five formats from one shoot",           "body": "Taste test, recipe, unboxing, reaction and testimonial come out of the same morning, each cut native for the placement it is going to, so a single brief feeds the feed for weeks.", "link": { "label": "Organic and trends", "href": "/solutions/organic-and-trends" } },
+          { "title": "Claims kept inside the rules",          "body": "Health, nutrition and 'natural' claims have rules. Hooks are written so the line on screen is one the product can stand behind under the CAP Code, and paid partnerships are labelled where the platform requires it.", "link": { "label": "Rights and safety", "href": "/rights" } },
+          { "title": "Reorder and subscription nudges",       "body": "For anything people finish, the day-twenty-one video from someone who ran out is the cheapest reorder there is. Cut for email and the site, licensed for both.", "link": { "label": "Retention content", "href": "/solutions/retention" } }
+        ]
+      },
+      "band": {
+        "h2": "First bite, first frame",
+        "sub": "Shot in a real kitchen, directed over a call, cut so the reaction lands before the scroll",
+        "visual": { "kind": "still", "src": "/assets/img/stills/studio-creator.jpg", "alt": "A creator at a kitchen-counter set, mid-take, phone on a tripod inside a ring light", "position": "50% 30%" }
+      },
+      "how": {
+        "eyebrow": "How it runs",
+        "h2": "One ordinary sprint on hypjam, from the brief to the first bite.",
+        "steps": [
+          { "n": "01", "title": "The brief lands",       "body": "A thirty-minute call: the product, how it is eaten or poured, the claim you can make, the date. On the tracker the same day." },
+          { "n": "02", "title": "Hooks and a shot list",  "body": "Eight hooks per script and a shot list for the pour, the crunch, the reaction. Claims checked against the CAP Code before anyone films." },
+          { "n": "03", "title": "Cast and shot in kitchens", "body": "Creators cast for the kitchen they cook in, approved by you, directed on their phones. A London shoot when a close-up needs a clean counter." },
+          { "n": "04", "title": "Five formats, cleared",  "body": "Taste, recipe, unboxing, reaction and testimonial, cut native per placement, captions burned in, rights in writing." }
+        ]
+      },
+      "quote": {
+        "kind": "reserved",
+        "text": "The first brand quote goes here.",
+        "tag": "Filled in at launch",
+        "name": "",
+        "role": "",
+        "visual": { "kind": "reserved-phone", "alt": "Reserved space for a brand story" }
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "h2": "Questions food and drink teams ask before they switch it on.",
+        "items": [
+          { "q": "Do creators need to come to London?",                    "a": "No. The roster is mostly remote: food shoots happen in the creator's own kitchen, directed over a call. A London shoot with the director in the room can be arranged when the product needs a clean counter and a close-up pour." },
+          { "q": "How do you handle health and nutrition claims?",          "a": "Hooks are written so the line on screen is one the product can stand behind under the CAP Code, and we would rather cut a line than get you a letter. Paid partnerships are labelled where the platform requires it." },
+          { "q": "How many videos does one shoot produce?",                 "a": "Up to five formats from one shoot: taste test, recipe, unboxing, reaction and testimonial, each cut native for its placement. A Starter month is six videos; Growth is twelve." }
+        ]
+      },
+      "related": {
+        "eyebrow": "Related",
+        "items": [
+          { "label": "Organic & trends",      "body": "Trend-led kitchen content, briefed this week.",                "href": "/solutions/organic-and-trends" },
+          { "label": "Retention",             "body": "The reorder video from someone who ran out.",                  "href": "/solutions/retention" },
+          { "service": "shoot",               "body": "Direction over a call while the creator films in their kitchen." }
+        ]
+      },
+      "cta": {
+        "h2": "See it run in a real kitchen.",
+        "p": "Book a thirty-minute call. Tell us how the product is eaten and what you are allowed to say about it; we will come back with the first shoot's five formats.",
+        "button": { "label": "Book a call", "href": "/book" }
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+<!-- The platforms row: replaces Lance's "Trusted by" (CONTRACT §10). Label · six
+     self-drawn wordmarks from the sprite (#wm-*, drawn in currentColor, opacity .5
+     via .platforms__item) · small grey tail. Copy: content/services.json → platforms.
+     Needs the icons partial (partials/icons.html) included once on the page;
+     do not write an include token inside this comment - build.py expands it. -->
+<div class="platforms">
+  <p class="platforms__label">{{content:services.platforms.label|Ships to}}</p>
+  <ul class="platforms__list" aria-label="{{content:services.platforms.label|Ships to}}">
+    <li class="platforms__item"><svg class="platforms__mark" viewBox="0 0 113.6 32" role="img" aria-label="{{content:services.platforms.items.0|TikTok}}"><use href="#wm-tiktok"/></svg></li>
+    <li class="platforms__item"><svg class="platforms__mark" viewBox="0 0 229.7 32" role="img" aria-label="{{content:services.platforms.items.1|Instagram Reels}}"><use href="#wm-instagram"/></svg></li>
+    <li class="platforms__item"><svg class="platforms__mark" viewBox="0 0 220.6 32" role="img" aria-label="{{content:services.platforms.items.2|YouTube Shorts}}"><use href="#wm-youtube"/></svg></li>
+    <li class="platforms__item"><svg class="platforms__mark" viewBox="0 0 149.8 32" role="img" aria-label="{{content:services.platforms.items.3|Snapchat}}"><use href="#wm-snapchat"/></svg></li>
+    <li class="platforms__item"><svg class="platforms__mark" viewBox="0 0 144.2 32" role="img" aria-label="{{content:services.platforms.items.4|Pinterest}}"><use href="#wm-pinterest"/></svg></li>
+    <li class="platforms__item"><svg class="platforms__mark" viewBox="0 0 149.3 32" role="img" aria-label="{{content:services.platforms.items.5|Meta ads}}"><use href="#wm-meta"/></svg></li>
+    <li class="platforms__tail">{{content:services.platforms.tail|+ your own site}}</li>
+  </ul>
+</div>

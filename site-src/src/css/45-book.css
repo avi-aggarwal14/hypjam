@@ -1,0 +1,281 @@
+/* =====================================================================
+   hypjam v2 · 45-book.css — the /book page (Lance's /get-started,
+   ref/pages/get-started.jpg at 1920×1080). Prefix .book-.
+   Measured on the reference:
+     header  60px (h-[60px]), sand-s, 1px black/5 rule, lockup left at
+             page-x, one 13px grey line right · no nav, no footer
+     split   two equal columns filling the rest of the viewport
+     left    sand-s · flex items-center justify-center px-page py-6
+             column max-w-[440px] · h1 36px display · 13px labels ·
+             40px white fields (r 8) · 44px full-width pill
+     right   photo, darkened · card w-[420px] r-8 bg-white/10 blur-[30px]
+             padding 32 · quote 26/1.25 white · signature 40px tall ·
+             name 14/500 · role 14 white/60 · small mark right · 1px
+             white/15 rule · "Trusted by" 13 white/70 · compact logo
+             marquee · bottom: 13px label + 40px seals, 30px up
+   Ours: the form is the cal.com embed (loaded on click, dark, never
+   inverted), the logo row is the platforms row, the seals are ours.
+   ===================================================================== */
+
+.page-book { background: var(--sand-s); }
+.book-page {
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  background: var(--sand-s);
+  color: var(--black);
+}
+
+/* ---------- header ---------- */
+.book-header {
+  position: sticky;                 /* the reference page never scrolls; ours does once the
+                                       calendar opens, so the lockup and the contact line stay put
+                                       and the photo column can fill exactly 100svh - 60px below */
+  top: 0;
+  z-index: 5;
+  display: flex;
+  height: 60px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 var(--px-page);
+  border-bottom: 1px solid var(--k05);
+  background: var(--sand-s);
+}
+.book-logo { display: block; width: 160px; flex-shrink: 0; }   /* brand minimum for the lockup */
+.book-logo img { display: block; width: 100%; height: auto; }
+.book-header-link {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1;
+  color: var(--grey);
+  white-space: nowrap;
+  transition: color var(--dur);
+}
+.book-header-link:hover { color: var(--black); }
+
+/* ---------- split ---------- */
+.book-split {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: calc(100svh - 60px);
+}
+
+/* left */
+.book-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px var(--px-page);
+  background: var(--sand-s);
+}
+.book-form { display: flex; width: 100%; max-width: 440px; flex-direction: column; }
+.book-h1 {
+  font-size: 36px;
+  line-height: 1.1;
+  letter-spacing: -.72px;
+  color: var(--black);
+}
+.book-sub {
+  margin-top: 12px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--grey);
+}
+.book-embed { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; }
+.book-open {
+  width: 100%;
+  height: 44px;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 8px;
+  font-size: 15px;
+}
+.book-open .btn__ico { width: 28px; height: 28px; }
+.book-open .btn__ico svg { width: 12px; height: 12px; }
+.book-frame {
+  overflow: hidden;
+  border-radius: 12px;
+  background: #101010;                       /* cal.com's dark theme ground; the embed is never colour-inverted */
+  box-shadow: 0 14px 32px rgba(0,0,0,.18);
+}
+.book-iframe {
+  display: block;
+  width: 100%;
+  height: 700px;
+  border: 0;
+  background: #101010;
+  color-scheme: dark;
+}
+/* Lenis' recommended CSS blocks pointer events on iframes while smooth scrolling; the calendar must stay usable */
+.lenis.lenis-smooth .book-frame iframe { pointer-events: auto; }
+.book-fallback { font-family: var(--font-body); font-size: 13px; line-height: 1.35; color: var(--grey); }
+.book-fallback a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--grey);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--dur);
+}
+.book-fallback a:hover { color: var(--black); }
+.book-fallback svg { width: 12px; height: 12px; }
+.book-expect { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+.book-expect-label { color: var(--grey); }
+.book-expect-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--grey);
+}
+.book-expect-list li { display: flex; gap: 12px; }
+.book-expect-list li::before { content: ""; flex-shrink: 0; width: 14px; height: 1px; margin-top: 10px; background: var(--sand-l); }
+.book-note {
+  margin-top: 24px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--fg-dim-40);
+}
+.book-note a { color: var(--grey); text-decoration: underline; text-underline-offset: 3px; transition: color var(--dur); }
+.book-note a:hover { color: var(--black); }
+
+/* right */
+.book-right { position: relative; background: var(--black); color: var(--white); }
+/* exactly the viewport under the 60px sticky header: the page is 100svh tall like the
+   reference, and the photo still fills the screen once the calendar makes it scroll */
+.book-right-sticky { position: sticky; top: 60px; height: calc(100svh - 60px); overflow: hidden; }
+.book-still {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  /* the reference photo column averages 98/255 luminance; this treatment lands
+     studio-creator.jpg on ~90, dark enough for the frosted card, no darker */
+  filter: brightness(.95);
+}
+.book-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.26) 100%);
+}
+.book-right-in {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px var(--px-page) 110px;
+}
+.book-card {
+  width: 420px;
+  max-width: 100%;
+  padding: 32px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 8px;
+  background: rgba(255,255,255,.1);
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 14px 32px rgba(0,0,0,.25);
+  color: var(--white);
+}
+.book-quote { color: var(--white); text-wrap: pretty; }
+.book-cap { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+/* signature = name-text: the name in the display italic where Lance had a handwriting image */
+.book-sig {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-optical-sizing: auto;
+  font-weight: var(--fw-display);
+  font-size: 30px;
+  line-height: 1.2;
+  letter-spacing: -.3px;
+  color: var(--white);
+}
+.book-cap-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.book-name { font-family: var(--font-body); font-size: 14px; font-weight: var(--fw-medium); line-height: 1.4; color: var(--white); }
+.book-role { font-family: var(--font-body); font-size: 14px; line-height: 1.4; color: var(--w60); }
+.book-mark { display: block; width: 40px; height: 40px; flex-shrink: 0; opacity: .9; }
+.book-card-foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--w15);
+}
+.book-ships-label { font-family: var(--font-body); font-size: 13px; line-height: 1; color: var(--w70); }
+.book-ships {
+  --marquee-opacity: .75;
+  /* the cells are words, not logos: the fade has to be wide enough that a name
+     leaving the card reads as a fade rather than a chopped word (~5 characters) */
+  --marquee-fade: 76px;
+  --marquee-dur: 36s;
+  --logo-h: 18px;
+  width: 100%;
+}
+.book-ships .marquee__cell { width: auto; height: 28px; padding: 0 16px; }
+.book-ship {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: var(--fw-medium);
+  line-height: 1;
+  color: var(--white);
+}
+.book-ship-glyph { display: block; width: 18px; height: 18px; flex-shrink: 0; }
+.book-rights {
+  position: absolute;
+  left: var(--px-page);
+  right: var(--px-page);
+  bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.book-rights-label { font-family: var(--font-body); font-size: 13px; line-height: 1; color: var(--w75); }
+.book-seals { display: flex; align-items: center; gap: 16px; }
+.book-seal { display: block; width: 40px; height: 40px; color: var(--white); opacity: .85; }
+
+/* ---------- breakpoints (Lance: max-lp 1024 · max-bp 800 · max-tp 600) ---------- */
+@media (max-width: 1024px) {
+  .book-card { width: 380px; padding: 28px; }
+  .book-quote { font-size: 22px; letter-spacing: -.44px; }
+  .book-sig { font-size: 26px; }
+}
+@media (max-width: 800px) {
+  .book-split { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .book-left { align-items: flex-start; padding: 40px var(--px-page) 56px; }
+  .book-form { max-width: none; }
+  .book-right-sticky { position: static; height: auto; min-height: 640px; }
+  .book-right-in { position: relative; padding: 56px var(--px-page) 128px; }
+  .book-card { width: 100%; }
+  .book-rights { bottom: 36px; }
+}
+@media (max-width: 600px) {
+  .book-h1 { font-size: 32px; letter-spacing: -.64px; }
+  .book-iframe { height: 760px; }               /* cal.com's stacked mobile layout is taller */
+  .book-card { padding: 24px; }
+  .book-quote { font-size: 20px; letter-spacing: -.4px; }
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .book-ships .marquee__track { animation: none !important; }
+}

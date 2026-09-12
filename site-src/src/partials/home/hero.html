@@ -1,0 +1,348 @@
+<!-- ======================================================================
+     home/hero.html — the hero engine's stage (CONTRACT §7).
+     Two renderings live here; src/js/20-hero.js sets data-mode on the
+     section at runtime and only one is displayed:
+       desktop  (> 1024px)  .hero-stage   the pinned 11-viewport walkthrough
+       mobile   (≤ 1024px)  .hero-m       Lance's phone experience (static,
+                                          marquee + drawing + accordion +
+                                          outcomes), see ref/mobile/m01–m03
+     Every string comes from content/hero.json. The drawing is fetched at
+     runtime from /assets/img/hq.svg (like Lance fetches /entire-drawing.svg);
+     the five product panels are inlined by the build (panel:<name> tokens) and
+     mounted through window.hypjamPanels.<name>.mount(el) when present.
+     Layer order (z) follows CONTRACT §7: video · overlay · map · gradients ·
+     trust · HUD · metrics.
+     ====================================================================== -->
+<section id="hero" class="hero" data-nav="dark" data-nav-fill="bg-transparent" data-mode="">
+
+  <!-- ================= desktop: the pinned stage ================= -->
+  <div class="hero-stage" data-hero-stage data-sand="0">
+
+    <!-- 1 · video (opacity G.video, filter blur(G.blur)) -->
+    <div class="hero-layer hero-video-layer" data-hero-video-layer>
+      <video class="hero-video" src="{{content:hero.video.src|assets/video/hero-studio-web.mp4}}" poster="{{content:hero.video.poster|assets/video/hero-poster.jpg}}" autoplay muted loop playsinline preload="auto" aria-label="{{content:hero.video.ariaLabel|Blurred footage of a phone shoot in progress}}"></video>
+    </div>
+
+    <!-- 2 · overlay rgba(0,0,0,G.overlay) — starts .4 -->
+    <div class="hero-layer hero-overlay" data-hero-overlay aria-hidden="true"></div>
+
+    <!-- 3 · the drawing (opacity G.map); the SVG is injected into .hero-map -->
+    <div class="hero-layer hero-map-layer" data-hero-map-layer aria-hidden="true">
+      <div class="hero-map" data-hero-map></div>
+    </div>
+
+    <!-- 4 · edge gradients (opacity G.vignette · (1 − G.sand)) -->
+    <div class="hero-grad hero-grad--left" data-hero-grad aria-hidden="true"></div>
+    <div class="hero-grad hero-grad--top" data-hero-grad aria-hidden="true"></div>
+
+    <!-- 5 · trust layer: paragraph (split into .trust-word by JS), walk hint, marquee -->
+    <div class="hero-layer hero-trust" data-hero-trust>
+      <div class="hero-trust-inner">
+        <h1 class="u-sr-only">{{content:hero.h1|hypjam, a UGC agency in London: everyday creators, briefed, cast, directed and edited by one team}}</h1>
+        <p class="hero-trust-p t-trust" data-hero-trust-p>{{content:hero.trust}}</p>
+      </div>
+      <div class="hero-walk-wrap" data-hero-walk-wrap>
+        <button type="button" class="hero-walk" data-hero-walk data-label="{{content:hero.walkHint|Scroll to walk through the agency}}" data-label-reduced="{{content:hero.reducedMotion|Use the list to move between rooms}}" style="--hero-walk-cycle:3000ms">
+          <span class="hero-walk-arrow" aria-hidden="true"><svg viewBox="0 0 16 8" width="16" height="8" aria-hidden="true"><path d="M2.5 1.4 8 6.6 13.5 1.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="hero-walk-label">{{content:hero.walkHint|Scroll to walk through the agency}}</span>
+        </button>
+      </div>
+      <div class="hero-marquee-wrap" data-hero-marquee>
+        <div class="marquee hero-marquee" role="list" aria-label="{{content:hero.marquee.ariaLabel|Platforms hypjam ships to}}">
+          <div class="marquee__track" data-hero-marquee-track>
+            <div class="marquee__group" aria-hidden="false">
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.0.file}}" alt="{{content:hero.marquee.items.0.alt}}" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.1.file}}" alt="{{content:hero.marquee.items.1.alt}}" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.2.file}}" alt="{{content:hero.marquee.items.2.alt}}" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.3.file}}" alt="{{content:hero.marquee.items.3.alt}}" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.4.file}}" alt="{{content:hero.marquee.items.4.alt}}" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.5.file}}" alt="{{content:hero.marquee.items.5.alt}}" draggable="false" decoding="async"></div>
+            </div>
+            <div class="marquee__group" aria-hidden="true">
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.0.file}}" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.1.file}}" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.2.file}}" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.3.file}}" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.4.file}}" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.5.file}}" alt="" draggable="false" decoding="async"></div>
+            </div>
+            <!-- 20-hero.js clones the hidden group until six groups exist (Lance renders six) -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 · HUD: stop list + marker + card (+ the two "(Skip)" controls) -->
+    <div class="hero-layer hero-hud" data-hero-hud>
+      <div class="hero-hud-inner">
+        <div class="hero-stops">
+          <div class="hero-marker-track" aria-hidden="true"><span class="hero-marker" data-hero-marker></span></div>
+          <div class="hero-stop-list" role="list" aria-label="{{content:hero.stopsAriaLabel|Rooms}}">
+            <button type="button" class="hero-stop" role="listitem" data-hero-stop data-index="0" data-stop-id="{{content:hero.stops.0.id}}" data-cx="{{content:hero.stops.0.camera.cx}}" data-cy="{{content:hero.stops.0.camera.cy}}" data-w="{{content:hero.stops.0.camera.w}}" data-bx="{{content:hero.stops.0.bbox.x}}" data-by="{{content:hero.stops.0.bbox.y}}" data-bw="{{content:hero.stops.0.bbox.w}}" data-bh="{{content:hero.stops.0.bbox.h}}" data-active="true">{{content:hero.stops.0.label}}</button>
+            <button type="button" class="hero-stop" role="listitem" data-hero-stop data-index="1" data-stop-id="{{content:hero.stops.1.id}}" data-cx="{{content:hero.stops.1.camera.cx}}" data-cy="{{content:hero.stops.1.camera.cy}}" data-w="{{content:hero.stops.1.camera.w}}" data-bx="{{content:hero.stops.1.bbox.x}}" data-by="{{content:hero.stops.1.bbox.y}}" data-bw="{{content:hero.stops.1.bbox.w}}" data-bh="{{content:hero.stops.1.bbox.h}}" data-active="false">{{content:hero.stops.1.label}}</button>
+            <button type="button" class="hero-stop" role="listitem" data-hero-stop data-index="2" data-stop-id="{{content:hero.stops.2.id}}" data-cx="{{content:hero.stops.2.camera.cx}}" data-cy="{{content:hero.stops.2.camera.cy}}" data-w="{{content:hero.stops.2.camera.w}}" data-bx="{{content:hero.stops.2.bbox.x}}" data-by="{{content:hero.stops.2.bbox.y}}" data-bw="{{content:hero.stops.2.bbox.w}}" data-bh="{{content:hero.stops.2.bbox.h}}" data-active="false">{{content:hero.stops.2.label}}</button>
+            <button type="button" class="hero-stop" role="listitem" data-hero-stop data-index="3" data-stop-id="{{content:hero.stops.3.id}}" data-cx="{{content:hero.stops.3.camera.cx}}" data-cy="{{content:hero.stops.3.camera.cy}}" data-w="{{content:hero.stops.3.camera.w}}" data-bx="{{content:hero.stops.3.bbox.x}}" data-by="{{content:hero.stops.3.bbox.y}}" data-bw="{{content:hero.stops.3.bbox.w}}" data-bh="{{content:hero.stops.3.bbox.h}}" data-active="false">{{content:hero.stops.3.label}}</button>
+            <button type="button" class="hero-stop" role="listitem" data-hero-stop data-index="4" data-stop-id="{{content:hero.stops.4.id}}" data-cx="{{content:hero.stops.4.camera.cx}}" data-cy="{{content:hero.stops.4.camera.cy}}" data-w="{{content:hero.stops.4.camera.w}}" data-bx="{{content:hero.stops.4.bbox.x}}" data-by="{{content:hero.stops.4.bbox.y}}" data-bw="{{content:hero.stops.4.bbox.w}}" data-bh="{{content:hero.stops.4.bbox.h}}" data-active="false">{{content:hero.stops.4.label}}</button>
+          </div>
+        </div>
+
+        <div class="hero-card-row">
+          <div class="hero-card" data-hero-card aria-hidden="true">
+            <div class="hero-card-blur" aria-hidden="true"></div>
+            <div class="glint" aria-hidden="true"><div class="glint__spin"></div></div>
+
+            <div class="hero-card-body" data-hero-body data-index="0">
+              <div class="hero-card-stack">
+                <div class="hero-card-head">
+                  <p class="hero-card-title t-card-title">{{content:hero.stops.0.title}}</p>
+                  <p class="hero-card-desc t-hud-desc">{{content:hero.stops.0.description}}</p>
+                </div>
+                <div class="hero-card-divider" aria-hidden="true"></div>
+                <div class="hero-panel" data-hero-panel data-panel-name="{{content:hero.stops.0.panel|brief}}">{{panel:brief}}</div>
+              </div>
+            </div>
+
+            <div class="hero-card-body" data-hero-body data-index="1">
+              <div class="hero-card-stack">
+                <div class="hero-card-head">
+                  <p class="hero-card-title t-card-title">{{content:hero.stops.1.title}}</p>
+                  <p class="hero-card-desc t-hud-desc">{{content:hero.stops.1.description}}</p>
+                </div>
+                <div class="hero-card-divider" aria-hidden="true"></div>
+                <div class="hero-panel" data-hero-panel data-panel-name="{{content:hero.stops.1.panel|hooks}}">{{panel:hooks}}</div>
+              </div>
+            </div>
+
+            <div class="hero-card-body" data-hero-body data-index="2">
+              <div class="hero-card-stack">
+                <div class="hero-card-head">
+                  <p class="hero-card-title t-card-title">{{content:hero.stops.2.title}}</p>
+                  <p class="hero-card-desc t-hud-desc">{{content:hero.stops.2.description}}</p>
+                </div>
+                <div class="hero-card-divider" aria-hidden="true"></div>
+                <div class="hero-panel" data-hero-panel data-panel-name="{{content:hero.stops.2.panel|casting}}">{{panel:casting}}</div>
+              </div>
+            </div>
+
+            <div class="hero-card-body" data-hero-body data-index="3">
+              <div class="hero-card-stack">
+                <div class="hero-card-head">
+                  <p class="hero-card-title t-card-title">{{content:hero.stops.3.title}}</p>
+                  <p class="hero-card-desc t-hud-desc">{{content:hero.stops.3.description}}</p>
+                </div>
+                <div class="hero-card-divider" aria-hidden="true"></div>
+                <div class="hero-panel" data-hero-panel data-panel-name="{{content:hero.stops.3.panel|shoot}}">{{panel:shoot}}</div>
+              </div>
+            </div>
+
+            <div class="hero-card-body" data-hero-body data-index="4">
+              <div class="hero-card-stack">
+                <div class="hero-card-head">
+                  <p class="hero-card-title t-card-title">{{content:hero.stops.4.title}}</p>
+                  <p class="hero-card-desc t-hud-desc">{{content:hero.stops.4.description}}</p>
+                </div>
+                <div class="hero-card-divider" aria-hidden="true"></div>
+                <div class="hero-panel" data-hero-panel data-panel-name="{{content:hero.stops.4.panel|ship}}">{{panel:ship}}</div>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="hero-skip hero-skip--inline" data-hero-skip>{{content:hero.skip|(Skip)}}</button>
+        </div>
+      </div>
+      <button type="button" class="hero-skip hero-skip--corner" data-hero-skip>{{content:hero.skip|(Skip)}}</button>
+    </div>
+
+    <!-- 7 · metrics (the sand beat) — --metrics-text / --metrics-nums drive the two reveals -->
+    <div class="hero-layer hero-metrics" data-hero-metrics>
+      <div class="hero-metrics-inner">
+        <div class="hero-metrics-text">
+          <p class="hero-metrics-eyebrow t-eyebrow">{{content:hero.metrics.eyebrow|}}</p>
+          <h2 class="hero-metrics-title t-h2">{{content:hero.metrics.title}}</h2>
+          <p class="hero-metrics-sub">{{content:hero.metrics.sub}}</p>
+        </div>
+        <div class="hero-metrics-nums" data-metrics-nums data-active="0">
+          <div class="hero-metrics-spacer" aria-hidden="true"></div>
+          <div class="hero-metrics-col">
+            <div class="hero-metric" style="--i:0">
+              <div class="hero-metric-in">
+                <div class="hero-metric-row"><span class="hero-metric-num" data-hero-num data-value="{{content:hero.metrics.items.0.value}}">{{content:hero.metrics.items.0.value}}</span><span class="hero-metric-unit">{{content:hero.metrics.items.0.unit|}}</span></div>
+                <p class="hero-metric-label">{{content:hero.metrics.items.0.label}}</p>
+              </div>
+              <div class="hero-metric-rule" aria-hidden="true"><i></i></div>
+            </div>
+            <div class="hero-metric" style="--i:1">
+              <div class="hero-metric-in">
+                <div class="hero-metric-row"><span class="hero-metric-num" data-hero-num data-value="{{content:hero.metrics.items.1.value}}">{{content:hero.metrics.items.1.value}}</span><span class="hero-metric-unit">{{content:hero.metrics.items.1.unit|}}</span></div>
+                <p class="hero-metric-label">{{content:hero.metrics.items.1.label}}</p>
+              </div>
+              <div class="hero-metric-rule" aria-hidden="true"><i></i></div>
+            </div>
+            <div class="hero-metric" style="--i:2">
+              <div class="hero-metric-in">
+                <div class="hero-metric-row"><span class="hero-metric-num" data-hero-num data-value="{{content:hero.metrics.items.2.value}}">{{content:hero.metrics.items.2.value}}</span><span class="hero-metric-unit">{{content:hero.metrics.items.2.unit|}}</span></div>
+                <p class="hero-metric-label">{{content:hero.metrics.items.2.label}}</p>
+              </div>
+              <div class="hero-metric-rule" aria-hidden="true"><i></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= mobile (≤ 1024px): Lance's phone experience ================= -->
+  <div class="hero-m" data-hero-mobile>
+
+    <div class="hero-m-video" data-nav="dark" data-nav-fill="bg-transparent">
+      <video class="hero-video hero-m-vid" data-src="{{content:hero.video.src|assets/video/hero-studio-web.mp4}}" poster="{{content:hero.video.poster|assets/video/hero-poster.jpg}}" muted loop playsinline preload="none" aria-label="{{content:hero.video.ariaLabel|Blurred footage of a phone shoot in progress}}"></video>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-m-video-grad" aria-hidden="true"></div>
+      <div class="hero-m-video-content">
+        <div class="hero-m-video-inner">
+          <p class="hero-m-p" data-hero-m-p>{{content:hero.trust}}</p>
+          <div class="hero-m-video-row">
+            <button type="button" class="hero-walk" data-hero-m-walk data-label="{{content:hero.walkHint|Scroll to walk through the agency}}" data-label-reduced="{{content:hero.reducedMotion|Use the list to move between rooms}}" style="--hero-walk-cycle:3000ms">
+              <span class="hero-walk-arrow" aria-hidden="true"><svg viewBox="0 0 16 8" width="16" height="8" aria-hidden="true"><path d="M2.5 1.4 8 6.6 13.5 1.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="hero-walk-label">{{content:hero.walkHint|Scroll to walk through the agency}}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-m-body" data-nav="dark" data-nav-fill="bg-black" data-hero-m-body>
+      <div class="hero-m-marquee">
+        <div class="marquee hero-marquee" role="list" aria-label="{{content:hero.marquee.ariaLabel|Platforms hypjam ships to}}">
+          <div class="marquee__track" data-hero-marquee-track>
+            <div class="marquee__group" aria-hidden="false">
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.0.file}}" alt="{{content:hero.marquee.items.0.alt}}" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.1.file}}" alt="{{content:hero.marquee.items.1.alt}}" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.2.file}}" alt="{{content:hero.marquee.items.2.alt}}" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.3.file}}" alt="{{content:hero.marquee.items.3.alt}}" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.4.file}}" alt="{{content:hero.marquee.items.4.alt}}" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.5.file}}" alt="{{content:hero.marquee.items.5.alt}}" draggable="false" decoding="async" loading="lazy"></div>
+            </div>
+            <div class="marquee__group" aria-hidden="true">
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.0.file}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.1.file}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.2.file}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.3.file}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.4.file}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.5.file}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-m-drawing" aria-hidden="true" data-hero-m-drawing>
+        <div class="hero-map" data-hero-m-map></div>
+      </div>
+
+      <ul class="hero-m-acc" data-hero-m-acc>
+        <li class="hero-m-item">
+          <button type="button" class="hero-m-row" id="hero-m-btn-0" aria-expanded="false" aria-controls="hero-m-panel-0" data-hero-m-toggle data-index="0">
+            <span class="hero-m-title">{{content:hero.stops.0.title}}</span>
+            <span class="hero-m-plus" aria-hidden="true"><i></i><b></b></span>
+          </button>
+          <div class="hero-m-region" id="hero-m-panel-0" role="region" aria-labelledby="hero-m-btn-0">
+            <div class="hero-m-region-clip">
+              <div class="hero-m-region-inner">
+                <p class="hero-m-desc">{{content:hero.stops.0.description}}</p>
+                <div class="hero-m-panel-box" data-hero-m-panel-box><div class="hero-panel hero-m-panel" data-hero-panel data-panel-name="{{content:hero.stops.0.panel|brief}}">{{panel:brief}}</div></div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="hero-m-item">
+          <button type="button" class="hero-m-row" id="hero-m-btn-1" aria-expanded="false" aria-controls="hero-m-panel-1" data-hero-m-toggle data-index="1">
+            <span class="hero-m-title">{{content:hero.stops.1.title}}</span>
+            <span class="hero-m-plus" aria-hidden="true"><i></i><b></b></span>
+          </button>
+          <div class="hero-m-region" id="hero-m-panel-1" role="region" aria-labelledby="hero-m-btn-1">
+            <div class="hero-m-region-clip">
+              <div class="hero-m-region-inner">
+                <p class="hero-m-desc">{{content:hero.stops.1.description}}</p>
+                <div class="hero-m-panel-box" data-hero-m-panel-box><div class="hero-panel hero-m-panel" data-hero-panel data-panel-name="{{content:hero.stops.1.panel|hooks}}">{{panel:hooks}}</div></div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="hero-m-item">
+          <button type="button" class="hero-m-row" id="hero-m-btn-2" aria-expanded="false" aria-controls="hero-m-panel-2" data-hero-m-toggle data-index="2">
+            <span class="hero-m-title">{{content:hero.stops.2.title}}</span>
+            <span class="hero-m-plus" aria-hidden="true"><i></i><b></b></span>
+          </button>
+          <div class="hero-m-region" id="hero-m-panel-2" role="region" aria-labelledby="hero-m-btn-2">
+            <div class="hero-m-region-clip">
+              <div class="hero-m-region-inner">
+                <p class="hero-m-desc">{{content:hero.stops.2.description}}</p>
+                <div class="hero-m-panel-box" data-hero-m-panel-box><div class="hero-panel hero-m-panel" data-hero-panel data-panel-name="{{content:hero.stops.2.panel|casting}}">{{panel:casting}}</div></div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="hero-m-item">
+          <button type="button" class="hero-m-row" id="hero-m-btn-3" aria-expanded="false" aria-controls="hero-m-panel-3" data-hero-m-toggle data-index="3">
+            <span class="hero-m-title">{{content:hero.stops.3.title}}</span>
+            <span class="hero-m-plus" aria-hidden="true"><i></i><b></b></span>
+          </button>
+          <div class="hero-m-region" id="hero-m-panel-3" role="region" aria-labelledby="hero-m-btn-3">
+            <div class="hero-m-region-clip">
+              <div class="hero-m-region-inner">
+                <p class="hero-m-desc">{{content:hero.stops.3.description}}</p>
+                <div class="hero-m-panel-box" data-hero-m-panel-box><div class="hero-panel hero-m-panel" data-hero-panel data-panel-name="{{content:hero.stops.3.panel|shoot}}">{{panel:shoot}}</div></div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="hero-m-item">
+          <button type="button" class="hero-m-row" id="hero-m-btn-4" aria-expanded="false" aria-controls="hero-m-panel-4" data-hero-m-toggle data-index="4">
+            <span class="hero-m-title">{{content:hero.stops.4.title}}</span>
+            <span class="hero-m-plus" aria-hidden="true"><i></i><b></b></span>
+          </button>
+          <div class="hero-m-region" id="hero-m-panel-4" role="region" aria-labelledby="hero-m-btn-4">
+            <div class="hero-m-region-clip">
+              <div class="hero-m-region-inner">
+                <p class="hero-m-desc">{{content:hero.stops.4.description}}</p>
+                <div class="hero-m-panel-box" data-hero-m-panel-box><div class="hero-panel hero-m-panel" data-hero-panel data-panel-name="{{content:hero.stops.4.panel|ship}}">{{panel:ship}}</div></div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="hero-m-outcomes" id="hero-m-outcomes" data-nav="light" data-nav-fill="bg-white" data-hero-m-outcomes data-active="0">
+      <div class="hero-m-outcomes-text">
+        <p class="hero-metrics-eyebrow t-eyebrow">{{content:hero.metrics.eyebrow|}}</p>
+        <h2 class="hero-m-outcomes-title">{{content:hero.metrics.title}}</h2>
+        <p class="hero-m-outcomes-sub">{{content:hero.metrics.sub}}</p>
+      </div>
+      <div class="hero-m-nums">
+        <div class="hero-metric" style="--i:0">
+          <div class="hero-metric-in">
+            <div class="hero-metric-row"><span class="hero-metric-num hero-metric-num--m" data-hero-num data-value="{{content:hero.metrics.items.0.value}}">{{content:hero.metrics.items.0.value}}</span><span class="hero-metric-unit hero-metric-unit--m">{{content:hero.metrics.items.0.unit|}}</span></div>
+            <p class="hero-metric-label hero-metric-label--m">{{content:hero.metrics.items.0.label}}</p>
+          </div>
+          <div class="hero-metric-rule hero-metric-rule--m" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="hero-metric" style="--i:1">
+          <div class="hero-metric-in">
+            <div class="hero-metric-row"><span class="hero-metric-num hero-metric-num--m" data-hero-num data-value="{{content:hero.metrics.items.1.value}}">{{content:hero.metrics.items.1.value}}</span><span class="hero-metric-unit hero-metric-unit--m">{{content:hero.metrics.items.1.unit|}}</span></div>
+            <p class="hero-metric-label hero-metric-label--m">{{content:hero.metrics.items.1.label}}</p>
+          </div>
+          <div class="hero-metric-rule hero-metric-rule--m" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="hero-metric" style="--i:2">
+          <div class="hero-metric-in">
+            <div class="hero-metric-row"><span class="hero-metric-num hero-metric-num--m" data-hero-num data-value="{{content:hero.metrics.items.2.value}}">{{content:hero.metrics.items.2.value}}</span><span class="hero-metric-unit hero-metric-unit--m">{{content:hero.metrics.items.2.unit|}}</span></div>
+            <p class="hero-metric-label hero-metric-label--m">{{content:hero.metrics.items.2.label}}</p>
+          </div>
+          <div class="hero-metric-rule hero-metric-rule--m" aria-hidden="true"><i></i></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

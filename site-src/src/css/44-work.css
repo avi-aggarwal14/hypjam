@@ -1,0 +1,314 @@
+/* =====================================================================
+   hypjam v2 · 44-work.css — the /work page (Lance's /hotels,
+   ref/pages/hotels.jpg at 1920). The hero reuses the home carousel
+   (.sto-* from 32-stories.css + 32-stories.js) with the hotels-page
+   paddings; everything else is prefixed .work-.
+   Measured on the reference:
+     hero       bg-black pt-[220px] pb-[90px] · h1 42/1.1 two lines (line 2
+                white/40) · 45px arrows · cards 377 × 440, gap 30
+     facts      flex-col items-center gap-20 bg-sand-s px-page py-[120px]
+                h2 42 centred · p 16/24 grey max-w 480 · 3×2 tiles 602×213,
+                gap 30/26, radius 6, tint #f1f0ec · numeral text-[80px]
+                sand-l · label 16 grey
+     wall       flex-col items-center gap-[84px] bg-white pt-[120px] pb-[72px]
+                three columns 395 wide, gap 42 (1268 total) · card tint
+                sand/40, radius 8, padding 24 · quote Geist 18 · name 14/500
+                · role 13 grey
+     platforms  flex-col gap-10 px-page pt-[72px] pb-[120px] · 11px caps
+                label · large tiles 203 tall, gap 18 · grid tiles 255 tall,
+                gap 16 · tile grey-s (#f5f5f5), radius 6
+     cta        relative h-svh min-h-[580px] · still darkened · h2 42 white
+                + p 16 white bottom-left (112px up) · dark pill right
+     formats    hypjam's own wall, in the same language: sand-s, py-[120px]
+   ===================================================================== */
+
+.work-page { background: var(--white); color: var(--black); --work-tile: #f1f0ec; }
+
+/* ---------- hero: the .sto carousel with the hotels-page paddings ---------- */
+.work-hero { min-height: 0; padding-top: 220px; padding-bottom: 90px; }
+.work-hero-head { display: flex; min-width: 0; flex-direction: column; gap: 0; }
+.work-hero-h1 { max-width: 640px; }
+.work-hero-dim { max-width: 1000px; }
+/* the heading breaks after work.hero.h1_break_after on desktop, as the reference does;
+   below 1024 the forced break splits the line badly, so the two halves run inline */
+.work-hero-l { display: block; }
+
+/* ---------- shared centred head (facts, wall) ---------- */
+.work-sec-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+.work-sec-p { max-width: 480px; color: var(--grey); }
+.work-sec-p--wide { max-width: 600px; }
+
+/* ---------- facts ---------- */
+.work-facts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  padding: 120px var(--px-page);
+  background: var(--sand-s);
+  color: var(--black);
+}
+.work-facts-grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px 30px;
+}
+.work-fact {
+  display: flex;
+  height: 213px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 6px;
+  background: var(--work-tile);
+  text-align: center;
+}
+.work-fact-num {
+  font-size: 80px;
+  line-height: 1;
+  letter-spacing: -1.6px;
+  color: var(--sand-l);
+  font-variant-numeric: tabular-nums lining-nums;
+  white-space: nowrap;
+}
+.work-fact-suffix { font-size: 42px; letter-spacing: -.84px; }
+.work-fact-label {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--grey);
+}
+
+/* ---------- the (reserved) quote wall ---------- */
+.work-wall {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 84px;
+  padding: 120px var(--px-page) 72px;
+  background: var(--white);
+  color: var(--black);
+}
+.work-wall-grid {
+  display: grid;
+  width: 100%;
+  max-width: 1268px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 42px;
+}
+.work-quote {
+  display: flex;
+  min-height: 260px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 24px;
+  border-radius: 8px;
+}
+.work-quote-text {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--black);
+  text-wrap: pretty;
+}
+.work-quote-by { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.work-quote-role { color: var(--grey); }
+
+/* ---------- platforms (replaces the brand-logo grids) ---------- */
+.work-platforms {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 72px var(--px-page) 120px;
+  background: var(--white);
+  color: var(--black);
+}
+.work-plat-group { display: flex; flex-direction: column; gap: 20px; }
+.work-plat-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+.work-plat-row { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
+.work-plat-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.work-plat-tile {
+  display: flex;
+  height: 203px;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  border-radius: 6px;
+  background: var(--grey-s);
+  color: var(--black);
+}
+.work-plat-tile--sm { height: 255px; }
+/* the name set typographically, monochrome at 60% — the hero marquee's treatment */
+.work-plat-tile-in { display: inline-flex; align-items: center; gap: 12px; opacity: .6; }
+.work-plat-glyph { display: block; width: 24px; height: 24px; flex-shrink: 0; }
+.work-plat-text {
+  font-family: var(--font-body);
+  font-weight: var(--fw-medium);
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -.22px;
+  text-align: center;
+}
+
+/* ---------- photo CTA ---------- */
+.work-cta {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100svh;
+  min-height: 580px;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  background: var(--black);
+  color: var(--white);
+}
+.work-cta-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  /* the reference band averages 34/255 luminance; aerial-close.jpg is a bright
+     golden frame, so it is dimmed to land on the same tone under the shade */
+  filter: brightness(.72);
+}
+.work-cta-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.38) 0%, rgba(0,0,0,.58) 100%);
+}
+.work-cta-row {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+  padding: 0 var(--px-page) 112px;
+}
+.work-cta-text { display: flex; max-width: 760px; flex-direction: column; gap: 16px; }
+.work-cta-h2 { color: var(--white); }
+.work-cta-p { color: var(--white); }
+.work-cta-btn { margin-top: 6px; }
+
+/* ---------- formats wall (hypjam's own) ---------- */
+.work-formats {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  padding: 120px var(--px-page);
+  background: var(--sand-s);
+  color: var(--black);
+}
+.work-formats-head { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.work-formats-h2 { max-width: 640px; }
+.work-formats-intro { max-width: 720px; color: var(--grey); }
+.work-format-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.work-format {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 8px;
+  background: var(--white);
+}
+.work-format-name { color: var(--black); }
+.work-format-blurb {
+  flex: 1 1 auto;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--grey);
+}
+.work-format-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.work-tag {
+  display: inline-flex;
+  height: 24px;
+  align-items: center;
+  padding: 0 10px;
+  border: 1px solid var(--sand-l-60);
+  border-radius: var(--r-pill);
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--grey);
+}
+.work-samples { display: flex; flex-direction: column; gap: 20px; }
+.work-sample-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.work-sample {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 8px;
+  background: var(--white);
+}
+.work-sample-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.work-sample-brand {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: var(--fw-medium);
+  line-height: 1;
+  color: var(--black);
+}
+.work-sample-hook { color: var(--black); text-wrap: pretty; }
+.work-sample-creator { font-family: var(--font-body); font-size: 13px; line-height: 1.35; color: var(--grey); }
+.work-sample-note { flex: 1 1 auto; font-family: var(--font-body); font-size: 13px; line-height: 1.35; color: var(--fg-dim-40); }
+.work-sample-format { margin-top: 4px; }
+
+/* ---------- breakpoints (Lance: max-nv 1200 · max-lp 1024 · max-bp 800 · max-tp 600) ---------- */
+@media (max-width: 1200px) {
+  .work-facts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .work-wall-grid { gap: 24px; }
+  .work-plat-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .work-plat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .work-plat-tile { height: 160px; }
+  .work-plat-tile--sm { height: 180px; }
+  .work-format-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .work-sample-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 1024px) {
+  .work-hero-l { display: inline; }
+}
+@media (max-width: 800px) {
+  .work-hero { padding-top: 140px; padding-bottom: 64px; }
+  .work-facts { gap: 48px; padding: 80px var(--px-page); }
+  .work-facts-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .work-fact { height: 180px; }
+  .work-fact-num { font-size: 56px; letter-spacing: -1.12px; }
+  .work-fact-suffix { font-size: 32px; letter-spacing: -.64px; }
+  .work-wall { gap: 48px; padding: 80px var(--px-page) 48px; }
+  .work-wall-grid { grid-template-columns: minmax(0, 1fr); }
+  .work-quote { min-height: 0; gap: 32px; }
+  .work-platforms { gap: 32px; padding: 48px var(--px-page) 80px; }
+  .work-cta { min-height: 520px; }
+  .work-cta-row { flex-direction: column; align-items: flex-start; gap: 24px; padding-bottom: 64px; }
+  .work-formats { gap: 40px; padding: 80px var(--px-page); }
+  .work-format-grid, .work-sample-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .work-hero { padding-top: 120px; }
+  .work-plat-row, .work-plat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .work-plat-tile, .work-plat-tile--sm { height: 120px; padding: 16px; }
+  .work-plat-text { font-size: 16px; letter-spacing: -.16px; }
+  .work-plat-glyph { width: 18px; height: 18px; }
+}

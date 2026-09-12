@@ -1,0 +1,231 @@
+/* =====================================================================
+   hypjam v2 · 31-quotes.css
+   Home "quotes" — Lance #testimonials, ported from ref/index.html and the
+   component in ref/hero_chunk.pretty.js (lines ~19760–20100), measured on
+   ref/shots/s25–s26 (1920) and ref/mobile/m07 (390).
+
+   section   relative flex min-h-svh items-center justify-center px-page py-40
+             data-nav="image" · background: stacked <img> object-cover, the
+             active one at opacity 1, transition 700ms · shade bg-black/20
+   wrap      mx-auto w-full max-w-[760px] (max-lp: 520)
+   card      rounded-[12px] bg-white/16 backdrop-blur-[30px] pt-9 pl-10 pr-5 pb-5
+             (max-lp: min-h-[420px] pt-9 pl-8 pb-4)  → 760×520 at 1920
+   body      relative · an invisible sizer (longest quote + h-[88px] + name/role,
+             gap-5) locks the height · the active slide is absolute inset-0
+             flex-col justify-center gap-5
+   quote     hanging-punct max-w-[640px] 36/1.25/-.72 white (max-lp: max-w none ·
+             max-tp: 24/-.48) · each word a span, opacity driven by JS
+   attr      flex-col gap-1: signature slot (240 wide; ours: the founder's name
+             in the display serif, no image) · row items-end justify-between
+             gap-6: name 14/1.4 500 · role 14/1.4 · logo h-8 (ours: hypjam's
+             hook wordmark)
+   thumbs    mt-auto self-end pt-8 gap-2 · 57×36 rounded-[3px], active opacity 1,
+             others .4 (hover .7), bg-black/20 shade · a 2px sand-l frame that
+             slides 65px per slot over 500ms
+   reserved  slide 1 = CONTRACT §10: same layout, "The first brand quote goes
+             here." + .tag-soon "Filled in at launch" + a dashed hairline frame
+             inside the card. No invented name.
+   ===================================================================== */
+
+.quo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+  padding-left: var(--px-page);
+  padding-right: var(--px-page);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ---------- backgrounds ---------- */
+.quo-bgs {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+.quo-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 700ms ease-in-out;
+}
+.quo-bg.is-active { opacity: 1; }
+.quo-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(0,0,0,.2);
+}
+
+/* ---------- card ---------- */
+.quo-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 760px;
+  margin-inline: auto;
+}
+.quo-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 36px 20px 20px 40px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.16);
+  -webkit-backdrop-filter: blur(30px);
+  backdrop-filter: blur(30px);
+  color: var(--white);
+}
+/* the reserved slot's dashed frame (03-ui's .reserved treatment, inset on the glass) */
+.quo-frame {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  border: 1px dashed rgba(255,255,255,.38);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 420ms ease-in-out;
+}
+.quo-card.is-reserved .quo-frame { opacity: 1; }
+
+.quo-body { position: relative; }
+.quo-sizer {
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;                               /* gap-5 */
+}
+.quo-sizer-gap { height: 88px; }
+.quo-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  margin: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.quo-slide.is-active { visibility: visible; pointer-events: auto; }
+.quo-quote { margin: 0; }
+.quo-text {
+  max-width: 640px;
+  color: var(--white);
+}
+.quo-w { display: inline; }               /* words: opacity + transition set inline by 30-quotes.js */
+
+/* attribution */
+.quo-attr {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;                                /* gap-1 */
+}
+/* signature slot: Lance shows a 240×70 handwritten apng; ours is the name in the display serif */
+.quo-sig {
+  display: flex;
+  align-items: center;
+  width: 240px;
+  min-height: 70px;
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  font-style: italic;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  -webkit-font-smoothing: auto;
+  text-rendering: geometricPrecision;
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: -.32px;
+  color: var(--white);
+  white-space: nowrap;
+}
+.quo-attr-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;                               /* gap-6 */
+}
+.quo-attr-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--white);
+}
+.quo-name { font-weight: var(--fw-medium); }
+.quo-role { font-weight: var(--fw-body); }
+.quo-logo {
+  display: block;
+  height: 32px;                            /* h-8 */
+  width: auto;
+  flex-shrink: 0;
+  opacity: .7;
+}
+.quo-slide--reserved .tag-soon { align-self: flex-start; }
+
+/* ---------- thumbnails ---------- */
+.quo-thumbs {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;                                /* gap-2 */
+  align-self: flex-end;
+  margin-top: auto;
+  padding-top: 32px;                       /* pt-8 */
+}
+.quo-thumb-frame {
+  position: absolute;
+  left: 0;
+  top: 32px;
+  z-index: 10;
+  width: 57px;
+  height: 36px;
+  border-radius: 3px;
+  border: 2px solid var(--sand-l);
+  background: transparent;
+  pointer-events: none;
+  transform: translateX(0);
+  transition: transform 500ms ease-in-out;
+}
+.quo-thumb {
+  position: relative;
+  width: 57px;
+  height: 36px;
+  overflow: hidden;
+  border-radius: 3px;
+  opacity: .4;
+  transition: opacity 300ms ease-in-out;
+}
+.quo-thumb:hover { opacity: .7; }
+.quo-thumb.is-active { opacity: 1; }
+.quo-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.quo-thumb-shade { position: absolute; inset: 0; background: rgba(0,0,0,.2); }
+.quo-thumb:focus-visible { outline-offset: 2px; border-radius: 3px; }
+
+/* ---------- responsive (Lance's real breakpoints) ---------- */
+@media (max-width: 1024px) {                /* max-lp */
+  .quo-wrap { max-width: 520px; }
+  .quo-card { min-height: 420px; padding: 36px 20px 16px 32px; }
+  .quo-text { max-width: none; }
+}
+@media (max-width: 600px) {                 /* max-tp */
+  .quo-sig { font-size: 28px; min-height: 64px; }
+}
+
+/* ---------- reduced motion: final states, no crossfade, no autoplay (JS) ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .quo-w, .quo [data-quo-fade] { opacity: 1 !important; transition: none !important; }
+  .quo-bg, .quo-thumb, .quo-thumb-frame, .quo-frame { transition: none !important; }
+}

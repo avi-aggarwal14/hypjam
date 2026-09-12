@@ -1,0 +1,24 @@
+/* =====================================================================
+   hypjam v2 · 41-services.css
+   Services-only tweaks on top of 40-pages.css (the shared sub-page
+   vocabulary). Prefix `.svc-`. Everything structural lives in 40-pages.css
+   so the solutions and other page agents can reuse it unchanged.
+   ===================================================================== */
+
+/* the hero mock stage on a service page: the 3:2 panel holds a 420–560px card */
+.svc .page-hero__visual .mock-stage { padding: 5% 6%; }
+.svc .page-hero__visual .mock-card { --w: 420px; }
+.svc .page-hero__visual .mock-card--wide { --w: 560px; }
+.svc .page-hero__visual .mock-card--sm { --w: 260px; }
+.svc .page-hero__visual .mock-ticker, .svc .page-hero__visual .mock-strip { width: 100%; max-width: 420px; }
+
+/* index: the two reserved film slots keep Lance's 16:9 card but read as held-open */
+.svc--index .page-media__frame.reserved .reserved__phone { opacity: .9; }
+
+/* feature mocks: a 400px card centred on the 5:4 panel */
+.svc .page-feature__visual .mock-card { --w: 400px; }
+.svc .page-feature__visual .mock-stage { padding: 8%; }
+
+@media (max-width: 1024px) {
+  .svc .page-hero__visual .mock-card--wide { --w: 100%; }
+}

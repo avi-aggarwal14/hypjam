@@ -1,0 +1,99 @@
+/* ==========================================================================
+   Panel 2 — hooks (321×128). Layout only; primitives live in _panels.css.
+   Static state = final state: counter "8 of 8", the track scrolled so rows
+   03–06 show, rows 03 and 06 in ink with a jam tick and the chip
+   "picked for the shoot".
+   ========================================================================== */
+
+/* Head: "Hooks" · counter --------------------------------------------------- */
+.pnl-hooks__head {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.pnl-hooks__hr {
+  position: absolute;
+  top: 21px;
+  left: 0;
+}
+
+/* The clipped list: four 26px rows visible (y24–128) ------------------------ */
+.pnl-hooks__clip {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  right: 0;
+  height: 104px;
+  /* The shared 20px bottom fade would dim the fourth row — which is the line
+     being typed, and picked row 06 at `final`. Four 26px rows fill the clip
+     exactly, so both edges get a 6px soften instead: enough to say the list
+     runs past the frame, not enough to cost a word. */
+  -webkit-mask-image: linear-gradient(transparent, #000 6px, #000 calc(100% - 6px), transparent);
+  mask-image: linear-gradient(transparent, #000 6px, #000 calc(100% - 6px), transparent);
+}
+/* final state: rows 03–06 in view (JS drives the transform from y0) */
+.pnl-hooks__track {
+  transform: translateY(-52px);
+}
+.pnl-hooks__row {
+  height: 26px;
+  min-height: 26px;
+}
+/* last row: no trailing hairline, like the reference list's bottom row */
+.pnl-hooks__row:last-child {
+  border-bottom: 0;
+}
+.pnl-hooks__idx {
+  flex: 0 0 22px;
+}
+.pnl-hooks__line {
+  position: relative;
+  gap: 0;
+}
+/* The hook line: the plain text is the settled state; JS lays a
+   per-character copy (.pnl-hooks__type) over it while the line types, then
+   swaps them, so the final frame is kerned exactly like the static HTML. */
+.pnl-hooks__text,
+.pnl-hooks__type {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  line-height: 1.35;
+  color: inherit;
+}
+.pnl-hooks__text {
+  flex: 1 1 auto;
+}
+.pnl-hooks__type {
+  position: absolute;
+  inset: 0;
+}
+.pnl-hooks__type span {
+  display: inline;
+}
+
+/* Picked rows read as ink (JS holds them at ink-2 until the pick lands).
+   The chip takes 129px of the 289px row, so the line cannot finish inside
+   the cell: it dissolves under the chip rather than ending in an ellipsis —
+   the same fade the clipped list uses on its own edges. */
+.pnl-hooks__row--picked {
+  color: var(--pnl-ink);
+}
+.pnl-hooks__row--picked .pnl-hooks__line {
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 20px), transparent);
+  mask-image: linear-gradient(90deg, #000 calc(100% - 20px), transparent);
+}
+.pnl-hooks__row--picked .pnl-hooks__text,
+.pnl-hooks__row--picked .pnl-hooks__type {
+  text-overflow: clip;
+}
+/* the tick + chip slot opens from zero width as the pick lands */
+.pnl-hooks__pick {
+  flex: 0 0 auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
