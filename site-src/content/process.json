@@ -1,671 +1,671 @@
 {
-  "_schema": {
-    "_about": "Content for /process. Structure follows the reference product-docs page: a documentation site inside the marketing site. Sticky docs header (docs home link, a couple of top links), a left sidebar of grouped anchor links, a hero with eyebrow + h1 + p + four link pills + a right-hand image, a 'library' row of three cards, then three big numbered sections (one per week of the sprint) each with a header card (tag, h2, p, count) and a stacked list of topics (h3 + sub on the left, h4-led blocks on the right), an 'after delivery' section, an onboarding table, a 3x2 reference-card grid, a packages grid, a 2-column FAQ grid, and a support block. All facts come from the hire page (three steps, three packages, eight FAQs) and CONTRACT §10 commitments. British English.",
-    "meta": "{path, title, description, theme} - the page is light (sand-s ground, black text) like the reference docs.",
-    "docs_header": "{home:{label, href}, links:[{label, href}]}",
-    "sidebar": "[{group, items:[{label, href}]}] - anchors; the active one highlights in jam.",
-    "hero": "{eyebrow, h1, p, links:[{label, href}], image:{kind, panel, alt}} - image.kind = 'panel-mock' asks the page agent to inline one of the five product panels (src/panels/<panel>) as the decorative image, muted and static.",
-    "library": "{eyebrow, h2, p, cards:[{tag, h3, p, link:{label, href}}]}",
-    "weeks": "[{id, tag, h2, p, guides_label, topics:[{h3, sub, blocks:[{h4, kind, text?, items?}]}]}] - topics may carry an optional link:{label, href} rendered as a small arrow link under the h3 (to the matching service page). kind is 'p' (text), 'ol' (numbered items) or 'ul' (bulleted items). The header card shows topics.length as the 'guides' count.",
-    "after": "{id, tag, h2, p, topics:[...]} - same topic shape as weeks.",
-    "first_brief": "{id, eyebrow, h2, p, columns:[3], rows:[[step, who, prepare]]} - the onboarding table.",
-    "needs": "{id, eyebrow, h2, p, cards:[{h3, p, icon}]} - the 3x2 reference cards.",
-    "packages": "{id, eyebrow, h2, p, items:[{name, price, videos, includes[], best_for}], note} - prices are 'from' prices and say so.",
-    "faqs": "{id, eyebrow, h2, items:[{q, a}]}",
-    "support": "{id, eyebrow, h2, p, email, href, note}",
-    "footer_line": "one line for the docs-style footer strip."
+ "_schema": {
+  "_about": "Content for /process. Structure follows the reference product-docs page: a documentation site inside the marketing site. Sticky docs header (docs home link, a couple of top links), a left sidebar of grouped anchor links, a hero with eyebrow + h1 + p + four link pills + a right-hand image, a 'library' row of three cards, then three big numbered sections (one per week of the sprint) each with a header card (tag, h2, p, count) and a stacked list of topics (h3 + sub on the left, h4-led blocks on the right), an 'after delivery' section, an onboarding table, a 3x2 reference-card grid, a packages grid, a 2-column FAQ grid, and a support block. All facts come from the hire page (three steps, three packages, eight FAQs) and CONTRACT §10 commitments. British English.",
+  "meta": "{path, title, description, theme} - the page is light (sand-s ground, black text) like the reference docs.",
+  "docs_header": "{home:{label, href}, links:[{label, href}]}",
+  "sidebar": "[{group, items:[{label, href}]}] - anchors; the active one highlights in jam.",
+  "hero": "{eyebrow, h1, p, links:[{label, href}], image:{kind, panel, alt}} - image.kind = 'panel-mock' asks the page agent to inline one of the five product panels (src/panels/<panel>) as the decorative image, muted and static.",
+  "library": "{eyebrow, h2, p, cards:[{tag, h3, p, link:{label, href}}]}",
+  "weeks": "[{id, tag, h2, p, guides_label, topics:[{h3, sub, blocks:[{h4, kind, text?, items?}]}]}] - topics may carry an optional link:{label, href} rendered as a small arrow link under the h3 (to the matching service page). kind is 'p' (text), 'ol' (numbered items) or 'ul' (bulleted items). The header card shows topics.length as the 'guides' count.",
+  "after": "{id, tag, h2, p, topics:[...]} - same topic shape as weeks.",
+  "first_brief": "{id, eyebrow, h2, p, columns:[3], rows:[[step, who, prepare]]} - the onboarding table.",
+  "needs": "{id, eyebrow, h2, p, cards:[{h3, p, icon}]} - the 3x2 reference cards.",
+  "packages": "{id, eyebrow, h2, p, items:[{name, price, videos, includes[], best_for}], note} - prices are 'from' prices and say so.",
+  "faqs": "{id, eyebrow, h2, items:[{q, a}]}",
+  "support": "{id, eyebrow, h2, p, email, href, note}",
+  "footer_line": "one line for the docs-style footer strip."
+ },
+ "meta": {
+  "path": "/process",
+  "title": "Process: how a hypjam brief runs, week by week | hypjam",
+  "description": "How a UGC brief runs at hypjam: the intro call and brief, hooks and script, casting, the phone shoot, edit and captions, rights and delivery.",
+  "theme": "light"
+ },
+ "docs_header": {
+  "home": {
+   "label": "hypjam process",
+   "href": "/process"
   },
-  "meta": {
-    "path": "/process",
-    "title": "Process: how a hypjam brief runs, week by week | hypjam",
-    "description": "How a UGC brief runs at hypjam, day by day: the intro call and written brief, hooks and script, casting, the phone shoot, edit and captions, rights and delivery, then the next round.",
-    "theme": "light"
-  },
-  "docs_header": {
-    "home": {
-      "label": "hypjam process",
-      "href": "/process"
-    },
-    "links": [
-      {
-        "label": "FAQ",
-        "href": "/faq"
-      },
-      {
-        "label": "Support",
-        "href": "#support"
-      }
-    ]
-  },
-  "sidebar": [
+  "links": [
+   {
+    "label": "FAQ",
+    "href": "/faq"
+   },
+   {
+    "label": "Support",
+    "href": "#support"
+   }
+  ]
+ },
+ "sidebar": [
+  {
+   "group": "Start",
+   "items": [
     {
-      "group": "Start",
-      "items": [
-        {
-          "label": "Process home",
-          "href": "#home"
-        },
-        {
-          "label": "Where are you",
-          "href": "#library"
-        },
-        {
-          "label": "Your first brief",
-          "href": "#first-brief"
-        }
-      ]
+     "label": "Process home",
+     "href": "#home"
     },
     {
-      "group": "The sprint",
-      "items": [
-        {
-          "label": "Week 0: the brief",
-          "href": "#week-0"
-        },
-        {
-          "label": "Week 1: script and cast",
-          "href": "#week-1"
-        },
-        {
-          "label": "Week 2: shoot, cut, ship",
-          "href": "#week-2"
-        },
-        {
-          "label": "After delivery",
-          "href": "#after"
-        }
-      ]
+     "label": "Where are you",
+     "href": "#library"
     },
     {
-      "group": "Reference",
-      "items": [
-        {
-          "label": "What keeps a sprint on time",
-          "href": "#needs"
-        },
-        {
-          "label": "Packages",
-          "href": "#packages"
-        },
-        {
-          "label": "Process FAQs",
-          "href": "#faqs"
-        },
-        {
-          "label": "Support",
-          "href": "#support"
-        }
-      ]
+     "label": "Your first brief",
+     "href": "#first-brief"
     }
+   ]
+  },
+  {
+   "group": "The sprint",
+   "items": [
+    {
+     "label": "Week 0: the brief",
+     "href": "#week-0"
+    },
+    {
+     "label": "Week 1: script and cast",
+     "href": "#week-1"
+    },
+    {
+     "label": "Week 2: shoot, cut, ship",
+     "href": "#week-2"
+    },
+    {
+     "label": "After delivery",
+     "href": "#after"
+    }
+   ]
+  },
+  {
+   "group": "Reference",
+   "items": [
+    {
+     "label": "What keeps a sprint on time",
+     "href": "#needs"
+    },
+    {
+     "label": "Packages",
+     "href": "#packages"
+    },
+    {
+     "label": "Process FAQs",
+     "href": "#faqs"
+    },
+    {
+     "label": "Support",
+     "href": "#support"
+    }
+   ]
+  }
+ ],
+ "hero": {
+  "eyebrow": "Process",
+  "h1": "Everything a brief needs, week by week.",
+  "p": "A hypjam brief runs as a fourteen-day sprint: brief, hooks and script, casting, shoot, edit, rights and delivery. This page is the whole thing written down, so you always know what happens next and what we need from you.",
+  "links": [
+   {
+    "label": "Week 0: the brief",
+    "href": "#week-0"
+   },
+   {
+    "label": "Week 1: script and cast",
+    "href": "#week-1"
+   },
+   {
+    "label": "Week 2: shoot, cut, ship",
+    "href": "#week-2"
+   },
+   {
+    "label": "Your first brief",
+    "href": "#first-brief"
+   }
   ],
-  "hero": {
-    "eyebrow": "Process",
-    "h1": "Everything a brief needs, week by week.",
-    "p": "A hypjam brief runs as a fourteen-day sprint: brief, hooks and script, casting, shoot, edit, rights and delivery. This page is the whole thing written down, so you always know what happens next and what we need from you.",
-    "links": [
+  "image": {
+   "kind": "panel-mock",
+   "panel": "brief",
+   "alt": "A brief card assembling itself: product, platforms, budget band, eight hooks"
+  }
+ },
+ "library": {
+  "eyebrow": "Where are you",
+  "h2": "Choose where you are",
+  "p": "Start with the part of the process you are in. Each section says what happens, who does it and what we need from you.",
+  "cards": [
+   {
+    "tag": "Before",
+    "h3": "Deciding whether to brief us",
+    "p": "What the intro call covers, what goes in a written brief, and what a package includes before you sign anything.",
+    "link": {
+     "label": "Open",
+     "href": "#week-0"
+    }
+   },
+   {
+    "tag": "During",
+    "h3": "Inside a sprint",
+    "p": "Hooks, script, casting, the shoot and the edit, in the order they happen, with the two points where we need your approval.",
+    "link": {
+     "label": "Open",
+     "href": "#week-1"
+    }
+   },
+   {
+    "tag": "After",
+    "h3": "Videos delivered",
+    "p": "Rights, files, whitelisting setup, our read on what to run where, and how the next brief gets sharper than the last.",
+    "link": {
+     "label": "Open",
+     "href": "#after"
+    }
+   }
+  ]
+ },
+ "weeks": [
+  {
+   "id": "week-0",
+   "tag": "Days 0 to 1",
+   "h2": "Week 0: the brief",
+   "p": "Everything that has to be true before a sprint starts. It takes a thirty-minute call and one written document, and it ends with one contract and one invoice.",
+   "guides_label": "Core steps",
+   "topics": [
+    {
+     "h3": "The intro call",
+     "sub": "Thirty minutes, no deck.",
+     "blocks": [
       {
-        "label": "Week 0: the brief",
-        "href": "#week-0"
+       "h4": "What it covers",
+       "kind": "p",
+       "text": "You tell us what you are launching and who it is for. We tell you whether UGC is the right call, which package fits and what a first sprint would look like. If it is not a fit, we say so on the call."
       },
       {
-        "label": "Week 1: script and cast",
-        "href": "#week-1"
-      },
-      {
-        "label": "Week 2: shoot, cut, ship",
-        "href": "#week-2"
-      },
-      {
-        "label": "Your first brief",
-        "href": "#first-brief"
+       "h4": "How to book it",
+       "kind": "ol",
+       "items": [
+        "Pick a slot on the calendar at /book.",
+        "Add one line about the product and the launch date, if there is one.",
+        "Bring whoever signs off creative; approvals are quicker when they have heard the plan."
+       ]
       }
+     ]
+    },
+    {
+     "h3": "The written brief",
+     "sub": "One document, specific fast.",
+     "blocks": [
+      {
+       "h4": "What belongs in it",
+       "kind": "ul",
+       "items": [
+        "The product and the offer, in one sentence each.",
+        "Who it is for and where they will see it: platform and placement.",
+        "The goal for this round: launch, always-on paid, organic, creative test or retention.",
+        "Brand voice, must-say claims with their evidence, and anything that must not be said.",
+        "References you like, and references you do not.",
+        "Dates: product ready, shoot window, go-live."
+       ]
+      },
+      {
+       "h4": "Who writes it",
+       "kind": "p",
+       "text": "We do, from the call and a short set of questions. You edit it once. A brief nobody has read is the most common cause of a reshoot, so we do not start a sprint until it is signed off."
+      }
+     ]
+    },
+    {
+     "h3": "Package and contract",
+     "sub": "One contract, one invoice.",
+     "blocks": [
+      {
+       "h4": "How it works",
+       "kind": "p",
+       "text": "You choose Starter, Growth or Scale. The contract covers the briefs, the casting, the scripts, the filming, the edits and organic plus paid usage rights for the term. Creators and editors are paid by us out of the package fee; you never negotiate with them directly."
+      },
+      {
+       "h4": "What it does not cover",
+       "kind": "ul",
+       "items": [
+        "Your ad spend.",
+        "Product units and postage to creators.",
+        "Usage windows longer than the term, which we price in upfront if you want them."
+       ]
+      }
+     ]
+    },
+    {
+     "h3": "Product and access",
+     "sub": "What we need in hand before day one.",
+     "blocks": [
+      {
+       "h4": "Checklist",
+       "kind": "ul",
+       "items": [
+        "One unit of the product per creator cast, or a login for software and apps.",
+        "Logo, colours and any on-screen assets in the formats you already have.",
+        "If we are setting up whitelisting or Spark Ads: advertiser access on the ad account, granted to us, not shared as a password.",
+        "A named person on your side who can say yes."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "week-1",
+   "tag": "Days 1 to 7",
+   "h2": "Week 1: script and cast",
+   "p": "The idea is settled before anyone films. Eight hooks per script, a locked script you have approved, and a shortlist of creators you have approved, all inside the first week.",
+   "guides_label": "Core steps",
+   "topics": [
+    {
+     "h3": "Hooks",
+     "sub": "Eight per script, written before the script.",
+     "blocks": [
+      {
+       "h4": "What happens",
+       "kind": "p",
+       "text": "The creative director writes eight opening lines for each video: the first one to three seconds that decide whether anyone keeps watching. They are grouped by type (curiosity, POV, comparison, problem-first) so a test round covers different angles, not eight versions of the same one."
+      },
+      {
+       "h4": "What you see",
+       "kind": "ul",
+       "items": [
+        "The eight hooks, with a one-line note on why each one is there.",
+        "Our pick of the two to three we would shoot first.",
+        "A live tracker link, so you can see where every video is without asking."
+       ]
+      }
+     ],
+     "link": {
+      "label": "Service: Hook writing",
+      "href": "/services/hooks"
+     }
+    },
+    {
+     "h3": "Script",
+     "sub": "Locked before the shoot, not fixed in the edit.",
+     "blocks": [
+      {
+       "h4": "What it contains",
+       "kind": "ul",
+       "items": [
+        "Hook, body, proof and payoff, written in the creator's voice, not the brand's.",
+        "A shot list: what is in frame for each line.",
+        "Claims that have been cleared, and the words we will use for them.",
+        "Captions and on-screen text, drafted now so the edit is not guessing.",
+        "Delivery notes: pace, tone, what to do with the product on camera."
+       ]
+      },
+      {
+       "h4": "Approval one",
+       "kind": "p",
+       "text": "You approve the script. This is the first of two sign-offs in a sprint. Changes after this point are a new brief, which is why the revision round almost never gets spent on reshoots."
+      }
+     ],
+     "link": {
+      "label": "Service: Briefing and scripts",
+      "href": "/services/briefing"
+     }
+    },
+    {
+     "h3": "Casting",
+     "sub": "From our roster, for fit.",
+     "blocks": [
+      {
+       "h4": "How we cast",
+       "kind": "p",
+       "text": "The producer shortlists creators from the roster against the brief: niche, tone, look, age range, and whether they can take direction. Follower count does not come into it; you are buying the take, not the audience."
+      },
+      {
+       "h4": "Approval two",
+       "kind": "ol",
+       "items": [
+        "You get the shortlist with a sample clip for each creator.",
+        "You approve, or ask for a different direction.",
+        "We book them and send the product."
+       ]
+      }
+     ],
+     "link": {
+      "label": "Service: Casting and roster",
+      "href": "/services/casting"
+     }
+    },
+    {
+     "h3": "Creator agreements",
+     "sub": "Signed before anyone presses record.",
+     "blocks": [
+      {
+       "h4": "What each creator signs",
+       "kind": "ul",
+       "items": [
+        "A release covering the footage they shoot for this brief.",
+        "The fee and the payment date.",
+        "The usage window and platforms, matching your package.",
+        "Whether the video can run from their handle (Spark Ads, partnership ads) and for how long."
+       ]
+      }
+     ],
+     "link": {
+      "label": "Service: Usage rights",
+      "href": "/services/usage-rights"
+     }
+    }
+   ]
+  },
+  {
+   "id": "week-2",
+   "tag": "Days 8 to 14",
+   "h2": "Week 2: shoot, cut, ship",
+   "p": "Creators film on their phones, our editors cut for the platform, you get one revision round, and the finished videos land with their rights in writing by day fourteen.",
+   "guides_label": "Core steps",
+   "topics": [
+    {
+     "h3": "The shoot",
+     "sub": "Phones, direction, retakes.",
+     "blocks": [
+      {
+       "h4": "How it runs",
+       "kind": "p",
+       "text": "Each creator gets the script, the shot list, references and a short direction call. They film on their own phone, in their own space, and send us raw takes. We ask for retakes the same day if a hook is not landing, so the edit starts with the right material."
+      },
+      {
+       "h4": "What we check on the day",
+       "kind": "ul",
+       "items": [
+        "Every hook has at least two usable takes.",
+        "The product is in frame the way the script says.",
+        "Cleared claims were said as written.",
+        "Light, sound and framing survive a vertical crop."
+       ]
+      }
+     ],
+     "link": {
+      "label": "Service: Shoot direction",
+      "href": "/services/shoot-direction"
+     }
+    },
+    {
+     "h3": "Edit and captions",
+     "sub": "Five formats per shoot, cut for where each is going.",
+     "blocks": [
+      {
+       "h4": "What comes out",
+       "kind": "ul",
+       "items": [
+        "A hook cut and a full edit for every video in the package.",
+        "Native captions and on-screen text, checked against the script.",
+        "Sound chosen for the platform, with licensing that allows paid use.",
+        "Versions for TikTok, Reels, Shorts, Snap or Pinterest as the brief specifies, not one file for everywhere."
+       ]
+      }
+     ],
+     "link": {
+      "label": "Service: Editing and captions",
+      "href": "/services/editing"
+     }
+    },
+    {
+     "h3": "The revision round",
+     "sub": "One per video, included.",
+     "blocks": [
+      {
+       "h4": "How to use it",
+       "kind": "ol",
+       "items": [
+        "Watch the cuts in the tracker and leave notes against the timecode.",
+        "Send everything in one pass; a single list is faster than five emails.",
+        "We turn the round inside the fourteen-day sprint."
+       ]
+      },
+      {
+       "h4": "What it is usually spent on",
+       "kind": "p",
+       "text": "Pacing, captions and the order of the payoff. Almost never a reshoot, because the script was locked in week one."
+      }
+     ]
+    },
+    {
+     "h3": "Rights and delivery",
+     "sub": "Files, licence and a read on what to run where.",
+     "blocks": [
+      {
+       "h4": "What you receive",
+       "kind": "ul",
+       "items": [
+        "The finished videos, named by hook and platform.",
+        "The usage licence in writing: platforms, territories, organic and paid, start and end dates.",
+        "Whitelisting or Spark Ads set up and shown to you, where it is in the package.",
+        "A one-page note on which cuts to run first, and where."
+       ]
+      }
+     ],
+     "link": {
+      "label": "Service: Whitelisting and Spark Ads",
+      "href": "/services/whitelisting"
+     }
+    }
+   ]
+  }
+ ],
+ "after": {
+  "id": "after",
+  "tag": "Day 15 onwards",
+  "h2": "After delivery",
+  "p": "The videos are live. What happens next depends on your package, but the principle is the same: watch what performs and brief the next round around it.",
+  "topics": [
+   {
+    "h3": "Reporting and the debrief",
+    "sub": "Growth and Scale.",
+    "blocks": [
+     {
+      "h4": "What it is",
+      "kind": "p",
+      "text": "A monthly session where we go through what ran, what held attention and what did not, hook by hook. We do not run your ad spend, so the numbers are yours; our job is to read them into the next brief."
+     }
     ],
-    "image": {
-      "kind": "panel-mock",
-      "panel": "brief",
-      "alt": "A brief card assembling itself: product, platforms, budget band, eight hooks"
+    "link": {
+     "label": "Service: Reporting",
+     "href": "/services/reporting"
     }
-  },
-  "library": {
-    "eyebrow": "Where are you",
-    "h2": "Choose where you are",
-    "p": "Start with the part of the process you are in. Each section says what happens, who does it and what we need from you.",
-    "cards": [
-      {
-        "tag": "Before",
-        "h3": "Deciding whether to brief us",
-        "p": "What the intro call covers, what goes in a written brief, and what a package includes before you sign anything.",
-        "link": {
-          "label": "Open",
-          "href": "#week-0"
-        }
-      },
-      {
-        "tag": "During",
-        "h3": "Inside a sprint",
-        "p": "Hooks, script, casting, the shoot and the edit, in the order they happen, with the two points where we need your approval.",
-        "link": {
-          "label": "Open",
-          "href": "#week-1"
-        }
-      },
-      {
-        "tag": "After",
-        "h3": "Videos delivered",
-        "p": "Rights, files, whitelisting setup, our read on what to run where, and how the next brief gets sharper than the last.",
-        "link": {
-          "label": "Open",
-          "href": "#after"
-        }
-      }
+   },
+   {
+    "h3": "The next brief",
+    "sub": "Sharper than the last.",
+    "blocks": [
+     {
+      "h4": "How it starts",
+      "kind": "ul",
+      "items": [
+       "The winning hooks get new variants; the losers get retired.",
+       "Creators who landed get briefed again; the roster fills any gaps.",
+       "Anything you learned about the audience goes into the brief before we write a word."
+      ]
+     }
     ]
-  },
-  "weeks": [
-    {
-      "id": "week-0",
-      "tag": "Days 0 to 1",
-      "h2": "Week 0: the brief",
-      "p": "Everything that has to be true before a sprint starts. It takes a thirty-minute call and one written document, and it ends with one contract and one invoice.",
-      "guides_label": "Core steps",
-      "topics": [
-        {
-          "h3": "The intro call",
-          "sub": "Thirty minutes, no deck.",
-          "blocks": [
-            {
-              "h4": "What it covers",
-              "kind": "p",
-              "text": "You tell us what you are launching and who it is for. We tell you whether UGC is the right call, which package fits and what a first sprint would look like. If it is not a fit, we say so on the call."
-            },
-            {
-              "h4": "How to book it",
-              "kind": "ol",
-              "items": [
-                "Pick a slot on the calendar at /book.",
-                "Add one line about the product and the launch date, if there is one.",
-                "Bring whoever signs off creative; approvals are quicker when they have heard the plan."
-              ]
-            }
-          ]
-        },
-        {
-          "h3": "The written brief",
-          "sub": "One document, specific fast.",
-          "blocks": [
-            {
-              "h4": "What belongs in it",
-              "kind": "ul",
-              "items": [
-                "The product and the offer, in one sentence each.",
-                "Who it is for and where they will see it: platform and placement.",
-                "The goal for this round: launch, always-on paid, organic, creative test or retention.",
-                "Brand voice, must-say claims with their evidence, and anything that must not be said.",
-                "References you like, and references you do not.",
-                "Dates: product ready, shoot window, go-live."
-              ]
-            },
-            {
-              "h4": "Who writes it",
-              "kind": "p",
-              "text": "We do, from the call and a short set of questions. You edit it once. A brief nobody has read is the most common cause of a reshoot, so we do not start a sprint until it is signed off."
-            }
-          ]
-        },
-        {
-          "h3": "Package and contract",
-          "sub": "One contract, one invoice.",
-          "blocks": [
-            {
-              "h4": "How it works",
-              "kind": "p",
-              "text": "You choose Starter, Growth or Scale. The contract covers the briefs, the casting, the scripts, the filming, the edits and organic plus paid usage rights for the term. Creators and editors are paid by us out of the package fee; you never negotiate with them directly."
-            },
-            {
-              "h4": "What it does not cover",
-              "kind": "ul",
-              "items": [
-                "Your ad spend.",
-                "Product units and postage to creators.",
-                "Usage windows longer than the term, which we price in upfront if you want them."
-              ]
-            }
-          ]
-        },
-        {
-          "h3": "Product and access",
-          "sub": "What we need in hand before day one.",
-          "blocks": [
-            {
-              "h4": "Checklist",
-              "kind": "ul",
-              "items": [
-                "One unit of the product per creator cast, or a login for software and apps.",
-                "Logo, colours and any on-screen assets in the formats you already have.",
-                "If we are setting up whitelisting or Spark Ads: advertiser access on the ad account, granted to us, not shared as a password.",
-                "A named person on your side who can say yes."
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "week-1",
-      "tag": "Days 1 to 7",
-      "h2": "Week 1: script and cast",
-      "p": "The idea is settled before anyone films. Eight hooks per script, a locked script you have approved, and a shortlist of creators you have approved, all inside the first week.",
-      "guides_label": "Core steps",
-      "topics": [
-        {
-          "h3": "Hooks",
-          "sub": "Eight per script, written before the script.",
-          "blocks": [
-            {
-              "h4": "What happens",
-              "kind": "p",
-              "text": "The creative director writes eight opening lines for each video: the first one to three seconds that decide whether anyone keeps watching. They are grouped by type (curiosity, POV, comparison, problem-first) so a test round covers different angles, not eight versions of the same one."
-            },
-            {
-              "h4": "What you see",
-              "kind": "ul",
-              "items": [
-                "The eight hooks, with a one-line note on why each one is there.",
-                "Our pick of the two to three we would shoot first.",
-                "A live tracker link, so you can see where every video is without asking."
-              ]
-            }
-          ],
-          "link": {
-            "label": "Service: Hook writing",
-            "href": "/services/hooks"
-          }
-        },
-        {
-          "h3": "Script",
-          "sub": "Locked before the shoot, not fixed in the edit.",
-          "blocks": [
-            {
-              "h4": "What it contains",
-              "kind": "ul",
-              "items": [
-                "Hook, body, proof and payoff, written in the creator's voice, not the brand's.",
-                "A shot list: what is in frame for each line.",
-                "Claims that have been cleared, and the words we will use for them.",
-                "Captions and on-screen text, drafted now so the edit is not guessing.",
-                "Delivery notes: pace, tone, what to do with the product on camera."
-              ]
-            },
-            {
-              "h4": "Approval one",
-              "kind": "p",
-              "text": "You approve the script. This is the first of two sign-offs in a sprint. Changes after this point are a new brief, which is why the revision round almost never gets spent on reshoots."
-            }
-          ],
-          "link": {
-            "label": "Service: Briefing and scripts",
-            "href": "/services/briefing"
-          }
-        },
-        {
-          "h3": "Casting",
-          "sub": "From our roster, for fit.",
-          "blocks": [
-            {
-              "h4": "How we cast",
-              "kind": "p",
-              "text": "The producer shortlists creators from the roster against the brief: niche, tone, look, age range, and whether they can take direction. Follower count does not come into it; you are buying the take, not the audience."
-            },
-            {
-              "h4": "Approval two",
-              "kind": "ol",
-              "items": [
-                "You get the shortlist with a sample clip for each creator.",
-                "You approve, or ask for a different direction.",
-                "We book them and send the product."
-              ]
-            }
-          ],
-          "link": {
-            "label": "Service: Casting and roster",
-            "href": "/services/casting"
-          }
-        },
-        {
-          "h3": "Creator agreements",
-          "sub": "Signed before anyone presses record.",
-          "blocks": [
-            {
-              "h4": "What each creator signs",
-              "kind": "ul",
-              "items": [
-                "A release covering the footage they shoot for this brief.",
-                "The fee and the payment date.",
-                "The usage window and platforms, matching your package.",
-                "Whether the video can run from their handle (Spark Ads, partnership ads) and for how long."
-              ]
-            }
-          ],
-          "link": {
-            "label": "Service: Usage rights",
-            "href": "/services/usage-rights"
-          }
-        }
-      ]
-    },
-    {
-      "id": "week-2",
-      "tag": "Days 8 to 14",
-      "h2": "Week 2: shoot, cut, ship",
-      "p": "Creators film on their phones, our editors cut for the platform, you get one revision round, and the finished videos land with their rights in writing by day fourteen.",
-      "guides_label": "Core steps",
-      "topics": [
-        {
-          "h3": "The shoot",
-          "sub": "Phones, direction, retakes.",
-          "blocks": [
-            {
-              "h4": "How it runs",
-              "kind": "p",
-              "text": "Each creator gets the script, the shot list, references and a short direction call. They film on their own phone, in their own space, and send us raw takes. We ask for retakes the same day if a hook is not landing, so the edit starts with the right material."
-            },
-            {
-              "h4": "What we check on the day",
-              "kind": "ul",
-              "items": [
-                "Every hook has at least two usable takes.",
-                "The product is in frame the way the script says.",
-                "Cleared claims were said as written.",
-                "Light, sound and framing survive a vertical crop."
-              ]
-            }
-          ],
-          "link": {
-            "label": "Service: Shoot direction",
-            "href": "/services/shoot-direction"
-          }
-        },
-        {
-          "h3": "Edit and captions",
-          "sub": "Five formats per shoot, cut for where each is going.",
-          "blocks": [
-            {
-              "h4": "What comes out",
-              "kind": "ul",
-              "items": [
-                "A hook cut and a full edit for every video in the package.",
-                "Native captions and on-screen text, checked against the script.",
-                "Sound chosen for the platform, with licensing that allows paid use.",
-                "Versions for TikTok, Reels, Shorts, Snap or Pinterest as the brief specifies, not one file for everywhere."
-              ]
-            }
-          ],
-          "link": {
-            "label": "Service: Editing and captions",
-            "href": "/services/editing"
-          }
-        },
-        {
-          "h3": "The revision round",
-          "sub": "One per video, included.",
-          "blocks": [
-            {
-              "h4": "How to use it",
-              "kind": "ol",
-              "items": [
-                "Watch the cuts in the tracker and leave notes against the timecode.",
-                "Send everything in one pass; a single list is faster than five emails.",
-                "We turn the round inside the fourteen-day sprint."
-              ]
-            },
-            {
-              "h4": "What it is usually spent on",
-              "kind": "p",
-              "text": "Pacing, captions and the order of the payoff. Almost never a reshoot, because the script was locked in week one."
-            }
-          ]
-        },
-        {
-          "h3": "Rights and delivery",
-          "sub": "Files, licence and a read on what to run where.",
-          "blocks": [
-            {
-              "h4": "What you receive",
-              "kind": "ul",
-              "items": [
-                "The finished videos, named by hook and platform.",
-                "The usage licence in writing: platforms, territories, organic and paid, start and end dates.",
-                "Whitelisting or Spark Ads set up and shown to you, where it is in the package.",
-                "A one-page note on which cuts to run first, and where."
-              ]
-            }
-          ],
-          "link": {
-            "label": "Service: Whitelisting and Spark Ads",
-            "href": "/services/whitelisting"
-          }
-        }
-      ]
-    }
+   },
+   {
+    "h3": "Usage windows",
+    "sub": "We remind you before they end.",
+    "blocks": [
+     {
+      "h4": "What to expect",
+      "kind": "p",
+      "text": "Every licence has an end date on it. We tell you when it is coming, you either renew or stop running the video, and nothing renews without you asking."
+     }
+    ]
+   }
+  ]
+ },
+ "first_brief": {
+  "id": "first-brief",
+  "eyebrow": "Onboarding",
+  "h2": "Set up your first brief",
+  "p": "The first sprint needs a few things from your side before day one. Split them across the people who know each area best.",
+  "columns": [
+   "Step",
+   "Who on your side",
+   "What to prepare"
   ],
-  "after": {
-    "id": "after",
-    "tag": "Day 15 onwards",
-    "h2": "After delivery",
-    "p": "The videos are live. What happens next depends on your package, but the principle is the same: watch what performs and brief the next round around it.",
-    "topics": [
-      {
-        "h3": "Reporting and the debrief",
-        "sub": "Growth and Scale.",
-        "blocks": [
-          {
-            "h4": "What it is",
-            "kind": "p",
-            "text": "A monthly session where we go through what ran, what held attention and what did not, hook by hook. We do not run your ad spend, so the numbers are yours; our job is to read them into the next brief."
-          }
-        ],
-        "link": {
-          "label": "Service: Reporting",
-          "href": "/services/reporting"
-        }
-      },
-      {
-        "h3": "The next brief",
-        "sub": "Sharper than the last.",
-        "blocks": [
-          {
-            "h4": "How it starts",
-            "kind": "ul",
-            "items": [
-              "The winning hooks get new variants; the losers get retired.",
-              "Creators who landed get briefed again; the roster fills any gaps.",
-              "Anything you learned about the audience goes into the brief before we write a word."
-            ]
-          }
-        ]
-      },
-      {
-        "h3": "Usage windows",
-        "sub": "We remind you before they end.",
-        "blocks": [
-          {
-            "h4": "What to expect",
-            "kind": "p",
-            "text": "Every licence has an end date on it. We tell you when it is coming, you either renew or stop running the video, and nothing renews without you asking."
-          }
-        ]
-      }
-    ]
-  },
-  "first_brief": {
-    "id": "first-brief",
-    "eyebrow": "Onboarding",
-    "h2": "Set up your first brief",
-    "p": "The first sprint needs a few things from your side before day one. Split them across the people who know each area best.",
-    "columns": [
-      "Step",
-      "Who on your side",
-      "What to prepare"
+  "rows": [
+   [
+    "Intro call",
+    "Whoever owns the launch",
+    "The product, the goal, the date, and a rough budget band."
+   ],
+   [
+    "Written brief",
+    "Marketing lead",
+    "Offer, audience, brand voice, must-say and must-not-say claims, references."
+   ],
+   [
+    "Claims and evidence",
+    "Founder or product lead",
+    "Proof for any claim a creator will say out loud."
+   ],
+   [
+    "Product dispatch",
+    "Operations",
+    "One unit per creator, or logins for software, ready to send on shortlist approval."
+   ],
+   [
+    "Ad account access",
+    "Whoever runs paid",
+    "Advertiser access for whitelisting or Spark Ads, granted to us rather than shared."
+   ],
+   [
+    "Approvals",
+    "One named person",
+    "Script sign-off in week one, shortlist sign-off in week one, revision notes in week two."
+   ]
+  ]
+ },
+ "needs": {
+  "id": "needs",
+  "eyebrow": "Reference",
+  "h2": "What keeps a sprint on time",
+  "p": "Most delays come from one of these six things arriving late. Keep them ready and fourteen days holds.",
+  "cards": [
+   {
+    "h3": "Product",
+    "p": "One unit per creator, posted the day the shortlist is approved. Apps and software need a working login.",
+    "icon": "box"
+   },
+   {
+    "h3": "Brand voice",
+    "p": "How you talk and how you do not. A page of examples beats a forty-page guideline.",
+    "icon": "voice"
+   },
+   {
+    "h3": "Claims and evidence",
+    "p": "Anything a creator will say about the product, with the proof behind it, before the script is written.",
+    "icon": "checklist"
+   },
+   {
+    "h3": "Approvals",
+    "p": "One person who can say yes to the script and the shortlist inside a working day.",
+    "icon": "tick"
+   },
+   {
+    "h3": "Ad accounts",
+    "p": "Advertiser access for whitelisting and Spark Ads, granted to our account so nothing is shared as a password.",
+    "icon": "key"
+   },
+   {
+    "h3": "Dates",
+    "p": "Product-ready date, shoot window and go-live. We plan the sprint backwards from the last one.",
+    "icon": "calendar"
+   }
+  ]
+ },
+ "packages": {
+  "id": "packages",
+  "eyebrow": "Packages",
+  "h2": "Three ways to run it",
+  "p": "Every package runs on the same fourteen-day sprint. They differ in how many briefs, creators and videos fit in a month.",
+  "items": [
+   {
+    "name": "Starter",
+    "price": "From £1,800 a month",
+    "videos": "6 videos a month",
+    "includes": [
+     "1 creative brief a month",
+     "2 creators cast",
+     "Hook and full edit for each video",
+     "Usage rights for organic and paid",
+     "Live tracker access"
     ],
-    "rows": [
-      [
-        "Intro call",
-        "Whoever owns the launch",
-        "The product, the goal, the date, and a rough budget band."
-      ],
-      [
-        "Written brief",
-        "Marketing lead",
-        "Offer, audience, brand voice, must-say and must-not-say claims, references."
-      ],
-      [
-        "Claims and evidence",
-        "Founder or product lead",
-        "Proof for any claim a creator will say out loud."
-      ],
-      [
-        "Product dispatch",
-        "Operations",
-        "One unit per creator, or logins for software, ready to send on shortlist approval."
-      ],
-      [
-        "Ad account access",
-        "Whoever runs paid",
-        "Advertiser access for whitelisting or Spark Ads, granted to us rather than shared."
-      ],
-      [
-        "Approvals",
-        "One named person",
-        "Script sign-off in week one, shortlist sign-off in week one, revision notes in week two."
-      ]
-    ]
-  },
-  "needs": {
-    "id": "needs",
-    "eyebrow": "Reference",
-    "h2": "What keeps a sprint on time",
-    "p": "Most delays come from one of these six things arriving late. Keep them ready and fourteen days holds.",
-    "cards": [
-      {
-        "h3": "Product",
-        "p": "One unit per creator, posted the day the shortlist is approved. Apps and software need a working login.",
-        "icon": "box"
-      },
-      {
-        "h3": "Brand voice",
-        "p": "How you talk and how you do not. A page of examples beats a forty-page guideline.",
-        "icon": "voice"
-      },
-      {
-        "h3": "Claims and evidence",
-        "p": "Anything a creator will say about the product, with the proof behind it, before the script is written.",
-        "icon": "checklist"
-      },
-      {
-        "h3": "Approvals",
-        "p": "One person who can say yes to the script and the shortlist inside a working day.",
-        "icon": "tick"
-      },
-      {
-        "h3": "Ad accounts",
-        "p": "Advertiser access for whitelisting and Spark Ads, granted to our account so nothing is shared as a password.",
-        "icon": "key"
-      },
-      {
-        "h3": "Dates",
-        "p": "Product-ready date, shoot window and go-live. We plan the sprint backwards from the last one.",
-        "icon": "calendar"
-      }
-    ]
-  },
-  "packages": {
-    "id": "packages",
-    "eyebrow": "Packages",
-    "h2": "Three ways to run it",
-    "p": "Every package runs on the same fourteen-day sprint. They differ in how many briefs, creators and videos fit in a month.",
-    "items": [
-      {
-        "name": "Starter",
-        "price": "From £1,800 a month",
-        "videos": "6 videos a month",
-        "includes": [
-          "1 creative brief a month",
-          "2 creators cast",
-          "Hook and full edit for each video",
-          "Usage rights for organic and paid",
-          "Live tracker access"
-        ],
-        "best_for": "Brands testing UGC for the first time"
-      },
-      {
-        "name": "Growth",
-        "price": "From £3,600 a month",
-        "videos": "12 videos a month",
-        "includes": [
-          "2 creative briefs a month",
-          "4 to 5 creators cast",
-          "Hook and full edit for each video",
-          "Usage rights for organic and paid",
-          "Whitelisting and Spark Ads setup",
-          "Monthly performance debrief"
-        ],
-        "best_for": "Brands scaling paid social and testing formats fast"
-      },
-      {
-        "name": "Scale",
-        "price": "From £6,500 a month",
-        "videos": "24 or more videos a month",
-        "includes": [
-          "Weekly briefs",
-          "Dedicated creator roster",
-          "Hook and full edit for each video",
-          "Usage rights for organic and paid",
-          "Whitelisting and Spark Ads setup",
-          "Priority turnaround and a dedicated producer"
-        ],
-        "best_for": "Brands running UGC as an always-on channel"
-      }
+    "best_for": "Brands testing UGC for the first time"
+   },
+   {
+    "name": "Growth",
+    "price": "From £3,600 a month",
+    "videos": "12 videos a month",
+    "includes": [
+     "2 creative briefs a month",
+     "4 to 5 creators cast",
+     "Hook and full edit for each video",
+     "Usage rights for organic and paid",
+     "Whitelisting and Spark Ads setup",
+     "Monthly performance debrief"
     ],
-    "note": "Each price covers everything listed in that package: the briefs, the casting, the scripts, the filming, the edits and organic plus paid usage rights for the term. It does not cover your ad spend. ‘From’ is honest: we scope the final number once we know how many videos you need and how long you want the rights for. Packages run month to month with a one-month minimum."
-  },
-  "faqs": {
-    "id": "faqs",
-    "eyebrow": "FAQs",
-    "h2": "Common process questions",
-    "items": [
-      {
-        "q": "What is the difference between a brief and a sprint?",
-        "a": "The brief is the document: what we are making and why. The sprint is the fourteen days that turn it into finished videos. One brief, one sprint; Growth and Scale run more than one a month."
-      },
-      {
-        "q": "Where do the two approvals happen?",
-        "a": "Both in week one: the script, then the creator shortlist. After those, the sprint runs without needing you until the revision round."
-      },
-      {
-        "q": "What should we look at each week?",
-        "a": "Week one: the hooks, the script and the shortlist. Week two: the cuts in the tracker. After delivery: the licence dates and the note on what to run where."
-      },
-      {
-        "q": "What slows a sprint down?",
-        "a": "Product arriving late, claims without evidence, and approvals that need three people. The onboarding table above is the fix for all three."
-      },
-      {
-        "q": "How does the tracker fit in?",
-        "a": "Every video has a row: hook, creator, status, and the current cut. You see it move from scripted to shot to edited to delivered without asking us for updates."
-      },
-      {
-        "q": "Can a sprint run faster than fourteen days?",
-        "a": "Sometimes. Rush timelines are possible on a simple brief with product already in hand; we will tell you honestly if the brief needs the full two weeks."
-      }
-    ]
-  },
-  "support": {
-    "id": "support",
-    "eyebrow": "Support",
-    "h2": "Getting help",
-    "p": "For anything about a live brief, a package, access to the tracker or a licence date, email the team. A person reads it.",
-    "email": "hello@hypjam.com",
-    "href": "mailto:hello@hypjam.com",
-    "note": "Use it for brief questions, tracker access, rights and licence dates, and anything you would rather not put on a call."
-  },
-  "footer_line": "hypjam process: how a brief runs from the intro call to delivery."
+    "best_for": "Brands scaling paid social and testing formats fast"
+   },
+   {
+    "name": "Scale",
+    "price": "From £6,500 a month",
+    "videos": "24 or more videos a month",
+    "includes": [
+     "Weekly briefs",
+     "Dedicated creator roster",
+     "Hook and full edit for each video",
+     "Usage rights for organic and paid",
+     "Whitelisting and Spark Ads setup",
+     "Priority turnaround and a dedicated producer"
+    ],
+    "best_for": "Brands running UGC as an always-on channel"
+   }
+  ],
+  "note": "Each price covers everything listed in that package: the briefs, the casting, the scripts, the filming, the edits and organic plus paid usage rights for the term. It does not cover your ad spend. ‘From’ is honest: we scope the final number once we know how many videos you need and how long you want the rights for. Packages run month to month with a one-month minimum."
+ },
+ "faqs": {
+  "id": "faqs",
+  "eyebrow": "FAQs",
+  "h2": "Common process questions",
+  "items": [
+   {
+    "q": "What is the difference between a brief and a sprint?",
+    "a": "The brief is the document: what we are making and why. The sprint is the fourteen days that turn it into finished videos. One brief, one sprint; Growth and Scale run more than one a month."
+   },
+   {
+    "q": "Where do the two approvals happen?",
+    "a": "Both in week one: the script, then the creator shortlist. After those, the sprint runs without needing you until the revision round."
+   },
+   {
+    "q": "What should we look at each week?",
+    "a": "Week one: the hooks, the script and the shortlist. Week two: the cuts in the tracker. After delivery: the licence dates and the note on what to run where."
+   },
+   {
+    "q": "What slows a sprint down?",
+    "a": "Product arriving late, claims without evidence, and approvals that need three people. The onboarding table above is the fix for all three."
+   },
+   {
+    "q": "How does the tracker fit in?",
+    "a": "Every video has a row: hook, creator, status, and the current cut. You see it move from scripted to shot to edited to delivered without asking us for updates."
+   },
+   {
+    "q": "Can a sprint run faster than fourteen days?",
+    "a": "Sometimes. Rush timelines are possible on a simple brief with product already in hand; we will tell you honestly if the brief needs the full two weeks."
+   }
+  ]
+ },
+ "support": {
+  "id": "support",
+  "eyebrow": "Support",
+  "h2": "Getting help",
+  "p": "For anything about a live brief, a package, access to the tracker or a licence date, email the team. A person reads it.",
+  "email": "hello@hypjam.com",
+  "href": "mailto:hello@hypjam.com",
+  "note": "Use it for brief questions, tracker access, rights and licence dates, and anything you would rather not put on a call."
+ },
+ "footer_line": "hypjam process: how a brief runs from the intro call to delivery."
 }

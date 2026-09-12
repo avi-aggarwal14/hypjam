@@ -1,160 +1,160 @@
 {
-  "_schema": {
-    "_about": "Content for /faq. A light page: eyebrow, display h1, one paragraph, then two groups of accordion items (the same accordion component as the rights page: hairline rows, '+' rotating to 'x', one open at a time) with a sticky group switcher or two h2s. Brand questions come from the hire page's eight FAQs plus six new buyer questions; creator questions are the join page's six, kept in sync with join.json. British English.",
-    "meta": "{path, title, description, theme}",
-    "hero": "{eyebrow, h1, p}",
-    "groups": "[{id, label, h2, items:[{q, a, link?:{label, href}}]}] - link is an optional 'Read more' under the answer.",
-    "cta": "{h2, p, buttons:[{label, href, primary}]}"
-  },
-  "meta": {
-    "path": "/faq",
-    "title": "FAQ: hiring hypjam and joining the roster | hypjam",
-    "description": "Answers for brands hiring a UGC agency (turnaround, usage rights, platforms, revisions, casting, terms, pricing) and for creators joining the hypjam roster (equipment, following, pay, ownership).",
-    "theme": "light"
-  },
-  "hero": {
-    "eyebrow": "FAQ",
-    "h1": "Questions, answered plainly.",
-    "p": "Everything brands ask before a first brief and everything creators ask before a first shoot. If yours is not here, book a call or email us and a person replies."
-  },
-  "groups": [
+ "_schema": {
+  "_about": "Content for /faq. A light page: eyebrow, display h1, one paragraph, then two groups of accordion items (the same accordion component as the rights page: hairline rows, '+' rotating to 'x', one open at a time) with a sticky group switcher or two h2s. Brand questions come from the hire page's eight FAQs plus six new buyer questions; creator questions are the join page's six, kept in sync with join.json. British English.",
+  "meta": "{path, title, description, theme}",
+  "hero": "{eyebrow, h1, p}",
+  "groups": "[{id, label, h2, items:[{q, a, link?:{label, href}}]}] - link is an optional 'Read more' under the answer.",
+  "cta": "{h2, p, buttons:[{label, href, primary}]}"
+ },
+ "meta": {
+  "path": "/faq",
+  "title": "FAQ: hiring hypjam and joining the roster | hypjam",
+  "description": "Answers for brands hiring a UGC agency — pricing, usage rights, turnaround, casting — and for creators joining the roster: equipment, pay, ownership.",
+  "theme": "light"
+ },
+ "hero": {
+  "eyebrow": "FAQ",
+  "h1": "Questions, answered plainly.",
+  "p": "Everything brands ask before a first brief and everything creators ask before a first shoot. If yours is not here, book a call or email us and a person replies."
+ },
+ "groups": [
+  {
+   "id": "brands",
+   "label": "For brands",
+   "h2": "For brands",
+   "items": [
     {
-      "id": "brands",
-      "label": "For brands",
-      "h2": "For brands",
-      "items": [
-        {
-          "q": "What is UGC, and how is it different from influencer marketing?",
-          "a": "UGC is content made to a brief, for a flat fee, that you license to run as an ad from your own account or the creator's. Influencer marketing rents someone's audience. We make the former: the creator's following does not matter, the take does.",
-          "link": {
-            "label": "Read the full comparison",
-            "href": "/blog/ugc-vs-influencer-marketing"
-          }
-        },
-        {
-          "q": "How fast do videos turn around?",
-          "a": "Most sprints run fourteen days from brief to delivery, casting, shooting and editing included. Rush timelines are possible; we will tell you honestly if the brief needs longer.",
-          "link": {
-            "label": "See the process week by week",
-            "href": "/process"
-          }
-        },
-        {
-          "q": "What usage rights do we get?",
-          "a": "Organic and paid usage is included as standard for the term of your package. If you need whitelisting or a longer usage window, we build it into the brief upfront so there is no scramble later.",
-          "link": {
-            "label": "Rights and safety",
-            "href": "/rights"
-          }
-        },
-        {
-          "q": "Which platforms do you shoot for?",
-          "a": "TikTok, Instagram Reels, YouTube Shorts, Snapchat and Pinterest, plus Meta ads. We brief and edit natively for wherever the video is actually going to run, not one size fits all."
-        },
-        {
-          "q": "How many revisions are included?",
-          "a": "One full revision round per video, in every package. Most rounds get spent on pacing or captions rather than reshoots, because the script is locked before anyone films."
-        },
-        {
-          "q": "How does casting work?",
-          "a": "We cast from our own roster against your brief: tone, look, niche, whatever matters for the product. You approve the shortlist before anyone shoots."
-        },
-        {
-          "q": "Do we need to send product to creators?",
-          "a": "Usually, yes: one unit per creator cast, posted to the addresses we give you once the shortlist is approved. Apps and software need a working login instead. The brief says exactly what is needed and when."
-        },
-        {
-          "q": "Can we use our own founder, or a creator we already work with?",
-          "a": "Yes. Founder-led video is one of our formats: we direct you through the same hooks, retakes and notes as the roster. If you already have a creator you like, we can brief and direct them too.",
-          "link": {
-            "label": "Founder-led video",
-            "href": "/services/founder-led"
-          }
-        },
-        {
-          "q": "How do you handle claims and brand safety?",
-          "a": "Creators only say what the brief has cleared. You approve every script before filming, and if a claim needs evidence we ask for it before the script is locked. Paid content is labelled as paid, following the ASA's CAP Code."
-        },
-        {
-          "q": "Do you run the ads as well?",
-          "a": "We set up whitelisting and Spark Ads, tell you which cuts to run where and, on Growth and Scale, debrief performance with you monthly. We do not manage your ad spend, and packages do not include it.",
-          "link": {
-            "label": "Whitelisting and Spark Ads",
-            "href": "/services/whitelisting"
-          }
-        },
-        {
-          "q": "Is there a minimum term?",
-          "a": "Packages run month to month with a one-month minimum, so you are not locked into a long contract just to find out whether it works."
-        },
-        {
-          "q": "Who owns the final videos?",
-          "a": "You do, for the usage window in your package. We handle the paperwork with creators so the rights are clean, not implied."
-        },
-        {
-          "q": "How do creators get paid?",
-          "a": "We pay creators directly out of your package fee. One contract, one invoice, and no separate negotiations with each creator on your end."
-        },
-        {
-          "q": "What happens on the intro call?",
-          "a": "Thirty minutes. You tell us what you are launching and who it is for; we tell you whether UGC is the right call, which package fits and what a first sprint would look like. No deck.",
-          "link": {
-            "label": "Book a call",
-            "href": "/book"
-          }
-        }
-      ]
+     "q": "What is UGC, and how is it different from influencer marketing?",
+     "a": "UGC is content made to a brief, for a flat fee, that you license to run as an ad from your own account or the creator's. Influencer marketing rents someone's audience. We make the former: the creator's following does not matter, the take does.",
+     "link": {
+      "label": "Read the full comparison",
+      "href": "/blog/ugc-vs-influencer-marketing"
+     }
     },
     {
-      "id": "creators",
-      "label": "For creators",
-      "h2": "For creators",
-      "items": [
-        {
-          "q": "Do I need professional equipment?",
-          "a": "No. Your phone is genuinely enough. What matters is that you can act naturally on camera and follow a script without sounding like you are reading one."
-        },
-        {
-          "q": "Do I need a big following?",
-          "a": "No. This is not influencer marketing: brands are paying for the content itself, not your audience, so your follower count does not decide whether you are cast."
-        },
-        {
-          "q": "How much creative freedom do I get?",
-          "a": "You get a script and direction, but we want your delivery, timing and personality in there too. Directed, not read word for word."
-        },
-        {
-          "q": "Who owns the content I shoot?",
-          "a": "The brand licenses it for the usage window agreed before you film, and we spell that out upfront. Organic-only jobs and whitelisted Spark Ads pay and license differently."
-        },
-        {
-          "q": "How often will I get briefed?",
-          "a": "It varies. Some creators shoot for us monthly, others a few times a year, depending on how many briefs match your niche and availability."
-        },
-        {
-          "q": "Do I need to be in the UK?",
-          "a": "hypjam is in London, but the roster is mostly remote. Most briefs need a phone, decent light and a bit of space to film.",
-          "link": {
-            "label": "Join the roster",
-            "href": "/join"
-          }
-        }
-      ]
+     "q": "How fast do videos turn around?",
+     "a": "Most sprints run fourteen days from brief to delivery, casting, shooting and editing included. Rush timelines are possible; we will tell you honestly if the brief needs longer.",
+     "link": {
+      "label": "See the process week by week",
+      "href": "/process"
+     }
+    },
+    {
+     "q": "What usage rights do we get?",
+     "a": "Organic and paid usage is included as standard for the term of your package. If you need whitelisting or a longer usage window, we build it into the brief upfront so there is no scramble later.",
+     "link": {
+      "label": "Rights and safety",
+      "href": "/rights"
+     }
+    },
+    {
+     "q": "Which platforms do you shoot for?",
+     "a": "TikTok, Instagram Reels, YouTube Shorts, Snapchat and Pinterest, plus Meta ads. We brief and edit natively for wherever the video is actually going to run, not one size fits all."
+    },
+    {
+     "q": "How many revisions are included?",
+     "a": "One full revision round per video, in every package. Most rounds get spent on pacing or captions rather than reshoots, because the script is locked before anyone films."
+    },
+    {
+     "q": "How does casting work?",
+     "a": "We cast from our own roster against your brief: tone, look, niche, whatever matters for the product. You approve the shortlist before anyone shoots."
+    },
+    {
+     "q": "Do we need to send product to creators?",
+     "a": "Usually, yes: one unit per creator cast, posted to the addresses we give you once the shortlist is approved. Apps and software need a working login instead. The brief says exactly what is needed and when."
+    },
+    {
+     "q": "Can we use our own founder, or a creator we already work with?",
+     "a": "Yes. Founder-led video is one of our formats: we direct you through the same hooks, retakes and notes as the roster. If you already have a creator you like, we can brief and direct them too.",
+     "link": {
+      "label": "Founder-led video",
+      "href": "/services/founder-led"
+     }
+    },
+    {
+     "q": "How do you handle claims and brand safety?",
+     "a": "Creators only say what the brief has cleared. You approve every script before filming, and if a claim needs evidence we ask for it before the script is locked. Paid content is labelled as paid, following the ASA's CAP Code."
+    },
+    {
+     "q": "Do you run the ads as well?",
+     "a": "We set up whitelisting and Spark Ads, tell you which cuts to run where and, on Growth and Scale, debrief performance with you monthly. We do not manage your ad spend, and packages do not include it.",
+     "link": {
+      "label": "Whitelisting and Spark Ads",
+      "href": "/services/whitelisting"
+     }
+    },
+    {
+     "q": "Is there a minimum term?",
+     "a": "Packages run month to month with a one-month minimum, so you are not locked into a long contract just to find out whether it works."
+    },
+    {
+     "q": "Who owns the final videos?",
+     "a": "You do, for the usage window in your package. We handle the paperwork with creators so the rights are clean, not implied."
+    },
+    {
+     "q": "How do creators get paid?",
+     "a": "We pay creators directly out of your package fee. One contract, one invoice, and no separate negotiations with each creator on your end."
+    },
+    {
+     "q": "What happens on the intro call?",
+     "a": "Thirty minutes. You tell us what you are launching and who it is for; we tell you whether UGC is the right call, which package fits and what a first sprint would look like. No deck.",
+     "link": {
+      "label": "Book a call",
+      "href": "/book"
+     }
     }
-  ],
-  "cta": {
-    "h2": "Still got a question?",
-    "p": "Book a thirty-minute call or email hello@hypjam.com. Either way, a person answers.",
-    "buttons": [
-      {
-        "label": "Book a call",
-        "href": "/book",
-        "primary": true
-      },
-      {
-        "label": "Email us",
-        "href": "mailto:hello@hypjam.com",
-        "primary": false
-      }
-    ]
+   ]
+  },
+  {
+   "id": "creators",
+   "label": "For creators",
+   "h2": "For creators",
+   "items": [
+    {
+     "q": "Do I need professional equipment?",
+     "a": "No. Your phone is genuinely enough. What matters is that you can act naturally on camera and follow a script without sounding like you are reading one."
+    },
+    {
+     "q": "Do I need a big following?",
+     "a": "No. This is not influencer marketing: brands are paying for the content itself, not your audience, so your follower count does not decide whether you are cast."
+    },
+    {
+     "q": "How much creative freedom do I get?",
+     "a": "You get a script and direction, but we want your delivery, timing and personality in there too. Directed, not read word for word."
+    },
+    {
+     "q": "Who owns the content I shoot?",
+     "a": "The brand licenses it for the usage window agreed before you film, and we spell that out upfront. Organic-only jobs and whitelisted Spark Ads pay and license differently."
+    },
+    {
+     "q": "How often will I get briefed?",
+     "a": "It varies. Some creators shoot for us monthly, others a few times a year, depending on how many briefs match your niche and availability."
+    },
+    {
+     "q": "Do I need to be in the UK?",
+     "a": "hypjam is in London, but the roster is mostly remote. Most briefs need a phone, decent light and a bit of space to film.",
+     "link": {
+      "label": "Join the roster",
+      "href": "/join"
+     }
+    }
+   ]
   }
+ ],
+ "cta": {
+  "h2": "Still got a question?",
+  "p": "Book a thirty-minute call or email hello@hypjam.com. Either way, a person answers.",
+  "buttons": [
+   {
+    "label": "Book a call",
+    "href": "/book",
+    "primary": true
+   },
+   {
+    "label": "Email us",
+    "href": "mailto:hello@hypjam.com",
+    "primary": false
+   }
+  ]
+ }
 }

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page not found | hypjam</title>
 <meta name="description" content="That page is not in the brief. Head back to the hypjam home page, the services, the work or the blog.">
-<meta name="robots" content="noindex">
+<meta name="robots" content="noindex, follow">
 <link rel="canonical" href="https://hypjam.vercel.app/404">
 <meta name="theme-color" content="#000000">
 <meta name="google-site-verification" content="edEX_IBgms52F_gnbZT-uNDMzgumZFyJ1fKc1ivZFKs">
@@ -16,6 +16,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/brand/hook-icon-192.png">
 <link rel="apple-touch-icon" href="/assets/brand/hook-apple-touch-icon.png">
 <link rel="manifest" href="/assets/brand/site.webmanifest">
+<link rel="alternate" type="application/rss+xml" title="hypjam blog" href="/feed.xml">
 <link rel="preload" href="/assets/fonts/newsreader-ec9fd369.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/geist-8740fcb6.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts/newsreader.css">
@@ -34,6 +35,112 @@
 <meta name="twitter:title" content="Page not found | hypjam">
 <meta name="twitter:description" content="That page is not in the brief. Head back to the hypjam home page, the services, the work or the blog.">
 <meta name="twitter:image" content="https://hypjam.vercel.app/assets/brand/og.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://hypjam.vercel.app/#org",
+      "name": "hypjam",
+      "url": "https://hypjam.vercel.app/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://hypjam.vercel.app/assets/brand/hook-icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "description": "hypjam is a London UGC agency that briefs, casts and directs creators for short-form video ads.",
+      "founder": { "@id": "https://hypjam.vercel.app/#founder" },
+      "areaServed": "GB",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hello@hypjam.com",
+        "contactType": "customer service"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://hypjam.vercel.app/#founder",
+      "name": "Avi Aggarwal",
+      "jobTitle": "Founder",
+      "worksFor": { "@id": "https://hypjam.vercel.app/#org" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://hypjam.vercel.app/#website",
+      "name": "hypjam",
+      "url": "https://hypjam.vercel.app/",
+      "publisher": { "@id": "https://hypjam.vercel.app/#org" },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://hypjam.vercel.app/#service",
+      "name": "hypjam",
+      "url": "https://hypjam.vercel.app/",
+      "parentOrganization": { "@id": "https://hypjam.vercel.app/#org" },
+      "areaServed": "GB",
+      "serviceType": [
+        "Briefing & scripts",
+        "Hook writing",
+        "Casting & roster",
+        "Shoot direction",
+        "Editing & captions",
+        "Whitelisting & Spark Ads",
+        "Usage rights",
+        "Reporting",
+        "Founder-led video"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "hypjam packages",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "Starter",
+            "description": "From £1,800 a month",
+            "priceCurrency": "GBP",
+            "price": 1800,
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "GBP",
+              "minPrice": 1800,
+              "unitText": "month"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Growth",
+            "description": "From £3,600 a month",
+            "priceCurrency": "GBP",
+            "price": 3600,
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "GBP",
+              "minPrice": 3600,
+              "unitText": "month"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Scale",
+            "description": "From £6,500 a month",
+            "priceCurrency": "GBP",
+            "price": 6500,
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "GBP",
+              "minPrice": 6500,
+              "unitText": "month"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+</script>
 
 </head>
 <body class="page-404" data-nav="dark" data-nav-fill="bg-transparent">
