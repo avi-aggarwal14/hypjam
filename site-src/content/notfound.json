@@ -1,0 +1,27 @@
+{
+  "_schema": {
+    "_about": "Content for /404 (dist/404/index.html, also served for any unmatched route by vercel.json). A short black page: eyebrow, display h1, one paragraph, a primary pill and a row of four text links, with the small HQ line drawing (the same one the footer uses) sitting bottom-left. British English.",
+    "meta": "{path, title, description, theme, robots} - robots 'noindex' goes into a meta tag.",
+    "hero": "{eyebrow, h1, p, primary:{label, href}, links:[{label, href}], art:{kind, alt}} - art.kind = 'hq-drawing-small' means reuse the footer's small HQ drawing at ~280px wide."
+  },
+  "meta": {
+    "path": "/404",
+    "title": "Page not found | hypjam",
+    "description": "That page is not in the brief. Head back to the hypjam home page, the services, the work or the blog.",
+    "theme": "dark",
+    "robots": "noindex"
+  },
+  "hero": {
+    "eyebrow": "404",
+    "h1": "That page is not in the brief.",
+    "p": "The link is old, mistyped, or pointing at something we have not made yet. Everything that does exist is one click away.",
+    "primary": { "label": "Back to the home page", "href": "/" },
+    "links": [
+      { "label": "Services", "href": "/services" },
+      { "label": "Work", "href": "/work" },
+      { "label": "Blog", "href": "/blog" },
+      { "label": "Book a call", "href": "/book" }
+    ],
+    "art": { "kind": "hq-drawing-small", "alt": "Line drawing of hypjam's two-building HQ" }
+  }
+}

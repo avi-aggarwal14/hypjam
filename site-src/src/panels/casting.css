@@ -1,0 +1,80 @@
+/* ==========================================================================
+   Panel 3 — casting (321×205). Layout only; primitives live in _panels.css.
+   Static state = final state: counter "Shortlist 3 of 3", five roster rows in
+   place, CR-014 / CR-031 / CR-052 ticked and chipped "shortlisted" (their city
+   tag has yielded its width to that slot), the other two rows receded.
+   ========================================================================== */
+
+/* Head: "Roster" · counter ---------------------------------------------------- */
+.pnl-casting__head {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.pnl-casting__hr {
+  position: absolute;
+  top: 21px;
+  left: 0;
+}
+/* The counter digit: four stacked spans in one grid cell, one visible, so the
+   count is a tween of opacities (seek-safe, no callbacks); the grid cell is as
+   wide as the widest digit and tabular figures keep it from twitching. */
+.pnl-casting__n {
+  display: inline-grid;
+}
+.pnl-casting__n > span {
+  grid-area: 1 / 1;
+  opacity: 0;
+}
+.pnl-casting__n > span:last-child {
+  opacity: 1;
+}
+
+/* The roster: five 34px rows from y26 (26 + 5 × 34 = 196 ≤ 205) ---------------- */
+.pnl-casting__list {
+  position: absolute;
+  top: 26px;
+  left: 0;
+  right: 0;
+}
+.pnl-casting__row {
+  height: 34px;
+  min-height: 34px;
+}
+.pnl-casting__id {
+  flex: 0 0 auto;
+}
+/* Tags sit in the growing cell; chips 4px apart, nothing wraps. */
+.pnl-casting__tags {
+  gap: 4px;
+  white-space: nowrap;
+}
+.pnl-casting__tag {
+  flex: 0 0 auto;
+  overflow: hidden;
+}
+/* Three ghost chips and the shortlist slot cannot both fit in 321px, so on a
+   picked row the city tag yields its width to the slot. It fades out first and
+   only then collapses, so its rounded edge is never caught mid-clip. The JS
+   tweens exactly these five properties; max-width (not width) does the
+   collapsing, so the chip's natural size is never measured or hard-coded. */
+.pnl-casting__row--picked .pnl-casting__tag--city {
+  max-width: 0;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: -4px;
+  opacity: 0;
+}
+/* The shortlist slot: tick + jam chip. JS opens it from max-width 0 while its
+   contents are still invisible, then fades them in, so no glyph is ever sliced
+   by the opening box. overflow:hidden keeps anything from spilling mid-open. */
+.pnl-casting__pick {
+  flex: 0 0 auto;
+  overflow: hidden;
+  white-space: nowrap;
+}
+/* Rows that did not make the shortlist recede; their hairlines stay. */
+.pnl-casting__row--dim > .pnl-cell {
+  opacity: 0.5;
+}

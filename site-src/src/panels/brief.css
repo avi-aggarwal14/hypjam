@@ -1,0 +1,61 @@
+/* ==========================================================================
+   Panel 1 — brief (321×184). Layout only; primitives live in _panels.css.
+   Static state = final state (beat B visible, beat A hidden).
+   ========================================================================== */
+
+/* Beat A: the client message ------------------------------------------- */
+.pnl-brief__msg {
+  opacity: 0;
+}
+.pnl-brief__from {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 18px;
+}
+.pnl-brief__bubble {
+  position: absolute;
+  top: 24px;
+  left: 0;
+  max-width: 292px;
+}
+.pnl-brief__text span {
+  display: inline;
+}
+.pnl-brief__status {
+  position: absolute;
+  top: 86px;
+  left: 0;
+}
+
+/* Beat B: the brief card ------------------------------------------------ */
+.pnl-brief__card {
+  display: flex;
+  flex-direction: column;
+}
+.pnl-brief__head {
+  margin-bottom: 6px;
+}
+.pnl-brief__line {
+  min-height: 28px;
+}
+.pnl-brief__key {
+  width: 76px;
+  flex: 0 0 76px;
+}
+.pnl-brief__val {
+  font-size: 13px;
+  color: var(--pnl-ink);
+  gap: 6px;
+}
+.pnl-brief__signed {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 20px;
+  margin-top: 8px;
+  font-size: 12px;
+}

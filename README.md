@@ -1,54 +1,65 @@
 # hypjam
 
-**Live:** <https://hypjam.vercel.app> (also mirrored on GitHub Pages at <https://avi-aggarwal14.github.io/hypjam/>)
+The website for **hypjam**, a UGC (user-generated content) marketing agency in London.
+Live at **https://hypjam.vercel.app**.
 
-Landing page for **hypjam**, an all-in-one UGC (user-generated content) agency: everyday creators, directed by a team, making short-form ads that convert.
+## What this repo is
 
-The whole site is one horizontal track. Scrolling the wheel or trackpad up and down glides the page to the **right**, panel by panel, with eased momentum. Arrow keys, Page Down and Space work too, and the bottom pill navigation glides you straight to a panel. On screens under 900px it falls back to a normal vertical page.
+The repository root **is** the deployed site: plain static HTML, CSS, JS and assets,
+served by Vercel with `cleanUrls`. There is no build step on deploy.
 
-## Run it
-
-It is a single static file with no build step and no dependencies beyond two Google Fonts.
+The site is generated from source in **`site-src/`**. To change anything, edit the
+source and rebuild — never edit the generated HTML at the root.
 
 ```bash
-git clone https://github.com/avi-aggarwal14/hypjam.git
-cd hypjam
-python3 -m http.server 8000
+cd site-src
+python3 build.py          # writes site-src/dist/
+cp -R dist/. ..           # publish to the repo root
 ```
 
-Then open <http://localhost:8000>. Opening `index.html` directly from disk also works.
+`site-src/CONTRACT.md` is the full brief: site map, design tokens, the hero engine,
+the HQ drawing, the product panels, and the honesty rules. Read it before changing
+anything structural. `site-src/DESIGN.md` documents the tokens and CSS classes.
 
-## What's inside
+## Layout
 
-The home page lives in `index.html`. The rest of the site is static too:
+| path | what |
+|---|---|
+| `index.html`, `services/`, `solutions/`, `blog/`, … | the generated site (do not edit) |
+| `assets/` | fonts, vendor libs (GSAP, Lenis), brand, video, the HQ drawing, badges |
+| `site-src/src/` | page templates, partials, CSS, JS, the drawing parts, the panels |
+| `site-src/content/` | every word on the site, as JSON, one file per page |
+| `site-src/tools/` | the page renderers and the drawing assembler/validator |
+| `vercel.json` | clean URLs, security headers, caching, legacy redirects |
 
-- `/work`, `/hire`, `/join`, `/agency`, `/blog` and eight articles under `/blog/*` share `assets/page.css` and `assets/page.js`, which reuse the home page's tokens, nav pill, dot bands, halftone field, cursor and message sheet.
-- `sitemap.xml`, `robots.txt`, `site.webmanifest`, Open Graph image and icons, plus JSON-LD on every page.
-- `brand/brand-guide.md` holds the name, voice, palette, type and logo rules.
+## The home page
 
-Inside `index.html`:
+The hero pins for eleven viewport heights and scrubs one GSAP timeline: footage
+blurs out while a line drawing of hypjam's HQ draws itself in, then the camera
+flies through five rooms — the brief desk, the writers' room, the casting floor,
+the shoot bay and the edit suite — each with its own animated panel, before pulling
+back to the commitments. The drawing is `assets/img/hq.svg`, 3,359 original line
+elements built from `site-src/src/drawing/parts/`.
 
-- **Horizontal glide** – `html { overflow: auto hidden }`, a `width: max-content` body and a flex `.track` of `100dvh` panels. A `wheel` listener converts vertical deltas into a lerped `window.scrollTo` glide, so the page keeps native horizontal scrolling and keyboard access.
-- **Fixed chrome** – dotted top and bottom bands, a pointer-reactive dot field on a canvas, a progress bar, and the bottom navigation pill with a sliding active blob.
-- **Panels** – hero, work shelf, services, agency, brand voices, and contact with a real booking calendar (Google Calendar appointment schedule with Google Meet, loaded on request).
-- **Motion** – page-load choreography, 3D tilt on the hero card and work cards, marquees, an auto-cycling services preview, and a drawn-on ROAS chart. Everything respects `prefers-reduced-motion`.
-- **Placeholder footage** – the "video" frames are generated with CSS gradients and shapes so the page ships with zero image assets. Replace the `.shot` blocks with real clips or stills.
+## House rules
 
-## Customise
+- **Nothing invented.** hypjam is new: no clients, testimonials, case studies or
+  performance figures. Proof slots are deliberately empty and marked "filled in at
+  launch". Never add `aggregateRating`, `review` or invented quotes.
+- **"Studio" never appears** in visible copy. hypjam is a UGC agency.
+- **No cookies, no analytics, no trackers.** The cal.com booking embed loads only
+  after a click, which is what keeps the no-cookie-banner promise in the privacy policy.
+- The accent is `#ff6f1f`. Pink, purple and blue are not used.
 
-- Colours are CSS custom properties at the top of the stylesheet (`--jam` is the accent).
-- Copy, brand names, creator handles and the founder card are plain HTML.
-- Point the "send a message" link at your own email, and swap the appointment-schedule URL (search for `appointments/schedules` in `index.html` and `vercel.json`) for your own Google Calendar booking page.
+## Restore points
 
-## License
+| tag | what |
+|---|---|
+| `identity-v1` | the previous site: the "Playhead" identity, hook-as-scroll-indicator |
+| `bevel-port-v1` | the original build, before that identity work |
 
-MIT. See [LICENSE](LICENSE).
+```bash
+git checkout identity-v1
+```
 
-## Booking provider
-
-Booking is driven by one constant near the top of the booking block in `index.html`:
-
-- `CAL` empty → the Google Calendar appointment schedule is embedded (inverted to sit on the dark UI).
-- `CAL = '<user>/<event>'` → cal.com is embedded instead, in its own dark theme with no inversion.
-
-Change `CAL`, then point the `/book` redirect in `vercel.json` at the same booking page.
+MIT licensed. © 2026 Avi Aggarwal.

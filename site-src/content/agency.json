@@ -1,0 +1,178 @@
+{
+  "_schema": {
+    "_about": "Content for /agency, from the existing hypjam about page (story, method, roles, values) in the reference's product-index structure: eyebrow + h1 + intro on white, an editorial image with a small facts row under it (where the reference put its client-logo row), then eyebrow-led sections with numbered list items (01, 02...) in the same list style as the reference's product list, and a closing CTA on white with the HQ drawing. British English. hypjam is a 'UGC agency' throughout (CONTRACT §11).",
+    "meta": "{path, title, description, theme}",
+    "hero": "{eyebrow, h1, intro}",
+    "editorial": "{image:{kind, alt}, caption, facts:[{label, value, href?}]} - image.kind = 'hq-drawing' asks the page agent to render the HQ line drawing (src/drawing/hq.svg) at the editorial image's aspect, on sand-s, in place of photography.",
+    "sections": "[{id, eyebrow, h2, paragraphs?:[], p?, items?:[{n, name, blurb}]}] - story has paragraphs; method has p + items; roles and values have items. n is a two-digit string rendered in the tabular figure style.",
+    "founder": "{eyebrow, name, role, quote} - a short pull block; the quote is the founder's own statement, identical to home.json quotes.items[0].text and book.json right.quote.text.",
+    "cta": "{h2, p, buttons:[{label, href, primary}], art:{kind, alt}}"
+  },
+  "meta": {
+    "path": "/agency",
+    "title": "Agency: the London UGC agency behind the creators | hypjam",
+    "description": "hypjam is a UGC agency in London. We brief, cast, direct and edit creator ads rather than handing brands a list of creators. Founded by Avi Aggarwal.",
+    "theme": "light"
+  },
+  "hero": {
+    "eyebrow": "Agency",
+    "h1": "The London UGC agency behind the creators.",
+    "intro": "hypjam is a UGC agency in London. We brief, cast, direct and edit creator ads, rather than handing brands a list of creators and hoping."
+  },
+  "editorial": {
+    "image": {
+      "kind": "hq-drawing",
+      "alt": "Line drawing of hypjam's two-building HQ: the brief desk, the writers' room, the casting floor, the shoot bay and the edit suite"
+    },
+    "caption": "The five parts of the agency, as drawn on the home page.",
+    "facts": [
+      {
+        "label": "Based in",
+        "value": "London"
+      },
+      {
+        "label": "Founder",
+        "value": "Avi Aggarwal"
+      },
+      {
+        "label": "Roster",
+        "value": "Mostly remote, mostly UK"
+      },
+      {
+        "label": "Contact",
+        "value": "hello@hypjam.com",
+        "href": "mailto:hello@hypjam.com"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "story",
+      "eyebrow": "The story",
+      "h2": "Treat UGC like a production, not a marketplace.",
+      "paragraphs": [
+        "Avi Aggarwal started hypjam in London after watching the same thing happen on repeat: brands hiring individual creators one by one, getting inconsistent briefs, inconsistent quality, and no one actually directing the work.",
+        "The idea was simple. Treat UGC like a production, not a marketplace. One team handles the brief, the casting, the script, the shoot notes and the edit, so the creator is only focused on delivering a great take, not guessing what the brand wants.",
+        "hypjam is built around that idea: direction first, creators second, brand deck never. It is still early days, and the team is growing around the same principle Avi started with. The work should look like it was directed, because it was."
+      ]
+    },
+    {
+      "id": "method",
+      "eyebrow": "The method",
+      "h2": "Every brief runs the same way.",
+      "p": "A specific brief, creators cast for fit rather than follower count, a script before a single frame is shot, and an edit built for the platform it is landing on. One contract, one team, and a live tracker so you are never asking where it is at.",
+      "items": [
+        {
+          "n": "01",
+          "name": "A specific brief",
+          "blurb": "Goals, offer, voice and cleared claims written down before anything else happens."
+        },
+        {
+          "n": "02",
+          "name": "Cast for fit",
+          "blurb": "Creators shortlisted from our roster against the brief, and approved by you before they film."
+        },
+        {
+          "n": "03",
+          "name": "Script before frame",
+          "blurb": "Eight hooks, then a locked script, then the shoot. Never the other way round."
+        },
+        {
+          "n": "04",
+          "name": "Edit for the platform",
+          "blurb": "Pacing, captions and sound cut for TikTok, Reels or Shorts, not one file for everywhere."
+        },
+        {
+          "n": "05",
+          "name": "One contract, one tracker",
+          "blurb": "Creators and editors paid by us, and every video's status visible to you without asking."
+        }
+      ]
+    },
+    {
+      "id": "roles",
+      "eyebrow": "Who does what",
+      "h2": "Four roles on every brief.",
+      "items": [
+        {
+          "n": "01",
+          "name": "Creative director",
+          "blurb": "Owns the brief and the hook: the person making sure every video has a clear idea before anyone presses record."
+        },
+        {
+          "n": "02",
+          "name": "Producer and casting",
+          "blurb": "Matches the right creator to the right brief and keeps the sprint on schedule, from first call to final delivery."
+        },
+        {
+          "n": "03",
+          "name": "Editor",
+          "blurb": "Turns raw phone footage into a platform-native cut: pacing, captions and sound built for how people actually watch."
+        },
+        {
+          "n": "04",
+          "name": "Strategist",
+          "blurb": "Reads what is performing and feeds it back into the next brief, so round two is sharper than round one."
+        }
+      ]
+    },
+    {
+      "id": "values",
+      "eyebrow": "What we hold to",
+      "h2": "Five things we will not trade.",
+      "items": [
+        {
+          "n": "01",
+          "name": "Direction over discovery",
+          "blurb": "We are not a search engine for creators. We are the people briefing, shooting and editing the work."
+        },
+        {
+          "n": "02",
+          "name": "One team, one contract",
+          "blurb": "No juggling five separate creators and three invoices. One point of contact, start to finish."
+        },
+        {
+          "n": "03",
+          "name": "Honest about what is illustrative",
+          "blurb": "We will not invent results to make a story look better. Numbers are labelled for what they are, and empty slots stay empty until they are real."
+        },
+        {
+          "n": "04",
+          "name": "Creators are collaborators",
+          "blurb": "Briefed properly, paid properly, treated like the talent they are, not a vending machine for content."
+        },
+        {
+          "n": "05",
+          "name": "The work should look directed",
+          "blurb": "Because it was. Every video starts as a script and ends with an edit, not a hope."
+        }
+      ]
+    }
+  ],
+  "founder": {
+    "eyebrow": "Founder",
+    "name": "Avi Aggarwal",
+    "role": "Founder, hypjam",
+    "quote": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed."
+  },
+  "cta": {
+    "h2": "Work with the agency.",
+    "p": "Whether you are a brand or a creator, get in touch and we will walk you through how it works.",
+    "buttons": [
+      {
+        "label": "Book a call",
+        "href": "/book",
+        "primary": true
+      },
+      {
+        "label": "Join the roster",
+        "href": "/join",
+        "primary": false
+      }
+    ],
+    "art": {
+      "kind": "hq-drawing-small",
+      "alt": "Line drawing of hypjam's two-building HQ"
+    }
+  }
+}

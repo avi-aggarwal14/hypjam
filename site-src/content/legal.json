@@ -1,0 +1,47 @@
+{
+  "_schema": {
+    "_about": "Pointers and page metadata for /privacy and /terms. The page agent renders the two markdown sources into the reference legal template: a white page, eyebrow 'Legal', display h1, a 'Last updated' line, then a single ~720px column of prose with each '## ' heading as a section. The legal wording is the owner's published text and is not to be edited or re-cased by the renderer. British English.",
+    "pages": "{<key>: {path, title, description, h1, eyebrow, last_updated, source, theme}} - source is the absolute path of the markdown file to render.",
+    "render": "{strip, features, links, tables, case} - what the markdown renderer must handle. strip lists the leading lines to drop (the page supplies its own h1 and last-updated line).",
+    "related": "[{label, href}] - the two legal pages cross-link each other in a small row under the h1.",
+    "contact": "{email, href} - repeated at the end of each page under a 'Contact' heading if the source lacks one (both sources have one)."
+  },
+  "pages": {
+    "privacy": {
+      "path": "/privacy",
+      "title": "Privacy policy | hypjam",
+      "description": "How hypjam handles personal data on this site: what we collect when you get in touch, the services involved, your UK GDPR rights, and how to reach us.",
+      "h1": "Privacy policy",
+      "eyebrow": "Legal",
+      "last_updated": "6 September 2026",
+      "source": "/Users/vinee/Desktop/UGC Agency/hypjam-brand/legal/privacy.md",
+      "theme": "light"
+    },
+    "terms": {
+      "path": "/terms",
+      "title": "Terms and conditions | hypjam",
+      "description": "The terms that apply when you use the hypjam website: who we are, what you can and can't do with the site and its content, disclaimers, liability and law.",
+      "h1": "Terms and conditions",
+      "eyebrow": "Legal",
+      "last_updated": "6 September 2026",
+      "source": "/Users/vinee/Desktop/UGC Agency/hypjam-brand/legal/terms.md",
+      "theme": "light"
+    }
+  },
+  "render": {
+    "strip": [
+      "line 1: the 'meta: ...' description line",
+      "the first '# ' heading (the page renders its own h1)",
+      "the '**last updated: ...**' paragraph (the page renders last_updated in its own style)"
+    ],
+    "features": ["## headings", "paragraphs", "**bold** lead-ins inside paragraphs", "- bullet lists", "[text](https://...) links", "| pipe tables | (privacy.md, section 'third parties we rely on')"],
+    "links": "External links open in a new tab with rel=noopener noreferrer; links to /privacy, /terms or mailto stay in the tab.",
+    "tables": "Render pipe tables as a real <table> inside an overflow-x:auto wrapper; the page body never scrolls sideways.",
+    "case": "The sources are written in lowercase throughout. Render them exactly as written; do not sentence-case legal text."
+  },
+  "related": [
+    { "label": "Privacy policy", "href": "/privacy" },
+    { "label": "Terms and conditions", "href": "/terms" }
+  ],
+  "contact": { "email": "hello@hypjam.com", "href": "mailto:hello@hypjam.com" }
+}

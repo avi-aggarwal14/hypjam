@@ -1,0 +1,84 @@
+{
+  "_schema": {
+    "_about": "Content for /join (the creator roster page, replacing the reference's careers page). Light page in the reference's career spirit: eyebrow + h1 + sub + one pill; a 'who we are looking for' list; four numbered 'how it works' steps in the reference's numbered-list style; a pay block; a six-item accordion; then the apply block with a checklist and a mailto CTA (there is no form on this site; applications are an email to hello@hypjam.com with a prefilled subject and body). British English.",
+    "meta": "{path, title, description, theme}",
+    "hero": "{eyebrow, h1, sub, cta:{label, href}} - cta.href is apply.mailto.href.",
+    "looking_for": "{eyebrow, h2, items[]} - five strings, rendered as a hairline-separated list with a jam dot.",
+    "how": "{eyebrow, h2, steps:[{n, name, blurb}]}",
+    "pay": "{eyebrow, h2, p}",
+    "faq": "{h2, items:[{q, a}]} - identical to faq.json's creators group; keep them in sync.",
+    "apply": "{eyebrow, h2, p, checklist[], mailto:{href, subject, body}, button:{label, href}, privacy:{text, link_label, href}} - mailto.href is the fully encoded link; subject and body are the raw strings it encodes, in case the page agent builds the link itself."
+  },
+  "meta": {
+    "path": "/join",
+    "title": "Join the creator roster: paid UGC briefs, no follower minimum | hypjam",
+    "description": "Apply to join hypjam's UGC creator roster: paid briefs for UK and remote creators, no follower minimum, and the rate and usage agreed before you film.",
+    "theme": "light"
+  },
+  "hero": {
+    "eyebrow": "Creators",
+    "h1": "Join the creator roster.",
+    "sub": "Paid briefs for UK and remote creators, no follower minimum, and the rate and usage agreed before you film. We brief you like a director, not a client, then pay you like it mattered.",
+    "cta": { "label": "Apply by email", "href": "mailto:hello@hypjam.com?subject=Creator%20application%20%E2%80%94%20%40yourhandle&body=Name%3A%0AHandle%20(TikTok%20or%20Instagram)%3A%0AWhat%20I%20usually%20film%3A%0ALinks%20to%20my%20best%20content%20(2%20to%203)%3A%0A%0A%0A%0AWhere%20I%20am%20based%3A%0A" }
+  },
+  "looking_for": {
+    "eyebrow": "Who we are looking for",
+    "h2": "Five things we cast for.",
+    "items": [
+      "People who use their phone camera like a tool, not just a webcam.",
+      "Creators comfortable taking direction: hooks, retakes, notes, all of it.",
+      "A real point of view on camera, whether that is deadpan, chaotic or dead serious.",
+      "Niches we are always short on: skincare, home, fitness, food, tech unboxing, parenting.",
+      "Reliability: turning up to the call, hitting the deadline, saying something if it slips."
+    ]
+  },
+  "how": {
+    "eyebrow": "How it works",
+    "h2": "From application to payment.",
+    "steps": [
+      { "n": "01", "name": "Apply", "blurb": "Send us a few links to your best work. It does not need to be viral; it needs to show you can hold a phone and a thought at the same time." },
+      { "n": "02", "name": "Get matched", "blurb": "When a brief fits your niche and style, we send it over with the script, references and everything you need to shoot without guessing." },
+      { "n": "03", "name": "Shoot and submit", "blurb": "You film on your phone, on your own time, and send us the raw footage. Our editors handle the cut, so you are not learning an edit suite on a deadline." },
+      { "n": "04", "name": "Get paid", "blurb": "Payment goes out on a set schedule once the video is approved. No chasing invoices, no waiting on the brand directly." }
+    ]
+  },
+  "pay": {
+    "eyebrow": "Pay",
+    "h2": "What does it pay?",
+    "p": "Rates depend on the brief, the usage rights and how much whitelisting is involved. A simple organic testimonial pays differently to a paid Spark Ad with a three-month usage licence. We always tell you the rate and what it covers before you shoot, not after."
+  },
+  "faq": {
+    "h2": "Creator questions",
+    "items": [
+      { "q": "Do I need professional equipment?", "a": "No. Your phone is genuinely enough. What matters is that you can act naturally on camera and follow a script without sounding like you are reading one." },
+      { "q": "Do I need a big following?", "a": "No. This is not influencer marketing: brands are paying for the content itself, not your audience, so your follower count does not decide whether you are cast." },
+      { "q": "How much creative freedom do I get?", "a": "You get a script and direction, but we want your delivery, timing and personality in there too. Directed, not read word for word." },
+      { "q": "Who owns the content I shoot?", "a": "The brand licenses it for the usage window agreed before you film, and we spell that out upfront. Organic-only jobs and whitelisted Spark Ads pay and license differently." },
+      { "q": "How often will I get briefed?", "a": "It varies. Some creators shoot for us monthly, others a few times a year, depending on how many briefs match your niche and availability." },
+      { "q": "Do I need to be in the UK?", "a": "hypjam is in London, but the roster is mostly remote. Most briefs need a phone, decent light and a bit of space to film." }
+    ]
+  },
+  "apply": {
+    "eyebrow": "Apply",
+    "h2": "Send us your best three links.",
+    "p": "There is no form. Email us with the details below and a person reads it. Applying does not guarantee work; it puts you on the list we cast from.",
+    "checklist": [
+      "Your name",
+      "Your TikTok or Instagram handle",
+      "What you usually film",
+      "Two or three links to your strongest content",
+      "Where you are based"
+    ],
+    "mailto": {
+      "href": "mailto:hello@hypjam.com?subject=Creator%20application%20%E2%80%94%20%40yourhandle&body=Name%3A%0AHandle%20(TikTok%20or%20Instagram)%3A%0AWhat%20I%20usually%20film%3A%0ALinks%20to%20my%20best%20content%20(2%20to%203)%3A%0A%0A%0A%0AWhere%20I%20am%20based%3A%0A",
+      "subject": "Creator application — @yourhandle",
+      "body": "Name:\nHandle (TikTok or Instagram):\nWhat I usually film:\nLinks to my best content (2 to 3):\n\n\n\nWhere I am based:\n"
+    },
+    "button": { "label": "Apply by email", "href": "mailto:hello@hypjam.com?subject=Creator%20application%20%E2%80%94%20%40yourhandle&body=Name%3A%0AHandle%20(TikTok%20or%20Instagram)%3A%0AWhat%20I%20usually%20film%3A%0ALinks%20to%20my%20best%20content%20(2%20to%203)%3A%0A%0A%0A%0AWhere%20I%20am%20based%3A%0A" },
+    "privacy": {
+      "text": "We keep applications only to cast from, as set out in our",
+      "link_label": "privacy policy",
+      "href": "/privacy"
+    }
+  }
+}

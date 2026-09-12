@@ -1,0 +1,47 @@
+<!-- title: {{content:notfound.meta.title|Page not found — hypjam}} -->
+<!-- description: {{content:notfound.meta.description|There is nothing at this address. Head back to hypjam, the UGC agency in London.}} -->
+<!-- robots: {{content:notfound.meta.robots|noindex}} -->
+<!-- nav: dark -->
+<!-- nav-fill: bg-transparent -->
+<!-- body-class: page-404 -->
+{{include:partials/head.html}}
+{{include:partials/nav.html}}
+<style>
+  /* page-scoped: the 404 has no partial of its own (copy lives in content/notfound.json) */
+  .nf { position: relative; display: flex; min-height: 100svh; width: 100%; flex-direction: column; justify-content: flex-end; gap: 32px; background: #000; color: #fff; padding: 160px var(--px-page, 28px) 120px; font-family: var(--font-body, 'Geist', Arial, Helvetica, sans-serif); }
+  .nf-art { display: block; width: 280px; max-width: 100%; height: auto; margin-bottom: 24px; }
+  .nf-art.is-missing { visibility: hidden; height: 120px; }
+  .nf-eyebrow { display: flex; align-items: center; gap: 10px; margin: 0; font-size: 12px; line-height: 1; letter-spacing: .08em; text-transform: uppercase; color: rgba(255, 255, 255, .45); }
+  .nf-eyebrow::before { content: ""; width: 14px; height: 1px; background: currentColor; }
+  .nf-title { margin: 0; max-width: 16ch; font-family: var(--font-display, 'Newsreader', Georgia, 'Times New Roman', serif); font-optical-sizing: auto; font-weight: 400; font-size: 64px; line-height: 1.05; letter-spacing: -1.28px; }
+  .nf-copy { margin: 0; max-width: 46ch; font-size: 16px; line-height: 24px; color: rgba(255, 255, 255, .6); }
+  .nf-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; }
+  .nf-cta { display: flex; flex-shrink: 0; align-items: center; height: 32px; gap: 10px; padding: 0 5px 0 16px; border-radius: 9999px; font-size: 14px; line-height: 1; color: #fff; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .2); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); text-decoration: none; transition: background-color .3s, color .3s; }
+  .nf-cta:hover { background: rgba(255, 255, 255, .24); color: var(--sand-m, #dad9d4); }
+  .nf-cta-circle { display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 9999px; background: var(--jam, #ff6f1f); color: #000; }
+  .nf-links { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+  .nf-link { font-size: 14px; line-height: 1; color: rgba(255, 255, 255, .6); text-decoration: none; transition: color .3s; }
+  .nf-link:hover { color: #fff; }
+  .nf-code { position: absolute; right: var(--px-page, 28px); bottom: 120px; font-size: 13px; line-height: 1; color: rgba(255, 255, 255, .3); }
+  @media (max-width: 800px) { .nf { padding-bottom: 80px; } .nf-title { font-size: 42px; letter-spacing: -.84px; } .nf-code { bottom: 80px; } .nf-art { width: 200px; } }
+</style>
+<main class="bg-black">
+  <section class="nf" data-nav="dark" data-nav-fill="bg-transparent">
+    <img src="/assets/img/hq-footer.svg" alt="{{content:notfound.hero.art.alt|Line drawing of hypjam's two-building HQ}}" class="nf-art" width="210" height="90" decoding="async" onerror="this.classList.add('is-missing')">
+    <p class="nf-eyebrow">{{content:notfound.hero.eyebrow|404}}</p>
+    <h1 class="nf-title">{{content:notfound.hero.h1|There is nothing at this address.}}</h1>
+    <p class="nf-copy">{{content:notfound.hero.p|The page may have moved, or the link was mistyped.}}</p>
+    <div class="nf-actions">
+      <a href="{{content:notfound.hero.primary.href|/}}" class="nf-cta">{{content:notfound.hero.primary.label|Back to the home page}}<span class="nf-cta-circle"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <nav class="nf-links" aria-label="Where to next">
+        <a href="{{content:notfound.hero.links.0.href|/services}}" class="nf-link">{{content:notfound.hero.links.0.label|Services}}</a>
+        <a href="{{content:notfound.hero.links.1.href|/work}}" class="nf-link">{{content:notfound.hero.links.1.label|Work}}</a>
+        <a href="{{content:notfound.hero.links.2.href|/blog}}" class="nf-link">{{content:notfound.hero.links.2.label|Blog}}</a>
+        <a href="{{content:notfound.hero.links.3.href|/book}}" class="nf-link">{{content:notfound.hero.links.3.label|Book a call}}</a>
+      </nav>
+    </div>
+    <span class="nf-code" aria-hidden="true">404</span>
+  </section>
+</main>
+{{include:partials/footer.html}}
+{{include:partials/scripts.html}}

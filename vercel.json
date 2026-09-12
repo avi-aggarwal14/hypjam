@@ -33,11 +33,20 @@
       ]
     },
     {
-      "source": "/assets/(.*)",
+      "source": "/assets/(fonts|vendor|brand|img|video|badges)/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/assets/site.(css|js)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
         }
       ]
     }
@@ -49,9 +58,9 @@
       "permanent": true
     },
     {
-      "source": "/book",
-      "destination": "https://cal.com/avi-aggarwal-hypjam/intro",
-      "permanent": false
+      "source": "/hire",
+      "destination": "/book",
+      "permanent": true
     }
   ]
 }
