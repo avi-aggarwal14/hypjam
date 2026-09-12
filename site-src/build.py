@@ -377,7 +377,7 @@ def write_sitemap(urls: list[str]) -> None:
 
 
 def copy_root_files() -> None:
-    for name in ("robots.txt", "vercel.json", "llms.txt"):
+    for name in ("robots.txt", "vercel.json", "llms.txt", "6450585ceb5d25c537845181c6350f3c.txt"):
         path = ROOT / name
         if path.is_file():
             shutil.copy2(path, DIST / name)
