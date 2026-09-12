@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import html
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -85,6 +86,52 @@ def meta_block(title: str, description: str, nav: str, fill: str, body_class: st
 
 def jsonld(obj) -> str:
     return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False).replace("</", "<\\/") + "</script>"
+
+
+def breadcrumb_ld(items: list[tuple[str, str]]) -> str:
+    """BreadcrumbList JSON-LD for `items` = [(name, absolute url), ...] from Home onward.
+    Matches the page's real position in the site map (CONTRACT.md §3) — nothing invented."""
+    return jsonld({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": i + 1, "name": name, "item": url}
+            for i, (name, url) in enumerate(items)
+        ],
+    })
+
+
+# Words too generic to tell one hypjam article from another; dropped when
+# deriving `keywords` below so the list stays specific to each piece.
+_KEYWORD_STOPWORDS = {
+    "a", "an", "the", "is", "are", "of", "for", "with", "your", "you", "to", "on", "and",
+    "how", "what", "which", "no", "not", "this", "that", "in", "do", "does", "from", "at",
+    "by", "or", "it", "its", "be", "can", "will", "actually", "really", "one", "all",
+}
+
+
+def derive_keywords(article: dict) -> str:
+    """A short, honest keyword list for Article.keywords — built only from
+    fields already in content/blog.json (the article's own category and the
+    significant words in its own title). Never invents a topic the piece
+    doesn't cover (SEO-CONTRACT.md honesty rules)."""
+    words = re.findall(r"[A-Za-z]+", article["title"])
+    picked: list[str] = []
+    for w in words:
+        lw = w.lower()
+        if lw in _KEYWORD_STOPWORDS or len(lw) < 2:
+            continue
+        term = "UGC" if lw == "ugc" else lw
+        if term.lower() not in (p.lower() for p in picked):
+            picked.append(term)
+    terms = [article["category"]] + picked[:5]
+    out: list[str] = []
+    seen: set[str] = set()
+    for t in terms:
+        if t.lower() not in seen:
+            out.append(t)
+            seen.add(t.lower())
+    return ", ".join(out)
 
 
 def btn_html(label: str, href: str, cls: str = "") -> str:
@@ -185,9 +232,13 @@ def render_blog() -> None:
         "blogPost": [{"@type": "BlogPosting", "headline": a["title"], "url": BASE_URL + a["href"],
                       "datePublished": a["date"], "author": {"@type": "Person", "name": agency["founder"]["name"]}} for a in arts],
     })
+    index_crumbs = breadcrumb_ld([
+        ("Home", BASE_URL + "/"),
+        ("Blog", BASE_URL + blog["meta"]["path"]),
+    ])
 
     index_page = "\n".join([
-        meta_block(blog["meta"]["title"], blog["meta"]["description"], "dark", "bg-transparent", "page-blog", index_ld),
+        meta_block(blog["meta"]["title"], blog["meta"]["description"], "dark", "bg-transparent", "page-blog", index_ld + index_crumbs),
         GEN % "blog",
         "{{include:partials/head.html}}",
         "{{include:partials/nav.html}}",
@@ -227,7 +278,8 @@ def render_blog() -> None:
         if not src_path.is_file():
             print(f"  ! missing article body: {src_path}", file=sys.stderr)
             continue
-        body_html, toc = md.md_to_html(src_path.read_text(encoding="utf-8"), link_map=link_map, lede=True)
+        raw_md = src_path.read_text(encoding="utf-8")
+        body_html, toc = md.md_to_html(raw_md, link_map=link_map, lede=True)
         # the article's own opening paragraph becomes the deck under the h1,
         # where ref/pages/hotels_aloft-dublin.jpg puts its four-line lede
         lede_html, body_html = md.take_lede(body_html)
@@ -239,6 +291,11 @@ def render_blog() -> None:
         rest = [b for b in arts if b is not a and b["category"] != a["category"]]
         related = (same + rest)[: int(ap.get("related_count", 3))]
 
+        # word count is computed straight from the rendered article's own
+        # markdown source (md.plain_text strips syntax, not content) rather
+        # than trusting a hand-entered figure — it always matches the page.
+        word_count = len(md.plain_text(raw_md).split())
+
         canonical = BASE_URL + a["href"]
         ld = jsonld({
             "@context": "https://schema.org",
@@ -248,15 +305,21 @@ def render_blog() -> None:
             "datePublished": a["date"],
             "dateModified": a["date"],
             "articleSection": a["category"],
-            "wordCount": a.get("words"),
+            "keywords": derive_keywords(a),
+            "wordCount": word_count,
             "inLanguage": "en-GB",
             "url": canonical,
             "mainEntityOfPage": {"@type": "WebPage", "@id": canonical},
             "image": BASE_URL + "/assets/brand/og.png",
             "author": {"@type": "Person", "name": agency["founder"]["name"], "jobTitle": agency["founder"]["role"], "url": BASE_URL + "/agency"},
             "publisher": {"@type": "Organization", "name": "hypjam", "url": BASE_URL,
-                          "logo": {"@type": "ImageObject", "url": BASE_URL + "/assets/brand/og.png"}},
+                          "logo": {"@type": "ImageObject", "url": BASE_URL + "/assets/brand/hook-icon-512.png"}},
         })
+        crumbs = breadcrumb_ld([
+            ("Home", BASE_URL + "/"),
+            ("Blog", BASE_URL + blog["meta"]["path"]),
+            (a["title"], canonical),
+        ])
 
         toc_html = "".join(f'<li class="blog-rail-toc-i"><a class="blog-rail-toc-a" href="#{esc(sid)}">{html.escape(txt, quote=False)}</a></li>' for sid, txt in h2s)
 
@@ -273,7 +336,7 @@ def render_blog() -> None:
             )
 
         page = "\n".join([
-            meta_block(a["title"] + " | hypjam", a["description"], "light", "bg-white", "page-blog page-blog-article", ld),
+            meta_block(a["title"] + " | hypjam", a["description"], "light", "bg-white", "page-blog page-blog-article", ld + crumbs),
             GEN % "blog",
             "{{include:partials/head.html}}",
             "{{include:partials/nav.html}}",
@@ -334,6 +397,10 @@ def render_blog() -> None:
 # legal
 # ---------------------------------------------------------------------------
 
+# breadcrumb labels per CONTRACT.md §3 / SEO task: "Home → Privacy Policy", "Home → Terms and Conditions"
+LEGAL_BREADCRUMB_LABELS = {"privacy": "Privacy Policy", "terms": "Terms and Conditions"}
+
+
 def render_legal() -> None:
     legal = load("legal")
     related = legal.get("related", [])
@@ -369,11 +436,16 @@ def render_legal() -> None:
             "description": pg["description"],
             "dateModified": pg["last_updated"],
             "inLanguage": "en-GB",
-            "publisher": {"@type": "Organization", "name": "hypjam", "url": BASE_URL},
+            "publisher": {"@id": BASE_URL + "/#org"},  # the Organization node schema-global owns — reference, don't redefine
         })
+        crumb_label = LEGAL_BREADCRUMB_LABELS.get(key, pg["h1"])
+        crumbs = breadcrumb_ld([
+            ("Home", BASE_URL + "/"),
+            (crumb_label, BASE_URL + pg["path"]),
+        ])
 
         page = "\n".join([
-            meta_block(pg["title"], pg["description"], "light", "bg-sand-s", "page-legal", ld),
+            meta_block(pg["title"], pg["description"], "light", "bg-sand-s", "page-legal", ld + crumbs),
             GEN % "legal",
             "{{include:partials/head.html}}",
             "{{include:partials/nav.html}}",
@@ -518,17 +590,24 @@ def render_process() -> None:
         f'<div class="proc-faq"><h3 class="proc-faq-q">{T(f"process.faqs.items.{qi}.q")}</h3><p class="proc-faq-a">{T(f"process.faqs.items.{qi}.a")}</p></div>'
         for qi in range(len(p["faqs"]["items"])))
 
+    # WebPage, not HowTo: this documents how hypjam runs a sprint, it isn't a literal
+    # step-by-step the reader themself performs (SEO task honesty note for /process).
     ld = jsonld({
         "@context": "https://schema.org",
-        "@type": "HowTo",
+        "@type": "WebPage",
         "name": p["hero"]["h1"],
+        "url": BASE_URL + p["meta"]["path"],
         "description": p["meta"]["description"],
         "inLanguage": "en-GB",
-        "step": [{"@type": "HowToStep", "name": w["h2"], "text": w["p"], "url": BASE_URL + "/process#" + w["id"]} for w in p["weeks"]],
+        "publisher": {"@id": BASE_URL + "/#org"},
     })
+    crumbs = breadcrumb_ld([
+        ("Home", BASE_URL + "/"),
+        ("Process", BASE_URL + p["meta"]["path"]),
+    ])
 
     page = "\n".join([
-        meta_block(p["meta"]["title"], p["meta"]["description"], "light", "bg-sand-s", "page-process", ld),
+        meta_block(p["meta"]["title"], p["meta"]["description"], "light", "bg-sand-s", "page-process", ld + crumbs),
         GEN % "process",
         "{{include:partials/head.html}}",
         '<main class="proc" data-theme="sand">',
@@ -666,15 +745,21 @@ def render_faq() -> None:
         cls = "btn--lg" if b.get("primary") else "btn--lg btn--ghost"
         buttons.append(btn_html(T(f"faq.cta.buttons.{bi}.label"), b["href"], cls))
 
+    # FAQPage mainEntity is derived straight from `groups` above — the same Q&A actually
+    # rendered on this page, never a set imported from elsewhere (SEO-CONTRACT §"Honesty").
     ld = jsonld({
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [{"@type": "Question", "name": it["q"], "acceptedAnswer": {"@type": "Answer", "text": it["a"]}}
                        for g in groups for it in g["items"]],
     })
+    crumbs = breadcrumb_ld([
+        ("Home", BASE_URL + "/"),
+        ("FAQ", BASE_URL + f["meta"]["path"]),
+    ])
 
     page = "\n".join([
-        meta_block(f["meta"]["title"], f["meta"]["description"], "light", "bg-white", "page-faq", ld),
+        meta_block(f["meta"]["title"], f["meta"]["description"], "light", "bg-white", "page-faq", ld + crumbs),
         GEN % "faq",
         "{{include:partials/head.html}}",
         "{{include:partials/nav.html}}",
@@ -759,13 +844,17 @@ def render_agency() -> None:
         "url": BASE_URL + a["meta"]["path"],
         "description": a["meta"]["description"],
         "inLanguage": "en-GB",
-        "mainEntity": {"@type": "Organization", "name": "hypjam", "url": BASE_URL, "email": "hello@hypjam.com",
-                       "founder": {"@type": "Person", "name": a["founder"]["name"], "jobTitle": a["founder"]["role"]},
-                       "address": {"@type": "PostalAddress", "addressLocality": "London", "addressCountry": "GB"}},
+        # the Organization (with its founder, address, etc.) is the node schema-global owns —
+        # reference it by @id rather than redeclaring Avi Aggarwal / the address here too.
+        "mainEntity": {"@id": BASE_URL + "/#org"},
     })
+    crumbs = breadcrumb_ld([
+        ("Home", BASE_URL + "/"),
+        ("Agency", BASE_URL + a["meta"]["path"]),
+    ])
 
     page = "\n".join([
-        meta_block(a["meta"]["title"], a["meta"]["description"], "light", "bg-white", "page-agency", ld),
+        meta_block(a["meta"]["title"], a["meta"]["description"], "light", "bg-white", "page-agency", ld + crumbs),
         GEN % "agency",
         "{{include:partials/head.html}}",
         "{{include:partials/nav.html}}",
@@ -820,6 +909,8 @@ def render_join() -> None:
                         for i in range(len(j["apply"]["checklist"])))
     mailto = j["apply"]["button"]["href"]
 
+    # WebPage, not JobPosting: join.json's pay section ("rates depend on the brief...") has no
+    # fixed wage or term — a JobPosting needs a real baseSalary to stay honest, so it stays plain.
     ld = jsonld({
         "@context": "https://schema.org",
         "@type": "WebPage",
@@ -827,11 +918,15 @@ def render_join() -> None:
         "url": BASE_URL + j["meta"]["path"],
         "description": j["meta"]["description"],
         "inLanguage": "en-GB",
-        "publisher": {"@type": "Organization", "name": "hypjam", "url": BASE_URL},
+        "publisher": {"@id": BASE_URL + "/#org"},
     })
+    crumbs = breadcrumb_ld([
+        ("Home", BASE_URL + "/"),
+        ("Join", BASE_URL + j["meta"]["path"]),
+    ])
 
     page = "\n".join([
-        meta_block(j["meta"]["title"], j["meta"]["description"], "light", "bg-white", "page-join", ld),
+        meta_block(j["meta"]["title"], j["meta"]["description"], "light", "bg-white", "page-join", ld + crumbs),
         GEN % "join",
         "{{include:partials/head.html}}",
         "{{include:partials/nav.html}}",

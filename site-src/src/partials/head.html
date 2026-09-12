@@ -16,6 +16,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/brand/hook-icon-192.png">
 <link rel="apple-touch-icon" href="/assets/brand/hook-apple-touch-icon.png">
 <link rel="manifest" href="/assets/brand/site.webmanifest">
+<link rel="alternate" type="application/rss+xml" title="hypjam blog" href="/feed.xml">
 <link rel="preload" href="/assets/fonts/newsreader-ec9fd369.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/geist-8740fcb6.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fonts/newsreader.css">
@@ -34,6 +35,112 @@
 <meta name="twitter:title" content="{{page.title}}">
 <meta name="twitter:description" content="{{page.description}}">
 <meta name="twitter:image" content="https://hypjam.vercel.app{{page.image|/assets/brand/og.png}}">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://hypjam.vercel.app/#org",
+      "name": "hypjam",
+      "url": "https://hypjam.vercel.app/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://hypjam.vercel.app/assets/brand/hook-icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "description": "hypjam is a London UGC agency that briefs, casts and directs creators for short-form video ads.",
+      "founder": { "@id": "https://hypjam.vercel.app/#founder" },
+      "areaServed": "GB",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hello@hypjam.com",
+        "contactType": "customer service"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://hypjam.vercel.app/#founder",
+      "name": "Avi Aggarwal",
+      "jobTitle": "Founder",
+      "worksFor": { "@id": "https://hypjam.vercel.app/#org" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://hypjam.vercel.app/#website",
+      "name": "hypjam",
+      "url": "https://hypjam.vercel.app/",
+      "publisher": { "@id": "https://hypjam.vercel.app/#org" },
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://hypjam.vercel.app/#service",
+      "name": "hypjam",
+      "url": "https://hypjam.vercel.app/",
+      "parentOrganization": { "@id": "https://hypjam.vercel.app/#org" },
+      "areaServed": "GB",
+      "serviceType": [
+        "{{content:services.items.0.nav_label}}",
+        "{{content:services.items.1.nav_label}}",
+        "{{content:services.items.2.nav_label}}",
+        "{{content:services.items.3.nav_label}}",
+        "{{content:services.items.4.nav_label}}",
+        "{{content:services.items.5.nav_label}}",
+        "{{content:services.items.6.nav_label}}",
+        "{{content:services.items.7.nav_label}}",
+        "{{content:services.items.8.nav_label}}"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "hypjam packages",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "name": "{{content:process.packages.items.0.name}}",
+            "description": "{{content:process.packages.items.0.price}}",
+            "priceCurrency": "GBP",
+            "price": 1800,
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "GBP",
+              "minPrice": 1800,
+              "unitText": "month"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "{{content:process.packages.items.1.name}}",
+            "description": "{{content:process.packages.items.1.price}}",
+            "priceCurrency": "GBP",
+            "price": 3600,
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "GBP",
+              "minPrice": 3600,
+              "unitText": "month"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "{{content:process.packages.items.2.name}}",
+            "description": "{{content:process.packages.items.2.price}}",
+            "priceCurrency": "GBP",
+            "price": 6500,
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "priceCurrency": "GBP",
+              "minPrice": 6500,
+              "unitText": "month"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+</script>
 {{page.head-extra}}
 </head>
 <body class="{{page.body-class}}" data-nav="{{page.nav|dark}}" data-nav-fill="{{page.nav-fill|bg-transparent}}">

@@ -154,7 +154,7 @@
   "index": {
     "meta": {
       "title": "Solutions: hypjam by goal and by brand | hypjam",
-      "description": "hypjam by goal (launches, always-on paid social, organic and trends, founder-led, creative testing, retention) and by brand: DTC and ecommerce, apps and subscriptions, food and drink."
+      "description": "hypjam by goal: launches, paid social, organic, founder-led, testing, retention. And by brand: DTC, apps and subscriptions, food and drink."
     },
     "hero": {
       "eyebrow": "Solutions",
@@ -271,7 +271,7 @@
       "short": "Hooks, casting and first cuts ready before the product ships.",
       "meta": {
         "title": "Launches: hooks, casting and cuts before the product ships | hypjam",
-        "description": "How hypjam runs a product launch: a brief on a call, eight hooks per script, creators cast from our roster and approved by you, a phone shoot, and first cuts inside fourteen days, cleared for organic and paid."
+        "description": "How hypjam runs a product launch: a brief on a call, eight hooks per script, creators cast, a phone shoot, and first cuts inside fourteen days."
       },
       "hero": {
         "breadcrumb": ["Solutions", "Launches"],
@@ -434,7 +434,7 @@
       "short": "A monthly supply of ads, briefed, cast, cut and whitelisted.",
       "meta": {
         "title": "Always-on paid social: monthly UGC ads, one contract | hypjam",
-        "description": "How hypjam runs always-on paid social: a monthly brief, creators cast from the roster, variants cut per placement, Spark Ads and whitelisting set up by us, and one invoice for everyone behind it."
+        "description": "How hypjam runs always-on paid social: a monthly brief, creators cast from the roster, variants cut per placement, and Spark Ads set up on your behalf."
       },
       "hero": {
         "breadcrumb": ["Solutions", "Always-on paid social"],
@@ -597,7 +597,7 @@
       "short": "Trend-led content, briefed this week, shot on a phone.",
       "meta": {
         "title": "Organic and trends: trend-led UGC, briefed this week | hypjam",
-        "description": "How hypjam makes organic and trend-led content: sounds and formats tracked weekly, briefed around your product rather than bolted onto it, shot on creators' phones, cut native for TikTok, Reels and Shorts."
+        "description": "How hypjam makes organic and trend-led content: trends tracked weekly, briefed around your product, cut native for TikTok, Reels and Shorts."
       },
       "hero": {
         "breadcrumb": ["Solutions", "Organic & trends"],
@@ -760,7 +760,7 @@
       "short": "You on camera, directed like a creator, never like a brand deck.",
       "meta": {
         "title": "Founder-led video: directed on camera, not winging it | hypjam",
-        "description": "How hypjam directs founders on camera: hooks written for you, a script you can loosen, takes run over a call or at a directed London shoot, and cuts that sound like a person who built the thing rather than a brand deck."
+        "description": "How hypjam directs founders on camera: hooks written for you, a script you can loosen, and cuts that sound like the person who built it."
       },
       "hero": {
         "breadcrumb": ["Solutions", "Founder-led"],
@@ -923,7 +923,7 @@
       "short": "Hooks × creators × formats, tested one axis at a time.",
       "meta": {
         "title": "Creative testing: hooks × creators × formats, read as a grid | hypjam",
-        "description": "How hypjam runs creative testing: eight hooks per script, two to five creators per brief, formats cut per placement, a testing grid your ad account can read, and a monthly debrief written into the next brief."
+        "description": "How hypjam runs creative testing: eight hooks per script, two to five creators per brief, formats cut per placement, and a grid your ad account can read."
       },
       "hero": {
         "breadcrumb": ["Solutions", "Creative testing"],
@@ -1086,7 +1086,7 @@
       "short": "How-to, onboarding and reorder video for customers you already have.",
       "meta": {
         "title": "Retention: how-to, onboarding and reorder video | hypjam",
-        "description": "How hypjam makes retention content: how-to and onboarding videos, reorder and subscription nudges, FAQ answers in a creator's voice, cut for email, your site and Shorts, licensed for wherever they run."
+        "description": "How hypjam makes retention content: how-to and onboarding videos, reorder and subscription nudges, FAQ answers on camera, cut for email, your site and Shorts."
       },
       "hero": {
         "breadcrumb": ["Solutions", "Retention"],
@@ -1249,7 +1249,7 @@
       "short": "Feed-first ads for brands that sell on the scroll.",
       "meta": {
         "title": "hypjam for DTC and ecommerce brands | hypjam",
-        "description": "The full UGC set-up for DTC and ecommerce brands: briefing, eight-hook scripts, casting from a roster, phone shoots, native cuts per placement, whitelisting and usage rights, on one contract with a fourteen-day sprint."
+        "description": "The full UGC set-up for DTC and ecommerce brands: briefing, eight-hook scripts, casting, phone shoots, whitelisting and usage rights, on one contract."
       },
       "hero": {
         "eyebrow": "Solutions · DTC & ecommerce",
@@ -1332,7 +1332,7 @@
       "short": "Walkthrough and onboarding video for apps people keep opening.",
       "meta": {
         "title": "hypjam for apps and subscription brands | hypjam",
-        "description": "UGC for apps and subscriptions: screen-in-hand walkthroughs, onboarding and trial-to-paid video, cancel-moment content, shot on the phone the product runs on, cut native per placement, licensed for in-app and email use."
+        "description": "UGC for apps and subscriptions: screen-in-hand walkthroughs, onboarding and trial-to-paid video, cancel-moment content, cut native per placement."
       },
       "hero": {
         "eyebrow": "Solutions · Apps & subscriptions",
@@ -1415,7 +1415,7 @@
       "short": "Kitchen shoots, taste on camera, claims kept inside the rules.",
       "meta": {
         "title": "hypjam for food and drink brands | hypjam",
-        "description": "UGC for food and drink brands: kitchen-counter shoots in the creator's own kitchen or on a directed London shoot, taste and recipe formats, unboxing and reaction, cut native per placement, with claims kept inside the CAP Code."
+        "description": "UGC for food and drink brands: kitchen-counter or directed London shoots, taste and recipe formats, unboxing and reaction, claims kept inside the CAP Code."
       },
       "hero": {
         "eyebrow": "Solutions · Food & drink",

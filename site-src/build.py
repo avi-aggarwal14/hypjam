@@ -347,19 +347,37 @@ def build_pages() -> list[str]:
     return urls
 
 
+def sitemap_priority(url: str) -> tuple[str, str]:
+    """(priority, changefreq) per page tier — see SEO-CONTRACT.md."""
+    if url == "/":
+        return "1.0", "weekly"
+    if url in ("/services", "/solutions", "/work", "/blog"):
+        return "0.8", "weekly"
+    if url.startswith("/services/") or url.startswith("/solutions/"):
+        return "0.6", "monthly"
+    if url in ("/privacy", "/terms"):
+        return "0.3", "yearly"
+    # blog articles, plus /rights /process /faq /agency /join /book
+    return "0.5", "monthly"
+
+
 def write_sitemap(urls: list[str]) -> None:
     today = _dt.date.today().isoformat()
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for url in sorted(set(urls), key=lambda u: (u != "/", u)):
-        lines.append(f"  <url><loc>{BASE_URL}{url}</loc><lastmod>{today}</lastmod></url>")
+        priority, changefreq = sitemap_priority(url)
+        lines.append(
+            f"  <url><loc>{BASE_URL}{url}</loc><lastmod>{today}</lastmod>"
+            f"<changefreq>{changefreq}</changefreq><priority>{priority}</priority></url>"
+        )
     lines.append("</urlset>\n")
     (DIST / "sitemap.xml").write_text("\n".join(lines), encoding="utf-8")
     log(f"sitemap: {len(set(urls))} url(s)")
 
 
 def copy_root_files() -> None:
-    for name in ("robots.txt", "vercel.json"):
+    for name in ("robots.txt", "vercel.json", "llms.txt"):
         path = ROOT / name
         if path.is_file():
             shutil.copy2(path, DIST / name)
@@ -375,8 +393,8 @@ def copy_root_files() -> None:
 
 def main() -> int:
     log(f"building {ROOT.name} -> dist/")
-    run_renderers()
     copy_assets()
+    run_renderers()
     bundle_css_js()
     urls = build_pages()
     write_sitemap(urls)
