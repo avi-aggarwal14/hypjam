@@ -1600,7 +1600,9 @@ html.nav-lock, html.nav-lock body { overflow: hidden; }
    not just the compact nav pill. inherits the trust layer's own G.trust
    opacity fade (set on .hero-trust itself), so it appears/disappears with
    the paragraph and the walk hint; no extra JS hook needed. */
-.hero-cta-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+/* z-32 clears the walk hint (31) and the marquee (30): 20-hero.js rides this row down
+   onto their band at scroll 0, and paint order is what keeps the click landing here. */
+.hero-cta-row { position: relative; z-index: 32; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .hero-cta--ghost { --pill-bg: transparent; }
 .hero-cta--ghost:hover { --pill-bg-hover: var(--w12); }
 @media (max-width: 600px) {
@@ -1960,6 +1962,7 @@ html.nav-lock, html.nav-lock body { overflow: hidden; }
   .hero-walk-label { opacity: 1; }
   .hero-walk-arrow svg, .hero-walk--mark .hero-walk-arrow svg { opacity: 1; animation: none; transform: none; }
   .hero-walk-wrap, .hero-m-p, .hero-m-cta, .hero-m-video-row .hero-walk { opacity: 1; }
+  .hero-cta-row { transform: none; }
   .hero-metric-in { opacity: 1; transform: none; transition: none; }
   .hero-metric-rule i { transform: scaleX(1); transition: none; }
   .hero-m-region { transition: none; }

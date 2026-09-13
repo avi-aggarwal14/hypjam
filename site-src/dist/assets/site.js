@@ -356,6 +356,16 @@
     ref: 1512,                          /* K */
     finalWidth: .27,                    /* te */
     finalCenterY: .83,                  /* ti */
+    /* ours (CONTRACT §1, third departure): the reference site pins the final drawing to a
+       constant .27 · 1512 = 408px at every screen width, which strands it in the corner of
+       a wide monitor. Above 1200px it instead fills the left half of the metrics content
+       box — the half the numbers column leaves empty — held to the same bottom baseline. */
+    finalFill: .84,                     /* of that half-column */
+    finalMaxW: 880,                     /* px, framed bbox; binds at 2560 and wider */
+    finalColGap: 80,                    /* px clear of the numbers column */
+    finalHeadGap: 72,                   /* px clear of the title block */
+    artPad: 1800,                       /* svg units the art (the street lamp) sits left of the framed bbox */
+    artW: 44001,                        /* the drawing's native viewBox width; the framed bbox is 40000 of it */
     /* ours: the stop zoom never goes tighter than the reference site's constant frame
        (1512px × 10 units/px = 15120 units wide at 16:9; JSON w wins when larger).
        Set to 0 for the literal bbox × 1.25 framing from content/hero.json. */
@@ -618,6 +628,7 @@
     grads: section.querySelectorAll('[data-hero-grad]'),
     trust: section.querySelector('[data-hero-trust]'),
     trustP: section.querySelector('[data-hero-trust-p]'),
+    ctaRow: stage ? stage.querySelector('[data-hero-cta-row]') : null,
     walkWrap: section.querySelector('[data-hero-walk-wrap]'),
     walk: section.querySelector('[data-hero-walk]'),
     marquee: section.querySelector('[data-hero-marquee]'),
@@ -627,6 +638,7 @@
     bodies: Array.prototype.slice.call(section.querySelectorAll('[data-hero-body]')),
     skips: section.querySelectorAll('[data-hero-skip]'),
     metrics: section.querySelector('[data-hero-metrics]'),
+    metricsText: section.querySelector('.hero-metrics-text'),
     metricsNums: section.querySelector('[data-metrics-nums]')
   };
 
@@ -652,11 +664,41 @@
     camInit: null,
     metricsActive: false,
     raf: 0,
+    ctaTravel: 0,                 /* px the CTA row starts below its resting place */
     keys: []                      /* reduced motion: quantised states */
   };
 
   function freshG() {
-    return { overlay: .4, blur: 0, video: 1, trust: 1, map: 1, vignette: 0, sand: 0, hudOut: 0, metricsText: 0, metricsNums: 0 };
+    return { overlay: .4, blur: 0, video: 1, trust: 1, map: 1, vignette: 0, sand: 0, hudOut: 0, metricsText: 0, metricsNums: 0, ctaRise: 0 };
+  }
+
+  /* ---------- the CTA rise ----------
+     The Book a call row starts down on the walk hint's line — the first frame reads as
+     one bottom row, action left, scroll invitation right — and rides beat 1 up into its
+     resting place under the paragraph. The travel is measured, never hard-coded, and the
+     settled state is the absence of a transform, so a bad measurement can only misplace
+     the start, never the end. Zero travel under reduced motion, which is what keeps
+     seekReduced() (and a dead GSAP) from stranding the button at the bottom. */
+  function measureCtaTravel() {
+    D.ctaTravel = 0;
+    if (!els.ctaRow || !stage || reduced()) return;
+    els.ctaRow.style.transform = '';                       /* measure the resting box, not the translated one */
+    var sr = stage.getBoundingClientRect();
+    if (sr.height < 1) return;                             /* the stage is display:none below 1025px */
+    var rr = els.ctaRow.getBoundingClientRect();
+    var hint = els.walk ? els.walk.getBoundingClientRect() : null;
+    var centre = hint && hint.height ? sr.bottom - (hint.top + hint.height / 2) : 132.5;   /* hint's optical centre above the floor */
+    var bottom = centre - rr.height / 2;                   /* put the row's centre on that line */
+    if (els.marquee) {
+      var mq = els.marquee.getBoundingClientRect();
+      bottom = Math.max(bottom, (sr.bottom - mq.top) + 16);   /* never down into the marquee */
+    }
+    D.ctaTravel = Math.max(0, (sr.bottom - bottom) - rr.bottom);
+  }
+  function paintCta() {
+    if (!els.ctaRow) return;
+    var y = Math.round(D.ctaTravel * (D.G ? 1 - D.G.ctaRise : 1));
+    els.ctaRow.style.transform = y > 0 ? 'translateY(' + y + 'px)' : '';
   }
 
   /* ---------- camera maths (the reference site Z / Q / tl / tp / tf / tr / ta / to) ---------- */
@@ -747,6 +789,7 @@
       els.trust.style.visibility = G.trust < .02 ? 'hidden' : 'visible';
       els.trust.style.pointerEvents = G.trust < .5 ? 'none' : 'auto';
     }
+    paintCta();
     if (els.mapLayer) {
       els.mapLayer.style.opacity = String(G.map);
       els.mapLayer.style.visibility = G.map < .02 ? 'hidden' : 'visible';
@@ -925,10 +968,36 @@
     var reduce = reduced();
     var sz = stageSize(), n = sz.w, hgt = sz.h;
     var aspect = n / hgt || 16 / 9;
+    measureCtaTravel();   /* before the pin exists: teardownTimeline() has already reverted the old one */
 
     var q0 = initialCam(n, hgt);
     var camInit = frameBox(CAM.bbox, aspect, q0.widthFraction, q0.centerX, q0.centerY);        /* h */
-    var camFinal = frameBox(CAM.bbox, aspect, finalWidth(n), finalCenterX(n), CAM.finalCenterY); /* l */
+    /* the final frame. Above 1200px the drawing is sized to the left half of the metrics
+       content box rather than to a constant 408px, and its bottom baseline is held exactly
+       where the constant put it — holding the baseline is what leaves --metrics-gap, and so
+       the whole metrics overlay, bit-identical. cx MUST be recomputed from the new width:
+       finalCenterX() derives its own from finalWidth(), so reusing it here would hang the
+       drawing off the left of the stage. Below 1200px the numbers become a row underneath
+       and the branch below re-bases the drawing against them, so leave that size alone. */
+    var wfF = finalWidth(n), cxF = finalCenterX(n), cyF = CAM.finalCenterY;
+    if (n > 1200) {
+      var R = CAM.bbox[3] / CAM.bbox[2];
+      var ref = CAM.finalWidth * CAM.ref;                                   /* the constant width, in px */
+      var base = CAM.finalCenterY * hgt + ref * R / 2 - (K.gapA + K.gapB);  /* the baseline to hold */
+      var half = (n - pageX(n) - Math.max(hgt - base - K.gapB, 16)) / 2;    /* half the content box */
+      var head = 120 + (els.metricsText ? els.metricsText.offsetHeight : 82);
+      var tgt = Math.min(
+        Math.max(ref, half * CAM.finalFill),
+        (half - CAM.finalColGap) * CAM.bbox[2] / CAM.artW,                  /* art clear of the numbers */
+        (base - head - CAM.finalHeadGap) / R,                               /* art clear of the title */
+        CAM.finalMaxW
+      );
+      tgt = Math.max(tgt, ref);                                             /* never smaller than today */
+      wfF = tgt / n;
+      cxF = (pageX(n) + tgt * CAM.artPad / CAM.bbox[2] + tgt / 2) / n;      /* the art's left edge on the gutter */
+      cyF = CAM.finalCenterY - R * (tgt - ref) / (2 * hgt);                 /* hold the baseline */
+    }
+    var camFinal = frameBox(CAM.bbox, aspect, wfF, cxF, cyF);                                   /* l */
     var cams = STOPS.map(function (s) { return stopCam(s, aspect, n); });                        /* p */
 
     /* final camera: sit the drawing under the metrics (the reference site's --metrics-gap logic) */
@@ -995,6 +1064,10 @@
       tl.to(D.words, { opacity: 1, duration: K.wordDur, stagger: { amount: Math.max(K.drawIn - K.wordDur, 0), from: 'start' }, ease: 'power2.out' }, g);
     }
     if (els.marquee) tl.to(els.marquee, { opacity: 1, duration: K.marqueeDur, ease: 'power2.out' }, g);
+    /* the CTA settles as the last word starts to land, leaving the composition still for
+       the rest of the beat. power1.out, not an ease-in: ScrollTrigger's scrub already adds
+       its own lag, and an ease-in on top of it moves the row ~2px on a first flick. */
+    if (els.ctaRow) tl.fromTo(D.G, { ctaRise: 0 }, { ctaRise: 1, duration: Math.max(K.drawIn - K.wordDur, .01), ease: 'power1.out', immediateRender: false }, g);
     tl.to({}, { duration: 0 }, v);
     tl.to({}, { duration: K.hold1 });
     tl.to({}, { duration: K.hold2 });
@@ -1206,6 +1279,20 @@
       return;
     }
 
+    /* the first applyG() waits on the drawing fetch, so place the CTA now — otherwise it
+       paints at rest and snaps down once the svg lands. Webfonts reflow the paragraph and
+       move the row's resting place, so measure again once they settle. */
+    measureCtaTravel();
+    paintCta();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () {
+        if (!D.inited || HERO.mode !== 'desktop') return;
+        measureCtaTravel();
+        if (D.tl) { if (reduced()) seekReduced(D.st ? D.st.progress : 0); else onTick(); }
+        else paintCta();
+      });
+    }
+
     loadDrawing().then(function (text) {
       if (!D.inited || !els.map) return;
       if (!text) { if (window.console) console.warn('[hero] /assets/img/hq.svg missing — the walkthrough runs without the drawing'); }
@@ -1248,6 +1335,8 @@
     if (els.video && !els.video.paused) els.video.pause();
     section.dataset.nav = 'dark'; section.dataset.navFill = 'bg-transparent';
     stage.style.backgroundColor = '';
+    D.ctaTravel = 0;
+    if (els.ctaRow) els.ctaRow.style.transform = '';
   }
 
   /* ---------- mode ---------- */
