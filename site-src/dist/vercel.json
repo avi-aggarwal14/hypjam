@@ -1,6 +1,9 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "webAnalytics": {
+    "enabled": true
+  },
   "headers": [
     {
       "source": "/(.*)",
