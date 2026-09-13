@@ -63,9 +63,11 @@
 .hero-trust-inner {
   position: relative;
   display: flex;
+  flex-direction: column;
   height: 100%;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
   padding: 72px var(--px-page) 180px;   /* pt-[72px] pb-[180px] px-page */
 }
 .hero-trust-p {
@@ -77,6 +79,19 @@
 }
 .hero-trust-p > span { display: inline; }
 .trust-word { display: inline; opacity: 0; }   /* 20-hero.js splits the paragraph into these */
+
+/* the hero CTA row — a more prominent, always-with-the-copy "Book a call",
+   not just the compact nav pill. inherits the trust layer's own G.trust
+   opacity fade (set on .hero-trust itself), so it appears/disappears with
+   the paragraph and the walk hint; no extra JS hook needed. */
+.hero-cta-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.hero-cta--ghost { --pill-bg: transparent; }
+.hero-cta--ghost:hover { --pill-bg-hover: var(--w12); }
+@media (max-width: 600px) {
+  .hero-trust-inner { gap: 24px; }
+  .hero-cta-row { gap: 10px; }
+  .hero-cta--ghost { display: none; }   /* one clear action on small screens */
+}
 
 /* the walk hint (the reference site's .hero-walk) sits bottom-right above the marquee */
 .hero-walk-wrap {
@@ -343,6 +358,7 @@
 }
 .hero-m-p { color: var(--white); opacity: 0; }   /* 21-hero-mobile.js fades it in like the reference site's h1 */
 .hero-m-video-row { position: relative; display: flex; width: 100%; flex-wrap: wrap; align-items: center; gap: 15px; }
+.hero-m-cta { opacity: 0; }
 .hero-m-video-row .hero-walk { margin-left: auto; flex-shrink: 0; opacity: 0; }
 
 .hero-m-body { position: relative; width: 100%; background: var(--black); padding: 40px 0 64px; }   /* pt-10 pb-16 */
@@ -427,7 +443,7 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-walk-label { opacity: 1; }
   .hero-walk-arrow svg, .hero-walk--mark .hero-walk-arrow svg { opacity: 1; animation: none; transform: none; }
-  .hero-walk-wrap, .hero-m-p, .hero-m-video-row .hero-walk { opacity: 1; }
+  .hero-walk-wrap, .hero-m-p, .hero-m-cta, .hero-m-video-row .hero-walk { opacity: 1; }
   .hero-metric-in { opacity: 1; transform: none; transition: none; }
   .hero-metric-rule i { transform: scaleX(1); transition: none; }
   .hero-m-region { transition: none; }
