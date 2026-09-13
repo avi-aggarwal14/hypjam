@@ -296,7 +296,7 @@ def work_page(d: dict) -> str:
             <div class="sto-phone" {phone_attrs}>{PHONE}</div>
             <div class="sto-text">
               <p class="sto-quote t-story-quote">{T(p + ".quote")}</p>
-              <p class="sto-attr"><span class="tag-soon">{T(p + ".attribution")}</span></p>
+              <p class="sto-attr"><span class="tag-soon tag-soon--static">{T(p + ".attribution")}</span></p>
             </div>
           </div>
         </div>
@@ -319,9 +319,9 @@ def work_page(d: dict) -> str:
     for i, c in enumerate(wall["cards"]):
         p = f"work.wall.cards.{i}"
         quotes.append(f'''      <li class="work-quote reserved reserved--card">
-        <p class="work-quote-text t-hanging">“{T(p + ".quote")}”</p>
+        <p class="work-quote-text t-hanging">{T(p + ".quote")}</p>
         <div class="work-quote-by">
-          <span class="tag-soon">{T(p + ".name")}</span>
+          <span class="tag-soon tag-soon--static">{T(p + ".name")}</span>
           <p class="work-quote-role t-meta">{T(p + ".role")}</p>
         </div>
       </li>''')

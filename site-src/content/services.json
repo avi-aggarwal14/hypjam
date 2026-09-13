@@ -42,7 +42,7 @@
       "steps": "Four columns 01–04 with hairline dividers: {title, body}.",
       "comparison_head": "{eyebrow, h2, p}.",
       "comparison": "Six cells in a 2×3 grid with hairlines: {label (uppercase 12px), value (serif 26px), body (p), link (optional {label, href} as '↳ label')}. The sixth cell is always rights/safety and links to /rights, as the reference site's links to /security.",
-      "quote": "the reference site's testimonial card (sand-s, 36px serif quote left, attribution, image right). {kind: 'founder' | 'reserved', text, name, role, meta, image {src, alt}}. 'founder' is the founder's own statement, attributed to Avi Aggarwal (real, CONTRACT §10); the text is the single canonical statement, identical to home.json quotes.items[0].text. 'reserved' renders the held-open slot: text 'The first brand quote goes here.', tag 'Filled in at launch', dashed hairline frame, line-drawn phone silhouette in the image area. No invented names, ever.",
+      "quote": "the reference site's testimonial card (sand-s, 36px serif quote left, attribution, image right). {kind: 'founder' | 'reserved', text, name, role, meta, image {src, alt}}. 'founder' is the founder's own statement, attributed to Avi Aggarwal (real, CONTRACT §10); the text is the single canonical statement, identical to home.json quotes.items[0].text. 'reserved' renders the held-open slot: text 'We would rather show you nothing than words a brand never said.', tag 'On testimonials', dashed hairline frame, line-drawn phone silhouette in the image area. No invented names, ever.",
       "faq_head": "{eyebrow, h2}.",
       "faq": "Six {q, a}; first open, '+' / '×' toggles like the reference site.",
       "cta": "{h2, p, button} closing card, HQ drawing on the right."

@@ -882,7 +882,8 @@ def quote_block(data: dict, ref: str, quote: dict) -> str:
         alt = esc((quote.get("visual") or {}).get("alt", "Reserved space for a brand story"))
         return ('<figure class="page-quote page-quote--reserved"><div class="page-quote__body">'
                 f'<blockquote class="page-quote__text">{c(ref + ".text")}</blockquote>'
-                f'<figcaption class="page-quote__attr"><span class="tag-soon">{c(ref + ".tag")}</span></figcaption></div>'
+                f'<figcaption class="page-quote__attr"><p class="page-quote__name">{c(ref + ".name")}</p>'
+                f'<span class="tag-soon tag-soon--static">{c(ref + ".tag")}</span></figcaption></div>'
                 f'<div class="page-quote__media" role="img" aria-label="{alt}">'
                 '<span class="reserved__phone reserved__phone--lg" aria-hidden="true"></span></div></figure>')
     v = quote.get("visual") or {}

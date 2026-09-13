@@ -1245,7 +1245,7 @@ def render_index(data: dict) -> str:
         out.append('<div class="page-media__card">'
                    f'<div class="page-media__frame reserved reserved--card" role="img" aria-label="{c(p + ".title")} — {c(p + ".note")}">'
                    '<div class="reserved__area"><span class="reserved__phone reserved__phone--lg" aria-hidden="true"></span></div>'
-                   f'<span class="tag-soon">{c(p + ".note")}</span></div>'
+                   f'<span class="tag-soon tag-soon--static">{c(p + ".note")}</span></div>'
                    f'<div class="page-media__meta"><div><p class="page-media__eyebrow">{c(p + ".eyebrow")}</p><h3 class="page-media__title">{c(p + ".title")}</h3></div>'
                    f'<span class="page-media__action arrow-link" aria-disabled="true">{c(p + ".action")}{ARROW}</span></div></div>')
     out.append("</div></section>")
@@ -1343,7 +1343,7 @@ def render_page(data: dict, i: int, item: dict) -> str:
     if q.get("kind") == "reserved":
         out.append('<figure class="page-quote page-quote--reserved"><div class="page-quote__body">'
                    f'<blockquote class="page-quote__text">{c(qp + ".text")}</blockquote>'
-                   f'<figcaption class="page-quote__attr"><span class="tag-soon">{c(qp + ".name")}</span></figcaption></div>'
+                   f'<figcaption class="page-quote__attr"><span class="tag-soon tag-soon--static">{c(qp + ".name")}</span></figcaption></div>'
                    '<div class="page-quote__media"><span class="reserved__phone reserved__phone--lg" aria-hidden="true"></span></div></figure>')
     else:
         out.append('<figure class="page-quote"><div class="page-quote__body">'
