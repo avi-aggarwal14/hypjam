@@ -89,8 +89,8 @@
     "alt": "Line drawing of hypjam's two HQ buildings"
   },
 
-  "copyright": "© 2026 hypjam. All rights reserved.",
-  "copyrightLines": ["© 2026 hypjam.", "All rights reserved."],
+  "copyright": "© {{year}} hypjam. All rights reserved.",
+  "copyrightLines": ["© {{year}} hypjam.", "All rights reserved."],
 
   "badge": {
     "text": "Shot on phones, directed by people",

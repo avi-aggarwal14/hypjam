@@ -335,6 +335,7 @@ def build_pages() -> list[str]:
             if "{{" in value:
                 page[key] = expand(value, page, f"{rel} <!-- {key} -->")
         html = expand(body, page, rel)
+        html = html.replace("{{year}}", str(_dt.date.today().year))   # footer copyright, so it never goes stale
         leftover = TOKEN_RE.findall(html)
         if leftover:
             warn(f"{rel}: unresolved placeholders: {[x[0] + ':' + x[1] for x in leftover][:5]}")

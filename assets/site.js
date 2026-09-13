@@ -135,6 +135,7 @@
     var frame = video.parentElement;
     if (!play) { if (!video.paused) video.pause(); return; }
     if (reduce) return;
+    if (!video.getAttribute('poster') && video.dataset.poster) video.setAttribute('poster', video.dataset.poster);
     if (!video.getAttribute('src') && video.dataset.src) {
       video.setAttribute('src', video.dataset.src);
       video.addEventListener('playing', function () { frame.classList.add('is-playing'); });
