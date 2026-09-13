@@ -6,7 +6,7 @@ for the /blog index and article pages — title/description/date/slug/href are
 read verbatim from there, nothing here is invented). Standard library only.
 
 Writes: dist/feed.xml
-  channel: title "hypjam blog", link https://hypjam.vercel.app/blog,
+  channel: title "hypjam blog", link https://hypjam.com/blog,
            description = content/blog.json's own meta description.
   one <item> per article: title, link (/blog/<slug>), description (the
   article's own meta description), pubDate (RFC-822, from the article's
@@ -44,7 +44,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content"
 DIST = ROOT / "dist"
-BASE_URL = "https://hypjam.vercel.app"
+BASE_URL = "https://hypjam.com"
 
 
 def esc(s) -> str:

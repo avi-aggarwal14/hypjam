@@ -54,7 +54,7 @@ TOOLS = ROOT / "tools"
 ASSETS = ROOT / "assets"
 DIST = ROOT / "dist"
 
-BASE_URL = "https://hypjam.vercel.app"
+BASE_URL = "https://hypjam.com"
 
 # Built-in page meta defaults. content/site.json (if present) overrides these,
 # and the page's own <!-- key: value --> comments override both.

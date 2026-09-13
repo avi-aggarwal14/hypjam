@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hypjam.vercel.app/sitemap.xml
+Sitemap: https://hypjam.com/sitemap.xml

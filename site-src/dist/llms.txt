@@ -7,66 +7,66 @@
 
 ## About
 
-- [Home](https://hypjam.vercel.app/): What hypjam does, for brands and for creators.
-- [Agency](https://hypjam.vercel.app/agency): The London UGC agency behind the creators, founded by Avi Aggarwal.
-- [Process](https://hypjam.vercel.app/process): How a brief runs week by week, and the three packages — Starter from £1,800/mo, Growth from £3,600/mo, Scale from £6,500/mo.
-- [Rights](https://hypjam.vercel.app/rights): Usage rights in writing, signed creator releases, ASA/CAP disclosure compliance and UK GDPR data handling.
-- [FAQ](https://hypjam.vercel.app/faq): Answers for brands hiring hypjam and for creators joining the roster.
+- [Home](https://hypjam.com/): What hypjam does, for brands and for creators.
+- [Agency](https://hypjam.com/agency): The London UGC agency behind the creators, founded by Avi Aggarwal.
+- [Process](https://hypjam.com/process): How a brief runs week by week, and the three packages — Starter from £1,800/mo, Growth from £3,600/mo, Scale from £6,500/mo.
+- [Rights](https://hypjam.com/rights): Usage rights in writing, signed creator releases, ASA/CAP disclosure compliance and UK GDPR data handling.
+- [FAQ](https://hypjam.com/faq): Answers for brands hiring hypjam and for creators joining the roster.
 
 ## Services
 
-Nine services covering every part of a UGC ad, from brief to report. Every service page links back to [Services](https://hypjam.vercel.app/services).
+Nine services covering every part of a UGC ad, from brief to report. Every service page links back to [Services](https://hypjam.com/services).
 
-- [Services overview](https://hypjam.vercel.app/services)
-- [Briefing & scripts](https://hypjam.vercel.app/services/briefing): One brief, one locked script, one shot list.
-- [Hook writing](https://hypjam.vercel.app/services/hooks): Eight opening lines per script, written word for word.
-- [Casting & roster](https://hypjam.vercel.app/services/casting): Casting for fit from hypjam's own creator roster, approved by the brand.
-- [Shoot direction](https://hypjam.vercel.app/services/shoot-direction): Every take directed against the script, with notes.
-- [Editing & captions](https://hypjam.vercel.app/services/editing): Platform-native cuts with captions, one revision round included.
-- [Whitelisting & Spark Ads](https://hypjam.vercel.app/services/whitelisting): Creator-handle ads, authorised and dated before launch.
-- [Usage rights](https://hypjam.vercel.app/services/usage-rights): Every platform and every day of use, in writing.
-- [Reporting](https://hypjam.vercel.app/services/reporting): A live tracker, then a written debrief.
-- [Founder-led video](https://hypjam.vercel.app/services/founder-led): Founders directed on camera, like a roster creator.
+- [Services overview](https://hypjam.com/services)
+- [Briefing & scripts](https://hypjam.com/services/briefing): One brief, one locked script, one shot list.
+- [Hook writing](https://hypjam.com/services/hooks): Eight opening lines per script, written word for word.
+- [Casting & roster](https://hypjam.com/services/casting): Casting for fit from hypjam's own creator roster, approved by the brand.
+- [Shoot direction](https://hypjam.com/services/shoot-direction): Every take directed against the script, with notes.
+- [Editing & captions](https://hypjam.com/services/editing): Platform-native cuts with captions, one revision round included.
+- [Whitelisting & Spark Ads](https://hypjam.com/services/whitelisting): Creator-handle ads, authorised and dated before launch.
+- [Usage rights](https://hypjam.com/services/usage-rights): Every platform and every day of use, in writing.
+- [Reporting](https://hypjam.com/services/reporting): A live tracker, then a written debrief.
+- [Founder-led video](https://hypjam.com/services/founder-led): Founders directed on camera, like a roster creator.
 
 ## Solutions
 
-hypjam mapped onto a brand's goal and brand type. Every solutions page links back to [Solutions](https://hypjam.vercel.app/solutions).
+hypjam mapped onto a brand's goal and brand type. Every solutions page links back to [Solutions](https://hypjam.com/solutions).
 
-- [Solutions overview](https://hypjam.vercel.app/solutions)
-- [Launches](https://hypjam.vercel.app/solutions/launches): Hooks, casting and first cuts ready before the product ships.
-- [Always-on paid social](https://hypjam.vercel.app/solutions/always-on-paid-social): A monthly supply of ads, briefed, cast, cut and whitelisted.
-- [Organic & trends](https://hypjam.vercel.app/solutions/organic-and-trends): Trend-led content, briefed this week, shot on a phone.
-- [Founder-led](https://hypjam.vercel.app/solutions/founder-led): Founders on camera, directed like a creator.
-- [Creative testing](https://hypjam.vercel.app/solutions/creative-testing): Hooks × creators × formats, tested one axis at a time.
-- [Retention](https://hypjam.vercel.app/solutions/retention): How-to, onboarding and reorder video for customers a brand already has.
-- [DTC & ecommerce](https://hypjam.vercel.app/solutions/dtc-ecommerce): Feed-first ads for brands that sell on the scroll.
-- [Apps & subscriptions](https://hypjam.vercel.app/solutions/apps-and-subscriptions): Walkthrough and onboarding video for apps people keep opening.
-- [Food & drink](https://hypjam.vercel.app/solutions/food-and-drink): Kitchen shoots, taste on camera, claims kept inside the rules.
+- [Solutions overview](https://hypjam.com/solutions)
+- [Launches](https://hypjam.com/solutions/launches): Hooks, casting and first cuts ready before the product ships.
+- [Always-on paid social](https://hypjam.com/solutions/always-on-paid-social): A monthly supply of ads, briefed, cast, cut and whitelisted.
+- [Organic & trends](https://hypjam.com/solutions/organic-and-trends): Trend-led content, briefed this week, shot on a phone.
+- [Founder-led](https://hypjam.com/solutions/founder-led): Founders on camera, directed like a creator.
+- [Creative testing](https://hypjam.com/solutions/creative-testing): Hooks × creators × formats, tested one axis at a time.
+- [Retention](https://hypjam.com/solutions/retention): How-to, onboarding and reorder video for customers a brand already has.
+- [DTC & ecommerce](https://hypjam.com/solutions/dtc-ecommerce): Feed-first ads for brands that sell on the scroll.
+- [Apps & subscriptions](https://hypjam.com/solutions/apps-and-subscriptions): Walkthrough and onboarding video for apps people keep opening.
+- [Food & drink](https://hypjam.com/solutions/food-and-drink): Kitchen shoots, taste on camera, claims kept inside the rules.
 
 ## Work
 
-- [Work](https://hypjam.vercel.app/work): UGC ad formats shown as concept tiles (hook-led ads, testimonials, founder-led video, trend edits, whitelisted Spark Ads, scripted edits). The brand names shown are invented — hypjam is new and has no clients yet.
+- [Work](https://hypjam.com/work): UGC ad formats shown as concept tiles (hook-led ads, testimonials, founder-led video, trend edits, whitelisted Spark Ads, scripted edits). The brand names shown are invented — hypjam is new and has no clients yet.
 
 ## Blog
 
 Guides on UGC ads, briefs, hooks and rights.
 
-- [Blog index](https://hypjam.vercel.app/blog)
-- [What is UGC marketing? A plain-English guide](https://hypjam.vercel.app/blog/what-is-ugc-marketing)
-- [UGC vs influencer marketing: which one actually sells](https://hypjam.vercel.app/blog/ugc-vs-influencer-marketing)
-- [How to brief a UGC creator: template and checklist](https://hypjam.vercel.app/blog/how-to-brief-a-ugc-creator)
-- [27 UGC hooks that stop the scroll (with scripts)](https://hypjam.vercel.app/blog/ugc-hooks-that-convert)
-- [How much do UGC ads cost? 2026 rates and packages](https://hypjam.vercel.app/blog/how-much-do-ugc-ads-cost)
-- [UGC for ecommerce brands: the 30-day content engine](https://hypjam.vercel.app/blog/ugc-for-ecommerce)
-- [Spark Ads, whitelisting and usage rights explained](https://hypjam.vercel.app/blog/spark-ads-and-whitelisting)
-- [How to become a paid UGC creator with no followers](https://hypjam.vercel.app/blog/become-a-ugc-creator)
+- [Blog index](https://hypjam.com/blog)
+- [What is UGC marketing? A plain-English guide](https://hypjam.com/blog/what-is-ugc-marketing)
+- [UGC vs influencer marketing: which one actually sells](https://hypjam.com/blog/ugc-vs-influencer-marketing)
+- [How to brief a UGC creator: template and checklist](https://hypjam.com/blog/how-to-brief-a-ugc-creator)
+- [27 UGC hooks that stop the scroll (with scripts)](https://hypjam.com/blog/ugc-hooks-that-convert)
+- [How much do UGC ads cost? 2026 rates and packages](https://hypjam.com/blog/how-much-do-ugc-ads-cost)
+- [UGC for ecommerce brands: the 30-day content engine](https://hypjam.com/blog/ugc-for-ecommerce)
+- [Spark Ads, whitelisting and usage rights explained](https://hypjam.com/blog/spark-ads-and-whitelisting)
+- [How to become a paid UGC creator with no followers](https://hypjam.com/blog/become-a-ugc-creator)
 
 ## Work with hypjam
 
-- [Book a call](https://hypjam.vercel.app/book): A thirty-minute intro call — tell hypjam what you are launching.
-- [Join the roster](https://hypjam.vercel.app/join): Apply as a paid UGC creator. No follower minimum.
+- [Book a call](https://hypjam.com/book): A thirty-minute intro call — tell hypjam what you are launching.
+- [Join the roster](https://hypjam.com/join): Apply as a paid UGC creator. No follower minimum.
 
 ## Optional
 
-- [Privacy](https://hypjam.vercel.app/privacy)
-- [Terms](https://hypjam.vercel.app/terms)
+- [Privacy](https://hypjam.com/privacy)
+- [Terms](https://hypjam.com/terms)
