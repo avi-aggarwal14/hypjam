@@ -336,7 +336,10 @@
 
 /* ---- Menu / Close button (< 1201px) ------------------------------------- */
 .nav-menu-btn {
-  padding: 0;
+  /* padding + matching negative margin: a 44px-tall tap target without moving the
+     nav row. Was padding:0 with line-height:1, i.e. a ~14px-tall target. */
+  padding: 15px 10px;
+  margin: -15px -10px;
   border: 0;
   background: none;
   color: inherit;

@@ -21,7 +21,7 @@
   --sand-m: #dad9d4;          /* the reference site --sand-m · .bg-sand-m · rights section, security hero */
   --sand-l: #bcbbb4;          /* the reference site --sand-l · card description text, drawing strokes on sand */
   --sand: #f0f1e9;            /* the reference site --sand (unused on home, kept for parity) */
-  --grey: #7b7b7b;            /* the reference site --grey-m / .text-grey-m: body copy on light, footer labels */
+  --grey: #5b5b5b;            /* body copy on light, footer labels. Darkened from the reference site's #7b7b7b, which failed WCAG AA on every ground we use it on (3.92 on sand-s, 2.99 on sand-m, 4.23 on white); #5b5b5b gives 6.29 / 4.80 / 6.79. */
   --grey-m: #5b5b5b;          /* CONTRACT divider tone (= --grey at 60% composited on black) */
   --grey-s: #f5f5f5;          /* the reference site --grey-s */
   --line: #969696;            /* the reference site --line: the drawing's stroke colour */
@@ -1421,7 +1421,10 @@ html.lenis, html.lenis body { height: auto; }
 
 /* ---- Menu / Close button (< 1201px) ------------------------------------- */
 .nav-menu-btn {
-  padding: 0;
+  /* padding + matching negative margin: a 44px-tall tap target without moving the
+     nav row. Was padding:0 with line-height:1, i.e. a ~14px-tall target. */
+  padding: 15px 10px;
+  margin: -15px -10px;
   border: 0;
   background: none;
   color: inherit;

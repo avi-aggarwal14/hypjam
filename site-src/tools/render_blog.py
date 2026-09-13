@@ -230,7 +230,7 @@ def render_blog() -> None:
         "description": blog["meta"]["description"],
         "publisher": {"@type": "Organization", "name": "hypjam", "url": BASE_URL},
         "blogPost": [{"@type": "BlogPosting", "headline": a["title"], "url": BASE_URL + a["href"],
-                      "datePublished": a["date"], "author": {"@type": "Person", "name": agency["founder"]["name"]}} for a in arts],
+                      "datePublished": iso_date(a["date"]), "author": {"@type": "Person", "name": agency["founder"]["name"]}} for a in arts],
     })
     index_crumbs = breadcrumb_ld([
         ("Home", BASE_URL + "/"),
@@ -302,8 +302,8 @@ def render_blog() -> None:
             "@type": "Article",
             "headline": a["title"],
             "description": a["description"],
-            "datePublished": a["date"],
-            "dateModified": a["date"],
+            "datePublished": iso_date(a["date"]),
+            "dateModified": iso_date(a["date"]),
             "articleSection": a["category"],
             "keywords": derive_keywords(a),
             "wordCount": word_count,
@@ -434,7 +434,7 @@ def render_legal() -> None:
             "name": pg["h1"],
             "url": BASE_URL + pg["path"],
             "description": pg["description"],
-            "dateModified": pg["last_updated"],
+            "dateModified": iso_date(pg["last_updated"]),
             "inLanguage": "en-GB",
             "publisher": {"@id": BASE_URL + "/#org"},  # the Organization node schema-global owns — reference, don't redefine
         })
@@ -487,6 +487,22 @@ def icon(name: str, size: int = 16) -> str:
     inner = ICONS.get(name, ICONS["tick"])
     return (f'<svg viewBox="0 0 16 16" width="{size}" height="{size}" aria-hidden="true" fill="none" stroke="currentColor" '
             f'stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">{inner}</svg>')
+
+
+_MONTHS = {m: i for i, m in enumerate(
+    "january february march april may june july august september october november december".split(), 1)}
+
+
+def iso_date(value: str) -> str:
+    """schema.org Date wants ISO 8601. Content carries human dates ("6 September 2026")
+    and month precision ("2026-09"); both are invalid or lossy as structured data."""
+    v = (value or "").strip()
+    m = re.match(r"^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$", v)
+    if m and m.group(2).lower() in _MONTHS:
+        return f"{m.group(3)}-{_MONTHS[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
+    if re.match(r"^\d{4}-\d{2}$", v):
+        return v + "-01"
+    return v
 
 
 def proc_blocks(base: str, blocks: list) -> str:

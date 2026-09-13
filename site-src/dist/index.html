@@ -322,6 +322,9 @@
      trust · HUD · metrics.
      ====================================================================== -->
 <section id="hero" class="hero" data-nav="dark" data-nav-fill="bg-transparent" data-mode="">
+  <!-- the page h1. Lives here, outside both renderings: .hero-stage is display:none at
+       <=1024px, so an h1 inside it left every phone and tablet with no h1 at all. -->
+  <h1 class="u-sr-only">hypjam, a UGC agency in London: everyday creators, briefed, cast, directed and edited by one team</h1>
 
   <!-- ================= desktop: the pinned stage ================= -->
   <div class="hero-stage" data-hero-stage data-sand="0">
@@ -346,7 +349,6 @@
     <!-- 5 · trust layer: paragraph (split into .trust-word by JS), walk hint, marquee -->
     <div class="hero-layer hero-trust" data-hero-trust>
       <div class="hero-trust-inner">
-        <h1 class="u-sr-only">hypjam, a UGC agency in London: everyday creators, briefed, cast, directed and edited by one team</h1>
         <p class="hero-trust-p t-trust" data-hero-trust-p>hypjam is built for brands that want everyday creators briefed properly, shoots directed, and ads that sound like people.</p>
         <div class="hero-cta-row" data-hero-cta-row>
           <a href="/book" class="btn btn--dark btn--lg hero-cta">
