@@ -4,7 +4,7 @@ This is the single source of truth for every agent working on this site. Read al
 
 ## 1. The mission
 
-Recreate **https://www.the reference site/** one-to-one — layout, typography, spacing, motion, interaction, every section and every sub-page — but as the website of **hypjam**, a UGC (user-generated content) marketing agency based in London. Every word is rewritten for hypjam. The hotel line drawing that the hero camera walks through becomes a drawing of **hypjam's HQ**, and the five hotel departments become **five parts of the agency**.
+Recreate **the reference site's layout, mechanics and motion, one-to-one** — layout, typography, spacing, motion, interaction, every section and every sub-page — but as the website of **hypjam**, a UGC (user-generated content) marketing agency based in London. Every word is rewritten for hypjam. The hotel line drawing that the hero camera walks through becomes a drawing of **hypjam's HQ**, and the five hotel departments become **five parts of the agency**.
 
 Two deliberate departures from the reference site, and only two:
 
@@ -28,11 +28,11 @@ All under `ref/`:
 | `ref/index.html` | the reference site's server-rendered home HTML. |
 | `ref/outlines.txt` | Every sub-page's structure and copy, extracted. **Content agents rewrite from this.** |
 | `ref/style_spec.json` | Computed font-family/size/line-height/letter-spacing/colour for text in every home section, plus nav and root vars. |
-| `ref/lance-css/*.css` | the reference site's five compiled CSS files (Tailwind v4). Grep these for exact values: `px-page`, `bg-sand-*`, `max-bp`, `.hero-walk`, `.product-ui-stroke`, `.partner-carousel`, `.trust-word`, button classes. |
-| `ref/lance-entire-drawing.svg` | the reference site's master hotel drawing (44001×21918, 3948 paths). **For measuring geometry only. Never copy its paths.** |
+| `ref/ref-css/*.css` | the reference site's five compiled CSS files (Tailwind v4). Grep these for exact values: `px-page`, `bg-sand-*`, `max-bp`, `.hero-walk`, `.product-ui-stroke`, `.partner-carousel`, `.trust-word`, button classes. |
+| `ref/ref-drawing.svg` | the reference site's master hotel drawing (44001×21918, 3948 paths). **For measuring geometry only. Never copy its paths.** |
 | `ref/drawing_full.png` | That drawing rendered. |
 | `ref/product-1…5.json` | the reference site's five Lottie product panels (inspect to see what each mock UI does). |
-| `ref/lance-assets/` | the reference site's images: partner logos, feature images, testimonial thumbs, security badges, footer-buildings.png. For layout reference only; none of these ship. |
+| `ref/ref-assets/` | the reference site's images: partner logos, feature images, testimonial thumbs, security badges, footer-buildings.png. For layout reference only; none of these ship. |
 | `ref/video-frames/` | Frames from the reference site's hero video (blurred drone footage of a hotel). |
 
 ## 3. Site map
@@ -94,7 +94,7 @@ Exact values from the reference site's compiled CSS and computed styles. Put the
 - Section padding 120px desktop, 80px mobile. Nav: fixed, `padding: 28px var(--px-page)`, 88px tall, transparent; gains `background` + `backdrop-filter` when `data-nav-fill` flips (see engine).
 - Breakpoints (the reference site's `max-bp`/`max-lp`/`max-tp`): `--bp: 1024px`, `--lp: 1280px`, `--tp: 768px`, plus 600px for phones.
 - Radii: pills 9999px; cards 12px; panels 6px; images 12–16px.
-- Buttons: pill, height 32px, 14px text, `gap:10px`, `padding-left:16px`, trailing 22px circle icon. Primary on dark: translucent white pill (`rgba(255,255,255,.12)`, 1px `rgba(255,255,255,.2)` border, backdrop blur) with a **jam** circle and black arrow. Measure `ref/lance-css` for the exact classes before writing yours.
+- Buttons: pill, height 32px, 14px text, `gap:10px`, `padding-left:16px`, trailing 22px circle icon. Primary on dark: translucent white pill (`rgba(255,255,255,.12)`, 1px `rgba(255,255,255,.2)` border, backdrop blur) with a **jam** circle and black arrow. Measure `ref/ref-css` for the exact classes before writing yours.
 
 **Motion**: Lenis smooth scroll (`duration: 1.15, smoothWheel: true, wheelMultiplier: 1`), GSAP 3.12 + ScrollTrigger + CustomEase (vendored in `assets/vendor/`). Respect `prefers-reduced-motion` everywhere: reduced motion = final states, no scrubbed camera (jump to stops), no loops.
 
@@ -169,7 +169,7 @@ Mobile (`≤1024px`): the reference site collapses the HUD into an accordion und
 
 Owner: the drawing planner writes `src/drawing/PLAN.md` + `tools/check_drawing.py`; shell and room agents write `src/drawing/parts/*.svg`; the assembler writes `src/drawing/hq.svg`.
 
-Canvas: `viewBox="0 0 44001 21918"`, same as the reference site so the engine's camera maths ports unchanged. Two buildings in the same positions and proportions as the reference site's (measure `ref/lance-entire-drawing.svg`'s `fixed` group for wall lines, floor lines, roofline, ground line — geometry is not artwork). **Every path is original.** Style: `stroke="#969696"`, `stroke-width="10"` (the engine normalises to 1px), `fill="none"`, round caps/joins; secondary/background detail at `stroke-opacity="0.2"` (rendered dashed). Only `path line rect circle ellipse polyline polygon`.
+Canvas: `viewBox="0 0 44001 21918"`, same as the reference site so the engine's camera maths ports unchanged. Two buildings in the same positions and proportions as the reference site's (measure `ref/ref-drawing.svg`'s `fixed` group for wall lines, floor lines, roofline, ground line — geometry is not artwork). **Every path is original.** Style: `stroke="#969696"`, `stroke-width="10"` (the engine normalises to 1px), `fill="none"`, round caps/joins; secondary/background detail at `stroke-opacity="0.2"` (rendered dashed). Only `path line rect circle ellipse polyline polygon`.
 
 Structure and ids (the engine depends on these exactly):
 ```

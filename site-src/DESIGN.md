@@ -10,8 +10,8 @@ difference is flagged in §10.
 
 | what | where it came from |
 |---|---|
-| colour variables, `.px-page`, `.hero-walk`, `.partner-carousel`, `.product-ui-stroke`, `.reveal`, Lenis rules, `.font-display` | `ref/lance-css/2aw2dorymd3mg.css` (the reference site's landing stylesheet, the `[data-landing]` block) |
-| Tailwind utilities (`.bg-sand-*`, `.h-8`, `.gap-2.5`, `.size-[22px]`, `.backdrop-blur-[6px]`, `.tracking-*`, `--spacing`) and the breakpoint media queries | `ref/lance-css/0802v4mhdt9c4.css` |
+| colour variables, `.px-page`, `.hero-walk`, `.partner-carousel`, `.product-ui-stroke`, `.reveal`, Lenis rules, `.font-display` | `ref/ref-css/2aw2dorymd3mg.css` (the reference site's landing stylesheet, the `[data-landing]` block) |
+| Tailwind utilities (`.bg-sand-*`, `.h-8`, `.gap-2.5`, `.size-[22px]`, `.backdrop-blur-[6px]`, `.tracking-*`, `--spacing`) and the breakpoint media queries | `ref/ref-css/0802v4mhdt9c4.css` |
 | computed type styles per section, nav geometry, `--section-spacing`, `--container-padding`, page padding 28px | `ref/style_spec.json` |
 | the "Book a Demo" `<a>` class lists, h1/h2 class lists, story-card and rights-cell markup, ISO seal markup | `ref/index.html` |
 | HUD card / panel / stop-list markup, `.trust-word`, marquee cells (260×72, logo heights 22–42px) | `ref/hero_dom.html` |
