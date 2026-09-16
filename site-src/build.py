@@ -34,6 +34,7 @@ written by other people.
 from __future__ import annotations
 
 import datetime as _dt
+import hashlib
 import json
 import re
 import shutil
@@ -315,6 +316,47 @@ def page_targets(src: Path) -> tuple[list[Path], str]:
     return [DIST / folder / "index.html"], "/" + folder.as_posix()
 
 
+# ---------------------------------------------------------------------------
+# asset fingerprinting
+#
+# vercel.json serves /assets/(fonts|vendor|brand|img|video|badges)/* with
+# `max-age=31536000, immutable`. That directive is a promise that the URL's
+# bytes will never change, and browsers take it literally: they will not even
+# revalidate. Our asset filenames are stable and hand-written, so replacing a
+# poster or a clip left every returning visitor pinned to the old bytes for a
+# year, with no way to notice.
+#
+# Appending a content hash makes the promise true: change the file and the URL
+# changes with it, so `immutable` is correct and updates always land. It also
+# retires URLs that were already cached under the old, broken contract.
+_FP_CACHE: dict[str, str] = {}
+_ASSET_REF = re.compile(r"""(?<=["'])(/assets/[A-Za-z0-9_\-./]+\.[A-Za-z0-9]+)(?=["'])""")
+
+
+def _asset_hash(url: str) -> str:
+    if url in _FP_CACHE:
+        return _FP_CACHE[url]
+    path = ROOT / url.lstrip("/")
+    digest = ""
+    if path.is_file():
+        h = hashlib.sha1()
+        with path.open("rb") as fh:
+            for chunk in iter(lambda: fh.read(1 << 20), b""):
+                h.update(chunk)
+        digest = h.hexdigest()[:8]
+    _FP_CACHE[url] = digest
+    return digest
+
+
+def fingerprint_assets(html: str) -> str:
+    """Append ?v=<content hash> to every root-relative /assets/ URL that exists."""
+    def sub(m: re.Match) -> str:
+        url = m.group(1)
+        digest = _asset_hash(url)
+        return f"{url}?v={digest}" if digest else url
+    return _ASSET_REF.sub(sub, html)
+
+
 def build_pages() -> list[str]:
     urls: list[str] = []
     if not PAGES.is_dir():
@@ -336,6 +378,7 @@ def build_pages() -> list[str]:
                 page[key] = expand(value, page, f"{rel} <!-- {key} -->")
         html = expand(body, page, rel)
         html = html.replace("{{year}}", str(_dt.date.today().year))   # footer copyright, so it never goes stale
+        html = fingerprint_assets(html)
         leftover = TOKEN_RE.findall(html)
         if leftover:
             warn(f"{rel}: unresolved placeholders: {[x[0] + ':' + x[1] for x in leftover][:5]}")
