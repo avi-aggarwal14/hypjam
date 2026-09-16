@@ -1,7 +1,7 @@
 # hypjam
 
 The website for **hypjam**, a UGC (user-generated content) marketing agency in London.
-Live at **https://hypjam.vercel.app**.
+Live at **https://hypjam.com**.
 
 ## What this repo is
 
