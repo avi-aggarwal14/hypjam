@@ -1,0 +1,131 @@
+<!-- title: {{content:apply.meta.title}} -->
+<!-- description: {{content:apply.meta.description}} -->
+<!-- nav: light -->
+<!-- nav-fill: bg-white -->
+<!-- body-class: page-apply -->
+<!-- head-extra: <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://hypjam.com/"}, {"@type": "ListItem", "position": 2, "name": "Join", "item": "https://hypjam.com/join"}, {"@type": "ListItem", "position": 3, "name": "Apply", "item": "https://hypjam.com/apply"}]}, {"@type": "WebPage", "name": "Apply to create for hypjam", "url": "https://hypjam.com/apply", "description": "Apply to hypjam's creator roster: paid UGC briefs for UK and remote creators, no follower minimum.", "inLanguage": "en-GB", "publisher": {"@id": "https://hypjam.com/#org"}}]}</script> -->
+{{include:partials/head.html}}
+{{include:partials/nav.html}}
+<main class="page page-apply-main" data-theme="light">
+
+  <section class="page-section page-section--hero">
+    <div class="page-hero">
+      <div class="page-hero__copy">
+        <p class="page-eyebrow page-eyebrow--caps page-hero__eyebrow">{{content:apply.hero.eyebrow}}</p>
+        <h1 class="page-hero__title">{{content:apply.hero.h1}}</h1>
+        <p class="page-hero__intro">{{content:apply.hero.intro}}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section apply-section">
+    <div class="apply-wrap">
+
+      <form class="apply-form" data-apply-form
+            data-endpoint="{{content:apply.form.endpoint}}"
+            data-fallback="{{content:apply.form.fallback_to}}"
+            novalidate>
+
+        <fieldset class="apply-set">
+          <legend class="apply-legend t-eyebrow">{{content:apply.form.legend_you}}</legend>
+
+          <div class="apply-field">
+            <label class="apply-label" for="ap-name">{{content:apply.form.name_label}}</label>
+            <input class="apply-input" id="ap-name" name="name" type="text" autocomplete="name" required>
+            <p class="apply-help">{{content:apply.form.name_help}}</p>
+            <p class="apply-error" data-error-for="ap-name" hidden></p>
+          </div>
+
+          <div class="apply-field">
+            <label class="apply-label" for="ap-email">{{content:apply.form.email_label}}</label>
+            <input class="apply-input" id="ap-email" name="email" type="email" autocomplete="email" inputmode="email" required>
+            <p class="apply-help">{{content:apply.form.email_help}}</p>
+            <p class="apply-error" data-error-for="ap-email" hidden></p>
+          </div>
+        </fieldset>
+
+        <fieldset class="apply-set">
+          <legend class="apply-legend t-eyebrow">{{content:apply.form.legend_work}}</legend>
+
+          <div class="apply-field">
+            <span class="apply-label" id="ap-exp-label">{{content:apply.form.experience_label}}</span>
+            <div class="apply-choices" role="radiogroup" aria-labelledby="ap-exp-label">
+              <label class="apply-choice">
+                <input type="radio" name="experience" value="yes" data-exp-yes required>
+                <span>{{content:apply.form.experience_yes}}</span>
+              </label>
+              <label class="apply-choice">
+                <input type="radio" name="experience" value="no">
+                <span>{{content:apply.form.experience_no}}</span>
+              </label>
+            </div>
+            <p class="apply-help">{{content:apply.form.experience_help}}</p>
+            <p class="apply-error" data-error-for="experience" hidden></p>
+          </div>
+
+          <div class="apply-field apply-conditional" data-when-experience hidden>
+            <label class="apply-label" for="ap-profiles">{{content:apply.form.profiles_label}}</label>
+            <textarea class="apply-input apply-textarea" id="ap-profiles" name="profiles" rows="4" spellcheck="false"></textarea>
+            <p class="apply-help">{{content:apply.form.profiles_help}}</p>
+            <p class="apply-error" data-error-for="ap-profiles" hidden></p>
+          </div>
+
+          <div class="apply-field">
+            <label class="apply-label" for="ap-example">{{content:apply.form.example_label}}</label>
+            <input class="apply-input" id="ap-example" name="example" type="url" inputmode="url" spellcheck="false" placeholder="https://" required>
+            <p class="apply-help">{{content:apply.form.example_help}}</p>
+            <p class="apply-error" data-error-for="ap-example" hidden></p>
+          </div>
+        </fieldset>
+
+        <fieldset class="apply-set">
+          <legend class="apply-legend t-eyebrow">{{content:apply.form.legend_found}}</legend>
+
+          <div class="apply-field">
+            <label class="apply-label" for="ap-found">{{content:apply.form.found_label}}</label>
+            <div class="apply-select-wrap">
+              <select class="apply-input apply-select" id="ap-found" name="found" required>
+                <option value="" selected disabled>Choose one</option>
+                <option>{{content:apply.form.found_options.0}}</option>
+                <option>{{content:apply.form.found_options.1}}</option>
+                <option>{{content:apply.form.found_options.2}}</option>
+                <option>{{content:apply.form.found_options.3}}</option>
+                <option>{{content:apply.form.found_options.4}}</option>
+                <option>{{content:apply.form.found_options.5}}</option>
+                <option>{{content:apply.form.found_options.6}}</option>
+                <option>{{content:apply.form.found_options.7}}</option>
+              </select>
+            </div>
+            <p class="apply-help">{{content:apply.form.found_help}}</p>
+            <p class="apply-error" data-error-for="ap-found" hidden></p>
+          </div>
+
+          <div class="apply-field apply-conditional" data-when-other hidden>
+            <label class="apply-label" for="ap-found-other">{{content:apply.form.found_other_label}}</label>
+            <input class="apply-input" id="ap-found-other" name="found_other" type="text">
+          </div>
+        </fieldset>
+
+        <div class="apply-actions">
+          <button class="btn btn--light apply-submit" type="submit">{{content:apply.form.submit}}<span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+          <p class="apply-note">{{content:apply.form.note}} <a href="/privacy">privacy policy</a>.</p>
+        </div>
+
+        <p class="apply-status" data-apply-status role="status" aria-live="polite" hidden></p>
+      </form>
+
+      <aside class="apply-after">
+        <h2 class="apply-after__h2">{{content:apply.after.h2}}</h2>
+        <ol class="apply-after__list">
+          <li>{{content:apply.after.steps.0}}</li>
+          <li>{{content:apply.after.steps.1}}</li>
+          <li>{{content:apply.after.steps.2}}</li>
+        </ol>
+      </aside>
+
+    </div>
+  </section>
+
+</main>
+{{include:partials/footer.html}}
+{{include:partials/scripts.html}}

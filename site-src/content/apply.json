@@ -1,0 +1,52 @@
+{
+  "_schema": {
+    "_about": "Content for /apply — the creator application form. Linked from /join and from the recruitment poster (assets/brand/creator-poster.png). British English. The form posts to the endpoint in form.endpoint; when that is empty it falls back to composing an email to form.fallback_to, so the page works with no backend. Do not add a hosted form service without adding it to the privacy policy's processor table.",
+    "meta": "{path, title, description}",
+    "hero": "{eyebrow, h1, intro}",
+    "form": "{endpoint, fallback_to, legend_*, fields..., submit, note}",
+    "after": "{h2, steps[]}"
+  },
+  "meta": {
+    "path": "/apply",
+    "title": "Apply to create for hypjam: paid UGC briefs, no follower minimum",
+    "description": "Apply to hypjam's creator roster. Tell us about your work, share an example, and we will come back to you. Paid briefs for UK and remote creators, no follower minimum."
+  },
+  "hero": {
+    "eyebrow": "Creators",
+    "h1": "Apply to create for hypjam.",
+    "intro": "A few questions, then an example of your work. There is no follower minimum and no showreel to build: one post you are proud of tells us more than a follower count. We read every application."
+  },
+  "form": {
+    "endpoint": "",
+    "fallback_to": "avi@hypjam.com",
+    "legend_you": "About you",
+    "legend_work": "Your work",
+    "legend_found": "Last thing",
+    "name_label": "Your name",
+    "name_help": "First and last is fine.",
+    "email_label": "Email",
+    "email_help": "We reply here. Nothing else goes to this address.",
+    "experience_label": "Have you made UGC for a brand before?",
+    "experience_help": "Either answer is fine. We cast on fit, not on a track record.",
+    "experience_yes": "Yes, I have",
+    "experience_no": "No, not yet",
+    "profiles_label": "Links to your UGC profiles or past work",
+    "profiles_help": "One per line. A TikTok or Instagram profile, a portfolio, a UGC marketplace page — whatever shows the work.",
+    "example_label": "Link to one example of your work",
+    "example_help": "Everyone answers this, experienced or not. A post you filmed, a video you edited, or something you made to show what you can do. Paste a public link: TikTok, Instagram, YouTube, Drive or Dropbox.",
+    "found_label": "Where did you find this?",
+    "found_help": "It helps us know where to keep looking.",
+    "found_options": ["X", "Instagram", "LinkedIn", "An AI agent or web scraper", "Google Search", "YouTube", "TikTok", "Other"],
+    "found_other_label": "Where, specifically?",
+    "submit": "Send application",
+    "note": "Applying does not guarantee work; it puts you on the list we cast from. What you send is covered by our"
+  },
+  "after": {
+    "h2": "What happens next.",
+    "steps": [
+      "A person reads it. Not a filter, not a score.",
+      "If you fit a brief we are casting, we email you with the brief, the rate and the usage before you agree to anything.",
+      "If you do not hear back straight away it means nothing fits yet. We keep applications for up to two years and come back to them."
+    ]
+  }
+}

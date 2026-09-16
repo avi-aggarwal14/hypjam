@@ -21,8 +21,8 @@
     "h1": "Join the creator roster.",
     "sub": "Paid briefs for UK and remote creators, no follower minimum, and the rate and usage agreed before you film. We brief you like a director, not a client, then pay you like it mattered.",
     "cta": {
-      "label": "Apply by email",
-      "href": "mailto:avi@hypjam.com?subject=Creator%20application%20%E2%80%94%20%40yourhandle&body=Name%3A%0AHandle%20(TikTok%20or%20Instagram)%3A%0AWhat%20I%20usually%20film%3A%0ALinks%20to%20my%20best%20content%20(2%20to%203)%3A%0A%0A%0A%0AWhere%20I%20am%20based%3A%0A"
+      "label": "Apply now",
+      "href": "/apply"
     }
   },
   "looking_for": {
@@ -108,7 +108,7 @@
   "apply": {
     "eyebrow": "Apply",
     "h2": "Send us your best three links.",
-    "p": "There is no form. Email us with the details below and a person reads it. Applying does not guarantee work; it puts you on the list we cast from.",
+    "p": "It takes a couple of minutes. We ask for your name, an email, whether you have made UGC before, and one link to something you have made. A person reads every one; applying does not guarantee work, it puts you on the list we cast from.",
     "checklist": [
       "Your name",
       "Your TikTok or Instagram handle",
@@ -122,8 +122,8 @@
       "body": "Name:\nHandle (TikTok or Instagram):\nWhat I usually film:\nLinks to my best content (2 to 3):\n\n\n\nWhere I am based:\n"
     },
     "button": {
-      "label": "Apply by email",
-      "href": "mailto:avi@hypjam.com?subject=Creator%20application%20%E2%80%94%20%40yourhandle&body=Name%3A%0AHandle%20(TikTok%20or%20Instagram)%3A%0AWhat%20I%20usually%20film%3A%0ALinks%20to%20my%20best%20content%20(2%20to%203)%3A%0A%0A%0A%0AWhere%20I%20am%20based%3A%0A"
+      "label": "Start your application",
+      "href": "/apply"
     },
     "privacy": {
       "text": "We keep applications only to cast from, as set out in our",
