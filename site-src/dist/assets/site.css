@@ -2697,14 +2697,14 @@ html.nav-lock, html.nav-lock body { overflow: hidden; }
   display: flex;
   flex-direction: column;
   gap: 24px;
-  width: min(377px, 78vw);
+  width: min(400px, 82vw);
   flex-shrink: 0;
 }
 
 /* the image box → a reserved slot: dashed hairline frame on a dark surface */
 .sto-media {
   position: relative;
-  height: 440px;
+  aspect-ratio: 9 / 16;          /* the shape of the work itself */
   overflow: hidden;
   border-radius: var(--r-img);
   border: 1px dashed var(--w20);
@@ -2756,7 +2756,7 @@ html.nav-lock, html.nav-lock body { overflow: hidden; }
 }
 .sto-card:hover .sto-phone,
 .sto-card:focus-within .sto-phone { color: var(--w60); }
-.sto-phone-svg { display: block; width: 112px; height: auto; max-height: 100%; overflow: visible; }
+.sto-phone-svg { display: block; width: 150px; height: auto; max-height: 100%; overflow: visible; }
 .sto-phone-screen { opacity: .55; stroke-dasharray: 3 5; }
 .sto-phone-side { opacity: .7; }
 
@@ -2798,10 +2798,9 @@ html.nav-lock, html.nav-lock body { overflow: hidden; }
 @media (max-width: 800px) {
   .sto { min-height: 0; }                       /* max-bp:min-h-0 (py-20 comes from the token flip) */
   .sto-mask { margin-top: 32px; }               /* max-bp:mt-8 */
-  .sto-card { width: min(280px, 78vw); gap: 16px; }
-  .sto-media { height: 360px; }
+  .sto-card { width: min(320px, 82vw); gap: 16px; }
   .sto-media-in { padding: 16px 16px 14px; }
-  .sto-phone-svg { width: 96px; }
+  .sto-phone-svg { width: 120px; }
 }
 @media (max-width: 600px) {
   .sto-quote { font-size: 16px; }               /* max-tp:text-[16px] */
@@ -2824,24 +2823,13 @@ html.nav-lock, html.nav-lock body { overflow: hidden; }
 }
 .sto-card:hover .sto-media--filled,
 .sto-card:focus-within .sto-media--filled { border-color: var(--w40); }
-.sto-media-in--filled {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-}
+.sto-media-in--filled { display: block; padding: 0; }
 .sto-vid {
   display: block;
+  width: 100%;
   height: 100%;
-  width: auto;
-  max-width: 100%;
-  aspect-ratio: 9 / 16;          /* the clip's own ratio — never letterboxed, never cropped */
-  object-fit: cover;
-  border-radius: 10px;
+  object-fit: cover;             /* frame and clip are both 9:16, so this crops nothing */
   background: #000;
-}
-@media (max-width: 800px) {
-  .sto-media-in--filled { padding: 12px; }
 }
 
 /* ---- src/css/33-rights.css ---- */
