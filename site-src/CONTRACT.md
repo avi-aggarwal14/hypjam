@@ -237,7 +237,7 @@ hypjam is new. It has **no clients, no testimonials, no case studies, no perform
 
 - Logos: `assets/brand/logos/` (read its README). Nav centre: `hypjam-lockup-on-dark.svg` on dark pages, `-on-light` on sand/white pages, min 160px wide. Footer big logo: the lockup. Favicon and icons: `assets/brand/hook-icon*.png`, `favicon.ico`, `hook-apple-touch-icon.png`. Small slots: `hypjam-icon.svg`. Never recolour the mark; the play triangle is always jam.
 - The word **"studio"** never appears in visible copy. hypjam is a "UGC agency".
-- Contact: `hello@hypjam.com`. Booking: cal.com — `https://cal.com/avi-aggarwal-hypjam/intro` (embed with `?embed=true&theme=dark&layout=month_view`; it has its own dark theme, never colour-invert it). `/book` hosts the embed; every "Book a call" goes to `/book`.
+- Contact: `avi@hypjam.com`. Booking: cal.com — `https://cal.com/avi-aggarwal-hypjam/intro` (embed with `?embed=true&theme=dark&layout=month_view`; it has its own dark theme, never colour-invert it). `/book` hosts the embed; every "Book a call" goes to `/book`.
 - No cookies, no analytics, no trackers (the site's privacy policy promises this). The cal.com embed only loads on `/book` or after a click.
 
 ## 12. Copy voice

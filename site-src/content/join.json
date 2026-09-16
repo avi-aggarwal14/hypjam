@@ -1,6 +1,6 @@
 {
   "_schema": {
-    "_about": "Content for /join (the creator roster page, replacing the reference's careers page). Light page in the reference's career spirit: eyebrow + h1 + sub + one pill; a 'who we are looking for' list; four numbered 'how it works' steps in the reference's numbered-list style; a pay block; a six-item accordion; then the apply block with a checklist and a mailto CTA (there is no form on this site; applications are an email to hello@hypjam.com with a prefilled subject and body). British English.",
+    "_about": "Content for /join (the creator roster page, replacing the reference's careers page). Light page in the reference's career spirit: eyebrow + h1 + sub + one pill; a 'who we are looking for' list; four numbered 'how it works' steps in the reference's numbered-list style; a pay block; a six-item accordion; then the apply block with a checklist and a mailto CTA (there is no form on this site; applications are an email to avi@hypjam.com with a prefilled subject and body). British English.",
     "meta": "{path, title, description, theme}",
     "hero": "{eyebrow, h1, sub, cta:{label, href}} - cta.href is apply.mailto.href.",
     "looking_for": "{eyebrow, h2, items[]} - five strings, rendered as a hairline-separated list with a jam dot.",
@@ -19,7 +19,7 @@
     "eyebrow": "Creators",
     "h1": "Join the creator roster.",
     "sub": "Paid briefs for UK and remote creators, no follower minimum, and the rate and usage agreed before you film. We brief you like a director, not a client, then pay you like it mattered.",
-    "cta": { "label": "Apply by email", "href": "mailto:hello@hypjam.com?subject=Creator%20application%20%E2%80%94%20%40yourhandle&body=Name%3A%0AHandle%20(TikTok%20or%20Instagram)%3A%0AWhat%20I%20usually%20film%3A%0ALinks%20to%20my%20best%20content%20(2%20to%203)%3A%0A%0A%0A%0AWhere%20I%20am%20based%3A%0A" }
+    "cta": { "label": "Apply by email", "href": "mailto:avi@hypjam.com?subject=Creator%20application%20%E2%80%94%20%40yourhandle&body=Name%3A%0AHandle%20(TikTok%20or%20Instagram)%3A%0AWhat%20I%20usually%20film%3A%0ALinks%20to%20my%20best%20content%20(2%20to%203)%3A%0A%0A%0A%0AWhere%20I%20am%20based%3A%0A" }
   },
   "looking_for": {
     "eyebrow": "Who we are looking for",
@@ -70,11 +70,11 @@
       "Where you are based"
     ],
     "mailto": {
-      "href": "mailto:hello@hypjam.com?subject=Creator%20application%20%E2%80%94%20%40yourhandle&body=Name%3A%0AHandle%20(TikTok%20or%20Instagram)%3A%0AWhat%20I%20usually%20film%3A%0ALinks%20to%20my%20best%20content%20(2%20to%203)%3A%0A%0A%0A%0AWhere%20I%20am%20based%3A%0A",
+      "href": "mailto:avi@hypjam.com?subject=Creator%20application%20%E2%80%94%20%40yourhandle&body=Name%3A%0AHandle%20(TikTok%20or%20Instagram)%3A%0AWhat%20I%20usually%20film%3A%0ALinks%20to%20my%20best%20content%20(2%20to%203)%3A%0A%0A%0A%0AWhere%20I%20am%20based%3A%0A",
       "subject": "Creator application — @yourhandle",
       "body": "Name:\nHandle (TikTok or Instagram):\nWhat I usually film:\nLinks to my best content (2 to 3):\n\n\n\nWhere I am based:\n"
     },
-    "button": { "label": "Apply by email", "href": "mailto:hello@hypjam.com?subject=Creator%20application%20%E2%80%94%20%40yourhandle&body=Name%3A%0AHandle%20(TikTok%20or%20Instagram)%3A%0AWhat%20I%20usually%20film%3A%0ALinks%20to%20my%20best%20content%20(2%20to%203)%3A%0A%0A%0A%0AWhere%20I%20am%20based%3A%0A" },
+    "button": { "label": "Apply by email", "href": "mailto:avi@hypjam.com?subject=Creator%20application%20%E2%80%94%20%40yourhandle&body=Name%3A%0AHandle%20(TikTok%20or%20Instagram)%3A%0AWhat%20I%20usually%20film%3A%0ALinks%20to%20my%20best%20content%20(2%20to%203)%3A%0A%0A%0A%0AWhere%20I%20am%20based%3A%0A" },
     "privacy": {
       "text": "We keep applications only to cast from, as set out in our",
       "link_label": "privacy policy",
