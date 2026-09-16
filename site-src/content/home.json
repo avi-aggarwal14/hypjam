@@ -100,25 +100,29 @@
       },
       {
         "slot": 3,
-        "reserved": true,
-        "quote": "A brand campaign goes here.",
-        "attribution": "Reserved for our first brand",
-        "meta": "reserved",
-        "read": "Read",
+        "reserved": false,
+        "quote": "A cinematic paid ad, cut for the feed.",
+        "attribution": "Our own work",
+        "meta": "cinematic paid ad example",
+        "read": "Play",
         "href": null,
-        "format": "founder-led video",
-        "imageAlt": "Line-drawn phone silhouette: slot reserved for a founder-led video story"
+        "format": "cinematic paid ad",
+        "imageAlt": "A vertical cinematic paid advert made by hypjam",
+        "video": "/assets/video/ugc-cinematic-accountant.mp4",
+        "poster": "/assets/video/ugc-cinematic-accountant-poster.jpg"
       },
       {
         "slot": 4,
-        "reserved": true,
-        "quote": "And another one here.",
-        "attribution": "Reserved for our first brand",
-        "meta": "reserved",
-        "read": "Read",
+        "reserved": false,
+        "quote": "A cinematic paid ad, made as a concept rather than for a client.",
+        "attribution": "Concept piece · not a client",
+        "meta": "cinematic paid ad · concept, not a client",
+        "read": "Play",
         "href": null,
-        "format": "whitelisted Spark Ad",
-        "imageAlt": "Line-drawn phone silhouette: slot reserved for a whitelisted Spark Ad story"
+        "format": "cinematic paid ad",
+        "imageAlt": "A vertical cinematic car advert made by hypjam as a concept piece",
+        "video": "/assets/video/ugc-cinematic-urus.mp4",
+        "poster": "/assets/video/ugc-cinematic-urus-poster.jpg"
       }
     ]
   },
