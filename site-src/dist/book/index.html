@@ -198,73 +198,55 @@
     <a href="mailto:avi@hypjam.com" class="book-header-link">avi@hypjam.com</a>
   </header>
 
-  <section class="book-split">
+  <!-- One column, calendar-first. /book exists to get a call booked and let the
+       visitor leave, so the calendar is the page; everything else sits under it. -->
+  <section class="book-main">
 
-    <!-- left · the reference site: flex items-center justify-center bg-sand-s px-page py-6 · 440px column · h1 36px -->
-    <div class="book-left">
-      <div class="book-form">
-        <h1 class="book-h1 t-display">Book a call</h1>
-        <p class="book-sub">Thirty minutes, no deck. Tell us what you are launching and who it is for; we will tell you honestly whether UGC is the right call and what it would cost.</p>
+    <div class="book-intro">
+      <h1 class="book-h1 t-display">Book a call</h1>
+      <p class="book-sub">Thirty minutes, no deck. Tell us what you are launching and who it is for; we will tell you honestly whether UGC is the right call and what it would cost.</p>
+    </div>
 
-        <!-- the cal.com embed takes the form's place; it loads only after a click (CONTRACT §11), never colour-inverted -->
-        <div class="book-embed" data-book-embed data-src="https://cal.com/avi-aggarwal-hypjam/intro?embed=true&theme=dark&layout=month_view" data-title="Book a call | hypjam" data-height="640">
-          <button type="button" class="btn btn--solid book-open" data-book-open aria-expanded="false">Open the calendar<span class="btn__ico"><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
-          <div class="book-frame" data-book-frame data-lenis-prevent hidden></div>
-          <p class="book-fallback"><a href="https://cal.com/avi-aggarwal-hypjam/intro" target="_blank" rel="noopener">Open the calendar in a new tab<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M4.5 2H2v8h8V7.5M7 2h3v3M10 2 5.5 6.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
-        </div>
+    <!-- the cal.com embed is rendered straight into the page: no click gate, and it
+         works with JavaScript off. 45-book.js only resizes it to cal.com's own height. -->
+    <div class="book-embed" data-book-embed data-height="780">
+      <div class="book-frame" data-book-frame data-lenis-prevent>
+        <iframe class="book-iframe" src="https://cal.com/avi-aggarwal-hypjam/intro?embed=true&theme=dark&layout=month_view" title="Book a call | hypjam"
+                loading="eager" allow="payment" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <p class="book-fallback"><a href="https://cal.com/avi-aggarwal-hypjam/intro" target="_blank" rel="noopener">Open the calendar in a new tab<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M4.5 2H2v8h8V7.5M7 2h3v3M10 2 5.5 6.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+    </div>
 
-        <div class="book-expect">
-          <p class="book-expect-label t-eyebrow">What we will cover</p>
-          <ul class="book-expect-list">
+    <div class="book-after">
+      <div class="book-expect">
+        <p class="book-expect-label t-eyebrow">What we will cover</p>
+        <ul class="book-expect-list">
             <li>What you are launching and who it is for</li>
             <li>Whether UGC is the right call, honestly</li>
             <li>Which package fits and what a first sprint looks like</li>
             <li>The rights, disclosure and timeline you would be signing up to</li>
-          </ul>
-        </div>
-
-        <p class="book-note">The calendar is provided by cal.com and loads only on this page. What you enter goes to cal.com and our calendar, as set out in our <a href="/privacy">privacy policy</a>.</p>
+        </ul>
       </div>
+
+      <figure class="book-quote-mini">
+        <blockquote class="book-quote-mini-text">&ldquo;We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.&rdquo;</blockquote>
+        <figcaption class="book-quote-mini-cap">
+          <img class="book-quote-mini-mark" src="/assets/brand/logos/hypjam-mark-on-dark.svg" alt="" width="28" height="28" loading="lazy" decoding="async">
+          <span><span class="book-quote-mini-name">Avi Aggarwal</span><span class="book-quote-mini-role">Founder, hypjam</span></span>
+        </figcaption>
+      </figure>
     </div>
 
-    <!-- right · the reference site: the photo column with the frosted quote card (420px), the logo row inside it, seals at the bottom -->
-    <div class="book-right" data-theme="dark">
-      <div class="book-right-sticky">
-        <img class="book-still" src="/assets/img/stills/studio-creator.jpg" alt="" decoding="async">
-        <div class="book-shade" aria-hidden="true"></div>
-        <div class="book-right-in">
-          <figure class="book-card">
-            <blockquote class="book-quote t-card-title t-hanging">“We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.”</blockquote>
-            <figcaption class="book-cap">
-              <span class="book-sig" aria-hidden="true">Avi Aggarwal</span>
-              <div class="book-cap-row">
-                <div>
-                  <p class="book-name">Avi Aggarwal</p>
-                  <p class="book-role">Founder, hypjam</p>
-                </div>
-                <img class="book-mark" src="/assets/brand/logos/hypjam-mark-on-dark.svg" alt="" width="40" height="40" loading="lazy" decoding="async">
-              </div>
-            </figcaption>
-            <div class="book-card-foot">
-              <p class="book-ships-label">Ships to</p>
-              <div class="marquee marquee--compact book-ships" role="list" aria-label="Ships to">
-                <div class="marquee__track">
-                  <div class="marquee__group"><div class="marquee__cell" role="listitem"><span class="book-ship"><svg class="book-ship-glyph" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><use href="#p-tiktok"/></svg><span>TikTok</span></span></div><div class="marquee__cell" role="listitem"><span class="book-ship"><svg class="book-ship-glyph" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><use href="#p-instagram"/></svg><span>Instagram Reels</span></span></div><div class="marquee__cell" role="listitem"><span class="book-ship"><svg class="book-ship-glyph" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><use href="#p-youtube"/></svg><span>YouTube Shorts</span></span></div><div class="marquee__cell" role="listitem"><span class="book-ship"><svg class="book-ship-glyph" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><use href="#p-snapchat"/></svg><span>Snapchat</span></span></div><div class="marquee__cell" role="listitem"><span class="book-ship"><svg class="book-ship-glyph" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><use href="#p-pinterest"/></svg><span>Pinterest</span></span></div><div class="marquee__cell" role="listitem"><span class="book-ship"><svg class="book-ship-glyph" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><use href="#p-meta"/></svg><span>Meta ads</span></span></div></div>
-                  <div class="marquee__group" aria-hidden="true"><div class="marquee__cell"><span class="book-ship"><svg class="book-ship-glyph" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><use href="#p-tiktok"/></svg><span>TikTok</span></span></div><div class="marquee__cell"><span class="book-ship"><svg class="book-ship-glyph" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><use href="#p-instagram"/></svg><span>Instagram Reels</span></span></div><div class="marquee__cell"><span class="book-ship"><svg class="book-ship-glyph" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><use href="#p-youtube"/></svg><span>YouTube Shorts</span></span></div><div class="marquee__cell"><span class="book-ship"><svg class="book-ship-glyph" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><use href="#p-snapchat"/></svg><span>Snapchat</span></span></div><div class="marquee__cell"><span class="book-ship"><svg class="book-ship-glyph" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><use href="#p-pinterest"/></svg><span>Pinterest</span></span></div><div class="marquee__cell"><span class="book-ship"><svg class="book-ship-glyph" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><use href="#p-meta"/></svg><span>Meta ads</span></span></div></div>
-                </div>
-              </div>
-            </div>
-          </figure>
-          <div class="book-rights">
-            <p class="book-rights-label">Rights and safety</p>
-            <ul class="book-seals">
+    <div class="book-foot">
+      <p class="book-note">The calendar is provided by cal.com and loads only on this page. What you enter goes to cal.com and our calendar, as set out in our <a href="/privacy">privacy policy</a>.</p>
+      <div class="book-rights">
+        <p class="book-rights-label">Rights and safety</p>
+        <ul class="book-seals">
           <li><svg class="book-seal" viewBox="0 0 240 240" role="img" aria-label="Usage rights in writing"><use href="#seal-usage-rights"/></svg></li>
           <li><svg class="book-seal" viewBox="0 0 240 240" role="img" aria-label="Signed creator releases"><use href="#seal-releases"/></svg></li>
           <li><svg class="book-seal" viewBox="0 0 240 240" role="img" aria-label="ASA and CAP disclosure compliance"><use href="#seal-disclosure"/></svg></li>
           <li><svg class="book-seal" viewBox="0 0 240 240" role="img" aria-label="UK GDPR data handling"><use href="#seal-uk-gdpr"/></svg></li>
-            </ul>
-          </div>
-        </div>
+        </ul>
       </div>
     </div>
 

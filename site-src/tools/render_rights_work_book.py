@@ -557,66 +557,48 @@ def book_page(d: dict) -> str:
     <a href="{T("book.header.right.href")}" class="book-header-link">{T("book.header.right.label")}</a>
   </header>
 
-  <section class="book-split">
+  <!-- One column, calendar-first. /book exists to get a call booked and let the
+       visitor leave, so the calendar is the page; everything else sits under it. -->
+  <section class="book-main">
 
-    <!-- left · the reference site: flex items-center justify-center bg-sand-s px-page py-6 · 440px column · h1 36px -->
-    <div class="book-left">
-      <div class="book-form">
-        <h1 class="book-h1 t-display">{T("book.left.h1")}</h1>
-        <p class="book-sub">{T("book.left.sub")}</p>
-
-        <!-- the cal.com embed takes the form's place; it loads only after a click (CONTRACT §11), never colour-inverted -->
-        <div class="book-embed" data-book-embed data-src="{T("book.left.embed.src")}" data-title="{T("book.meta.title")}" data-height="{T("book.left.embed.height_min", "640")}">
-          <button type="button" class="btn btn--solid book-open" data-book-open aria-expanded="false">{T("book.left.embed.open_label", "Open the calendar")}<span class="btn__ico">{ARROW}</span></button>
-          <div class="book-frame" data-book-frame data-lenis-prevent hidden></div>
-          <p class="book-fallback"><a href="{T("book.left.embed.fallback.href")}" target="_blank" rel="noopener">{T("book.left.embed.fallback.label")}{EXTERNAL}</a></p>
-        </div>
-
-        <div class="book-expect">
-          <p class="book-expect-label t-eyebrow">{T("book.left.expect.label")}</p>
-          <ul class="book-expect-list">{expect}
-          </ul>
-        </div>
-
-        <p class="book-note">{T("book.left.privacy.text")} <a href="{T("book.left.privacy.href")}">{T("book.left.privacy.link_label")}</a>.</p>
-      </div>
+    <div class="book-intro">
+      <h1 class="book-h1 t-display">{T("book.left.h1")}</h1>
+      <p class="book-sub">{T("book.left.sub")}</p>
     </div>
 
-    <!-- right · the reference site: the photo column with the frosted quote card (420px), the logo row inside it, seals at the bottom -->
-    <div class="book-right" data-theme="dark">
-      <div class="book-right-sticky">
-        <img class="book-still" src="/assets/img/stills/studio-creator.jpg" alt="{T("book.right.background.alt", "")}" decoding="async">
-        <div class="book-shade" aria-hidden="true"></div>
-        <div class="book-right-in">
-          <figure class="book-card">
-            <blockquote class="book-quote t-card-title t-hanging">“{T("book.right.quote.text")}”</blockquote>
-            <figcaption class="book-cap">
-              <span class="book-sig" aria-hidden="true">{T("book.right.quote.name")}</span>
-              <div class="book-cap-row">
-                <div>
-                  <p class="book-name">{T("book.right.quote.name")}</p>
-                  <p class="book-role">{T("book.right.quote.role")}</p>
-                </div>
-                <img class="book-mark" src="{T("book.right.quote.mark")}" alt="" width="40" height="40" loading="lazy" decoding="async">
-              </div>
-            </figcaption>
-            <div class="book-card-foot">
-              <p class="book-ships-label">{T("book.right.ships_to.label")}</p>
-              <div class="marquee marquee--compact book-ships" role="list" aria-label="{T("book.right.ships_to.label")}">
-                <div class="marquee__track">
-                  <div class="marquee__group">{"".join(ships)}</div>
-                  <div class="marquee__group" aria-hidden="true">{"".join(ships_dup)}</div>
-                </div>
-              </div>
-            </div>
-          </figure>
-          <div class="book-rights">
-            <p class="book-rights-label">{T("book.right.rights.label")}</p>
-            <ul class="book-seals">
+    <!-- the cal.com embed is rendered straight into the page: no click gate, and it
+         works with JavaScript off. 45-book.js only resizes it to cal.com's own height. -->
+    <div class="book-embed" data-book-embed data-height="{T("book.left.embed.height_min", "860")}">
+      <div class="book-frame" data-book-frame data-lenis-prevent>
+        <iframe class="book-iframe" src="{T("book.left.embed.src")}" title="{T("book.meta.title")}"
+                loading="eager" allow="payment" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <p class="book-fallback"><a href="{T("book.left.embed.fallback.href")}" target="_blank" rel="noopener">{T("book.left.embed.fallback.label")}{EXTERNAL}</a></p>
+    </div>
+
+    <div class="book-after">
+      <div class="book-expect">
+        <p class="book-expect-label t-eyebrow">{T("book.left.expect.label")}</p>
+        <ul class="book-expect-list">{expect}
+        </ul>
+      </div>
+
+      <figure class="book-quote-mini">
+        <blockquote class="book-quote-mini-text">&ldquo;{T("book.right.quote.text")}&rdquo;</blockquote>
+        <figcaption class="book-quote-mini-cap">
+          <img class="book-quote-mini-mark" src="{T("book.right.quote.mark")}" alt="" width="28" height="28" loading="lazy" decoding="async">
+          <span><span class="book-quote-mini-name">{T("book.right.quote.name")}</span><span class="book-quote-mini-role">{T("book.right.quote.role")}</span></span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="book-foot">
+      <p class="book-note">{T("book.left.privacy.text")} <a href="{T("book.left.privacy.href")}">{T("book.left.privacy.link_label")}</a>.</p>
+      <div class="book-rights">
+        <p class="book-rights-label">{T("book.right.rights.label")}</p>
+        <ul class="book-seals">
 {nl.join(seals)}
-            </ul>
-          </div>
-        </div>
+        </ul>
       </div>
     </div>
 

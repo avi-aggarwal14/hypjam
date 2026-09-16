@@ -33,8 +33,8 @@
       "src": "https://cal.com/avi-aggarwal-hypjam/intro?embed=true&theme=dark&layout=month_view",
       "theme": "dark",
       "layout": "month_view",
-      "height_min": 640,
-      "note": "The calendar has its own dark theme. Never colour-invert it.",
+      "height_min": 780,
+      "note": "The calendar has its own dark theme. Never colour-invert it. height_min is the floor 45-book.js clamps cal.com's reported height to, so the calendar never looks cramped on /book.",
       "fallback": {
         "label": "Open the calendar in a new tab",
         "href": "https://cal.com/avi-aggarwal-hypjam/intro"
