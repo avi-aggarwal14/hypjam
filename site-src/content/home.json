@@ -7,14 +7,12 @@
     "stories": "the reference site 'Trusted by leading hotels / running every shift on the reference site' carousel. {eyebrow (replaces the reference site's '50+ hotels' stat with an offer fact, §10), heading: {line1 (white), line2 (rendered at 40% opacity)}, prev/next aria labels, cards[4]: {slot, reserved: true, quote, attribution, meta, read (inert), href (null = inert), format (hint for the phone silhouette's alt text only — not rendered), imageAlt}}. Cards keep the reference site's anatomy but are designed reserved slots: dashed hairline frame, line-drawn phone silhouette.",
     "rights": "the reference site 'Privacy and Security at Every Layer' on sand. {heading (6 words), sub (the reference site 11 words), learnMore: {label, href}, items[4]: {id, title (rendered uppercase eyebrow), desc (the reference site 14–21 words), sealAlt (our own line-drawn seal; only UK GDPR is backed by the privacy policy — none is a certification)}}."
   },
-
   "meta": {
     "title": "UGC agency in London: directed creator ads | hypjam",
     "description": "hypjam is a London UGC agency: we brief, cast and direct creators, cut for TikTok, Reels and Shorts, and put usage rights in writing. From £1,800 a month.",
     "ogTitle": "UGC agency in London: directed creator ads | hypjam",
     "ogDescription": "hypjam is a London UGC agency: we brief, cast and direct creators, cut for TikTok, Reels and Shorts, and put usage rights in writing. From £1,800 a month."
   },
-
   "features": {
     "heading": "Find the format. Then film it.",
     "sub": "We study the formats already earning attention in your category, write original scripts around them, and make more of whatever performs. One team briefs, casts, directs and edits every video.",
@@ -45,7 +43,6 @@
       }
     ]
   },
-
   "quotes": {
     "items": [
       {
@@ -66,7 +63,6 @@
       }
     ]
   },
-
   "stories": {
     "eyebrow": "Packages from £1,800 a month",
     "heading": {
@@ -78,14 +74,16 @@
     "cards": [
       {
         "slot": 1,
-        "reserved": true,
-        "quote": "The first brand story goes here.",
-        "attribution": "Filled in at launch",
-        "meta": "reserved",
-        "read": "Read",
+        "reserved": false,
+        "quote": "A hook-led ad, shot vertically on a phone.",
+        "attribution": "Our own work",
+        "meta": "hook-led ad · our own work",
+        "read": "Play",
         "href": null,
         "format": "hook-led ad",
-        "imageAlt": "Line-drawn phone silhouette: slot reserved for a hook-led ad story"
+        "imageAlt": "A vertical hook-led UGC ad made by hypjam, shown in a phone-shaped frame",
+        "video": "/assets/video/ugc-hook-led-1.mp4",
+        "poster": "/assets/video/ugc-hook-led-1-poster.jpg"
       },
       {
         "slot": 2,
@@ -122,11 +120,13 @@
       }
     ]
   },
-
   "rights": {
     "heading": "Rights and safety at every layer",
     "sub": "Protect your brand, your creators and your ad account before anyone presses record.",
-    "learnMore": { "label": "Learn more", "href": "/rights" },
+    "learnMore": {
+      "label": "Learn more",
+      "href": "/rights"
+    },
     "items": [
       {
         "id": "usage-rights",

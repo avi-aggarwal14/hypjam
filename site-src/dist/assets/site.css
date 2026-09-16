@@ -2812,6 +2812,38 @@ html.nav-lock, html.nav-lock body { overflow: hidden; }
   .sto-track { transition: none !important; }
 }
 
+/* ---------- a filled slot ----------
+   A reserved slot is a dashed frame around a line-drawn phone. A filled one
+   holds the real clip: solid frame, and the video sized to a true 9:16 so it
+   is never cropped. The clip is 1080x1920, so at 440px tall it is 247px wide
+   and sits centred on the dark surface exactly where the phone drawing was. */
+.sto-media--filled {
+  border-style: solid;
+  border-color: var(--w20);
+  background: rgba(255, 255, 255, .04);
+}
+.sto-card:hover .sto-media--filled,
+.sto-card:focus-within .sto-media--filled { border-color: var(--w40); }
+.sto-media-in--filled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.sto-vid {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  aspect-ratio: 9 / 16;          /* the clip's own ratio — never letterboxed, never cropped */
+  object-fit: cover;
+  border-radius: 10px;
+  background: #000;
+}
+@media (max-width: 800px) {
+  .sto-media-in--filled { padding: 12px; }
+}
+
 /* ---- src/css/33-rights.css ---- */
 /* =====================================================================
    hypjam v2 · 33-rights.css — "Rights and safety at every layer" (home)
