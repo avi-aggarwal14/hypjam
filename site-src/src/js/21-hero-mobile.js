@@ -42,7 +42,7 @@
        ours fills that third "button" slot with the real Book a call CTA
        instead of leaving it unused; the walk hint rides the same beat. */
     var para = root.querySelector('[data-hero-m-p]');
-    var cta = root.querySelector('[data-hero-m-cta]');
+    var ctas = Array.prototype.slice.call(root.querySelectorAll('[data-hero-m-cta]'));   /* Book a call + See what we do */
     var walk = root.querySelector('[data-hero-m-walk]');
     U.initWalk(walk, function () {
       var body = root.querySelector('[data-hero-m-body]');
@@ -50,13 +50,13 @@
     });
     if (reduce || !gsap) {
       if (para) para.style.opacity = '1';
-      if (cta) cta.style.opacity = '1';
+      ctas.forEach(function (c) { c.style.opacity = '1'; });
       if (walk) walk.style.opacity = '1';
     } else {
-      gsap.set([para, cta, walk].filter(Boolean), { opacity: 0 });
+      gsap.set([para].concat(ctas, [walk]).filter(Boolean), { opacity: 0 });
       state.intro = gsap.timeline({ defaults: { ease: 'power2.out' } });
       if (para) state.intro.to(para, { opacity: 1, duration: .7 }, .15);
-      if (cta) state.intro.to(cta, { opacity: 1, duration: .55 }, .5);
+      if (ctas.length) state.intro.to(ctas, { opacity: 1, duration: .55 }, .5);
       if (walk) state.intro.to(walk, { opacity: 1, duration: .55 }, .5);
     }
 

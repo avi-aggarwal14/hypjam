@@ -215,6 +215,10 @@
               {{content:hero.cta.label|Book a call}}
               <span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </a>
+            <!-- the same secondary action the desktop stage carries (hero.html above); it was
+                 missing from every phone and tablet. Phones keep one clear action — 20-hero.css
+                 hides .hero-cta--ghost at <=600px — so this is what tablets (601–1024px) gain. -->
+            <a href="{{content:hero.cta.secondaryHref|/services}}" class="btn btn--ghost btn--dark hero-cta hero-cta--ghost hero-m-cta" data-hero-m-cta>{{content:hero.cta.secondaryLabel|See what we do}}</a>
             <button type="button" class="hero-walk" data-hero-m-walk data-label="{{content:hero.walkHint|Scroll to walk through the agency}}" data-label-reduced="{{content:hero.reducedMotion|Use the list to move between rooms}}" style="--hero-walk-cycle:3000ms">
               <span class="hero-walk-arrow" aria-hidden="true"><svg viewBox="0 0 16 8" width="16" height="8" aria-hidden="true"><path d="M2.5 1.4 8 6.6 13.5 1.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
               <span class="hero-walk-label">{{content:hero.walkHint|Scroll to walk through the agency}}</span>

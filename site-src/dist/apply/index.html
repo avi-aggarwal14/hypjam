@@ -228,11 +228,13 @@
             <a class="nav-menu-video" href="/process">
               <span class="nav-menu-video-frame">
                 <!-- the clip starts (muted, looping) the first time the menu opens; poster until then -->
-                <video class="nav-menu-clip" muted loop playsinline preload="none" data-poster="/assets/video/hero-poster.jpg?v=f76cf493" data-src="/assets/video/hero-studio-web.mp4?v=d26d81e1" aria-label="Looping clip from a hypjam shoot day"></video>
+                <!-- the clip is an illustration of a phone shoot, not footage of a hypjam
+                     production: nothing here may describe it as one. Copy lives in nav.json. -->
+                <video class="nav-menu-clip" muted loop playsinline preload="none" data-poster="/assets/video/hero-poster.jpg?v=f76cf493" data-src="/assets/video/hero-studio-web.mp4?v=d26d81e1" aria-label="Illustrative looping clip of a phone shoot"></video>
                 <span class="nav-menu-play" aria-hidden="true"><svg viewBox="0 0 12 12" width="10" height="10"><path d="M3.5 2.2v7.6L9.5 6z" fill="currentColor"/></svg></span>
               </span>
-              <span class="nav-menu-video-title">Inside a shoot day</span>
-              <span class="nav-menu-video-sub">Behind the phone on a hypjam shoot</span>
+              <span class="nav-menu-video-title">How a shoot day runs</span>
+              <span class="nav-menu-video-sub">Brief to edit, step by step</span>
             </a>
           </div>
         </div>
@@ -272,7 +274,10 @@
             <a class="nav-m-sublink" href="/services/whitelisting">Whitelisting & Spark Ads</a>
             <a class="nav-m-sublink" href="/services/usage-rights">Usage rights</a>
             <a class="nav-m-sublink" href="/services/reporting">Reporting</a>
-            <a class="nav-m-sublink" href="/services/founder-led">Founder-led video <span class="nav-m-new">New</span></a>
+            <a class="nav-m-sublink nav-m-sublink--new" href="/services/founder-led">
+              <span class="nav-m-sublink-title">Founder-led video <span class="nav-m-new">New</span></span>
+              <span class="nav-m-sublink-desc">We direct you on camera, so you never sound like a brand deck.</span>
+            </a>
             <a class="nav-m-sublink nav-m-sublink--all" href="/services">All nine services</a>
           </div>
         </div>
@@ -301,6 +306,7 @@
       <a class="nav-m-row" href="/agency">Agency</a>
       <a class="nav-m-row" href="/blog">Blog</a>
       <a class="nav-m-row" href="/process">Process</a>
+      <a class="nav-m-row" href="/faq">FAQ</a>
     </div>
   </div>
 </nav>

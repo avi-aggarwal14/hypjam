@@ -94,7 +94,7 @@
         "read": "Play",
         "href": null,
         "format": "screen demo",
-        "imageAlt": "A vertical screen-recorded product demo made for hypjam by @ajain_ugc, an ex-Replit creator",
+        "imageAlt": "A vertical screen-recorded product demo by @ajain_ugc, an ex-Replit creator",
         "video": "/assets/video/ugc-screen-demo-1.mp4",
         "poster": "/assets/video/ugc-screen-demo-1-poster.jpg"
       },
@@ -107,7 +107,7 @@
         "read": "Play",
         "href": null,
         "format": "cinematic paid ad",
-        "imageAlt": "A vertical cinematic paid advert made by hypjam",
+        "imageAlt": "A vertical cinematic paid advert, shown as an example of the format",
         "video": "/assets/video/ugc-cinematic-accountant.mp4",
         "poster": "/assets/video/ugc-cinematic-accountant-poster.jpg"
       },
@@ -120,7 +120,7 @@
         "read": "Play",
         "href": null,
         "format": "cinematic paid ad",
-        "imageAlt": "A vertical cinematic car advert made by hypjam for Cluely",
+        "imageAlt": "A vertical cinematic car advert made for Cluely",
         "video": "/assets/video/ugc-cinematic-urus.mp4",
         "poster": "/assets/video/ugc-cinematic-urus-poster.jpg"
       }

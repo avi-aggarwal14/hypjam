@@ -228,11 +228,13 @@
             <a class="nav-menu-video" href="/process">
               <span class="nav-menu-video-frame">
                 <!-- the clip starts (muted, looping) the first time the menu opens; poster until then -->
-                <video class="nav-menu-clip" muted loop playsinline preload="none" data-poster="/assets/video/hero-poster.jpg?v=f76cf493" data-src="/assets/video/hero-studio-web.mp4?v=d26d81e1" aria-label="Looping clip from a hypjam shoot day"></video>
+                <!-- the clip is an illustration of a phone shoot, not footage of a hypjam
+                     production: nothing here may describe it as one. Copy lives in nav.json. -->
+                <video class="nav-menu-clip" muted loop playsinline preload="none" data-poster="/assets/video/hero-poster.jpg?v=f76cf493" data-src="/assets/video/hero-studio-web.mp4?v=d26d81e1" aria-label="Illustrative looping clip of a phone shoot"></video>
                 <span class="nav-menu-play" aria-hidden="true"><svg viewBox="0 0 12 12" width="10" height="10"><path d="M3.5 2.2v7.6L9.5 6z" fill="currentColor"/></svg></span>
               </span>
-              <span class="nav-menu-video-title">Inside a shoot day</span>
-              <span class="nav-menu-video-sub">Behind the phone on a hypjam shoot</span>
+              <span class="nav-menu-video-title">How a shoot day runs</span>
+              <span class="nav-menu-video-sub">Brief to edit, step by step</span>
             </a>
           </div>
         </div>
@@ -272,7 +274,10 @@
             <a class="nav-m-sublink" href="/services/whitelisting">Whitelisting & Spark Ads</a>
             <a class="nav-m-sublink" href="/services/usage-rights">Usage rights</a>
             <a class="nav-m-sublink" href="/services/reporting">Reporting</a>
-            <a class="nav-m-sublink" href="/services/founder-led">Founder-led video <span class="nav-m-new">New</span></a>
+            <a class="nav-m-sublink nav-m-sublink--new" href="/services/founder-led">
+              <span class="nav-m-sublink-title">Founder-led video <span class="nav-m-new">New</span></span>
+              <span class="nav-m-sublink-desc">We direct you on camera, so you never sound like a brand deck.</span>
+            </a>
             <a class="nav-m-sublink nav-m-sublink--all" href="/services">All nine services</a>
           </div>
         </div>
@@ -301,6 +306,7 @@
       <a class="nav-m-row" href="/agency">Agency</a>
       <a class="nav-m-row" href="/blog">Blog</a>
       <a class="nav-m-row" href="/process">Process</a>
+      <a class="nav-m-row" href="/faq">FAQ</a>
     </div>
   </div>
 </nav>
@@ -726,6 +732,10 @@
               Book a call
               <span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             </a>
+            <!-- the same secondary action the desktop stage carries (hero.html above); it was
+                 missing from every phone and tablet. Phones keep one clear action — 20-hero.css
+                 hides .hero-cta--ghost at <=600px — so this is what tablets (601–1024px) gain. -->
+            <a href="/services" class="btn btn--ghost btn--dark hero-cta hero-cta--ghost hero-m-cta" data-hero-m-cta>See what we do</a>
             <button type="button" class="hero-walk" data-hero-m-walk data-label="Scroll to walk through the agency" data-label-reduced="Use the list to move between rooms" style="--hero-walk-cycle:3000ms">
               <span class="hero-walk-arrow" aria-hidden="true"><svg viewBox="0 0 16 8" width="16" height="8" aria-hidden="true"><path d="M2.5 1.4 8 6.6 13.5 1.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
               <span class="hero-walk-label">Scroll to walk through the agency</span>
@@ -1323,7 +1333,7 @@
       <li class="sto-card sto-card--filled" data-sto-card data-slot="2">
         <div class="sto-media sto-media--filled">
           <div class="sto-media-in sto-media-in--filled">
-            <video class="sto-vid" poster="/assets/video/ugc-screen-demo-1-poster.jpg?v=8f18e4a4" preload="none" playsinline muted loop controls aria-label="A vertical screen-recorded product demo made for hypjam by @ajain_ugc, an ex-Replit creator">
+            <video class="sto-vid" poster="/assets/video/ugc-screen-demo-1-poster.jpg?v=8f18e4a4" preload="none" playsinline muted loop controls aria-label="A vertical screen-recorded product demo by @ajain_ugc, an ex-Replit creator">
               <source src="/assets/video/ugc-screen-demo-1.mp4?v=a308f992" type="video/mp4">
             </video>
           </div>
@@ -1337,7 +1347,7 @@
       <li class="sto-card sto-card--filled" data-sto-card data-slot="3">
         <div class="sto-media sto-media--filled">
           <div class="sto-media-in sto-media-in--filled">
-            <video class="sto-vid" poster="/assets/video/ugc-cinematic-accountant-poster.jpg?v=a11c88a8" preload="none" playsinline muted loop controls aria-label="A vertical cinematic paid advert made by hypjam">
+            <video class="sto-vid" poster="/assets/video/ugc-cinematic-accountant-poster.jpg?v=a11c88a8" preload="none" playsinline muted loop controls aria-label="A vertical cinematic paid advert, shown as an example of the format">
               <source src="/assets/video/ugc-cinematic-accountant.mp4?v=2a1a7de1" type="video/mp4">
             </video>
           </div>
@@ -1351,7 +1361,7 @@
       <li class="sto-card sto-card--filled" data-sto-card data-slot="4">
         <div class="sto-media sto-media--filled">
           <div class="sto-media-in sto-media-in--filled">
-            <video class="sto-vid" poster="/assets/video/ugc-cinematic-urus-poster.jpg?v=cfdec571" preload="none" playsinline muted loop controls aria-label="A vertical cinematic car advert made by hypjam for Cluely">
+            <video class="sto-vid" poster="/assets/video/ugc-cinematic-urus-poster.jpg?v=cfdec571" preload="none" playsinline muted loop controls aria-label="A vertical cinematic car advert made for Cluely">
               <source src="/assets/video/ugc-cinematic-urus.mp4?v=a13e5470" type="video/mp4">
             </video>
           </div>

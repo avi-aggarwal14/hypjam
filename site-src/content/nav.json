@@ -90,11 +90,13 @@
         { "label": "FAQ", "href": "/faq" }
       ],
       "card": {
-        "label": "Inside a shoot day",
+        "label": "How a shoot day runs",
+        "sub": "Brief to edit, step by step",
         "href": "/process",
         "video": "/assets/video/hero-studio-web.mp4",
         "poster": "/assets/video/hero-poster.jpg",
-        "alt": "Looping clip from a hypjam shoot day"
+        "alt": "Illustrative looping clip of a phone shoot",
+        "_note": "The clip is a generated illustration of a phone shoot, not footage of a hypjam production. Nothing on this card may describe it as one."
       }
     }
   },
