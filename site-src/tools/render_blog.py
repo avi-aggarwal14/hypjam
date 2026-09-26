@@ -74,11 +74,16 @@ def write(rel: str, text: str) -> None:
     print("wrote", f"src/pages/{rel}")
 
 
-def meta_block(title: str, description: str, nav: str, fill: str, body_class: str, head_extra: str = "", robots: str = "") -> str:
+def meta_block(title: str, description: str, nav: str, fill: str, body_class: str, head_extra: str = "", robots: str = "",
+               extra: list[tuple[str, str]] | None = None) -> str:
+    """Leading page-meta comments. `extra` adds more keys, e.g. the closing card's
+    cta-h2 / cta-p / cta-label / cta-href / cta-id (partials/page-cta.html)."""
     lines = [f"<!-- title: {esc(title)} -->", f"<!-- description: {esc(description)} -->"]
     if robots:
         lines.append(f"<!-- robots: {robots} -->")
     lines += [f"<!-- nav: {nav} -->", f"<!-- nav-fill: {fill} -->", f"<!-- body-class: {body_class} -->"]
+    for key, value in extra or []:
+        lines.append(f"<!-- {key}: {value} -->")
     if head_extra:
         lines.append(f"<!-- head-extra: {head_extra} -->")
     return "\n".join(lines)
@@ -134,9 +139,12 @@ def derive_keywords(article: dict) -> str:
     return ", ".join(out)
 
 
-def btn_html(label: str, href: str, cls: str = "") -> str:
+def btn_html(label: str, href: str, cls: str = "", cta: str = "") -> str:
+    """A .btn pill. `cta` sets data-cta, which every booking link carries (SPEC §6.5):
+    the phone sticky bar hides while one is on screen."""
     c = ("btn " + cls).strip()
-    return f'<a class="{c}" href="{esc(href)}">{label}<span class="btn__ico">{ARROW}</span></a>'
+    data = f' data-cta="{esc(cta)}"' if cta else ""
+    return f'<a class="{c}"{data} href="{esc(href)}">{label}<span class="btn__ico">{ARROW}</span></a>'
 
 
 # ---------------------------------------------------------------------------
@@ -244,7 +252,7 @@ def render_blog() -> None:
         "{{include:partials/nav.html}}",
         '<main class="blog" data-theme="light">',
         '  <section class="blog-hero" data-nav="dark" data-nav-fill="bg-transparent">',
-        '    <img class="blog-hero-bg" src="/assets/video/hero-poster.jpg" alt="" width="1280" height="720" decoding="async" fetchpriority="high">',
+        # no background frame: the old one was a still of the generated hero clip
         '    <div class="blog-hero-shade" aria-hidden="true"></div>',
         '    <div class="blog-hero-body">',
         f'      <img class="blog-hero-mark" src="{esc(blog["hero"]["mark"])}" alt="" width="52" height="52">',
@@ -283,6 +291,9 @@ def render_blog() -> None:
         # the article's own opening paragraph becomes the deck under the h1,
         # where ref/pages/hotels_aloft-dublin.jpg puts its four-line lede
         lede_html, body_html = md.take_lede(body_html)
+        # an in-article link to the booking page is a text-link CTA: it carries data-cta like
+        # every other booking link, so the phone sticky bar steps aside while it is on screen
+        body_html = re.sub(r'<a class="md-a" href="(/book|/hire)(["#?/])', r'<a class="md-a" data-cta="blog-inline" href="\1\2', body_html)
         deck = lede_html or T(f"blog.articles.{i}.description")
         h2s = [(sid, txt) for sid, txt, lvl in toc if lvl == 2]
 
@@ -336,7 +347,10 @@ def render_blog() -> None:
             )
 
         page = "\n".join([
-            meta_block(a["title"] + " | hypjam", a["description"], "light", "bg-white", "page-blog page-blog-article", ld + crumbs),
+            meta_block(a["title"] + " | hypjam", a["description"], "light", "bg-white", "page-blog page-blog-article", ld + crumbs,
+                       extra=[("cta-h2", T("blog.article_page.cta.h2")), ("cta-p", T("blog.article_page.cta.p")),
+                              ("cta-label", T("blog.article_page.cta.button.label")), ("cta-href", esc(ap["cta"]["button"]["href"])),
+                              ("cta-id", "blog")]),
             GEN % "blog",
             "{{include:partials/head.html}}",
             "{{include:partials/nav.html}}",
@@ -380,11 +394,8 @@ def render_blog() -> None:
             "      " + "\n      ".join(more),
             "    </div>",
             "  </section>",
-            '  <section class="blog-cta section--sand-s">',
-            f'    <h2 class="blog-cta-h2 t-h2">{T("blog.article_page.cta.h2")}</h2>',
-            f'    <p class="blog-cta-p">{T("blog.article_page.cta.p")}</p>',
-            "    " + btn_html(T("blog.article_page.cta.button.label"), ap["cta"]["button"]["href"], "btn--lg"),
-            "  </section>",
+            # every post ends on the shared closing card (SPEC §8 rank 11)
+            "{{include:partials/page-cta.html}}",
             "</main>",
             "{{include:partials/footer.html}}",
             "{{include:partials/scripts.html}}",
@@ -583,7 +594,7 @@ def render_process() -> None:
     after = proc_week_section("process.after", p["after"], T("process.weeks.0.guides_label"))
 
     fb = p["first_brief"]
-    table = ['<div class="proc-tbl"><table class="proc-table"><thead><tr>' + "".join(
+    table = ['<div class="proc-tbl" tabindex="0" role="region" aria-label="Your first brief, step by step"><table class="proc-table"><thead><tr>' + "".join(
         f'<th class="proc-th">{T(f"process.first_brief.columns.{ci}")}</th>' for ci in range(len(fb["columns"]))) + "</tr></thead><tbody>"]
     for ri, row in enumerate(fb["rows"]):
         table.append("<tr>" + "".join(f'<td class="proc-td">{T(f"process.first_brief.rows.{ri}.{ci}")}</td>' for ci in range(len(row))) + "</tr>")
@@ -593,6 +604,8 @@ def render_process() -> None:
         f'<div class="proc-ref-card"><span class="proc-ref-ico">{icon(c.get("icon", "tick"))}</span><h3 class="proc-ref-h3">{T(f"process.needs.cards.{ci}.h3")}</h3><p class="proc-ref-p">{T(f"process.needs.cards.{ci}.p")}</p></div>'
         for ci, c in enumerate(p["needs"]["cards"]))
 
+    # only `includes` renders; `held` carries inclusions not yet confirmed [AVI] and is
+    # never shown (creator counts, tracker, debrief, dedicated roster/producer, priority)
     pkgs = []
     for pi, pk in enumerate(p["packages"]["items"]):
         pp = f"process.packages.items.{pi}"
@@ -601,6 +614,14 @@ def render_process() -> None:
             f'<div class="proc-pkg"><h3 class="proc-pkg-name">{T(pp + ".name")}</h3><p class="proc-pkg-price">{T(pp + ".price")}</p>'
             f'<p class="proc-pkg-videos">{T(pp + ".videos")}</p><ul class="proc-ul proc-pkg-list">{inc}</ul>'
             f'<p class="proc-pkg-best"><span class="proc-pkg-best-k">Best for</span>{T(pp + ".best_for")}</p></div>')
+
+    # the most price-aware moment on the site gets the booking button (SPEC §8 rank 8)
+    pcta = p["packages"].get("cta")
+    pkg_cta = ""
+    if pcta:
+        pkg_cta = ('      <div class="proc-pkgs-cta">'
+                   + btn_html(T("process.packages.cta.label"), pcta["href"], "btn--lg btn--cta", "packages")
+                   + f'<p class="proc-pkgs-cta-note">{T("process.packages.cta.note")}</p></div>')
 
     faqs = "".join(
         f'<div class="proc-faq"><h3 class="proc-faq-q">{T(f"process.faqs.items.{qi}.q")}</h3><p class="proc-faq-a">{T(f"process.faqs.items.{qi}.a")}</p></div>'
@@ -628,10 +649,12 @@ def render_process() -> None:
         "{{include:partials/head.html}}",
         '<main class="proc" data-theme="sand">',
         '  <header class="proc-head">',
-        f'    <a class="proc-home" href="{esc(p["docs_header"]["home"]["href"])}"><img src="/assets/brand/logos/hypjam-icon.svg" alt="" width="32" height="32"><span>{T("process.docs_header.home.label")}</span></a>',
+        f'    <a class="proc-home" href="{esc(p["docs_header"]["home"]["href"])}" aria-label="{esc(p["docs_header"]["home"]["label"])}"><img src="/assets/brand/logos/hypjam-icon.svg" alt="" width="32" height="32"><span>{T("process.docs_header.home.label")}</span></a>',
         '    <nav class="proc-head-links" aria-label="Process links">',
         "      " + "".join(
-            f'<a class="proc-head-link{" proc-head-link--solid" if li == len(p["docs_header"]["links"]) - 1 else ""}" href="{esc(l["href"])}">{T(f"process.docs_header.links.{li}.label")}</a>'
+            f'<a class="proc-head-link{" proc-head-link--solid" if li == len(p["docs_header"]["links"]) - 1 else ""}"'
+            + (' data-cta="process-header"' if l["href"].startswith("/book") else "")
+            + f' href="{esc(l["href"])}">{T(f"process.docs_header.links.{li}.label")}</a>'
             for li, l in enumerate(p["docs_header"]["links"])),
         "    </nav>",
         "  </header>",
@@ -652,7 +675,7 @@ def render_process() -> None:
         f'          <p class="proc-hud-title">{T("hero.stops.0.title")}</p>',
         f'          <p class="proc-hud-desc">{T("hero.stops.0.description")}</p>',
         '          <div class="proc-hud-hr" aria-hidden="true"></div>',
-        f'          <div class="proc-hud-panel">{{{{panel:{panel}}}}}</div>',
+        f'          <div class="proc-hud-panel"><img src="/assets/img/process/{panel}.jpg" alt="" width="642" height="368" loading="lazy" decoding="async"></div>',
         "        </div>",
         "      </div>",
         "    </section>",
@@ -681,6 +704,7 @@ def render_process() -> None:
         f'      <h2 class="proc-h2">{T("process.packages.h2")}</h2>',
         f'      <p class="proc-lead">{T("process.packages.p")}</p>',
         f'      <div class="proc-pkgs">{"".join(pkgs)}</div>',
+        pkg_cta,
         f'      <p class="proc-note">{T("process.packages.note")}</p>',
         "    </section>",
         f'    <section class="proc-faqs" id="{esc(p["faqs"]["id"])}">',
@@ -722,15 +746,19 @@ def render_process() -> None:
 # faq
 # ---------------------------------------------------------------------------
 
-def faq_items(base: str, items: list, cls: str) -> str:
+def faq_items(base: str, items: list, cls: str, open_first: bool = False) -> str:
+    """Native <details> rows. open_first opens the first row (on /faq that puts the
+    price answer on screen straight away, as the homepage FAQ does: SPEC §3.7)."""
     out = []
     for qi, it in enumerate(items):
         ip = f"{base}.items.{qi}"
         link = ""
         if it.get("link"):
-            link = f'<a class="arrow-link {cls}-a-link" href="{esc(it["link"]["href"])}">{T(ip + ".link.label")} {ARROW}</a>'
+            href = it["link"]["href"]
+            data = f' data-cta="{cls}-answer"' if href.startswith("/book") else ""
+            link = f'<a class="arrow-link {cls}-a-link"{data} href="{esc(href)}">{T(ip + ".link.label")} {ARROW}</a>'
         out.append(
-            f'<details class="{cls}-item"><summary class="{cls}-q"><span class="{cls}-q-text">{T(ip + ".q")}</span><span class="{cls}-plus" aria-hidden="true"></span></summary>'
+            f'<details class="{cls}-item"{" open" if open_first and qi == 0 else ""}><summary class="{cls}-q"><span class="{cls}-q-text">{T(ip + ".q")}</span><span class="{cls}-plus" aria-hidden="true"></span></summary>'
             f'<div class="{cls}-a"><p class="{cls}-a-p">{T(ip + ".a")}</p>{link}</div></details>')
     return "\n        ".join(out)
 
@@ -748,18 +776,28 @@ def render_faq() -> None:
         f'<a class="faq-side-link" href="#{esc(g["id"])}">{T(f"faq.groups.{gi}.label")}<span class="faq-side-n">{len(g["items"])}</span></a>'
         for gi, g in enumerate(groups))
 
+    # the booking band sits straight after the brand group, before the creator group
+    # (SPEC §8 rank 9); the page then ends on the shared closing card
+    band = f["band"]
+    band_html = "\n".join([
+        '      <div class="faq-band">',
+        f'        <h2 class="faq-band-h2">{T("faq.band.h2")}</h2>',
+        f'        <p class="faq-band-p">{T("faq.band.p")}</p>',
+        '        <div class="faq-band-row">'
+        + btn_html(T("faq.band.button.label"), band["button"]["href"], "btn--lg btn--cta", "faq")
+        + f'<p class="faq-band-mail">{T("faq.band.email.text")} <a class="faq-band-mail-a" href="{esc(band["email"]["href"])}">{T("faq.band.email.label")}</a></p></div>',
+        "      </div>",
+    ])
+
     blocks = []
     for gi, g in enumerate(groups):
         blocks.append(
             f'      <div class="faq-group" id="{esc(g["id"])}" data-accordion>\n'
             f'        <h2 class="faq-h2">{T(f"faq.groups.{gi}.h2")}</h2>\n'
-            f'        {faq_items(f"faq.groups.{gi}", g["items"], "faq")}\n'
+            f'        {faq_items(f"faq.groups.{gi}", g["items"], "faq", open_first=True)}\n'
             "      </div>")
-
-    buttons = []
-    for bi, b in enumerate(f["cta"]["buttons"]):
-        cls = "btn--lg" if b.get("primary") else "btn--lg btn--ghost"
-        buttons.append(btn_html(T(f"faq.cta.buttons.{bi}.label"), b["href"], cls))
+        if g["id"] == "brands":
+            blocks.append(band_html)
 
     # FAQPage mainEntity is derived straight from `groups` above — the same Q&A actually
     # rendered on this page, never a set imported from elsewhere (SEO-CONTRACT §"Honesty").
@@ -791,11 +829,7 @@ def render_faq() -> None:
         "\n".join(blocks),
         "    </div>",
         "  </section>",
-        '  <section class="faq-cta section--sand-s">',
-        f'    <h2 class="faq-cta-h2 t-h2">{T("faq.cta.h2")}</h2>',
-        f'    <p class="faq-cta-p">{T("faq.cta.p")}</p>',
-        f'    <div class="faq-cta-btns">{"".join(buttons)}</div>',
-        "  </section>",
+        "{{include:partials/page-cta.html}}",
         "</main>",
         ACCORDION_JS,
         "<script>(function(){var links=[].slice.call(document.querySelectorAll('.faq-side-link'));var groups=links.map(function(a){return document.getElementById((a.getAttribute('href')||'').slice(1));});"
@@ -831,6 +865,14 @@ def render_agency() -> None:
         + "</div>"
         for fi, fc in enumerate(a["editorial"]["facts"]))
 
+    # the creator route is one plain-text line at the end of the values section, well away
+    # from either booking button (SPEC §6.1, §8 rank 10: "Book a call" is the only button)
+    cr = a.get("creator")
+    creator_line = ""
+    if cr:
+        creator_line = (f'    <p class="agency-creator">{T("agency.creator.text")} '
+                        f'<a class="agency-creator-a" href="{esc(cr["href"])}">{T("agency.creator.label")}</a></p>\n')
+
     secs = []
     for si, s in enumerate(a["sections"]):
         sp = f"agency.sections.{si}"
@@ -845,13 +887,8 @@ def render_agency() -> None:
             f'    <p class="eyebrow agency-eyebrow">{T(sp + ".eyebrow")}</p>\n'
             f'    <div class="agency-sec-body">{"".join(right)}</div>\n'
             + (f"    {rows}\n" if rows else "")
+            + (creator_line if s["id"] == "values" else "")
             + "  </section>")
-
-    buttons = []
-    for bi, b in enumerate(a["cta"]["buttons"]):
-        buttons.append(btn_html(T(f"agency.cta.buttons.{bi}.label"), b["href"], "btn--lg" if b.get("primary") else "btn--lg btn--ghost"))
-    primary = next((b for b in a["cta"]["buttons"] if b.get("primary")), a["cta"]["buttons"][0])
-    pidx = a["cta"]["buttons"].index(primary)
 
     ld = jsonld({
         "@context": "https://schema.org",
@@ -870,7 +907,8 @@ def render_agency() -> None:
     ])
 
     page = "\n".join([
-        meta_block(a["meta"]["title"], a["meta"]["description"], "light", "bg-white", "page-agency", ld + crumbs),
+        meta_block(a["meta"]["title"], a["meta"]["description"], "light", "bg-white", "page-agency", ld + crumbs,
+                   extra=[("cta-id", "agency")]),
         GEN % "agency",
         "{{include:partials/head.html}}",
         "{{include:partials/nav.html}}",
@@ -879,12 +917,12 @@ def render_agency() -> None:
         f'    <p class="agency-hero-eyebrow t-eyebrow">{T("agency.hero.eyebrow")}</p>',
         f'    <h1 class="agency-h1 t-title">{T("agency.hero.h1")}</h1>',
         f'    <p class="agency-intro">{T("agency.hero.intro")}</p>',
-        "    " + btn_html(T(f"agency.cta.buttons.{pidx}.label"), primary["href"]),
+        "    " + btn_html(T("agency.hero.cta.label"), a["hero"]["cta"]["href"], "btn--lg btn--cta", "agency-hero"),
         "  </section>",
+        # facts only: the inlined HQ drawing (~620 KB) implied premises hypjam does not have (SPEC S7)
         '  <section class="agency-editorial">',
-        f'    <div class="agency-drawing" role="img" aria-label="{esc(a["editorial"]["image"]["alt"])}">{{{{drawing}}}}</div>',
         '    <div class="agency-facts-row">',
-        f'      <p class="agency-caption">{T("agency.editorial.caption")}</p>',
+        f'      <p class="eyebrow agency-eyebrow">{T("agency.editorial.label")}</p>',
         f'      <div class="agency-facts">{facts}</div>',
         "    </div>",
         "  </section>",
@@ -896,12 +934,8 @@ def render_agency() -> None:
         f'      <figcaption class="agency-founder-cap"><span class="agency-founder-name">{T("agency.founder.name")}</span><span class="agency-founder-role">{T("agency.founder.role")}</span></figcaption>',
         "    </figure>",
         "  </section>",
-        '  <section class="agency-cta">',
-        f'    <img class="agency-cta-art" src="/assets/img/hq-footer.svg" alt="{esc(a["cta"]["art"]["alt"])}" width="280" height="120" loading="lazy" decoding="async" onerror="this.classList.add(\'is-missing\')">',
-        f'    <h2 class="agency-cta-h2 t-h2">{T("agency.cta.h2")}</h2>',
-        f'    <p class="agency-cta-p">{T("agency.cta.p")}</p>',
-        f'    <div class="agency-cta-btns">{"".join(buttons)}</div>',
-        "  </section>",
+        # the shared closing card, its button carrying data-cta="agency" (cta-id above)
+        "{{include:partials/page-cta.html}}",
         "</main>",
         "{{include:partials/footer.html}}",
         "{{include:partials/scripts.html}}",

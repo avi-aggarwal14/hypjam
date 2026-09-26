@@ -3,7 +3,11 @@
    ref/index.html): pt 128 / pb 40, 14px leading-none, headline 42/1.1/-.84,
    36px CTA pill, 1px white/15 rule with 64px margins, left column flex 1.2 +
    six-column grid flex 2 (gap-x clamp(.75rem,2.5vw,2.5rem), gap-y 40),
-   20px column gaps, bottom row mt 64 with the 280px HQ drawing and a badge.
+   20px column gaps, then a bottom bar on a hairline: copyright left, a plain
+   text line right (no drawing, no seal: SPEC S6/S7).
+   The headline row is the filled .btn--cta booking button (SPEC §6.2 #10). It
+   and its rule are hidden wherever a closing card (.page-section--closing)
+   already sits above, so two booking bands never stack (SPEC §8 rank 4).
    Breakpoints: max-lp 1024, max-bp 800, max-tp 600.
    ========================================================================== */
 
@@ -42,43 +46,24 @@
 }
 @media (max-width: 600px) { .foot-headline { font-size: 30px; letter-spacing: var(--ls-display); line-height: 1.267; } }
 
-.foot-cta {
-  display: flex;
-  flex-shrink: 0;
-  align-items: center;
-  height: 36px;
-  gap: 12px;
-  padding: 0 6px 0 18px;
-  border-radius: 9999px;
-  font-size: 14px;
-  line-height: 1;
-  color: #fff;
-  background-color: rgba(255, 255, 255, .12);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background-color .3s, color .3s;
-}
-.foot-cta:hover { background-color: rgba(255, 255, 255, .24); color: var(--sand-m, #dad9d4); }
-.foot-cta:focus-visible,
+/* the booking button is the shared .btn .btn--lg .btn--cta atom (03-ui.css);
+   only its flex behaviour in this row is set here */
+.foot-cta { flex-shrink: 0; }
 .foot-link:focus-visible,
 .foot-col-title:focus-visible,
 .foot-logo-link:focus-visible { outline: 2px solid var(--jam, #ff6f1f); outline-offset: 2px; }
-.foot-cta-circle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 9999px;
-  background-color: var(--jam, #ff6f1f);
-  color: #000;
-}
-.foot-cta-circle svg { display: block; flex-shrink: 0; }
+.foot .foot-cta:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 
 .foot-rule { margin: 64px 0; height: 1px; width: 100%; background-color: rgba(255, 255, 255, .15); }
 @media (max-width: 800px) { .foot-rule { margin: 40px 0; } }
+
+/* a closing card already asks for the call on this page: drop the footer's own
+   headline row and its rule (home does the same in 36-home.css). [data-closing]
+   marks any other section that is the page's own booking ask (the 404). */
+body:has(.page-section--closing) .foot-top,
+body:has(.page-section--closing) .foot-rule,
+body:has([data-closing]) .foot-top,
+body:has([data-closing]) .foot-rule { display: none; }
 
 .foot-body { display: flex; width: 100%; gap: 48px; }
 @media (max-width: 1024px) { .foot-body { flex-direction: column; gap: 48px; } }
@@ -112,22 +97,16 @@ a.foot-col-title:hover { color: var(--sand-l, #bcbbb4); }
 
 .foot-bottom {
   margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, .15);
   display: flex;
   width: 100%;
-  align-items: flex-end;
+  flex-wrap: wrap;
+  align-items: baseline;
   justify-content: space-between;
-  gap: 48px;
+  gap: 12px 48px;
 }
-@media (max-width: 800px) { .foot-bottom { margin-top: 40px; flex-direction: column; align-items: flex-start; gap: 32px; } }
+@media (max-width: 800px) { .foot-bottom { margin-top: 48px; flex-direction: column; align-items: flex-start; gap: 10px; } }
 
-.foot-left { display: flex; min-width: 0; flex-direction: column; gap: 20px; }
-.foot-hq-slot { display: block; width: 280px; max-width: 100%; min-height: 120px; }
-.foot-hq { display: block; width: 280px; max-width: 100%; height: auto; }
-.foot-hq.is-missing { visibility: hidden; } /* keeps the box until the drawing agent's file lands */
-@media (max-width: 800px) { .foot-hq-slot { width: 200px; min-height: 86px; } .foot-hq { width: 200px; } }
-.foot-copy { margin: 0; line-height: 1.5; color: rgba(255, 255, 255, .6); }
-
-.foot-badge { display: flex; flex-shrink: 0; align-items: center; gap: 16px; color: rgba(255, 255, 255, .6); }
-.foot-seal { display: block; width: 36px; height: 36px; flex-shrink: 0; }
-.foot-seal svg { display: block; width: 100%; height: 100%; }
-.foot-badge-text { font-size: 14px; line-height: 1; }
+.foot-copy,
+.foot-badge { margin: 0; font-size: 14px; line-height: 1.5; color: rgba(255, 255, 255, .6); }

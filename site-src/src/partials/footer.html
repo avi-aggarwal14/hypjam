@@ -1,7 +1,8 @@
-<footer id="footer" class="foot" data-nav="dark">
+<footer id="footer" class="foot" data-nav="dark" data-nav-fill="bg-black">
+  <!-- headline row: hidden on home and on any page with a closing card (90-footer.css), so two booking bands never stack -->
   <div class="foot-top">
-    <h2 class="foot-headline">{{content:footer.headline|Bring directed UGC to your brand.}}</h2>
-    <a href="{{content:footer.cta.href|/book}}" class="foot-cta">{{content:footer.cta.label|Book a call}}<span class="foot-cta-circle"><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    <h2 class="foot-headline">{{content:footer.headline|Tell us what you're launching.}}</h2>
+    <a href="{{content:footer.cta.href|/book}}" class="btn btn--lg btn--cta foot-cta" data-cta="footer">{{content:footer.cta.label|Book a call}}<span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
   </div>
 
   <div class="foot-rule" aria-hidden="true"></div>
@@ -61,14 +62,19 @@
   </div>
 
   <div class="foot-bottom">
-    <div class="foot-left">
-      <!-- /assets/img/hq-footer.svg is produced by the drawing agent; until it exists the slot keeps its 280x120 box -->
-      <span class="foot-hq-slot"><img src="/assets/img/hq-footer.svg" alt="{{content:footer.drawing.alt|Line drawing of hypjam's two HQ buildings}}" class="foot-hq" width="210" height="90" loading="lazy" decoding="async" onerror="this.classList.add('is-missing')"></span>
-      <p class="foot-copy">{{content:footer.copyrightLines.0|© 2026 hypjam.}}<br>{{content:footer.copyrightLines.1|All rights reserved.}}</p>
-    </div>
-    <div class="foot-badge">
-      <span class="foot-seal" role="img" aria-label="{{content:footer.badge.sealAlt|Line-drawn seal: a phone}}"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="18" r="17"/><circle cx="18" cy="18" r="13.5" stroke-dasharray="1.6 2.6"/><rect x="13.75" y="9.75" width="8.5" height="16.5" rx="1.8"/><path d="M16.5 12.25h3"/><circle cx="18" cy="23.6" r=".9" fill="currentColor" stroke="none"/><path d="M8.5 27.5 11 25M27.5 27.5 25 25"/></svg></span>
-      <span class="foot-badge-text">{{content:footer.badge.text|Shot on phones, directed by people}}</span>
-    </div>
+    <p class="foot-copy">{{content:footer.copyright|© 2026 hypjam. All rights reserved.}}</p>
+    <!-- the old badge slot: plain text only (no seal or mark). The company disclosure line
+         (registered part of the UK, number, office) goes here once hypjam is incorporated. -->
+    <p class="foot-badge">{{content:footer.badge.text|UGC agency · London}}</p>
   </div>
 </footer>
+
+<!-- the phone call-to-action bar. Appears once the hero's own CTA has scrolled away and
+     hides whenever another "Book a call" (anything marked data-cta) or the footer is on
+     screen, so there is never a second button competing with one already in view.
+     Phones and small tablets only (≤ 760px), 56px tall at most. Copy: content/footer.json → sticky.
+     Behaviour: src/js/24-sticky-cta.js -->
+<div class="scta" data-scta aria-hidden="true" inert>
+  <p class="scta-text"><span class="scta-t">{{content:footer.sticky.title|30-minute call with Avi}}</span><span class="scta-s">{{content:footer.sticky.sub|Free · Google Meet · no deck}}</span></p>
+  <a href="{{content:footer.sticky.href|/book}}" class="btn btn--cta scta-btn">{{content:footer.sticky.label|Book a call}}<span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+</div>

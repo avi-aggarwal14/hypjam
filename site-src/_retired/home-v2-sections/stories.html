@@ -1,0 +1,94 @@
+<!-- ======================================================================
+     home/stories.html — the reference site's "Trusted by leading hotels / running every
+     shift on the reference site" carousel (ref/index.html, ref/shots/s27–s28,
+     ref/mobile/m08), rebuilt as the four RESERVED brand-story slots of
+     CONTRACT §10. Anatomy is the reference site's story-card, field for field:
+       .sto-media  = the 377×440 image box (rounded 8, shadow) — ours is a
+                     dashed hairline frame on a dark surface holding a
+                     line-drawn phone (inline SVG); inside it, where the reference site's
+                     hover overlay puts them: the "Read" pill top-left (inert,
+                     aria-disabled) and the quote + attribution bottom-left
+                     (shown at rest — there is no photo to reveal them over;
+                     the attribution is the jam-dotted .tag-soon, as on the
+                     reserved quote slot).
+       .sto-foot   = the reference site's logo-left / meta-right row (24px mark, 13px/45%).
+     Every string comes from content/home.json → stories. The four cards are
+     the originals; src/js/32-stories.js clones them for the infinite loop and
+     exposes window.hypjamStories.
+     ====================================================================== -->
+<section id="stories" class="sto" data-nav="image" data-nav-fill="bg-black" data-sto>
+
+  <div class="sto-head">
+    <h2 class="sto-h2 t-h2"><span class="sto-h2-l1">{{content:home.stories.heading.line1}}</span><br><span class="sto-h2-l2 t-h2-dim">{{content:home.stories.heading.line2}}</span></h2>
+    <div class="sto-nav">
+      <button type="button" class="sto-arrow sto-arrow--prev" aria-label="{{content:home.stories.prev|Previous story}}" data-sto-prev><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M6 3.2 10.6 8 6 12.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button type="button" class="sto-arrow sto-arrow--next" aria-label="{{content:home.stories.next|Next story}}" data-sto-next><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M6 3.2 10.6 8 6 12.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+
+  <div class="sto-mask" data-sto-mask aria-roledescription="carousel" aria-label="{{content:home.stories.aria|Brand stories}}">
+    <ul class="sto-track" data-sto-track>
+
+      <li class="sto-card sto-card--filled" data-sto-card data-slot="{{content:home.stories.cards.0.slot|1}}">
+        <!-- Slot 1 is filled with real work. The clip is 1080x1920 and is shown at a
+             true 9:16 so nothing is cropped; preload="none" means the file is only
+             fetched if a visitor presses play, which keeps it off the homepage's
+             initial load. -->
+        <div class="sto-media sto-media--filled">
+          <div class="sto-media-in sto-media-in--filled">
+            <video class="sto-vid" poster="{{content:home.stories.cards.0.poster}}" preload="none" playsinline muted loop controls aria-label="{{content:home.stories.cards.0.imageAlt}}">
+              <source src="{{content:home.stories.cards.0.video}}" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="sto-foot">
+          <img class="sto-mark" src="/assets/brand/logos/hypjam-icon.svg" alt="hypjam" width="24" height="24" loading="lazy" decoding="async" draggable="false">
+          <p class="sto-meta">{{content:home.stories.cards.0.meta}}</p>
+        </div>
+      </li>
+
+      <li class="sto-card sto-card--filled" data-sto-card data-slot="{{content:home.stories.cards.1.slot|2}}">
+        <div class="sto-media sto-media--filled">
+          <div class="sto-media-in sto-media-in--filled">
+            <video class="sto-vid" poster="{{content:home.stories.cards.1.poster}}" preload="none" playsinline muted loop controls aria-label="{{content:home.stories.cards.1.imageAlt}}">
+              <source src="{{content:home.stories.cards.1.video}}" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="sto-foot">
+          <img class="sto-mark" src="/assets/brand/logos/hypjam-icon.svg" alt="hypjam" width="24" height="24" loading="lazy" decoding="async" draggable="false">
+          <p class="sto-meta">{{content:home.stories.cards.1.meta}}</p>
+        </div>
+      </li>
+
+      <li class="sto-card sto-card--filled" data-sto-card data-slot="{{content:home.stories.cards.2.slot|3}}">
+        <div class="sto-media sto-media--filled">
+          <div class="sto-media-in sto-media-in--filled">
+            <video class="sto-vid" poster="{{content:home.stories.cards.2.poster}}" preload="none" playsinline muted loop controls aria-label="{{content:home.stories.cards.2.imageAlt}}">
+              <source src="{{content:home.stories.cards.2.video}}" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="sto-foot">
+          <img class="sto-mark" src="/assets/brand/logos/hypjam-icon.svg" alt="hypjam" width="24" height="24" loading="lazy" decoding="async" draggable="false">
+          <p class="sto-meta">{{content:home.stories.cards.2.meta}}</p>
+        </div>
+      </li>
+
+      <li class="sto-card sto-card--filled" data-sto-card data-slot="{{content:home.stories.cards.3.slot|4}}">
+        <div class="sto-media sto-media--filled">
+          <div class="sto-media-in sto-media-in--filled">
+            <video class="sto-vid" poster="{{content:home.stories.cards.3.poster}}" preload="none" playsinline muted loop controls aria-label="{{content:home.stories.cards.3.imageAlt}}">
+              <source src="{{content:home.stories.cards.3.video}}" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="sto-foot">
+          <img class="sto-mark" src="/assets/brand/logos/hypjam-icon.svg" alt="hypjam" width="24" height="24" loading="lazy" decoding="async" draggable="false">
+          <p class="sto-meta">{{content:home.stories.cards.3.meta}}</p>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</section>

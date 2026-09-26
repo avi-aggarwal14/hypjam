@@ -9,12 +9,18 @@ JSON's `hero_visual` / `visual` / `icon` spec strings (small CSS/SVG UI
 mocks, never marketing copy) and the ↳ / + / × glyphs of the accordions.
 
 Structure (the reference site /product and /product/*, one to one — CONTRACT §3):
-  index   hero · editorial image + platforms row · two grouped numbered lists ·
-          sand "See it in action" (two reserved film slots) · closing CTA card
-  page    split hero (crumb · h1 · intro · pill | mock panel) + platforms row ·
-          centred statement + four count-up facts · six alternating feature blocks ·
-          2×2 problems · sand four-step strip · white 2×3 comparison ·
-          quote card + FAQ · CTA card
+  index   hero (filled Book-a-call button + micro line) · editorial image +
+          platforms row · two grouped numbered lists · closing CTA card
+  page    split hero (crumb · h1 · intro · filled Book-a-call button + micro
+          line | mock panel) + platforms row · centred statement + four
+          count-up facts · six alternating feature blocks · 2×2 problems ·
+          sand four-step strip · white 2×3 comparison · founder quote card
+          (with an example document, tagged "Example") + FAQ · CTA card
+
+Every booking button is `btn btn--lg btn--cta` with a data-cta attribute
+(SPEC §6.2 row 11). No reserved, placeholder or "coming soon" slot is ever
+rendered (SPEC §9 item 2): the retired "See it in action" film slots are
+gone and a quote whose kind is not 'founder' renders nothing.
 
 Aliases (items[].aliases) are NOT emitted as pages: every nav/footer/home
 href already uses the short slugs (content/AUDIT.md #12), and a second page
@@ -53,9 +59,26 @@ def c(path: str, fallback: str | None = None) -> str:
     return "{{content:services." + path + "}}"
 
 
-def btn(label: str, href: str, extra: str = "") -> str:
-    return (f'<a class="btn btn--light{(" " + extra) if extra else ""}" href="{href}">{label}'
+def cta_btn(label: str, href: str, cta: str = "svc-hero") -> str:
+    """The filled booking button (SPEC §6.2 row 11): same markup as partials/page-cta.html."""
+    return (f'<a class="btn btn--lg btn--cta" data-cta="{cta}" href="{href}">{label}'
             f'<span class="btn__ico">{ARROW}</span></a>')
+
+
+def hero_cta(label: str, href: str) -> str:
+    """Hero button plus the one-line micro copy under it ("From £1,800 a month · 30 minutes with Avi")."""
+    return (f'<div class="page-hero__cta">{cta_btn(label, href)}'
+            f'<p class="page-hero__micro">{c("cta_button.micro", "From £1,800 a month · 30 minutes with Avi")}</p></div>')
+
+
+def example_media(src: str, alt: str, tag: str) -> str:
+    """The founder card's right column: an example document from our templates
+    (assets/img/process/*.jpg, 642×370 on #1a1a1a), shown whole on a matching
+    dark panel with a small 'Example' tag. Shared with render_solutions.py;
+    styled in 41-services.css (.page-quote__media--doc)."""
+    return ('<div class="page-quote__media page-quote__media--doc">'
+            f'<img class="page-quote__doc" src="{src}" alt="{alt}" width="642" height="370" loading="lazy" decoding="async">'
+            f'<span class="page-quote__tag" aria-hidden="true">{tag}</span></div>')
 
 
 def eyebrow_split(eyebrow_html: str, main_html: str, cls: str = "") -> str:
@@ -1214,11 +1237,14 @@ def render_index(data: dict) -> str:
     out.append(f'<p class="page-eyebrow page-eyebrow--caps page-hero__eyebrow">{c("index.eyebrow")}</p>')
     out.append(f'<h1 class="page-hero__title">{c("index.h1")}</h1>')
     out.append(f'<p class="page-hero__intro">{c("index.intro")}</p>')
-    out.append(f'<div class="page-hero__cta">{btn(c("index.cta.label"), c("index.cta.href"))}</div>')
+    out.append(hero_cta(c("index.cta.label"), c("index.cta.href")))
     out.append("</div></div></section>")
     # image + platforms
     out.append('<section class="page-section page-section--image">')
-    out.append(f'<img class="page-image" src="{c("index.image.src")}" alt="{c("index.image.alt")}" width="1864" height="1048" decoding="async" fetchpriority="high">')
+    # optional: the stock-style "studio" photo was retired (26 Sep 2026) because it implied
+    # premises and a team hypjam doesn't have
+    if ((data.get("index") or {}).get("image") or {}).get("src"):
+        out.append(f'<img class="page-image" src="{c("index.image.src")}" alt="{c("index.image.alt")}" width="1864" height="1048" decoding="async" fetchpriority="high">')
     out.append("{{include:partials/platforms-row.html}}")
     out.append("</section>")
     # groups
@@ -1236,19 +1262,8 @@ def render_index(data: dict) -> str:
                        f'<span class="page-list__explore arrow-link arrow-link--nudge">{c(p + ".explore")}{ARROW}</span></a></li>')
         out.append("</ul></div>")
     out.append("</section>")
-    # films (reserved slots)
-    out.append('<section class="page-section page-section--sand">')
-    out.append(eyebrow_split(c("index.films.eyebrow"), f'<h2 class="page-h2">{c("index.films.h2")}</h2>'))
-    out.append('<div class="page-media">')
-    for k, film in enumerate(idx["films"]["items"]):
-        p = f"index.films.items.{k}"
-        out.append('<div class="page-media__card">'
-                   f'<div class="page-media__frame reserved reserved--card" role="img" aria-label="{c(p + ".title")} — {c(p + ".note")}">'
-                   '<div class="reserved__area"><span class="reserved__phone reserved__phone--lg" aria-hidden="true"></span></div>'
-                   f'<span class="tag-soon tag-soon--static">{c(p + ".note")}</span></div>'
-                   f'<div class="page-media__meta"><div><p class="page-media__eyebrow">{c(p + ".eyebrow")}</p><h3 class="page-media__title">{c(p + ".title")}</h3></div>'
-                   f'<span class="page-media__action arrow-link" aria-disabled="true">{c(p + ".action")}{ARROW}</span></div></div>')
-    out.append("</div></section>")
+    # (the sand "See it in action" block of two reserved film slots is retired:
+    #  no held-open proof slots on buyer-facing pages, SPEC §9 item 2)
     out.append(TAIL)
     return "\n".join(out)
 
@@ -1270,7 +1285,7 @@ def render_page(data: dict, i: int, item: dict) -> str:
                f'<span class="page-hero__crumb-current">{c(p + ".eyebrow")}</span></p>')
     out.append(f'<h1 class="page-hero__title">{c(p + ".h1")}</h1>')
     out.append(f'<p class="page-hero__intro">{c(p + ".intro")}</p>')
-    out.append(f'<div class="page-hero__cta">{btn(c("cta_button.label"), c("cta_button.href"))}</div>')
+    out.append(hero_cta(c("cta_button.label"), c("cta_button.href")))
     out.append('</div><div class="page-hero__visual" aria-hidden="true">')
     out.append(build_mock(item["hero_visual"], hero=True))
     out.append("</div></div>")
@@ -1337,20 +1352,17 @@ def render_page(data: dict, i: int, item: dict) -> str:
                    f'<p class="page-compare__body">{c(cp + ".body")}</p>{link}</div>')
     out.append("</div></section>")
     # quote + FAQ
-    out.append('<section class="page-section page-section--faq">')
-    q = item["quote"]
+    q = item.get("quote") or {}
+    solo = "" if q.get("kind") == "founder" else " page-section--faq-solo"
+    out.append(f'<section class="page-section page-section--faq{solo}">')
     qp = f"{p}.quote"
-    if q.get("kind") == "reserved":
-        out.append('<figure class="page-quote page-quote--reserved"><div class="page-quote__body">'
-                   f'<blockquote class="page-quote__text">{c(qp + ".text")}</blockquote>'
-                   f'<figcaption class="page-quote__attr"><span class="tag-soon tag-soon--static">{c(qp + ".name")}</span></figcaption></div>'
-                   '<div class="page-quote__media"><span class="reserved__phone reserved__phone--lg" aria-hidden="true"></span></div></figure>')
-    else:
+    # only the founder's own statement renders; a 'reserved' (held-open) quote renders nothing
+    if q.get("kind") == "founder":
         out.append('<figure class="page-quote"><div class="page-quote__body">'
                    f'<blockquote class="page-quote__text">“{c(qp + ".text")}”</blockquote>'
                    f'<figcaption class="page-quote__attr"><p class="page-quote__name">{c(qp + ".name")}</p>'
                    f'<p class="page-quote__role">{c(qp + ".role")} · {c(qp + ".meta")}</p></figcaption></div>'
-                   f'<div class="page-quote__media"><img src="{c(qp + ".image.src")}" alt="{c(qp + ".image.alt")}" width="620" height="450" loading="lazy" decoding="async"></div></figure>')
+                   f'{example_media(c(qp + ".image.src"), c(qp + ".image.alt"), c(qp + ".image.tag", "Example"))}</figure>')
     faq_items = []
     for k in range(len(item["faq"])):
         fq = f"{p}.faq.{k}"

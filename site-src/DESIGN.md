@@ -6,6 +6,25 @@ Everything below was read out of the reference site's shipped code or measured o
 Where the CONTRACT's estimate and the reference site's real value differ, **the reference site's value is what is encoded** and the
 difference is flagged in §10.
 
+> **Homepage, since 2026-09-26 (conversion redesign; final build spec:
+> `~/Desktop/UGC Agency/research/conversion-redesign/SPEC.md`).** The pinned hotel walkthrough,
+> its count-ups and the home carousels are retired (`_retired/`). Order: `hero` (terms row, one
+> filled "Book a 30-min call", three example ads, black + jam glow, no background video) →
+> `process` (the sprint sheet: Day 0 → Day 14 ruler, five steps with "Your part", three contract
+> clauses; a vertical rail on phones) → `pricing` (includes list, three flat cards, "Right for you
+> if / Probably not for you if", not-included line) → `compare` (Playhead table from
+> `tools/render_compare.py`; ships all four columns without JS) → `founder` (no photo until a real
+> one exists; "We're new" note) → `safety` → `faq` → `close`.
+> CTA rules: every in-body booking link carries `data-cta`; never two filled `.btn--cta` in one
+> viewport, so founder and FAQ use the `.cta-link` text atom; the nav pill is solid jam on every
+> ground and never carries `data-cta` (the sticky phone bar hides whenever a `[data-cta]` is in view).
+> Small orange text on light grounds uses `--jam-text` (#b3470b, 5.5:1); `--jam` is for fills and
+> marks only there. Honesty rules: no generated or stock footage/stills standing in for a hypjam
+> shoot, premises or team (the hero loop, `studio-*.jpg`, `aerial-*.jpg`, `hq-footer.svg` and the
+> seals are referenced nowhere); captions are the owner's own words. No page loads GSAP,
+> ScrollTrigger, CustomEase or Lenis (`00-lenis.js` stays: it sets `html[data-motion]`).
+> Sections below that describe the hero engine, HUD, panels, badges or carousels are historical.
+
 ## 1. Sources and method
 
 | what | where it came from |

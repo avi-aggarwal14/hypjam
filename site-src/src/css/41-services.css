@@ -3,6 +3,11 @@
    Services-only tweaks on top of 40-pages.css (the shared sub-page
    vocabulary). Prefix `.svc-`. Everything structural lives in 40-pages.css
    so the solutions and other page agents can reuse it unchanged.
+
+   The three `.page-*` additions at the bottom are shared with /solutions
+   (render_solutions.py emits the same markup): the micro line under a light
+   hero's booking button, the founder card's example-document panel, and the
+   FAQ section's top padding when no quote card sits above it.
    ===================================================================== */
 
 /* the hero mock stage on a service page: the 3:2 panel holds a 420–560px card */
@@ -12,9 +17,6 @@
 .svc .page-hero__visual .mock-card--sm { --w: 260px; }
 .svc .page-hero__visual .mock-ticker, .svc .page-hero__visual .mock-strip { width: 100%; max-width: 420px; }
 
-/* index: the two reserved film slots keep the reference site's 16:9 card but read as held-open */
-.svc--index .page-media__frame.reserved .reserved__phone { opacity: .9; }
-
 /* feature mocks: a 400px card centred on the 5:4 panel */
 .svc .page-feature__visual .mock-card { --w: 400px; }
 .svc .page-feature__visual .mock-stage { padding: 8%; }
@@ -22,3 +24,56 @@
 @media (max-width: 1024px) {
   .svc .page-hero__visual .mock-card--wide { --w: 100%; }
 }
+
+/* ---------------------------------------------------------------------
+   SHARED · the micro line under a hero's filled booking button
+   (SPEC §6.2 row 11: "From £1,800 a month · 30 minutes with Avi").
+   Inter 13/1.45 in --grey: 6.79:1 on white, 6.29:1 on sand-s (WCAG AA).
+   --------------------------------------------------------------------- */
+.page-hero__micro {
+  margin-top: 14px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: var(--ls-small);
+  color: var(--grey);
+}
+
+/* ---------------------------------------------------------------------
+   SHARED · founder card, right column: an example document from our
+   templates (assets/img/process/*.jpg, 642×370 on #1a1a1a) shown whole on a
+   panel of the same black, with a small DM Mono "Example" tag. Replaces the
+   stock-style shoot still and the HQ room drawing (SPEC S4, §8 rank 3).
+   --------------------------------------------------------------------- */
+.page-quote__media--doc { background: #1a1a1a; }
+.page-quote__media--doc .page-quote__doc {
+  box-sizing: border-box;
+  padding: 44px 32px;
+  object-fit: contain;
+  object-position: center;
+}
+.page-quote__tag {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  padding: 3px 7px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--w60);
+  background: var(--w08);
+}
+@media (max-width: 800px) {
+  .page-quote__media--doc { min-height: 0; aspect-ratio: 642 / 450; }
+  .page-quote__media--doc .page-quote__doc { padding: 46px 20px 16px; }
+}
+
+/* ---------------------------------------------------------------------
+   SHARED · a FAQ section with no quote card above it needs its own top
+   padding (.page-section--faq starts at 0 because the card normally leads).
+   --------------------------------------------------------------------- */
+.page-section--faq-solo { padding-top: 120px; }
+@media (max-width: 800px) { .page-section--faq-solo { padding-top: 64px; } }

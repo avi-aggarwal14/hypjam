@@ -1,12 +1,12 @@
 {
   "_schema": {
-    "_about": "Content for /agency, from the existing hypjam about page (story, method, roles, values) in the reference's product-index structure: eyebrow + h1 + intro on white, an editorial image with a small facts row under it (where the reference put its client-logo row), then eyebrow-led sections with numbered list items (01, 02...) in the same list style as the reference's product list, and a closing CTA on white with the HQ drawing. British English. hypjam is a 'UGC agency' throughout (CONTRACT §11).",
+    "_about": "Content for /agency: eyebrow + h1 + intro + the booking button on white, a small 'at a glance' facts row, then eyebrow-led sections with numbered list items (01, 02...), the founder quote, and the shared closing card (partials/page-cta.html, data-cta=\"agency\"). No drawing or image of premises (SPEC S7, §8 rank 10). British English. hypjam is a 'UGC agency' throughout (CONTRACT §11).",
     "meta": "{path, title, description, theme}",
-    "hero": "{eyebrow, h1, intro}",
-    "editorial": "{image:{kind, alt}, caption, facts:[{label, value, href?}]} - image.kind = 'hq-drawing' asks the page agent to render the HQ line drawing (src/drawing/hq.svg) at the editorial image's aspect, on sand-s, in place of photography.",
+    "hero": "{eyebrow, h1, intro, cta:{label, href}} - the one filled booking button in the hero (data-cta=\"agency-hero\").",
+    "editorial": "{label, facts:[{label, value, href?}]} - a small facts row under the hero. No image.",
     "sections": "[{id, eyebrow, h2, paragraphs?:[], p?, items?:[{n, name, blurb}]}] - story has paragraphs; method has p + items; roles and values have items. n is a two-digit string rendered in the tabular figure style.",
     "founder": "{eyebrow, name, role, quote} - a short pull block; the quote is the founder's own statement, identical to home.json quotes.items[0].text and book.json right.quote.text.",
-    "cta": "{h2, p, buttons:[{label, href, primary}], art:{kind, alt}}"
+    "creator": "{text, label, href} - the creator route as one plain-text line at the end of the values section, never beside a booking button (SPEC §6.1)."
   },
   "meta": {
     "path": "/agency",
@@ -17,14 +17,14 @@
   "hero": {
     "eyebrow": "Agency",
     "h1": "The London UGC agency behind the creators.",
-    "intro": "hypjam is a UGC agency in London. We brief, cast, direct and edit creator ads, rather than handing brands a list of creators and hoping."
+    "intro": "hypjam is a UGC agency in London. We brief, cast, direct and edit creator ads, rather than handing brands a list of creators and hoping.",
+    "cta": {
+      "label": "Book a call",
+      "href": "/book"
+    }
   },
   "editorial": {
-    "image": {
-      "kind": "hq-drawing",
-      "alt": "Line drawing of hypjam's two-building HQ: the brief desk, the writers' room, the casting floor, the shoot bay and the edit suite"
-    },
-    "caption": "The five parts of the agency, as drawn on the home page.",
+    "label": "At a glance",
     "facts": [
       {
         "label": "Based in",
@@ -155,24 +155,9 @@
     "role": "Founder, hypjam · ex-Cluely",
     "quote": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed."
   },
-  "cta": {
-    "h2": "Work with the agency.",
-    "p": "Whether you are a brand or a creator, get in touch and we will walk you through how it works.",
-    "buttons": [
-      {
-        "label": "Book a call",
-        "href": "/book",
-        "primary": true
-      },
-      {
-        "label": "Join the roster",
-        "href": "/join",
-        "primary": false
-      }
-    ],
-    "art": {
-      "kind": "hq-drawing-small",
-      "alt": "Line drawing of hypjam's two-building HQ"
-    }
+  "creator": {
+    "text": "Are you a creator?",
+    "label": "Join the roster",
+    "href": "/join"
   }
 }

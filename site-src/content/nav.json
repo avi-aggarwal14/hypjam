@@ -2,50 +2,101 @@
   "_schema": {
     "_about": "Every nav string and href (CONTRACT §3). Slugs under /services/ and /solutions/ are defined here and are canonical for the whole site — the services, solutions and footer agents read them from this file. Clean URLs, no trailing slash, no .html.",
     "logo": "{href, onDark, onLight, alt}. Centre lockup: -on-dark on dark pages, -on-light on sand/white pages (the engine flips data-nav). Min 160px wide.",
-    "left": "array[5] in order. {label, type: 'menu' | 'link', menu (key into menus) | href}.",
-    "right": "array[2]. {label, href, primary: bool}. primary = the translucent pill with the jam arrow circle.",
+    "left": "array[5] in order: Services, Solutions, Pricing, Work, Resources. {label, type: 'menu' | 'link', menu (key into menus) | href}. Pricing links to the homepage #pricing section; Rights lives in the Resources menu.",
+    "right": "array[1]. {label, href, primary: true}: the one booking button in the top bar, a solid jam pill with black text on every background. Creators reach /join from the Resources menu, the phone menu and the footer, never from the top bar (it competed with the booking button on phones).",
     "menus.services": "the reference site's Product menu: {columns[2]: array of {label, desc (~7 words), href}, newCard: {tag, title, desc, href, cta}}. 4 + 4 items plus the 'New' card = the nine services.",
     "menus.solutions": "the reference site's Solutions menu: {columns[2]: {heading, items: [{label, desc, href}]}} — 'By goal' (6) and 'By brand' (3).",
-    "menus.resources": "the reference site's Resources menu: {items[4]: {label, href}, card: {label, href, video, poster, alt}} — the card is a looping muted clip with a label beneath.",
-    "mobile": "{toggle, close, items[8]}. Full-screen accordion as ref/mobile/menu_open.jpg: items with type 'accordion' open to the menu's items (services: all nine incl. founder-led; solutions: both columns), type 'link' navigate. The mobile bar keeps right[] (Creators · Book a call) and the lockup.",
+    "menus.resources": "{items[6]: {label, href}, card: {label, sub, href, image, alt, tag}}: Agency, Process, Rights, FAQ, Blog, For creators. The card is a still of an example template document, tagged 'Example'.",
+    "mobile": "{toggle, close, items[10]}: Services, Solutions (accordions), then Pricing, Work, Agency, Process, Rights, FAQ, Blog, For creators (links; the last is set quieter). The mobile bar keeps right[] (Book a call) and the lockup.",
     "aria": "{menu, open, close, primaryNav} accessible names."
   },
-
   "logo": {
     "href": "/",
     "onDark": "/assets/brand/logos/hypjam-lockup-on-dark.svg",
     "onLight": "/assets/brand/logos/hypjam-lockup-on-light.svg",
     "alt": "hypjam"
   },
-
   "left": [
-    { "label": "Services", "type": "menu", "menu": "services" },
-    { "label": "Solutions", "type": "menu", "menu": "solutions" },
-    { "label": "Rights", "type": "link", "href": "/rights" },
-    { "label": "Work", "type": "link", "href": "/work" },
-    { "label": "Resources", "type": "menu", "menu": "resources" }
+    {
+      "label": "Services",
+      "type": "menu",
+      "menu": "services"
+    },
+    {
+      "label": "Solutions",
+      "type": "menu",
+      "menu": "solutions"
+    },
+    {
+      "label": "Pricing",
+      "type": "link",
+      "href": "/#pricing"
+    },
+    {
+      "label": "Work",
+      "type": "link",
+      "href": "/work"
+    },
+    {
+      "label": "Resources",
+      "type": "menu",
+      "menu": "resources"
+    }
   ],
-
   "right": [
-    { "label": "Creators", "href": "/join", "primary": false },
-    { "label": "Book a call", "href": "/book", "primary": true }
+    {
+      "label": "Book a call",
+      "href": "/book",
+      "primary": true
+    }
   ],
-
   "menus": {
     "services": {
       "indexHref": "/services",
       "columns": [
         [
-          { "label": "Briefing & scripts", "desc": "One brief, one script, locked before filming.", "href": "/services/briefing" },
-          { "label": "Hook writing", "desc": "Eight hooks per script, picked before filming.", "href": "/services/hooks" },
-          { "label": "Casting & roster", "desc": "Creators cast for fit, shortlist approved by you.", "href": "/services/casting" },
-          { "label": "Shoot direction", "desc": "Shot lists, notes and retakes on every shoot.", "href": "/services/shoot-direction" }
+          {
+            "label": "Briefing & scripts",
+            "desc": "One brief, one script, locked before filming.",
+            "href": "/services/briefing"
+          },
+          {
+            "label": "Hook writing",
+            "desc": "Eight hooks per script, picked before filming.",
+            "href": "/services/hooks"
+          },
+          {
+            "label": "Casting & roster",
+            "desc": "Creators cast for fit, shortlist approved by you.",
+            "href": "/services/casting"
+          },
+          {
+            "label": "Shoot direction",
+            "desc": "Shot lists, notes and retakes on every shoot.",
+            "href": "/services/shoot-direction"
+          }
         ],
         [
-          { "label": "Editing & captions", "desc": "Platform-native cuts with captions built in.", "href": "/services/editing" },
-          { "label": "Whitelisting & Spark Ads", "desc": "Creator-handle ads, authorised and set up for you.", "href": "/services/whitelisting" },
-          { "label": "Usage rights", "desc": "Organic and paid usage, agreed in writing.", "href": "/services/usage-rights" },
-          { "label": "Reporting", "desc": "What ran, what worked, what we brief next.", "href": "/services/reporting" }
+          {
+            "label": "Editing & captions",
+            "desc": "Platform-native cuts with captions built in.",
+            "href": "/services/editing"
+          },
+          {
+            "label": "Whitelisting & Spark Ads",
+            "desc": "Creator-handle ads, authorised and set up for you.",
+            "href": "/services/whitelisting"
+          },
+          {
+            "label": "Usage rights",
+            "desc": "Organic and paid usage, agreed in writing.",
+            "href": "/services/usage-rights"
+          },
+          {
+            "label": "Reporting",
+            "desc": "What ran, what worked, what we brief next.",
+            "href": "/services/reporting"
+          }
         ]
       ],
       "newCard": {
@@ -56,66 +107,160 @@
         "cta": "Explore"
       }
     },
-
     "solutions": {
       "indexHref": "/solutions",
       "columns": [
         {
           "heading": "By goal",
           "items": [
-            { "label": "Launches", "desc": "Hooks, creators and cuts ready for day one.", "href": "/solutions/launches" },
-            { "label": "Always-on paid social", "desc": "A monthly run of ads that never goes stale.", "href": "/solutions/always-on-paid-social" },
-            { "label": "Organic & trends", "desc": "Sounds and formats moving this week, not last quarter.", "href": "/solutions/organic-and-trends" },
-            { "label": "Founder-led", "desc": "You on camera, directed like our roster.", "href": "/solutions/founder-led" },
-            { "label": "Creative testing", "desc": "Hooks × formats × creators, scaled by what wins.", "href": "/solutions/creative-testing" },
-            { "label": "Retention", "desc": "Videos that keep customers past the first order.", "href": "/solutions/retention" }
+            {
+              "label": "Launches",
+              "desc": "Hooks, creators and cuts ready for day one.",
+              "href": "/solutions/launches"
+            },
+            {
+              "label": "Always-on paid social",
+              "desc": "A monthly run of ads that never goes stale.",
+              "href": "/solutions/always-on-paid-social"
+            },
+            {
+              "label": "Organic & trends",
+              "desc": "Sounds and formats moving this week, not last quarter.",
+              "href": "/solutions/organic-and-trends"
+            },
+            {
+              "label": "Founder-led",
+              "desc": "You on camera, directed like our roster.",
+              "href": "/solutions/founder-led"
+            },
+            {
+              "label": "Creative testing",
+              "desc": "Hooks × formats × creators, scaled by what wins.",
+              "href": "/solutions/creative-testing"
+            },
+            {
+              "label": "Retention",
+              "desc": "Videos that keep customers past the first order.",
+              "href": "/solutions/retention"
+            }
           ]
         },
         {
           "heading": "By brand",
           "items": [
-            { "label": "DTC & ecommerce", "desc": "Product-in-hand ads built for the feed.", "href": "/solutions/dtc-ecommerce" },
-            { "label": "Apps & subscriptions", "desc": "Screen-recorded proof and creators who use it.", "href": "/solutions/apps-and-subscriptions" },
-            { "label": "Food & drink", "desc": "Kitchen-counter shoots that make people hungry.", "href": "/solutions/food-and-drink" }
+            {
+              "label": "DTC & ecommerce",
+              "desc": "Product-in-hand ads built for the feed.",
+              "href": "/solutions/dtc-ecommerce"
+            },
+            {
+              "label": "Apps & subscriptions",
+              "desc": "Screen-recorded proof and creators who use it.",
+              "href": "/solutions/apps-and-subscriptions"
+            },
+            {
+              "label": "Food & drink",
+              "desc": "Kitchen-counter shoots that make people hungry.",
+              "href": "/solutions/food-and-drink"
+            }
           ]
         }
       ]
     },
-
     "resources": {
       "items": [
-        { "label": "Agency", "href": "/agency" },
-        { "label": "Blog", "href": "/blog" },
-        { "label": "Process", "href": "/process" },
-        { "label": "FAQ", "href": "/faq" }
+        {
+          "label": "Agency",
+          "href": "/agency"
+        },
+        {
+          "label": "Process",
+          "href": "/process"
+        },
+        {
+          "label": "Rights",
+          "href": "/rights"
+        },
+        {
+          "label": "FAQ",
+          "href": "/faq"
+        },
+        {
+          "label": "Blog",
+          "href": "/blog"
+        },
+        {
+          "label": "For creators",
+          "href": "/join"
+        }
       ],
       "card": {
-        "label": "How a shoot day runs",
-        "sub": "Brief to edit, step by step",
+        "label": "How a sprint runs",
+        "sub": "Signed brief to first cuts in 14 days",
         "href": "/process",
-        "video": "/assets/video/hero-studio-web.mp4",
-        "poster": "/assets/video/hero-poster.jpg",
-        "alt": "Illustrative looping clip of a phone shoot",
-        "_note": "The clip is a generated illustration of a phone shoot, not footage of a hypjam production. Nothing on this card may describe it as one."
+        "alt": "Example shoot log from our templates",
+        "_note": "A still of an example document from hypjam's templates, tagged 'Example'. The generated phone-shoot clip that used to play here is retired: it was an illustration, not a hypjam production.",
+        "image": "/assets/img/process/shoot.jpg",
+        "tag": "Example"
       }
     }
   },
-
   "mobile": {
     "toggle": "Menu",
     "close": "Close",
     "items": [
-      { "label": "Services", "type": "accordion", "menu": "services" },
-      { "label": "Solutions", "type": "accordion", "menu": "solutions" },
-      { "label": "Rights", "type": "link", "href": "/rights" },
-      { "label": "Work", "type": "link", "href": "/work" },
-      { "label": "Agency", "type": "link", "href": "/agency" },
-      { "label": "Blog", "type": "link", "href": "/blog" },
-      { "label": "Process", "type": "link", "href": "/process" },
-      { "label": "FAQ", "type": "link", "href": "/faq" }
+      {
+        "label": "Services",
+        "type": "accordion",
+        "menu": "services"
+      },
+      {
+        "label": "Solutions",
+        "type": "accordion",
+        "menu": "solutions"
+      },
+      {
+        "label": "Pricing",
+        "type": "link",
+        "href": "/#pricing"
+      },
+      {
+        "label": "Work",
+        "type": "link",
+        "href": "/work"
+      },
+      {
+        "label": "Agency",
+        "type": "link",
+        "href": "/agency"
+      },
+      {
+        "label": "Process",
+        "type": "link",
+        "href": "/process"
+      },
+      {
+        "label": "Rights",
+        "type": "link",
+        "href": "/rights"
+      },
+      {
+        "label": "FAQ",
+        "type": "link",
+        "href": "/faq"
+      },
+      {
+        "label": "Blog",
+        "type": "link",
+        "href": "/blog"
+      },
+      {
+        "label": "For creators",
+        "type": "link",
+        "href": "/join"
+      }
     ]
   },
-
   "aria": {
     "primaryNav": "Primary",
     "menu": "Open menu",

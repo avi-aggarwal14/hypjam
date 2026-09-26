@@ -1,184 +1,188 @@
 {
-  "_schema": {
-    "_about": "Every footer string and href (CONTRACT §3). Mirrors the reference site's footer one-to-one: headline row with the primary pill, a hairline, the big lockup left, six link columns right, the small HQ line drawing bottom-left over the copyright, a badge bottom-right. Hrefs match nav.json (canonical slugs).",
-    "headline": "string. 42px display (the reference site: 'Bring collaborative AI to your hotel.' — 6 words).",
-    "cta": "{label, href}. Same primary pill as the nav.",
-    "logo": "{href, file, alt}. Big lockup, on-dark.",
-    "columns": "array[6] in order. {heading, href (heading link; null = plain label), items: [{label, href}]}. Services (9) · Solutions (6 by goal) · By brand (3) · Platform (4) · Company (3) · Legal (2).",
-    "drawing": "{alt}. The small HQ line drawing (src/drawing/hq.svg rendered small, as the reference site's footer-buildings.png). Decorative in the reference site (alt=''); ours carries alt text because CONTRACT §13 wants every image described.",
-    "copyright": "string, and copyrightLines[2] for the reference site's two-line break.",
-    "badge": "{text, sealAlt}. Replaces the reference site's 'Aligned with ISO 27001' with our own line-drawn seal — not a certification."
-  },
-  "headline": "Bring directed UGC to your brand.",
-  "cta": {
-    "label": "Book a call",
-    "href": "/book"
-  },
-  "logo": {
-    "href": "/",
-    "file": "/assets/brand/logos/hypjam-lockup-on-dark.svg",
-    "alt": "hypjam"
-  },
-  "columns": [
+ "_schema": {
+  "_about": "Every footer string and href (CONTRACT §3). Headline row with the filled booking button (hidden on home and on any page with a closing card), a hairline, the big lockup left, six link columns right, then a bottom bar: copyright left, a plain-text line right. No drawing, seal or mark anywhere in the footer. Hrefs match nav.json (canonical slugs).",
+  "headline": "string. 40px display. Matches the closing card's default h2.",
+  "cta": "{label, href}. The filled .btn--cta booking button (black label on jam), data-cta=\"footer\".",
+  "logo": "{href, file, alt}. Big lockup, on-dark.",
+  "columns": "array[6] in order. {heading, href (heading link; null = plain label), items: [{label, href}]}. Services (9) · Solutions (6 by goal) · By brand (3) · Platform (4) · Company (3) · Legal (2).",
+  "copyright": "string. One line in the bottom bar; {{year}} is replaced at build time. copyrightLines is kept for older templates only.",
+  "badge": "{text}. Plain text in the old badge slot, bottom right. No seal, rosette or certification-like mark (DMCC Act 2024 Sch. 20 para 3). Once hypjam is incorporated, the company disclosure line (registered part of the UK, number, office; 2015 Regs reg. 25) goes here. Never a placeholder number.",
+  "sticky": "{title, sub, label, href}. The phone bar (≤760px). SPEC §6.5.",
+  "anchor": "string. The reassurance line under the closing card's button (partials/page-cta.html)."
+ },
+ "headline": "Tell us what you're launching.",
+ "cta": {
+  "label": "Book a call",
+  "href": "/book"
+ },
+ "logo": {
+  "href": "/",
+  "file": "/assets/brand/logos/hypjam-lockup-on-dark.svg",
+  "alt": "hypjam"
+ },
+ "columns": [
+  {
+   "heading": "Services",
+   "href": "/services",
+   "items": [
     {
-      "heading": "Services",
-      "href": "/services",
-      "items": [
-        {
-          "label": "Briefing & scripts",
-          "href": "/services/briefing"
-        },
-        {
-          "label": "Hook writing",
-          "href": "/services/hooks"
-        },
-        {
-          "label": "Casting & roster",
-          "href": "/services/casting"
-        },
-        {
-          "label": "Shoot direction",
-          "href": "/services/shoot-direction"
-        },
-        {
-          "label": "Editing & captions",
-          "href": "/services/editing"
-        },
-        {
-          "label": "Whitelisting & Spark Ads",
-          "href": "/services/whitelisting"
-        },
-        {
-          "label": "Usage rights",
-          "href": "/services/usage-rights"
-        },
-        {
-          "label": "Reporting",
-          "href": "/services/reporting"
-        },
-        {
-          "label": "Founder-led video",
-          "href": "/services/founder-led"
-        }
-      ]
+     "label": "Briefing & scripts",
+     "href": "/services/briefing"
     },
     {
-      "heading": "Solutions",
-      "href": "/solutions",
-      "items": [
-        {
-          "label": "Launches",
-          "href": "/solutions/launches"
-        },
-        {
-          "label": "Always-on paid social",
-          "href": "/solutions/always-on-paid-social"
-        },
-        {
-          "label": "Organic & trends",
-          "href": "/solutions/organic-and-trends"
-        },
-        {
-          "label": "Founder-led",
-          "href": "/solutions/founder-led"
-        },
-        {
-          "label": "Creative testing",
-          "href": "/solutions/creative-testing"
-        },
-        {
-          "label": "Retention",
-          "href": "/solutions/retention"
-        }
-      ]
+     "label": "Hook writing",
+     "href": "/services/hooks"
     },
     {
-      "heading": "By brand",
-      "href": null,
-      "items": [
-        {
-          "label": "DTC & ecommerce",
-          "href": "/solutions/dtc-ecommerce"
-        },
-        {
-          "label": "Apps & subscriptions",
-          "href": "/solutions/apps-and-subscriptions"
-        },
-        {
-          "label": "Food & drink",
-          "href": "/solutions/food-and-drink"
-        }
-      ]
+     "label": "Casting & roster",
+     "href": "/services/casting"
     },
     {
-      "heading": "Platform",
-      "href": null,
-      "items": [
-        {
-          "label": "Overview",
-          "href": "/"
-        },
-        {
-          "label": "FAQ",
-          "href": "/faq"
-        },
-        {
-          "label": "Process",
-          "href": "/process"
-        },
-        {
-          "label": "Rights",
-          "href": "/rights"
-        }
-      ]
+     "label": "Shoot direction",
+     "href": "/services/shoot-direction"
     },
     {
-      "heading": "Company",
-      "href": null,
-      "items": [
-        {
-          "label": "Agency",
-          "href": "/agency"
-        },
-        {
-          "label": "Join the roster",
-          "href": "/join"
-        },
-        {
-          "label": "Blog",
-          "href": "/blog"
-        },
-        {
-          "label": "Creator platform",
-          "href": "https://create.hypjam.com"
-        }
-      ]
+     "label": "Editing & captions",
+     "href": "/services/editing"
     },
     {
-      "heading": "Legal",
-      "href": null,
-      "items": [
-        {
-          "label": "Privacy policy",
-          "href": "/privacy"
-        },
-        {
-          "label": "Terms and conditions",
-          "href": "/terms"
-        }
-      ]
+     "label": "Whitelisting & Spark Ads",
+     "href": "/services/whitelisting"
+    },
+    {
+     "label": "Usage rights",
+     "href": "/services/usage-rights"
+    },
+    {
+     "label": "Reporting",
+     "href": "/services/reporting"
+    },
+    {
+     "label": "Founder-led video",
+     "href": "/services/founder-led"
     }
-  ],
-  "drawing": {
-    "alt": "Line drawing of hypjam's two HQ buildings"
+   ]
   },
-  "copyright": "© {{year}} hypjam. All rights reserved.",
-  "copyrightLines": [
-    "© {{year}} hypjam.",
-    "All rights reserved."
-  ],
-  "badge": {
-    "text": "Shot on phones, directed by people",
-    "sealAlt": "Line-drawn seal: a phone with a play triangle"
+  {
+   "heading": "Solutions",
+   "href": "/solutions",
+   "items": [
+    {
+     "label": "Launches",
+     "href": "/solutions/launches"
+    },
+    {
+     "label": "Always-on paid social",
+     "href": "/solutions/always-on-paid-social"
+    },
+    {
+     "label": "Organic & trends",
+     "href": "/solutions/organic-and-trends"
+    },
+    {
+     "label": "Founder-led",
+     "href": "/solutions/founder-led"
+    },
+    {
+     "label": "Creative testing",
+     "href": "/solutions/creative-testing"
+    },
+    {
+     "label": "Retention",
+     "href": "/solutions/retention"
+    }
+   ]
+  },
+  {
+   "heading": "By brand",
+   "href": null,
+   "items": [
+    {
+     "label": "DTC & ecommerce",
+     "href": "/solutions/dtc-ecommerce"
+    },
+    {
+     "label": "Apps & subscriptions",
+     "href": "/solutions/apps-and-subscriptions"
+    },
+    {
+     "label": "Food & drink",
+     "href": "/solutions/food-and-drink"
+    }
+   ]
+  },
+  {
+   "heading": "Platform",
+   "href": null,
+   "items": [
+    {
+     "label": "Overview",
+     "href": "/"
+    },
+    {
+     "label": "FAQ",
+     "href": "/faq"
+    },
+    {
+     "label": "Process",
+     "href": "/process"
+    },
+    {
+     "label": "Rights",
+     "href": "/rights"
+    }
+   ]
+  },
+  {
+   "heading": "Company",
+   "href": null,
+   "items": [
+    {
+     "label": "Agency",
+     "href": "/agency"
+    },
+    {
+     "label": "Join the roster",
+     "href": "/join"
+    },
+    {
+     "label": "Blog",
+     "href": "/blog"
+    },
+    {
+     "label": "Creator platform",
+     "href": "https://create.hypjam.com"
+    }
+   ]
+  },
+  {
+   "heading": "Legal",
+   "href": null,
+   "items": [
+    {
+     "label": "Privacy policy",
+     "href": "/privacy"
+    },
+    {
+     "label": "Terms and conditions",
+     "href": "/terms"
+    }
+   ]
   }
+ ],
+ "copyright": "© {{year}} hypjam. All rights reserved.",
+ "copyrightLines": [
+  "© {{year}} hypjam.",
+  "All rights reserved."
+ ],
+ "badge": {
+  "text": "UGC agency · London"
+ },
+ "sticky": {
+  "title": "30-minute call with Avi",
+  "sub": "Free · Google Meet · no deck",
+  "label": "Book a call",
+  "href": "/book"
+ },
+ "anchor": "30 minutes with Avi, free · Packages from £1,800 a month · First cuts 14 days after a signed brief"
 }

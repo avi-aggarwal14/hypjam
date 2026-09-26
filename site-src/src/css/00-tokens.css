@@ -25,6 +25,7 @@
   --grey-s: #f5f5f5;          /* the reference site --grey-s */
   --line: #969696;            /* the reference site --line: the drawing's stroke colour */
   --jam: #ff6f1f;             /* the accent. Replaces the reference site's #2bca95. Rationed. */
+  --jam-text: #b3470b;          /* jam for small text on white/sand: 5.5:1 on white, 5.1:1 on sand-s (jam itself is 2.78:1) */
   --jam-ink: #000;            /* text/arrow colour placed on a jam surface */
 
   /* accent alphas (the reference site had #2BCA95/5 · /10 · /12 · /15 · /20 · /30 · /40 · /70) */
@@ -45,6 +46,7 @@
   --w15: rgba(255,255,255,.15);
   --w20: rgba(255,255,255,.20);
   --w24: rgba(255,255,255,.24);
+  --w30: rgba(255,255,255,.30);
   --w40: rgba(255,255,255,.40);
   --w45: rgba(255,255,255,.45);
   --w60: rgba(255,255,255,.60);

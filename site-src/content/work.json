@@ -1,81 +1,89 @@
 {
   "_schema": {
-    "_about": "Content for /work. Structure follows the reference customers page: a black carousel hero, a sand-s facts grid, a white quote wall, a white logo-grid block, then the full-bleed photo CTA. Every proof element on the reference is a reserved slot or an offer fact here (CONTRACT §10): hypjam has no clients and invents none. After those blocks comes hypjam's own formats wall (the concept tiles carried over from the existing /work page, disclosure kept). British English.",
-    "sections_order": "The order the page agent should render: hero, facts, wall, platforms, formats, cta. (The task listed formats after the photo CTA; it is placed before so the full-bleed CTA closes the page as it does on the reference. Swap if the design lead prefers.)",
+    "_about": "Content for /work, rendered by tools/render_rights_work_book.py (CSS 44-work.css). Order: a black hero with the honest line and the real example ads as a static poster grid, the three contract commitments (static text, no count-up), hypjam's formats with illustrative sample hooks, the platforms we cut for, then the shared closing card (partials/page-cta.html). hypjam has no clients to show yet and invents none: no reserved slots, no quote wall, no invented brand names (SPEC §8 rank 2, §9). British English, sentence case, never 'studio'.",
     "meta": "{path, title, description, theme}",
-    "hero": "{h1, h1_break_after, sub_dim, controls:{prev, next}, cards:[{id, image:{kind, alt}, quote, attribution, meta, read:{label, inert}}]} - h1 wraps after h1_break_after on desktop, matching the reference's two-line heading; sub_dim sits under it at 40% opacity. The four cards keep the reference card anatomy exactly (image area 16:9, quote, attribution line, meta chip, 'Read' pill) but are reserved slots: dashed 1px sand-l/40 frame, a line-drawn phone silhouette in the image area (image.kind = phone-silhouette), and the strings given. 'Read' renders but is inert (no href, aria-disabled). This must look designed, not broken.",
-    "facts": "{h2, p, animate, cells:[{value, suffix, label}]} - replaces the reference's 3x2 stats grid. Same numeral styling (display serif ~64px, sand-l) with the count-up from 0 when animate is true; the copy is commitments and offer facts, never results.",
-    "wall": "{h2, p, cards:[{quote, name, role}]} - replaces the reference's quote wall. Kept minimal: three reserved cards (hypjam's own line, not an invented quotation, so no quote marks) in the same card style as the reference (sand-s tile, 18px serif quote, name, role), 'Filled in at launch' as the name and 'reserved' as the role.",
-    "platforms": "{groups:[{label, tiles:[{id, text, render}]}]} - replaces the reference's logo grids. Group 1 is the row of five large tiles, group 2 the grid of smaller tiles. render = 'text' means the tile shows the name set typographically in Geist 500 at 60% opacity, monochrome (the same treatment as the hero marquee wordmarks). No third-party logo files.",
-    "formats": "{eyebrow, h2, intro, formats:[{id, name, blurb, tags}], samples_label, samples:[{brand, format_id, hook, note, creator_brief, status}]} - hypjam's own formats wall. intro carries the honesty disclosure and must stay. samples are concept tiles: brand names are invented and disclosed as such; status is always 'illustrative' and renders as a small chip on every tile; creator_brief describes who we would cast rather than naming a handle.",
-    "cta": "{h2, p, button:{label, href}, background:{kind, alt}} - the full-height photo CTA. We have no photography: background.kind = 'video-still' means the page agent uses a darkened blurred frame from the hero video (or a black-to-sand gradient if the video is missing)."
+    "hero": "{h1, h1_break_after, honest, cta:{label, href, micro}} - h1 wraps after h1_break_after on desktop. honest is the one-line disclosure under the heading and must stay while the grid shows example ads rather than client work. cta renders as a .cta-link text link (data-cta='work') under the grid, so the page never shows two filled booking buttons in one view.",
+    "ads": "{label, list_label, items:[{id, format, credit, alt, play, video, poster}]} - the real example ads, poster only until pressed; pressing swaps the button for a <video controls> and pauses any other clip playing on the page (inline script in the renderer). Captions are the owner's own confirmed wording and mirror the homepage hero (content/hero.json → work): '@this_avi.ag, ex-Cluely' is Avi, the founder; 'Made for Cluely' is a real ad made for and run by Cluely; '@ajain_ugc, ex-Replit creator'. Posters are hook or opening frames with no third-party logo in them (the car film uses ugc-cinematic-urus-clean-poster.jpg, taken at 0.7s before the badge is legible; the screen demo must never use a frame from 0:03 on).",
+    "facts": "{label, h2, p, cells:[{value, label}]} - the three contract clauses, worded exactly as home.json → process.commitments and the page-cta card. Static text; never animated, never results.",
+    "formats": "{eyebrow, h2, intro, formats:[{id, name, blurb, tags}], samples_label, samples:[{category, format_id, hook, note, creator_brief, status}]} - hypjam's own formats. samples are illustrative hooks labelled by category ('A skincare brand'), never an invented brand name; status renders as a small chip on every tile.",
+    "platforms": "{groups:[{label, tiles:[{id, text, render}]}]} - the platforms and placements we cut for, set typographically at 60% opacity with the sprite glyph on the first row. No third-party logo files.",
+    "cta": "{h2, p, button:{label, href}} - feeds the shared closing card (partials/page-cta.html) through page meta cta-h2 / cta-p / cta-label / cta-href. p is the canonical call promise (SPEC §6.6)."
   },
   "meta": {
     "path": "/work",
-    "title": "Work: UGC ad formats and sample hooks | hypjam",
-    "description": "The UGC formats hypjam makes, shown as concept tiles: hook-led ads, testimonials, founder-led video and trend edits. The brand names are invented; we are new.",
+    "title": "Work: example UGC ads and the formats we make | hypjam",
+    "description": "Example UGC ads from hypjam, a UGC agency in London: a hook-led ad, a screen demo and cinematic paid ads, plus the formats we make for TikTok, Reels and Shorts.",
     "theme": "dark"
   },
   "hero": {
     "h1": "Built for brands launching on TikTok, Reels and Shorts",
     "h1_break_after": "launching",
-    "sub_dim": "The stories are held open until we have shipped them.",
-    "controls": { "prev": "Previous story", "next": "Next story" },
-    "cards": [
+    "honest": "We're new. These are example ads in the formats we make; client work will appear here once it's cleared to show.",
+    "cta": {
+      "label": "Book a call with Avi",
+      "href": "/book",
+      "micro": "Thirty minutes on Google Meet, free."
+    }
+  },
+  "ads": {
+    "label": "Example ads",
+    "list_label": "Example ads, each plays with sound when pressed",
+    "items": [
       {
-        "id": "reserved-1",
-        "image": { "kind": "phone-silhouette", "alt": "" },
-        "quote": "The first brand story goes here.",
-        "attribution": "Filled in at launch",
-        "meta": "reserved",
-        "read": { "label": "Read", "inert": true }
+        "id": "hook-led",
+        "format": "Hook-led ad",
+        "credit": "@this_avi.ag, ex-Cluely",
+        "alt": "Hook-led vertical ad: a creator in a red quarter-zip talks straight to camera under the caption 'GOLD RUSH'",
+        "play": "Play the hook-led ad by @this_avi.ag, with sound",
+        "video": "/assets/video/ugc-hook-led-1-web.mp4",
+        "poster": "/assets/video/ugc-hook-led-1-hook-poster.jpg"
       },
       {
-        "id": "reserved-2",
-        "image": { "kind": "phone-silhouette", "alt": "" },
-        "quote": "The first brand story goes here.",
-        "attribution": "Filled in at launch",
-        "meta": "reserved",
-        "read": { "label": "Read", "inert": true }
+        "id": "cinematic-car",
+        "format": "Cinematic paid ad",
+        "credit": "Made for Cluely",
+        "alt": "Cinematic vertical ad: a yellow SUV drives out of the surf on a beach at sunset, throwing up spray",
+        "play": "Play the cinematic paid ad made for Cluely, with sound",
+        "video": "/assets/video/ugc-cinematic-urus.mp4",
+        "poster": "/assets/video/ugc-cinematic-urus-clean-poster.jpg"
       },
       {
-        "id": "reserved-3",
-        "image": { "kind": "phone-silhouette", "alt": "" },
-        "quote": "The first brand story goes here.",
-        "attribution": "Filled in at launch",
-        "meta": "reserved",
-        "read": { "label": "Read", "inert": true }
+        "id": "screen-demo",
+        "format": "Screen demo",
+        "credit": "@ajain_ugc, ex-Replit creator",
+        "alt": "Screen-demo ad opening on a creator in bed under the caption 'Clients: I need ads at 12am'",
+        "play": "Play the screen demo by @ajain_ugc, with sound",
+        "video": "/assets/video/ugc-screen-demo-1-web.mp4",
+        "poster": "/assets/video/ugc-screen-demo-1-hook-poster.jpg"
       },
       {
-        "id": "reserved-4",
-        "image": { "kind": "phone-silhouette", "alt": "" },
-        "quote": "The first brand story goes here.",
-        "attribution": "Filled in at launch",
-        "meta": "reserved",
-        "read": { "label": "Read", "inert": true }
+        "id": "cinematic-portrait",
+        "format": "Cinematic paid ad",
+        "credit": "Format example",
+        "alt": "Cinematic vertical ad: a young man in a black jumper looks down, lit against a white wall",
+        "play": "Play the cinematic paid ad format example, with sound",
+        "video": "/assets/video/ugc-cinematic-accountant.mp4",
+        "poster": "/assets/video/ugc-cinematic-accountant-poster.jpg"
       }
     ]
   },
   "facts": {
+    "label": "Written into every contract",
     "h2": "What every brief comes with",
-    "p": "Commitments, not results. Each number here is something we put in writing before a shoot.",
-    "animate": true,
+    "p": "Commitments, not results. Each one is in the contract you sign before anyone films.",
     "cells": [
-      { "value": 14, "suffix": " days", "label": "From a signed brief to your first cuts" },
-      { "value": 8, "suffix": " hooks", "label": "Written and tested per script" },
-      { "value": 5, "suffix": " formats", "label": "Per shoot, each cut for the platform it is going to" },
-      { "value": 1, "suffix": " contract", "label": "One invoice, every creator and editor behind it" },
-      { "value": 30, "suffix": " min", "label": "Intro call, no deck" },
-      { "value": 1, "suffix": " round", "label": "Of revisions included on every video" }
-    ]
-  },
-  "wall": {
-    "h2": "What brands say",
-    "p": "This wall stays empty until a brand we have shipped for says something about it. We would rather leave the space than fill it.",
-    "cards": [
-      { "quote": "A brand's words, not ours.", "name": "Reserved", "role": "brand quote" },
-      { "quote": "A brand's words, not ours.", "name": "Reserved", "role": "brand quote" },
-      { "quote": "A brand's words, not ours.", "name": "Reserved", "role": "brand quote" }
+      {
+        "value": "14 days",
+        "label": "from a signed brief to your first cuts"
+      },
+      {
+        "value": "8 hooks",
+        "label": "written for every script, ready to test"
+      },
+      {
+        "value": "1 contract",
+        "label": "and one invoice, every creator and editor behind it"
+      }
     ]
   },
   "platforms": {
@@ -83,25 +91,81 @@
       {
         "label": "Platforms",
         "tiles": [
-          { "id": "tiktok", "text": "TikTok", "render": "text" },
-          { "id": "reels", "text": "Instagram Reels", "render": "text" },
-          { "id": "shorts", "text": "YouTube Shorts", "render": "text" },
-          { "id": "snapchat", "text": "Snapchat", "render": "text" },
-          { "id": "pinterest", "text": "Pinterest", "render": "text" },
-          { "id": "meta-ads", "text": "Meta ads", "render": "text" }
+          {
+            "id": "tiktok",
+            "text": "TikTok",
+            "render": "text"
+          },
+          {
+            "id": "reels",
+            "text": "Instagram Reels",
+            "render": "text"
+          },
+          {
+            "id": "shorts",
+            "text": "YouTube Shorts",
+            "render": "text"
+          },
+          {
+            "id": "snapchat",
+            "text": "Snapchat",
+            "render": "text"
+          },
+          {
+            "id": "pinterest",
+            "text": "Pinterest",
+            "render": "text"
+          },
+          {
+            "id": "meta-ads",
+            "text": "Meta ads",
+            "render": "text"
+          }
         ]
       },
       {
         "label": "Placements we cut for",
         "tiles": [
-          { "id": "tiktok-in-feed", "text": "TikTok in-feed", "render": "text" },
-          { "id": "tiktok-spark", "text": "TikTok Spark Ads", "render": "text" },
-          { "id": "ig-reels", "text": "Instagram Reels", "render": "text" },
-          { "id": "ig-stories", "text": "Instagram Stories", "render": "text" },
-          { "id": "meta-partnership", "text": "Meta partnership ads", "render": "text" },
-          { "id": "yt-shorts", "text": "YouTube Shorts", "render": "text" },
-          { "id": "snap-ads", "text": "Snap Ads", "render": "text" },
-          { "id": "pinterest-video", "text": "Pinterest video pins", "render": "text" }
+          {
+            "id": "tiktok-in-feed",
+            "text": "TikTok in-feed",
+            "render": "text"
+          },
+          {
+            "id": "tiktok-spark",
+            "text": "TikTok Spark Ads",
+            "render": "text"
+          },
+          {
+            "id": "ig-reels",
+            "text": "Instagram Reels",
+            "render": "text"
+          },
+          {
+            "id": "ig-stories",
+            "text": "Instagram Stories",
+            "render": "text"
+          },
+          {
+            "id": "meta-partnership",
+            "text": "Meta partnership ads",
+            "render": "text"
+          },
+          {
+            "id": "yt-shorts",
+            "text": "YouTube Shorts",
+            "render": "text"
+          },
+          {
+            "id": "snap-ads",
+            "text": "Snap Ads",
+            "render": "text"
+          },
+          {
+            "id": "pinterest-video",
+            "text": "Pinterest video pins",
+            "render": "text"
+          }
         ]
       }
     ]
@@ -109,117 +173,143 @@
   "formats": {
     "eyebrow": "Formats",
     "h2": "UGC ads that sound like a creator, not a brand deck.",
-    "intro": "This is what ‘directed, not just sourced’ looks like on a feed: the formats we build, and sample tiles showing how a hook, a creator and a format come together. The brand names below are invented. We are new, and we would rather show the shape of the work than borrow someone else's logo.",
+    "intro": "This is what ‘directed, not just sourced’ looks like on a feed: the formats we build, and sample hooks showing how a hook, a creator and a format come together. The samples are illustrative, written for the kinds of brand we make ads for. None of them is a client.",
     "formats": [
       {
         "id": "hooks",
         "name": "Hooks and ads",
         "blurb": "The first three seconds decide everything, so that is where we spend most of our energy. We script, cast and shoot scroll-stopping hooks built for feed placement, not just brand safety.",
-        "tags": ["Hook testing", "Feed-first", "TikTok and Reels"]
+        "tags": [
+          "Hook testing",
+          "Feed-first",
+          "TikTok and Reels"
+        ]
       },
       {
         "id": "testimonials",
         "name": "Testimonials",
-        "blurb": "Real people, real phones, real opinions, just aimed properly. We brief creators like actors, not customers, so the review still feels unscripted where it counts.",
-        "tags": ["Social proof", "UGC", "Conversion"]
+        "blurb": "Creator-led reviews, scripted and directed, and run as ads. Creators only say what they have tried and what your claims can stand behind, and paid partnerships are labelled.",
+        "tags": [
+          "Creator-led",
+          "Scripted and directed",
+          "Labelled as ads"
+        ]
       },
       {
         "id": "founder-led",
         "name": "Founder-led",
         "blurb": "Sometimes the best spokesperson is the person who built the thing. We direct founders through the same process as the roster, hooks, retakes and all, so they do not have to wing it on camera.",
-        "tags": ["Founder voice", "Authenticity", "Brand story"]
+        "tags": [
+          "Founder voice",
+          "Authenticity",
+          "Brand story"
+        ]
       },
       {
         "id": "trends",
         "name": "Trends and sounds",
         "blurb": "We track what is actually moving on the app this week, not last quarter's trend report. Then we brief creators to bend it around your product instead of bolting your logo onto someone else's meme.",
-        "tags": ["Trend-led", "Sound strategy", "Timely"]
+        "tags": [
+          "Trend-led",
+          "Sound strategy",
+          "Timely"
+        ]
       },
       {
         "id": "whitelisting",
         "name": "Whitelisting",
         "blurb": "Your best-performing organic content, running as paid from the creator's own handle. We handle the usage rights and the Spark Ads setup so the ad keeps the creator's credibility intact.",
-        "tags": ["Spark Ads", "Usage rights", "Paid social"]
+        "tags": [
+          "Spark Ads",
+          "Usage rights",
+          "Paid social"
+        ]
       },
       {
         "id": "scripts-edits",
         "name": "Scripts and edits",
         "blurb": "Every video starts as a proper script, not a vague vibe brief, and ends with an edit built for the platform it is going on. Same team end to end, so nothing gets lost in translation.",
-        "tags": ["Scriptwriting", "Editing", "Platform-native"]
+        "tags": [
+          "Scriptwriting",
+          "Editing",
+          "Platform-native"
+        ]
       }
     ],
-    "samples_label": "Sample tiles",
+    "samples_label": "Sample hooks",
     "samples": [
       {
-        "brand": "Brightbottle",
+        "category": "A skincare brand",
         "format_id": "hooks",
         "hook": "I did not expect this to actually work on my skin.",
-        "note": "Illustrative: the kind of hook we would test first for a skincare launch.",
+        "note": "The kind of hook we would test first for a skincare launch.",
         "creator_brief": "A skincare creator, 25 to 34, London",
-        "status": "illustrative"
+        "status": "Illustrative"
       },
       {
-        "brand": "Deskfizz",
+        "category": "A soft-drinks brand",
         "format_id": "trends",
         "hook": "POV: your desk drink finally has a personality.",
-        "note": "Illustrative: a trend-led cut built around a sound, not bolted onto one.",
+        "note": "A trend-led cut built around a sound, not bolted onto one.",
         "creator_brief": "A deadpan comedy creator who films at a desk",
-        "status": "illustrative"
+        "status": "Illustrative"
       },
       {
-        "brand": "Farhaul",
+        "category": "A luggage brand",
         "format_id": "testimonials",
         "hook": "I have packed this bag for four flights and one very questionable hostel.",
-        "note": "Illustrative: a testimonial written to survive a fast scroll.",
+        "note": "A testimonial written to survive a fast scroll.",
         "creator_brief": "A travel creator who actually travels light",
-        "status": "illustrative"
+        "status": "Illustrative"
       },
       {
-        "brand": "Slowboil",
+        "category": "A kitchenware brand",
         "format_id": "founder-led",
         "hook": "Our founder explains why this kettle took two years to get right.",
-        "note": "Illustrative: a founder explainer cut as the anchor of a launch sequence.",
+        "note": "A founder explainer cut as the anchor of a launch sequence.",
         "creator_brief": "The founder, directed by us",
-        "status": "illustrative"
+        "status": "Illustrative"
       },
       {
-        "brand": "Wearabout",
+        "category": "A menswear brand",
         "format_id": "whitelisting",
         "hook": "The jacket I wear when I want people to ask where it is from.",
-        "note": "Illustrative: shaped to run as a whitelisted Spark Ad from the creator's handle.",
+        "note": "Shaped to run as a whitelisted Spark Ad from the creator's handle.",
         "creator_brief": "A menswear creator with an engaged comment section",
-        "status": "illustrative"
+        "status": "Illustrative"
       },
       {
-        "brand": "Hardleaf",
+        "category": "A houseplant brand",
         "format_id": "scripts-edits",
         "hook": "Three plants that survived me, a serial plant killer.",
-        "note": "Illustrative: a scripted hook-to-payoff structure, written before anyone films.",
+        "note": "A scripted hook-to-payoff structure, written before anyone films.",
         "creator_brief": "A home creator with a small flat and good window light",
-        "status": "illustrative"
+        "status": "Illustrative"
       },
       {
-        "brand": "Spare Oats",
+        "category": "An oat-milk brand",
         "format_id": "hooks",
         "hook": "I switched my coffee order and nobody at the café noticed.",
-        "note": "Illustrative: one of four hook variants we would carry into a test.",
+        "note": "One of four hook variants we would carry into a test.",
         "creator_brief": "A food creator who films in cafés",
-        "status": "illustrative"
+        "status": "Illustrative"
       },
       {
-        "brand": "Nofuss Skin",
+        "category": "A bodycare brand",
         "format_id": "testimonials",
         "hook": "The one product I did not post about until it actually worked.",
-        "note": "Illustrative: a testimonial-led cut built for paid social.",
+        "note": "A testimonial-led cut built for paid social.",
         "creator_brief": "A skincare creator, 35 to 44, remote",
-        "status": "illustrative"
+        "status": "Illustrative"
       }
     ]
   },
   "cta": {
-    "h2": "See what hypjam can do for your brand",
-    "p": "Tell us what you are launching and we will come back with formats, creators and a timeline. No vague proposals.",
-    "button": { "label": "Book a call", "href": "/book" },
-    "background": { "kind": "video-still", "alt": "" }
+    "h2": "Tell us what you're launching.",
+    "p": "Thirty minutes on Google Meet with Avi, free. You'll leave knowing whether UGC suits your launch, which formats we'd test first and why, and what your first month would cost. If another route suits you better, we'll say so.",
+    "button": {
+      "label": "Book a call",
+      "href": "/book"
+    }
   }
 }

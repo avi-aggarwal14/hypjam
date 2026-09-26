@@ -1,0 +1,120 @@
+/* ==========================================================================
+   Panel 5 — ship (321×96). Layout only; primitives live in _panels.css.
+   Static state = final state: playhead parked at the end of the strip,
+   captions toggle on, export bar full, the three platform ticks drawn and
+   their chips brightened to ink.
+
+   Storyboard note: the clip widths are SPEC §10.5's 48·70·40·86·52 scaled by
+   0.704 (34·49·28·60·37 + four 2px gaps = 216px) so the "Captions" label and
+   toggle fit at the right end of the same 321px row with a 14px gap. Row
+   positions: strip y0–28, export labels y38–52, bar y55–59, targets y68–85.
+   ========================================================================== */
+
+.pnl--ship {
+  /* the picked clip sits one step above --pnl-fill-2 so it reads as selected
+     without spending the panel's single accent (that belongs to the toggle
+     and the three ticks) */
+  --pnl-ship-clip-picked: rgba(255, 255, 255, 0.2);
+}
+
+/* Row 1 (y0–28): the timeline strip ---------------------------------------- */
+.pnl-ship__strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 216px;
+  height: 28px;
+}
+.pnl-ship__clips {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  display: flex;
+  gap: 2px;
+}
+.pnl-ship__clip {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  height: 20px;
+  border-radius: 3px;
+  background: var(--pnl-fill-2);
+}
+/* four grey steps so the strip reads as five different takes, not a chart */
+.pnl-ship__clip:nth-child(1) { width: 34px; background: var(--pnl-line); }
+.pnl-ship__clip:nth-child(2) { width: 49px; }
+.pnl-ship__clip:nth-child(3) { width: 28px; }
+.pnl-ship__clip:nth-child(4) { width: 60px; }
+.pnl-ship__clip:nth-child(5) { width: 37px; background: var(--pnl-fill); }
+/* the picked hook clip carries its id at 8px */
+.pnl-ship__clip--picked {
+  background: var(--pnl-ship-clip-picked);
+}
+.pnl-ship__clipid {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  font-size: 8px;
+  line-height: 20px;
+  letter-spacing: 0.06em;
+  color: var(--pnl-ink);
+}
+/* 1px playhead; JS drives `left` from 0% to 100% */
+.pnl-ship__playhead {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 1px;
+  height: 28px;
+  background: var(--pnl-ink);
+}
+
+/* Right end of row 1: "Captions" + toggle ------------------------------------ */
+.pnl-ship__cc {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 28px;
+}
+
+/* Row 2 (y38–59): export labels + bar ------------------------------------------ */
+.pnl-ship__export {
+  position: absolute;
+  top: 38px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.pnl-ship__bar {
+  position: absolute;
+  top: 55px;
+  left: 0;
+}
+.pnl-ship__fill {
+  width: 100%;
+}
+
+/* Row 3 (y68–85): the three platform targets -------------------------------- */
+.pnl-ship__targets {
+  position: absolute;
+  top: 68px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 17px;
+}
+.pnl-ship__target {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+}
+.pnl-ship__chip {
+  color: var(--pnl-ink);
+}

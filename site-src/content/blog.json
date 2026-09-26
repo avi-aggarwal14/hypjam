@@ -7,7 +7,7 @@
     "articles": "[{slug, href, title, title_sentence, description, category, date, date_label, reading_minutes, words, sections, links_used, art, body}] in index order (newest-first is moot: all share a month, so this is editorial order). title is the article's title in sentence case (the reference's register), used everywhere: the card, <title>, the article h1 and the link_map labels; title_sentence carries the same value. The markdown's own lowercase H1 is stripped (see render.strip). description is the file's 'meta:' line verbatim (use for the card sub-line and the meta description). date is ISO year-month; date_label is what the card prints where the reference prints 'MM/DD'. art is a line-drawn motif key for the card's image area (the page agent draws it as a 16:10 sand tile with a 1px monoline SVG). body is the absolute path of the markdown to render on the article page.",
     "link_map": "{path: {href, label}} - the article bodies contain [[link:PATH]] tokens. The renderer replaces each token with <a href=link_map[PATH].href>label</a>; for /blog/<slug> paths the label is that article's title (sentence case). /hire does not exist on this site; the bodies still contain [[link:/hire]] tokens, so the '/hire' key stays and maps to /book (the '/book' key is kept alongside it).",
     "render": "{strip, features, tables} - what the markdown renderer must handle. Article bodies use ##/### headings, paragraphs, **bold**, bullet lists, numbered lists, [[link:]] tokens and pipe tables (five of the eight).",
-    "article_page": "{back:{label, href}, byline, related_count, cta:{h2, p, button:{label, href}}} - the article template: back link at top, h1 = title, byline line 'date_label · reading_minutes min read · category', the rendered body in a ~720px column, then related_count cards from the same or nearest category, then the CTA."
+    "article_page": "{back:{label, href}, byline, related_count, cta:{h2, p, button:{label, href}}} - the article template: back link at top, h1 = title, byline line 'date_label · reading_minutes min read · category', the rendered body in a ~720px column, then related_count cards from the same or nearest category, then the shared closing card (partials/page-cta.html) with cta.h2 / cta.p / cta.button as its page-meta overrides. cta.p never promises anything after the call beyond the canonical promise (SPEC §6.6)."
   },
   "meta": {
     "path": "/blog",
@@ -365,7 +365,7 @@
     "related_count": 3,
     "cta": {
       "h2": "Want ads like this made for your brand?",
-      "p": "Tell us what you're launching and we'll come back with formats, creators and a timeline.",
+      "p": "Tell us what you're launching. On a free 30-minute call, Avi will tell you whether UGC suits it, which formats we'd test first and what your first month would cost.",
       "button": {
         "label": "Book a call",
         "href": "/book"

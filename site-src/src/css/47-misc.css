@@ -74,8 +74,10 @@
   transition: color var(--dur), background-color var(--dur);
 }
 .proc-head-link:hover { color: var(--black); background: rgba(0,0,0,.05); }
-.proc-head-link--solid { background: var(--black); color: var(--white); }
-.proc-head-link--solid:hover { background: var(--black); color: var(--white); opacity: .88; }
+/* the docs header's "Book a call": the same solid jam pill as the site nav (SPEC §8 rank 1) */
+.proc-head-link--solid { background: var(--jam); color: #000; font-weight: var(--fw-ui, 500); }
+.proc-head-link--solid:hover { background: var(--jam); color: #000; box-shadow: 0 10px 28px rgba(255, 111, 31, .32); }
+.proc-head-link--solid:focus-visible { outline: 2px solid #000; outline-offset: 3px; }
 
 /* ---------- shell: sidebar | main ---------- */
 .proc-shell {
@@ -100,8 +102,7 @@
   line-height: 1.4;
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--grey);
-  opacity: .72;
+  color: var(--grey);   /* was 72% opacity: 3.5:1, under AA for 11px labels */
   font-family: var(--font-mono);
 }
 .proc-side-group:first-child { margin-top: 0; }
@@ -141,7 +142,7 @@
   line-height: 1.4;
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--jam);
+  color: var(--grey);   /* jam on white is 2.78:1, too low for small text */
   font-family: var(--font-mono);
 }
 .proc-h1 {
@@ -257,6 +258,7 @@
   background: rgba(0,0,0,.35);
   overflow: hidden;
 }
+.proc-hud-panel img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 0 0; }
 
 /* ---------- library cards ---------- */
 .proc-cards {
@@ -287,7 +289,7 @@
   margin-top: 18px;
   font-size: 13px;
   line-height: 1;
-  color: var(--jam);
+  color: var(--jam-text);   /* dark jam for text on white: 5.5:1 */
 }
 .proc-card-link svg { width: 11px; height: 11px; }
 
@@ -306,7 +308,7 @@
   color: var(--grey);
   font-family: var(--font-mono);
 }
-.proc-tag--jam { background: var(--jam-10); color: var(--jam); }
+.proc-tag--jam { background: var(--jam-10); color: var(--jam-text); }
 
 /* ---------- week card: head + topic rows ---------- */
 .proc-week-head {
@@ -358,7 +360,7 @@
   margin-top: 12px;
   font-size: 13px;
   line-height: 1;
-  color: var(--jam);
+  color: var(--jam-text);   /* dark jam for text on white: 5.5:1 */
   text-decoration: none;
 }
 .proc-topic-link svg { width: 11px; height: 11px; }
@@ -380,7 +382,7 @@
   width: 18px;
   font-size: 12px;
   line-height: 1.75;
-  color: var(--jam);
+  color: var(--jam-text);   /* dark jam for text on white: 5.5:1 */
   font-variant-numeric: tabular-nums;
 }
 
@@ -442,16 +444,20 @@
   color: var(--black);
 }
 .proc-pkg-videos { margin: 8px 0 18px; font-size: 13px; line-height: 1.4; color: var(--grey); }
-.proc-pkg-list { margin-top: auto; padding-top: 4px; border-top: 1px solid var(--k08); }
-.proc-pkg-best { margin: 18px 0 0; font-size: 13px; line-height: 1.5; color: var(--grey); }
+/* lists start level under the price (the cards hold different numbers of confirmed
+   inclusions); "Best for" is what sits on the cards' shared bottom line */
+.proc-pkg-list { margin-top: 0; padding-top: 4px; border-top: 1px solid var(--k08); }
+.proc-pkg-best { margin: auto 0 0; padding-top: 18px; font-size: 13px; line-height: 1.5; color: var(--grey); }
+/* the booking button directly under the grid (SPEC §8 rank 8) */
+.proc-pkgs-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 28px; }
+.proc-pkgs-cta-note { margin: 0; font-size: 14px; line-height: 1.5; color: var(--grey); }
 .proc-pkg-best-k {
   display: block;
   margin-bottom: 4px;
   font-size: 11px;
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--grey);
-  opacity: .72;
+  color: var(--grey);   /* was 72% opacity: 3.5:1, under AA for 11px labels */
   font-family: var(--font-mono);
 }
 
@@ -644,24 +650,32 @@
 .faq-a-p, .join-a-p { margin: 0; font-size: 14px; line-height: 1.5; color: var(--grey); text-wrap: pretty; }
 .faq-a-link { margin-top: 14px; }
 
-.faq-cta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 120px var(--px-page);
+/* the booking band between the brand and creator groups (SPEC §8 rank 9) */
+.faq-band {
+  margin: 56px 0 88px;
+  padding: 32px;
+  border-radius: 16px;
   background: var(--sand-s);
-  text-align: center;
+  color: var(--black);
 }
-.faq-cta-h2, .agency-cta-h2 { max-width: 720px; color: var(--black); text-wrap: balance; }
-.faq-cta-p, .agency-cta-p {
-  margin: 20px 0 36px;
-  max-width: 560px;
-  font-size: 16px;
-  line-height: 24px;
-  color: var(--grey);
-  text-wrap: pretty;
+.faq-band-h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  font-optical-sizing: auto;
+  font-synthesis: none;
+  font-size: 28px;
+  line-height: 1.25;
+  letter-spacing: var(--ls-display);
+  color: var(--black);
+  text-wrap: balance;
 }
-.faq-cta-btns, .agency-cta-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.faq-band-p { margin: 12px 0 0; max-width: 520px; font-size: 14px; line-height: 1.5; color: var(--grey); text-wrap: pretty; }
+.faq-band-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 28px; }
+.faq-band-mail { margin: 0; font-size: 14px; line-height: 1.5; color: var(--grey); }
+.faq-band-mail-a { color: var(--black); text-decoration: underline; text-decoration-color: var(--k20); text-underline-offset: 3px; transition: text-decoration-color var(--dur); }
+.faq-band-mail-a:hover { text-decoration-color: var(--black); }
+.faq-band-mail-a:focus-visible { outline: 2px solid var(--jam); outline-offset: 3px; border-radius: 2px; }
 
 /* =====================================================================
    /agency
@@ -686,35 +700,16 @@
 }
 .agency-hero .btn { margin-top: 48px; }
 
+/* the "at a glance" facts row under the hero (the HQ drawing that sat here is gone: SPEC S7) */
 .agency-editorial { padding: 56px var(--px-page) 120px; }
-.agency-drawing {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1864 / 700;
-  border-radius: var(--r-img-lg);
-  background: var(--sand-s);
-  overflow: hidden;
-}
-.agency-drawing svg { display: block; width: 100%; height: 100%; }
-/* src/drawing/hq.svg ships the way the hero engine wants it: a full-canvas
-   black rect it removes at runtime, 10-unit strokes it normalises, and the
-   five detailed interiors it draws in on the dive. As a still editorial
-   plate the page needs the exterior only, at 1px. */
-.agency-drawing svg > g > rect:first-child { display: none; }
-.agency-drawing svg [id^="#"]:not([id$="-fade"]) { display: none; }
-.agency-drawing svg :is(path, line, rect, circle, ellipse, polyline, polygon) {
-  vector-effect: non-scaling-stroke;
-  stroke-width: 1;
-  stroke: var(--line);
-}
 .agency-facts-row {
   display: grid;
   grid-template-columns: calc(50% - var(--px-page)) minmax(0, 1fr);
   align-items: start;
   gap: 24px;
-  margin-top: 28px;
+  padding-top: 32px;
+  border-top: 1px solid var(--k10);
 }
-.agency-caption { margin: 0; max-width: 420px; font-size: 13px; line-height: 1.5; color: var(--grey); }
 .agency-facts { display: flex; flex-wrap: wrap; gap: 40px 56px; }
 .agency-fact { display: flex; flex-direction: column; gap: 6px; }
 .agency-fact-k {
@@ -722,8 +717,7 @@
   line-height: 1.4;
   letter-spacing: var(--ls-label);
   text-transform: uppercase;
-  color: var(--grey);
-  opacity: .72;
+  color: var(--grey);   /* was 72% opacity: 3.5:1, under AA for 11px labels */
   font-family: var(--font-mono);
 }
 .agency-fact-v { font-size: 15px; line-height: 1.4; color: var(--black); text-decoration: none; }
@@ -823,15 +817,13 @@ a.agency-fact-v:hover { text-decoration-color: var(--jam); }
 .agency-founder-name { font-size: 14px; line-height: 1.4; font-weight: 500; color: var(--black); }
 .agency-founder-role { font-size: 13px; line-height: 1.35; color: var(--grey); }
 
-.agency-cta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 120px var(--px-page) 140px;
-  text-align: center;
-}
-.agency-cta-art { width: 280px; height: auto; margin-bottom: 32px; opacity: .9; }
-.agency-cta-art.is-missing { display: none; }
+/* the creator route: one plain line at the end of the values section, far from any booking button */
+.agency-creator { grid-column: 2; margin: 32px 0 0; font-size: 14px; line-height: 1.5; color: var(--grey); }
+.agency-creator-a { color: var(--black); text-decoration: underline; text-decoration-color: var(--k20); text-underline-offset: 3px; transition: text-decoration-color var(--dur); }
+.agency-creator-a:hover { text-decoration-color: var(--black); }
+.agency-creator-a:focus-visible { outline: 2px solid var(--jam); outline-offset: 3px; border-radius: 2px; }
+/* the shared closing card follows the sand founder band, so it needs its own top space */
+.agency .page-section--closing { padding-top: 120px; }
 
 @media (max-width: 1024px) {
   .faq-body, .agency-facts-row, .agency-sec, .join-sec, .agency-founder {
@@ -841,7 +833,7 @@ a.agency-fact-v:hover { text-decoration-color: var(--jam); }
   .faq-side { position: static; padding-right: 0; padding-bottom: 24px; }
   .faq-side-nav { flex-direction: row; gap: 20px; }
   .agency-eyebrow, .join-eyebrow { padding-top: 0; }
-  .agency-rows, .join-rows { grid-column: 1; }
+  .agency-rows, .join-rows, .agency-creator { grid-column: 1; }
   .agency-row-name, .join-row-name { grid-column: 2 / 7; }
   .agency-row-blurb, .join-row-blurb { grid-column: 7 / 13; }
 }
@@ -849,10 +841,12 @@ a.agency-fact-v:hover { text-decoration-color: var(--jam); }
   .faq-hero, .agency-hero { padding-top: 110px; }
   .faq-body { padding-top: 56px; padding-bottom: 64px; }
   .faq-group + .faq-group { margin-top: 56px; }
-  .faq-cta, .agency-founder { padding-top: 64px; padding-bottom: 64px; }
+  .agency-founder { padding-top: 64px; padding-bottom: 64px; }
+  .agency .page-section--closing { padding-top: 64px; }
+  .faq-band { margin: 40px 0 88px; padding: 24px 20px; }
+  .faq-band-h2 { font-size: 24px; }
   .agency-editorial { padding-top: 40px; padding-bottom: 64px; }
   .agency-sec, .join-sec { padding-bottom: 64px; }
-  .agency-cta { padding: 64px var(--px-page) 80px; }
   .agency-row, .join-row {
     grid-template-columns: 40px minmax(0, 1fr);
     column-gap: 16px;
@@ -864,13 +858,11 @@ a.agency-fact-v:hover { text-decoration-color: var(--jam); }
   .agency-row-name, .join-row-name { grid-column: 2; grid-row: 1; font-size: 22px; letter-spacing: var(--ls-display); line-height: 1.364; }
   .agency-row-blurb, .join-row-blurb { grid-column: 2; grid-row: 2; }
   .agency-rows, .join-rows { margin-top: 32px; }
-  .agency-drawing { aspect-ratio: 3 / 2; border-radius: 12px; }
 }
 @media (max-width: 600px) {
   .faq-lead, .agency-intro, .agency-p, .join-p { font-size: 14px; line-height: 1.5; }
   .faq-side-nav { flex-wrap: wrap; gap: 12px; }
   .agency-facts { gap: 24px 32px; }
-  .agency-cta-art { width: 200px; }
   .faq-q, .join-q { padding: 18px 0; font-size: 15px; }
 }
 
