@@ -65,7 +65,7 @@
    older browsers simply wrap as before). Paragraphs get the lighter `pretty`. */
 h1, h2, h3, h4,
 .t-display, .t-trust, .t-quote, .t-card-title, .t-h3,
-.sol-card__title, .foot-headline { text-wrap: balance; }
+.sol-card__title, .foot-headline, .hero-m-p, .hero-m-outcomes-title { text-wrap: balance; }
 p { text-wrap: pretty; }
 
 /* hanging punctuation for opening quotes */

@@ -3,7 +3,6 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<script>document.documentElement.classList.add('js')</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Casting UGC creators from our roster | Shortlist you approve | hypjam</title>
 <meta name="description" content="UGC creators cast for fit, not follower count, from a roster hypjam briefs and pays. You approve the shortlist; every creator signs a release before filming.">
@@ -216,7 +215,7 @@
         </div>
       </div>
 
-      <a href="/#pricing" class="nav-link">Pricing</a>
+      <a href="/rights" class="nav-link">Rights</a>
       <a href="/work" class="nav-link">Work</a>
 
       <div class="nav-item" data-menu="resources">
@@ -227,19 +226,20 @@
           <div class="nav-menu-inner">
             <div class="nav-menu-col">
               <a class="nav-menu-link" href="/agency">Agency</a>
-              <a class="nav-menu-link" href="/process">Process</a>
-              <a class="nav-menu-link" href="/rights">Rights</a>
-              <a class="nav-menu-link" href="/faq">FAQ</a>
               <a class="nav-menu-link" href="/blog">Blog</a>
-              <a class="nav-menu-link" href="/join">For creators</a>
+              <a class="nav-menu-link" href="/process">Process</a>
+              <a class="nav-menu-link" href="/faq">FAQ</a>
             </div>
             <a class="nav-menu-video" href="/process">
               <span class="nav-menu-video-frame">
-                <img class="nav-menu-still" src="/assets/img/process/shoot.jpg?v=6812e569" alt="Example shoot log from our templates" width="642" height="368" loading="lazy" decoding="async">
-                <span class="nav-menu-tag" aria-hidden="true">Example</span>
+                <!-- the clip starts (muted, looping) the first time the menu opens; poster until then -->
+                <!-- the clip is an illustration of a phone shoot, not footage of a hypjam
+                     production: nothing here may describe it as one. Copy lives in nav.json. -->
+                <video class="nav-menu-clip" muted loop playsinline preload="none" data-poster="/assets/video/hero-poster.jpg?v=f76cf493" data-src="/assets/video/hero-studio-web.mp4?v=d26d81e1" aria-label="Illustrative looping clip of a phone shoot"></video>
+                <span class="nav-menu-play" aria-hidden="true"><svg viewBox="0 0 12 12" width="10" height="10"><path d="M3.5 2.2v7.6L9.5 6z" fill="currentColor"/></svg></span>
               </span>
-              <span class="nav-menu-video-title">How a sprint runs</span>
-              <span class="nav-menu-video-sub">Signed brief to first cuts in 14 days</span>
+              <span class="nav-menu-video-title">How a shoot day runs</span>
+              <span class="nav-menu-video-sub">Brief to edit, step by step</span>
             </a>
           </div>
         </div>
@@ -260,7 +260,7 @@
     </div>
 
     <div class="nav-right">
-      <!-- one action only: creators reach /join from the Resources menu, the phone menu and the footer -->
+      <a href="/join" class="nav-link nav-link--creators">Creators</a>
       <a href="/book" class="nav-cta">Book a call<span class="nav-cta-circle"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
   </div>
@@ -306,14 +306,12 @@
           </div>
         </div>
       </div>
-      <a class="nav-m-row" href="/#pricing">Pricing</a>
+      <a class="nav-m-row" href="/rights">Rights</a>
       <a class="nav-m-row" href="/work">Work</a>
       <a class="nav-m-row" href="/agency">Agency</a>
-      <a class="nav-m-row" href="/process">Process</a>
-      <a class="nav-m-row" href="/rights">Rights</a>
-      <a class="nav-m-row" href="/faq">FAQ</a>
       <a class="nav-m-row" href="/blog">Blog</a>
-      <a class="nav-m-row nav-m-row--quiet" href="/join">For creators</a>
+      <a class="nav-m-row" href="/process">Process</a>
+      <a class="nav-m-row" href="/faq">FAQ</a>
     </div>
   </div>
 </nav>
@@ -368,7 +366,7 @@
 <p class="page-hero__crumb"><a href="/services">Services</a><span aria-hidden="true">/</span><span class="page-hero__crumb-current">Casting & roster</span></p>
 <h1 class="page-hero__title">Creators cast for fit, from a roster we brief ourselves</h1>
 <p class="page-hero__intro">Nobody is hired for their following here. Brands are paying for the footage, not the audience, so the person on camera should look and sound like your customer. hypjam casts from its own roster of everyday creators, against the brief, and you approve the shortlist before anyone presses record.</p>
-<div class="page-hero__cta"><a class="btn btn--lg btn--cta" data-cta="svc-hero" href="/book">Book a call<span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><p class="page-hero__micro">From £1,800 a month · 30 minutes with Avi</p></div>
+<div class="page-hero__cta"><a class="btn btn--light" href="/book">Book a call<span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
 </div><div class="page-hero__visual" aria-hidden="true">
 <div class="page-panel"><div class="mock-stage mock-stage--col" style="gap:10px"><div class="mock-card" style="--w:300px;padding:14px 16px"><div class="mock-row" style="--i:0;border-top:0;min-height:0;padding:0"><span class="mock-avatar" aria-hidden="true"></span><span class="mock-row__t">creator A</span><span class="mock-row__v">London</span><span class="mock-chip mock-chip--jam">shortlisted</span></div><div class="mock-chips" style="padding-bottom:0"><span class="mock-chip">skincare</span><span class="mock-chip">25–34</span><span class="mock-chip">shortlisted</span></div></div><div class="mock-card" style="--w:300px;padding:14px 16px"><div class="mock-row" style="--i:1;border-top:0;min-height:0;padding:0"><span class="mock-avatar" aria-hidden="true"></span><span class="mock-row__t">creator B</span><span class="mock-row__v">London</span><span class="mock-chip mock-chip--jam">shortlisted</span></div><div class="mock-chips" style="padding-bottom:0"><span class="mock-chip">skincare</span><span class="mock-chip">25–34</span><span class="mock-chip">shortlisted</span></div></div><div class="mock-card" style="--w:300px;padding:14px 16px"><div class="mock-row" style="--i:2;border-top:0;min-height:0;padding:0"><span class="mock-avatar" aria-hidden="true"></span><span class="mock-row__t">creator C</span><span class="mock-row__v">London</span></div><div class="mock-chips" style="padding-bottom:0"><span class="mock-chip">skincare</span><span class="mock-chip">25–34</span><span class="mock-chip">shortlisted</span></div></div><p class="mock-strip">Shortlist of 3 · sent to your brand · release pending</p></div></div>
 </div></div>
@@ -490,45 +488,54 @@
 <div class="page-compare__cell"><p class="page-compare__label">Data</p><p class="page-compare__value">UK GDPR handling</p><p class="page-compare__body">Creator and brand details are held under our privacy policy. We do not sell, share or scrape data.</p><a class="page-link page-compare__link" href="/rights">Rights</a></div>
 </div></section>
 <section class="page-section page-section--faq">
-<figure class="page-quote"><div class="page-quote__body"><blockquote class="page-quote__text">“We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.”</blockquote><figcaption class="page-quote__attr"><p class="page-quote__name">Avi Aggarwal</p><p class="page-quote__role">Founder, hypjam · London</p></figcaption></div><div class="page-quote__media page-quote__media--doc"><img class="page-quote__doc" src="/assets/img/process/casting.jpg?v=d27ace04" alt="Example casting shortlist from our templates" width="642" height="370" loading="lazy" decoding="async"><span class="page-quote__tag" aria-hidden="true">Example</span></div></figure>
+<figure class="page-quote"><div class="page-quote__body"><blockquote class="page-quote__text">“We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.”</blockquote><figcaption class="page-quote__attr"><p class="page-quote__name">Avi Aggarwal</p><p class="page-quote__role">Founder, hypjam · London</p></figcaption></div><div class="page-quote__media"><img src="/assets/img/stills/studio-creator.jpg?v=e75e1ad4" alt="A creator mid-take, talking to a phone on a tripod inside a ring light" width="620" height="450" loading="lazy" decoding="async"></div></figure>
 <div class="page-split"><div class="page-split__aside"><p class="page-eyebrow">FAQ</p></div><div class="page-split__main"><h2 class="page-h2">Questions brands ask about casting.</h2><div class="page-faq"><details class="page-faq__item" open><summary class="page-faq__q"><span class="page-faq__mark" aria-hidden="true">↳</span><span class="page-faq__label">Do we get to choose the creator?</span><span class="page-faq__toggle" aria-hidden="true"></span></summary><p class="page-faq__a">Yes. You see a shortlist of two to five creators per brief with sample clips and approve or swap before anyone films.</p></details><details class="page-faq__item"><summary class="page-faq__q"><span class="page-faq__mark" aria-hidden="true">↳</span><span class="page-faq__label">Do your creators have big followings?</span><span class="page-faq__toggle" aria-hidden="true"></span></summary><p class="page-faq__a">Some do, most do not, and it is not a criterion. You are paying for the footage and the delivery, not the audience. If you want reach from a creator's own account, that is influencer work and we will say so.</p></details><details class="page-faq__item"><summary class="page-faq__q"><span class="page-faq__mark" aria-hidden="true">↳</span><span class="page-faq__label">Where are the creators based?</span><span class="page-faq__toggle" aria-hidden="true"></span></summary><p class="page-faq__a">The roster is largely UK-based and mostly remote. Creators film at home on their own phones; London shoots with direction in the room can be arranged where the brief needs it.</p></details><details class="page-faq__item"><summary class="page-faq__q"><span class="page-faq__mark" aria-hidden="true">↳</span><span class="page-faq__label">Who pays the creators?</span><span class="page-faq__toggle" aria-hidden="true"></span></summary><p class="page-faq__a">We do, out of your package fee, once a video is approved. One contract and one invoice on your side.</p></details><details class="page-faq__item"><summary class="page-faq__q"><span class="page-faq__mark" aria-hidden="true">↳</span><span class="page-faq__label">Can we use the same creator again?</span><span class="page-faq__toggle" aria-hidden="true"></span></summary><p class="page-faq__a">Yes, and we recommend it. Creators who worked for your brand are booked first on the next brief, and always-on packages get a dedicated roster.</p></details><details class="page-faq__item"><summary class="page-faq__q"><span class="page-faq__mark" aria-hidden="true">↳</span><span class="page-faq__label">What do creators sign?</span><span class="page-faq__toggle" aria-hidden="true"></span></summary><p class="page-faq__a">A release before filming that names the scope of use, the platforms and the number of days, plus any whitelisting authorisation and its date. It mirrors the terms on your brief.</p></details></div></div></div>
 </section>
-<!-- Closing CTA card: the sand-m card, copy left, the contract commitments right.
+<!-- Closing CTA card (the reference site: the sand-m card with copy left and footer-buildings right).
      Copy comes from PAGE META so any page can use this partial. Set these meta keys at
      the top of the page template (no nested comments here - HTML comments do not nest):
-       cta-h2, cta-p, cta-label, cta-href, cta-id (the button's data-cta value, default "page")
-     With no meta the card carries the canonical call promise (SPEC §6.6, §8 rank 4).
-     A page with this card hides the footer's own headline row (90-footer.css).
+       cta-h2, cta-p, cta-label, cta-href
      e.g.  cta-h2 : a content token for services.index.cta_card.h2 ;  cta-href : /book
      (never write a placeholder token inside a comment - build.py expands it in place)
-     The right-hand panel lists the three contract commitments from home.json → process. -->
+     The drawing is the drawing agent's /assets/img/hq-footer.svg; until it exists a small
+     inline line drawing of the two buildings stands in (same slot, same size). -->
 <section class="page-section page-section--closing">
   <div class="page-cta">
     <div class="page-cta__text">
-      <h2 class="page-h2 page-cta__h2">Tell us who the ad is for.</h2>
-      <p class="page-cta__p">Book a call and tell us who your customer is; you leave knowing whether UGC suits your product, which package fits and what a first sprint would look like.</p>
-      <div class="page-cta__btn"><a class="btn btn--lg btn--cta" data-cta="page" href="/book">Book a call<span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
-      <p class="page-cta__anchor">30 minutes with Avi, free · Packages from £1,800 a month · First cuts 14 days after a signed brief</p>
+      <h2 class="page-h2 page-cta__h2">See who we would cast.</h2>
+      <p class="page-cta__p">Book a call, tell us who the ad is for, and we will show you the kind of creator we would shortlist from the roster.</p>
+      <div class="page-cta__btn"><a class="btn btn--light" href="/book">Book a call<span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div>
     </div>
-    <!-- the panel carries the three contract commitments (was a line drawing of two buildings,
-         a leftover of the retired hotel walkthrough). Swap in a portrait of Avi when one exists. -->
-    <div class="page-cta__panel page-cta__panel--facts">
-      <p class="page-cta__facts-k">Written into every contract</p>
-      <ul class="page-cta__facts">
-        <li class="page-cta__fact"><span class="page-cta__fact-v">14 days</span><span class="page-cta__fact-l">from a signed brief to your first cuts</span></li>
-        <li class="page-cta__fact"><span class="page-cta__fact-v">8 hooks</span><span class="page-cta__fact-l">written for every script, ready to test</span></li>
-        <li class="page-cta__fact"><span class="page-cta__fact-v">1 contract</span><span class="page-cta__fact-l">and one invoice, every creator and editor behind it</span></li>
-      </ul>
+    <div class="page-cta__panel">
+      <img class="page-cta__art" src="/assets/img/hq-footer.svg?v=fe2b0990" alt="Line drawing of hypjam's two HQ buildings" width="560" height="240" loading="lazy" decoding="async" onerror="this.classList.add('is-missing')">
+      <svg class="page-cta__fallback" viewBox="0 0 560 240" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Line drawing of hypjam's two HQ buildings">
+        <!-- ground -->
+        <path d="M20 214h520"/>
+        <!-- building A: narrow, three floors, arched top windows -->
+        <path d="M74 214V64h146v150"/><path d="M68 64h158"/><path d="M96 48h44v16M96 48v16"/>
+        <path d="M74 112h146M74 160h146"/><path d="M80 118h134v4H80z" stroke-opacity=".5"/>
+        <path d="M92 100V84a10 10 0 0 1 20 0v16zM122 100V84a10 10 0 0 1 20 0v16zM152 100V84a10 10 0 0 1 20 0v16zM182 100V84a10 10 0 0 1 20 0v16z"/>
+        <path d="M92 150v-24h20v24zM122 150v-24h20v24zM152 150v-24h20v24zM182 150v-24h20v24z"/>
+        <path d="M92 200v-26h20v26zM182 200v-26h20v26z"/><path d="M128 214v-34a19 19 0 0 1 38 0v34"/><path d="M118 214h58M122 206h50M126 198h42" stroke-opacity=".5"/>
+        <!-- building B: wide, four floors, arcades at street level -->
+        <path d="M262 214V56h240v158"/><path d="M256 56h252"/><path d="M356 40h52v16M356 40v16"/>
+        <path d="M262 92h240M262 130h240M262 168h240"/>
+        <path d="M280 82V66h14v16zM310 82V66h14v16zM340 82V66h14v16zM370 82V66h14v16zM400 82V66h14v16zM430 82V66h14v16zM460 82V66h14v16z"/>
+        <path d="M280 120v-18h14v18zM310 120v-18h14v18zM340 120v-18h14v18zM370 120v-18h14v18zM400 120v-18h14v18zM430 120v-18h14v18zM460 120v-18h14v18z"/>
+        <path d="M280 160v-22h14v22zM310 160v-22h14v22zM340 160v-22h14v22zM370 160v-22h14v22zM400 160v-22h14v22zM430 160v-22h14v22zM460 160v-22h14v22z"/>
+        <path d="M280 214v-24a12 12 0 0 1 24 0v24M322 214v-24a12 12 0 0 1 24 0v24M418 214v-24a12 12 0 0 1 24 0v24M460 214v-24a12 12 0 0 1 24 0v24"/>
+        <path d="M366 214v-34h32v34"/><path d="M360 176h44" stroke-opacity=".5"/>
+        <path d="M508 110h16v10h-16zM508 148h16v10h-16zM508 186h16v10h-16z" stroke-opacity=".6"/>
+      </svg>
     </div>
   </div>
 </section>
 
 </main>
-<footer id="footer" class="foot" data-nav="dark" data-nav-fill="bg-black">
-  <!-- headline row: hidden on home and on any page with a closing card (90-footer.css), so two booking bands never stack -->
+<footer id="footer" class="foot" data-nav="dark">
   <div class="foot-top">
-    <h2 class="foot-headline">Tell us what you're launching.</h2>
-    <a href="/book" class="btn btn--lg btn--cta foot-cta" data-cta="footer">Book a call<span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    <h2 class="foot-headline">Bring directed UGC to your brand.</h2>
+    <a href="/book" class="foot-cta">Book a call<span class="foot-cta-circle"><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
   </div>
 
   <div class="foot-rule" aria-hidden="true"></div>
@@ -588,26 +595,22 @@
   </div>
 
   <div class="foot-bottom">
-    <p class="foot-copy">© 2026 hypjam. All rights reserved.</p>
-    <!-- the old badge slot: plain text only (no seal or mark). The company disclosure line
-         (registered part of the UK, number, office) goes here once hypjam is incorporated. -->
-    <p class="foot-badge">UGC agency · London</p>
+    <div class="foot-left">
+      <!-- /assets/img/hq-footer.svg is produced by the drawing agent; until it exists the slot keeps its 280x120 box -->
+      <span class="foot-hq-slot"><img src="/assets/img/hq-footer.svg?v=fe2b0990" alt="Line drawing of hypjam's two HQ buildings" class="foot-hq" width="210" height="90" loading="lazy" decoding="async" onerror="this.classList.add('is-missing')"></span>
+      <p class="foot-copy">© 2026 hypjam.<br>All rights reserved.</p>
+    </div>
+    <div class="foot-badge">
+      <span class="foot-seal" role="img" aria-label="Line-drawn seal: a phone with a play triangle"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="18" r="17"/><circle cx="18" cy="18" r="13.5" stroke-dasharray="1.6 2.6"/><rect x="13.75" y="9.75" width="8.5" height="16.5" rx="1.8"/><path d="M16.5 12.25h3"/><circle cx="18" cy="23.6" r=".9" fill="currentColor" stroke="none"/><path d="M8.5 27.5 11 25M27.5 27.5 25 25"/></svg></span>
+      <span class="foot-badge-text">Shot on phones, directed by people</span>
+    </div>
   </div>
 </footer>
 
-<!-- the phone call-to-action bar. Appears once the hero's own CTA has scrolled away and
-     hides whenever another "Book a call" (anything marked data-cta) or the footer is on
-     screen, so there is never a second button competing with one already in view.
-     Phones and small tablets only (≤ 760px), 56px tall at most. Copy: content/footer.json → sticky.
-     Behaviour: src/js/24-sticky-cta.js -->
-<div class="scta" data-scta aria-hidden="true" inert>
-  <p class="scta-text"><span class="scta-t">30-minute call with Avi</span><span class="scta-s">Free · Google Meet · no deck</span></p>
-  <a href="/book" class="btn btn--cta scta-btn">Book a call<span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-</div>
-
-<!-- site.js only. GSAP, ScrollTrigger, CustomEase and Lenis drove the retired hotel
-     walkthrough and the live product panels; nothing on the site needs them now
-     (00-lenis.js falls back to native scrolling), so no page downloads them. -->
+<script src="/assets/vendor/gsap.min.js?v=93bb9d97" defer></script>
+<script src="/assets/vendor/ScrollTrigger.min.js?v=49b29c2d" defer></script>
+<script src="/assets/vendor/CustomEase.min.js?v=b0ce62d8" defer></script>
+<script src="/assets/vendor/lenis.min.js?v=42bf5944" defer></script>
 <script src="/assets/site.js" defer></script>
 </body>
 </html>

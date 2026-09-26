@@ -47,12 +47,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  min-height: min(64vh, 620px);
-  padding: 160px var(--px-page) 88px;
+  min-height: 100vh;
+  padding: 120px var(--px-page) 100px;
   overflow: hidden;
-  background:
-    radial-gradient(60% 70% at 50% 100%, rgba(255, 111, 31, .14), rgba(255, 111, 31, 0) 70%),
-    var(--black);
+  background: var(--black);
   color: var(--white);
   text-align: center;
 }
@@ -67,7 +65,12 @@
   filter: blur(14px) saturate(.9);
   transform: scale(1.12);
 }
-.blog-hero-shade { display: none; }  /* the background frame it shaded is retired */
+.blog-hero-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 34%, rgba(0,0,0,.72) 100%);
+}
 .blog-hero-body {
   position: relative;
   z-index: 1;
@@ -549,12 +552,26 @@
 .blog-story:hover .blog-story-read { color: var(--black); }
 
 /* =====================================================================
-   ARTICLE — closing card
-   Every post ends on the shared closing card (partials/page-cta.html,
-   40-pages.css). "More guides" above it has no bottom padding, so the
-   card gets its own top space here.
+   ARTICLE — closing band
    ===================================================================== */
-.blog-article .page-section--closing { padding-top: 120px; }
+.blog-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 120px;
+  padding: 120px var(--px-page);
+  background: var(--sand-s);
+  text-align: center;
+}
+.blog-cta-h2 { max-width: 720px; color: var(--black); text-wrap: balance; }
+.blog-cta-p {
+  margin: 20px 0 36px;
+  max-width: 560px;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--grey);
+  text-wrap: pretty;
+}
 
 /* =====================================================================
    Responsive — the reference site's breakpoints (DESIGN §4): 1200 / 1024 / 800 / 600
@@ -593,12 +610,12 @@
   .blog-art-eyebrow { margin-top: 28px; }
   .blog-art-banner { margin-top: 28px; border-radius: 12px; }
   .blog-more { padding-top: 72px; }
-  .blog-article .page-section--closing { padding-top: 72px; }
+  .blog-cta { margin-top: 72px; padding-top: 72px; padding-bottom: 72px; }
   .md-h2 { font-size: 28px; letter-spacing: var(--ls-display); margin-top: 48px; line-height: 1.286; }
   .md-lede { font-size: 18px; }
 }
 @media (max-width: 600px) {
-  .blog-hero { min-height: 0; padding-top: 140px; padding-bottom: 64px; }
+  .blog-hero { min-height: 88vh; padding-bottom: 64px; }
   .blog-hero-mark { width: 44px; height: 44px; margin-bottom: 28px; }
   .blog-hero-h1 { font-size: 34px; letter-spacing: var(--ls-display); line-height: 1.176; }
   .blog-hero-sub { font-size: 14px; line-height: 1.5; margin-top: 18px; }
@@ -624,4 +641,5 @@
   .blog-fact-l { max-width: none; }
   .blog-more-grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .blog-story-tile .blog-art { width: 40%; }
+  .blog-cta-p { margin-bottom: 28px; }
 }

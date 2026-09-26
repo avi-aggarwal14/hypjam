@@ -1,10 +1,10 @@
 {
  "_schema": {
-  "_about": "Content for /faq. A light page: eyebrow, display h1, one paragraph, then the brand group of accordion items, a Book-a-call band, then the creator group, then the shared closing card (partials/page-cta.html). Brand answers match the homepage FAQ (SPEC §3.7); creator questions are the join page's six, kept in sync with join.json. FAQPage JSON-LD is derived from exactly these groups. British English.",
+  "_about": "Content for /faq. A light page: eyebrow, display h1, one paragraph, then two groups of accordion items (the same accordion component as the rights page: hairline rows, '+' rotating to 'x', one open at a time) with a sticky group switcher or two h2s. Brand questions come from the hire page's eight FAQs plus six new buyer questions; creator questions are the join page's six, kept in sync with join.json. British English.",
   "meta": "{path, title, description, theme}",
   "hero": "{eyebrow, h1, p}",
   "groups": "[{id, label, h2, items:[{q, a, link?:{label, href}}]}] - link is an optional 'Read more' under the answer.",
-  "band": "{h2, p, button:{label, href}, email:{text, label, href}} - the booking band after the brand group (filled button, data-cta=\"faq\"; SPEC §8 rank 9)."
+  "cta": "{h2, p, buttons:[{label, href, primary}]}"
  },
  "meta": {
   "path": "/faq",
@@ -24,14 +24,6 @@
    "h2": "For brands",
    "items": [
     {
-     "q": "What does it cost?",
-     "a": "Packages start at £1,800 a month for six videos (Starter). Growth is from £3,600 for twelve, and Scale from £6,500 for twenty-four or more. Ad spend, product units and postage are separate, and we scope the final number on the call.",
-     "link": {
-      "label": "What each package includes",
-      "href": "/process#packages"
-     }
-    },
-    {
      "q": "What is UGC, and how is it different from influencer marketing?",
      "a": "UGC is content made to a brief, for a flat fee, that you license to run as an ad from your own account or the creator's. Influencer marketing rents someone's audience. We make the former: the creator's following does not matter, the take does.",
      "link": {
@@ -41,15 +33,11 @@
     },
     {
      "q": "How fast do videos turn around?",
-     "a": "Your first cuts arrive within 14 days of a signed brief, with casting, shooting and editing inside that, and your revision round follows. Rush timelines are possible; we will tell you honestly if the brief needs longer.",
+     "a": "Most sprints run fourteen days from brief to delivery, casting, shooting and editing included. Rush timelines are possible; we will tell you honestly if the brief needs longer.",
      "link": {
       "label": "See the process week by week",
       "href": "/process"
      }
-    },
-    {
-     "q": "What do we have to do?",
-     "a": "Sign off the brief and script, pick the hooks with us, approve the creator shortlist, send product (or a login, for an app) and give one round of notes on the cuts. We do the rest."
     },
     {
      "q": "What usage rights do we get?",
@@ -89,7 +77,7 @@
     },
     {
      "q": "Do you run the ads as well?",
-     "a": "No. On Growth and Scale we set up whitelisting and Spark Ads, and we tell you which cuts to run where. Your ad spend and your ad account stay with you.",
+     "a": "We set up whitelisting and Spark Ads, tell you which cuts to run where and, on Growth and Scale, debrief performance with you monthly. We do not manage your ad spend, and packages do not include it.",
      "link": {
       "label": "Whitelisting and Spark Ads",
       "href": "/services/whitelisting"
@@ -101,23 +89,19 @@
     },
     {
      "q": "Who owns the final videos?",
-     "a": "You license them for the usage window in your package, for organic and paid use. We handle the paperwork with creators so the rights are clean, not implied."
+     "a": "You do, for the usage window in your package. We handle the paperwork with creators so the rights are clean, not implied."
     },
     {
      "q": "How do creators get paid?",
      "a": "We pay creators directly out of your package fee. One contract, one invoice, and no separate negotiations with each creator on your end."
     },
     {
-     "q": "You're new. Why should we trust you?",
-     "a": "We are new, and we'd rather say so than invent a client list. What you can check instead: the example ads and the 14-day sprint on our home page, and three terms written into every contract: first cuts 14 days after a signed brief; eight hooks written for every script, ready to test; and one contract and one invoice. Nothing is filmed until you've approved the script and the creators, and packages run month to month with a one-month minimum.",
+     "q": "What happens on the intro call?",
+     "a": "Thirty minutes. You tell us what you are launching and who it is for; we tell you whether UGC is the right call, which package fits and what a first sprint would look like. No deck.",
      "link": {
-      "label": "How a sprint runs",
-      "href": "/process"
+      "label": "Book a call",
+      "href": "/book"
      }
-    },
-    {
-     "q": "What happens on the call?",
-     "a": "Thirty minutes on Google Meet with Avi. Bring your product and two or three ads you like, yours or anyone's. You'll leave knowing whether UGC suits your launch, which formats we'd test first and why, and what your first month would cost. If another route suits you better, we'll say so."
     }
    ]
   },
@@ -144,7 +128,7 @@
     },
     {
      "q": "How often will I get briefed?",
-     "a": "It depends on how many brand briefs match your niche, look and availability, so we cannot promise a set number. When a brief fits you, we ask; you can always say no."
+     "a": "It varies. Some creators shoot for us monthly, others a few times a year, depending on how many briefs match your niche and availability."
     },
     {
      "q": "Do I need to be in the UK?",
@@ -157,17 +141,20 @@
    ]
   }
  ],
- "band": {
-  "h2": "Anything else, ask on the call.",
-  "p": "30 minutes with Avi, free, on Google Meet. No deck.",
-  "button": {
-   "label": "Book a call with Avi",
-   "href": "/book"
-  },
-  "email": {
-   "text": "Prefer email?",
-   "label": "avi@hypjam.com",
-   "href": "mailto:avi@hypjam.com"
-  }
+ "cta": {
+  "h2": "Still got a question?",
+  "p": "Book a thirty-minute call or email avi@hypjam.com. Either way, a person answers.",
+  "buttons": [
+   {
+    "label": "Book a call",
+    "href": "/book",
+    "primary": true
+   },
+   {
+    "label": "Email us",
+    "href": "mailto:avi@hypjam.com",
+    "primary": false
+   }
+  ]
  }
 }

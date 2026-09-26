@@ -8,8 +8,6 @@
    ===================================================================== */
 
 *, *::before, *::after { box-sizing: border-box; }
-/* in-page links (e.g. "See how it works") land below the fixed nav, not under it */
-main [id], section[id] { scroll-margin-top: 88px; }
 
 html {
   -webkit-text-size-adjust: 100%;

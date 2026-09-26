@@ -2,11 +2,11 @@
   "_schema": {
     "version": 1,
     "file": "content/services.json — copy for /services (index) and /services/<slug> (nine service pages). Consumed by tools/render_services.py. Top-level keys: _schema, platforms, cta_button, index, items[9] (one object per service page, in nav order 01–09; reference as {{content:services.items.<i>.<field>}}).",
-    "template": "Index: eyebrow + h1 + intro + filled Book-a-call button with a micro line; full-width editorial image; platforms row; two grouped numbered lists (01–03, 04–09), each row = number · name · one-line blurb · 'Explore →'; closing CTA card. Page: breadcrumb eyebrow + h1 + intro + filled Book-a-call button with a micro line, hero visual on the right; platforms row; centred statement h2 + four facts; six alternating feature blocks; 'Built for the problems … actually has' 2×2; sand 'How it works' four-step strip; 'Under the hood' 2×3 comparison grid; founder quote card with an example document; FAQ accordion (first item open); closing CTA card. No reserved, placeholder or 'coming soon' slots anywhere (SPEC §9 item 2).",
+    "template": "the reference site /product and /product/* one-to-one. Index: eyebrow + h1 + intro + CTA; full-width editorial image; platforms row (replaces 'Trusted by'); two grouped numbered lists (01–03, 04–09), each row = number · name · one-line blurb · 'Explore →'; sand 'See it in action' section with two film cards; closing CTA card with the HQ drawing. Page: breadcrumb eyebrow + h1 + intro + CTA with a hero visual on the right; platforms row; centred statement h2 + four count-up facts; six alternating feature blocks; 'Built for the problems … actually has' 2×2; sand 'How it works' four-step strip; 'Under the hood' 2×3 comparison grid; quote card; FAQ accordion (first item open); closing CTA card with the HQ drawing.",
     "urls": "Index /services. Pages /services/<slug>. Every CTA button goes to /book. Breadcrumb 'Services' links to /services.",
     "shared": {
       "platforms": "Rendered wherever the reference site renders 'Trusted by': `label` left, `items` as self-drawn monochrome wordmark-style SVG text logos at opacity .5, `tail` small grey at the end (the reference site's '+ others'). These are the placements hypjam ships to — factual, not social proof (CONTRACT §10).",
-      "cta_button": "Default hero button {label, href, micro}. Rendered as the filled booking button (btn btn--lg btn--cta, data-cta=\"svc-hero\") on the index and every service hero, with `micro` as one small line under it (SPEC §6.2 row 11)."
+      "cta_button": "Default button for every hero and CTA card: {label, href}."
     },
     "index": {
       "title": "<title> tag.",
@@ -14,10 +14,11 @@
       "eyebrow": "Uppercase 12–13px tracking .08em, above the h1.",
       "h1": "Two lines at 64px. Use '\\n' for the intended break; renderer may ignore.",
       "intro": "One paragraph, 16/24, grey, ~570px wide.",
-      "cta": "Overrides shared.cta_button's label/href if present; the micro line always comes from cta_button.micro.",
-      "image": "Full-width editorial image (radius 12–16px, ~16:9). {src, alt}. Alt text describes what is in the frame, never premises or a production (SPEC §8 rank 3).",
+      "cta": "Overrides shared.cta_button if present.",
+      "image": "Full-width editorial image (radius 12–16px, ~16:9). {src, alt}. Only shippable stills under assets/img/stills.",
       "groups": "Two groups: {eyebrow (with the reference site's leading rule), h2, items[]}. items[] = {n, slug, name, blurb, explore} → row links to /services/<slug>.",
-      "cta_card": "{h2, p, button} for the shared closing card (partials/page-cta.html). Never promise a free deliverable, a written plan or a reply time (SPEC §6.6)."
+      "films": "Sand section. {eyebrow, h2, items[2]}. items = reserved film slots: {eyebrow, title, action, reserved: true, note}. Render the poster area as a dashed hairline frame with a line-drawn phone silhouette and the note as the small jam-dotted tag 'Filled in at launch' (same treatment as the /work reserved slots, CONTRACT §10). 'Watch' present but inert (no href).",
+      "cta_card": "{h2, p, button} on sand-m with the HQ drawing in a white panel on the right (renderer inlines {{drawing}} scaled down, as the reference site's footer-buildings)."
     },
     "rules": "British English. the reference site's register: calm, declarative, sentence case, full stops, second person. Never 'studio', 'trusted by', 'AI-powered', 'revolutionary', a real company as a client, a testimonial, a case study, a performance number or a certification hypjam does not hold (UK GDPR handling is genuine; nothing is drawn as a certification).",
     "item": {
@@ -41,10 +42,10 @@
       "steps": "Four columns 01–04 with hairline dividers: {title, body}.",
       "comparison_head": "{eyebrow, h2, p}.",
       "comparison": "Six cells in a 2×3 grid with hairlines: {label (uppercase 12px), value (serif 26px), body (p), link (optional {label, href} as '↳ label')}. The sixth cell is always rights/safety and links to /rights, as the reference site's links to /security.",
-      "quote": "The founder's statement card. {kind: 'founder', text, name, role, meta, image {src, alt, tag}}. The text is the single canonical statement, attributed to Avi Aggarwal. image is an example document from assets/img/process/ (642×370, dark), shown whole on a matching dark panel with the small `tag` ('Example'); alt says 'Example … from our templates'. No stock or generated shoot stills beside the founder's words (SPEC S4). kind 'reserved' is retired: the renderer drops it rather than show a held-open slot.",
+      "quote": "the reference site's testimonial card (sand-s, 36px serif quote left, attribution, image right). {kind: 'founder' | 'reserved', text, name, role, meta, image {src, alt}}. 'founder' is the founder's own statement, attributed to Avi Aggarwal (real, CONTRACT §10); the text is the single canonical statement, identical to home.json quotes.items[0].text. 'reserved' renders the held-open slot: text 'We would rather show you nothing than words a brand never said.', tag 'On testimonials', dashed hairline frame, line-drawn phone silhouette in the image area. No invented names, ever.",
       "faq_head": "{eyebrow, h2}.",
       "faq": "Six {q, a}; first open, '+' / '×' toggles like the reference site.",
-      "cta": "{h2, p, button} closing card. Describes the call only (SPEC §6.6): no free deliverable, no written plan, no reply time."
+      "cta": "{h2, p, button} closing card, HQ drawing on the right."
     }
   },
   "platforms": {
@@ -61,8 +62,7 @@
   },
   "cta_button": {
     "label": "Book a call",
-    "href": "/book",
-    "micro": "From £1,800 a month · 30 minutes with Avi"
+    "href": "/book"
   },
   "index": {
     "title": "Services: briefing, casting and editing for UGC ads | hypjam",
@@ -73,6 +73,10 @@
     "cta": {
       "label": "Book a call",
       "href": "/book"
+    },
+    "image": {
+      "src": "/assets/img/stills/studio-wide.jpg",
+      "alt": "A creator talking to a phone on a tripod inside a ring light, with an editor working at a timeline behind her"
     },
     "groups": [
       {
@@ -153,6 +157,26 @@
         ]
       }
     ],
+    "films": {
+      "eyebrow": "See it in action",
+      "h2": "Two films about the work, not a deck.",
+      "items": [
+        {
+          "eyebrow": "Shoot film · reserved",
+          "title": "Inside a shoot day",
+          "action": "Watch",
+          "reserved": true,
+          "note": "Filled in at launch"
+        },
+        {
+          "eyebrow": "Process film · reserved",
+          "title": "A brief, start to finish",
+          "action": "Watch",
+          "reserved": true,
+          "note": "Filled in at launch"
+        }
+      ]
+    },
     "cta_card": {
       "h2": "Start with the brief. Add the rest when you are ready.",
       "p": "Start with one brief and one sprint, then bring casting, editing and rights onto the same contract. Book a call and tell us what you are launching.",
@@ -433,9 +457,8 @@
         "role": "Founder, hypjam",
         "meta": "London",
         "image": {
-          "src": "/assets/img/process/brief.jpg",
-          "alt": "Example brief from our templates",
-          "tag": "Example"
+          "src": "/assets/img/stills/studio-creator.jpg",
+          "alt": "A creator mid-take, talking to a phone on a tripod inside a ring light"
         }
       },
       "faq_head": {
@@ -469,8 +492,8 @@
         }
       ],
       "cta": {
-        "h2": "Start with the brief.",
-        "p": "Book a call and tell us what you are launching. On the call we will talk through the one thing we would build the brief around, and what a first sprint would look like.",
+        "h2": "See your brief written.",
+        "p": "Book a call and tell us what you are launching. We will come back with the one thing, the hooks and the shot list for it.",
         "button": {
           "label": "Book a call",
           "href": "/book"
@@ -744,9 +767,8 @@
         "role": "Founder, hypjam",
         "meta": "London",
         "image": {
-          "src": "/assets/img/process/hooks.jpg",
-          "alt": "Example hook sheet from our templates",
-          "tag": "Example"
+          "src": "/assets/img/stills/studio-creator.jpg",
+          "alt": "A creator mid-take, talking to a phone on a tripod inside a ring light"
         }
       },
       "faq_head": {
@@ -780,8 +802,8 @@
         }
       ],
       "cta": {
-        "h2": "Hear how we would hook your product.",
-        "p": "Book a call and tell us what you're launching. We'll tell you which hooks and formats we'd test first.",
+        "h2": "Read eight hooks for your product.",
+        "p": "Book a call and tell us what you are launching. We will write the first eight and show you which two we would shoot.",
         "button": {
           "label": "Book a call",
           "href": "/book"
@@ -1055,9 +1077,8 @@
         "role": "Founder, hypjam",
         "meta": "London",
         "image": {
-          "src": "/assets/img/process/casting.jpg",
-          "alt": "Example casting shortlist from our templates",
-          "tag": "Example"
+          "src": "/assets/img/stills/studio-creator.jpg",
+          "alt": "A creator mid-take, talking to a phone on a tripod inside a ring light"
         }
       },
       "faq_head": {
@@ -1091,8 +1112,8 @@
         }
       ],
       "cta": {
-        "h2": "Tell us who the ad is for.",
-        "p": "Book a call and tell us who your customer is; you leave knowing whether UGC suits your product, which package fits and what a first sprint would look like.",
+        "h2": "See who we would cast.",
+        "p": "Book a call, tell us who the ad is for, and we will show you the kind of creator we would shortlist from the roster.",
         "button": {
           "label": "Book a call",
           "href": "/book"
@@ -1364,9 +1385,8 @@
         "role": "Founder, hypjam",
         "meta": "London",
         "image": {
-          "src": "/assets/img/process/shoot.jpg",
-          "alt": "Example shoot log from our templates",
-          "tag": "Example"
+          "src": "/assets/img/stills/studio-creator.jpg",
+          "alt": "A creator mid-take, talking to a phone on a tripod inside a ring light"
         }
       },
       "faq_head": {
@@ -1400,8 +1420,8 @@
         }
       ],
       "cta": {
-        "h2": "Tell us what needs filming.",
-        "p": "Book a call and bring the product; you leave knowing whether UGC suits it, which package fits and what a first sprint would look like.",
+        "h2": "Watch a shoot day run.",
+        "p": "Book a call and we will walk you through a shoot from the pre-shoot call to the logged clips, on your product.",
         "button": {
           "label": "Book a call",
           "href": "/book"
@@ -1669,9 +1689,8 @@
         "role": "Founder, hypjam",
         "meta": "London",
         "image": {
-          "src": "/assets/img/process/ship.jpg",
-          "alt": "Example export screen from our templates",
-          "tag": "Example"
+          "src": "/assets/img/stills/studio-creator.jpg",
+          "alt": "A creator mid-take, talking to a phone on a tripod inside a ring light"
         }
       },
       "faq_head": {
@@ -1701,12 +1720,12 @@
         },
         {
           "q": "How long does the edit take?",
-          "a": "The first cut follows the shoot and lands within fourteen days of a signed brief. Your round comes back marked, and the second cut is usually the final one."
+          "a": "Inside the fourteen-day sprint: the first cut follows the shoot, your round comes back marked, and the second cut is usually the final one."
         }
       ],
       "cta": {
-        "h2": "Tell us where the ads will run.",
-        "p": "Book a call and tell us which placements matter to you; you leave knowing which formats we would test first, which package fits and what a first sprint would look like.",
+        "h2": "See the first cut.",
+        "p": "Book a call and we will show you how a shoot becomes six placement-ready files, and what the one revision round is usually spent on.",
         "button": {
           "label": "Book a call",
           "href": "/book"
@@ -1980,9 +1999,8 @@
         "role": "Founder, hypjam",
         "meta": "London",
         "image": {
-          "src": "/assets/img/process/ship.jpg",
-          "alt": "Example export screen from our templates",
-          "tag": "Example"
+          "src": "/assets/img/stills/studio-creator.jpg",
+          "alt": "A creator mid-take, talking to a phone on a tripod inside a ring light"
         }
       },
       "faq_head": {
@@ -2016,8 +2034,8 @@
         }
       ],
       "cta": {
-        "h2": "Bring the ad account.",
-        "p": "Book a call and tell us where you run ads today; you leave knowing whether Spark Ads or partnership ads suit your plan, which package fits and what a first sprint would look like.",
+        "h2": "See a Spark Ad set up end to end.",
+        "p": "Book a call and we will walk through the release, the code, the window and the renewal, on your account.",
         "button": {
           "label": "Book a call",
           "href": "/book"
@@ -2289,9 +2307,8 @@
         "role": "Founder, hypjam",
         "meta": "London",
         "image": {
-          "src": "/assets/img/process/brief.jpg",
-          "alt": "Example brief from our templates",
-          "tag": "Example"
+          "src": "/assets/img/stills/studio-creator.jpg",
+          "alt": "A creator mid-take, talking to a phone on a tripod inside a ring light"
         }
       },
       "faq_head": {
@@ -2325,8 +2342,8 @@
         }
       ],
       "cta": {
-        "h2": "Ask about rights before you sign anything.",
-        "p": "Book a call and we will talk through the usage block we would write for your brief (the scope, the platforms and the days) before anything is signed.",
+        "h2": "Read the release before you sign anything.",
+        "p": "Book a call and we will send you the usage block we would write for your brief, so you can see the scope, the platforms and the days before the shoot.",
         "button": {
           "label": "Book a call",
           "href": "/book"
@@ -2532,7 +2549,7 @@
       "steps": [
         {
           "title": "The tracker opens",
-          "body": "Day one of fourteen. Brief, casting, releases, shoot, edit and first cuts, each dated as it happens."
+          "body": "Day one of fourteen. Brief, casting, releases, shoot, edit and delivery, each dated as it happens."
         },
         {
           "title": "The batch ships",
@@ -2595,9 +2612,8 @@
         "role": "Founder, hypjam",
         "meta": "London",
         "image": {
-          "src": "/assets/img/process/hooks.jpg",
-          "alt": "Example hook sheet from our templates",
-          "tag": "Example"
+          "src": "/assets/img/stills/studio-creator.jpg",
+          "alt": "A creator mid-take, talking to a phone on a tripod inside a ring light"
         }
       },
       "faq_head": {
@@ -2631,8 +2647,8 @@
         }
       ],
       "cta": {
-        "h2": "Tell us what you want to learn.",
-        "p": "Book a call and tell us what you are testing; you leave knowing which formats we would test first, which package fits and what a first sprint would look like.",
+        "h2": "See the tracker and a debrief.",
+        "p": "Book a call and we will show you a sprint page and a written debrief, so you know what you will get before the first brief.",
         "button": {
           "label": "Book a call",
           "href": "/book"
@@ -2909,9 +2925,8 @@
         "role": "Founder, hypjam",
         "meta": "London",
         "image": {
-          "src": "/assets/img/process/shoot.jpg",
-          "alt": "Example shoot log from our templates",
-          "tag": "Example"
+          "src": "/assets/img/stills/studio-creator.jpg",
+          "alt": "A creator mid-take, talking to a phone on a tripod inside a ring light"
         }
       },
       "faq_head": {
@@ -2933,7 +2948,7 @@
         },
         {
           "q": "How long does it take?",
-          "a": "The same sprint as any brief: a call, the brief and hooks, an afternoon of takes and first cuts within fourteen days, then one revision round."
+          "a": "Inside the fourteen-day sprint like any brief: a call, the brief and hooks, an afternoon of takes, the cut, one revision round."
         },
         {
           "q": "Can it run from my own account?",
@@ -2945,8 +2960,8 @@
         }
       ],
       "cta": {
-        "h2": "Tell us why you built it.",
-        "p": "Book a call and tell us what you are launching; you leave knowing whether a founder cut suits it, which package fits and what a first sprint would look like.",
+        "h2": "Say the one thing, to a lens.",
+        "p": "Book a call. We will find the line you already use to explain the product and show you how it becomes the hook.",
         "button": {
           "label": "Book a call",
           "href": "/book"

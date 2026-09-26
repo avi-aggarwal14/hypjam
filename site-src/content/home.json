@@ -2,549 +2,162 @@
   "_schema": {
     "_about": "Copy for every home section after the hero, in page order: features → quotes → stories → rights. Hero copy lives in hero.json; nav/footer in nav.json/footer.json. Access with dot paths and numeric indices, e.g. {{content:home.features.items.0.title}}.",
     "meta": "{title ≤60 chars, description ≤155 chars, ogTitle, ogDescription}. Head tags for /.",
-    "_retired": "features, quotes, stories and rights were the v2 homepage sections (see _retired/home-v2-sections/). The hero reads hero.json → work; /work reads work.json."
+    "features": "the reference site 'Run smarter, serve better.' {heading (4 words, 42px display), sub (16px grey, the reference site 17 words), items[4]: {title (500 weight, inline before desc), desc (the reference site 9–10 words), href (optional: the service page this card mirrors), mockAlt (alt text for the card's mock image; the features agent draws the mock — no real screenshots)}}.",
+    "quotes": "the reference site's two big 36px quotes over full-bleed imagery. items[2]: {reserved: bool, text, name, role, tag (only on the reserved slot: a small jam-dotted tag), imageAlt}. Item 0 is the founder's real statement (CONTRACT §10); item 1 is the reserved slot with no invented name.",
+    "stories": "the reference site 'Trusted by leading hotels / running every shift on the reference site' carousel. {eyebrow (replaces the reference site's '50+ hotels' stat with an offer fact, §10), heading: {line1 (white), line2 (rendered at 40% opacity)}, prev/next aria labels, cards[4]: {slot, reserved: true, quote, attribution, meta, read (inert), href (null = inert), format (hint for the phone silhouette's alt text only — not rendered), imageAlt}}. Cards keep the reference site's anatomy but are designed reserved slots: dashed hairline frame, line-drawn phone silhouette.",
+    "rights": "the reference site 'Privacy and Security at Every Layer' on sand. {heading (6 words), sub (the reference site 11 words), learnMore: {label, href}, items[4]: {id, title (rendered uppercase eyebrow), desc (the reference site 14–21 words), sealAlt (our own line-drawn seal; only UK GDPR is backed by the privacy policy — none is a certification)}}."
   },
   "meta": {
     "title": "UGC agency in London: directed creator ads | hypjam",
-    "description": "London UGC agency: hooks, casting, directed shoots and platform-ready cuts, with usage rights in writing. From £1,800 a month. Book a 30-min call.",
+    "description": "hypjam is a London UGC agency: we brief, cast and direct creators, cut for TikTok, Reels and Shorts, and put usage rights in writing. From £1,800 a month.",
     "ogTitle": "UGC agency in London: directed creator ads | hypjam",
-    "ogDescription": "London UGC agency: hooks, casting, directed shoots and platform-ready cuts, with usage rights in writing. From £1,800 a month. Book a 30-min call."
+    "ogDescription": "hypjam is a London UGC agency: we brief, cast and direct creators, cut for TikTok, Reels and Shorts, and put usage rights in writing. From £1,800 a month."
   },
-  "process": {
-    "eyebrow": "What you get, and when",
-    "heading": "Signed brief to first cuts in 14 days.",
-    "sub": "One team does the work. You make the calls that need you: the script, the hooks, the creators and one round of notes. Everything else is ours.",
-    "exampleLabel": "Example",
-    "youLabel": "Your part",
-    "ruler": {
-      "aria": "Timeline: the brief is signed on day 0 and your first cuts are delivered by day 14. The five steps below happen in between.",
-      "start": {
-        "k": "Day 0",
-        "v": "Brief signed"
+  "features": {
+    "heading": "Find the format. Then film it.",
+    "sub": "We study the formats already earning attention in your category, write original scripts around them, and make more of whatever performs. One team briefs, casts, directs and edits every video.",
+    "items": [
+      {
+        "title": "Hook writing",
+        "desc": "Eight hooks per script, written before anyone presses record.",
+        "href": "/services/hooks",
+        "mockAlt": "Mock of a hook sheet: eight numbered hook lines, two ticked in orange"
       },
-      "end": {
-        "k": "Day 14",
-        "v": "First cuts delivered"
+      {
+        "title": "Casting",
+        "desc": "Creators cast for fit, not follower count, from our roster.",
+        "href": "/services/casting",
+        "mockAlt": "Mock of a casting board: line-drawn creator cards with niche and age tags, three shortlisted"
+      },
+      {
+        "title": "Shoot direction",
+        "desc": "Shot lists, retakes and live notes, so nothing is guesswork.",
+        "href": "/services/shoot-direction",
+        "mockAlt": "Mock of a shoot sheet: a phone frame with a record dot and a take list being ticked off"
+      },
+      {
+        "title": "Editing & rights",
+        "desc": "Platform-native cuts, captions, and usage rights for organic and paid.",
+        "href": "/services/editing",
+        "mockAlt": "Mock of an edit timeline with a captions toggle and usage-rights terms attached to the export"
       }
-    },
-    "steps": [
-      {
-        "n": "01",
-        "room": "Brief",
-        "title": "A brief and script, locked",
-        "body": "Your launch, offer and audience turned into one specific brief and script, locked before anyone films.",
-        "you": "Sign off the brief and script",
-        "still": "/assets/img/process/brief.jpg",
-        "stillAlt": "Example brief from our templates"
-      },
-      {
-        "n": "02",
-        "room": "Hooks",
-        "title": "8 hooks for every script",
-        "body": "Eight opening lines for every script, written from formats already earning attention in your category, so one shoot tests different ideas.",
-        "you": "Pick the hooks to shoot, with us",
-        "still": "/assets/img/process/hooks.jpg",
-        "stillAlt": "Example hook sheet from our templates"
-      },
-      {
-        "n": "03",
-        "room": "Casting",
-        "title": "A creator shortlist you approve",
-        "body": "Creators cast from our roster for fit with your customer, not for follower count.",
-        "you": "Approve the shortlist, then send product or a login",
-        "still": "/assets/img/process/casting.jpg",
-        "stillAlt": "Example casting shortlist from our templates"
-      },
-      {
-        "n": "04",
-        "room": "Shoot",
-        "title": "Directed takes of every picked hook",
-        "body": "Every phone shoot run from a shot list, with notes and retakes until the hook lands.",
-        "you": "Nothing. We run the shoot.",
-        "still": "/assets/img/process/shoot.jpg",
-        "stillAlt": "Example shoot log from our templates"
-      },
-      {
-        "n": "05",
-        "room": "Edit",
-        "title": "Cuts ready to run, rights in writing",
-        "body": "Cut and captioned for TikTok, Reels and Shorts, with organic and paid usage agreed in writing.",
-        "you": "One round of notes",
-        "still": "/assets/img/process/ship.jpg",
-        "stillAlt": "Example edit and export screen from our templates"
-      }
-    ],
-    "commitments": {
-      "label": "Written into every contract",
-      "items": [
-        {
-          "n": "01",
-          "value": "14 days",
-          "label": "from a signed brief to your first cuts"
-        },
-        {
-          "n": "02",
-          "value": "8 hooks",
-          "label": "written for every script, ready to test"
-        },
-        {
-          "n": "03",
-          "value": "1 contract",
-          "label": "and one invoice, every creator and editor behind it"
-        }
-      ]
-    },
-    "cta": {
-      "label": "Book a call with Avi",
-      "href": "/book",
-      "note": "We'll sketch your first 14 days on the call.",
-      "more": {
-        "label": "The full process, step by step",
-        "href": "/process"
-      }
-    },
-    "footnote": "Stills show example documents from our templates, not client work."
+    ]
   },
-  "compare": {
-    "eyebrow": "Before you choose",
-    "heading": "Four ways to get UGC made.",
-    "sub": "Each one suits someone. Here is what each route usually includes, and what it leaves to you.",
-    "caption": "What hypjam includes compared with hiring creators yourself, a creator marketplace and an influencer agency",
-    "criterionLabel": "What you get",
-    "switchLabel": "Compare hypjam with",
-    "keyLabel": "Key",
-    "stateLabels": {
-      "yes": "Included",
-      "varies": "Depends",
-      "no": "Not included"
-    },
-    "columns": [
+  "quotes": {
+    "items": [
       {
+        "reserved": false,
+        "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
+        "name": "Avi Aggarwal",
+        "role": "Founder, hypjam",
+        "tag": "",
+        "imageAlt": "Blurred phone shoot: a ring light and a phone on a tripod over a kitchen counter"
+      },
+      {
+        "reserved": true,
+        "text": "We would rather show you nothing than words a brand never said.",
         "name": "hypjam",
-        "short": "hypjam",
-        "sub": "UGC agency, London"
-      },
-      {
-        "name": "Hiring creators yourself",
-        "short": "Doing it yourself",
-        "sub": "Freelancers you find and manage",
-        "tab": "Yourself"
-      },
-      {
-        "name": "A creator marketplace",
-        "short": "A marketplace",
-        "sub": "Post a brief, pick from applicants",
-        "tab": "Marketplace"
-      },
-      {
-        "name": "An influencer agency",
-        "short": "An influencer agency",
-        "sub": "Paid posts on creators' own feeds",
-        "tab": "Influencers"
+        "role": "",
+        "tag": "On testimonials",
+        "imageAlt": "Blurred shot of an empty sofa set, lit and waiting"
       }
-    ],
-    "rows": [
-      {
-        "label": "Hooks and a script before anyone films",
-        "cells": [
-          {
-            "state": "yes",
-            "note": "8 hooks per script, in the contract"
-          },
-          {
-            "state": "varies",
-            "note": "Some creators write their own"
-          },
-          {
-            "state": "varies",
-            "note": "Up to each creator"
-          },
-          {
-            "state": "varies",
-            "note": "Agreed per campaign"
-          }
-        ]
-      },
-      {
-        "label": "A director on every shoot",
-        "cells": [
-          {
-            "state": "yes",
-            "note": "Shot list, live notes, retakes"
-          },
-          {
-            "state": "no",
-            "note": "Only if you run the shoot yourself"
-          },
-          {
-            "state": "no",
-            "note": "Creators usually film alone to your brief"
-          },
-          {
-            "state": "varies",
-            "note": "Depends on the agency"
-          }
-        ]
-      },
-      {
-        "label": "Creators found and cast for you",
-        "cells": [
-          {
-            "state": "yes",
-            "note": "From our roster; you approve the shortlist"
-          },
-          {
-            "state": "no",
-            "note": "You find, vet and book each one"
-          },
-          {
-            "state": "yes",
-            "note": "Creators apply; you pick"
-          },
-          {
-            "state": "yes",
-            "note": "Usually picked for audience fit"
-          }
-        ]
-      },
-      {
-        "label": "Cut for TikTok, Reels and Shorts, captions on",
-        "cells": [
-          {
-            "state": "yes",
-            "note": "Cut and captioned for each platform"
-          },
-          {
-            "state": "varies",
-            "note": "Depends on the creator's package"
-          },
-          {
-            "state": "varies",
-            "note": "Depends on the creator and platform"
-          },
-          {
-            "state": "varies",
-            "note": "Made for the creator's own feed"
-          }
-        ]
-      },
-      {
-        "label": "Usage rights and creator releases in writing",
-        "cells": [
-          {
-            "state": "yes",
-            "note": "Organic and paid usage for the term; a signed release per creator"
-          },
-          {
-            "state": "no",
-            "note": "You draft and chase each agreement"
-          },
-          {
-            "state": "varies",
-            "note": "Set by the platform's licence terms"
-          },
-          {
-            "state": "varies",
-            "note": "Agreed per creator; check paid usage"
-          }
-        ]
-      },
-      {
-        "label": "First cuts by a date in the contract",
-        "cells": [
-          {
-            "state": "yes",
-            "note": "14 days from a signed brief"
-          },
-          {
-            "state": "varies",
-            "note": "Agreed with each creator"
-          },
-          {
-            "state": "varies",
-            "note": "Depends who applies"
-          },
-          {
-            "state": "varies",
-            "note": "Set per campaign"
-          }
-        ]
-      },
-      {
-        "label": "One contract and one invoice",
-        "cells": [
-          {
-            "state": "yes",
-            "note": "Every creator and editor behind it"
-          },
-          {
-            "state": "no",
-            "note": "An agreement and a payment per creator"
-          },
-          {
-            "state": "yes",
-            "note": "One platform account and bill"
-          },
-          {
-            "state": "yes",
-            "note": "One agency contract"
-          }
-        ]
-      },
-      {
-        "label": "Pay per video, no monthly package",
-        "cells": [
-          {
-            "state": "no",
-            "note": "Monthly packages, from £1,800"
-          },
-          {
-            "state": "yes",
-            "note": "You pay each creator per video"
-          },
-          {
-            "state": "yes",
-            "note": "Usually priced per video"
-          },
-          {
-            "state": "varies",
-            "note": "Usually priced per campaign"
-          }
-        ]
-      }
-    ],
-    "foot": {
-      "label": "Suits you if",
-      "cells": [
-        "You want scripted, directed ads every month.",
-        "You have time to find, brief, direct and edit creators yourself.",
-        "You want a few quick videos and can brief and edit them in-house.",
-        "You want reach through a creator's own audience."
-      ]
-    },
-    "price": "From £1,800 a month",
-    "ctaNote": "30 minutes with Avi. If another route suits you better, we'll say so.",
-    "method": {
-      "summary": "How we filled this in",
-      "body": "hypjam's column states what our contract and packages say. The other columns describe how each route usually works for brands buying short-form video in the UK; they are not claims about any particular company. Creators, platforms and agencies differ, so read ‘Depends’ as ‘ask them’. Last reviewed September 2026."
-    },
-    "cta": {
-      "label": "Book a call with Avi",
-      "href": "/book"
-    },
-    "helper": "hypjam is on the right. Pick what to compare it with:"
+    ]
   },
-  "founder": {
-    "eyebrow": "Who you'll speak to",
-    "heading": "The call is with Avi, the founder.",
-    "quote": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
-    "name": "Avi Aggarwal",
-    "role": "Founder of hypjam. Previously on Cluely’s marketing team.",
-    "handle": "@this_avi.ag: that's him in the first example ad at the top of the page.",
-    "honest": {
-      "title": "We're new, and we'd rather say so.",
-      "body": "There are no client case studies on this site yet, and there won't be until they're real. Judge us on what you can check: the example ads, the 14-day sprint, the terms written into every contract, and thirty minutes with Avi."
+  "stories": {
+    "eyebrow": "Packages from £1,800 a month",
+    "heading": {
+      "line1": "Built for brands launching",
+      "line2": "on TikTok, Reels and Shorts"
     },
-    "cta": {
-      "label": "Book a call with Avi",
-      "href": "/book",
-      "note": "Thirty minutes on Google Meet, free."
-    },
-    "more": {
-      "label": "About hypjam",
-      "href": "/agency"
-    }
-  },
-  "pricing": {
-    "eyebrow": "What it costs",
-    "heading": "Packages from £1,800 a month.",
-    "sub": "Every package runs on the same 14-day sprint. Month to month, with a one-month minimum. Ad spend is separate.",
-    "includesLabel": "Every package includes",
-    "includes": [
-      "A brief and script for every batch",
-      "8 hooks written for every script, ready to test",
-      "Creators cast from our roster, shortlist approved by you",
-      "A directed shoot for every picked hook",
-      "A hook cut and a full edit of every video",
-      "One revision round per video",
-      "Organic and paid usage rights for the term, in writing"
-    ],
-    "bestForLabel": "Best for",
-    "items": [
+    "prev": "Previous story",
+    "next": "Next story",
+    "cards": [
       {
-        "name": "Starter",
-        "price": "From £1,800",
-        "per": "a month",
-        "videos": "6 videos a month",
-        "adds": [
-          "1 creative brief a month"
-        ],
-        "bestFor": "Brands testing UGC for the first time",
-        "held": [
-          "2 creators cast",
-          "Live tracker access"
-        ]
+        "slot": 1,
+        "reserved": false,
+        "quote": "A hook-led ad, shot vertically on a phone.",
+        "attribution": "@this_avi.ag, ex-Cluely",
+        "meta": "hook-led ad · @this_avi.ag, ex-Cluely",
+        "read": "Play",
+        "href": null,
+        "format": "hook-led ad",
+        "imageAlt": "A vertical hook-led UGC ad made by hypjam, filmed by @this_avi.ag",
+        "video": "/assets/video/ugc-hook-led-1.mp4",
+        "poster": "/assets/video/ugc-hook-led-1-poster.jpg"
       },
       {
-        "name": "Growth",
-        "price": "From £3,600",
-        "per": "a month",
-        "videos": "12 videos a month",
-        "adds": [
-          "2 creative briefs a month",
-          "Whitelisting and Spark Ads setup"
-        ],
-        "bestFor": "Brands scaling paid social and testing formats fast",
-        "held": [
-          "4 to 5 creators cast",
-          "Monthly performance debrief"
-        ]
+        "slot": 2,
+        "reserved": false,
+        "quote": "A screen-recorded demo, captioned to work with the sound off.",
+        "attribution": "@ajain_ugc, ex-Replit creator",
+        "meta": "screen demo · @ajain_ugc, ex-Replit creator",
+        "read": "Play",
+        "href": null,
+        "format": "screen demo",
+        "imageAlt": "A vertical screen-recorded product demo by @ajain_ugc, an ex-Replit creator",
+        "video": "/assets/video/ugc-screen-demo-1.mp4",
+        "poster": "/assets/video/ugc-screen-demo-1-poster.jpg"
       },
       {
-        "name": "Scale",
-        "price": "From £6,500",
-        "per": "a month",
-        "videos": "24 or more videos a month",
-        "adds": [
-          "Weekly briefs",
-          "Whitelisting and Spark Ads setup"
-        ],
-        "bestFor": "Brands running UGC as an always-on channel",
-        "held": [
-          "Dedicated creator roster",
-          "Monthly performance debrief",
-          "Priority turnaround and a dedicated producer"
-        ]
+        "slot": 3,
+        "reserved": false,
+        "quote": "A cinematic paid ad, cut for the feed.",
+        "attribution": "Our own work",
+        "meta": "cinematic paid ad example",
+        "read": "Play",
+        "href": null,
+        "format": "cinematic paid ad",
+        "imageAlt": "A vertical cinematic paid advert, shown as an example of the format",
+        "video": "/assets/video/ugc-cinematic-accountant.mp4",
+        "poster": "/assets/video/ugc-cinematic-accountant-poster.jpg"
+      },
+      {
+        "slot": 4,
+        "reserved": false,
+        "quote": "A cinematic paid ad, made for Cluely and run as paid media.",
+        "attribution": "Made for Cluely",
+        "meta": "cinematic paid ad · made for Cluely",
+        "read": "Play",
+        "href": null,
+        "format": "cinematic paid ad",
+        "imageAlt": "A vertical cinematic car advert made for Cluely",
+        "video": "/assets/video/ugc-cinematic-urus.mp4",
+        "poster": "/assets/video/ugc-cinematic-urus-poster.jpg"
       }
-    ],
-    "_held_note": "items[].held is never rendered: published on /process but not yet confirmed by Avi. Move a line into adds[] once confirmed.",
-    "notIncluded": "Not in any package: your ad spend, the product itself, and usage beyond your package term, which we price up front if you want it.",
-    "note": "‘From’ is honest: we scope the final number on the call, once we know how many videos you need and how long you want the rights for.",
-    "fit": {
-      "yesLabel": "Right for you if",
-      "yes": [
-        "You sell a product or app people can show on a phone.",
-        "You want new ads every month, not a one-off shoot.",
-        "You'd rather approve scripts and shortlists than manage creators."
-      ],
-      "noLabel": "Probably not for you if",
-      "no": [
-        "You need a single video, once. A creator marketplace will usually be quicker and cheaper.",
-        "You want someone to run your ad spend. We set up whitelisting and Spark Ads; the spend stays with you.",
-        "You need finished ads this week. First cuts take 14 days from a signed brief."
-      ]
-    },
-    "cta": {
-      "label": "Book a call with Avi",
-      "href": "/book",
-      "note": "We'll tell you which package fits, or if none does."
-    }
+    ]
   },
-  "safety": {
-    "eyebrow": "Rights and safety",
-    "heading": "The paperwork is part of the job.",
-    "sub": "Four things we do on every sprint, so your brand, your creators and your ad account are covered before anyone presses record.",
-    "items": [
-      {
-        "title": "Usage rights in writing",
-        "desc": "Organic and paid usage for the term of your package, written into the contract, not implied in a DM."
-      },
-      {
-        "title": "Signed creator releases",
-        "desc": "Every creator signs a release before filming, covering the footage, usage window and whitelisting, so the rights are clean."
-      },
-      {
-        "title": "ASA and CAP disclosure",
-        "desc": "Paid partnerships are labelled and every ad follows the CAP Code the ASA enforces. Our practice, not a certification."
-      },
-      {
-        "title": "UK GDPR data handling",
-        "desc": "Creator and client data handled under UK GDPR, as our privacy policy sets out. Our pages set no cookies and run no analytics; the cal.com calendar on the booking page sets its own."
-      }
-    ],
-    "more": {
-      "label": "How we handle rights",
+  "rights": {
+    "heading": "Rights and safety at every layer",
+    "sub": "Protect your brand, your creators and your ad account before anyone presses record.",
+    "learnMore": {
+      "label": "Learn more",
       "href": "/rights"
-    }
-  },
-  "faqhome": {
-    "eyebrow": "Before you book",
-    "heading": "Questions brands ask first.",
-    "sub": "Short answers. Anything else, ask on the call.",
+    },
     "items": [
       {
-        "q": "What does it cost?",
-        "a": "Packages start at £1,800 a month for six videos (Starter). Growth is from £3,600 for twelve, and Scale from £6,500 for twenty-four or more. Ad spend and the product itself are separate, and we scope the final number on the call."
+        "id": "usage-rights",
+        "title": "Usage rights in writing",
+        "desc": "Organic and paid usage for the term of your package, written into the contract, not implied in a DM.",
+        "sealAlt": "Line-drawn seal: a signed page with a play triangle"
       },
       {
-        "q": "How fast do we get videos?",
-        "a": "Your first cuts arrive 14 days after you sign the brief, with casting, the shoot and the edit inside that. The date is written into the contract, and your revision round follows."
+        "id": "creator-releases",
+        "title": "Signed creator releases",
+        "desc": "Every creator signs a release before filming, covering the footage, usage window and whitelisting, so the rights are clean.",
+        "sealAlt": "Line-drawn seal: a pen signing a release form"
       },
       {
-        "q": "What do we have to do?",
-        "a": "Sign off the brief and script, pick the hooks with us, approve the creator shortlist, send product (or a login, for an app) and give one round of notes on the cuts. We do the rest."
+        "id": "asa-cap",
+        "title": "ASA and CAP disclosure compliance",
+        "desc": "Paid partnerships are labelled and every ad follows the CAP Code the ASA enforces. Our practice, not a certification.",
+        "sealAlt": "Line-drawn seal: an ad label tag reading AD"
       },
       {
-        "q": "Who owns the videos, and can we run them as ads?",
-        "a": "You get the right to run them, organic and paid, for the usage window in your package, written into the contract. Every creator signs a release before filming, and longer windows are priced up front. Growth and Scale include whitelisting and Spark Ads setup."
-      },
-      {
-        "q": "You're new. Why should we trust you?",
-        "a": "We are new, and we'd rather say so than invent a client list. What you can check instead: the example ads on this page, the 14-day sprint above, and three terms written into every contract: first cuts 14 days after a signed brief, eight hooks written for every script, and one contract and one invoice. Nothing is filmed until you've approved the script and the creators, and packages run month to month with a one-month minimum."
-      },
-      {
-        "q": "How many revisions do we get?",
-        "a": "One full revision round per video, in every package. The script is locked before anyone films, so most rounds go on pacing or captions rather than reshoots."
-      },
-      {
-        "q": "What if the first videos don't work?",
-        "a": "Every video gets a revision round, and the next brief is written from what the first cuts showed, so the work gets more specific rather than starting again. Packages run month to month with a one-month minimum, so you're never locked into a long contract."
-      },
-      {
-        "q": "Do you run our ads?",
-        "a": "No. On Growth and Scale we set up whitelisting and Spark Ads, and we tell you which cuts to run where. Your ad spend and your ad account stay with you."
-      },
-      {
-        "q": "What happens on the call?",
-        "a": "Thirty minutes on Google Meet with Avi. Bring your product and two or three ads you like, yours or anyone's. You'll leave knowing whether UGC suits your launch, which formats we'd test first and why, and what your first month would cost. If another route suits you better, we'll say so."
+        "id": "uk-gdpr",
+        "title": "UK GDPR data handling",
+        "desc": "Creator and client data handled under UK GDPR, as our privacy policy sets out. No cookies, no trackers.",
+        "sealAlt": "Line-drawn seal: a padlock inside a ring of twelve dots"
       }
-    ],
-    "cta": {
-      "label": "Book a call with Avi",
-      "href": "/book",
-      "note": "Anything else, ask on the call."
-    },
-    "more": {
-      "label": "All questions",
-      "href": "/faq"
-    }
-  },
-  "close": {
-    "eyebrow": "Next step",
-    "heading": "Bring your product. We'll bring the formats.",
-    "sub": "Thirty minutes on Google Meet with Avi, free. You'll leave knowing whether UGC suits your launch, which formats we'd test first and why, and what your first month would cost. If another route suits you better, we'll say so.",
-    "cta": {
-      "label": "Book a 30-min call",
-      "href": "/book"
-    },
-    "email": {
-      "label": "Prefer email?",
-      "address": "avi@hypjam.com"
-    },
-    "prep": {
-      "label": "Useful to have to hand",
-      "items": [
-        "A link to your product",
-        "Where you sell it and who buys it",
-        "Two or three ads you like, yours or anyone's"
-      ]
-    },
-    "after": {
-      "label": "After you book",
-      "items": [
-        "The invite and the Google Meet link arrive by email straight away.",
-        "Need to move it? Use the reschedule link in that email."
-      ]
-    }
+    ]
   }
 }

@@ -13,15 +13,10 @@
      .sol-stats--3     three facts instead of the reference site's four
      .sol-behind       "the services behind it": four columns with rules
      .sol-fits         brand pages: "Where hypjam fits" 2×2 with rules
-     .sol-hero-full    brand pages: full-viewport still hero, centred, with
-                       the filled booking button and its micro line
-     .sol-band         brand pages: full-width band with a centred h2 (a still
-                       under a scrim, or .sol-band--plain: black + jam glow)
+     .sol-hero-full    brand pages: full-viewport still hero, centred
+     .sol-band         brand pages: full-width still band with a centred h2
      .sol-related      "Related" list under a full-width rule
-     .sol-quote--solo  a founder card with no right-hand column
-
-   The founder card's example document, the light heroes' micro line and
-   the FAQ-only section padding are shared with /services (41-services.css).
+     .sol-quote-media  the HQ room line drawing inside the quote card
 
    Numbers are measured on ref/pages/solutions.jpg,
    solutions_front-of-house.jpg and solutions_independent.jpg at 1920.
@@ -212,11 +207,7 @@ a.sol-behind__name:hover { color: var(--grey); }
   text-align: center;
 }
 .sol-hero-full__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.sol-hero-full__scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, .40) 0%, rgba(0, 0, 0, .48) 45%, rgba(0, 0, 0, .74) 100%);
-}
+.sol-hero-full__scrim { position: absolute; inset: 0; background: rgba(0, 0, 0, .45); }
 .sol-hero-full__inner {
   position: relative;
   z-index: 1;
@@ -245,10 +236,7 @@ a.sol-behind__name:hover { color: var(--grey); }
   text-wrap: balance;
 }
 .sol-hero-full__intro { margin-top: 20px; max-width: 500px; font-size: 16px; line-height: 24px; color: var(--w75); text-wrap: pretty; }
-.sol-hero-full__cta { display: flex; flex-direction: column; align-items: center; margin-top: 34px; }
-/* SPEC §6.2 row 11 micro line on the dark ground: white 80% over the scrim */
-.sol-hero-full__micro { margin-top: 14px; font-size: 13px; line-height: 1.45; letter-spacing: var(--ls-small); color: rgba(255, 255, 255, .8); }
-.sol-hero-full .btn--cta:focus-visible { outline-color: #fff; }
+.sol-hero-full__cta { margin-top: 34px; }
 @media (max-width: 1024px) { .sol-hero-full__title { font-size: var(--fs-h1-lp); letter-spacing: var(--ls-display); line-height: var(--lh-h1-lp); } }
 @media (max-width: 800px)  { .sol-hero-full__inner { padding-bottom: 24px; } .sol-hero-full__mark { width: 56px; margin-bottom: 22px; } }
 @media (max-width: 600px)  {
@@ -274,16 +262,6 @@ a.sol-behind__name:hover { color: var(--grey); }
   text-align: center;
 }
 .sol-band__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.sol-band--plain::before {
-  content: "";
-  position: absolute;
-  left: 50%; top: 50%;
-  width: min(900px, 90%);
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(closest-side, rgba(255, 111, 31, .16), rgba(255, 111, 31, 0));
-  pointer-events: none;
-}
 .sol-band__scrim { position: absolute; inset: 0; background: rgba(0, 0, 0, .55); }
 .sol-band__inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; padding: 40px var(--px-page); }
 .sol-band__mark { display: block; width: 68px; height: auto; margin-bottom: 26px; }
@@ -323,12 +301,16 @@ a.sol-behind__name:hover { color: var(--grey); }
 @media (max-width: 800px) { .sol-section--related { padding-bottom: 56px; } .sol-related-rule { margin-bottom: 32px; } }
 
 /* ---------------------------------------------------------------------
-   DETAIL · the founder card
-   Goal pages show an example document on the right (.page-quote__media--doc,
-   41-services.css). Brand pages have no quote card at all. A founder card
-   without a document runs full width.
+   DETAIL · the quote card's right column
+   Goal pages show the HQ line drawing of the room that matches the stop
+   (CONTRACT §8) instead of the reference site's customer photo; brand pages keep the
+   reserved slot from 40-pages.css (.page-quote--reserved).
    --------------------------------------------------------------------- */
-.sol-quote--solo { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+.sol-quote-media { display: grid; place-items: center; padding: 44px; background: var(--sand-s); }
+.sol-room { display: block; width: 100%; height: auto; max-height: 100%; color: var(--line); }
+.sol-room path, .sol-room line, .sol-room rect, .sol-room circle,
+.sol-room ellipse, .sol-room polyline, .sol-room polygon { vector-effect: non-scaling-stroke; }
+@media (max-width: 800px) { .sol-quote-media { padding: 28px; min-height: 240px; } }
 
 /* the goal-page hero panel holds the same mock cards the service pages use */
 .sol .page-hero__visual .mock-stage { padding: 5% 6%; }
@@ -497,12 +479,4 @@ a.sol-behind__name:hover { color: var(--grey); }
 
 @media (prefers-reduced-motion: reduce) {
   .page-panel .sol-stamp { opacity: 1; transform: none; animation: none !important; }
-}
-
-/* brand hero without a still (the stock-style "studio" photos are retired): black with a jam glow */
-.sol-hero-full--plain {
-  background:
-    radial-gradient(60% 60% at 50% 100%, rgba(255, 111, 31, .16), rgba(255, 111, 31, 0) 70%),
-    var(--black);
-  min-height: min(76vh, 680px);
 }

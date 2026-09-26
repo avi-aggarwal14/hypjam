@@ -5,10 +5,7 @@
    So the calendar IS the page. It loads immediately (no click gate), it
    is the widest and tallest thing on screen, and everything else —
    the promise of what the call covers, the founder quote, the rights
-   (plain text, never seals) — sits quietly beneath it.
-
-   The founder quote sits on plain black with a subtle jam radial glow
-   (SPEC S5): no photograph, and never a frame from a generated clip.
+   seals — sits quietly beneath it where it cannot compete.
 
    The earlier two-column treatment gave half the viewport to a photo
    and squeezed the calendar into a 440px rail. That was the wrong
@@ -132,34 +129,19 @@
 .book-expect-list li { display: flex; gap: 12px; }
 .book-expect-list li::before { content: ""; flex-shrink: 0; width: 14px; height: 1px; margin-top: 10px; background: var(--sand-l); }
 
-/* the founder quote · plain black with a subtle jam radial glow (SPEC S5), no image */
-.book-quote-mini {
-  position: relative;
-  display: flex;
-  align-self: start;
-  flex-direction: column;
-  gap: 20px;
-  overflow: hidden;
-  padding: 28px;
-  border-radius: 16px;
-  background:
-    radial-gradient(120% 90% at 100% 0%, rgba(255, 111, 31, .22) 0%, rgba(255, 111, 31, .07) 38%, rgba(255, 111, 31, 0) 68%),
-    #000;
-  color: var(--white);
-  isolation: isolate;
-}
+/* the quote, demoted: it used to own half the viewport, now it is a footnote */
+.book-quote-mini { display: flex; flex-direction: column; gap: 14px; }
 .book-quote-mini-text {
   font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.55;
-  letter-spacing: var(--ls-small);
-  color: var(--w75);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--grey);
   text-wrap: pretty;
 }
-.book-quote-mini-cap { display: flex; align-items: center; gap: 12px; }
-.book-quote-mini-mark { display: block; width: 28px; height: 28px; flex-shrink: 0; }
-.book-quote-mini-name { display: block; font-family: var(--font-body); font-size: 13px; font-weight: var(--fw-medium); line-height: 1.35; color: var(--white); }
-.book-quote-mini-role { display: block; font-family: var(--font-body); font-size: 13px; line-height: 1.35; color: var(--w60); }
+.book-quote-mini-cap { display: flex; align-items: center; gap: 10px; }
+.book-quote-mini-mark { display: block; width: 28px; height: 28px; flex-shrink: 0; opacity: .9; }
+.book-quote-mini-name { display: block; font-family: var(--font-body); font-size: 13px; font-weight: var(--fw-medium); line-height: 1.35; color: var(--black); }
+.book-quote-mini-role { display: block; font-family: var(--font-body); font-size: 13px; line-height: 1.35; color: var(--grey); }
 
 /* ---------- foot ---------- */
 .book-foot {
@@ -177,13 +159,15 @@
   font-family: var(--font-body);
   font-size: 13px;
   line-height: 1.4;
-  color: var(--grey);                  /* was --fg-dim-40 (2.8:1 on sand) */
+  color: var(--fg-dim-40);
 }
 .book-note a { color: var(--grey); text-decoration: underline; text-underline-offset: 3px; transition: color var(--dur); }
 .book-note a:hover { color: var(--black); }
 
 .book-rights { display: flex; align-items: center; gap: 14px; }
-.book-rights-label { font-family: var(--font-body); font-size: 13px; font-weight: var(--fw-body); line-height: 1; color: var(--grey); white-space: nowrap; }
+.book-rights-label { font-family: var(--font-body); font-size: 13px; line-height: 1; color: var(--grey); white-space: nowrap; }
+.book-seals { display: flex; align-items: center; gap: 12px; }
+.book-seal { display: block; width: 32px; height: 32px; color: var(--black); opacity: .55; }
 
 /* ---------- breakpoints ---------- */
 @media (max-width: 1024px) {
@@ -196,45 +180,7 @@
   .book-foot { margin-top: 32px; }
 }
 @media (max-width: 600px) {
-  .book-h1 { font-size: 30px; letter-spacing: var(--ls-display); line-height: 1.2; }
-  .book-iframe { height: 940px; }               /* cal.com's stacked layout before 45-book.js hides the event details and sizes it */
+  .book-h1 { font-size: 32px; letter-spacing: var(--ls-display); line-height: 1.1875; }
+  .book-iframe { height: 940px; }               /* cal.com's stacked mobile layout is taller */
   .book-rights { width: 100%; }
-  .book-quote-mini { padding: 22px 20px; }
-}
-
-/* ---------- added 2026-09-26: facts, creator line, after-booking list, text rights ---------- */
-.book-facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 20px; }
-.book-facts li {
-  padding: 7px 12px;
-  border-radius: var(--r-pill);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1.2;
-  letter-spacing: .03em;
-  color: var(--black);
-  background: var(--white);
-  box-shadow: inset 0 0 0 1px var(--k10);
-}
-.book-creator { margin-top: 14px; font-size: 13px; line-height: 1.4; color: var(--grey); }
-.book-creator a { color: var(--black); text-decoration: underline; text-underline-offset: 3px; }
-.book-expect-label--next { margin-top: 28px; }
-.book-rights-list { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--font-body); font-size: 13px; line-height: 1.4; color: var(--black); }
-.book-rights-list li { position: relative; padding-left: 12px; }
-.book-rights-list li::before { content: ""; position: absolute; left: 0; top: .55em; width: 5px; height: 5px; border-radius: 50%; background: var(--jam); }
-@media (max-width: 800px) {
-  .book-facts { justify-content: flex-start; }
-  .book-rights { flex-wrap: wrap; }
-}
-/* phones: the calendar's first dates land on the first screen. Tighter top, and
-   the facts read as one DM Mono line separated by " · " instead of four chips */
-@media (max-width: 600px) {
-  .book-main { padding-top: 24px; }
-  .book-sub { margin-top: 10px; font-size: 14px; line-height: 1.45; }
-  .book-facts { display: block; margin-top: 12px; font-family: var(--font-mono); font-size: 12px; line-height: 1.5; letter-spacing: 0; color: var(--black); }
-  .book-facts li { display: inline-block; padding: 0; border-radius: 0; background: none; box-shadow: none; font-size: inherit; line-height: inherit; letter-spacing: inherit; white-space: nowrap; }
-  /* the separator hangs on the previous item, so a line never starts with "·" */
-  .book-facts li:not(:last-child)::after { content: "\00a0\00b7"; color: var(--grey); }
-  .book-facts li:not(:last-child) { margin-right: .4em; }
-  .book-creator { margin-top: 10px; }
-  .book-embed { margin-top: 20px; gap: 10px; }
 }

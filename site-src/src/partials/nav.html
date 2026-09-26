@@ -63,7 +63,7 @@
         </div>
       </div>
 
-      <a href="{{content:nav.left.2.href|/#pricing}}" class="nav-link">{{content:nav.left.2.label|Pricing}}</a>
+      <a href="{{content:nav.left.2.href|/rights}}" class="nav-link">{{content:nav.left.2.label|Rights}}</a>
       <a href="{{content:nav.left.3.href|/work}}" class="nav-link">{{content:nav.left.3.label|Work}}</a>
 
       <div class="nav-item" data-menu="resources">
@@ -77,16 +77,17 @@
               <a class="nav-menu-link" href="{{content:nav.menus.resources.items.1.href}}">{{content:nav.menus.resources.items.1.label}}</a>
               <a class="nav-menu-link" href="{{content:nav.menus.resources.items.2.href}}">{{content:nav.menus.resources.items.2.label}}</a>
               <a class="nav-menu-link" href="{{content:nav.menus.resources.items.3.href}}">{{content:nav.menus.resources.items.3.label}}</a>
-              <a class="nav-menu-link" href="{{content:nav.menus.resources.items.4.href}}">{{content:nav.menus.resources.items.4.label}}</a>
-              <a class="nav-menu-link" href="{{content:nav.menus.resources.items.5.href|/join}}">{{content:nav.menus.resources.items.5.label|For creators}}</a>
             </div>
             <a class="nav-menu-video" href="{{content:nav.menus.resources.card.href|/process}}">
               <span class="nav-menu-video-frame">
-                <img class="nav-menu-still" src="{{content:nav.menus.resources.card.image|/assets/img/process/shoot.jpg}}" alt="{{content:nav.menus.resources.card.alt|Example shoot log from our templates}}" width="642" height="368" loading="lazy" decoding="async">
-                <span class="nav-menu-tag" aria-hidden="true">{{content:nav.menus.resources.card.tag|Example}}</span>
+                <!-- the clip starts (muted, looping) the first time the menu opens; poster until then -->
+                <!-- the clip is an illustration of a phone shoot, not footage of a hypjam
+                     production: nothing here may describe it as one. Copy lives in nav.json. -->
+                <video class="nav-menu-clip" muted loop playsinline preload="none" data-poster="{{content:nav.menus.resources.card.poster|/assets/video/hero-poster.jpg}}" data-src="{{content:nav.menus.resources.card.video|/assets/video/hero-studio-web.mp4}}" aria-label="{{content:nav.menus.resources.card.alt|Illustrative looping clip of a phone shoot}}"></video>
+                <span class="nav-menu-play" aria-hidden="true"><svg viewBox="0 0 12 12" width="10" height="10"><path d="M3.5 2.2v7.6L9.5 6z" fill="currentColor"/></svg></span>
               </span>
-              <span class="nav-menu-video-title">{{content:nav.menus.resources.card.label|How a sprint runs}}</span>
-              <span class="nav-menu-video-sub">{{content:nav.menus.resources.card.sub|Signed brief to first cuts in 14 days}}</span>
+              <span class="nav-menu-video-title">{{content:nav.menus.resources.card.label|How a shoot day runs}}</span>
+              <span class="nav-menu-video-sub">{{content:nav.menus.resources.card.sub|Brief to edit, step by step}}</span>
             </a>
           </div>
         </div>
@@ -107,8 +108,8 @@
     </div>
 
     <div class="nav-right">
-      <!-- one action only: creators reach /join from the Resources menu, the phone menu and the footer -->
-      <a href="{{content:nav.right.0.href|/book}}" class="nav-cta">{{content:nav.right.0.label|Book a call}}<span class="nav-cta-circle"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a href="{{content:nav.right.0.href|/join}}" class="nav-link nav-link--creators">{{content:nav.right.0.label|Creators}}</a>
+      <a href="{{content:nav.right.1.href|/book}}" class="nav-cta">{{content:nav.right.1.label|Book a call}}<span class="nav-cta-circle"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
   </div>
 
@@ -153,14 +154,12 @@
           </div>
         </div>
       </div>
-      <a class="nav-m-row" href="{{content:nav.mobile.items.2.href|/#pricing}}">{{content:nav.mobile.items.2.label|Pricing}}</a>
+      <a class="nav-m-row" href="{{content:nav.mobile.items.2.href|/rights}}">{{content:nav.mobile.items.2.label|Rights}}</a>
       <a class="nav-m-row" href="{{content:nav.mobile.items.3.href|/work}}">{{content:nav.mobile.items.3.label|Work}}</a>
       <a class="nav-m-row" href="{{content:nav.mobile.items.4.href|/agency}}">{{content:nav.mobile.items.4.label|Agency}}</a>
-      <a class="nav-m-row" href="{{content:nav.mobile.items.5.href|/process}}">{{content:nav.mobile.items.5.label|Process}}</a>
-      <a class="nav-m-row" href="{{content:nav.mobile.items.6.href|/rights}}">{{content:nav.mobile.items.6.label|Rights}}</a>
+      <a class="nav-m-row" href="{{content:nav.mobile.items.5.href|/blog}}">{{content:nav.mobile.items.5.label|Blog}}</a>
+      <a class="nav-m-row" href="{{content:nav.mobile.items.6.href|/process}}">{{content:nav.mobile.items.6.label|Process}}</a>
       <a class="nav-m-row" href="{{content:nav.mobile.items.7.href|/faq}}">{{content:nav.mobile.items.7.label|FAQ}}</a>
-      <a class="nav-m-row" href="{{content:nav.mobile.items.8.href|/blog}}">{{content:nav.mobile.items.8.label|Blog}}</a>
-      <a class="nav-m-row nav-m-row--quiet" href="{{content:nav.mobile.items.9.href|/join}}">{{content:nav.mobile.items.9.label|For creators}}</a>
     </div>
   </div>
 </nav>

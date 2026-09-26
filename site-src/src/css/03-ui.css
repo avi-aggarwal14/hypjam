@@ -78,20 +78,6 @@
 }
 /* force the jam circle on any variant */
 .btn--jam { --pill-ico-bg: var(--jam); --pill-ico-fg: var(--jam-ink); }
-/* .btn--cta · the one high-contrast action: solid orange, black label, black circle.
-   Reserved for "Book a call" — orange stays rationed because this is the only
-   place it fills a control. */
-.btn--cta {
-  --pill-bg: var(--jam); --pill-bg-hover: #ff8a47;
-  --pill-fg: #000; --pill-fg-hover: #000;
-  --pill-ico-bg: #000; --pill-ico-fg: var(--jam);
-  -webkit-backdrop-filter: none; backdrop-filter: none;
-  box-shadow: 0 8px 24px rgba(255, 111, 31, .22);
-}
-.btn--cta:hover { box-shadow: 0 10px 28px rgba(255, 111, 31, .32); }
-.btn--cta:focus-visible { outline: 2px solid #000; outline-offset: 3px; }
-/* white ring wherever the ground is dark (every section declares data-nav), black elsewhere */
-[data-theme="dark"] .btn--cta:focus-visible, [data-nav="dark"] .btn--cta:focus-visible, .p5 .btn--cta:focus-visible, .scta .btn--cta:focus-visible { outline-color: #fff; }
 /* ghost · the reference site's nav text pills: h-8 rounded-full px-[14px] hover:bg-white/15 */
 .btn--ghost {
   padding: 0 var(--nav-item-px);
@@ -380,10 +366,8 @@
 @keyframes ui-glint { from { transform: translate(-50%,-50%) rotate(0); } to { transform: translate(-50%,-50%) rotate(360deg); } }
 
 /* ---------- .reveal · the reference site's scroll reveal (JS adds .is-shown) ---------- */
-/* hidden only once JavaScript has run (head.html stamps html.js), so nothing is invisible with scripts off */
-.reveal { --reveal-delay: 0s; transition: opacity var(--dur-reveal) ease var(--reveal-delay); }
-.js .reveal { opacity: 0; }
-.reveal.is-shown, .js .reveal.is-shown { opacity: 1; }
+.reveal { --reveal-delay: 0s; opacity: 0; transition: opacity var(--dur-reveal) ease var(--reveal-delay); }
+.reveal.is-shown { opacity: 1; }
 .reveal-text { --rt-from: var(--sand-l); --rt-to: var(--fg); }
 .reveal-text .rt-i { color: var(--rt-from); transition: color .6s ease; }
 .reveal-text.is-shown .rt-i { color: var(--rt-to); }
@@ -394,11 +378,3 @@
   .reveal { opacity: 1 !important; transition: none !important; }
   .reveal-text .rt-i { color: var(--rt-to) !important; }
 }
-
-/* ---------- .cta-link · the text-link booking CTA ----------
-   Used where a filled .btn--cta already sits less than one screen away, so two filled
-   buttons never share a viewport. Always goes to /book and carries data-cta. */
-.cta-link { display: inline; font-size: 15px; line-height: 1.4; font-weight: var(--fw-medium); color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
-.cta-link::after { content: "\2192"; display: inline-block; margin-left: 8px; text-decoration: none; }  /* inline-block: the underline stops before the arrow */
-.cta-link:hover { text-decoration-thickness: 2px; }
-.cta-link:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 2px; }

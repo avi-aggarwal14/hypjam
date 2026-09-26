@@ -11,13 +11,6 @@
    ({originator:"CAL", method:"__dimensionChanged", arg:{iframeHeight}});
    when that arrives the frame grows to fit so the calendar never scrolls
    inside itself.
-
-   On phones (≤600px) cal.com's event-details block (avatar, title, the
-   description, duration, location) stacks above the month grid and pushes
-   the first bookable date about a screen down. The page already says all of
-   that above the frame, so once the embed reports ready we ask it to hide
-   that block (cal.com's own "ui" embed message; the URL parameter is
-   ignored). The height floor drops too, so the short layout is not padded.
    ========================================================================== */
 (function () {
   'use strict';
@@ -27,8 +20,7 @@
   var iframe = box.querySelector('iframe');
   if (!iframe) return;
 
-  var PHONE = window.matchMedia('(max-width: 600px)').matches;
-  var MIN = PHONE ? 420 : Math.max(560, parseInt(box.getAttribute('data-height'), 10) || 860);
+  var MIN = Math.max(560, parseInt(box.getAttribute('data-height'), 10) || 860);
   var MAX = 2000;
 
   iframe.addEventListener('load', function () { box.setAttribute('data-loaded', 'true'); });
@@ -41,9 +33,6 @@
     if (!/^https:\/\/([a-z0-9-]+\.)*cal\.com$/i.test(origin)) return;
     var d = e.data;
     if (!d || typeof d !== 'object') return;
-    if (PHONE && d.type === '__iframeReady') {
-      iframe.contentWindow.postMessage({ originator: 'CAL', method: 'ui', arg: { hideEventTypeDetails: true } }, origin);
-    }
     var arg = d.arg || d.data || {};
     var h = 0;
     if (d.method === '__dimensionChanged' || d.type === '__dimensionChanged') h = parseFloat(arg.iframeHeight);

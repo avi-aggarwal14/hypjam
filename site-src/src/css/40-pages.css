@@ -34,7 +34,7 @@
      .platforms                 "Ships to" label + six wordmarks + tail
      .page-list / .page-list__row   12-col numbered rows, 108px pitch
      .page-media                two 16:9 film cards ("See it in action")
-     .page-cta                  sand-m card, copy left, white commitments panel right
+     .page-cta                  sand-m card, copy left, white HQ panel right
      .page-stats / .page-stat   four count-up facts
      .page-feature              text | .page-panel visual (flip variant)
      .page-bullet               "↳ title" accordion item (<details>)
@@ -325,9 +325,8 @@
 
 /* ---------- .page-cta · closing card ----------
    sand-m card, radius 16, padding 24, columns 1fr | 1fr gap 40, min-height 384.
-   Copy sits 48px in (24 card + 24 text); the white panel on the right lists the
-   three contract commitments (the HQ drawing that sat there is gone: SPEC S7).
-   Default copy is the canonical call promise (partials/page-cta.html). */
+   Copy sits 48px in (24 card + 24 text), the white panel is 888×336 at 1920
+   with the small HQ line drawing centred (the reference site: footer-buildings.png). */
 .page-cta {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -343,26 +342,16 @@
 .page-cta__p { margin-top: 20px; max-width: 400px; font-size: 14px; line-height: 1.5; color: var(--grey); }
 .page-cta__btn { margin-top: auto; padding-top: 40px; }
 .page-cta__panel { position: relative; display: flex; align-items: center; justify-content: center; min-height: 240px; border-radius: 12px; background: var(--white); overflow: hidden; }
-/* the commitments panel: DM Mono label, then three Syne values on hairlines */
-.page-cta__panel--facts { flex-direction: column; align-items: stretch; justify-content: center; gap: 20px; padding: 40px 48px; }
-.page-cta__facts-k { font-family: var(--font-mono); font-size: 12px; line-height: 1.4; letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--grey); }
-.page-cta__facts { display: flex; flex-direction: column; }
-.page-cta__fact { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 20px; align-items: baseline; padding: 16px 0; border-top: 1px solid var(--k10); }
-.page-cta__fact:last-child { border-bottom: 1px solid var(--k10); }
-.page-cta__fact-v { font-family: var(--font-display); font-weight: var(--fw-display); font-size: 28px; line-height: 36px; letter-spacing: var(--ls-display); color: var(--black); white-space: nowrap; }
-.page-cta__fact-l { font-size: 14px; line-height: 1.45; color: var(--grey); text-wrap: pretty; }
-@media (max-width: 1100px) and (min-width: 801px) {
-  .page-cta__panel--facts { padding: 32px; }
-  .page-cta__fact { grid-template-columns: minmax(0, 1fr); gap: 4px; }
-}
+.page-cta__art { display: block; width: 62%; max-width: 560px; height: auto; }
+.page-cta__art.is-missing { display: none; }
+.page-cta__fallback { display: none; width: 62%; max-width: 560px; height: auto; color: var(--line); }
+.page-cta__art.is-missing + .page-cta__fallback { display: block; }
 @media (max-width: 800px) {
   .page-cta { grid-template-columns: minmax(0, 1fr); gap: 20px; padding: 16px; min-height: 0; }
   .page-cta__text { padding: 20px 16px 16px; }
   .page-cta__btn { padding-top: 32px; }
   .page-cta__panel { min-height: 200px; padding: 24px; }
-  .page-cta__panel--facts { min-height: 0; padding: 24px 20px; gap: 14px; }
-  .page-cta__fact { grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr); gap: 14px; padding: 12px 0; }
-  .page-cta__fact-v { font-size: 22px; line-height: 28px; }
+  .page-cta__art, .page-cta__fallback { width: 80%; }
 }
 
 /* ---------- .page-stats · centred statement + four count-up facts ----------
@@ -390,8 +379,6 @@
 /* word values ("30 minutes", "2 to 5") must wrap on a phone rather than
    push the page sideways; bare counting numerals are one token anyway */
 @media (max-width: 600px)  { .page-stat__num { font-size: 40px; letter-spacing: var(--ls-display); white-space: normal; text-wrap: balance; } }
-/* two 130px columns at 320px: "minutes" alone is ~150px at 40px */
-@media (max-width: 380px)  { .page-stat__num { font-size: 32px; } }
 
 /* ---------- .page-panel · the light gradient stage every mock sits on ---------- */
 .page-panel {
@@ -700,7 +687,7 @@
   color: var(--grey);
   white-space: nowrap;
 }
-.mock-chip--jam { border-color: var(--jam); color: var(--jam-text); }
+.mock-chip--jam { border-color: var(--jam); color: var(--jam); }
 .mock-chip--ink { background: var(--black); border-color: var(--black); color: var(--white); }
 .mock-chip--fill { background: var(--sand-s); border-color: transparent; color: var(--black); }
 .mock-chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 0 2px; }
@@ -892,6 +879,3 @@
 .page-icon { display: block; width: 100%; height: auto; stroke: currentColor; fill: none; stroke-width: 1.15; stroke-linecap: round; stroke-linejoin: round; }
 .page-icon * { vector-effect: non-scaling-stroke; }
 @media (max-width: 600px) { .page-split__main > .page-h2 + .page-faq { margin-top: 32px; } }
-
-/* the closing card's reassurance line under the (now solid orange) Book a call button */
-.page-cta__anchor { margin-top: 14px; max-width: 520px; font-size: 13px; line-height: 1.45; color: var(--grey); }

@@ -10,21 +10,19 @@
 {{include:partials/icons.html}}
 <main class="rights-page">
 
-  <!-- hero · sand-m, h1 two lines · p 18/24 grey max-w 600 · the booking button · the four practices as plain text -->
+  <!-- hero · the reference site: section.security-hero flex h-svh min-h-[500px] flex-col items-center justify-center bg-sand-m px-page
+       h1 56px/1 two lines · p 18/24 grey max-w 600 · pill · seals 120px, gap 120 -->
   <section class="rights-hero" data-nav="light" data-nav-fill="bg-sand-m" data-theme="sand-m">
     <div class="rights-hero-inner">
       <h1 class="rights-hero-h1 t-display t-balance">{{content:rights.hero.h1}}</h1>
       <p class="rights-hero-sub">{{content:rights.hero.sub}}</p>
-      <a href="{{content:rights.hero.cta.href}}" class="btn btn--lg btn--cta rights-hero-cta" data-cta="rights-hero">{{content:rights.hero.cta.label}}<span class="btn__ico"><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-      <div class="rights-hero-practices">
-        <p class="rights-hero-k" id="rights-hero-k">{{content:rights.hero.practices_label}}</p>
-        <ul class="rights-hero-list" aria-labelledby="rights-hero-k">
-        <li class="rights-hero-item"><p class="rights-hero-item-t">{{content:rights.hero.practices.0.label}}</p><p class="rights-hero-item-d">{{content:rights.hero.practices.0.desc}}</p></li>
-        <li class="rights-hero-item"><p class="rights-hero-item-t">{{content:rights.hero.practices.1.label}}</p><p class="rights-hero-item-d">{{content:rights.hero.practices.1.desc}}</p></li>
-        <li class="rights-hero-item"><p class="rights-hero-item-t">{{content:rights.hero.practices.2.label}}</p><p class="rights-hero-item-d">{{content:rights.hero.practices.2.desc}}</p></li>
-        <li class="rights-hero-item"><p class="rights-hero-item-t">{{content:rights.hero.practices.3.label}}</p><p class="rights-hero-item-d">{{content:rights.hero.practices.3.desc}}</p></li>
-        </ul>
-      </div>
+      <a href="{{content:rights.hero.cta.href}}" class="btn btn--lg rights-hero-cta">{{content:rights.hero.cta.label}}<span class="btn__ico"><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <ul class="rights-hero-seals" aria-label="hypjam's four rights and safety commitments">
+      <li class="rights-hero-seal" title="{{content:rights.hero.badges.0.label}}"><img src="{{content:rights.hero.badges.0.seal_file}}" alt="{{content:rights.hero.badges.0.alt}}" width="240" height="240" loading="eager" decoding="async" draggable="false"></li>
+      <li class="rights-hero-seal" title="{{content:rights.hero.badges.1.label}}"><img src="{{content:rights.hero.badges.1.seal_file}}" alt="{{content:rights.hero.badges.1.alt}}" width="240" height="240" loading="eager" decoding="async" draggable="false"></li>
+      <li class="rights-hero-seal" title="{{content:rights.hero.badges.2.label}}"><img src="{{content:rights.hero.badges.2.seal_file}}" alt="{{content:rights.hero.badges.2.alt}}" width="240" height="240" loading="eager" decoding="async" draggable="false"></li>
+      <li class="rights-hero-seal" title="{{content:rights.hero.badges.3.label}}"><img src="{{content:rights.hero.badges.3.seal_file}}" alt="{{content:rights.hero.badges.3.alt}}" width="240" height="240" loading="eager" decoding="async" draggable="false"></li>
+      </ul>
     </div>
   </section>
 
@@ -88,10 +86,7 @@
     <div class="rights-q-intro">
       <h2 class="rights-q-h2 t-h2">{{content:rights.questions.h2}}</h2>
       <p class="rights-q-p t-body">{{content:rights.questions.p}}</p>
-      <div class="rights-q-cta">
-        <a class="cta-link" href="{{content:rights.questions.cta.href}}" data-cta="rights">{{content:rights.questions.cta.label}}</a>
-        <p class="rights-q-micro">{{content:rights.questions.cta.micro}}</p>
-      </div>
+      <a href="{{content:rights.questions.cta.href}}" class="btn btn--dark rights-q-cta">{{content:rights.questions.cta.label}}<span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
     <div class="rights-acc" data-rights-acc>
       <div class="rights-acc-item" data-acc-item>

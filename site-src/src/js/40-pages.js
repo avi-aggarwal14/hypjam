@@ -32,9 +32,7 @@
   function countUp(el) {
     var target = parseInt(el.getAttribute('data-count'), 10);
     if (isNaN(target)) return;
-    /* the figures are contract terms: show them as they are, no count-up (research:
-       sharp numbers read as factual when static; animating adds motion, not information) */
-    el.textContent = String(target); return;
+    if (reduce || target === 0) { el.textContent = String(target); return; }
     var dur = 1100 + Math.min(target, 40) * 12;
     var t0 = null;
     el.textContent = '0';

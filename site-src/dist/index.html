@@ -2,10 +2,9 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<script>document.documentElement.classList.add('js')</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>UGC agency in London: directed creator ads | hypjam</title>
-<meta name="description" content="London UGC agency: hooks, casting, directed shoots and platform-ready cuts, with usage rights in writing. From £1,800 a month. Book a 30-min call.">
+<meta name="description" content="hypjam is a London UGC agency: we brief, cast and direct creators, cut for TikTok, Reels and Shorts, and put usage rights in writing. From £1,800 a month.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://hypjam.com/">
 <meta name="theme-color" content="#000000">
@@ -31,14 +30,14 @@
 <meta property="og:site_name" content="hypjam">
 <meta property="og:locale" content="en_GB">
 <meta property="og:title" content="UGC agency in London: directed creator ads | hypjam">
-<meta property="og:description" content="London UGC agency: hooks, casting, directed shoots and platform-ready cuts, with usage rights in writing. From £1,800 a month. Book a 30-min call.">
+<meta property="og:description" content="hypjam is a London UGC agency: we brief, cast and direct creators, cut for TikTok, Reels and Shorts, and put usage rights in writing. From £1,800 a month.">
 <meta property="og:url" content="https://hypjam.com/">
 <meta property="og:image" content="https://hypjam.com/assets/brand/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="UGC agency in London: directed creator ads | hypjam">
-<meta name="twitter:description" content="London UGC agency: hooks, casting, directed shoots and platform-ready cuts, with usage rights in writing. From £1,800 a month. Book a 30-min call.">
+<meta name="twitter:description" content="hypjam is a London UGC agency: we brief, cast and direct creators, cut for TikTok, Reels and Shorts, and put usage rights in writing. From £1,800 a month.">
 <meta name="twitter:image" content="https://hypjam.com/assets/brand/og.png">
 <script type="application/ld+json">
 {
@@ -215,7 +214,7 @@
         </div>
       </div>
 
-      <a href="/#pricing" class="nav-link">Pricing</a>
+      <a href="/rights" class="nav-link">Rights</a>
       <a href="/work" class="nav-link">Work</a>
 
       <div class="nav-item" data-menu="resources">
@@ -226,19 +225,20 @@
           <div class="nav-menu-inner">
             <div class="nav-menu-col">
               <a class="nav-menu-link" href="/agency">Agency</a>
-              <a class="nav-menu-link" href="/process">Process</a>
-              <a class="nav-menu-link" href="/rights">Rights</a>
-              <a class="nav-menu-link" href="/faq">FAQ</a>
               <a class="nav-menu-link" href="/blog">Blog</a>
-              <a class="nav-menu-link" href="/join">For creators</a>
+              <a class="nav-menu-link" href="/process">Process</a>
+              <a class="nav-menu-link" href="/faq">FAQ</a>
             </div>
             <a class="nav-menu-video" href="/process">
               <span class="nav-menu-video-frame">
-                <img class="nav-menu-still" src="/assets/img/process/shoot.jpg?v=6812e569" alt="Example shoot log from our templates" width="642" height="368" loading="lazy" decoding="async">
-                <span class="nav-menu-tag" aria-hidden="true">Example</span>
+                <!-- the clip starts (muted, looping) the first time the menu opens; poster until then -->
+                <!-- the clip is an illustration of a phone shoot, not footage of a hypjam
+                     production: nothing here may describe it as one. Copy lives in nav.json. -->
+                <video class="nav-menu-clip" muted loop playsinline preload="none" data-poster="/assets/video/hero-poster.jpg?v=f76cf493" data-src="/assets/video/hero-studio-web.mp4?v=d26d81e1" aria-label="Illustrative looping clip of a phone shoot"></video>
+                <span class="nav-menu-play" aria-hidden="true"><svg viewBox="0 0 12 12" width="10" height="10"><path d="M3.5 2.2v7.6L9.5 6z" fill="currentColor"/></svg></span>
               </span>
-              <span class="nav-menu-video-title">How a sprint runs</span>
-              <span class="nav-menu-video-sub">Signed brief to first cuts in 14 days</span>
+              <span class="nav-menu-video-title">How a shoot day runs</span>
+              <span class="nav-menu-video-sub">Brief to edit, step by step</span>
             </a>
           </div>
         </div>
@@ -259,7 +259,7 @@
     </div>
 
     <div class="nav-right">
-      <!-- one action only: creators reach /join from the Resources menu, the phone menu and the footer -->
+      <a href="/join" class="nav-link nav-link--creators">Creators</a>
       <a href="/book" class="nav-cta">Book a call<span class="nav-cta-circle"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
   </div>
@@ -305,429 +305,1139 @@
           </div>
         </div>
       </div>
-      <a class="nav-m-row" href="/#pricing">Pricing</a>
+      <a class="nav-m-row" href="/rights">Rights</a>
       <a class="nav-m-row" href="/work">Work</a>
       <a class="nav-m-row" href="/agency">Agency</a>
-      <a class="nav-m-row" href="/process">Process</a>
-      <a class="nav-m-row" href="/rights">Rights</a>
-      <a class="nav-m-row" href="/faq">FAQ</a>
       <a class="nav-m-row" href="/blog">Blog</a>
-      <a class="nav-m-row nav-m-row--quiet" href="/join">For creators</a>
+      <a class="nav-m-row" href="/process">Process</a>
+      <a class="nav-m-row" href="/faq">FAQ</a>
     </div>
   </div>
 </nav>
 
 <main class="bg-black">
 <!-- ======================================================================
-     home/hero.html — the first screen. One job: say what hypjam makes, for
-     whom, from what price, and make the call the obvious next step.
-
-     Replaces the pinned hotel walkthrough (see _retired/hotel-walkthrough/).
-     Left: eyebrow, H1, sub, the terms row, ONE filled button, a text link and
-     what the call is. Right (below on phones): three example ads as posters;
-     a video only loads when someone presses play (src/js/25-hero.js).
-     Ground: black with a jam glow. No background video: the old loop was a
-     generated clip and must not stand in for a hypjam shoot.
-     Everything here is visible on first paint, with or without JavaScript.
-     Copy: content/hero.json.
+     home/hero.html — the hero engine's stage (CONTRACT §7).
+     Two renderings live here; src/js/20-hero.js sets data-mode on the
+     section at runtime and only one is displayed:
+       desktop  (> 1024px)  .hero-stage   the pinned 11-viewport walkthrough
+       mobile   (≤ 1024px)  .hero-m       the reference site's phone experience (static,
+                                          marquee + drawing + accordion +
+                                          outcomes), see ref/mobile/m01–m03
+     Every string comes from content/hero.json. The drawing is fetched at
+     runtime from /assets/img/hq.svg (like the reference site fetches /entire-drawing.svg);
+     the five product panels are inlined by the build (panel:<name> tokens) and
+     mounted through window.hypjamPanels.<name>.mount(el) when present.
+     Layer order (z) follows CONTRACT §7: video · overlay · map · gradients ·
+     trust · HUD · metrics.
      ====================================================================== -->
-<section id="top" class="h2o" data-nav="dark" data-nav-fill="bg-transparent" aria-labelledby="h2o-h1">
-  <div class="h2o-in">
-    <div class="h2o-copy">
-      <p class="h2o-eyebrow t-eyebrow">UGC agency · London</p>
-      <h1 class="h2o-h1 t-h1" id="h2o-h1">Directed UGC ads for TikTok, Reels and Shorts.</h1>
-      <p class="h2o-sub">We write the hooks, cast creators from our roster, direct every shoot and deliver cuts ready to run, with usage rights in writing. Built for consumer brands and apps.</p>
-      <dl class="h2o-terms"><div><dt>From</dt><dd>£1,800 a month</dd></div><div><dt>First cuts</dt><dd>14 days after a signed brief</dd></div><div><dt>Term</dt><dd>Month to month</dd></div></dl>
-      <div class="h2o-ctas" data-cta="hero">
-        <a href="/book" class="btn btn--lg btn--cta h2o-cta">Book a 30-min call<span class="btn__ico"><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-        <a href="#how-it-works" class="h2o-link">See how it works<span aria-hidden="true"> ↓</span></a>
-      </div>
-      <p class="h2o-micro"><span class="h2o-dot" aria-hidden="true"></span>With Avi, the founder. Free, on Google Meet. No deck.</p>
+<section id="hero" class="hero" data-nav="dark" data-nav-fill="bg-transparent" data-mode="">
+  <!-- the page h1. Lives here, outside both renderings: .hero-stage is display:none at
+       <=1024px, so an h1 inside it left every phone and tablet with no h1 at all. -->
+  <h1 class="u-sr-only">hypjam, a UGC agency in London: everyday creators, briefed, cast, directed and edited by one team</h1>
+
+  <!-- ================= desktop: the pinned stage ================= -->
+  <div class="hero-stage" data-hero-stage data-sand="0">
+
+    <!-- 1 · video (opacity G.video, filter blur(G.blur)) -->
+    <div class="hero-layer hero-video-layer" data-hero-video-layer>
+      <video class="hero-video" src="/assets/video/hero-studio-web.mp4?v=d26d81e1" poster="/assets/video/hero-poster.jpg?v=f76cf493" autoplay muted loop playsinline preload="auto" aria-label="Blurred footage of a phone shoot in progress"></video>
     </div>
 
-    <div class="h2o-workcol">
-      <p class="h2o-work-k" aria-hidden="true">Example ads</p>
-      <ul class="h2o-work" aria-label="Example ads">
-      <li class="h2o-card">
-        <button type="button" class="h2o-play" data-video="/assets/video/ugc-hook-led-1-web.mp4?v=caaf0a1d" aria-label="Play the hook-led ad by @this_avi.ag, with sound">
-          <img class="h2o-poster" src="/assets/video/ugc-hook-led-1-poster.jpg?v=fd461831" alt="Hook-led vertical ad: a creator in a red quarter-zip talks straight to camera under the caption 'THIS is the time'" width="360" height="640" decoding="async" fetchpriority="high">
-          <span class="h2o-play-ico" aria-hidden="true"><svg viewBox="0 0 12 12" width="12" height="12"><path d="M3.5 2.2v7.6L9.5 6z" fill="currentColor"/></svg></span>
+    <!-- 2 · overlay rgba(0,0,0,G.overlay) — starts .4 -->
+    <div class="hero-layer hero-overlay" data-hero-overlay aria-hidden="true"></div>
+
+    <!-- 3 · the drawing (opacity G.map); the SVG is injected into .hero-map -->
+    <div class="hero-layer hero-map-layer" data-hero-map-layer aria-hidden="true">
+      <div class="hero-map" data-hero-map></div>
+    </div>
+
+    <!-- 4 · edge gradients (opacity G.vignette · (1 − G.sand)) -->
+    <div class="hero-grad hero-grad--left" data-hero-grad aria-hidden="true"></div>
+    <div class="hero-grad hero-grad--top" data-hero-grad aria-hidden="true"></div>
+
+    <!-- 5 · trust layer: paragraph (split into .trust-word by JS), walk hint, marquee -->
+    <div class="hero-layer hero-trust" data-hero-trust>
+      <div class="hero-trust-inner">
+        <p class="hero-trust-p t-trust" data-hero-trust-p>hypjam is built for brands that want everyday creators briefed properly, shoots directed, and ads that sound like people.</p>
+        <div class="hero-cta-row" data-hero-cta-row>
+          <a href="/book" class="btn btn--dark btn--lg hero-cta">
+            Book a call
+            <span class="btn__ico"><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
+          <a href="/services" class="btn btn--ghost btn--dark btn--lg hero-cta hero-cta--ghost">See what we do</a>
+        </div>
+      </div>
+      <div class="hero-walk-wrap" data-hero-walk-wrap>
+        <button type="button" class="hero-walk" data-hero-walk data-label="Scroll to walk through the agency" data-label-reduced="Use the list to move between rooms" style="--hero-walk-cycle:3000ms">
+          <span class="hero-walk-arrow" aria-hidden="true"><svg viewBox="0 0 16 8" width="16" height="8" aria-hidden="true"><path d="M2.5 1.4 8 6.6 13.5 1.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="hero-walk-label">Scroll to walk through the agency</span>
         </button>
-        <p class="h2o-cap"><span class="h2o-cap-f">Hook-led ad</span> <span class="h2o-cap-c">@this_avi.ag, ex-Cluely</span><span class="h2o-cap-s" aria-hidden="true">@this_avi.ag</span></p>
-      </li>
-      <li class="h2o-card">
-        <button type="button" class="h2o-play" data-video="/assets/video/ugc-cinematic-urus.mp4?v=a13e5470" aria-label="Play the cinematic paid ad made for Cluely, with sound">
-          <img class="h2o-poster" src="/assets/video/ugc-cinematic-urus-clean-poster.jpg?v=59b31f54" alt="Cinematic vertical ad: a yellow SUV bursting through sea spray on a beach at sunset" width="360" height="640" decoding="async">
-          <span class="h2o-play-ico" aria-hidden="true"><svg viewBox="0 0 12 12" width="12" height="12"><path d="M3.5 2.2v7.6L9.5 6z" fill="currentColor"/></svg></span>
-        </button>
-        <p class="h2o-cap"><span class="h2o-cap-f">Cinematic paid ad</span> <span class="h2o-cap-c">Made for Cluely</span><span class="h2o-cap-s" aria-hidden="true">For Cluely</span></p>
-      </li>
-      <li class="h2o-card">
-        <button type="button" class="h2o-play" data-video="/assets/video/ugc-screen-demo-1-web.mp4?v=397e5705" aria-label="Play the screen demo by @ajain_ugc, with sound">
-          <img class="h2o-poster" src="/assets/video/ugc-screen-demo-1-hook-poster.jpg?v=ef46f5be" alt="Screen-demo ad opening on a creator in bed under the caption 'Clients: I need ads at 12am'" width="360" height="640" decoding="async">
-          <span class="h2o-play-ico" aria-hidden="true"><svg viewBox="0 0 12 12" width="12" height="12"><path d="M3.5 2.2v7.6L9.5 6z" fill="currentColor"/></svg></span>
-        </button>
-        <p class="h2o-cap"><span class="h2o-cap-f">Screen demo</span> <span class="h2o-cap-c">@ajain_ugc, ex-Replit creator</span><span class="h2o-cap-s" aria-hidden="true">@ajain_ugc</span></p>
-      </li>
+      </div>
+      <div class="hero-marquee-wrap" data-hero-marquee>
+        <div class="marquee hero-marquee" role="list" aria-label="Platforms hypjam ships to">
+          <div class="marquee__track" data-hero-marquee-track>
+            <div class="marquee__group" aria-hidden="false">
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/tiktok.svg?v=7d7f2f1c" alt="TikTok" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/instagram.svg?v=6c9b9ad1" alt="Instagram Reels" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/youtube.svg?v=00321313" alt="YouTube Shorts" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/snapchat.svg?v=45341bcf" alt="Snapchat" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/pinterest.svg?v=6c57571d" alt="Pinterest" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/meta.svg?v=bc91c9f6" alt="Meta ads" draggable="false" decoding="async"></div>
+            </div>
+            <div class="marquee__group" aria-hidden="true">
+              <div class="marquee__cell"><img src="/assets/img/platforms/tiktok.svg?v=7d7f2f1c" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/instagram.svg?v=6c9b9ad1" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/youtube.svg?v=00321313" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/snapchat.svg?v=45341bcf" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/pinterest.svg?v=6c57571d" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/meta.svg?v=bc91c9f6" alt="" draggable="false" decoding="async"></div>
+            </div>
+            <!-- 20-hero.js clones the hidden group until six groups exist (the reference site renders six) -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 · HUD: stop list + marker + card (+ the two "(Skip)" controls) -->
+    <div class="hero-layer hero-hud" data-hero-hud>
+      <div class="hero-hud-inner">
+        <div class="hero-stops">
+          <div class="hero-marker-track" aria-hidden="true"><span class="hero-marker" data-hero-marker></span></div>
+          <div class="hero-stop-list" role="list" aria-label="Rooms">
+            <button type="button" class="hero-stop" role="listitem" data-hero-stop data-index="0" data-stop-id="1-front-of-house" data-cx="8386" data-cy="18144" data-w="10900" data-bx="4026" data-by="15716" data-bw="8720" data-bh="4856" data-active="true">Brief desk</button>
+            <button type="button" class="hero-stop" role="listitem" data-hero-stop data-index="1" data-stop-id="2-back-of-house" data-cx="7597.5" data-cy="9184" data-w="9503.75" data-bx="3796" data-by="7408" data-bw="7603" data-bh="3552" data-active="false">Writers' room</button>
+            <button type="button" class="hero-stop" role="listitem" data-hero-stop data-index="2" data-stop-id="3-sales" data-cx="33639.5" data-cy="6379" data-w="16486.25" data-bx="27045" data-by="3959" data-bw="13189" data-bh="4840" data-active="false">Casting floor</button>
+            <button type="button" class="hero-stop" role="listitem" data-hero-stop data-index="3" data-stop-id="4-food-and-beverage" data-cx="33882.5" data-cy="19737.5" data-w="15878.75" data-bx="27531" data-by="17562" data-bw="12703" data-bh="4351" data-active="false">Shoot bay</button>
+            <button type="button" class="hero-stop" role="listitem" data-hero-stop data-index="4" data-stop-id="5-management" data-cx="11083.5" data-cy="5012.5" data-w="10836.25" data-bx="6749" data-by="3021" data-bw="8669" data-bh="3983" data-active="false">Edit suite</button>
+          </div>
+        </div>
+
+        <div class="hero-card-row">
+          <div class="hero-card" data-hero-card aria-hidden="true">
+            <div class="hero-card-blur" aria-hidden="true"></div>
+            <div class="glint" aria-hidden="true"><div class="glint__spin"></div></div>
+
+            <div class="hero-card-body" data-hero-body data-index="0">
+              <div class="hero-card-stack">
+                <div class="hero-card-head">
+                  <p class="hero-card-title t-card-title">Brief desk</p>
+                  <p class="hero-card-desc t-hud-desc">Turns your launch, offer and audience into one specific brief, locked before anyone films.</p>
+                </div>
+                <div class="hero-card-divider" aria-hidden="true"></div>
+                <div class="hero-panel" data-hero-panel data-panel-name="brief"><div class="pnl pnl--brief" data-panel="brief" data-panel-height="184" aria-hidden="true">
+  <div class="pnl-beat pnl-beat--msg pnl-brief__msg">
+    <div class="pnl-brief__from">
+      <span class="pnl-avatar"><svg viewBox="0 0 12 12"><circle cx="6" cy="4.2" r="2.3"/><path d="M1.8 11.2c.5-2.4 2.1-3.6 4.2-3.6s3.7 1.2 4.2 3.6"/></svg></span>
+      <span class="pnl-label">Client · your brand</span>
+    </div>
+    <div class="pnl-bubble pnl-brief__bubble"><span class="pnl-brief__text">we're launching a new serum in march — can you do hooks and a founder cut?</span><span class="pnl-cursor" hidden></span></div>
+    <div class="pnl-status pnl-brief__status"><span class="pnl-spin"></span>Reading the brief</div>
+  </div>
+  <div class="pnl-beat pnl-beat--card pnl-brief__card">
+    <div class="pnl-head pnl-brief__head">
+      <span class="pnl-head__t">Brief</span>
+      <span class="pnl-mono">your brand · March</span>
+    </div>
+    <div class="pnl-hr"></div>
+    <div class="pnl-row pnl-brief__line">
+      <span class="pnl-cell pnl-mono pnl-brief__key">Product</span>
+      <span class="pnl-cell pnl-cell--grow pnl-brief__val">Serum launch</span>
+    </div>
+    <div class="pnl-row pnl-brief__line">
+      <span class="pnl-cell pnl-mono pnl-brief__key">Platforms</span>
+      <span class="pnl-cell pnl-cell--grow pnl-brief__val"><span class="pnl-chip pnl-brief__chip">TikTok</span><span class="pnl-chip pnl-brief__chip">Reels</span></span>
+    </div>
+    <div class="pnl-row pnl-brief__line">
+      <span class="pnl-cell pnl-mono pnl-brief__key">Budget</span>
+      <span class="pnl-cell pnl-cell--grow pnl-brief__val">Launch band</span>
+    </div>
+    <div class="pnl-row pnl-brief__line pnl-row--bare">
+      <span class="pnl-cell pnl-mono pnl-brief__key">Hooks</span>
+      <span class="pnl-cell pnl-cell--grow pnl-brief__val">8 · plus a founder cut</span>
+    </div>
+    <div class="pnl-brief__signed">
+      <svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg>
+      <span class="pnl-ink">Brief signed</span>
+    </div>
+  </div>
+</div>
+</div>
+              </div>
+            </div>
+
+            <div class="hero-card-body" data-hero-body data-index="1">
+              <div class="hero-card-stack">
+                <div class="hero-card-head">
+                  <p class="hero-card-title t-card-title">Writers' room</p>
+                  <p class="hero-card-desc t-hud-desc">Writes eight hooks for every script, then picks the ones worth shooting.</p>
+                </div>
+                <div class="hero-card-divider" aria-hidden="true"></div>
+                <div class="hero-panel" data-hero-panel data-panel-name="hooks"><div class="pnl pnl--hooks" data-panel="hooks" data-panel-height="128" aria-hidden="true">
+  <div class="pnl-head pnl-hooks__head">
+    <span class="pnl-head__t">Hooks</span>
+    <span class="pnl-mono pnl-hooks__count">8 of 8</span>
+  </div>
+  <div class="pnl-hr pnl-hooks__hr"></div>
+  <div class="pnl-clip pnl-hooks__clip">
+    <div class="pnl-clip__track pnl-hooks__track">
+      <div class="pnl-row pnl-hooks__row">
+        <span class="pnl-cell pnl-mono pnl-hooks__idx">01</span>
+        <span class="pnl-cell pnl-cell--grow pnl-hooks__line"><span class="pnl-hooks__text">POV: your skincare shelf has one bottle now</span></span>
+      </div>
+      <div class="pnl-row pnl-hooks__row">
+        <span class="pnl-cell pnl-mono pnl-hooks__idx">02</span>
+        <span class="pnl-cell pnl-cell--grow pnl-hooks__line"><span class="pnl-hooks__text">I asked a chemist what's actually in this</span></span>
+      </div>
+      <div class="pnl-row pnl-hooks__row pnl-hooks__row--picked">
+        <span class="pnl-cell pnl-mono pnl-hooks__idx">03</span>
+        <span class="pnl-cell pnl-cell--grow pnl-hooks__line"><span class="pnl-hooks__text">Three things I got wrong about serums</span></span>
+        <span class="pnl-cell pnl-cell--end pnl-hooks__pick"><svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg><span class="pnl-chip pnl-chip--jam">picked for the shoot</span></span>
+      </div>
+      <div class="pnl-row pnl-hooks__row">
+        <span class="pnl-cell pnl-mono pnl-hooks__idx">04</span>
+        <span class="pnl-cell pnl-cell--grow pnl-hooks__line"><span class="pnl-hooks__text">The 20-second morning routine, no skipping</span></span>
+      </div>
+      <div class="pnl-row pnl-hooks__row">
+        <span class="pnl-cell pnl-mono pnl-hooks__idx">05</span>
+        <span class="pnl-cell pnl-cell--grow pnl-hooks__line"><span class="pnl-hooks__text">Rating my serum drawer, honestly</span></span>
+      </div>
+      <div class="pnl-row pnl-hooks__row pnl-hooks__row--picked">
+        <span class="pnl-cell pnl-mono pnl-hooks__idx">06</span>
+        <span class="pnl-cell pnl-cell--grow pnl-hooks__line"><span class="pnl-hooks__text">What a founder puts on her own face</span></span>
+        <span class="pnl-cell pnl-cell--end pnl-hooks__pick"><svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg><span class="pnl-chip pnl-chip--jam">picked for the shoot</span></span>
+      </div>
+      <div class="pnl-row pnl-hooks__row">
+        <span class="pnl-cell pnl-mono pnl-hooks__idx">07</span>
+        <span class="pnl-cell pnl-cell--grow pnl-hooks__line"><span class="pnl-hooks__text">My mum tried it before I did</span></span>
+      </div>
+      <div class="pnl-row pnl-hooks__row">
+        <span class="pnl-cell pnl-mono pnl-hooks__idx">08</span>
+        <span class="pnl-cell pnl-cell--grow pnl-hooks__line"><span class="pnl-hooks__text">Unboxing the March launch, no script</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+              </div>
+            </div>
+
+            <div class="hero-card-body" data-hero-body data-index="2">
+              <div class="hero-card-stack">
+                <div class="hero-card-head">
+                  <p class="hero-card-title t-card-title">Casting floor</p>
+                  <p class="hero-card-desc t-hud-desc">Casts creators from our roster for fit, not follower count, and gets your shortlist approved before filming.</p>
+                </div>
+                <div class="hero-card-divider" aria-hidden="true"></div>
+                <div class="hero-panel" data-hero-panel data-panel-name="casting"><div class="pnl pnl--casting" data-panel="casting" data-panel-height="205" aria-hidden="true">
+  <div class="pnl-head pnl-casting__head">
+    <span class="pnl-head__t">Roster</span>
+    <span class="pnl-mono pnl-casting__count">Shortlist <span class="pnl-casting__n"><span>0</span><span>1</span><span>2</span><span>3</span></span> of 3</span>
+  </div>
+  <div class="pnl-hr pnl-casting__hr"></div>
+  <div class="pnl-casting__list">
+    <div class="pnl-row pnl-row--tall pnl-casting__row pnl-casting__row--picked">
+      <span class="pnl-cell pnl-avatar"><svg viewBox="0 0 12 12"><circle cx="6" cy="4.2" r="2.3"/><path d="M1.8 11.2c.5-2.4 2.1-3.6 4.2-3.6s3.7 1.2 4.2 3.6"/></svg></span>
+      <span class="pnl-cell pnl-mono pnl-mono--ink pnl-casting__id">CR-014</span>
+      <span class="pnl-cell pnl-cell--grow pnl-casting__tags"><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">skincare</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">25–34</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag pnl-casting__tag--city">London</span></span>
+      <span class="pnl-cell pnl-cell--end pnl-casting__pick"><svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg><span class="pnl-chip pnl-chip--jam">shortlisted</span></span>
+    </div>
+    <div class="pnl-row pnl-row--tall pnl-casting__row pnl-casting__row--dim">
+      <span class="pnl-cell pnl-avatar"><svg viewBox="0 0 12 12"><circle cx="6" cy="4.2" r="2.3"/><path d="M1.8 11.2c.5-2.4 2.1-3.6 4.2-3.6s3.7 1.2 4.2 3.6"/></svg></span>
+      <span class="pnl-cell pnl-mono pnl-mono--ink pnl-casting__id">CR-027</span>
+      <span class="pnl-cell pnl-cell--grow pnl-casting__tags"><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">skincare</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">18–24</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag pnl-casting__tag--city">Manchester</span></span>
+    </div>
+    <div class="pnl-row pnl-row--tall pnl-casting__row pnl-casting__row--picked">
+      <span class="pnl-cell pnl-avatar"><svg viewBox="0 0 12 12"><circle cx="6" cy="4.2" r="2.3"/><path d="M1.8 11.2c.5-2.4 2.1-3.6 4.2-3.6s3.7 1.2 4.2 3.6"/></svg></span>
+      <span class="pnl-cell pnl-mono pnl-mono--ink pnl-casting__id">CR-031</span>
+      <span class="pnl-cell pnl-cell--grow pnl-casting__tags"><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">beauty</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">25–34</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag pnl-casting__tag--city">London</span></span>
+      <span class="pnl-cell pnl-cell--end pnl-casting__pick"><svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg><span class="pnl-chip pnl-chip--jam">shortlisted</span></span>
+    </div>
+    <div class="pnl-row pnl-row--tall pnl-casting__row pnl-casting__row--dim">
+      <span class="pnl-cell pnl-avatar"><svg viewBox="0 0 12 12"><circle cx="6" cy="4.2" r="2.3"/><path d="M1.8 11.2c.5-2.4 2.1-3.6 4.2-3.6s3.7 1.2 4.2 3.6"/></svg></span>
+      <span class="pnl-cell pnl-mono pnl-mono--ink pnl-casting__id">CR-008</span>
+      <span class="pnl-cell pnl-cell--grow pnl-casting__tags"><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">wellness</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">35–44</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag pnl-casting__tag--city">Bristol</span></span>
+    </div>
+    <div class="pnl-row pnl-row--tall pnl-row--bare pnl-casting__row pnl-casting__row--picked">
+      <span class="pnl-cell pnl-avatar"><svg viewBox="0 0 12 12"><circle cx="6" cy="4.2" r="2.3"/><path d="M1.8 11.2c.5-2.4 2.1-3.6 4.2-3.6s3.7 1.2 4.2 3.6"/></svg></span>
+      <span class="pnl-cell pnl-mono pnl-mono--ink pnl-casting__id">CR-052</span>
+      <span class="pnl-cell pnl-cell--grow pnl-casting__tags"><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">skincare</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">25–34</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag pnl-casting__tag--city">Leeds</span></span>
+      <span class="pnl-cell pnl-cell--end pnl-casting__pick"><svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg><span class="pnl-chip pnl-chip--jam">shortlisted</span></span>
+    </div>
+  </div>
+</div>
+</div>
+              </div>
+            </div>
+
+            <div class="hero-card-body" data-hero-body data-index="3">
+              <div class="hero-card-stack">
+                <div class="hero-card-head">
+                  <p class="hero-card-title t-card-title">Shoot bay</p>
+                  <p class="hero-card-desc t-hud-desc">Directs every phone shoot, shot list to retake, until the hook lands.</p>
+                </div>
+                <div class="hero-card-divider" aria-hidden="true"></div>
+                <div class="hero-panel" data-hero-panel data-panel-name="shoot"><div class="pnl pnl--shoot" data-panel="shoot" data-panel-height="152" aria-hidden="true">
+  <div class="pnl-phone pnl-shoot__phone">
+    <svg class="pnl-shoot__frame" viewBox="0 0 70 140">
+      <g class="pnl-shoot__guides"><path d="M8 31v-5h5M57 26h5v5M62 105v5h-5M13 110H8v-5"/></g>
+      <g class="pnl-shoot__subject">
+        <circle cx="35" cy="55" r="12"/>
+        <path d="M12 100V93.4c2.8-13.2 11.5-19.8 23-19.8s20.2 6.6 23 19.8V100"/>
+      </g>
+    </svg>
+    <div class="pnl-shoot__rec">
+      <span class="pnl-dot pnl-dot--still"></span>
+      <span class="pnl-mono pnl-shoot__rec-lbl">Rec</span>
+    </div>
+    <span class="pnl-mono pnl-shoot__tc">00:00:03:20</span>
+  </div>
+  <div class="pnl-shoot__list">
+    <div class="pnl-head pnl-shoot__head">
+      <span class="pnl-head__t">Shoot day</span>
+      <span class="pnl-shoot__swap">
+        <span class="pnl-mono pnl-shoot__swap-a pnl-shoot__take-a">hook 03 · take 2</span>
+        <span class="pnl-mono pnl-shoot__swap-b pnl-shoot__take-b">founder cut · take 1</span>
+      </span>
+    </div>
+    <div class="pnl-hr pnl-shoot__hr"></div>
+    <div class="pnl-row pnl-shoot__row">
+      <span class="pnl-cell pnl-mono pnl-shoot__id">Hook 01</span>
+      <span class="pnl-cell pnl-cell--grow pnl-shoot__val">take 1</span>
+      <span class="pnl-cell pnl-cell--end"><svg class="pnl-tick pnl-tick--mute" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg></span>
+    </div>
+    <div class="pnl-row pnl-shoot__row">
+      <span class="pnl-cell pnl-mono pnl-shoot__id">Hook 02</span>
+      <span class="pnl-cell pnl-cell--grow pnl-shoot__val">take 3</span>
+      <span class="pnl-cell pnl-cell--end"><svg class="pnl-tick pnl-tick--mute" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg></span>
+    </div>
+    <div class="pnl-row pnl-shoot__row pnl-shoot__row--live">
+      <span class="pnl-cell pnl-mono pnl-shoot__id">Hook 03</span>
+      <span class="pnl-cell pnl-cell--grow pnl-shoot__val">take 2</span>
+      <span class="pnl-cell pnl-cell--end"><svg class="pnl-tick pnl-shoot__tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg></span>
+    </div>
+    <div class="pnl-row pnl-shoot__row pnl-row--bare">
+      <span class="pnl-cell pnl-mono pnl-shoot__id">Founder cut</span>
+      <span class="pnl-cell pnl-cell--grow pnl-shoot__val pnl-shoot__val--pending">take 1</span>
+      <span class="pnl-cell pnl-cell--end"><span class="pnl-shoot__swap">
+        <span class="pnl-mono pnl-shoot__swap-a pnl-shoot__next-a">next</span>
+        <span class="pnl-mono pnl-mono--ink pnl-shoot__swap-b pnl-shoot__next-b">up next</span>
+      </span></span>
+    </div>
+  </div>
+</div>
+</div>
+              </div>
+            </div>
+
+            <div class="hero-card-body" data-hero-body data-index="4">
+              <div class="hero-card-stack">
+                <div class="hero-card-head">
+                  <p class="hero-card-title t-card-title">Edit suite</p>
+                  <p class="hero-card-desc t-hud-desc">Cuts and captions every take for its platform, then ships with rights.</p>
+                </div>
+                <div class="hero-card-divider" aria-hidden="true"></div>
+                <div class="hero-panel" data-hero-panel data-panel-name="ship"><div class="pnl pnl--ship" data-panel="ship" data-panel-height="96" aria-hidden="true">
+  <div class="pnl-ship__strip">
+    <div class="pnl-ship__clips">
+      <span class="pnl-ship__clip"></span>
+      <span class="pnl-ship__clip"></span>
+      <span class="pnl-ship__clip pnl-ship__clip--picked"><span class="pnl-mono pnl-ship__clipid">03</span></span>
+      <span class="pnl-ship__clip"></span>
+      <span class="pnl-ship__clip"></span>
+    </div>
+    <span class="pnl-ship__playhead"></span>
+  </div>
+  <div class="pnl-ship__cc">
+    <span class="pnl-label">Captions</span>
+    <span class="pnl-toggle" data-on="true"></span>
+  </div>
+  <div class="pnl-ship__export">
+    <span class="pnl-mono">Exporting 9:16</span>
+    <span class="pnl-mono">1080 × 1920</span>
+  </div>
+  <div class="pnl-bar pnl-ship__bar"><div class="pnl-bar__fill pnl-ship__fill"></div></div>
+  <div class="pnl-ship__targets">
+    <span class="pnl-ship__target">
+      <svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg>
+      <span class="pnl-chip pnl-chip--ghost pnl-ship__chip">TikTok</span>
+    </span>
+    <span class="pnl-ship__target">
+      <svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg>
+      <span class="pnl-chip pnl-chip--ghost pnl-ship__chip">Reels</span>
+    </span>
+    <span class="pnl-ship__target">
+      <svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg>
+      <span class="pnl-chip pnl-chip--ghost pnl-ship__chip">Shorts</span>
+    </span>
+  </div>
+</div>
+</div>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="hero-skip hero-skip--inline" data-hero-skip>(Skip)</button>
+        </div>
+      </div>
+      <button type="button" class="hero-skip hero-skip--corner" data-hero-skip>(Skip)</button>
+    </div>
+
+    <!-- 7 · metrics (the sand beat) — --metrics-text / --metrics-nums drive the two reveals -->
+    <div class="hero-layer hero-metrics" data-hero-metrics>
+      <div class="hero-metrics-inner">
+        <div class="hero-metrics-text">
+          <p class="hero-metrics-eyebrow t-eyebrow"></p>
+          <h2 class="hero-metrics-title t-h2">Measured in commitments</h2>
+          <p class="hero-metrics-sub">Three promises written into every hypjam contract.</p>
+        </div>
+        <div class="hero-metrics-nums" data-metrics-nums data-active="0">
+          <div class="hero-metrics-spacer" aria-hidden="true"></div>
+          <div class="hero-metrics-col">
+            <div class="hero-metric" style="--i:0">
+              <div class="hero-metric-in">
+                <div class="hero-metric-row"><span class="hero-metric-num" data-hero-num data-value="14">14</span><span class="hero-metric-unit">days</span></div>
+                <p class="hero-metric-label">from a signed brief to your first cuts</p>
+              </div>
+              <div class="hero-metric-rule" aria-hidden="true"><i></i></div>
+            </div>
+            <div class="hero-metric" style="--i:1">
+              <div class="hero-metric-in">
+                <div class="hero-metric-row"><span class="hero-metric-num" data-hero-num data-value="8">8</span><span class="hero-metric-unit">hooks</span></div>
+                <p class="hero-metric-label">written and tested per script</p>
+              </div>
+              <div class="hero-metric-rule" aria-hidden="true"><i></i></div>
+            </div>
+            <div class="hero-metric" style="--i:2">
+              <div class="hero-metric-in">
+                <div class="hero-metric-row"><span class="hero-metric-num" data-hero-num data-value="1">1</span><span class="hero-metric-unit">contract</span></div>
+                <p class="hero-metric-label">one invoice, every creator and editor behind it</p>
+              </div>
+              <div class="hero-metric-rule" aria-hidden="true"><i></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= mobile (≤ 1024px): the reference site's phone experience ================= -->
+  <div class="hero-m" data-hero-mobile>
+
+    <div class="hero-m-video" data-nav="dark" data-nav-fill="bg-transparent">
+      <video class="hero-video hero-m-vid" data-src="/assets/video/hero-studio-web.mp4?v=d26d81e1" poster="/assets/video/hero-poster.jpg?v=f76cf493" muted loop playsinline preload="none" aria-label="Blurred footage of a phone shoot in progress"></video>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-m-video-grad" aria-hidden="true"></div>
+      <div class="hero-m-video-content">
+        <div class="hero-m-video-inner">
+          <p class="hero-m-p" data-hero-m-p>hypjam is built for brands that want everyday creators briefed properly, shoots directed, and ads that sound like people.</p>
+          <div class="hero-m-video-row">
+            <a href="/book" class="btn btn--dark hero-cta hero-m-cta" data-hero-m-cta>
+              Book a call
+              <span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            </a>
+            <!-- the same secondary action the desktop stage carries (hero.html above); it was
+                 missing from every phone and tablet. Phones keep one clear action — 20-hero.css
+                 hides .hero-cta--ghost at <=600px — so this is what tablets (601–1024px) gain. -->
+            <a href="/services" class="btn btn--ghost btn--dark hero-cta hero-cta--ghost hero-m-cta" data-hero-m-cta>See what we do</a>
+            <button type="button" class="hero-walk" data-hero-m-walk data-label="Scroll to walk through the agency" data-label-reduced="Use the list to move between rooms" style="--hero-walk-cycle:3000ms">
+              <span class="hero-walk-arrow" aria-hidden="true"><svg viewBox="0 0 16 8" width="16" height="8" aria-hidden="true"><path d="M2.5 1.4 8 6.6 13.5 1.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="hero-walk-label">Scroll to walk through the agency</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-m-body" data-nav="dark" data-nav-fill="bg-black" data-hero-m-body>
+      <div class="hero-m-marquee">
+        <div class="marquee hero-marquee" role="list" aria-label="Platforms hypjam ships to">
+          <div class="marquee__track" data-hero-marquee-track>
+            <div class="marquee__group" aria-hidden="false">
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/tiktok.svg?v=7d7f2f1c" alt="TikTok" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/instagram.svg?v=6c9b9ad1" alt="Instagram Reels" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/youtube.svg?v=00321313" alt="YouTube Shorts" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/snapchat.svg?v=45341bcf" alt="Snapchat" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/pinterest.svg?v=6c57571d" alt="Pinterest" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/meta.svg?v=bc91c9f6" alt="Meta ads" draggable="false" decoding="async" loading="lazy"></div>
+            </div>
+            <div class="marquee__group" aria-hidden="true">
+              <div class="marquee__cell"><img src="/assets/img/platforms/tiktok.svg?v=7d7f2f1c" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/instagram.svg?v=6c9b9ad1" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/youtube.svg?v=00321313" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/snapchat.svg?v=45341bcf" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/pinterest.svg?v=6c57571d" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/meta.svg?v=bc91c9f6" alt="" draggable="false" decoding="async" loading="lazy"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-m-drawing" aria-hidden="true" data-hero-m-drawing>
+        <div class="hero-map" data-hero-m-map></div>
+      </div>
+
+      <ul class="hero-m-acc" data-hero-m-acc>
+        <li class="hero-m-item">
+          <button type="button" class="hero-m-row" id="hero-m-btn-0" aria-expanded="false" aria-controls="hero-m-panel-0" data-hero-m-toggle data-index="0">
+            <span class="hero-m-title">Brief desk</span>
+            <span class="hero-m-plus" aria-hidden="true"><i></i><b></b></span>
+          </button>
+          <div class="hero-m-region" id="hero-m-panel-0" role="region" aria-labelledby="hero-m-btn-0">
+            <div class="hero-m-region-clip">
+              <div class="hero-m-region-inner">
+                <p class="hero-m-desc">Turns your launch, offer and audience into one specific brief, locked before anyone films.</p>
+                <div class="hero-m-panel-box" data-hero-m-panel-box><div class="hero-panel hero-m-panel" data-hero-panel data-panel-name="brief"><div class="pnl pnl--brief" data-panel="brief" data-panel-height="184" aria-hidden="true">
+  <div class="pnl-beat pnl-beat--msg pnl-brief__msg">
+    <div class="pnl-brief__from">
+      <span class="pnl-avatar"><svg viewBox="0 0 12 12"><circle cx="6" cy="4.2" r="2.3"/><path d="M1.8 11.2c.5-2.4 2.1-3.6 4.2-3.6s3.7 1.2 4.2 3.6"/></svg></span>
+      <span class="pnl-label">Client · your brand</span>
+    </div>
+    <div class="pnl-bubble pnl-brief__bubble"><span class="pnl-brief__text">we're launching a new serum in march — can you do hooks and a founder cut?</span><span class="pnl-cursor" hidden></span></div>
+    <div class="pnl-status pnl-brief__status"><span class="pnl-spin"></span>Reading the brief</div>
+  </div>
+  <div class="pnl-beat pnl-beat--card pnl-brief__card">
+    <div class="pnl-head pnl-brief__head">
+      <span class="pnl-head__t">Brief</span>
+      <span class="pnl-mono">your brand · March</span>
+    </div>
+    <div class="pnl-hr"></div>
+    <div class="pnl-row pnl-brief__line">
+      <span class="pnl-cell pnl-mono pnl-brief__key">Product</span>
+      <span class="pnl-cell pnl-cell--grow pnl-brief__val">Serum launch</span>
+    </div>
+    <div class="pnl-row pnl-brief__line">
+      <span class="pnl-cell pnl-mono pnl-brief__key">Platforms</span>
+      <span class="pnl-cell pnl-cell--grow pnl-brief__val"><span class="pnl-chip pnl-brief__chip">TikTok</span><span class="pnl-chip pnl-brief__chip">Reels</span></span>
+    </div>
+    <div class="pnl-row pnl-brief__line">
+      <span class="pnl-cell pnl-mono pnl-brief__key">Budget</span>
+      <span class="pnl-cell pnl-cell--grow pnl-brief__val">Launch band</span>
+    </div>
+    <div class="pnl-row pnl-brief__line pnl-row--bare">
+      <span class="pnl-cell pnl-mono pnl-brief__key">Hooks</span>
+      <span class="pnl-cell pnl-cell--grow pnl-brief__val">8 · plus a founder cut</span>
+    </div>
+    <div class="pnl-brief__signed">
+      <svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg>
+      <span class="pnl-ink">Brief signed</span>
+    </div>
+  </div>
+</div>
+</div></div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="hero-m-item">
+          <button type="button" class="hero-m-row" id="hero-m-btn-1" aria-expanded="false" aria-controls="hero-m-panel-1" data-hero-m-toggle data-index="1">
+            <span class="hero-m-title">Writers' room</span>
+            <span class="hero-m-plus" aria-hidden="true"><i></i><b></b></span>
+          </button>
+          <div class="hero-m-region" id="hero-m-panel-1" role="region" aria-labelledby="hero-m-btn-1">
+            <div class="hero-m-region-clip">
+              <div class="hero-m-region-inner">
+                <p class="hero-m-desc">Writes eight hooks for every script, then picks the ones worth shooting.</p>
+                <div class="hero-m-panel-box" data-hero-m-panel-box><div class="hero-panel hero-m-panel" data-hero-panel data-panel-name="hooks"><div class="pnl pnl--hooks" data-panel="hooks" data-panel-height="128" aria-hidden="true">
+  <div class="pnl-head pnl-hooks__head">
+    <span class="pnl-head__t">Hooks</span>
+    <span class="pnl-mono pnl-hooks__count">8 of 8</span>
+  </div>
+  <div class="pnl-hr pnl-hooks__hr"></div>
+  <div class="pnl-clip pnl-hooks__clip">
+    <div class="pnl-clip__track pnl-hooks__track">
+      <div class="pnl-row pnl-hooks__row">
+        <span class="pnl-cell pnl-mono pnl-hooks__idx">01</span>
+        <span class="pnl-cell pnl-cell--grow pnl-hooks__line"><span class="pnl-hooks__text">POV: your skincare shelf has one bottle now</span></span>
+      </div>
+      <div class="pnl-row pnl-hooks__row">
+        <span class="pnl-cell pnl-mono pnl-hooks__idx">02</span>
+        <span class="pnl-cell pnl-cell--grow pnl-hooks__line"><span class="pnl-hooks__text">I asked a chemist what's actually in this</span></span>
+      </div>
+      <div class="pnl-row pnl-hooks__row pnl-hooks__row--picked">
+        <span class="pnl-cell pnl-mono pnl-hooks__idx">03</span>
+        <span class="pnl-cell pnl-cell--grow pnl-hooks__line"><span class="pnl-hooks__text">Three things I got wrong about serums</span></span>
+        <span class="pnl-cell pnl-cell--end pnl-hooks__pick"><svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg><span class="pnl-chip pnl-chip--jam">picked for the shoot</span></span>
+      </div>
+      <div class="pnl-row pnl-hooks__row">
+        <span class="pnl-cell pnl-mono pnl-hooks__idx">04</span>
+        <span class="pnl-cell pnl-cell--grow pnl-hooks__line"><span class="pnl-hooks__text">The 20-second morning routine, no skipping</span></span>
+      </div>
+      <div class="pnl-row pnl-hooks__row">
+        <span class="pnl-cell pnl-mono pnl-hooks__idx">05</span>
+        <span class="pnl-cell pnl-cell--grow pnl-hooks__line"><span class="pnl-hooks__text">Rating my serum drawer, honestly</span></span>
+      </div>
+      <div class="pnl-row pnl-hooks__row pnl-hooks__row--picked">
+        <span class="pnl-cell pnl-mono pnl-hooks__idx">06</span>
+        <span class="pnl-cell pnl-cell--grow pnl-hooks__line"><span class="pnl-hooks__text">What a founder puts on her own face</span></span>
+        <span class="pnl-cell pnl-cell--end pnl-hooks__pick"><svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg><span class="pnl-chip pnl-chip--jam">picked for the shoot</span></span>
+      </div>
+      <div class="pnl-row pnl-hooks__row">
+        <span class="pnl-cell pnl-mono pnl-hooks__idx">07</span>
+        <span class="pnl-cell pnl-cell--grow pnl-hooks__line"><span class="pnl-hooks__text">My mum tried it before I did</span></span>
+      </div>
+      <div class="pnl-row pnl-hooks__row">
+        <span class="pnl-cell pnl-mono pnl-hooks__idx">08</span>
+        <span class="pnl-cell pnl-cell--grow pnl-hooks__line"><span class="pnl-hooks__text">Unboxing the March launch, no script</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+</div></div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="hero-m-item">
+          <button type="button" class="hero-m-row" id="hero-m-btn-2" aria-expanded="false" aria-controls="hero-m-panel-2" data-hero-m-toggle data-index="2">
+            <span class="hero-m-title">Casting floor</span>
+            <span class="hero-m-plus" aria-hidden="true"><i></i><b></b></span>
+          </button>
+          <div class="hero-m-region" id="hero-m-panel-2" role="region" aria-labelledby="hero-m-btn-2">
+            <div class="hero-m-region-clip">
+              <div class="hero-m-region-inner">
+                <p class="hero-m-desc">Casts creators from our roster for fit, not follower count, and gets your shortlist approved before filming.</p>
+                <div class="hero-m-panel-box" data-hero-m-panel-box><div class="hero-panel hero-m-panel" data-hero-panel data-panel-name="casting"><div class="pnl pnl--casting" data-panel="casting" data-panel-height="205" aria-hidden="true">
+  <div class="pnl-head pnl-casting__head">
+    <span class="pnl-head__t">Roster</span>
+    <span class="pnl-mono pnl-casting__count">Shortlist <span class="pnl-casting__n"><span>0</span><span>1</span><span>2</span><span>3</span></span> of 3</span>
+  </div>
+  <div class="pnl-hr pnl-casting__hr"></div>
+  <div class="pnl-casting__list">
+    <div class="pnl-row pnl-row--tall pnl-casting__row pnl-casting__row--picked">
+      <span class="pnl-cell pnl-avatar"><svg viewBox="0 0 12 12"><circle cx="6" cy="4.2" r="2.3"/><path d="M1.8 11.2c.5-2.4 2.1-3.6 4.2-3.6s3.7 1.2 4.2 3.6"/></svg></span>
+      <span class="pnl-cell pnl-mono pnl-mono--ink pnl-casting__id">CR-014</span>
+      <span class="pnl-cell pnl-cell--grow pnl-casting__tags"><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">skincare</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">25–34</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag pnl-casting__tag--city">London</span></span>
+      <span class="pnl-cell pnl-cell--end pnl-casting__pick"><svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg><span class="pnl-chip pnl-chip--jam">shortlisted</span></span>
+    </div>
+    <div class="pnl-row pnl-row--tall pnl-casting__row pnl-casting__row--dim">
+      <span class="pnl-cell pnl-avatar"><svg viewBox="0 0 12 12"><circle cx="6" cy="4.2" r="2.3"/><path d="M1.8 11.2c.5-2.4 2.1-3.6 4.2-3.6s3.7 1.2 4.2 3.6"/></svg></span>
+      <span class="pnl-cell pnl-mono pnl-mono--ink pnl-casting__id">CR-027</span>
+      <span class="pnl-cell pnl-cell--grow pnl-casting__tags"><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">skincare</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">18–24</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag pnl-casting__tag--city">Manchester</span></span>
+    </div>
+    <div class="pnl-row pnl-row--tall pnl-casting__row pnl-casting__row--picked">
+      <span class="pnl-cell pnl-avatar"><svg viewBox="0 0 12 12"><circle cx="6" cy="4.2" r="2.3"/><path d="M1.8 11.2c.5-2.4 2.1-3.6 4.2-3.6s3.7 1.2 4.2 3.6"/></svg></span>
+      <span class="pnl-cell pnl-mono pnl-mono--ink pnl-casting__id">CR-031</span>
+      <span class="pnl-cell pnl-cell--grow pnl-casting__tags"><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">beauty</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">25–34</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag pnl-casting__tag--city">London</span></span>
+      <span class="pnl-cell pnl-cell--end pnl-casting__pick"><svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg><span class="pnl-chip pnl-chip--jam">shortlisted</span></span>
+    </div>
+    <div class="pnl-row pnl-row--tall pnl-casting__row pnl-casting__row--dim">
+      <span class="pnl-cell pnl-avatar"><svg viewBox="0 0 12 12"><circle cx="6" cy="4.2" r="2.3"/><path d="M1.8 11.2c.5-2.4 2.1-3.6 4.2-3.6s3.7 1.2 4.2 3.6"/></svg></span>
+      <span class="pnl-cell pnl-mono pnl-mono--ink pnl-casting__id">CR-008</span>
+      <span class="pnl-cell pnl-cell--grow pnl-casting__tags"><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">wellness</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">35–44</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag pnl-casting__tag--city">Bristol</span></span>
+    </div>
+    <div class="pnl-row pnl-row--tall pnl-row--bare pnl-casting__row pnl-casting__row--picked">
+      <span class="pnl-cell pnl-avatar"><svg viewBox="0 0 12 12"><circle cx="6" cy="4.2" r="2.3"/><path d="M1.8 11.2c.5-2.4 2.1-3.6 4.2-3.6s3.7 1.2 4.2 3.6"/></svg></span>
+      <span class="pnl-cell pnl-mono pnl-mono--ink pnl-casting__id">CR-052</span>
+      <span class="pnl-cell pnl-cell--grow pnl-casting__tags"><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">skincare</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag">25–34</span><span class="pnl-chip pnl-chip--ghost pnl-casting__tag pnl-casting__tag--city">Leeds</span></span>
+      <span class="pnl-cell pnl-cell--end pnl-casting__pick"><svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg><span class="pnl-chip pnl-chip--jam">shortlisted</span></span>
+    </div>
+  </div>
+</div>
+</div></div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="hero-m-item">
+          <button type="button" class="hero-m-row" id="hero-m-btn-3" aria-expanded="false" aria-controls="hero-m-panel-3" data-hero-m-toggle data-index="3">
+            <span class="hero-m-title">Shoot bay</span>
+            <span class="hero-m-plus" aria-hidden="true"><i></i><b></b></span>
+          </button>
+          <div class="hero-m-region" id="hero-m-panel-3" role="region" aria-labelledby="hero-m-btn-3">
+            <div class="hero-m-region-clip">
+              <div class="hero-m-region-inner">
+                <p class="hero-m-desc">Directs every phone shoot, shot list to retake, until the hook lands.</p>
+                <div class="hero-m-panel-box" data-hero-m-panel-box><div class="hero-panel hero-m-panel" data-hero-panel data-panel-name="shoot"><div class="pnl pnl--shoot" data-panel="shoot" data-panel-height="152" aria-hidden="true">
+  <div class="pnl-phone pnl-shoot__phone">
+    <svg class="pnl-shoot__frame" viewBox="0 0 70 140">
+      <g class="pnl-shoot__guides"><path d="M8 31v-5h5M57 26h5v5M62 105v5h-5M13 110H8v-5"/></g>
+      <g class="pnl-shoot__subject">
+        <circle cx="35" cy="55" r="12"/>
+        <path d="M12 100V93.4c2.8-13.2 11.5-19.8 23-19.8s20.2 6.6 23 19.8V100"/>
+      </g>
+    </svg>
+    <div class="pnl-shoot__rec">
+      <span class="pnl-dot pnl-dot--still"></span>
+      <span class="pnl-mono pnl-shoot__rec-lbl">Rec</span>
+    </div>
+    <span class="pnl-mono pnl-shoot__tc">00:00:03:20</span>
+  </div>
+  <div class="pnl-shoot__list">
+    <div class="pnl-head pnl-shoot__head">
+      <span class="pnl-head__t">Shoot day</span>
+      <span class="pnl-shoot__swap">
+        <span class="pnl-mono pnl-shoot__swap-a pnl-shoot__take-a">hook 03 · take 2</span>
+        <span class="pnl-mono pnl-shoot__swap-b pnl-shoot__take-b">founder cut · take 1</span>
+      </span>
+    </div>
+    <div class="pnl-hr pnl-shoot__hr"></div>
+    <div class="pnl-row pnl-shoot__row">
+      <span class="pnl-cell pnl-mono pnl-shoot__id">Hook 01</span>
+      <span class="pnl-cell pnl-cell--grow pnl-shoot__val">take 1</span>
+      <span class="pnl-cell pnl-cell--end"><svg class="pnl-tick pnl-tick--mute" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg></span>
+    </div>
+    <div class="pnl-row pnl-shoot__row">
+      <span class="pnl-cell pnl-mono pnl-shoot__id">Hook 02</span>
+      <span class="pnl-cell pnl-cell--grow pnl-shoot__val">take 3</span>
+      <span class="pnl-cell pnl-cell--end"><svg class="pnl-tick pnl-tick--mute" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg></span>
+    </div>
+    <div class="pnl-row pnl-shoot__row pnl-shoot__row--live">
+      <span class="pnl-cell pnl-mono pnl-shoot__id">Hook 03</span>
+      <span class="pnl-cell pnl-cell--grow pnl-shoot__val">take 2</span>
+      <span class="pnl-cell pnl-cell--end"><svg class="pnl-tick pnl-shoot__tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg></span>
+    </div>
+    <div class="pnl-row pnl-shoot__row pnl-row--bare">
+      <span class="pnl-cell pnl-mono pnl-shoot__id">Founder cut</span>
+      <span class="pnl-cell pnl-cell--grow pnl-shoot__val pnl-shoot__val--pending">take 1</span>
+      <span class="pnl-cell pnl-cell--end"><span class="pnl-shoot__swap">
+        <span class="pnl-mono pnl-shoot__swap-a pnl-shoot__next-a">next</span>
+        <span class="pnl-mono pnl-mono--ink pnl-shoot__swap-b pnl-shoot__next-b">up next</span>
+      </span></span>
+    </div>
+  </div>
+</div>
+</div></div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="hero-m-item">
+          <button type="button" class="hero-m-row" id="hero-m-btn-4" aria-expanded="false" aria-controls="hero-m-panel-4" data-hero-m-toggle data-index="4">
+            <span class="hero-m-title">Edit suite</span>
+            <span class="hero-m-plus" aria-hidden="true"><i></i><b></b></span>
+          </button>
+          <div class="hero-m-region" id="hero-m-panel-4" role="region" aria-labelledby="hero-m-btn-4">
+            <div class="hero-m-region-clip">
+              <div class="hero-m-region-inner">
+                <p class="hero-m-desc">Cuts and captions every take for its platform, then ships with rights.</p>
+                <div class="hero-m-panel-box" data-hero-m-panel-box><div class="hero-panel hero-m-panel" data-hero-panel data-panel-name="ship"><div class="pnl pnl--ship" data-panel="ship" data-panel-height="96" aria-hidden="true">
+  <div class="pnl-ship__strip">
+    <div class="pnl-ship__clips">
+      <span class="pnl-ship__clip"></span>
+      <span class="pnl-ship__clip"></span>
+      <span class="pnl-ship__clip pnl-ship__clip--picked"><span class="pnl-mono pnl-ship__clipid">03</span></span>
+      <span class="pnl-ship__clip"></span>
+      <span class="pnl-ship__clip"></span>
+    </div>
+    <span class="pnl-ship__playhead"></span>
+  </div>
+  <div class="pnl-ship__cc">
+    <span class="pnl-label">Captions</span>
+    <span class="pnl-toggle" data-on="true"></span>
+  </div>
+  <div class="pnl-ship__export">
+    <span class="pnl-mono">Exporting 9:16</span>
+    <span class="pnl-mono">1080 × 1920</span>
+  </div>
+  <div class="pnl-bar pnl-ship__bar"><div class="pnl-bar__fill pnl-ship__fill"></div></div>
+  <div class="pnl-ship__targets">
+    <span class="pnl-ship__target">
+      <svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg>
+      <span class="pnl-chip pnl-chip--ghost pnl-ship__chip">TikTok</span>
+    </span>
+    <span class="pnl-ship__target">
+      <svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg>
+      <span class="pnl-chip pnl-chip--ghost pnl-ship__chip">Reels</span>
+    </span>
+    <span class="pnl-ship__target">
+      <svg class="pnl-tick" viewBox="0 0 12 12"><path d="M2 6.5 4.8 9.2 10 3.4"/></svg>
+      <span class="pnl-chip pnl-chip--ghost pnl-ship__chip">Shorts</span>
+    </span>
+  </div>
+</div>
+</div></div>
+              </div>
+            </div>
+          </div>
+        </li>
       </ul>
+    </div>
+
+    <div class="hero-m-outcomes" id="hero-m-outcomes" data-nav="light" data-nav-fill="bg-white" data-hero-m-outcomes data-active="0">
+      <div class="hero-m-outcomes-text">
+        <p class="hero-metrics-eyebrow t-eyebrow"></p>
+        <h2 class="hero-m-outcomes-title">Measured in commitments</h2>
+        <p class="hero-m-outcomes-sub">Three promises written into every hypjam contract.</p>
+      </div>
+      <div class="hero-m-nums">
+        <div class="hero-metric" style="--i:0">
+          <div class="hero-metric-in">
+            <div class="hero-metric-row"><span class="hero-metric-num hero-metric-num--m" data-hero-num data-value="14">14</span><span class="hero-metric-unit hero-metric-unit--m">days</span></div>
+            <p class="hero-metric-label hero-metric-label--m">from a signed brief to your first cuts</p>
+          </div>
+          <div class="hero-metric-rule hero-metric-rule--m" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="hero-metric" style="--i:1">
+          <div class="hero-metric-in">
+            <div class="hero-metric-row"><span class="hero-metric-num hero-metric-num--m" data-hero-num data-value="8">8</span><span class="hero-metric-unit hero-metric-unit--m">hooks</span></div>
+            <p class="hero-metric-label hero-metric-label--m">written and tested per script</p>
+          </div>
+          <div class="hero-metric-rule hero-metric-rule--m" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="hero-metric" style="--i:2">
+          <div class="hero-metric-in">
+            <div class="hero-metric-row"><span class="hero-metric-num hero-metric-num--m" data-hero-num data-value="1">1</span><span class="hero-metric-unit hero-metric-unit--m">contract</span></div>
+            <p class="hero-metric-label hero-metric-label--m">one invoice, every creator and editor behind it</p>
+          </div>
+          <div class="hero-metric-rule hero-metric-rule--m" aria-hidden="true"><i></i></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- home · features — the reference site #features ("Run smarter, serve better.")
+     Section: bg-sand-s px-page py-[120px] · head row (h2 + grey sub | prev/next chevrons)
+     · four cards in a drag/arrow carousel (stacked ≤600) · each card: a 6px-radius
+     "screen" box (the reference site: product photos; ours: CSS mocks, no images) + one 16/1.4
+     paragraph "Title(500) desc(grey)". Copy: content/home.json → features. -->
+<section id="features" class="feat section section--sand-s" data-nav="light" data-nav-fill="bg-grey-s" data-theme="sand">
+  <div class="feat-inner">
+
+    <div class="feat-head">
+      <div class="feat-copy">
+        <h2 class="feat-h2 t-h2">Find the format. Then film it.</h2>
+        <p class="feat-sub t-body">We study the formats already earning attention in your category, write original scripts around them, and make more of whatever performs. One team briefs, casts, directs and edits every video.</p>
+      </div>
+      <div class="feat-nav" data-feat-nav>
+        <button type="button" class="feat-arrow" data-feat-prev disabled aria-label="Previous"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M20.0001 24L12.0001 16L20.0001 8" stroke="currentColor" stroke-width="1.77778" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <button type="button" class="feat-arrow" data-feat-next disabled aria-label="Next"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M12 24L20 16L12 8" stroke="currentColor" stroke-width="1.77778" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+
+    <div class="feat-carousel" data-feat-carousel aria-label="Feature cards">
+      <div class="feat-track" data-feat-track>
+
+        <!-- 1 · hook sheet -->
+        <div class="feat-card" data-feat-card>
+          <div class="feat-media" role="img" aria-label="Mock of a hook sheet: eight numbered hook lines, two ticked in orange">
+            <div class="feat-mock feat-mock--hooks" aria-hidden="true">
+              <div class="feat-screen">
+                <div class="feat-sh"><span class="feat-chip">Hook sheet</span><span class="feat-sh-title">your brand · spring launch</span><span class="feat-sh-meta">8 hooks</span></div>
+                <ol class="feat-hooks">
+                  <li class="feat-hook"><span class="feat-hook-n">01</span><span class="feat-hook-t">POV: you finally found one that works</span></li>
+                  <li class="feat-hook is-picked"><span class="feat-hook-n">02</span><span class="feat-hook-t">Stop scrolling if your skin does this</span><span class="feat-pick"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>picked</span></li>
+                  <li class="feat-hook"><span class="feat-hook-n">03</span><span class="feat-hook-t">I was wrong about this for two years</span></li>
+                  <li class="feat-hook"><span class="feat-hook-n">04</span><span class="feat-hook-t">Three things nobody tells you before you buy</span></li>
+                  <li class="feat-hook is-picked"><span class="feat-hook-n">05</span><span class="feat-hook-t">This is the one I keep coming back to</span><span class="feat-pick"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>picked</span></li>
+                  <li class="feat-hook"><span class="feat-hook-n">06</span><span class="feat-hook-t">Rating my morning routine, honestly</span></li>
+                  <li class="feat-hook"><span class="feat-hook-n">07</span><span class="feat-hook-t">The 7am test, no filter</span></li>
+                  <li class="feat-hook"><span class="feat-hook-n">08</span><span class="feat-hook-t">Reply to @— does it actually work?</span></li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <p class="feat-text"><span class="feat-title">Hook writing</span> <span class="feat-desc">Eight hooks per script, written before anyone presses record.</span></p>
+        </div>
+
+        <!-- 2 · casting board -->
+        <div class="feat-card" data-feat-card>
+          <div class="feat-media" role="img" aria-label="Mock of a casting board: line-drawn creator cards with niche and age tags, three shortlisted">
+            <div class="feat-mock feat-mock--cast" aria-hidden="true">
+              <div class="feat-screen">
+                <div class="feat-sh"><span class="feat-chip">Casting</span><span class="feat-sh-title">your brand · roster shortlist</span><span class="feat-sh-meta">3 of 8 shortlisted</span></div>
+                <div class="feat-cast">
+                  <div class="feat-cc is-short"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name"></span></div><span class="feat-cc-tags">skincare · 25–34 · London</span><span class="feat-short"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>shortlisted</span></div>
+                  <div class="feat-cc"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name feat-cc-name--s"></span></div><span class="feat-cc-tags">fitness · 18–24 · Manchester</span><span class="feat-short feat-short--off">roster</span></div>
+                  <div class="feat-cc is-short"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name feat-cc-name--l"></span></div><span class="feat-cc-tags">home · 35–44 · Leeds</span><span class="feat-short"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>shortlisted</span></div>
+                  <div class="feat-cc"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name"></span></div><span class="feat-cc-tags">food · 25–34 · London</span><span class="feat-short feat-short--off">roster</span></div>
+                  <div class="feat-cc is-short"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name feat-cc-name--s"></span></div><span class="feat-cc-tags">beauty · 18–24 · Bristol</span><span class="feat-short"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>shortlisted</span></div>
+                  <div class="feat-cc"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name feat-cc-name--l"></span></div><span class="feat-cc-tags">tech · 25–34 · London</span><span class="feat-short feat-short--off">roster</span></div>
+                  <div class="feat-cc"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name"></span></div><span class="feat-cc-tags">pets · 25–34 · Glasgow</span><span class="feat-short feat-short--off">roster</span></div>
+                  <div class="feat-cc"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name feat-cc-name--s"></span></div><span class="feat-cc-tags">travel · 35–44 · London</span><span class="feat-short feat-short--off">roster</span></div>
+                  <div class="feat-cc"><div class="feat-cc-top"><span class="feat-av"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="12" r="5.5"/><path d="M6 29c1.5-6 5.5-9 10-9s8.5 3 10 9"/></svg></span><span class="feat-cc-name feat-cc-name--l"></span></div><span class="feat-cc-tags">drinks · 18–24 · Leeds</span><span class="feat-short feat-short--off">roster</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="feat-text"><span class="feat-title">Casting</span> <span class="feat-desc">Creators cast for fit, not follower count, from our roster.</span></p>
+        </div>
+
+        <!-- 3 · shoot sheet -->
+        <div class="feat-card" data-feat-card>
+          <div class="feat-media" role="img" aria-label="Mock of a shoot sheet: a phone frame with a record dot and a take list being ticked off">
+            <div class="feat-mock feat-mock--shoot" aria-hidden="true">
+              <div class="feat-screen">
+                <div class="feat-sh"><span class="feat-chip">Shoot sheet</span><span class="feat-sh-title">your brand · shoot day</span><span class="feat-sh-meta">hook 02 · take 2</span></div>
+                <div class="feat-shoot">
+                  <div class="feat-phone">
+                    <div class="feat-phone-scr">
+                      <span class="feat-rec">rec</span>
+                      <span class="feat-tc">00:12:07</span>
+                      <span class="feat-fig-head"></span>
+                      <span class="feat-fig-body"></span>
+                      <span class="feat-phone-lab">hook 02 · take 2</span>
+                    </div>
+                  </div>
+                  <ol class="feat-takes">
+                    <li class="feat-take is-done"><span class="feat-take-t">Hook 01 · take 1</span><span class="feat-take-st"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>done</span></li>
+                    <li class="feat-take is-done"><span class="feat-take-t">Hook 01 · take 2</span><span class="feat-take-st"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>done</span></li>
+                    <li class="feat-take is-done"><span class="feat-take-t">Hook 02 · take 1</span><span class="feat-take-st"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>done</span></li>
+                    <li class="feat-take is-live"><span class="feat-take-t">Hook 02 · take 2</span><span class="feat-take-st">recording</span></li>
+                    <li class="feat-take is-next"><span class="feat-take-t">Hook 03 · take 1</span><span class="feat-take-st">next</span></li>
+                    <li class="feat-take is-next"><span class="feat-take-t">Hook 03 · take 2</span><span class="feat-take-st">next</span></li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="feat-text"><span class="feat-title">Shoot direction</span> <span class="feat-desc">Shot lists, retakes and live notes, so nothing is guesswork.</span></p>
+        </div>
+
+        <!-- 4 · edit timeline -->
+        <div class="feat-card" data-feat-card>
+          <div class="feat-media" role="img" aria-label="Mock of an edit timeline with a captions toggle and usage-rights terms attached to the export">
+            <div class="feat-mock feat-mock--edit" aria-hidden="true">
+              <div class="feat-screen">
+                <div class="feat-sh"><span class="feat-chip">Edit</span><span class="feat-sh-title">your brand · hook 03 · 9:16</span><span class="feat-toggle"><i></i>Captions</span></div>
+                <div class="feat-ruler"><span>0:00</span><span>0:05</span><span>0:10</span><span>0:15</span><span>0:20</span></div>
+                <div class="feat-tl">
+                  <div class="feat-tr"><span class="feat-tr-l">V1</span><span class="feat-tr-b"><span class="feat-clip" style="width:29%"></span><span class="feat-clip" style="width:36%"></span><span class="feat-clip" style="width:24%"></span></span></div>
+                  <div class="feat-tr"><span class="feat-tr-l">CC</span><span class="feat-tr-b feat-tr-b--cc"><span class="feat-cap" style="width:14%"></span><span class="feat-cap" style="width:11%"></span><span class="feat-cap" style="width:17%"></span><span class="feat-cap" style="width:9%"></span><span class="feat-cap" style="width:15%"></span><span class="feat-cap" style="width:12%"></span></span></div>
+                  <div class="feat-tr"><span class="feat-tr-l">A1</span><span class="feat-tr-b"><span class="feat-wave"></span></span></div>
+                  <span class="feat-ph"></span>
+                </div>
+                <div class="feat-export">
+                  <span class="feat-export-l">Export</span>
+                  <span class="feat-pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>TikTok</span>
+                  <span class="feat-pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Reels</span>
+                  <span class="feat-pl"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 6.2 5 8.7 9.5 3.6" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Shorts</span>
+                </div>
+                <p class="feat-rights">Usage rights · organic and paid · in writing</p>
+              </div>
+            </div>
+          </div>
+          <p class="feat-text"><span class="feat-title">Editing & rights</span> <span class="feat-desc">Platform-native cuts, captions, and usage rights for organic and paid.</span></p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- home · quotes — the reference site #testimonials
+     One min-h-svh section: stacked full-bleed backgrounds that crossfade (700ms),
+     a black/20 shade, and a centred frosted card (max-w 760, radius 12, white/16,
+     blur 30, padding 36 20 20 40). The active quote's words are spans revealed
+     line by line (420ms, 90ms per line; 260ms fade-out) by src/js/30-quotes.js,
+     which also runs the 5s autoplay and the 57×36 thumbnail switcher.
+     Slide 0 = the founder's statement · slide 1 = the reserved slot (CONTRACT §10).
+     Copy: content/home.json → quotes. -->
+<section id="quotes" class="quo section section--quote section--black" data-nav="image" data-theme="dark" data-quo data-quo-interval="5000">
+
+  <div class="quo-bgs" aria-hidden="true">
+    <img class="quo-bg is-active" data-quo-bg="0" src="/assets/img/stills/studio-blur.jpg?v=c1dcaf79" alt="" width="1280" height="720" style="object-position:50% 50%" loading="lazy" decoding="async">
+    <img class="quo-bg" data-quo-bg="1" src="/assets/img/stills/aerial-campus.jpg?v=170c83b0" alt="" width="1280" height="720" style="object-position:50% 50%" loading="lazy" decoding="async">
+  </div>
+  <div class="quo-shade" aria-hidden="true"></div>
+
+  <div class="quo-wrap">
+    <div class="quo-card" data-quo-card>
+      <span class="quo-frame" aria-hidden="true"></span>
+
+      <div class="quo-body">
+        <!-- invisible sizer: the longest quote + 88px + two attribution lines locks the card height (the reference site) -->
+        <div class="quo-sizer" aria-hidden="true">
+          <p class="quo-text t-quote t-hanging">“We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.”</p>
+          <div class="quo-sizer-gap"></div>
+          <p class="quo-sig">Avi Aggarwal</p>
+          <div class="quo-attr-lines"><p class="quo-role">Founder, hypjam</p></div>
+        </div>
+
+        <!-- slide 0 · founder -->
+        <figure class="quo-slide is-active" data-quo-slide="0">
+          <blockquote class="quo-quote"><p class="quo-text t-quote t-hanging" data-quo-words>“We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.”</p></blockquote>
+          <figcaption class="quo-attr">
+            <p class="quo-sig" data-quo-fade="0">Avi Aggarwal</p>
+            <div class="quo-attr-row">
+              <div class="quo-attr-lines">
+                <p class="quo-role" data-quo-fade="1">Founder, hypjam</p>
+              </div>
+              <img class="quo-logo" data-quo-fade="1" src="/assets/brand/logos/hook-wordmark-on-dark.svg?v=3e01a7cf" alt="hypjam" width="88" height="32">
+            </div>
+          </figcaption>
+        </figure>
+
+        <!-- slide 1 · reserved (no invented name) -->
+        <figure class="quo-slide quo-slide--reserved" data-quo-slide="1" data-quo-reserved>
+          <p class="quo-text t-quote" data-quo-words>We would rather show you nothing than words a brand never said.</p>
+          <div class="quo-attr">
+            <div class="quo-attr-row">
+              <div class="quo-attr-lines">
+                <p class="quo-sig" data-quo-fade="0">hypjam</p>
+                <span class="tag-soon tag-soon--static" data-quo-fade="1">On testimonials</span>
+              </div>
+            </div>
+          </div>
+        </figure>
+      </div>
+
+      <div class="quo-thumbs" data-quo-thumbs>
+        <span class="quo-thumb-frame" aria-hidden="true" data-quo-frame></span>
+        <button type="button" class="quo-thumb is-active" data-quo-thumb="0" aria-current="true" aria-label="Show quote 1"><img src="/assets/img/stills/studio-blur.jpg?v=c1dcaf79" alt="Blurred phone shoot: a ring light and a phone on a tripod over a kitchen counter" width="57" height="36" loading="lazy" decoding="async"><span class="quo-thumb-shade" aria-hidden="true"></span></button>
+        <button type="button" class="quo-thumb" data-quo-thumb="1" aria-label="Show quote 2"><img src="/assets/img/stills/aerial-campus.jpg?v=170c83b0" alt="Blurred shot of an empty sofa set, lit and waiting" width="57" height="36" loading="lazy" decoding="async"><span class="quo-thumb-shade" aria-hidden="true"></span></button>
+      </div>
     </div>
   </div>
 
-  <div class="h2o-platforms">
-    <p class="h2o-platforms-k">We cut for</p>
-    <ul class="h2o-platforms-list" role="list">
-      <li><img src="/assets/img/platforms/tiktok.svg?v=7d7f2f1c" alt="TikTok" height="20" decoding="async"></li>
-      <li><img src="/assets/img/platforms/instagram.svg?v=6c9b9ad1" alt="Instagram Reels" height="20" decoding="async"></li>
-      <li><img src="/assets/img/platforms/youtube.svg?v=00321313" alt="YouTube Shorts" height="20" decoding="async"></li>
-      <li><img src="/assets/img/platforms/meta.svg?v=bc91c9f6" alt="Meta ads" height="20" decoding="async"></li>
+</section>
+
+<!-- ======================================================================
+     home/stories.html — the reference site's "Trusted by leading hotels / running every
+     shift on the reference site" carousel (ref/index.html, ref/shots/s27–s28,
+     ref/mobile/m08), rebuilt as the four RESERVED brand-story slots of
+     CONTRACT §10. Anatomy is the reference site's story-card, field for field:
+       .sto-media  = the 377×440 image box (rounded 8, shadow) — ours is a
+                     dashed hairline frame on a dark surface holding a
+                     line-drawn phone (inline SVG); inside it, where the reference site's
+                     hover overlay puts them: the "Read" pill top-left (inert,
+                     aria-disabled) and the quote + attribution bottom-left
+                     (shown at rest — there is no photo to reveal them over;
+                     the attribution is the jam-dotted .tag-soon, as on the
+                     reserved quote slot).
+       .sto-foot   = the reference site's logo-left / meta-right row (24px mark, 13px/45%).
+     Every string comes from content/home.json → stories. The four cards are
+     the originals; src/js/32-stories.js clones them for the infinite loop and
+     exposes window.hypjamStories.
+     ====================================================================== -->
+<section id="stories" class="sto" data-nav="image" data-nav-fill="bg-black" data-sto>
+
+  <div class="sto-head">
+    <h2 class="sto-h2 t-h2"><span class="sto-h2-l1">Built for brands launching</span><br><span class="sto-h2-l2 t-h2-dim">on TikTok, Reels and Shorts</span></h2>
+    <div class="sto-nav">
+      <button type="button" class="sto-arrow sto-arrow--prev" aria-label="Previous story" data-sto-prev><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M6 3.2 10.6 8 6 12.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button type="button" class="sto-arrow sto-arrow--next" aria-label="Next story" data-sto-next><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M6 3.2 10.6 8 6 12.8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+
+  <div class="sto-mask" data-sto-mask aria-roledescription="carousel" aria-label="Brand stories">
+    <ul class="sto-track" data-sto-track>
+
+      <li class="sto-card sto-card--filled" data-sto-card data-slot="1">
+        <!-- Slot 1 is filled with real work. The clip is 1080x1920 and is shown at a
+             true 9:16 so nothing is cropped; preload="none" means the file is only
+             fetched if a visitor presses play, which keeps it off the homepage's
+             initial load. -->
+        <div class="sto-media sto-media--filled">
+          <div class="sto-media-in sto-media-in--filled">
+            <video class="sto-vid" poster="/assets/video/ugc-hook-led-1-poster.jpg?v=fd461831" preload="none" playsinline muted loop controls aria-label="A vertical hook-led UGC ad made by hypjam, filmed by @this_avi.ag">
+              <source src="/assets/video/ugc-hook-led-1.mp4?v=1fdb66cf" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="sto-foot">
+          <img class="sto-mark" src="/assets/brand/logos/hypjam-icon.svg?v=e6935cbd" alt="hypjam" width="24" height="24" loading="lazy" decoding="async" draggable="false">
+          <p class="sto-meta">hook-led ad · @this_avi.ag, ex-Cluely</p>
+        </div>
+      </li>
+
+      <li class="sto-card sto-card--filled" data-sto-card data-slot="2">
+        <div class="sto-media sto-media--filled">
+          <div class="sto-media-in sto-media-in--filled">
+            <video class="sto-vid" poster="/assets/video/ugc-screen-demo-1-poster.jpg?v=8f18e4a4" preload="none" playsinline muted loop controls aria-label="A vertical screen-recorded product demo by @ajain_ugc, an ex-Replit creator">
+              <source src="/assets/video/ugc-screen-demo-1.mp4?v=a308f992" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="sto-foot">
+          <img class="sto-mark" src="/assets/brand/logos/hypjam-icon.svg?v=e6935cbd" alt="hypjam" width="24" height="24" loading="lazy" decoding="async" draggable="false">
+          <p class="sto-meta">screen demo · @ajain_ugc, ex-Replit creator</p>
+        </div>
+      </li>
+
+      <li class="sto-card sto-card--filled" data-sto-card data-slot="3">
+        <div class="sto-media sto-media--filled">
+          <div class="sto-media-in sto-media-in--filled">
+            <video class="sto-vid" poster="/assets/video/ugc-cinematic-accountant-poster.jpg?v=a11c88a8" preload="none" playsinline muted loop controls aria-label="A vertical cinematic paid advert, shown as an example of the format">
+              <source src="/assets/video/ugc-cinematic-accountant.mp4?v=2a1a7de1" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="sto-foot">
+          <img class="sto-mark" src="/assets/brand/logos/hypjam-icon.svg?v=e6935cbd" alt="hypjam" width="24" height="24" loading="lazy" decoding="async" draggable="false">
+          <p class="sto-meta">cinematic paid ad example</p>
+        </div>
+      </li>
+
+      <li class="sto-card sto-card--filled" data-sto-card data-slot="4">
+        <div class="sto-media sto-media--filled">
+          <div class="sto-media-in sto-media-in--filled">
+            <video class="sto-vid" poster="/assets/video/ugc-cinematic-urus-poster.jpg?v=cfdec571" preload="none" playsinline muted loop controls aria-label="A vertical cinematic car advert made for Cluely">
+              <source src="/assets/video/ugc-cinematic-urus.mp4?v=a13e5470" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="sto-foot">
+          <img class="sto-mark" src="/assets/brand/logos/hypjam-icon.svg?v=e6935cbd" alt="hypjam" width="24" height="24" loading="lazy" decoding="async" draggable="false">
+          <p class="sto-meta">cinematic paid ad · made for Cluely</p>
+        </div>
+      </li>
+
     </ul>
   </div>
 </section>
 
 <!-- ======================================================================
-     home/process.html — "Signed brief to first cuts in 14 days": the static
-     sprint sheet that replaces the pinned hotel walkthrough
-     (_retired/hotel-walkthrough/). Five steps, all visible, each titled by what
-     the brand receives, with the old room name kept as a small label, a
-     "Your part" line, and a still of an example document from our templates.
-     A Day 0 → Day 14 ruler (the hook logo's play triangle at day 0, an
-     out-point at day 14) sits above the steps; on phones it becomes a vertical
-     rail through them. Then the three contract commitments and the CTA.
-     No pin, no count-up, nothing hidden until scrolled. Research: SPEC.md §4.
-     Copy: content/home.json → process.
+     home/rights.html — the reference site's "Privacy and Security at Every Layer"
+     (ref/index.html #security, ref/shots/s29–s30, ref/mobile/m09–m10) as
+     hypjam's "Rights and safety at every layer" (CONTRACT §10): sand-m
+     section, heading + sub + "Learn more »" top-left, then a four-column
+     hairline grid (border-l/t on the grid, border-r/b on each cell,
+     sand-l/60) with an uppercase title, a description and a 120px
+     line-drawn seal bottom-left (90px ≤1024). Seals are our own SVGs in
+     /assets/badges — none is a certification mark. Copy: content/home.json
+     → rights. The id→file map is fixed here because the JSON ids
+     (creator-releases, asa-cap) differ from the badge file names.
      ====================================================================== -->
-<section id="how-it-works" class="p5" data-nav="dark" data-nav-fill="bg-black" aria-labelledby="p5-h2">
-  <div class="p5-head">
-    <p class="p5-eyebrow t-eyebrow">What you get, and when</p>
-    <h2 class="p5-h2 t-h2" id="p5-h2">Signed brief to first cuts in 14 days.</h2>
-    <p class="p5-sub">One team does the work. You make the calls that need you: the script, the hooks, the creators and one round of notes. Everything else is ours.</p>
+<section id="rights" class="rights" data-nav="light" data-nav-fill="bg-sand-m" data-theme="sand-m">
+
+  <div class="rights-head">
+    <h2 class="rights-h2 t-h2">Rights and safety at every layer</h2>
+    <p class="rights-sub">Protect your brand, your creators and your ad account before anyone presses record.</p>
+    <a href="/rights" class="rights-more">Learn more<span class="rights-more-mark" aria-hidden="true">»</span></a>
   </div>
 
-  <!-- desktop and tablet: one ruler above the steps. Phones use the rail ends below. -->
-  <div class="p5-ruler" role="img" aria-label="Timeline: the brief is signed on day 0 and your first cuts are delivered by day 14. The five steps below happen in between.">
-    <p class="p5-ruler-a"><span class="p5-ruler-k">Day 0</span> Brief signed</p>
-    <span class="p5-ruler-track"></span>
-    <p class="p5-ruler-b"><span class="p5-ruler-k">Day 14</span> First cuts delivered</p>
-  </div>
-
-  <p class="p5-rail-a"><span class="p5-ruler-k">Day 0</span> Brief signed</p>
-  <ol class="p5-steps">
-    <li class="p5-step">
-      <div class="p5-still"><img src="/assets/img/process/brief.jpg?v=c811deab" alt="Example brief from our templates" width="642" height="368" loading="lazy" decoding="async"><span class="p5-tag" aria-hidden="true">Example</span></div>
-      <p class="p5-step-k"><span class="p5-step-n">01</span> · Brief</p>
-      <h3 class="p5-step-t">A brief and script, locked</h3>
-      <p class="p5-step-d">Your launch, offer and audience turned into one specific brief and script, locked before anyone films.</p>
-      <p class="p5-you"><span class="p5-you-k">Your part</span> <span class="p5-you-v">Sign off the brief and script</span></p>
+  <ul class="rights-grid">
+    <li class="rights-cell" data-rights="usage-rights">
+      <div class="rights-cell-text">
+        <h3 class="rights-title">Usage rights in writing</h3>
+        <p class="rights-desc">Organic and paid usage for the term of your package, written into the contract, not implied in a DM.</p>
+      </div>
+      <a href="/rights" class="rights-seal" aria-label="Usage rights in writing — Learn more"><img src="/assets/badges/usage-rights.svg?v=9b13bfb0" alt="Line-drawn seal: a signed page with a play triangle" width="240" height="240" loading="lazy" decoding="async" draggable="false"></a>
     </li>
-    <li class="p5-step">
-      <div class="p5-still"><img src="/assets/img/process/hooks.jpg?v=9fbeb6f0" alt="Example hook sheet from our templates" width="642" height="368" loading="lazy" decoding="async"><span class="p5-tag" aria-hidden="true">Example</span></div>
-      <p class="p5-step-k"><span class="p5-step-n">02</span> · Hooks</p>
-      <h3 class="p5-step-t">8 hooks for every script</h3>
-      <p class="p5-step-d">Eight opening lines for every script, written from formats already earning attention in your category, so one shoot tests different ideas.</p>
-      <p class="p5-you"><span class="p5-you-k">Your part</span> <span class="p5-you-v">Pick the hooks to shoot, with us</span></p>
+    <li class="rights-cell" data-rights="creator-releases">
+      <div class="rights-cell-text">
+        <h3 class="rights-title">Signed creator releases</h3>
+        <p class="rights-desc">Every creator signs a release before filming, covering the footage, usage window and whitelisting, so the rights are clean.</p>
+      </div>
+      <a href="/rights" class="rights-seal" aria-label="Signed creator releases — Learn more"><img src="/assets/badges/releases.svg?v=ac01f277" alt="Line-drawn seal: a pen signing a release form" width="240" height="240" loading="lazy" decoding="async" draggable="false"></a>
     </li>
-    <li class="p5-step">
-      <div class="p5-still"><img src="/assets/img/process/casting.jpg?v=d27ace04" alt="Example casting shortlist from our templates" width="642" height="368" loading="lazy" decoding="async"><span class="p5-tag" aria-hidden="true">Example</span></div>
-      <p class="p5-step-k"><span class="p5-step-n">03</span> · Casting</p>
-      <h3 class="p5-step-t">A creator shortlist you approve</h3>
-      <p class="p5-step-d">Creators cast from our roster for fit with your customer, not for follower count.</p>
-      <p class="p5-you"><span class="p5-you-k">Your part</span> <span class="p5-you-v">Approve the shortlist, then send product or a login</span></p>
+    <li class="rights-cell" data-rights="asa-cap">
+      <div class="rights-cell-text">
+        <h3 class="rights-title">ASA and CAP disclosure compliance</h3>
+        <p class="rights-desc">Paid partnerships are labelled and every ad follows the CAP Code the ASA enforces. Our practice, not a certification.</p>
+      </div>
+      <a href="/rights" class="rights-seal" aria-label="ASA and CAP disclosure compliance — Learn more"><img src="/assets/badges/disclosure.svg?v=a034a323" alt="Line-drawn seal: an ad label tag reading AD" width="240" height="240" loading="lazy" decoding="async" draggable="false"></a>
     </li>
-    <li class="p5-step">
-      <div class="p5-still"><img src="/assets/img/process/shoot.jpg?v=6812e569" alt="Example shoot log from our templates" width="642" height="368" loading="lazy" decoding="async"><span class="p5-tag" aria-hidden="true">Example</span></div>
-      <p class="p5-step-k"><span class="p5-step-n">04</span> · Shoot</p>
-      <h3 class="p5-step-t">Directed takes of every picked hook</h3>
-      <p class="p5-step-d">Every phone shoot run from a shot list, with notes and retakes until the hook lands.</p>
-      <p class="p5-you"><span class="p5-you-k">Your part</span> <span class="p5-you-v">Nothing. We run the shoot.</span></p>
-    </li>
-    <li class="p5-step">
-      <div class="p5-still"><img src="/assets/img/process/ship.jpg?v=48631bbd" alt="Example edit and export screen from our templates" width="642" height="368" loading="lazy" decoding="async"><span class="p5-tag" aria-hidden="true">Example</span></div>
-      <p class="p5-step-k"><span class="p5-step-n">05</span> · Edit</p>
-      <h3 class="p5-step-t">Cuts ready to run, rights in writing</h3>
-      <p class="p5-step-d">Cut and captioned for TikTok, Reels and Shorts, with organic and paid usage agreed in writing.</p>
-      <p class="p5-you"><span class="p5-you-k">Your part</span> <span class="p5-you-v">One round of notes</span></p>
-    </li>
-  </ol>
-  <p class="p5-rail-b"><span class="p5-ruler-k">Day 14</span> First cuts delivered</p>
-
-  <!-- the three commitments, static: contract terms, not a scoreboard -->
-  <div class="p5-commit">
-    <p class="p5-commit-k t-eyebrow">Written into every contract</p>
-    <ol class="p5-commit-list">
-      <li class="p5-commit-i"><span class="p5-commit-n">01</span><span class="p5-commit-v">14 days</span><span class="p5-commit-l">from a signed brief to your first cuts</span></li>
-      <li class="p5-commit-i"><span class="p5-commit-n">02</span><span class="p5-commit-v">8 hooks</span><span class="p5-commit-l">written for every script, ready to test</span></li>
-      <li class="p5-commit-i"><span class="p5-commit-n">03</span><span class="p5-commit-v">1 contract</span><span class="p5-commit-l">and one invoice, every creator and editor behind it</span></li>
-    </ol>
-  </div>
-
-  <div class="p5-cta">
-    <a href="/book" class="btn btn--lg btn--cta" data-cta="process">Book a call with Avi<span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-    <p class="p5-cta-note">We'll sketch your first 14 days on the call.</p>
-    <a class="p5-more" href="/process">The full process, step by step<span aria-hidden="true"> →</span></a>
-  </div>
-  <p class="p5-foot">Stills show example documents from our templates, not client work.</p>
-</section>
-
-<!-- home/pricing.html — the price floor made concrete: what every package includes,
-     the three published packages (the same figures as /process → packages), a
-     "Right for you if / Probably not for you if" block so poor fits rule themselves
-     out before booking, what is not included, and one button. No "most popular"
-     badge and no highlighted card: hypjam has no customers to make that claim about.
-     Unconfirmed extras live in home.json → pricing.items[].held and are never
-     rendered. Copy: home.json → pricing. -->
-<section id="pricing" class="prc" data-nav="light" data-nav-fill="bg-white" aria-labelledby="prc-h2">
-  <div class="prc-head">
-    <div class="prc-head-a">
-      <p class="prc-eyebrow t-eyebrow">What it costs</p>
-      <h2 class="prc-h2 t-h2" id="prc-h2">Packages from £1,800 a month.</h2>
-      <p class="prc-sub">Every package runs on the same 14-day sprint. Month to month, with a one-month minimum. Ad spend is separate.</p>
-    </div>
-    <div class="prc-head-b">
-      <p class="prc-inc-k">Every package includes</p>
-      <ul class="prc-inc"><li>A brief and script for every batch</li><li>8 hooks written for every script, ready to test</li><li>Creators cast from our roster, shortlist approved by you</li><li>A directed shoot for every picked hook</li><li>A hook cut and a full edit of every video</li><li>One revision round per video</li><li>Organic and paid usage rights for the term, in writing</li></ul>
-    </div>
-  </div>
-  <ul class="prc-list">
-    <li class="prc-card">
-      <h3 class="prc-name">Starter</h3>
-      <p class="prc-price">From £1,800 <span class="prc-per">a month</span></p>
-      <p class="prc-videos">6 videos a month</p>
-      <ul class="prc-adds"><li>1 creative brief a month</li></ul>
-      <p class="prc-best"><span class="prc-best-k">Best for</span> Brands testing UGC for the first time</p>
-    </li>
-    <li class="prc-card">
-      <h3 class="prc-name">Growth</h3>
-      <p class="prc-price">From £3,600 <span class="prc-per">a month</span></p>
-      <p class="prc-videos">12 videos a month</p>
-      <ul class="prc-adds"><li>2 creative briefs a month</li><li>Whitelisting and Spark Ads setup</li></ul>
-      <p class="prc-best"><span class="prc-best-k">Best for</span> Brands scaling paid social and testing formats fast</p>
-    </li>
-    <li class="prc-card">
-      <h3 class="prc-name">Scale</h3>
-      <p class="prc-price">From £6,500 <span class="prc-per">a month</span></p>
-      <p class="prc-videos">24 or more videos a month</p>
-      <ul class="prc-adds"><li>Weekly briefs</li><li>Whitelisting and Spark Ads setup</li></ul>
-      <p class="prc-best"><span class="prc-best-k">Best for</span> Brands running UGC as an always-on channel</p>
+    <li class="rights-cell" data-rights="uk-gdpr">
+      <div class="rights-cell-text">
+        <h3 class="rights-title">UK GDPR data handling</h3>
+        <p class="rights-desc">Creator and client data handled under UK GDPR, as our privacy policy sets out. No cookies, no trackers.</p>
+      </div>
+      <a href="/rights" class="rights-seal" aria-label="UK GDPR data handling — Learn more"><img src="/assets/badges/uk-gdpr.svg?v=8ac978b1" alt="Line-drawn seal: a padlock inside a ring of twelve dots" width="240" height="240" loading="lazy" decoding="async" draggable="false"></a>
     </li>
   </ul>
-  <div class="prc-fit">
-    <div class="prc-fit-col prc-fit-col--yes"><p class="prc-fit-k">Right for you if</p><ul><li>You sell a product or app people can show on a phone.</li><li>You want new ads every month, not a one-off shoot.</li><li>You'd rather approve scripts and shortlists than manage creators.</li></ul></div>
-    <div class="prc-fit-col prc-fit-col--no"><p class="prc-fit-k">Probably not for you if</p><ul><li>You need a single video, once. A creator marketplace will usually be quicker and cheaper.</li><li>You want someone to run your ad spend. We set up whitelisting and Spark Ads; the spend stays with you.</li><li>You need finished ads this week. First cuts take 14 days from a signed brief.</li></ul></div>
-  </div>
-  <div class="prc-foot">
-    <div class="prc-foot-a">
-      <p class="prc-notinc">Not in any package: your ad spend, the product itself, and usage beyond your package term, which we price up front if you want it.</p>
-      <p class="prc-note">‘From’ is honest: we scope the final number on the call, once we know how many videos you need and how long you want the rights for.</p>
-    </div>
-    <div class="prc-foot-b">
-      <a href="/book" class="btn btn--lg btn--cta" data-cta="pricing">Book a call with Avi<span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-      <p class="prc-cta-note">We'll tell you which package fits, or if none does.</p>
-    </div>
-  </div>
-</section>
 
-<!-- GENERATED by tools/render_compare.py from content/home.json → compare. Do not edit by hand. -->
-<section id="compare" class="cmp" data-nav="light" data-nav-fill="bg-sand-s" data-cmp aria-labelledby="cmp-h2">
-  <div class="cmp-head">
-    <div class="cmp-head-main">
-      <p class="cmp-eyebrow t-eyebrow">Before you choose</p>
-      <h2 class="cmp-h2 t-h2" id="cmp-h2">Four ways to get UGC made.</h2>
-      <p class="cmp-sub">Each one suits someone. Here is what each route usually includes, and what it leaves to you.</p>
-    </div>
-    <div class="cmp-key" aria-hidden="true">
-      <p class="cmp-key-h">Key</p>
-      <ul><li><span class="cmp-mk cmp-mk--yes"></span>Included</li><li><span class="cmp-mk cmp-mk--varies"></span>Depends</li><li><span class="cmp-mk cmp-mk--no"></span>Not included</li></ul>
-    </div>
-  </div>
-  <p class="cmp-helper" aria-hidden="true">hypjam is on the right. Pick what to compare it with:</p>
-  <div class="cmp-switch" role="group" aria-label="Compare hypjam with" data-cmp-switch hidden>
-    <button type="button" class="cmp-switch-b" aria-pressed="true" aria-controls="cmp-table" data-cmp-alt="1" data-name="Hiring creators yourself">Yourself</button>
-    <button type="button" class="cmp-switch-b" aria-pressed="false" aria-controls="cmp-table" data-cmp-alt="2" data-name="A creator marketplace">Marketplace</button>
-    <button type="button" class="cmp-switch-b" aria-pressed="false" aria-controls="cmp-table" data-cmp-alt="3" data-name="An influencer agency">Influencers</button>
-  </div>
-  <p class="u-sr-only" aria-live="polite" data-cmp-status></p>
-  <div class="cmp-wrap" data-alt="all">
-    <span class="cmp-playhead" aria-hidden="true"></span>
-    <table class="cmp-table" id="cmp-table" role="table">
-      <caption class="u-sr-only">What hypjam includes compared with hiring creators yourself, a creator marketplace and an influencer agency</caption>
-      <colgroup><col class="cmp-c-crit"><col class="cmp-c-alt" span="3"><col class="cmp-c-us"></colgroup>
-      <thead role="rowgroup"><tr role="row">
-        <td class="cmp-corner" role="cell"><span class="u-sr-only">What you get</span></td>
-        <th scope="col" role="columnheader" class="cmp-col" data-col="1"><span class="cmp-col-name">Hiring creators yourself</span><span class="cmp-col-sub">Freelancers you find and manage</span></th>
-        <th scope="col" role="columnheader" class="cmp-col" data-col="2"><span class="cmp-col-name">A creator marketplace</span><span class="cmp-col-sub">Post a brief, pick from applicants</span></th>
-        <th scope="col" role="columnheader" class="cmp-col" data-col="3"><span class="cmp-col-name">An influencer agency</span><span class="cmp-col-sub">Paid posts on creators&#x27; own feeds</span></th>
-        <th scope="col" role="columnheader" class="cmp-col cmp-col--us" data-col="0"><img class="cmp-logo" src="/assets/brand/logos/hook-wordmark-on-light.svg?v=620772f0" alt="hypjam" width="66" height="24"><span class="cmp-col-sub">UGC agency, London</span></th>
-      </tr></thead>
-      <tbody role="rowgroup">
-        <tr role="row">
-          <th scope="row" role="rowheader" class="cmp-crit"><span class="cmp-n" aria-hidden="true">01</span>Hooks and a script before anyone films</th>
-          <td role="cell" class="cmp-cell" data-col="1"><span class="cmp-mk cmp-mk--varies" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Depends: </span>Some creators write their own</span></td>
-          <td role="cell" class="cmp-cell" data-col="2"><span class="cmp-mk cmp-mk--varies" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Depends: </span>Up to each creator</span></td>
-          <td role="cell" class="cmp-cell" data-col="3"><span class="cmp-mk cmp-mk--varies" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Depends: </span>Agreed per campaign</span></td>
-          <td role="cell" class="cmp-cell cmp-cell--us" data-col="0"><span class="cmp-mk cmp-mk--yes" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Included: </span>8 hooks per script, in the contract</span></td>
-        </tr>
-        <tr role="row">
-          <th scope="row" role="rowheader" class="cmp-crit"><span class="cmp-n" aria-hidden="true">02</span>A director on every shoot</th>
-          <td role="cell" class="cmp-cell" data-col="1"><span class="cmp-mk cmp-mk--no" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Not included: </span>Only if you run the shoot yourself</span></td>
-          <td role="cell" class="cmp-cell" data-col="2"><span class="cmp-mk cmp-mk--no" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Not included: </span>Creators usually film alone to your brief</span></td>
-          <td role="cell" class="cmp-cell" data-col="3"><span class="cmp-mk cmp-mk--varies" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Depends: </span>Depends on the agency</span></td>
-          <td role="cell" class="cmp-cell cmp-cell--us" data-col="0"><span class="cmp-mk cmp-mk--yes" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Included: </span>Shot list, live notes, retakes</span></td>
-        </tr>
-        <tr role="row">
-          <th scope="row" role="rowheader" class="cmp-crit"><span class="cmp-n" aria-hidden="true">03</span>Creators found and cast for you</th>
-          <td role="cell" class="cmp-cell" data-col="1"><span class="cmp-mk cmp-mk--no" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Not included: </span>You find, vet and book each one</span></td>
-          <td role="cell" class="cmp-cell" data-col="2"><span class="cmp-mk cmp-mk--yes" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Included: </span>Creators apply; you pick</span></td>
-          <td role="cell" class="cmp-cell" data-col="3"><span class="cmp-mk cmp-mk--yes" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Included: </span>Usually picked for audience fit</span></td>
-          <td role="cell" class="cmp-cell cmp-cell--us" data-col="0"><span class="cmp-mk cmp-mk--yes" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Included: </span>From our roster; you approve the shortlist</span></td>
-        </tr>
-        <tr role="row">
-          <th scope="row" role="rowheader" class="cmp-crit"><span class="cmp-n" aria-hidden="true">04</span>Cut for TikTok, Reels and Shorts, captions on</th>
-          <td role="cell" class="cmp-cell" data-col="1"><span class="cmp-mk cmp-mk--varies" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Depends: </span>Depends on the creator&#x27;s package</span></td>
-          <td role="cell" class="cmp-cell" data-col="2"><span class="cmp-mk cmp-mk--varies" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Depends: </span>Depends on the creator and platform</span></td>
-          <td role="cell" class="cmp-cell" data-col="3"><span class="cmp-mk cmp-mk--varies" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Depends: </span>Made for the creator&#x27;s own feed</span></td>
-          <td role="cell" class="cmp-cell cmp-cell--us" data-col="0"><span class="cmp-mk cmp-mk--yes" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Included: </span>Cut and captioned for each platform</span></td>
-        </tr>
-        <tr role="row">
-          <th scope="row" role="rowheader" class="cmp-crit"><span class="cmp-n" aria-hidden="true">05</span>Usage rights and creator releases in writing</th>
-          <td role="cell" class="cmp-cell" data-col="1"><span class="cmp-mk cmp-mk--no" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Not included: </span>You draft and chase each agreement</span></td>
-          <td role="cell" class="cmp-cell" data-col="2"><span class="cmp-mk cmp-mk--varies" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Depends: </span>Set by the platform&#x27;s licence terms</span></td>
-          <td role="cell" class="cmp-cell" data-col="3"><span class="cmp-mk cmp-mk--varies" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Depends: </span>Agreed per creator; check paid usage</span></td>
-          <td role="cell" class="cmp-cell cmp-cell--us" data-col="0"><span class="cmp-mk cmp-mk--yes" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Included: </span>Organic and paid usage for the term; a signed release per creator</span></td>
-        </tr>
-        <tr role="row">
-          <th scope="row" role="rowheader" class="cmp-crit"><span class="cmp-n" aria-hidden="true">06</span>First cuts by a date in the contract</th>
-          <td role="cell" class="cmp-cell" data-col="1"><span class="cmp-mk cmp-mk--varies" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Depends: </span>Agreed with each creator</span></td>
-          <td role="cell" class="cmp-cell" data-col="2"><span class="cmp-mk cmp-mk--varies" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Depends: </span>Depends who applies</span></td>
-          <td role="cell" class="cmp-cell" data-col="3"><span class="cmp-mk cmp-mk--varies" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Depends: </span>Set per campaign</span></td>
-          <td role="cell" class="cmp-cell cmp-cell--us" data-col="0"><span class="cmp-mk cmp-mk--yes" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Included: </span>14 days from a signed brief</span></td>
-        </tr>
-        <tr role="row">
-          <th scope="row" role="rowheader" class="cmp-crit"><span class="cmp-n" aria-hidden="true">07</span>One contract and one invoice</th>
-          <td role="cell" class="cmp-cell" data-col="1"><span class="cmp-mk cmp-mk--no" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Not included: </span>An agreement and a payment per creator</span></td>
-          <td role="cell" class="cmp-cell" data-col="2"><span class="cmp-mk cmp-mk--yes" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Included: </span>One platform account and bill</span></td>
-          <td role="cell" class="cmp-cell" data-col="3"><span class="cmp-mk cmp-mk--yes" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Included: </span>One agency contract</span></td>
-          <td role="cell" class="cmp-cell cmp-cell--us" data-col="0"><span class="cmp-mk cmp-mk--yes" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Included: </span>Every creator and editor behind it</span></td>
-        </tr>
-        <tr role="row">
-          <th scope="row" role="rowheader" class="cmp-crit"><span class="cmp-n" aria-hidden="true">08</span>Pay per video, no monthly package</th>
-          <td role="cell" class="cmp-cell" data-col="1"><span class="cmp-mk cmp-mk--yes" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Included: </span>You pay each creator per video</span></td>
-          <td role="cell" class="cmp-cell" data-col="2"><span class="cmp-mk cmp-mk--yes" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Included: </span>Usually priced per video</span></td>
-          <td role="cell" class="cmp-cell" data-col="3"><span class="cmp-mk cmp-mk--varies" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Depends: </span>Usually priced per campaign</span></td>
-          <td role="cell" class="cmp-cell cmp-cell--us" data-col="0"><span class="cmp-mk cmp-mk--no" aria-hidden="true"></span><span class="cmp-note"><span class="u-sr-only">Not included: </span>Monthly packages, from £1,800</span></td>
-        </tr>
-      </tbody>
-      <tfoot role="rowgroup"><tr role="row">
-        <th scope="row" role="rowheader" class="cmp-crit cmp-crit--foot">Suits you if</th>
-        <td role="cell" class="cmp-cell cmp-cell--foot" data-col="1"><p class="cmp-fit">You have time to find, brief, direct and edit creators yourself.</p></td>
-        <td role="cell" class="cmp-cell cmp-cell--foot" data-col="2"><p class="cmp-fit">You want a few quick videos and can brief and edit them in-house.</p></td>
-        <td role="cell" class="cmp-cell cmp-cell--foot" data-col="3"><p class="cmp-fit">You want reach through a creator&#x27;s own audience.</p></td>
-        <td role="cell" class="cmp-cell cmp-cell--us cmp-cell--foot" data-col="0"><p class="cmp-fit">You want scripted, directed ads every month.</p><p class="cmp-price">From £1,800 a month</p><a class="btn btn--lg btn--cta cmp-cta" href="/book" data-cta="compare">Book a call with Avi<span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><p class="cmp-cta-note">30 minutes with Avi. If another route suits you better, we&#x27;ll say so.</p></td>
-      </tr></tfoot>
-    </table>
-  </div>
-  <details class="cmp-method"><summary>How we filled this in</summary><p>hypjam&#x27;s column states what our contract and packages say. The other columns describe how each route usually works for brands buying short-form video in the UK; they are not claims about any particular company. Creators, platforms and agencies differ, so read ‘Depends’ as ‘ask them’. Last reviewed September 2026.</p></details>
-</section>
-
-<!-- home/founder.html — who the visitor will speak to, and a plain admission that
-     hypjam is new, placed after the proof. Static; no background image (the old one
-     was generic stock-style footage and read as a hypjam shoot). A real portrait of
-     Avi goes here when one exists; never a stock, AI or silhouette image.
-     The CTA is a text link: the comparison's filled button sits less than a screen
-     above. Copy: home.json → founder. -->
-<section id="founder" class="fdr" data-nav="dark" data-nav-fill="bg-black" aria-labelledby="fdr-h2">
-  <div class="fdr-card">
-    <p class="fdr-eyebrow t-eyebrow">Who you'll speak to</p>
-    <h2 class="fdr-h2 t-h2" id="fdr-h2">The call is with Avi, the founder.</h2>
-    <blockquote class="fdr-quote"><p class="t-quote t-hanging">“We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.”</p></blockquote>
-    <div class="fdr-who">
-      <img class="fdr-mark" src="/assets/brand/logos/hypjam-mark-on-dark.svg?v=72100d74" alt="" width="40" height="40">
-      <p class="fdr-id"><span class="fdr-name">Avi Aggarwal</span><span class="fdr-role">Founder of hypjam. Previously on Cluely’s marketing team.</span><span class="fdr-handle">@this_avi.ag: that's him in the first example ad at the top of the page.</span></p>
-    </div>
-    <div class="fdr-honest">
-      <p class="fdr-honest-t">We're new, and we'd rather say so.</p>
-      <p class="fdr-honest-b">There are no client case studies on this site yet, and there won't be until they're real. Judge us on what you can check: the example ads, the 14-day sprint, the terms written into every contract, and thirty minutes with Avi.</p>
-    </div>
-    <div class="fdr-actions">
-      <a href="/book" class="cta-link" data-cta="founder">Book a call with Avi</a>
-      <p class="fdr-cta-note">Thirty minutes on Google Meet, free.</p>
-      <a class="fdr-more" href="/agency">About hypjam<span aria-hidden="true"> →</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- home/safety.html — rights and safety as plain-text practices. No seal graphics:
-     drawn "seals" can read as accreditation marks (DMCC Act 2024 Sch. 20 para 3).
-     Copy: home.json → safety. -->
-<section id="safety" class="sft" data-nav="light" data-nav-fill="bg-sand-m" aria-labelledby="sft-h2">
-  <div class="sft-head">
-    <p class="sft-eyebrow t-eyebrow">Rights and safety</p>
-    <h2 class="sft-h2 t-h2" id="sft-h2">The paperwork is part of the job.</h2>
-    <p class="sft-sub">Four things we do on every sprint, so your brand, your creators and your ad account are covered before anyone presses record.</p>
-    <a class="sft-more" href="/rights">How we handle rights<span aria-hidden="true"> →</span></a>
-  </div>
-  <ul class="sft-list">
-    <li class="sft-i"><h3 class="sft-t">Usage rights in writing</h3><p class="sft-d">Organic and paid usage for the term of your package, written into the contract, not implied in a DM.</p></li>
-    <li class="sft-i"><h3 class="sft-t">Signed creator releases</h3><p class="sft-d">Every creator signs a release before filming, covering the footage, usage window and whitelisting, so the rights are clean.</p></li>
-    <li class="sft-i"><h3 class="sft-t">ASA and CAP disclosure</h3><p class="sft-d">Paid partnerships are labelled and every ad follows the CAP Code the ASA enforces. Our practice, not a certification.</p></li>
-    <li class="sft-i"><h3 class="sft-t">UK GDPR data handling</h3><p class="sft-d">Creator and client data handled under UK GDPR, as our privacy policy sets out. Our pages set no cookies and run no analytics; the cal.com calendar on the booking page sets its own.</p></li>
-  </ul>
-</section>
-
-<!-- home/faq.html — the objections a brand has before booking, answered in the
-     site's own published terms. Native <details>: readable without JavaScript and
-     findable with Ctrl+F; the first answer starts open. The CTA is a text link
-     because the close band's filled button follows within a screen.
-     Copy: home.json → faqhome. -->
-<section id="faq" class="hfaq" data-nav="light" data-nav-fill="bg-white" aria-labelledby="hfaq-h2">
-  <div class="hfaq-aside">
-    <p class="hfaq-eyebrow t-eyebrow">Before you book</p>
-    <h2 class="hfaq-h2 t-h2" id="hfaq-h2">Questions brands ask first.</h2>
-    <p class="hfaq-sub">Short answers. Anything else, ask on the call.</p>
-    <div class="hfaq-actions">
-      <a href="/book" class="cta-link" data-cta="faqhome">Book a call with Avi</a>
-      <a class="hfaq-more" href="/faq">All questions</a>
-    </div>
-  </div>
-  <div class="page-faq hfaq-list">
-    <details class="page-faq__item" open><summary class="page-faq__q"><span class="page-faq__mark" aria-hidden="true">↳</span><span class="page-faq__label">What does it cost?</span><span class="page-faq__toggle" aria-hidden="true"></span></summary><p class="page-faq__a">Packages start at £1,800 a month for six videos (Starter). Growth is from £3,600 for twelve, and Scale from £6,500 for twenty-four or more. Ad spend and the product itself are separate, and we scope the final number on the call.</p></details>
-    <details class="page-faq__item"><summary class="page-faq__q"><span class="page-faq__mark" aria-hidden="true">↳</span><span class="page-faq__label">How fast do we get videos?</span><span class="page-faq__toggle" aria-hidden="true"></span></summary><p class="page-faq__a">Your first cuts arrive 14 days after you sign the brief, with casting, the shoot and the edit inside that. The date is written into the contract, and your revision round follows.</p></details>
-    <details class="page-faq__item"><summary class="page-faq__q"><span class="page-faq__mark" aria-hidden="true">↳</span><span class="page-faq__label">What do we have to do?</span><span class="page-faq__toggle" aria-hidden="true"></span></summary><p class="page-faq__a">Sign off the brief and script, pick the hooks with us, approve the creator shortlist, send product (or a login, for an app) and give one round of notes on the cuts. We do the rest.</p></details>
-    <details class="page-faq__item"><summary class="page-faq__q"><span class="page-faq__mark" aria-hidden="true">↳</span><span class="page-faq__label">Who owns the videos, and can we run them as ads?</span><span class="page-faq__toggle" aria-hidden="true"></span></summary><p class="page-faq__a">You get the right to run them, organic and paid, for the usage window in your package, written into the contract. Every creator signs a release before filming, and longer windows are priced up front. Growth and Scale include whitelisting and Spark Ads setup.</p></details>
-    <details class="page-faq__item"><summary class="page-faq__q"><span class="page-faq__mark" aria-hidden="true">↳</span><span class="page-faq__label">You're new. Why should we trust you?</span><span class="page-faq__toggle" aria-hidden="true"></span></summary><p class="page-faq__a">We are new, and we'd rather say so than invent a client list. What you can check instead: the example ads on this page, the 14-day sprint above, and three terms written into every contract: first cuts 14 days after a signed brief, eight hooks written for every script, and one contract and one invoice. Nothing is filmed until you've approved the script and the creators, and packages run month to month with a one-month minimum.</p></details>
-    <details class="page-faq__item"><summary class="page-faq__q"><span class="page-faq__mark" aria-hidden="true">↳</span><span class="page-faq__label">How many revisions do we get?</span><span class="page-faq__toggle" aria-hidden="true"></span></summary><p class="page-faq__a">One full revision round per video, in every package. The script is locked before anyone films, so most rounds go on pacing or captions rather than reshoots.</p></details>
-    <details class="page-faq__item"><summary class="page-faq__q"><span class="page-faq__mark" aria-hidden="true">↳</span><span class="page-faq__label">What if the first videos don't work?</span><span class="page-faq__toggle" aria-hidden="true"></span></summary><p class="page-faq__a">Every video gets a revision round, and the next brief is written from what the first cuts showed, so the work gets more specific rather than starting again. Packages run month to month with a one-month minimum, so you're never locked into a long contract.</p></details>
-    <details class="page-faq__item"><summary class="page-faq__q"><span class="page-faq__mark" aria-hidden="true">↳</span><span class="page-faq__label">Do you run our ads?</span><span class="page-faq__toggle" aria-hidden="true"></span></summary><p class="page-faq__a">No. On Growth and Scale we set up whitelisting and Spark Ads, and we tell you which cuts to run where. Your ad spend and your ad account stay with you.</p></details>
-    <details class="page-faq__item"><summary class="page-faq__q"><span class="page-faq__mark" aria-hidden="true">↳</span><span class="page-faq__label">What happens on the call?</span><span class="page-faq__toggle" aria-hidden="true"></span></summary><p class="page-faq__a">Thirty minutes on Google Meet with Avi. Bring your product and two or three ads you like, yours or anyone's. You'll leave knowing whether UGC suits your launch, which formats we'd test first and why, and what your first month would cost. If another route suits you better, we'll say so.</p></details>
-  </div>
-</section>
-
-<!-- home/close.html — the last ask: what the call is (the canonical promise), the
-     button, email as the fallback, what to have to hand and what happens after
-     booking. Copy: home.json → close. -->
-<section id="book-a-call" class="cls" data-nav="dark" data-nav-fill="bg-black" aria-labelledby="cls-h2">
-  <div class="cls-in">
-    <p class="cls-eyebrow t-eyebrow">Next step</p>
-    <h2 class="cls-h2 t-h2" id="cls-h2">Bring your product. We'll bring the formats.</h2>
-    <p class="cls-sub">Thirty minutes on Google Meet with Avi, free. You'll leave knowing whether UGC suits your launch, which formats we'd test first and why, and what your first month would cost. If another route suits you better, we'll say so.</p>
-    <div class="cls-row">
-      <a href="/book" class="btn btn--lg btn--cta" data-cta="close">Book a 30-min call<span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-      <p class="cls-mail">Prefer email? <a href="mailto:avi@hypjam.com">avi@hypjam.com</a></p>
-    </div>
-  </div>
-  <div class="cls-prep">
-    <p class="cls-prep-k">Useful to have to hand</p>
-    <ul class="cls-prep-list"><li>A link to your product</li><li>Where you sell it and who buys it</li><li>Two or three ads you like, yours or anyone's</li></ul>
-    <p class="cls-prep-k cls-prep-k--after">After you book</p>
-    <ul class="cls-prep-list"><li>The invite and the Google Meet link arrive by email straight away.</li><li>Need to move it? Use the reschedule link in that email.</li></ul>
-  </div>
 </section>
 
 </main>
-<footer id="footer" class="foot" data-nav="dark" data-nav-fill="bg-black">
-  <!-- headline row: hidden on home and on any page with a closing card (90-footer.css), so two booking bands never stack -->
+<footer id="footer" class="foot" data-nav="dark">
   <div class="foot-top">
-    <h2 class="foot-headline">Tell us what you're launching.</h2>
-    <a href="/book" class="btn btn--lg btn--cta foot-cta" data-cta="footer">Book a call<span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    <h2 class="foot-headline">Bring directed UGC to your brand.</h2>
+    <a href="/book" class="foot-cta">Book a call<span class="foot-cta-circle"><svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
   </div>
 
   <div class="foot-rule" aria-hidden="true"></div>
@@ -787,26 +1497,22 @@
   </div>
 
   <div class="foot-bottom">
-    <p class="foot-copy">© 2026 hypjam. All rights reserved.</p>
-    <!-- the old badge slot: plain text only (no seal or mark). The company disclosure line
-         (registered part of the UK, number, office) goes here once hypjam is incorporated. -->
-    <p class="foot-badge">UGC agency · London</p>
+    <div class="foot-left">
+      <!-- /assets/img/hq-footer.svg is produced by the drawing agent; until it exists the slot keeps its 280x120 box -->
+      <span class="foot-hq-slot"><img src="/assets/img/hq-footer.svg?v=fe2b0990" alt="Line drawing of hypjam's two HQ buildings" class="foot-hq" width="210" height="90" loading="lazy" decoding="async" onerror="this.classList.add('is-missing')"></span>
+      <p class="foot-copy">© 2026 hypjam.<br>All rights reserved.</p>
+    </div>
+    <div class="foot-badge">
+      <span class="foot-seal" role="img" aria-label="Line-drawn seal: a phone with a play triangle"><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="18" r="17"/><circle cx="18" cy="18" r="13.5" stroke-dasharray="1.6 2.6"/><rect x="13.75" y="9.75" width="8.5" height="16.5" rx="1.8"/><path d="M16.5 12.25h3"/><circle cx="18" cy="23.6" r=".9" fill="currentColor" stroke="none"/><path d="M8.5 27.5 11 25M27.5 27.5 25 25"/></svg></span>
+      <span class="foot-badge-text">Shot on phones, directed by people</span>
+    </div>
   </div>
 </footer>
 
-<!-- the phone call-to-action bar. Appears once the hero's own CTA has scrolled away and
-     hides whenever another "Book a call" (anything marked data-cta) or the footer is on
-     screen, so there is never a second button competing with one already in view.
-     Phones and small tablets only (≤ 760px), 56px tall at most. Copy: content/footer.json → sticky.
-     Behaviour: src/js/24-sticky-cta.js -->
-<div class="scta" data-scta aria-hidden="true" inert>
-  <p class="scta-text"><span class="scta-t">30-minute call with Avi</span><span class="scta-s">Free · Google Meet · no deck</span></p>
-  <a href="/book" class="btn btn--cta scta-btn">Book a call<span class="btn__ico"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M1.5 6h8M6.2 2.5 9.7 6l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-</div>
-
-<!-- site.js only. GSAP, ScrollTrigger, CustomEase and Lenis drove the retired hotel
-     walkthrough and the live product panels; nothing on the site needs them now
-     (00-lenis.js falls back to native scrolling), so no page downloads them. -->
+<script src="/assets/vendor/gsap.min.js?v=93bb9d97" defer></script>
+<script src="/assets/vendor/ScrollTrigger.min.js?v=49b29c2d" defer></script>
+<script src="/assets/vendor/CustomEase.min.js?v=b0ce62d8" defer></script>
+<script src="/assets/vendor/lenis.min.js?v=42bf5944" defer></script>
 <script src="/assets/site.js" defer></script>
 </body>
 </html>

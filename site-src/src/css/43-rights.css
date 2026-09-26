@@ -8,8 +8,8 @@
              items-center justify-center bg-sand-m px-page
              h1 text-[56px] leading-none (line pitch 56) two lines, centred
              p  18/24 grey max-w-[600px] · 24px above and below
-             the booking button (.btn--cta) · then the four practices as
-             plain text in four columns (no seals: DMCC Act 2024 Sch. 20 para 3)
+             pill 36px light (black/8, black circle) · seals 120px, gap-[120px],
+             40px under the pill · touch: min-h 120svh pt-115 pb-120, inner +42px
      how     flex flex-col gap-20 bg-black px-page pb-7 pt-16 · h2 42
              grid 3 cols, 1px white/20 lines (measured #363636 on black),
              cell 327 tall, padding 24/24/28, title 13px caps, 24px dash,
@@ -56,53 +56,46 @@
   line-height: 24px;
   color: var(--grey);
 }
-.rights-hero-cta { margin-top: 28px; }
-
-/* the four practices · plain text, never drawn as seals or badges */
-.rights-hero-practices {
+.rights-hero-cta { margin-top: 24px; }
+.rights-hero-seals {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 40px 120px;
+  margin-top: 40px;
+}
+.rights-hero-seal {
+  display: block;
+  width: var(--badge-size);
+  height: var(--badge-size);
+  flex-shrink: 0;
+}
+.rights-hero-seal img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -webkit-user-drag: none;
+  transition: filter var(--dur);            /* the reference site: bg-grey-m hover:bg-black · ours: grey stroke → black */
+}
+.rights-hero-seal:hover img { filter: brightness(0); }
+/* schema fallback when a seal file is missing: the engraved text in a 1px circle */
+.rights-hero-seal--text .rights-hero-seal-ring {
   display: flex;
   width: 100%;
-  max-width: 1120px;
+  height: 100%;
   flex-direction: column;
-  gap: 18px;
-  margin-top: 64px;
-  text-align: left;
-}
-.rights-hero-k {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1.4;
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--grey);
-}
-.rights-hero-list {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 24px 32px;
-}
-.rights-hero-item {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-top: 16px;
-  border-top: 1px solid var(--k14);
-}
-.rights-hero-item-t {
-  font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: var(--fw-medium);
-  line-height: 1.35;
-  letter-spacing: var(--ls-small);
-  color: var(--black);
-}
-.rights-hero-item-d {
-  font-family: var(--font-body);
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border: 1px solid var(--grey);
+  border-radius: 50%;
+  font-family: var(--font-display);
   font-size: 14px;
-  line-height: 1.5;
-  letter-spacing: var(--ls-small);
+  line-height: 1.1;
+  letter-spacing: .04em;
   color: var(--grey);
-  text-wrap: pretty;
+  font-weight: var(--fw-display);
 }
 
 /* ---------- how we protect… ---------- */
@@ -174,11 +167,8 @@
   gap: 16px;
 }
 .rights-q-h2 { color: var(--white); }
-.rights-q-p { color: var(--w60); }                 /* --grey scores ~3:1 on black */
-.rights-q-cta { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-top: 8px; }
-.rights-q-micro { font-family: var(--font-body); font-size: 13px; line-height: 1.4; color: var(--w60); }
-.rights-q-cta .cta-link { color: var(--white); }
-.rights-q-cta .cta-link:hover { color: var(--jam); }
+.rights-q-p { color: var(--grey); }
+.rights-q-cta { margin-top: 4px; }
 
 .rights-acc { flex: 1 1 0; min-width: 0; }
 .rights-acc-item { border-bottom: 1px solid var(--w15); }
@@ -237,16 +227,16 @@
 @media (max-width: 1200px) {
   .rights-how-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@media (max-width: 1100px) {
-  .rights-hero-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 1024px) {
+  .rights-hero-seals { gap: 32px 64px; }
 }
-/* the hero grows with its content wherever the four practices would not fit one screen */
-@media (max-width: 1100px), (max-height: 760px), (hover: none) and (pointer: coarse) {
-  .rights-hero { height: auto; min-height: 0; justify-content: flex-start; padding-top: 140px; padding-bottom: 96px; }
+@media (max-width: 800px), (hover: none) and (pointer: coarse) {
+  /* the reference site's .security-hero touch rule */
+  .rights-hero { height: auto; min-height: 120svh; justify-content: flex-start; padding-top: 115px; padding-bottom: 120px; }
+  .rights-hero-inner { transform: translateY(42px); }
 }
 @media (max-width: 800px) {
-  .rights-hero { padding-top: 120px; padding-bottom: 72px; }
-  .rights-hero-practices { margin-top: 48px; }
+  .rights-hero-seals { gap: 24px 32px; }
   .rights-how { gap: 40px; padding-top: 48px; }
   .rights-how-grid { grid-template-columns: minmax(0, 1fr); }
   .rights-how-cell { min-height: 260px; padding-bottom: 24px; }
@@ -256,13 +246,11 @@
 @media (max-width: 600px) {
   .rights-hero-h1 { font-size: 34px; letter-spacing: var(--ls-display); line-height: 1.176; }      /* the reference site: .title 40/-.8 under 601 */
   .rights-hero-sub { font-size: 16px; }
-  .rights-hero { padding-top: 112px; padding-bottom: 64px; }
-  .rights-hero-practices { margin-top: 40px; }
-  .rights-hero-list { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .rights-hero-seals { gap: 20px 24px; margin-top: 32px; }
   .rights-acc-btn { font-size: 15px; padding: 20px 0; gap: 16px; }
 }
 
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .rights-acc-panel, .rights-acc-ico { transition: none !important; }
+  .rights-acc-panel, .rights-acc-ico, .rights-hero-seal img { transition: none !important; }
 }

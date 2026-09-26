@@ -10,7 +10,7 @@
   "after": "{id, tag, h2, p, topics:[...]} - same topic shape as weeks.",
   "first_brief": "{id, eyebrow, h2, p, columns:[3], rows:[[step, who, prepare]]} - the onboarding table.",
   "needs": "{id, eyebrow, h2, p, cards:[{h3, p, icon}]} - the 3x2 reference cards.",
-  "packages": "{id, eyebrow, h2, p, items:[{name, price, videos, includes[], best_for}], note} - prices are 'from' prices and say so. items[].held: inclusions not yet confirmed [AVI] (creator counts, tracker, debrief, dedicated roster, priority turnaround, dedicated producer); the renderer ignores this key, so it never shows until moved into includes. cta: {label, href, note}, the filled booking button (data-cta=\"packages\") directly under the grid.",
+  "packages": "{id, eyebrow, h2, p, items:[{name, price, videos, includes[], best_for}], note} - prices are 'from' prices and say so.",
   "faqs": "{id, eyebrow, h2, items:[{q, a}]}",
   "support": "{id, eyebrow, h2, p, email, href, note}",
   "footer_line": "one line for the docs-style footer strip."
@@ -109,7 +109,7 @@
  "hero": {
   "eyebrow": "Process",
   "h1": "Everything a brief needs, week by week.",
-  "p": "Every hypjam brief runs on the same loop: study the formats already earning attention in your category, write original scripts around them, film them, test them, and make more of whatever performs. Underneath that loop sits a fourteen-day sprint from a signed brief to first cuts: brief, hooks and script, casting, shoot and edit, then your revision round, rights and delivery. This page is the whole thing written down, so you always know what happens next and what we need from you.",
+  "p": "Every hypjam brief runs on the same loop: study the formats already earning attention in your category, write original scripts around them, film them, test them, and make more of whatever performs. Underneath that loop sits a fourteen-day sprint: brief, hooks and script, casting, shoot, edit, rights and delivery. This page is the whole thing written down, so you always know what happens next and what we need from you.",
   "links": [
    {
     "label": "The method",
@@ -173,86 +173,86 @@
   ]
  },
  "weeks": [
-  {
-   "id": "method",
-   "tag": "The method",
-   "h2": "The loop every brief runs on",
-   "p": "Underneath the fourteen-day sprint is a method, and it runs the same way every time. It is a loop rather than a line: each brief is written from what the last round showed, so the work gets more specific instead of starting again from nothing.",
-   "guides_label": "Core steps",
-   "topics": [
-    {
-     "h3": "Research the category",
-     "sub": "Before a word gets written.",
-     "blocks": [
-      {
-       "h4": "What we look at",
-       "kind": "p",
-       "text": "The strategist and creative director go through the UGC programmes running in your niche: competitors, adjacent brands, the creator posts your buyer already sees. We catalogue the formats. How a video opens, what the turn is, where the product arrives, how it ends. What we want is the shape that earns attention, not anybody's words."
-      }
-     ]
-    },
-    {
-     "h3": "Adapt the format",
-     "sub": "Same structure, new script.",
-     "blocks": [
-      {
-       "h4": "How a format becomes a script",
-       "kind": "p",
-       "text": "A format is a structure: a problem named in the first two seconds, an unboxing, a day in the life, a before and after. The creative director takes the structures that hold up and writes fresh scripts for your product around them, with your claims, your voice and your offer. The pattern is shared. The writing is not."
-      },
-      {
-       "h4": "The test we hold it to",
-       "kind": "p",
-       "text": "If a script would still work for the brand it came from, it is the wrong script."
-      }
-     ]
-    },
-    {
-     "h3": "Brief and book the cast",
-     "sub": "Scripts, references, a paid booking.",
-     "blocks": [
-      {
-       "h4": "What each creator gets",
-       "kind": "p",
-       "text": "The producer sends the scripts to the creators cast for that brief, along with the reference videos, so the format is shown rather than described and nobody is working from a paragraph of adjectives. Every creator is booked and paid by hypjam, on a signed release, with the shot list and the retakes agreed before anyone films. How many creators a brief carries is set by your package."
-      }
-     ]
-    },
-    {
-     "h3": "Test in the feed",
-     "sub": "A few days of real attention.",
-     "blocks": [
-      {
-       "h4": "What we read",
-       "kind": "p",
-       "text": "The videos go live and we leave them alone for a few days. Then the strategist reads them format by format: what held attention, what got watched to the end, what converted. You run the spend, so the numbers are yours. Our job is to turn them into a verdict on the format, not on one video."
-      }
-     ]
-    },
-    {
-     "h3": "Run the winners again",
-     "sub": "Until they stop working.",
-     "blocks": [
-      {
-       "h4": "What happens to a format that works",
-       "kind": "p",
-       "text": "Formats that perform get made again, with new creators, new hooks and new angles on the same structure, for as long as you want them running. The ones that did not hold up are retired. Each round starts from what the last one showed, so the brief narrows instead of resetting to a blank page."
-      }
-     ]
-    },
-    {
-     "h3": "Or run it your way",
-     "sub": "The default, not a condition.",
-     "blocks": [
-      {
-       "h4": "Where the default bends",
-       "kind": "p",
-       "text": "The steps above are the default, not a condition of working with us. Some brands arrive with formats already working, a script they want shot as written, or a way of running creative they would rather we fit into. We build the engagement around that. What we will not do is simply agree: if we think something will not work, you hear it before we start, and then we make it properly."
-      }
-     ]
-    }
-   ]
-  },
+ {
+  "id": "method",
+  "tag": "The method",
+  "h2": "The loop every brief runs on",
+  "p": "Underneath the fourteen-day sprint is a method, and it runs the same way every time. It is a loop rather than a line: each brief is written from what the last round showed, so the work gets more specific instead of starting again from nothing.",
+  "guides_label": "Core steps",
+  "topics": [
+   {
+    "h3": "Research the category",
+    "sub": "Before a word gets written.",
+    "blocks": [
+     {
+      "h4": "What we look at",
+      "kind": "p",
+      "text": "The strategist and creative director go through the UGC programmes running in your niche: competitors, adjacent brands, the creator posts your buyer already sees. We catalogue the formats. How a video opens, what the turn is, where the product arrives, how it ends. What we want is the shape that earns attention, not anybody's words."
+     }
+    ]
+   },
+   {
+    "h3": "Adapt the format",
+    "sub": "Same structure, new script.",
+    "blocks": [
+     {
+      "h4": "How a format becomes a script",
+      "kind": "p",
+      "text": "A format is a structure: a problem named in the first two seconds, an unboxing, a day in the life, a before and after. The creative director takes the structures that hold up and writes fresh scripts for your product around them, with your claims, your voice and your offer. The pattern is shared. The writing is not."
+     },
+     {
+      "h4": "The test we hold it to",
+      "kind": "p",
+      "text": "If a script would still work for the brand it came from, it is the wrong script."
+     }
+    ]
+   },
+   {
+    "h3": "Brief and book the cast",
+    "sub": "Scripts, references, a paid booking.",
+    "blocks": [
+     {
+      "h4": "What each creator gets",
+      "kind": "p",
+      "text": "The producer sends the scripts to the creators cast for that brief, along with the reference videos, so the format is shown rather than described and nobody is working from a paragraph of adjectives. Every creator is booked and paid by hypjam, on a signed release, with the shot list and the retakes agreed before anyone films. How many creators a brief carries is set by your package."
+     }
+    ]
+   },
+   {
+    "h3": "Test in the feed",
+    "sub": "A few days of real attention.",
+    "blocks": [
+     {
+      "h4": "What we read",
+      "kind": "p",
+      "text": "The videos go live and we leave them alone for a few days. Then the strategist reads them format by format: what held attention, what got watched to the end, what converted. You run the spend, so the numbers are yours. Our job is to turn them into a verdict on the format, not on one video."
+     }
+    ]
+   },
+   {
+    "h3": "Run the winners again",
+    "sub": "Until they stop working.",
+    "blocks": [
+     {
+      "h4": "What happens to a format that works",
+      "kind": "p",
+      "text": "Formats that perform get made again, with new creators, new hooks and new angles on the same structure, for as long as you want them running. The ones that did not hold up are retired. Each round starts from what the last one showed, so the brief narrows instead of resetting to a blank page."
+     }
+    ]
+   },
+   {
+    "h3": "Or run it your way",
+    "sub": "The default, not a condition.",
+    "blocks": [
+     {
+      "h4": "Where the default bends",
+      "kind": "p",
+      "text": "The steps above are the default, not a condition of working with us. Some brands arrive with formats already working, a script they want shot as written, or a way of running creative they would rather we fit into. We build the engagement around that. What we will not do is simply agree: if we think something will not work, you hear it before we start, and then we make it properly."
+     }
+    ]
+   }
+  ]
+ },
   {
    "id": "week-0",
    "tag": "Days 0 to 1",
@@ -448,7 +448,7 @@
    "id": "week-2",
    "tag": "Days 8 to 14",
    "h2": "Week 2: shoot, cut, ship",
-   "p": "Creators film on their phones, our editors cut for the platform, and your first cuts land by day fourteen. Then you get one revision round, and the finished videos come with their rights in writing.",
+   "p": "Creators film on their phones, our editors cut for the platform, you get one revision round, and the finished videos land with their rights in writing by day fourteen.",
    "guides_label": "Core steps",
    "topics": [
     {
@@ -458,7 +458,7 @@
       {
        "h4": "How it runs",
        "kind": "p",
-       "text": "Before filming, each creator goes through the script, the shot list and references with a hypjam director on a short call. On the day they film on their own phone, in their own space, with the director on the call watching each take land and giving a note between takes. If a hook is not landing it is retaken there and then, so the edit starts with the right material."
+       "text": "Each creator gets the script, the shot list, references and a short direction call. They film on their own phone, in their own space, and send us raw takes. We ask for retakes the same day if a hook is not landing, so the edit starts with the right material."
       },
       {
        "h4": "What we check on the day",
@@ -506,7 +506,7 @@
        "items": [
         "Watch the cuts in the tracker and leave notes against the timecode.",
         "Send everything in one pass; a single list is faster than five emails.",
-        "We turn the round and send the finished files with their rights in writing."
+        "We turn the round inside the fourteen-day sprint."
        ]
       },
       {
@@ -681,11 +681,9 @@
     "videos": "6 videos a month",
     "includes": [
      "1 creative brief a month",
-     "Hook and full edit for each video",
-     "Usage rights for organic and paid"
-    ],
-    "held": [
      "2 creators cast",
+     "Hook and full edit for each video",
+     "Usage rights for organic and paid",
      "Live tracker access"
     ],
     "best_for": "Brands testing UGC for the first time"
@@ -696,12 +694,10 @@
     "videos": "12 videos a month",
     "includes": [
      "2 creative briefs a month",
+     "4 to 5 creators cast",
      "Hook and full edit for each video",
      "Usage rights for organic and paid",
-     "Whitelisting and Spark Ads setup"
-    ],
-    "held": [
-     "4 to 5 creators cast",
+     "Whitelisting and Spark Ads setup",
      "Monthly performance debrief"
     ],
     "best_for": "Brands scaling paid social and testing formats fast"
@@ -712,23 +708,16 @@
     "videos": "24 or more videos a month",
     "includes": [
      "Weekly briefs",
+     "Dedicated creator roster",
      "Hook and full edit for each video",
      "Usage rights for organic and paid",
-     "Whitelisting and Spark Ads setup"
-    ],
-    "held": [
-     "Dedicated creator roster",
+     "Whitelisting and Spark Ads setup",
      "Monthly performance debrief",
      "Priority turnaround and a dedicated producer"
     ],
     "best_for": "Brands running UGC as an always-on channel"
    }
   ],
-  "cta": {
-   "label": "Book a call with Avi",
-   "href": "/book",
-   "note": "We'll tell you which package fits, or if none does."
-  },
   "note": "Each price covers everything listed in that package: the briefs, the casting, the scripts, the filming, the edits and organic plus paid usage rights for the term. It does not cover your ad spend. ‘From’ is honest: we scope the final number once we know how many videos you need and how long you want the rights for. Packages run month to month with a one-month minimum."
  },
  "faqs": {
@@ -738,7 +727,7 @@
   "items": [
    {
     "q": "What is the difference between a brief and a sprint?",
-    "a": "The brief is the document: what we are making and why. The sprint is the fourteen days from a signed brief to your first cuts, followed by your revision round. One brief, one sprint; Growth and Scale run more than one a month."
+    "a": "The brief is the document: what we are making and why. The sprint is the fourteen days that turn it into finished videos. One brief, one sprint; Growth and Scale run more than one a month."
    },
    {
     "q": "Where do the two approvals happen?",

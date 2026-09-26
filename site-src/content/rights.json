@@ -1,10 +1,10 @@
 {
   "_schema": {
-    "_about": "Content for /rights, rendered by tools/render_rights_work_book.py (CSS 43-rights.css). A full-height sand hero (h1, sub, one Book-a-call button, then the four practices as plain text), a black 3x2 grid of cells, a two-column questions block (heading + copy + CTA left, six-item accordion right), then the footer's closing strip. British English. Nothing on this page is a certification, so nothing is drawn as a seal, badge or mark: seals can read as trust marks (DMCC Act 2024 Sch. 20 para 3).",
+    "_about": "Content for /rights. Structure follows the reference security page one-to-one: a full-height sand hero (h1, sub, one pill CTA, a row of four seals), a black 3x2 grid of cells, a two-column questions block (heading + copy + CTA left, six-item accordion right), then the closing CTA strip and footer. British English. Nothing on this page is a certification; the seals are hypjam's own commitments drawn as line art.",
     "meta": "{path, title, description, theme} - theme 'dark' means the nav lockup is the on-dark file below the hero; over the sand-m hero the nav must read as light (data-nav=light) exactly as the reference does.",
-    "hero": "{h1, sub, cta:{label, href}, practices_label, practices:[{id, label, desc}]} - practices are the same four items and wording as home.json → safety.items (label = title, desc = one line). Plain text only: no seal, badge, ring or icon graphics. cta renders as the filled booking button (.btn--cta, data-cta='rights-hero').",
+    "hero": "{h1, sub, cta:{label, href}, badges:[{id, label, seal_text, seal_file, alt, kind}]} - badges render at 96px as our own line-drawn seals from seal_file, the root-relative path of the SVG under /assets/badges/ (drawn by the badges agent; if a file is missing render seal_text inside a 1px circle). seal_text is the engraved text, split on ' · ' into two lines. kind is always 'commitment': a promise, never an accreditation - no stars, no ribbons, no authority lookalikes.",
     "grid": "{h2, cells:[{title, body, icon}]} - six cells, 3x2, on black, 1px sand-l/20 hairlines between them. title renders uppercase 12-13px tracked .08em (eyebrow style) with a short rule under it; body 14px/1.5 sand-l; icon is a key the page agent maps to a 24px monoline SVG bottom-left of the cell: document | signature | tag | checklist | lock | folder.",
-    "questions": "{h2, p, cta:{label, href, micro}, items:[{q, a, link?:{label, href}}]} - the accordion. Hairline between rows, '+' at the right that rotates to 'x', one item open at a time. cta renders as a .cta-link text link with data-cta='rights' (the footer's filled booking button sits less than a screen below, and two filled buttons never share a view); micro is the short call promise under it.",
+    "questions": "{h2, p, cta:{label, href}, items:[{q, a, link?:{label, href}}]} - the accordion. Hairline between rows, '+' at the right that rotates to 'x', one item open at a time, answer 14px sand-l; link is an optional small arrow link under the answer.",
     "cta": "{h2, button:{label, href}} - the closing strip (display h2 left, pill right) above the footer. If the footer partial already carries this strip, skip it here."
   },
   "meta": {
@@ -17,30 +17,41 @@
     "h1": "Rights and safety at every layer",
     "sub": "Every video we make ships with its usage rights in writing, a signed creator release and the disclosure the ad needs. hypjam is built so the work is clean to run, for your brand and for the creators who make it.",
     "cta": {
-      "label": "Book a call",
+      "label": "Talk to us",
       "href": "/book"
     },
-    "practices_label": "Four things we do on every sprint",
-    "practices": [
+    "badges": [
       {
         "id": "usage",
         "label": "Usage rights in writing",
-        "desc": "Organic and paid usage for the term of your package, written into the contract, not implied in a DM."
+        "seal_text": "USAGE · RIGHTS",
+        "seal_file": "/assets/badges/usage-rights.svg",
+        "alt": "Seal: usage rights in writing",
+        "kind": "commitment"
       },
       {
         "id": "release",
         "label": "Signed creator releases",
-        "desc": "Every creator signs a release before filming, covering the footage, usage window and whitelisting, so the rights are clean."
+        "seal_text": "CREATOR · RELEASE",
+        "seal_file": "/assets/badges/releases.svg",
+        "alt": "Seal: signed creator releases",
+        "kind": "commitment"
       },
       {
         "id": "disclosure",
         "label": "ASA and CAP disclosure compliance",
-        "desc": "Paid partnerships are labelled and every ad follows the CAP Code the ASA enforces. Our practice, not a certification."
+        "seal_text": "ASA · CAP",
+        "seal_file": "/assets/badges/disclosure.svg",
+        "alt": "Seal: ASA and CAP disclosure compliance",
+        "kind": "commitment"
       },
       {
         "id": "gdpr",
         "label": "UK GDPR data handling",
-        "desc": "Creator and client data handled under UK GDPR, as our privacy policy sets out. Our pages set no cookies and run no analytics; the cal.com calendar on the booking page sets its own."
+        "seal_text": "UK · GDPR",
+        "seal_file": "/assets/badges/uk-gdpr.svg",
+        "alt": "Seal: UK GDPR data handling",
+        "kind": "commitment"
       }
     ]
   },
@@ -83,9 +94,8 @@
     "h2": "Questions about rights?",
     "p": "We're happy to walk through how usage, releases and disclosure work on a brief, and what changes when a video runs as a whitelisted ad.",
     "cta": {
-      "label": "Book a call with Avi",
-      "href": "/book",
-      "micro": "Thirty minutes on Google Meet with Avi, free."
+      "label": "Book a call",
+      "href": "/book"
     },
     "items": [
       {

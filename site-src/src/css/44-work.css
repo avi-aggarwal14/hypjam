@@ -1,160 +1,215 @@
 /* =====================================================================
-   hypjam v2 · 44-work.css — the /work page. Prefix .work-.
-
-   Order: black hero (heading, the honest line, a text-link booking CTA,
-   then the example ads as a static poster grid) → the three contract
-   clauses on white → formats and illustrative sample hooks on sand →
-   platforms on white → the shared closing card (40-pages.css .page-cta).
-
-   No carousel, no auto-advance, no count-up, nothing that starts at
-   opacity 0. A poster is all that loads until someone presses play.
+   hypjam v2 · 44-work.css — the /work page (the reference site's /hotels,
+   ref/pages/hotels.jpg at 1920). The hero reuses the home carousel
+   (.sto-* from 32-stories.css + 32-stories.js) with the hotels-page
+   paddings; everything else is prefixed .work-.
+   Measured on the reference:
+     hero       bg-black pt-[220px] pb-[90px] · h1 42/1.1 two lines (line 2
+                white/40) · 45px arrows · cards 377 × 440, gap 30
+     facts      flex-col items-center gap-20 bg-sand-s px-page py-[120px]
+                h2 42 centred · p 16/24 grey max-w 480 · 3×2 tiles 602×213,
+                gap 30/26, radius 6, tint #f1f0ec · numeral text-[80px]
+                sand-l · label 16 grey
+     wall       flex-col items-center gap-[84px] bg-white pt-[120px] pb-[72px]
+                three columns 395 wide, gap 42 (1268 total) · card tint
+                sand/40, radius 8, padding 24 · quote Inter 500 16 · name 14/500
+                · role 13 grey
+     platforms  flex-col gap-10 px-page pt-[72px] pb-[120px] · 11px caps
+                label · large tiles 203 tall, gap 18 · grid tiles 255 tall,
+                gap 16 · tile grey-s (#f5f5f5), radius 6
+     cta        relative h-svh min-h-[580px] · still darkened · h2 42 white
+                + p 16 white bottom-left (112px up) · dark pill right
+     formats    hypjam's own wall, in the same language: sand-s, py-[120px]
    ===================================================================== */
 
 .work-page { background: var(--white); color: var(--black); --work-tile: #f1f0ec; }
 
-/* ---------- hero ---------- */
-.work-hero {
+/* ---------- hero: the .sto carousel with the hotels-page paddings ---------- */
+.work-hero { min-height: 0; padding-top: 220px; padding-bottom: 90px; }
+.work-hero-head { display: flex; min-width: 0; flex-direction: column; gap: 0; }
+.work-hero-h1 { max-width: 640px; }
+.work-hero-dim { max-width: 1000px; }
+/* the heading breaks after work.hero.h1_break_after on desktop, as the reference does;
+   below 1024 the forced break splits the line badly, so the two halves run inline */
+.work-hero-l { display: block; }
+
+/* ---------- shared centred head (facts, wall) ---------- */
+.work-sec-head {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  padding: 148px var(--px-page) 96px;
-  background: var(--black);
-  color: var(--white);
+  align-items: center;
+  gap: 12px;
+  text-align: center;
 }
-.work-hero-head {
-  display: grid;
-  grid-template-columns: auto minmax(280px, 420px);
-  justify-content: space-between;
-  align-items: end;
-  gap: 32px 64px;
-}
-.work-hero-h1 { color: var(--white); text-wrap: balance; }
-/* the heading breaks after work.hero.h1_break_after on desktop; below 1024 the halves run inline */
-.work-hero-l { display: block; }
-.work-hero-aside { display: flex; max-width: 460px; flex-direction: column; gap: 20px; padding-bottom: 6px; }
-.work-hero-honest {
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: var(--ls-body);
-  color: var(--w70);
-  text-wrap: pretty;
-}
-.work-hero-cta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; color: var(--white); }
-.work-hero-cta .cta-link { color: var(--white); }
-.work-hero-cta .cta-link:hover { color: var(--jam); }
-.work-hero-micro { font-family: var(--font-body); font-size: 13px; line-height: 1.4; color: var(--w60); }
+.work-sec-p { max-width: 480px; color: var(--grey); }
+.work-sec-p--wide { max-width: 600px; }
 
-/* ---------- the example ads · a static grid, poster until pressed ---------- */
-.work-ads-k { margin-bottom: -24px; color: var(--w60); }
-.work-ads {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-}
-.work-ad { display: flex; min-width: 0; flex-direction: column; gap: 12px; }
-.work-ad-play, .work-ad-video {
-  position: relative;
-  display: block;
-  width: 100%;
-  aspect-ratio: 9 / 16;
-  overflow: hidden;
-  border-radius: 14px;
-  background: #111;
-  box-shadow: inset 0 0 0 1px var(--w08);
-}
-.work-ad-play { cursor: pointer; }
-.work-ad-video { object-fit: cover; }
-.work-ad-poster {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform .5s var(--ease-soft);
-}
-.work-ad-play:hover .work-ad-poster { transform: scale(1.03); }
-.work-ad-ico {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  display: grid;
-  width: 52px;
-  height: 52px;
-  place-items: center;
-  border-radius: 50%;
-  color: var(--white);
-  background: rgba(0, 0, 0, .38);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  box-shadow: inset 0 0 0 1px var(--w24);
-  transform: translate(-50%, -50%);
-  transition: background-color .2s, color .2s, transform .2s;
-}
-.work-ad-ico svg { width: 15px; height: 15px; margin-left: 2px; }
-.work-ad-play:hover .work-ad-ico { background: var(--jam); color: var(--black); transform: translate(-50%, -50%) scale(1.06); }
-.work-ad-play:focus-visible, .work-ad-video:focus-visible { outline: 2px solid var(--jam); outline-offset: 3px; }
-.work-ad-cap { display: flex; flex-direction: column; gap: 4px; }
-.work-ad-format {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  line-height: 1.4;
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--white);
-}
-.work-ad-credit { font-family: var(--font-body); font-size: 13px; line-height: 1.4; color: var(--w60); text-wrap: balance; }
-
-/* ---------- shared left-aligned section head ---------- */
-.work-sec-head { display: flex; max-width: 720px; flex-direction: column; align-items: flex-start; gap: 14px; }
-.work-sec-k { color: var(--grey); }
-.work-sec-p { max-width: 560px; color: var(--grey); }
-
-/* ---------- the three contract clauses · static ---------- */
+/* ---------- facts ---------- */
 .work-facts {
   display: flex;
   flex-direction: column;
-  gap: 56px;
+  align-items: center;
+  gap: 80px;
   padding: 120px var(--px-page);
-  background: var(--white);
+  background: var(--sand-s);
   color: var(--black);
 }
 .work-facts-grid {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 26px 30px;
 }
 .work-fact {
   display: flex;
-  min-height: 200px;
+  height: 213px;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 24px;
-  padding: 28px;
-  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 6px;
   background: var(--work-tile);
+  text-align: center;
 }
-.work-fact-v {
-  font-family: var(--font-display);
-  font-weight: var(--fw-display);
-  font-size: 56px;
-  line-height: 1.1;
+.work-fact-num {
+  font-size: 80px;
+  line-height: 1;
   letter-spacing: var(--ls-display);
-  color: var(--black);
+  color: var(--sand-l);
   font-variant-numeric: lining-nums;
   white-space: nowrap;
 }
-.work-fact-l {
-  max-width: 320px;
+.work-fact-suffix { font-size: 40px; letter-spacing: var(--ls-display); }
+.work-fact-label {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.5;
-  letter-spacing: var(--ls-body);
   color: var(--grey);
-  text-wrap: pretty;
 }
 
-/* ---------- formats (hypjam's own) ---------- */
+/* ---------- the (reserved) quote wall ---------- */
+.work-wall {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 84px;
+  padding: 120px var(--px-page) 72px;
+  background: var(--white);
+  color: var(--black);
+}
+.work-wall-grid {
+  display: grid;
+  width: 100%;
+  max-width: 1268px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 42px;
+}
+.work-quote {
+  display: flex;
+  min-height: 260px;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 24px;
+  border-radius: 8px;
+}
+.work-quote-text {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--black);
+  text-wrap: pretty;
+}
+.work-quote-by { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.work-quote-role { color: var(--grey); }
+
+/* ---------- platforms (replaces the brand-logo grids) ---------- */
+.work-platforms {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 72px var(--px-page) 120px;
+  background: var(--white);
+  color: var(--black);
+}
+.work-plat-group { display: flex; flex-direction: column; gap: 20px; }
+.work-plat-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--grey);
+}
+.work-plat-row { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
+.work-plat-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.work-plat-tile {
+  display: flex;
+  height: 203px;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  border-radius: 6px;
+  background: var(--grey-s);
+  color: var(--black);
+}
+.work-plat-tile--sm { height: 255px; }
+/* the name set typographically, monochrome at 60% — the hero marquee's treatment */
+.work-plat-tile-in { display: inline-flex; align-items: center; gap: 12px; opacity: .6; }
+.work-plat-glyph { display: block; width: 24px; height: 24px; flex-shrink: 0; }
+.work-plat-text {
+  font-family: var(--font-body);
+  font-weight: var(--fw-medium);
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  text-align: center;
+}
+
+/* ---------- photo CTA ---------- */
+.work-cta {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100svh;
+  min-height: 580px;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  background: var(--black);
+  color: var(--white);
+}
+.work-cta-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  /* the reference band averages 34/255 luminance; aerial-close.jpg is a bright
+     golden frame, so it is dimmed to land on the same tone under the shade */
+  filter: brightness(.72);
+}
+.work-cta-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.38) 0%, rgba(0,0,0,.58) 100%);
+}
+.work-cta-row {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 48px;
+  padding: 0 var(--px-page) 112px;
+}
+.work-cta-text { display: flex; max-width: 760px; flex-direction: column; gap: 16px; }
+.work-cta-h2 { color: var(--white); }
+.work-cta-p { color: var(--white); }
+.work-cta-btn { margin-top: 6px; }
+
+/* ---------- formats wall (hypjam's own) ---------- */
 .work-formats {
   display: flex;
   flex-direction: column;
@@ -208,115 +263,52 @@
   background: var(--white);
 }
 .work-sample-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.work-sample-cat {
-  min-width: 0;
+.work-sample-brand {
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: var(--fw-medium);
-  line-height: 1.3;
-  color: var(--black);
-}
-/* "Illustrative" · a plain label, not a badge */
-.work-sample-chip {
-  flex-shrink: 0;
-  padding: 4px 8px;
-  border: 1px solid var(--k10);
-  border-radius: var(--r-pill);
-  font-family: var(--font-mono);
-  font-size: 11px;
   line-height: 1;
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--grey);
+  color: var(--black);
 }
 .work-sample-hook { color: var(--black); text-wrap: pretty; }
 .work-sample-creator { font-family: var(--font-body); font-size: 13px; line-height: 1.35; color: var(--grey); }
-.work-sample-note { flex: 1 1 auto; font-family: var(--font-body); font-size: 13px; line-height: 1.35; color: var(--grey); }
+.work-sample-note { flex: 1 1 auto; font-family: var(--font-body); font-size: 13px; line-height: 1.35; color: var(--fg-dim-40); }
 .work-sample-format { margin-top: 4px; }
 
-/* ---------- platforms ---------- */
-.work-platforms {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  padding: 96px var(--px-page) 120px;
-  background: var(--white);
-  color: var(--black);
-}
-.work-plat-group { display: flex; flex-direction: column; gap: 20px; }
-.work-plat-label {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  line-height: 1;
-  letter-spacing: var(--ls-label);
-  text-transform: uppercase;
-  color: var(--grey);
-}
-.work-plat-row { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
-.work-plat-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
-.work-plat-tile {
-  display: flex;
-  height: 140px;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  border-radius: 6px;
-  background: var(--grey-s);
-  color: var(--black);
-}
-.work-plat-tile--sm { height: 120px; }
-/* the name set typographically, monochrome at 60% */
-.work-plat-tile-in { display: inline-flex; align-items: center; gap: 12px; opacity: .6; }
-.work-plat-glyph { display: block; width: 24px; height: 24px; flex-shrink: 0; }
-.work-plat-text {
-  font-family: var(--font-body);
-  font-weight: var(--fw-medium);
-  font-size: 20px;
-  line-height: 1.2;
-  letter-spacing: -.02em;
-  text-align: center;
-}
-
-/* ---------- breakpoints ---------- */
+/* ---------- breakpoints (the reference site: max-nv 1200 · max-lp 1024 · max-bp 800 · max-tp 600) ---------- */
 @media (max-width: 1200px) {
+  .work-facts-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .work-wall-grid { gap: 24px; }
   .work-plat-row { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .work-plat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .work-plat-tile { height: 160px; }
+  .work-plat-tile--sm { height: 180px; }
   .work-format-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .work-sample-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .work-fact-v { font-size: 44px; }
 }
 @media (max-width: 1024px) {
-  .work-hero-head { grid-template-columns: minmax(0, 1fr); justify-content: stretch; align-items: start; }
   .work-hero-l { display: inline; }
-  .work-hero-aside { max-width: 560px; padding-bottom: 0; }
-  .work-ads { gap: 12px; }
 }
 @media (max-width: 800px) {
-  .work-hero { gap: 32px; padding: 120px var(--px-page) 72px; }
-  .work-ads-k { margin-bottom: -20px; }
-  .work-ads { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 10px; }
-  .work-facts { gap: 32px; padding: 80px var(--px-page); }
-  .work-facts-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
-  .work-fact { min-height: 0; gap: 8px; padding: 22px 20px; }
-  .work-fact-v { font-size: 36px; }
+  .work-hero { padding-top: 140px; padding-bottom: 64px; }
+  .work-facts { gap: 48px; padding: 80px var(--px-page); }
+  .work-facts-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .work-fact { height: 180px; }
+  .work-fact-num { font-size: 56px; letter-spacing: var(--ls-display); }
+  .work-fact-suffix { font-size: 32px; letter-spacing: var(--ls-display); }
+  .work-wall { gap: 48px; padding: 80px var(--px-page) 48px; }
+  .work-wall-grid { grid-template-columns: minmax(0, 1fr); }
+  .work-quote { min-height: 0; gap: 32px; }
+  .work-platforms { gap: 32px; padding: 48px var(--px-page) 80px; }
+  .work-cta { min-height: 520px; }
+  .work-cta-row { flex-direction: column; align-items: flex-start; gap: 24px; padding-bottom: 64px; }
   .work-formats { gap: 40px; padding: 80px var(--px-page); }
   .work-format-grid, .work-sample-grid { grid-template-columns: minmax(0, 1fr); }
-  .work-platforms { gap: 32px; padding: 64px var(--px-page) 80px; }
 }
 @media (max-width: 600px) {
-  .work-hero { padding-top: 104px; }
-  .work-hero-honest { font-size: 15px; }
-  .work-ad-ico { width: 44px; height: 44px; }
-  .work-ad-format { font-size: 11px; }
-  .work-ad-credit { font-size: 12px; }
+  .work-hero { padding-top: 120px; }
   .work-plat-row, .work-plat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .work-plat-tile, .work-plat-tile--sm { height: 96px; padding: 14px; }
-  .work-plat-text { font-size: 15px; letter-spacing: -.02em; }
+  .work-plat-tile, .work-plat-tile--sm { height: 120px; padding: 16px; }
+  .work-plat-text { font-size: 16px; letter-spacing: -.02em; }
   .work-plat-glyph { width: 18px; height: 18px; }
-}
-
-/* ---------- reduced motion ---------- */
-@media (prefers-reduced-motion: reduce) {
-  .work-ad-poster, .work-ad-ico { transition: none; }
-  .work-ad-play:hover .work-ad-poster { transform: none; }
 }
