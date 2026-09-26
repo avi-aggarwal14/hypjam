@@ -15,13 +15,13 @@
   --pnl-stroke: rgba(255, 255, 255, 0.14);
   --pnl-jam: var(--jam, #ff6f1f);
   --pnl-jam-a: rgba(255, 111, 31, 0.18);
-  --pnl-mono-stack: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  --pnl-mono-stack: var(--font-mono, "DM Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace);
 
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  font-family: var(--font-body, "Geist", system-ui, -apple-system, sans-serif);
+  font-family: var(--font-body, 'Inter', system-ui, -apple-system, sans-serif);
   font-size: 12px;
   line-height: 1.35;
   font-weight: 400;

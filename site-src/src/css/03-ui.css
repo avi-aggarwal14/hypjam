@@ -24,9 +24,9 @@
   border-radius: var(--r-pill);
   font-family: var(--font-body);
   font-size: var(--fs-btn);
-  font-weight: 400;
+  font-weight: var(--fw-ui);
   line-height: 1;
-  letter-spacing: normal;
+  letter-spacing: var(--ls-small);
   white-space: nowrap;
   text-decoration: none;
   color: var(--pill-fg);
@@ -108,7 +108,7 @@
   white-space: nowrap;
 }
 .eyebrow::before { content: ""; flex-shrink: 0; width: 20px; height: 1px; background: currentColor; }
-.eyebrow--caps { text-transform: uppercase; font-size: var(--fs-eyebrow); letter-spacing: var(--ls-eyebrow); }
+.eyebrow--caps { text-transform: uppercase; font-size: var(--fs-eyebrow); letter-spacing: var(--ls-label); font-family: var(--font-mono); }
 .eyebrow--nodash::before { display: none; }
 .eyebrow--fg { color: var(--fg); }
 .eyebrow--dim { color: var(--fg-dim); }
@@ -259,7 +259,7 @@
   animation: ui-live 2.4s ease-in-out infinite;
 }
 .tag-soon--static::before { animation: none; }
-.tag-soon--caps { text-transform: uppercase; font-size: 11px; letter-spacing: .06em; }
+.tag-soon--caps { text-transform: uppercase; font-size: 11px; letter-spacing: .04em; font-family: var(--font-mono); font-weight: 500; }
 @keyframes ui-live { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
 /* a lone jam live dot */
 .live-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--jam); animation: ui-live 2.4s ease-in-out infinite; }

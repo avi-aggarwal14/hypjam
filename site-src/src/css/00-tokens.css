@@ -84,49 +84,68 @@
   --nav-pill-bg: var(--k36);        /* open nav item: bg-black/[0.36] + blur 6px */
   --reserved-fill: rgba(255,255,255,.04); /* held-open slots (.reserved, .tag-soon) */
 
-  /* ---------- type ---------- */
-  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;        /* the reference site: publishSerif, Georgia, Times New Roman, serif */
-  --font-body: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; /* the reference site: gtStandard, Arial, Helvetica, sans-serif */
-  --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;        /* the reference site: gtStandardMono, ui-monospace, monospace */
+  /* ---------- type · the typography of 8x.social ----------
+     Measured from 8x.social's Core system (homepage, /full-service, /tracking,
+     /creator-network) on 2026-09-26; full spec in
+     ~/Desktop/UGC Agency/design-systems/8x-social/typography.md.
+       display  Syne 600 · sentence-case headlines · leading = size + 8px on
+                desktop, size + 6px on phones · tracking -0.01em
+       body/UI  Inter 400, 500 for UI and titles · slight negative tracking
+                (-0.011em at 16px, -0.014em at 14px, -0.021em on 24px titles)
+       labels   DM Mono 400 · uppercase · tracked +0.06em · in the dim tone
+     Each family's '… Fallback' face is metric-matched Arial (fonts/*.css). */
+  --font-display: 'Syne', 'Syne Fallback', Arial, Helvetica, sans-serif;
+  --font-body: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-mono: 'DM Mono', 'DM Mono Fallback', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
-  --fw-display: 400;   /* display is 400 only */
+  --fw-display: 600;   /* Syne SemiBold is the only display weight 8x uses */
   --fw-body: 400;
-  --fw-medium: 500;    /* feature titles, quote attribution name */
+  --fw-medium: 500;    /* titles, quote names, emphasis */
+  --fw-ui: 500;        /* buttons and nav links: 8x sets UI in Inter 500 */
 
-  /* h1 · font-display text-[64px] leading-[1.05] tracking-[-1.28px] · max-lp 48/-.96 · max-tp 36/-.72 */
-  --fs-h1: 64px;  --lh-h1: 1.05; --ls-h1: -1.28px;
-  --fs-h1-lp: 48px; --ls-h1-lp: -.96px;
-  --fs-h1-tp: 36px; --ls-h1-tp: -.72px;
-  /* .title (sub-page hero) · 64/1/-1.28 · phones 40/-.8 */
-  --fs-title: 64px; --lh-title: 1; --ls-title: -1.28px;
-  --fs-title-tp: 40px; --ls-title-tp: -.8px;
-  /* h2 · 42/1.1/-.84 · max-tp 28/-.56 */
-  --fs-h2: 42px;  --lh-h2: 1.1;  --ls-h2: -.84px;
-  --fs-h2-tp: 28px; --ls-h2-tp: -.56px;
-  /* big quote (section 2) · 36/45px(1.25)/-.72 · max-tp 24/-.48 */
-  --fs-quote: 36px; --lh-quote: 1.25; --ls-quote: -.72px;
-  --fs-quote-tp: 24px; --ls-quote-tp: -.48px;
-  /* hero trust paragraph · 36/1.2/-.84 · max-tp 24/-.48 */
-  --fs-trust: 36px; --lh-trust: 1.2; --ls-trust: -.84px;
-  /* HUD card title · 26/1.2/-.52 */
-  --fs-card-title: 26px; --lh-card-title: 1.2; --ls-card-title: -.52px;
-  /* story card quote · 18/22.5px(1.25)/-.2 */
-  --fs-story-quote: 18px; --lh-story-quote: 1.25; --ls-story-quote: -.2px;
-  /* body · 16/24 · phones 14 */
-  --fs-body: 16px; --lh-body: 1.5; --fs-body-tp: 14px;
+  --ls-display: -.01em;     /* Syne headlines, every size */
+  --ls-body: -.011em;       /* Inter 16 */
+  --ls-small: -.014em;      /* Inter 14, buttons, nav */
+  --ls-card: -.021em;       /* Inter 500 card titles (24px) */
+  --ls-label: .06em;        /* DM Mono uppercase labels */
+
+  /* h1 · Syne 600 56/64 · ≤1024 48/56 · ≤600 34/40 (8x: 56/64 desktop+tablet, 34/40 phone) */
+  --fs-h1: 56px;  --lh-h1: 1.143; --ls-h1: var(--ls-display);
+  --fs-h1-lp: 48px; --lh-h1-lp: 1.167; --ls-h1-lp: var(--ls-display);
+  --fs-h1-tp: 34px; --lh-h1-tp: 1.176; --ls-h1-tp: var(--ls-display);
+  /* .title (sub-page hero) · the same scale as h1 */
+  --fs-title: 56px; --lh-title: 1.143; --ls-title: var(--ls-display);
+  --fs-title-tp: 34px; --lh-title-tp: 1.176; --ls-title-tp: var(--ls-display);
+  /* h2 · Syne 600 40/48 · ≤600 32/38 */
+  --fs-h2: 40px;  --lh-h2: 1.2;  --ls-h2: var(--ls-display);
+  --fs-h2-tp: 32px; --lh-h2-tp: 1.1875; --ls-h2-tp: var(--ls-display);
+  /* big quote · Syne 600 28/36 (8x's pull quote) · ≤600 22/28 */
+  --fs-quote: 28px; --lh-quote: 1.286; --ls-quote: var(--ls-display);
+  --fs-quote-tp: 22px; --lh-quote-tp: 1.273; --ls-quote-tp: var(--ls-display);
+  /* hero trust statement · Syne 600 34/42 · ≤600 24/30 */
+  --fs-trust: 34px; --lh-trust: 1.235; --ls-trust: var(--ls-display);
+  --fs-trust-tp: 24px; --lh-trust-tp: 1.25;
+  /* card title · Inter 500 24/1.2/-0.021em (8x's h3) · ≤800 22 */
+  --fs-card-title: 24px; --lh-card-title: 1.2; --ls-card-title: var(--ls-card);
+  /* story / testimonial quote · Inter 500 16/1.5/-0.011em */
+  --fs-story-quote: 16px; --lh-story-quote: 1.5; --ls-story-quote: var(--ls-body);
+  /* body · Inter 16/24 · 8x keeps 16 on phones */
+  --fs-body: 16px; --lh-body: 1.5; --fs-body-tp: 16px;
   --lh-body-tight: 1.4;              /* 16/22.4 feature blurbs, rights labels */
-  --lh-body-loose: 1.5;
-  /* small · 14/1.4 (nav sub, hero p, HUD desc 14/1.35) */
-  --fs-small: 14px; --lh-small: 1.4;
-  --fs-hud: 14px;  --lh-hud: 1.5;     /* HUD stop buttons 14/21 */
-  --fs-hud-desc: 14px; --lh-hud-desc: 1.35;
-  --fs-nav: 13px;                     /* nav items 13/1 */
-  --fs-btn: 14px;                     /* buttons 14/1 */
-  --fs-caption: 13px; --lh-caption: 1.35;   /* attribution 13/17.55 · meta 13/16.9 (1.3) */
-  --lh-meta: 1.3;
-  --fs-eyebrow: 12px;  --ls-eyebrow: .08em;   /* small caps labels */
-  --fs-eyebrow-lg: 13px; --ls-eyebrow-lg: .06em; /* security-card titles: 13px uppercase */
-  --fs-dash-label: 13px; --ls-dash-label: .01em; /* "— Operations" product-page eyebrow */
+  --lh-body-loose: 1.6;              /* 8x's long-form paragraphs: 16/1.6 */
+  /* small · Inter 14/1.5/-0.014em */
+  --fs-small: 14px; --lh-small: 1.5;
+  --fs-hud: 14px;  --lh-hud: 1.5;
+  --fs-hud-desc: 14px; --lh-hud-desc: 1.4;
+  --fs-nav: 14px;                     /* nav links · Inter 500 14 */
+  --fs-btn: 14px;                     /* buttons · Inter 500 */
+  --fs-caption: 13px; --lh-caption: 1.4;
+  --lh-meta: 1.33;
+  /* labels · DM Mono 400 uppercase · section eyebrows 14px as on 8x, UI labels 12/11px */
+  --fs-eyebrow: 14px;  --ls-eyebrow: var(--ls-label);
+  --fs-eyebrow-lg: 14px; --ls-eyebrow-lg: var(--ls-label);
+  --fs-label: 12px;
+  --fs-dash-label: 13px; --ls-dash-label: .02em;
   --fs-micro: 11px;
 
   /* ---------- layout ---------- */

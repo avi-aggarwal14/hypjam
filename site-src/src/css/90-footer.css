@@ -14,7 +14,7 @@
   padding: 128px var(--px-page, 28px) 40px;
   background-color: #000;
   color: #fff;
-  font-family: var(--font-body, 'Geist', Arial, Helvetica, sans-serif);
+  font-family: var(--font-body, 'Inter', Arial, Helvetica, sans-serif);
   font-size: 14px;
   font-weight: 400;
   line-height: 1;
@@ -32,15 +32,15 @@
 
 .foot-headline {
   margin: 0;
-  font-family: var(--font-display, 'Newsreader', Georgia, 'Times New Roman', serif);
+  font-family: var(--font-display, 'Syne', Arial, Helvetica, sans-serif);
   font-optical-sizing: auto;
-  font-weight: 400;
-  font-size: 42px;
-  line-height: 1.1;
-  letter-spacing: -0.84px;
+  font-weight: var(--fw-display);
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: var(--ls-display);
   color: #fff;
 }
-@media (max-width: 600px) { .foot-headline { font-size: 28px; letter-spacing: -0.56px; } }
+@media (max-width: 600px) { .foot-headline { font-size: 30px; letter-spacing: var(--ls-display); line-height: 1.267; } }
 
 .foot-cta {
   display: flex;

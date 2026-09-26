@@ -4,7 +4,7 @@
    and the handful of .u- utilities the contract allows here.
    Fonts are NOT @imported here (site.css is a concatenation, so an
    @import would not be first) — the head partial links
-   /assets/fonts/geist.css and /assets/fonts/newsreader.css.
+   /assets/fonts/syne.css, /assets/fonts/inter.css and /assets/fonts/dm-mono.css.
    ===================================================================== */
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -36,6 +36,7 @@ body {
   text-rendering: optimizeLegibility;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  letter-spacing: var(--ls-body);
 }
 
 h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd, pre { margin: 0; }
@@ -45,6 +46,8 @@ hr { border: 0; margin: 0; height: 1px; background: var(--hairline); }
 address, cite, em, i { font-style: normal; }
 strong, b { font-weight: var(--fw-medium); }
 small { font-size: var(--fs-caption); }
+/* code in DM Mono everywhere (a bare <code> otherwise falls to the UA's `monospace`, i.e. Courier) */
+code, kbd, samp, pre { font-family: var(--font-mono); }
 abbr[title] { text-decoration: none; }
 
 img, video, svg, canvas, picture, iframe { display: block; max-width: 100%; }

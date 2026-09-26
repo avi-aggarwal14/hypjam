@@ -57,14 +57,14 @@
 .sol-card__title {
   min-width: 0;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: var(--fw-display);
   font-optical-sizing: auto;
   font-synthesis: none;
   -webkit-font-smoothing: auto;
   text-rendering: geometricPrecision;
-  font-size: 26px;
-  line-height: 1.2;
-  letter-spacing: -.52px;
+  font-size: 24px;
+  line-height: 1.333;
+  letter-spacing: var(--ls-display);
   color: var(--black);
   transition: color var(--dur);
 }
@@ -81,7 +81,7 @@
   .sol-cards { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
   .sol-cards__head { margin-bottom: 32px; }
   .sol-card__head { margin-top: 16px; }
-  .sol-card__title { font-size: 22px; letter-spacing: -.44px; }
+  .sol-card__title { font-size: 22px; letter-spacing: var(--ls-display); line-height: 1.364; }
 }
 
 /* the reference site's index h1 needs a wider box than the sub-page default (560) */
@@ -98,12 +98,12 @@
 /* the values here are offer facts ("14 days", "6 placements"), not the reference site's
    short numerals, so they wrap rather than overflow their column */
 .sol-stats--3 .page-stat__num { white-space: normal; text-wrap: balance; }
-@media (max-width: 1440px) { .sol-stats--3 .page-stat__num { font-size: 52px; letter-spacing: -1.04px; } }
+@media (max-width: 1440px) { .sol-stats--3 .page-stat__num { font-size: 52px; letter-spacing: var(--ls-display); } }
 @media (max-width: 1200px) { .sol-stats--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 32px; } }
-@media (max-width: 1024px) { .sol-stats--3 .page-stat__num { font-size: 40px; letter-spacing: -.8px; } }
+@media (max-width: 1024px) { .sol-stats--3 .page-stat__num { font-size: 40px; letter-spacing: var(--ls-display); } }
 @media (max-width: 800px)  { .sol-stats--3 { grid-template-columns: minmax(0, 1fr); row-gap: 48px; }
-                             .sol-stats--3 .page-stat__num { font-size: 48px; letter-spacing: -.96px; } }
-@media (max-width: 600px)  { .sol-stats--3 .page-stat__num { font-size: 40px; letter-spacing: -.8px; } }
+                             .sol-stats--3 .page-stat__num { font-size: 48px; letter-spacing: var(--ls-display); } }
+@media (max-width: 600px)  { .sol-stats--3 .page-stat__num { font-size: 40px; letter-spacing: var(--ls-display); } }
 
 /* ---------------------------------------------------------------------
    GOAL PAGES · "The services behind it" — four columns, 1px rules between.
@@ -123,14 +123,14 @@
   display: block;
   margin-top: 22px;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: var(--fw-display);
   font-optical-sizing: auto;
   font-synthesis: none;
   -webkit-font-smoothing: auto;
   text-rendering: geometricPrecision;
-  font-size: 26px;
-  line-height: 1.2;
-  letter-spacing: -.52px;
+  font-size: 24px;
+  line-height: 1.333;
+  letter-spacing: var(--ls-display);
   color: var(--black);
   transition: color var(--dur);
 }
@@ -147,7 +147,7 @@ a.sol-behind__name:hover { color: var(--grey); }
   .sol-behind { grid-template-columns: minmax(0, 1fr); }
   .sol-behind__cell, .sol-behind__cell:nth-child(2n) { border-left: 0; padding: 24px 0; }
   .sol-behind__cell:first-child { border-top: 0; }
-  .sol-behind__name { font-size: 22px; letter-spacing: -.44px; }
+  .sol-behind__name { font-size: 22px; letter-spacing: var(--ls-display); line-height: 1.364; }
   .sol-behind__link { padding-top: 20px; }
 }
 
@@ -167,14 +167,14 @@ a.sol-behind__name:hover { color: var(--grey); }
 .sol-fits__cell:nth-child(2n + 1) { border-left: 0; }
 .sol-fits__title {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: var(--fw-display);
   font-optical-sizing: auto;
   font-synthesis: none;
   -webkit-font-smoothing: auto;
   text-rendering: geometricPrecision;
-  font-size: 26px;
-  line-height: 1.2;
-  letter-spacing: -.52px;
+  font-size: 24px;
+  line-height: 1.333;
+  letter-spacing: var(--ls-display);
   color: var(--black);
 }
 .sol-fits__dash { display: block; width: 24px; height: 1px; margin: 20px 0 0; background: var(--sand-l); border: 0; }
@@ -183,7 +183,7 @@ a.sol-behind__name:hover { color: var(--grey); }
 @media (max-width: 800px) {
   .sol-fits { grid-template-columns: minmax(0, 1fr); }
   .sol-fits__cell, .sol-fits__cell:nth-child(2n + 1) { border-left: 0; padding: 28px 0 32px; }
-  .sol-fits__title { font-size: 22px; letter-spacing: -.44px; }
+  .sol-fits__title { font-size: 22px; letter-spacing: var(--ls-display); line-height: 1.364; }
   .sol-fits__link { padding-top: 20px; }
 }
 
@@ -219,12 +219,12 @@ a.sol-behind__name:hover { color: var(--grey); }
   padding-bottom: 56px;
 }
 .sol-hero-full__mark { display: block; width: 68px; height: auto; margin-bottom: 30px; }
-.sol-hero-full__eyebrow { font-size: 12px; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; color: var(--w70); }
+.sol-hero-full__eyebrow { font-size: var(--fs-eyebrow); line-height: 1.4; letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--w70); font-family: var(--font-mono); }
 .sol-hero-full__title {
   margin-top: 22px;
   max-width: 640px;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: var(--fw-display);
   font-optical-sizing: auto;
   font-synthesis: none;
   -webkit-font-smoothing: auto;
@@ -237,11 +237,11 @@ a.sol-behind__name:hover { color: var(--grey); }
 }
 .sol-hero-full__intro { margin-top: 20px; max-width: 500px; font-size: 16px; line-height: 24px; color: var(--w75); text-wrap: pretty; }
 .sol-hero-full__cta { margin-top: 34px; }
-@media (max-width: 1024px) { .sol-hero-full__title { font-size: var(--fs-h1-lp); letter-spacing: -.96px; } }
+@media (max-width: 1024px) { .sol-hero-full__title { font-size: var(--fs-h1-lp); letter-spacing: var(--ls-display); line-height: var(--lh-h1-lp); } }
 @media (max-width: 800px)  { .sol-hero-full__inner { padding-bottom: 24px; } .sol-hero-full__mark { width: 56px; margin-bottom: 22px; } }
 @media (max-width: 600px)  {
   .sol-hero-full { min-height: 520px; padding-bottom: 40px; }
-  .sol-hero-full__title { font-size: var(--fs-title-tp); letter-spacing: var(--ls-title-tp); }
+  .sol-hero-full__title { font-size: var(--fs-title-tp); letter-spacing: var(--ls-title-tp); line-height: var(--lh-title-tp); }
   .sol-hero-full__intro { font-size: 14px; line-height: 1.5; }
 }
 
@@ -268,7 +268,7 @@ a.sol-behind__name:hover { color: var(--grey); }
 .sol-band__h2 {
   max-width: 900px;
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: var(--fw-display);
   font-optical-sizing: auto;
   font-synthesis: none;
   -webkit-font-smoothing: auto;
@@ -279,12 +279,12 @@ a.sol-behind__name:hover { color: var(--grey); }
   color: var(--white);
   text-wrap: balance;
 }
-.sol-band__sub { margin-top: 18px; max-width: 460px; font-size: 12px; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; color: var(--w75); text-wrap: pretty; }
-@media (max-width: 1024px) { .sol-band { height: 440px; } .sol-band__h2 { font-size: var(--fs-h1-lp); letter-spacing: -.96px; } }
+.sol-band__sub { margin-top: 18px; max-width: 460px; font-size: 12px; line-height: 1.5; letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--w75); text-wrap: pretty; font-family: var(--font-mono); }
+@media (max-width: 1024px) { .sol-band { height: 440px; } .sol-band__h2 { font-size: var(--fs-h1-lp); letter-spacing: var(--ls-display); line-height: var(--lh-h1-lp); } }
 @media (max-width: 600px)  {
   .sol-band { height: 360px; border-radius: 12px; }
   .sol-band__mark { width: 52px; margin-bottom: 18px; }
-  .sol-band__h2 { font-size: var(--fs-title-tp); letter-spacing: var(--ls-title-tp); }
+  .sol-band__h2 { font-size: var(--fs-title-tp); letter-spacing: var(--ls-title-tp); line-height: var(--lh-title-tp); }
 }
 
 /* ---------------------------------------------------------------------

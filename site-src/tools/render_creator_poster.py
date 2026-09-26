@@ -11,12 +11,13 @@ no creator numbers: hypjam has not run a campaign yet and the poster must not
 imply otherwise.
 
 Regenerate:  python3 tools/render_creator_poster.py
-Needs Pillow, fonttools and brotli (to decode the shipped woff2).
+Type is the site's own (8x.social's system): Syne 600 headline, Inter body,
+DM Mono labels. Needs Pillow, fonttools and brotli (see tools/_fonts.py).
 """
-import io, os
+import os, sys
 from PIL import Image, ImageDraw
-from PIL import ImageFont
-from fontTools.ttLib import TTFont
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from _fonts import font, draw_tracked
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AGENCY = os.path.dirname(ROOT)
@@ -27,17 +28,7 @@ JAM   = (255, 127, 54)
 WHITE = (246, 245, 243)
 DIM   = (150, 146, 142)
 
-LATIN  = os.path.join(ROOT, "assets/fonts/geist-8740fcb6.woff2")
 LOCKUP = os.path.join(AGENCY, "assets/brand/logos/hypjam-lockup-on-dark.png")
-
-
-def geist(size, weight):
-    f = TTFont(LATIN)
-    buf = io.BytesIO(); f.flavor = None; f.save(buf); buf.seek(0)
-    font = ImageFont.truetype(buf, size * S)
-    try: font.set_variation_by_axes([weight])
-    except Exception: pass
-    return font
 
 
 def main():
@@ -67,16 +58,16 @@ def main():
     lock = lock.resize((lw, lh), Image.LANCZOS)
     img.paste(lock, (M * S, M * S), lock)
 
-    d.text(((M + lw / S + 20) * S, (M + LH - 18) * S),
-           "for creators", font=geist(19, 500), fill=JAM)
+    lab = font("mono", 17 * S)
+    draw_tracked(d, ((M + lw / S + 20) * S, (M + LH - 12) * S), "FOR CREATORS", lab, JAM, 0.06 * 17 * S, anchor_baseline=True)
 
     # headline
-    h1 = geist(76, 600)
+    h1 = font("syne", 72 * S, 600)
     d.text((M * S, 258 * S), "Get paid for",        font=h1, fill=WHITE)
     d.text((M * S, 346 * S), "every 1,000",         font=h1, fill=WHITE)
     d.text((M * S, 434 * S), "views.",              font=h1, fill=JAM)
 
-    sub = geist(25, 400)
+    sub = font("inter", 25 * S, 400)
     for i, line in enumerate([
         "Make videos for brands on your own account.",
         "A set rate for every 1,000 views your post gets.",
@@ -84,7 +75,7 @@ def main():
         d.text((M * S, (566 + i * 38) * S), line, font=sub, fill=DIM)
 
     # three facts, each on its own rule
-    fact = geist(24, 500)
+    fact = font("inter", 24 * S, 500)
     facts = ["No follower minimum",
              "You post on your own channels",
              "Rate agreed in writing before you film"]
@@ -97,7 +88,7 @@ def main():
     d.rectangle([M * S, y * S, (W - M) * S, y * S + S - 1], fill=(48, 45, 43))
 
     # CTA pill
-    pill = geist(25, 600)
+    pill = font("inter", 25 * S, 500)
     label = "Apply at hypjam.com/apply"
     tw = d.textlength(label, font=pill)
     x0, y0 = M * S, 962 * S
@@ -110,8 +101,8 @@ def main():
         d.line(seg, fill=INK, width=round(2.6 * S))
     d.text((x0 + (30 + 20 + 12) * S, y0 + ph // 2), label, font=pill, fill=INK, anchor="lm")
 
-    d.text((M * S, (H - M - 6) * S), "hypjam · ugc agency · london",
-           font=geist(20, 400), fill=(112, 108, 105), anchor="ls")
+    draw_tracked(d, (M * S, (H - M - 6) * S), "HYPJAM · UGC AGENCY · LONDON", font("mono", 16 * S),
+                 (112, 108, 105), 0.06 * 16 * S, anchor_baseline=True)
 
     out = os.path.join(ROOT, "assets/brand/creator-poster.png")
     img.resize((W, H), Image.LANCZOS).save(out, "PNG", optimize=True)

@@ -17,10 +17,14 @@
 <link rel="apple-touch-icon" href="/assets/brand/hook-apple-touch-icon.png?v=77c2d5aa">
 <link rel="manifest" href="/assets/brand/site.webmanifest?v=d9a721b3">
 <link rel="alternate" type="application/rss+xml" title="hypjam blog" href="/feed.xml">
-<link rel="preload" href="/assets/fonts/newsreader-ec9fd369.woff2?v=662a6e2a" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/geist-8740fcb6.woff2?v=9d846db8" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/fonts/newsreader.css?v=4713faa8">
-<link rel="stylesheet" href="/assets/fonts/geist.css?v=2ee70623">
+<!-- type: Syne (display) + Inter (body/UI) + DM Mono (labels), the typography of 8x.social.
+     Only the two latin files the first paint needs are preloaded; DM Mono and every
+     other subset load on demand through unicode-range. -->
+<link rel="preload" href="/assets/fonts/syne-5be571f9.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-1dc044f4.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fonts/syne.css?v=9520e07c">
+<link rel="stylesheet" href="/assets/fonts/inter.css?v=dd5d4566">
+<link rel="stylesheet" href="/assets/fonts/dm-mono.css?v=2710007c">
 <link rel="stylesheet" href="/assets/site.css">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="hypjam">
@@ -374,20 +378,20 @@
         <div class="marquee hero-marquee" role="list" aria-label="Platforms hypjam ships to">
           <div class="marquee__track" data-hero-marquee-track>
             <div class="marquee__group" aria-hidden="false">
-              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/tiktok.svg?v=b112584c" alt="TikTok" draggable="false" decoding="async"></div>
-              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/instagram.svg?v=ab11e0b5" alt="Instagram Reels" draggable="false" decoding="async"></div>
-              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/youtube.svg?v=012683f0" alt="YouTube Shorts" draggable="false" decoding="async"></div>
-              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/snapchat.svg?v=3245a77b" alt="Snapchat" draggable="false" decoding="async"></div>
-              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/pinterest.svg?v=5681e831" alt="Pinterest" draggable="false" decoding="async"></div>
-              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/meta.svg?v=609d8cf5" alt="Meta ads" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/tiktok.svg?v=7d7f2f1c" alt="TikTok" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/instagram.svg?v=6c9b9ad1" alt="Instagram Reels" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/youtube.svg?v=00321313" alt="YouTube Shorts" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/snapchat.svg?v=45341bcf" alt="Snapchat" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/pinterest.svg?v=6c57571d" alt="Pinterest" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/meta.svg?v=bc91c9f6" alt="Meta ads" draggable="false" decoding="async"></div>
             </div>
             <div class="marquee__group" aria-hidden="true">
-              <div class="marquee__cell"><img src="/assets/img/platforms/tiktok.svg?v=b112584c" alt="" draggable="false" decoding="async"></div>
-              <div class="marquee__cell"><img src="/assets/img/platforms/instagram.svg?v=ab11e0b5" alt="" draggable="false" decoding="async"></div>
-              <div class="marquee__cell"><img src="/assets/img/platforms/youtube.svg?v=012683f0" alt="" draggable="false" decoding="async"></div>
-              <div class="marquee__cell"><img src="/assets/img/platforms/snapchat.svg?v=3245a77b" alt="" draggable="false" decoding="async"></div>
-              <div class="marquee__cell"><img src="/assets/img/platforms/pinterest.svg?v=5681e831" alt="" draggable="false" decoding="async"></div>
-              <div class="marquee__cell"><img src="/assets/img/platforms/meta.svg?v=609d8cf5" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/tiktok.svg?v=7d7f2f1c" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/instagram.svg?v=6c9b9ad1" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/youtube.svg?v=00321313" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/snapchat.svg?v=45341bcf" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/pinterest.svg?v=6c57571d" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/meta.svg?v=bc91c9f6" alt="" draggable="false" decoding="async"></div>
             </div>
             <!-- 20-hero.js clones the hidden group until six groups exist (the reference site renders six) -->
           </div>
@@ -750,20 +754,20 @@
         <div class="marquee hero-marquee" role="list" aria-label="Platforms hypjam ships to">
           <div class="marquee__track" data-hero-marquee-track>
             <div class="marquee__group" aria-hidden="false">
-              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/tiktok.svg?v=b112584c" alt="TikTok" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/instagram.svg?v=ab11e0b5" alt="Instagram Reels" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/youtube.svg?v=012683f0" alt="YouTube Shorts" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/snapchat.svg?v=3245a77b" alt="Snapchat" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/pinterest.svg?v=5681e831" alt="Pinterest" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/meta.svg?v=609d8cf5" alt="Meta ads" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/tiktok.svg?v=7d7f2f1c" alt="TikTok" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/instagram.svg?v=6c9b9ad1" alt="Instagram Reels" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/youtube.svg?v=00321313" alt="YouTube Shorts" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/snapchat.svg?v=45341bcf" alt="Snapchat" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/pinterest.svg?v=6c57571d" alt="Pinterest" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="/assets/img/platforms/meta.svg?v=bc91c9f6" alt="Meta ads" draggable="false" decoding="async" loading="lazy"></div>
             </div>
             <div class="marquee__group" aria-hidden="true">
-              <div class="marquee__cell"><img src="/assets/img/platforms/tiktok.svg?v=b112584c" alt="" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell"><img src="/assets/img/platforms/instagram.svg?v=ab11e0b5" alt="" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell"><img src="/assets/img/platforms/youtube.svg?v=012683f0" alt="" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell"><img src="/assets/img/platforms/snapchat.svg?v=3245a77b" alt="" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell"><img src="/assets/img/platforms/pinterest.svg?v=5681e831" alt="" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell"><img src="/assets/img/platforms/meta.svg?v=609d8cf5" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/tiktok.svg?v=7d7f2f1c" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/instagram.svg?v=6c9b9ad1" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/youtube.svg?v=00321313" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/snapchat.svg?v=45341bcf" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/pinterest.svg?v=6c57571d" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="/assets/img/platforms/meta.svg?v=bc91c9f6" alt="" draggable="false" decoding="async" loading="lazy"></div>
             </div>
           </div>
         </div>

@@ -153,14 +153,13 @@ Tokens come from `src/css/00-tokens.css` (CONTRACT §4) once it exists; until th
 --pnl-jam-a:  rgba(255,111,31,.18)      accent chip fill
 ```
 
-Type: body `Geist` (`var(--font-body, 'Geist', system-ui, sans-serif)`). Sizes used, nothing else:
+Type: body `Inter` (`var(--font-body, 'Inter', system-ui, sans-serif)`). Sizes used, nothing else:
 **13** (bubble text, row values, button), **12** (labels, row text, list items), **11** (mono data,
 status), **9** (chips), **8** (tile labels, phone HUD), **20** (tile numerals only). Line-height
 1.35. Weight 400; 500 only on chips and one title per panel. Mono data labels use
-`.pnl-mono` = `ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace` at 11px,
-uppercase, tracking .04em — the reference site renders these in `gtStandardMono`; we have no mono in
-`assets/fonts`, so the system stack stands in (if a mono is ever self-hosted, change one line in
-`_panels.css`). Never use Newsreader inside a panel: the serif is the card title's.
+`.pnl-mono` = `--pnl-mono-stack` = `var(--font-mono)` → **DM Mono** at 11px, uppercase, tracking
+.04em (DM Mono is the site's label face since the 2026-09-26 move to 8x.social's typography).
+Never use the display face (Syne) inside a panel: it belongs to the card title and headlines.
 
 Rule of accent: each panel uses `--pnl-jam` for **one** kind of thing (brief: the signed tick;
 hooks: the picked ticks; casting: the shortlist ticks; shoot: the REC dot; ship: the captions

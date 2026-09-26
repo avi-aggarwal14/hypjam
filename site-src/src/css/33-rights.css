@@ -92,12 +92,13 @@
   color: var(--grey);
 }
 .rights-title {
-  font-size: var(--fs-body);
+  font-size: var(--fs-eyebrow);
   font-weight: var(--fw-body);
-  line-height: 1.4;
-  letter-spacing: normal;
+  line-height: 1.43;
+  letter-spacing: var(--ls-label);
   text-transform: uppercase;
   color: var(--grey);
+  font-family: var(--font-mono);
 }
 .rights-desc { line-height: var(--lh-body); color: var(--grey); }
 
@@ -136,6 +137,6 @@
      the "Learn more" link and every cell's title/description are text-[16px]. */
   .rights-sub,
   .rights-more,
-  .rights-cell-text,
-  .rights-title { font-size: var(--fs-body-tp); }
+  .rights-cell-text { font-size: var(--fs-body-tp); }
+  .rights-title { font-size: 13px; }   /* DM Mono caps label steps down on phones */
 }

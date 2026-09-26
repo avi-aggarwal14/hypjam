@@ -12,7 +12,7 @@
                 sand-l · label 16 grey
      wall       flex-col items-center gap-[84px] bg-white pt-[120px] pb-[72px]
                 three columns 395 wide, gap 42 (1268 total) · card tint
-                sand/40, radius 8, padding 24 · quote Geist 18 · name 14/500
+                sand/40, radius 8, padding 24 · quote Inter 500 16 · name 14/500
                 · role 13 grey
      platforms  flex-col gap-10 px-page pt-[72px] pb-[120px] · 11px caps
                 label · large tiles 203 tall, gap 18 · grid tiles 255 tall,
@@ -75,12 +75,12 @@
 .work-fact-num {
   font-size: 80px;
   line-height: 1;
-  letter-spacing: -1.6px;
+  letter-spacing: var(--ls-display);
   color: var(--sand-l);
-  font-variant-numeric: tabular-nums lining-nums;
+  font-variant-numeric: lining-nums;
   white-space: nowrap;
 }
-.work-fact-suffix { font-size: 42px; letter-spacing: -.84px; }
+.work-fact-suffix { font-size: 40px; letter-spacing: var(--ls-display); }
 .work-fact-label {
   font-family: var(--font-body);
   font-size: 16px;
@@ -135,10 +135,10 @@
 }
 .work-plat-group { display: flex; flex-direction: column; gap: 20px; }
 .work-plat-label {
-  font-family: var(--font-body);
+  font-family: var(--font-mono);
   font-size: 11px;
   line-height: 1;
-  letter-spacing: .1em;
+  letter-spacing: var(--ls-label);
   text-transform: uppercase;
   color: var(--grey);
 }
@@ -163,7 +163,7 @@
   font-weight: var(--fw-medium);
   font-size: 22px;
   line-height: 1.2;
-  letter-spacing: -.22px;
+  letter-spacing: -.02em;
   text-align: center;
 }
 
@@ -294,8 +294,8 @@
   .work-facts { gap: 48px; padding: 80px var(--px-page); }
   .work-facts-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .work-fact { height: 180px; }
-  .work-fact-num { font-size: 56px; letter-spacing: -1.12px; }
-  .work-fact-suffix { font-size: 32px; letter-spacing: -.64px; }
+  .work-fact-num { font-size: 56px; letter-spacing: var(--ls-display); }
+  .work-fact-suffix { font-size: 32px; letter-spacing: var(--ls-display); }
   .work-wall { gap: 48px; padding: 80px var(--px-page) 48px; }
   .work-wall-grid { grid-template-columns: minmax(0, 1fr); }
   .work-quote { min-height: 0; gap: 32px; }
@@ -309,6 +309,6 @@
   .work-hero { padding-top: 120px; }
   .work-plat-row, .work-plat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .work-plat-tile, .work-plat-tile--sm { height: 120px; padding: 16px; }
-  .work-plat-text { font-size: 16px; letter-spacing: -.16px; }
+  .work-plat-text { font-size: 16px; letter-spacing: -.02em; }
   .work-plat-glyph { width: 18px; height: 18px; }
 }
