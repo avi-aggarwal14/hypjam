@@ -138,14 +138,14 @@
   min-height: 70px;
   font-family: var(--font-display);
   font-weight: var(--fw-display);
-  font-style: normal;
+  font-style: italic;
   font-optical-sizing: auto;
   font-synthesis: none;
   -webkit-font-smoothing: auto;
   text-rendering: geometricPrecision;
-  font-size: 24px;
-  line-height: 1.333;
-  letter-spacing: var(--ls-display);
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: -.32px;
   color: var(--white);
   white-space: nowrap;
 }
@@ -221,7 +221,7 @@
   .quo-text { max-width: none; }
 }
 @media (max-width: 600px) {                 /* max-tp */
-  .quo-sig { font-size: 22px; min-height: 64px; }
+  .quo-sig { font-size: 28px; min-height: 64px; }
 }
 
 /* ---------- reduced motion: final states, no crossfade, no autoplay (JS) ---------- */

@@ -59,8 +59,8 @@
 .book-intro { max-width: 640px; margin: 0 auto; text-align: center; }
 .book-h1 {
   font-size: 40px;
-  line-height: 1.2;
-  letter-spacing: var(--ls-display);
+  line-height: 1.08;
+  letter-spacing: -.8px;
   color: var(--black);
 }
 .book-sub {
@@ -180,7 +180,7 @@
   .book-foot { margin-top: 32px; }
 }
 @media (max-width: 600px) {
-  .book-h1 { font-size: 32px; letter-spacing: var(--ls-display); line-height: 1.1875; }
+  .book-h1 { font-size: 32px; letter-spacing: -.64px; }
   .book-iframe { height: 940px; }               /* cal.com's stacked mobile layout is taller */
   .book-rights { width: 100%; }
 }

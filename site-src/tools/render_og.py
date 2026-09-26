@@ -6,19 +6,28 @@ it advertised an invented "2,400,000,000+ views" figure (CONTRACT §10 forbids
 invented metrics), clipped its own headline, and named the retired vercel.app
 host. Regenerate with: python3 tools/render_og.py
 
-Type is the site's own (8x.social's system): Syne 600 headline, Inter body and
-button, DM Mono label. Needs fonttools + brotli + Pillow (see tools/_fonts.py).
+Needs fonttools + brotli to decode the shipped woff2, and Pillow to draw.
 Renders at 2x and downsamples, so the type stays crisp at 1200x630.
 """
-import os, sys
-from PIL import Image, ImageDraw
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _fonts import font, draw_tracked
+import io, os, sys
+from PIL import Image, ImageDraw, ImageFont
+from fontTools.ttLib import TTFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 W, H, S = 1200, 630, 2                      # card size, supersample factor
 BLACK, JAM, WHITE = (10, 10, 10), (255, 111, 31), (255, 255, 255)
+LATIN = "assets/fonts/geist-8740fcb6.woff2"  # the U+0000-00FF subset, variable wght 100-900
 LOCKUP = "assets/brand/logos/hypjam-lockup-on-dark.png"
+
+
+def geist(size, weight):
+    """Load the shipped variable Geist at a weight, via an in-memory woff2 -> ttf."""
+    f = TTFont(os.path.join(ROOT, LATIN))
+    buf = io.BytesIO(); f.flavor = None; f.save(buf); buf.seek(0)
+    font = ImageFont.truetype(buf, size * S)
+    try: font.set_variation_by_axes([weight])
+    except Exception: pass
+    return font
 
 
 def main():
@@ -37,20 +46,20 @@ def main():
     lh = 56 * S; lw = round(lock.width * lh / lock.height)
     img.paste(lock.resize((lw, lh), Image.LANCZOS), (88 * S, 122 * S), lock.resize((lw, lh), Image.LANCZOS))
 
-    # headline — the site's own homepage line, no claims in it · Syne 600, sentence case
-    h1 = font("syne", 58 * S, 600)
-    d.text((88 * S, 216 * S), "Find the format.", font=h1, fill=WHITE)
-    d.text((88 * S, 282 * S), "Then film it.", font=h1, fill=JAM)
+    # headline — the site's own homepage line, no claims in it
+    h1 = geist(61, 600)
+    d.text((88 * S, 220 * S), "find the format.", font=h1, fill=WHITE)
+    d.text((88 * S, 285 * S), "then film it.", font=h1, fill=JAM)
 
     # sub
-    sub = font("inter", 22 * S, 400)
-    for i, line in enumerate(["The UGC agency in London. Everyday creators, briefed,",
+    sub = geist(22, 400)
+    for i, line in enumerate(["the ugc agency in london. everyday creators — briefed,",
                               "cast, directed and edited by one team."]):
         d.text((88 * S, (376 + i * 32) * S), line, font=sub, fill=(186, 186, 186))
 
     # call-to-action pill
-    pill = font("inter", 21 * S, 500)
-    label = "Book a call"
+    pill = geist(21, 600)
+    label = "book a call"
     tw = d.textlength(label, font=pill)
     x0, y0 = 88 * S, 492 * S
     pw, ph = tw + (27 + 27 + 19 + 11) * S, 52 * S
@@ -62,11 +71,8 @@ def main():
     d.text((x0 + (27 + 19 + 11) * S, y0 + ph // 2), label, font=pill, fill=BLACK, anchor="lm")
 
     # the live host, bottom right
-    dom = font("mono", 17 * S)
-    label = "HYPJAM.COM"
-    from _fonts import tracked_width
-    tw = tracked_width(d, label, dom, 0.06 * 17 * S)
-    draw_tracked(d, ((W - 88) * S - tw, (H - 98) * S), label, dom, (118, 118, 118), 0.06 * 17 * S, anchor_baseline=True)
+    dom = geist(21, 400)
+    d.text(((W - 88) * S, (H - 98) * S), "hypjam.com", font=dom, fill=(118, 118, 118), anchor="rs")
 
     out = os.path.join(ROOT, "assets/brand/og.png")
     img.resize((W, H), Image.LANCZOS).save(out, "PNG", optimize=True)

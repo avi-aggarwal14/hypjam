@@ -97,7 +97,7 @@
 /* ---------- shared text roles ---------- */
 .page-h2 {                                  /* the reference site h2: 42/1.1/-.84 → ≤600 28/-.56 */
   font-family: var(--font-display);
-  font-weight: var(--fw-display);
+  font-weight: 400;
   font-optical-sizing: auto;
   font-synthesis: none;
   -webkit-font-smoothing: auto;
@@ -106,7 +106,7 @@
   line-height: var(--lh-h2);
   letter-spacing: var(--ls-h2);
   color: var(--black);
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 .page-p { font-size: 16px; line-height: 24px; color: var(--grey); max-width: 600px; text-wrap: pretty; }
 .page-p--sm { font-size: 14px; line-height: 1.5; }
@@ -122,13 +122,12 @@
 }
 .page-eyebrow::before { content: ""; flex-shrink: 0; width: 20px; height: 1px; background: currentColor; }
 .page-eyebrow--caps {                       /* "PRODUCT" above the index h1: 12px caps, no dash */
-  font-size: var(--fs-eyebrow);
-  letter-spacing: var(--ls-label);
+  font-size: 12px;
+  letter-spacing: .08em;
   text-transform: uppercase;
-  font-family: var(--font-mono);
 }
 .page-eyebrow--caps::before { display: none; }
-@media (max-width: 600px) { .page-h2 { font-size: var(--fs-h2-tp); letter-spacing: var(--ls-h2-tp); line-height: var(--lh-h2-tp); } }
+@media (max-width: 600px) { .page-h2 { font-size: var(--fs-h2-tp); letter-spacing: var(--ls-h2-tp); } }
 
 /* ---------- .page-split · eyebrow left, content starts at 932px ----------
    the reference site's h2 in every list/films/steps/hood/FAQ header starts at
@@ -156,13 +155,12 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 0 10px;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1;
-  letter-spacing: var(--ls-label);
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--grey);
   padding-top: 8px;
-  font-family: var(--font-mono);
 }
 .page-hero__crumb a { color: var(--grey); transition: color var(--dur); }
 .page-hero__crumb a:hover { color: var(--black); }
@@ -176,16 +174,16 @@
   margin-top: 28px;
   max-width: 560px;   /* the reference site's longest h1 line measures 511px of ink */
   font-family: var(--font-display);
-  font-weight: var(--fw-display);
+  font-weight: 400;
   font-optical-sizing: auto;
   font-synthesis: none;
   -webkit-font-smoothing: auto;
   text-rendering: geometricPrecision;
   font-size: 56px;
-  line-height: 1.143;
-  letter-spacing: var(--ls-display);
+  line-height: 58px;
+  letter-spacing: -1.12px;
   color: var(--black);
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 .page-hero--split .page-hero__title { max-width: 560px; }
 .page-hero__intro { margin-top: 20px; max-width: 600px; font-size: 16px; line-height: 24px; color: var(--grey); text-wrap: pretty; }
@@ -203,7 +201,7 @@
   .page-hero__platforms { margin-top: 48px; }
 }
 @media (max-width: 600px) {
-  .page-hero__title { font-size: 34px; line-height: 40px; letter-spacing: var(--ls-display); margin-top: 22px; }
+  .page-hero__title { font-size: 36px; line-height: 38px; letter-spacing: -.72px; margin-top: 22px; }
   .page-hero__intro { font-size: 14px; line-height: 1.5; }
   .page-hero__visual .page-panel { aspect-ratio: 4 / 5; }
 }
@@ -268,14 +266,14 @@
 .page-list__name {
   grid-column: 2 / 6;
   font-family: var(--font-display);
-  font-weight: var(--fw-display);
+  font-weight: 400;
   font-optical-sizing: auto;
   font-synthesis: none;
   -webkit-font-smoothing: auto;
   text-rendering: geometricPrecision;
-  font-size: 24px;
-  line-height: 1.333;
-  letter-spacing: var(--ls-display);
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -.52px;
   color: var(--black);
   transition: color var(--dur);
 }
@@ -292,7 +290,7 @@
 @media (max-width: 800px) {
   .page-list__row { grid-template-columns: 40px minmax(0, 1fr) auto; column-gap: 16px; min-height: 0; padding: 22px 0; row-gap: 8px; }
   .page-list__n { grid-column: 1; grid-row: 1; }
-  .page-list__name { grid-column: 2; grid-row: 1; font-size: 22px; letter-spacing: var(--ls-display); line-height: 1.364; }
+  .page-list__name { grid-column: 2; grid-row: 1; font-size: 22px; letter-spacing: -.44px; }
   .page-list__blurb { grid-column: 2; grid-row: 2; }
   .page-list__explore { grid-column: 3; grid-row: 1; }
   .page-list__head { margin-bottom: 32px; }
@@ -307,15 +305,15 @@
 .page-media__frame.reserved { background: var(--reserved-fill); display: flex; align-items: center; justify-content: center; }
 .page-media__frame .tag-soon { position: absolute; left: 16px; bottom: 16px; }
 .page-media__meta { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-top: 20px; }
-.page-media__eyebrow { font-size: 11px; line-height: 1.3; letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--grey); font-family: var(--font-mono); }
+.page-media__eyebrow { font-size: 11px; line-height: 1.3; letter-spacing: .08em; text-transform: uppercase; color: var(--grey); }
 .page-media__title {
   margin-top: 6px;
   font-family: var(--font-display);
-  font-weight: var(--fw-display);
+  font-weight: 400;
   font-optical-sizing: auto;
   font-size: 18px;
-  line-height: 1.333;
-  letter-spacing: 0;
+  line-height: 1.25;
+  letter-spacing: -.2px;
   color: var(--black);
 }
 .page-media__action { padding-bottom: 2px; }
@@ -361,24 +359,24 @@
 .page-stat { text-align: center; min-width: 0; }
 .page-stat__num {
   font-family: var(--font-display);
-  font-weight: var(--fw-display);
+  font-weight: 400;
   font-optical-sizing: auto;
   font-synthesis: none;
   -webkit-font-smoothing: auto;
   text-rendering: geometricPrecision;
-  font-size: 56px;
+  font-size: 64px;
   line-height: 1;
-  letter-spacing: var(--ls-display);
+  letter-spacing: -1.28px;
   color: var(--black);
-  font-variant-numeric: lining-nums;
+  font-variant-numeric: tabular-nums lining-nums;
   white-space: nowrap;
 }
-.page-stat__label { margin-top: 28px; padding-inline: 8px; font-size: 12px; line-height: 1.4; letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--grey); text-wrap: balance; font-family: var(--font-mono); }
+.page-stat__label { margin-top: 28px; padding-inline: 8px; font-size: 12px; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; color: var(--grey); text-wrap: balance; }
 @media (max-width: 1200px) { .page-stats__row { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 56px; } }
-@media (max-width: 800px)  { .page-stats__row { margin-top: 56px; } .page-stat__num { font-size: 48px; letter-spacing: var(--ls-display); } .page-stat__label { margin-top: 18px; } }
+@media (max-width: 800px)  { .page-stats__row { margin-top: 56px; } .page-stat__num { font-size: 48px; letter-spacing: -.96px; } .page-stat__label { margin-top: 18px; } }
 /* word values ("30 minutes", "2 to 5") must wrap on a phone rather than
    push the page sideways; bare counting numerals are one token anyway */
-@media (max-width: 600px)  { .page-stat__num { font-size: 40px; letter-spacing: var(--ls-display); white-space: normal; text-wrap: balance; } }
+@media (max-width: 600px)  { .page-stat__num { font-size: 40px; letter-spacing: -.8px; white-space: normal; text-wrap: balance; } }
 
 /* ---------- .page-panel · the light gradient stage every mock sits on ---------- */
 .page-panel {
@@ -498,18 +496,18 @@
 }
 .page-compare__cell:nth-child(3n + 1) { border-left: 0; }
 .page-compare__cell:nth-child(n + 4) { border-top: 1px solid var(--sand-l-60); }
-.page-compare__label { font-size: 12px; line-height: 1; letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--grey); font-family: var(--font-mono); }
+.page-compare__label { font-size: 12px; line-height: 1; letter-spacing: .08em; text-transform: uppercase; color: var(--grey); }
 .page-compare__value {
   margin-top: 12px;
   font-family: var(--font-display);
-  font-weight: var(--fw-display);
+  font-weight: 400;
   font-optical-sizing: auto;
   font-synthesis: none;
   -webkit-font-smoothing: auto;
   text-rendering: geometricPrecision;
-  font-size: 24px;
-  line-height: 1.333;
-  letter-spacing: var(--ls-display);
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -.52px;
   color: var(--black);
 }
 .page-compare__body { margin-top: auto; padding-top: 40px; font-size: 14px; line-height: 1.5; color: var(--grey); }
@@ -543,7 +541,7 @@
 .page-quote__text {
   max-width: 780px;
   font-family: var(--font-display);
-  font-weight: var(--fw-display);
+  font-weight: 400;
   font-optical-sizing: auto;
   font-synthesis: none;
   -webkit-font-smoothing: auto;
@@ -552,7 +550,7 @@
   line-height: var(--lh-quote);
   letter-spacing: var(--ls-quote);
   hanging-punctuation: first last allow-end;
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 @supports not (hanging-punctuation: first) { .page-quote__text { text-indent: -.4em; } }
 .page-quote__attr { margin-top: auto; padding-top: 48px; }
@@ -571,7 +569,7 @@
   .page-quote__media { min-height: 220px; order: -1; }
   .page-quote--reserved .page-quote__media { border-left: 0; border-bottom: 1px dashed var(--hairline-strong); }
 }
-@media (max-width: 600px) { .page-quote__text { font-size: var(--fs-quote-tp); letter-spacing: var(--ls-quote-tp); line-height: var(--lh-quote-tp); } }
+@media (max-width: 600px) { .page-quote__text { font-size: var(--fs-quote-tp); letter-spacing: var(--ls-quote-tp); } }
 .page-quote + .page-split { margin-top: 120px; }
 @media (max-width: 800px) { .page-quote + .page-split { margin-top: 64px; } }
 
@@ -701,7 +699,7 @@
 .mock-star { color: var(--jam); font-size: 12px; line-height: 1; flex-shrink: 0; }
 .mock-x { color: var(--grey); font-size: 12px; line-height: 1; flex-shrink: 0; }
 .mock-hl { margin: 4px 0 8px; padding: 10px 12px; border-radius: 8px; background: #f7f5f0; font-size: 14px; line-height: 1.4; color: var(--black); }
-.mock-hl--serif { font-family: var(--font-display); font-size: 18px; line-height: 1.3; letter-spacing: 0; font-weight: var(--fw-display); }
+.mock-hl--serif { font-family: var(--font-display); font-size: 18px; line-height: 1.3; letter-spacing: -.2px; }
 .mock-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 20px; }
 .mock-cols--eq { align-items: center; }
 .mock-eq { display: flex; align-items: center; justify-content: center; font-size: 16px; color: var(--grey); }

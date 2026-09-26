@@ -348,18 +348,10 @@ def _asset_hash(url: str) -> str:
     return digest
 
 
-# Font files are already named by their own content hash (syne-5be571f9.woff2),
-# and the font CSS requests them by that bare URL. A preload must use the exact
-# same URL or the browser fetches the file twice, so these are left untouched.
-_HASHED_NAME = re.compile(r"-[0-9a-f]{8}\.woff2$")
-
-
 def fingerprint_assets(html: str) -> str:
     """Append ?v=<content hash> to every root-relative /assets/ URL that exists."""
     def sub(m: re.Match) -> str:
         url = m.group(1)
-        if _HASHED_NAME.search(url):
-            return url
         digest = _asset_hash(url)
         return f"{url}?v={digest}" if digest else url
     return _ASSET_REF.sub(sub, html)

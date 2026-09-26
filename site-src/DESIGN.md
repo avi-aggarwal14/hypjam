@@ -40,13 +40,10 @@ Put the attribute (or class) on a section and every `.btn`, `.hairline`, `.t-bod
 
 ## 3. Type
 
-**Since 2026-09-26 the type is 8x.social's Core system** (homepage, /full-service, /tracking, /creator-network), measured with headless Chrome and a CDP platform-font check. Full spec, captures and tooling: `~/Desktop/UGC Agency/design-systems/8x-social/` (typography.md is the source of truth). Colours, surfaces and layout below are unchanged.
-
-- **Syne 600** (`--font-display`, `--fw-display: 600`) — headlines, pull quotes, display numerals, list/row names. Sentence case. Tracking `-0.01em` at every size (`--ls-display`). Leading = size + 8px on desktop (56/64, 40/48, 28/36, 24/32), size + 6px on phones (34/40, 32/38).
-- **Inter** (`--font-body`) — body 16/1.5 at `-0.011em` (inherited from `body`), small 14/1.5 at `-0.014em`; UI (buttons, nav) weight 500 (`--fw-ui`); card titles Inter 500 24/1.2/`-0.021em` and testimonial text Inter 500 16/1.5, as on 8x's homepage.
-- **DM Mono 400** (`--font-mono`) — uppercase eyebrows and labels, `+0.06em` (`--ls-label`), dim tone; section eyebrows 14px, UI labels 11–13px; 500 for micro tags.
-
-Loaded by the head partial from `/assets/fonts/syne.css` (wght 400–800 variable), `/assets/fonts/inter.css` (wght 100–900 variable, roman + italic) and `/assets/fonts/dm-mono.css` (400, 500). Only the Syne and Inter latin files are preloaded. Each CSS file ends with a metric-matched `'<family> Fallback'` face on local Arial (next/font's overrides, as 8x serves them), so there is no reflow when the web font lands. Not `@import`ed in site.css (concatenation would make the @import invalid). The class table below is historical (the Newsreader/Geist system); current values live in `00-tokens.css` and `02-typography.css`.
+Faces: the reference site = `publishSerif, Georgia, "Times New Roman", serif` (display) and `gtStandard, Arial, Helvetica, sans-serif` (body).
+Ours = **Newsreader** (`--font-display`, opsz axis, `font-optical-sizing:auto`) and **Geist** (`--font-body`). Loaded by the head partial from
+`/assets/fonts/newsreader.css` (400 normal+italic, 500) and `/assets/fonts/geist.css` (300/400/500/600). Not `@import`ed in site.css (concatenation would make the @import invalid).
+the reference site's `[data-landing] .font-display`: `font-synthesis:none; -webkit-font-smoothing:auto; text-rendering:geometricprecision; font-weight:400` — replicated on every `.t-*` display class. Body is `-webkit-font-smoothing:antialiased` (the reference site's `body.antialiased`).
 
 | class | the reference site source | size / line-height / letter-spacing | downshift |
 |---|---|---|---|
@@ -135,12 +132,12 @@ The circle on dark is `--jam` with a black arrow (contract). the reference site'
 Include once after `<body>` (`{{include:partials/icons.html}}`). `<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>`.
 ids: `i-arrow-right i-arrow-left i-arrow-up-right i-arrow-down i-plus i-minus i-chevron-left i-chevron-right i-chevron-down i-chevron-up i-play i-play-outline i-check i-close i-dot i-external` (stroke icons, 12/16 grids, the reference site's 1.3 stroke) ·
 `p-tiktok p-instagram p-youtube p-snapchat p-pinterest p-meta` (24-grid platform glyphs, original monochrome marks: a note, a camera, a portrait phone with a play triangle, a ghost, a map pin, a loop) ·
-`wm-tiktok wm-instagram wm-youtube wm-snapchat wm-pinterest wm-meta` (wordmarks, viewBox height 32, widths 113.6 / 229.7 / 220.6 / 149.8 / 144.2 / 149.3 measured in Chrome in Inter 500) ·
+`wm-tiktok wm-instagram wm-youtube wm-snapchat wm-pinterest wm-meta` (wordmarks, viewBox height 32, widths 113.6 / 229.7 / 220.6 / 149.8 / 144.2 / 149.3 measured in real Geist) ·
 `seal-usage-rights seal-releases seal-disclosure seal-uk-gdpr seal-shot-on-phones` (240×240). Wordmark and seal symbols draw in `currentColor`.
 
 ### Wordmarks `assets/img/platforms/{tiktok,instagram,youtube,snapchat,pinterest,meta}.svg`
-Typographic: glyph (26px) + `<text>` in Inter 500 at 26px, letter-spacing -0.26, viewBox `0 0 W 32` (W = 36 + Chrome's getComputedTextLength, rounded up to 0.1).
-Each file embeds Inter pinned to wght 500 and subset to its own word as a data-URI `@font-face`, so it renders in Inter even as `<img>`. ≈2–3 KB each. Regenerate all three places (files, sprite, platforms row) with `python3 tools/build_platform_wordmarks.py`. Render at 22–42px tall like the reference site's logos (`.marquee__cell img{height:var(--logo-h,28px)}`), at opacity .5 via `.marquee`.
+Typographic: glyph (26px) + `<text>` in Geist 500 at 26px, letter-spacing -0.26, viewBox `0 0 W 32`, tight widths measured with Playwright.
+Each file embeds the Geist latin woff2 (29 KB) as a data-URI `@font-face` so it renders in Geist even as `<img>` (verified in the marquee screenshot). ≈40 KB each. Lighter alternative: the sprite symbols use the page's Geist. Render at 22–42px tall like the reference site's logos (`.marquee__cell img{height:var(--logo-h,28px)}`), at opacity .5 via `.marquee`.
 
 ### Seals `assets/badges/{usage-rights,releases,disclosure,uk-gdpr,shot-on-phones}.svg`
 240×240, one stroke colour (`stroke="currentColor"`, root `color="#7b7b7b"` so `<img>` shows the reference site's `bg-grey-m` grey; inline via the sprite to get `hover:bg-black`).
@@ -159,11 +156,11 @@ Demo page (every class, both pill sizes on black / white / sand-m, eyebrows, lin
 3. **Light-page pill** is light grey with a black circle, not a black pill (§5). `.btn--solid` exists if a black pill is wanted.
 4. the reference site's pill has **no border**; none added. The dark circle is jam (contract), the reference site's is white (`.btn--white-ico` is not provided; use `.btn--solid`'s circle tokens if ever needed).
 5. `--grey-m` naming differs from the reference site (§2). Use `--grey` for #7b7b7b copy and `--grey-60` / `.hairline--hud` for the HUD divider.
-6. Fonts are linked by the head partial, not imported here. Font files: `/assets/fonts/syne.css`, `/assets/fonts/inter.css`, `/assets/fonts/dm-mono.css`.
+6. Fonts are linked by the head partial, not imported here. Font files: `/assets/fonts/geist.css`, `/assets/fonts/newsreader.css`.
 7. The reduced-motion rule is global and uses `!important`; components that must keep a *final state* under reduced motion should set it in a `@media (prefers-reduced-motion: reduce)` block of their own (see the `.reveal` example at the end of 03-ui.css).
 8. Theme scoping is `data-theme="light|sand|sand-m|dark"` (or `.section--*`). The nav's `data-nav` / `data-nav-fill` attributes are untouched by these files; the nav agent should add `.btn--light` (or a `data-theme` on the nav) when it flips to the light state.
 9. The `.glint` conic gradient puts jam at 180°; the hero agent can reuse `.glint`/`.glint__spin` inside the HUD card instead of re-porting `.product-ui-stroke`.
-10. The wordmark SVG files embed a per-word Inter subset (~2–3 KB each); the sprite route (`#wm-*`) is ~1 KB per mark and uses the page's Inter.
+10. The wordmark SVG files are ~40 KB each because of the embedded font; the sprite route (`#wm-*`) is ~1 KB per mark and uses the page's Geist.
 
 ## 11. Index (generated from the files)
 

@@ -86,11 +86,10 @@ Exact values from the reference site's compiled CSS and computed styles. Put the
 - `--grey: #7b7b7b` (body copy on light), `--grey-m: #5b5b5b` (dividers), white alphas `.4 .45 .6 .7 .75`
 - `--jam: #ff6f1f` — the accent. Where the reference site used green (`#2bca95`): links on hover, the active stop marker, the animated card border glint, the arrow-circle in primary buttons, live dots, focus rings, the metrics numerals' tick. Rationed, never on large surfaces. **Pink, purple, blue are banned.**
 
-**Type** — superseded 2026-09-26: the site now uses 8x.social's Core typography (all SIL OFL, self-hosted). Spec: `~/Desktop/UGC Agency/design-systems/8x-social/typography.md`; tokens in `src/css/00-tokens.css`.
-- Display: **Syne 600** (`assets/fonts/syne.css`). h1 56/64 (≤1024 48/56, ≤600 34/40); h2 40/48 (≤600 32/38); pull quote 28/36; hero statement 34/42; list names 24/32; footer h2 40/48. Tracking -0.01em throughout. Sentence case.
-- Body/UI: **Inter** (`assets/fonts/inter.css`). p 16/24 at -0.011em (light pages colour `--grey`); small 14/1.5 at -0.014em; nav/buttons 14 weight 500; card titles 500 24/1.2/-0.021em; captions 13/1.4.
-- Labels: **DM Mono 400** (`assets/fonts/dm-mono.css`), uppercase, +0.06em — section eyebrows 14px, UI labels 11–13px.
-- Weights: display 600 only. Body 400; UI, titles and emphasis 500.
+**Type** — the reference site uses `publishSerif` (proprietary) and `gtStandard` (proprietary). We substitute with open faces that the reference site itself also loads and that match closely:
+- Display serif: **Newsreader** (self-hosted, `assets/fonts/newsreader.css`, opsz axis; use `font-optical-sizing:auto`). Sizes: h1 64/1.05/-1.28px; h2 42/1.1/-0.84px; trust paragraph and big quotes 36/1.2–1.25/-0.72…-0.84px; HUD card title 26/1.2/-0.52px; story quotes 18/1.25/-0.2px; footer h2 42.
+- Body grotesk: **Geist** (self-hosted, `assets/fonts/geist.css`). p 16/24 (light pages colour `--grey`); nav/buttons 14/1.4; captions 13/1.35; eyebrows 12–13 uppercase tracking .08em.
+- Weights: display 400 only. Body 400, feature titles 500.
 
 **Layout**
 - Page gutter `--px-page: 28px` (the reference site's computed `px-page` at 1920). Mobile 20px.

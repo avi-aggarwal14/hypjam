@@ -44,8 +44,8 @@
 .rights-hero-h1 {
   max-width: 520px;                         /* wraps "Rights and safety / at every layer", like the reference site's two lines */
   font-size: 56px;
-  line-height: 1.143;
-  letter-spacing: var(--ls-display);
+  line-height: 1;
+  letter-spacing: -1.12px;
   color: var(--black);
 }
 .rights-hero-sub {
@@ -95,7 +95,6 @@
   line-height: 1.1;
   letter-spacing: .04em;
   color: var(--grey);
-  font-weight: var(--fw-display);
 }
 
 /* ---------- how we protect… ---------- */
@@ -244,7 +243,7 @@
   .rights-acc-item:first-child { border-top: 1px solid var(--w15); }
 }
 @media (max-width: 600px) {
-  .rights-hero-h1 { font-size: 34px; letter-spacing: var(--ls-display); line-height: 1.176; }      /* the reference site: .title 40/-.8 under 601 */
+  .rights-hero-h1 { font-size: 40px; letter-spacing: -.8px; }      /* the reference site: .title 40/-.8 under 601 */
   .rights-hero-sub { font-size: 16px; }
   .rights-hero-seals { gap: 20px 24px; margin-top: 32px; }
   .rights-acc-btn { font-size: 15px; padding: 20px 0; gap: 16px; }
