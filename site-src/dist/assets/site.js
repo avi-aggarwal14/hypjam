@@ -1662,7 +1662,7 @@
   function schedule() {
     clearTimeout(timer);
     timer = null;
-    if (reduce || paused || !inView || !started) return;
+    if (reduce || paused || !inView || !started || slides.length < 2) return;   /* one slide: nothing to rotate */
     timer = setTimeout(function () { go((cur + 1) % slides.length); }, interval);
   }
 

@@ -2468,6 +2468,8 @@ html.nav-lock, html.nav-lock body { overflow: hidden; }
   transition: opacity 420ms ease-in-out;
 }
 .quo-card.is-reserved .quo-frame { opacity: 1; }
+/* one slide, no thumbnail row: match the bottom padding to the top */
+.quo-card--single { padding-bottom: 36px; }
 
 .quo-body { position: relative; }
 .quo-sizer {
