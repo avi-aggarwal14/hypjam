@@ -6900,6 +6900,29 @@ a.agency-fact-v:hover { text-decoration-color: var(--jam); }
 }
 .apply-input[aria-invalid="true"] { border-color: #c2402f; }
 .apply-textarea { resize: vertical; min-height: 110px; }
+.apply-textarea--short { min-height: 76px; }
+
+/* "Optional" beside a label: everything unmarked is required */
+.apply-opt {
+  margin-left: 6px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--grey);
+}
+/* a line of guidance under a fieldset's legend */
+.apply-set-help {
+  margin-top: -12px;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--grey);
+}
+
+/* socials: a compact two-column grid of short fields */
+.apply-socials { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 14px; }
+.apply-field--social .apply-label { font-size: 14px; }
+.apply-field--social .apply-input { margin-top: 6px; min-height: 42px; padding: 9px 12px; font-size: 14.5px; }
+.apply-error--set { margin-top: -14px; }
 
 .apply-select-wrap { order: 2; position: relative; margin-top: 10px; }
 .apply-select {
@@ -6937,6 +6960,28 @@ a.agency-fact-v:hover { text-decoration-color: var(--jam); }
 
 .apply-conditional { margin-top: -6px; }
 
+/* tick-box chips for "pick any that apply" */
+.apply-choices--multi { gap: 8px; }
+.apply-choice--chip { gap: 8px; padding: 9px 13px; font-size: 14px; line-height: 1.2; }
+.apply-choice--chip input { width: 15px; height: 15px; }
+
+/* the 18-or-over confirmation */
+.apply-check {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: var(--fw-medium);
+  line-height: 1.4;
+  color: var(--black);
+  cursor: pointer;
+}
+.apply-check input { accent-color: var(--jam); width: 18px; height: 18px; margin: 1px 0 0; flex-shrink: 0; }
+.apply-check input:focus-visible { outline: 2px solid var(--jam); outline-offset: 2px; }
+.apply-check ~ .apply-help { margin-left: 28px; }
+.apply-check ~ .apply-error { margin-left: 28px; }
+
 /* ---------- actions ---------- */
 .apply-actions { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
 /* The shared .btn is sized for nav and hero use, around 32px tall. That is too
@@ -6970,6 +7015,22 @@ a.agency-fact-v:hover { text-decoration-color: var(--jam); }
   color: var(--black);
 }
 .apply-status[data-tone="bad"] { background: rgba(194, 64, 47, .08); }
+.apply-fallback { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-top: 12px; }
+.apply-copy {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 10px;
+  background: var(--white);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: var(--fw-medium);
+  color: var(--black);
+  cursor: pointer;
+}
+.apply-copy:hover { border-color: var(--grey); }
+.apply-copy:focus-visible { outline: 2px solid var(--jam); outline-offset: 2px; }
+.apply-reopen { font-family: var(--font-body); font-size: 14px; color: var(--black); text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---------- the rail ---------- */
 .apply-after {
@@ -7022,6 +7083,13 @@ a.agency-fact-v:hover { text-decoration-color: var(--jam); }
 }
 
 /* ---------- breakpoints ---------- */
+@media (max-width: 600px) {
+  .apply-socials { gap: 12px 10px; }
+  .apply-input, .apply-field--social .apply-input { font-size: 16px; }   /* 16px stops iOS Safari zooming into each field on tap */
+}
+@media (max-width: 359px) {
+  .apply-socials { grid-template-columns: minmax(0, 1fr); }
+}
 @media (max-width: 900px) {
   .apply-wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .apply-after { position: static; order: 2; }

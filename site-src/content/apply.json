@@ -3,43 +3,185 @@
     "_about": "Content for /apply — the creator application form. Linked from /join and from the recruitment poster (assets/brand/creator-poster.png). British English. The form posts to the endpoint in form.endpoint; when that is empty it falls back to composing an email to form.fallback_to, so the page works with no backend. Do not add a hosted form service without adding it to the privacy policy's processor table.",
     "meta": "{path, title, description}",
     "hero": "{eyebrow, h1, intro}",
-    "form": "{endpoint, fallback_to, legend_*, fields..., submit, note}",
+    "form": "{endpoint, fallback_to, legend_*, *_label / *_help / *_placeholder, socials[{key, label, base}], audience_options[], content_options[], niche_options[], kit_options[], times_options[], found_options[], submit, note, copy, status_*}. socials[].base is the profile URL an @handle is turned into in the emailed application (the handle is appended).",
     "after": "{h2, steps[]}"
   },
   "meta": {
     "path": "/apply",
     "title": "Apply to create for hypjam: paid UGC briefs, no follower minimum",
-    "description": "Apply to hypjam's creator roster. Tell us about your work, share an example, and we will come back to you. Paid briefs for UK and remote creators, no follower minimum."
+    "description": "Apply to hypjam's creator roster in about four minutes: your socials, what you make and one example of your work. Paid briefs for UK and remote creators, no follower minimum."
   },
   "hero": {
     "eyebrow": "Creators",
     "h1": "Apply to create for hypjam.",
-    "intro": "A few questions, then an example of your work. There is no follower minimum and no showreel to build: one post you are proud of tells us more than a follower count. We read every application."
+    "intro": "It takes about four minutes. Tell us where to find you, what you make and one thing you are proud of. There is no follower minimum and no showreel to build, and a person reads every application."
   },
   "form": {
     "endpoint": "",
     "fallback_to": "avi@hypjam.com",
+    "optional": "Optional",
     "legend_you": "About you",
-    "legend_work": "Your work",
-    "legend_found": "Last thing",
     "name_label": "Your name",
     "name_help": "First and last is fine.",
     "email_label": "Email",
     "email_help": "We reply here. Nothing else goes to this address.",
+    "location_label": "Where are you based?",
+    "location_placeholder": "City, country",
+    "location_help": "Some briefs need creators in a particular place.",
+    "discord_label": "Discord username",
+    "discord_placeholder": "e.g. jamie.films",
+    "discord_help": "Your username, not your display name. Leave it blank if you do not use Discord.",
+    "legend_socials": "Your socials",
+    "socials_help": "Add every account you have. An @handle or a link both work. Skip any you do not use; we need at least one.",
+    "social_placeholder": "@handle or link",
+    "socials": [
+      {
+        "key": "tiktok",
+        "label": "TikTok",
+        "base": "https://www.tiktok.com/@"
+      },
+      {
+        "key": "instagram",
+        "label": "Instagram",
+        "base": "https://www.instagram.com/"
+      },
+      {
+        "key": "youtube",
+        "label": "YouTube",
+        "base": "https://www.youtube.com/@"
+      },
+      {
+        "key": "x",
+        "label": "X",
+        "base": "https://x.com/"
+      },
+      {
+        "key": "facebook",
+        "label": "Facebook",
+        "base": "https://www.facebook.com/"
+      },
+      {
+        "key": "snapchat",
+        "label": "Snapchat",
+        "base": "https://www.snapchat.com/add/"
+      },
+      {
+        "key": "threads",
+        "label": "Threads",
+        "base": "https://www.threads.net/@"
+      },
+      {
+        "key": "pinterest",
+        "label": "Pinterest",
+        "base": "https://www.pinterest.com/"
+      },
+      {
+        "key": "linkedin",
+        "label": "LinkedIn",
+        "base": "https://www.linkedin.com/in/"
+      },
+      {
+        "key": "twitch",
+        "label": "Twitch",
+        "base": "https://www.twitch.tv/"
+      }
+    ],
+    "portfolio_label": "Portfolio or website",
+    "portfolio_placeholder": "yoursite.com",
+    "other_label": "Any other accounts or links",
+    "other_help": "One per line: Lemon8, a link-in-bio page, a UGC marketplace profile, anything else.",
+    "audience_label": "Your biggest following on any one platform",
+    "audience_help": "There is no minimum. This only helps us match briefs.",
+    "audience_options": [
+      "Under 1,000",
+      "1,000 to 10,000",
+      "10,000 to 50,000",
+      "50,000 to 250,000",
+      "Over 250,000"
+    ],
+    "choose": "Choose one",
+    "legend_work": "Your work",
     "experience_label": "Have you made UGC for a brand before?",
     "experience_help": "Either answer is fine. We cast on fit, not on a track record.",
     "experience_yes": "Yes, I have",
     "experience_no": "No, not yet",
-    "profiles_label": "Links to your UGC profiles or past work",
-    "profiles_help": "One per line. A TikTok or Instagram profile, a portfolio, a UGC marketplace page — whatever shows the work.",
+    "profiles_label": "Links to UGC you have made for brands",
+    "profiles_help": "One per line: posts, a portfolio, a Drive folder, whatever shows the work.",
     "example_label": "Link to one example of your work",
-    "example_help": "Everyone answers this, experienced or not. A post you filmed, a video you edited, or something you made to show what you can do. Paste a public link: TikTok, Instagram, YouTube, Drive or Dropbox.",
+    "example_placeholder": "tiktok.com/@you/video/…",
+    "example_help": "Everyone answers this, experienced or not. A post you filmed, a video you edited, or something you made to show what you can do. Paste a public link from TikTok, Instagram, YouTube, Drive or Dropbox.",
+    "content_label": "What kind of videos do you make?",
+    "content_help": "Pick any that apply.",
+    "content_options": [
+      "Talking to camera",
+      "Product demos and unboxings",
+      "Voiceovers",
+      "Skits and acting",
+      "Lifestyle and B-roll",
+      "Tutorials and how-tos",
+      "App and screen recordings",
+      "Reviews"
+    ],
+    "niche_label": "Which niches do you know best?",
+    "niche_help": "Pick any that apply.",
+    "niche_options": [
+      "Skincare and beauty",
+      "Fashion",
+      "Home",
+      "Fitness and wellness",
+      "Food and drink",
+      "Tech and gadgets",
+      "Apps and software",
+      "Parenting and family",
+      "Pets",
+      "Gaming",
+      "Money and finance",
+      "Travel"
+    ],
+    "kit_label": "What do you film with?",
+    "kit_help": "Pick any that apply. A phone is all most briefs need.",
+    "kit_options": [
+      "A phone from the last few years",
+      "An older phone",
+      "A camera",
+      "A ring light or softbox",
+      "A microphone",
+      "A tripod or phone stand"
+    ],
+    "times_label": "When can you usually film?",
+    "times_options": [
+      "Weekday daytime",
+      "Weekday evenings",
+      "Weekends"
+    ],
+    "rate_label": "Your usual rate for one video",
+    "rate_placeholder": "e.g. £150, or not sure yet",
+    "rate_help": "A rough figure is fine. We always agree the rate with you before you film.",
+    "legend_found": "Last thing",
     "found_label": "Where did you find this?",
     "found_help": "It helps us know where to keep looking.",
-    "found_options": ["X", "Instagram", "LinkedIn", "An AI agent or web scraper", "Google Search", "YouTube", "TikTok", "Other"],
+    "found_options": [
+      "X",
+      "Instagram",
+      "LinkedIn",
+      "An AI agent or web scraper",
+      "Google Search",
+      "YouTube",
+      "TikTok",
+      "Other"
+    ],
     "found_other_label": "Where, specifically?",
+    "extra_label": "Anything else we should know?",
+    "extra_help": "Languages you can film in, products you will not promote, places you can shoot.",
+    "age_label": "I am 18 or over.",
+    "age_help": "We can only work with adult creators.",
     "submit": "Send application",
-    "note": "Applying does not guarantee work; it puts you on the list we cast from. What you send is covered by our"
+    "note": "Applying does not guarantee work; it puts you on the list we cast from. What you send is covered by our",
+    "copy": "Copy my answers",
+    "reopen": "Open the email again",
+    "status_mail": "Your email app should open with everything filled in. Send it and you are done. If nothing opens, copy your answers and email them to",
+    "status_copied": "Copied. Paste them into an email to",
+    "status_fix": "Some answers need a look. See the notes above."
   },
   "after": {
     "h2": "What happens next.",

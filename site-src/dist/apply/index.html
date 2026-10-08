@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Apply to create for hypjam: paid UGC briefs, no follower minimum</title>
-<meta name="description" content="Apply to hypjam's creator roster. Tell us about your work, share an example, and we will come back to you. Paid briefs for UK and remote creators, no follower minimum.">
+<meta name="description" content="Apply to hypjam's creator roster in about four minutes: your socials, what you make and one example of your work. Paid briefs for UK and remote creators, no follower minimum.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://hypjam.com/apply">
 <meta name="theme-color" content="#000000">
@@ -26,14 +26,14 @@
 <meta property="og:site_name" content="hypjam">
 <meta property="og:locale" content="en_GB">
 <meta property="og:title" content="Apply to create for hypjam: paid UGC briefs, no follower minimum">
-<meta property="og:description" content="Apply to hypjam's creator roster. Tell us about your work, share an example, and we will come back to you. Paid briefs for UK and remote creators, no follower minimum.">
+<meta property="og:description" content="Apply to hypjam's creator roster in about four minutes: your socials, what you make and one example of your work. Paid briefs for UK and remote creators, no follower minimum.">
 <meta property="og:url" content="https://hypjam.com/apply">
 <meta property="og:image" content="https://hypjam.com/assets/brand/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Apply to create for hypjam: paid UGC briefs, no follower minimum">
-<meta name="twitter:description" content="Apply to hypjam's creator roster. Tell us about your work, share an example, and we will come back to you. Paid briefs for UK and remote creators, no follower minimum.">
+<meta name="twitter:description" content="Apply to hypjam's creator roster in about four minutes: your socials, what you make and one example of your work. Paid briefs for UK and remote creators, no follower minimum.">
 <meta name="twitter:image" content="https://hypjam.com/assets/brand/og.png">
 <script type="application/ld+json">
 {
@@ -318,7 +318,7 @@
       <div class="page-hero__copy">
         <p class="page-eyebrow page-eyebrow--caps page-hero__eyebrow">Creators</p>
         <h1 class="page-hero__title">Apply to create for hypjam.</h1>
-        <p class="page-hero__intro">A few questions, then an example of your work. There is no follower minimum and no showreel to build: one post you are proud of tells us more than a follower count. We read every application.</p>
+        <p class="page-hero__intro">It takes about four minutes. Tell us where to find you, what you make and one thing you are proud of. There is no follower minimum and no showreel to build, and a person reads every application.</p>
       </div>
     </div>
   </section>
@@ -336,16 +336,116 @@
 
           <div class="apply-field">
             <label class="apply-label" for="ap-name">Your name</label>
-            <input class="apply-input" id="ap-name" name="name" type="text" autocomplete="name" required>
-            <p class="apply-help">First and last is fine.</p>
+            <input class="apply-input" id="ap-name" aria-describedby="ap-name-help" name="name" type="text" autocomplete="name" required>
+            <p class="apply-help" id="ap-name-help">First and last is fine.</p>
             <p class="apply-error" data-error-for="ap-name" hidden></p>
           </div>
 
           <div class="apply-field">
             <label class="apply-label" for="ap-email">Email</label>
-            <input class="apply-input" id="ap-email" name="email" type="email" autocomplete="email" inputmode="email" required>
-            <p class="apply-help">We reply here. Nothing else goes to this address.</p>
+            <input class="apply-input" id="ap-email" aria-describedby="ap-email-help" name="email" type="email" autocomplete="email" inputmode="email" required>
+            <p class="apply-help" id="ap-email-help">We reply here. Nothing else goes to this address.</p>
             <p class="apply-error" data-error-for="ap-email" hidden></p>
+          </div>
+
+          <div class="apply-field">
+            <label class="apply-label" for="ap-location">Where are you based?</label>
+            <input class="apply-input" id="ap-location" aria-describedby="ap-location-help" name="location" type="text" placeholder="City, country" autocomplete="address-level2" required>
+            <p class="apply-help" id="ap-location-help">Some briefs need creators in a particular place.</p>
+            <p class="apply-error" data-error-for="ap-location" hidden></p>
+          </div>
+
+          <div class="apply-field">
+            <label class="apply-label" for="ap-discord">Discord username <span class="apply-opt">Optional</span></label>
+            <input class="apply-input" id="ap-discord" aria-describedby="ap-discord-help" name="discord" type="text" placeholder="e.g. jamie.films" autocapitalize="off" autocomplete="off" spellcheck="false" maxlength="40">
+            <p class="apply-help" id="ap-discord-help">Your username, not your display name. Leave it blank if you do not use Discord.</p>
+            <p class="apply-error" data-error-for="ap-discord" hidden></p>
+          </div>
+        </fieldset>
+
+        <fieldset class="apply-set" aria-describedby="ap-socials-help">
+          <legend class="apply-legend t-eyebrow">Your socials</legend>
+          <p class="apply-set-help" id="ap-socials-help">Add every account you have. An @handle or a link both work. Skip any you do not use; we need at least one.</p>
+
+          <div class="apply-socials">
+            <div class="apply-field apply-field--social">
+              <label class="apply-label" for="ap-s-tiktok">TikTok</label>
+              <input class="apply-input" id="ap-s-tiktok" name="social_tiktok" type="text" data-social="tiktok" data-base="https://www.tiktok.com/@" data-label="TikTok" placeholder="@handle or link" autocapitalize="off" autocomplete="off" spellcheck="false">
+              <p class="apply-error" data-error-for="ap-s-tiktok" hidden></p>
+            </div>
+            <div class="apply-field apply-field--social">
+              <label class="apply-label" for="ap-s-instagram">Instagram</label>
+              <input class="apply-input" id="ap-s-instagram" name="social_instagram" type="text" data-social="instagram" data-base="https://www.instagram.com/" data-label="Instagram" placeholder="@handle or link" autocapitalize="off" autocomplete="off" spellcheck="false">
+              <p class="apply-error" data-error-for="ap-s-instagram" hidden></p>
+            </div>
+            <div class="apply-field apply-field--social">
+              <label class="apply-label" for="ap-s-youtube">YouTube</label>
+              <input class="apply-input" id="ap-s-youtube" name="social_youtube" type="text" data-social="youtube" data-base="https://www.youtube.com/@" data-label="YouTube" placeholder="@handle or link" autocapitalize="off" autocomplete="off" spellcheck="false">
+              <p class="apply-error" data-error-for="ap-s-youtube" hidden></p>
+            </div>
+            <div class="apply-field apply-field--social">
+              <label class="apply-label" for="ap-s-x">X</label>
+              <input class="apply-input" id="ap-s-x" name="social_x" type="text" data-social="x" data-base="https://x.com/" data-label="X" placeholder="@handle or link" autocapitalize="off" autocomplete="off" spellcheck="false">
+              <p class="apply-error" data-error-for="ap-s-x" hidden></p>
+            </div>
+            <div class="apply-field apply-field--social">
+              <label class="apply-label" for="ap-s-facebook">Facebook</label>
+              <input class="apply-input" id="ap-s-facebook" name="social_facebook" type="text" data-social="facebook" data-base="https://www.facebook.com/" data-label="Facebook" placeholder="@handle or link" autocapitalize="off" autocomplete="off" spellcheck="false">
+              <p class="apply-error" data-error-for="ap-s-facebook" hidden></p>
+            </div>
+            <div class="apply-field apply-field--social">
+              <label class="apply-label" for="ap-s-snapchat">Snapchat</label>
+              <input class="apply-input" id="ap-s-snapchat" name="social_snapchat" type="text" data-social="snapchat" data-base="https://www.snapchat.com/add/" data-label="Snapchat" placeholder="@handle or link" autocapitalize="off" autocomplete="off" spellcheck="false">
+              <p class="apply-error" data-error-for="ap-s-snapchat" hidden></p>
+            </div>
+            <div class="apply-field apply-field--social">
+              <label class="apply-label" for="ap-s-threads">Threads</label>
+              <input class="apply-input" id="ap-s-threads" name="social_threads" type="text" data-social="threads" data-base="https://www.threads.net/@" data-label="Threads" placeholder="@handle or link" autocapitalize="off" autocomplete="off" spellcheck="false">
+              <p class="apply-error" data-error-for="ap-s-threads" hidden></p>
+            </div>
+            <div class="apply-field apply-field--social">
+              <label class="apply-label" for="ap-s-pinterest">Pinterest</label>
+              <input class="apply-input" id="ap-s-pinterest" name="social_pinterest" type="text" data-social="pinterest" data-base="https://www.pinterest.com/" data-label="Pinterest" placeholder="@handle or link" autocapitalize="off" autocomplete="off" spellcheck="false">
+              <p class="apply-error" data-error-for="ap-s-pinterest" hidden></p>
+            </div>
+            <div class="apply-field apply-field--social">
+              <label class="apply-label" for="ap-s-linkedin">LinkedIn</label>
+              <input class="apply-input" id="ap-s-linkedin" name="social_linkedin" type="text" data-social="linkedin" data-base="https://www.linkedin.com/in/" data-label="LinkedIn" placeholder="@handle or link" autocapitalize="off" autocomplete="off" spellcheck="false">
+              <p class="apply-error" data-error-for="ap-s-linkedin" hidden></p>
+            </div>
+            <div class="apply-field apply-field--social">
+              <label class="apply-label" for="ap-s-twitch">Twitch</label>
+              <input class="apply-input" id="ap-s-twitch" name="social_twitch" type="text" data-social="twitch" data-base="https://www.twitch.tv/" data-label="Twitch" placeholder="@handle or link" autocapitalize="off" autocomplete="off" spellcheck="false">
+              <p class="apply-error" data-error-for="ap-s-twitch" hidden></p>
+            </div>
+          </div>
+          <p class="apply-error apply-error--set" data-error-for="socials" hidden></p>
+
+          <div class="apply-field">
+            <label class="apply-label" for="ap-portfolio">Portfolio or website <span class="apply-opt">Optional</span></label>
+            <input class="apply-input" id="ap-portfolio" name="portfolio" type="text" placeholder="yoursite.com" inputmode="url" autocapitalize="off" autocomplete="url" spellcheck="false">
+            <p class="apply-error" data-error-for="ap-portfolio" hidden></p>
+          </div>
+
+          <div class="apply-field">
+            <label class="apply-label" for="ap-other">Any other accounts or links <span class="apply-opt">Optional</span></label>
+            <textarea class="apply-input apply-textarea apply-textarea--short" id="ap-other" name="other_links" rows="2" spellcheck="false" maxlength="400" aria-describedby="ap-other-help"></textarea>
+            <p class="apply-help" id="ap-other-help">One per line: Lemon8, a link-in-bio page, a UGC marketplace profile, anything else.</p>
+          </div>
+
+          <div class="apply-field">
+            <label class="apply-label" for="ap-audience">Your biggest following on any one platform <span class="apply-opt">Optional</span></label>
+            <div class="apply-select-wrap">
+              <select class="apply-input apply-select" id="ap-audience" name="audience" aria-describedby="ap-audience-help">
+                <option value="" selected>Choose one</option>
+                <option>Under 1,000</option>
+                <option>1,000 to 10,000</option>
+                <option>10,000 to 50,000</option>
+                <option>50,000 to 250,000</option>
+                <option>Over 250,000</option>
+              </select>
+            </div>
+            <p class="apply-help" id="ap-audience-help">There is no minimum. This only helps us match briefs.</p>
           </div>
         </fieldset>
 
@@ -354,7 +454,7 @@
 
           <div class="apply-field">
             <span class="apply-label" id="ap-exp-label">Have you made UGC for a brand before?</span>
-            <div class="apply-choices" role="radiogroup" aria-labelledby="ap-exp-label">
+            <div class="apply-choices" role="radiogroup" aria-labelledby="ap-exp-label" aria-describedby="ap-exp-help">
               <label class="apply-choice">
                 <input type="radio" name="experience" value="yes" data-exp-yes required>
                 <span>Yes, I have</span>
@@ -364,22 +464,89 @@
                 <span>No, not yet</span>
               </label>
             </div>
-            <p class="apply-help">Either answer is fine. We cast on fit, not on a track record.</p>
+            <p class="apply-help" id="ap-exp-help">Either answer is fine. We cast on fit, not on a track record.</p>
             <p class="apply-error" data-error-for="experience" hidden></p>
           </div>
 
           <div class="apply-field apply-conditional" data-when-experience hidden>
-            <label class="apply-label" for="ap-profiles">Links to your UGC profiles or past work</label>
-            <textarea class="apply-input apply-textarea" id="ap-profiles" name="profiles" rows="4" spellcheck="false"></textarea>
-            <p class="apply-help">One per line. A TikTok or Instagram profile, a portfolio, a UGC marketplace page — whatever shows the work.</p>
+            <label class="apply-label" for="ap-profiles">Links to UGC you have made for brands</label>
+            <textarea class="apply-input apply-textarea" id="ap-profiles" name="profiles" rows="3" spellcheck="false" maxlength="600" aria-describedby="ap-profiles-help"></textarea>
+            <p class="apply-help" id="ap-profiles-help">One per line: posts, a portfolio, a Drive folder, whatever shows the work.</p>
             <p class="apply-error" data-error-for="ap-profiles" hidden></p>
           </div>
 
           <div class="apply-field">
             <label class="apply-label" for="ap-example">Link to one example of your work</label>
-            <input class="apply-input" id="ap-example" name="example" type="url" inputmode="url" spellcheck="false" placeholder="https://" required>
-            <p class="apply-help">Everyone answers this, experienced or not. A post you filmed, a video you edited, or something you made to show what you can do. Paste a public link: TikTok, Instagram, YouTube, Drive or Dropbox.</p>
+            <input class="apply-input" id="ap-example" aria-describedby="ap-example-help" name="example" type="text" placeholder="tiktok.com/@you/video/…" inputmode="url" autocapitalize="off" spellcheck="false" required>
+            <p class="apply-help" id="ap-example-help">Everyone answers this, experienced or not. A post you filmed, a video you edited, or something you made to show what you can do. Paste a public link from TikTok, Instagram, YouTube, Drive or Dropbox.</p>
             <p class="apply-error" data-error-for="ap-example" hidden></p>
+          </div>
+
+          <div class="apply-field">
+            <span class="apply-label" id="ap-content-label">What kind of videos do you make?</span>
+            <div class="apply-choices apply-choices--multi" role="group" aria-labelledby="ap-content-label" aria-describedby="ap-content-help">
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="content" value="Talking to camera"><span>Talking to camera</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="content" value="Product demos and unboxings"><span>Product demos and unboxings</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="content" value="Voiceovers"><span>Voiceovers</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="content" value="Skits and acting"><span>Skits and acting</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="content" value="Lifestyle and B-roll"><span>Lifestyle and B-roll</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="content" value="Tutorials and how-tos"><span>Tutorials and how-tos</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="content" value="App and screen recordings"><span>App and screen recordings</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="content" value="Reviews"><span>Reviews</span></label>
+            </div>
+            <p class="apply-help" id="ap-content-help">Pick any that apply.</p>
+            <p class="apply-error" data-error-for="content" hidden></p>
+          </div>
+
+          <div class="apply-field">
+            <span class="apply-label" id="ap-niche-label">Which niches do you know best?</span>
+            <div class="apply-choices apply-choices--multi" role="group" aria-labelledby="ap-niche-label" aria-describedby="ap-niche-help">
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="niche" value="Skincare and beauty"><span>Skincare and beauty</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="niche" value="Fashion"><span>Fashion</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="niche" value="Home"><span>Home</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="niche" value="Fitness and wellness"><span>Fitness and wellness</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="niche" value="Food and drink"><span>Food and drink</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="niche" value="Tech and gadgets"><span>Tech and gadgets</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="niche" value="Apps and software"><span>Apps and software</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="niche" value="Parenting and family"><span>Parenting and family</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="niche" value="Pets"><span>Pets</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="niche" value="Gaming"><span>Gaming</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="niche" value="Money and finance"><span>Money and finance</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="niche" value="Travel"><span>Travel</span></label>
+            </div>
+            <p class="apply-help" id="ap-niche-help">Pick any that apply.</p>
+            <p class="apply-error" data-error-for="niche" hidden></p>
+          </div>
+
+          <div class="apply-field">
+            <span class="apply-label" id="ap-kit-label">What do you film with? <span class="apply-opt">Optional</span></span>
+            <div class="apply-choices apply-choices--multi" role="group" aria-labelledby="ap-kit-label" aria-describedby="ap-kit-help">
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="kit" value="A phone from the last few years"><span>A phone from the last few years</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="kit" value="An older phone"><span>An older phone</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="kit" value="A camera"><span>A camera</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="kit" value="A ring light or softbox"><span>A ring light or softbox</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="kit" value="A microphone"><span>A microphone</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="kit" value="A tripod or phone stand"><span>A tripod or phone stand</span></label>
+            </div>
+            <p class="apply-help" id="ap-kit-help">Pick any that apply. A phone is all most briefs need.</p>
+            <p class="apply-error" data-error-for="kit" hidden></p>
+          </div>
+
+          <div class="apply-field">
+            <span class="apply-label" id="ap-times-label">When can you usually film? <span class="apply-opt">Optional</span></span>
+            <div class="apply-choices apply-choices--multi" role="group" aria-labelledby="ap-times-label">
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="times" value="Weekday daytime"><span>Weekday daytime</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="times" value="Weekday evenings"><span>Weekday evenings</span></label>
+              <label class="apply-choice apply-choice--chip"><input type="checkbox" name="times" value="Weekends"><span>Weekends</span></label>
+            </div>
+            <p class="apply-error" data-error-for="times" hidden></p>
+          </div>
+
+          <div class="apply-field">
+            <label class="apply-label" for="ap-rate">Your usual rate for one video <span class="apply-opt">Optional</span></label>
+            <input class="apply-input" id="ap-rate" aria-describedby="ap-rate-help" name="rate" type="text" placeholder="e.g. £150, or not sure yet" maxlength="80">
+            <p class="apply-help" id="ap-rate-help">A rough figure is fine. We always agree the rate with you before you film.</p>
+            <p class="apply-error" data-error-for="ap-rate" hidden></p>
           </div>
         </fieldset>
 
@@ -389,7 +556,7 @@
           <div class="apply-field">
             <label class="apply-label" for="ap-found">Where did you find this?</label>
             <div class="apply-select-wrap">
-              <select class="apply-input apply-select" id="ap-found" name="found" required>
+              <select class="apply-input apply-select" id="ap-found" name="found" required aria-describedby="ap-found-help">
                 <option value="" selected disabled>Choose one</option>
                 <option>X</option>
                 <option>Instagram</option>
@@ -401,13 +568,28 @@
                 <option>Other</option>
               </select>
             </div>
-            <p class="apply-help">It helps us know where to keep looking.</p>
+            <p class="apply-help" id="ap-found-help">It helps us know where to keep looking.</p>
             <p class="apply-error" data-error-for="ap-found" hidden></p>
           </div>
 
           <div class="apply-field apply-conditional" data-when-other hidden>
             <label class="apply-label" for="ap-found-other">Where, specifically?</label>
-            <input class="apply-input" id="ap-found-other" name="found_other" type="text">
+            <input class="apply-input" id="ap-found-other" name="found_other" type="text" maxlength="120">
+          </div>
+
+          <div class="apply-field">
+            <label class="apply-label" for="ap-extra">Anything else we should know? <span class="apply-opt">Optional</span></label>
+            <textarea class="apply-input apply-textarea apply-textarea--short" id="ap-extra" name="extra" rows="2" maxlength="400" aria-describedby="ap-extra-help"></textarea>
+            <p class="apply-help" id="ap-extra-help">Languages you can film in, products you will not promote, places you can shoot.</p>
+          </div>
+
+          <div class="apply-field">
+            <label class="apply-check" for="ap-age">
+              <input type="checkbox" id="ap-age" name="age" value="yes" required aria-describedby="ap-age-help">
+              <span>I am 18 or over.</span>
+            </label>
+            <p class="apply-help" id="ap-age-help">We can only work with adult creators.</p>
+            <p class="apply-error" data-error-for="ap-age" hidden></p>
           </div>
         </fieldset>
 
@@ -416,7 +598,14 @@
           <p class="apply-note">Applying does not guarantee work; it puts you on the list we cast from. What you send is covered by our <a href="/privacy">privacy policy</a>.</p>
         </div>
 
-        <p class="apply-status" data-apply-status role="status" aria-live="polite" hidden></p>
+        <div class="apply-status" data-apply-status role="status" aria-live="polite" hidden>
+          <p class="apply-status__msg" data-apply-msg></p>
+          <div class="apply-fallback" data-apply-fallback hidden>
+            <button type="button" class="apply-copy" data-apply-copy data-label="Copy my answers">Copy my answers</button>
+            <a class="apply-reopen" data-apply-reopen href="mailto:avi@hypjam.com">Open the email again</a>
+          </div>
+        </div>
+        <span hidden data-apply-strings data-mail="Your email app should open with everything filled in. Send it and you are done. If nothing opens, copy your answers and email them to" data-copied="Copied. Paste them into an email to" data-fix="Some answers need a look. See the notes above."></span>
       </form>
 
       <aside class="apply-after">

@@ -108,12 +108,12 @@
   "apply": {
     "eyebrow": "Apply",
     "h2": "Send us your best three links.",
-    "p": "It takes a couple of minutes. We ask for your name, an email, whether you have made UGC before, and one link to something you have made. A person reads every one; applying does not guarantee work, it puts you on the list we cast from.",
+    "p": "It takes about four minutes. We ask where you are based, every social account you have, your Discord username if you use it, what kind of videos you make, and one link to something you have made. A person reads every one; applying does not guarantee work, it puts you on the list we cast from.",
     "checklist": [
-      "Your name",
-      "Your TikTok or Instagram handle",
-      "What you usually film",
-      "Two or three links to your strongest content",
+      "Your TikTok, Instagram and any other accounts",
+      "Your Discord username, if you use one",
+      "One link to something you have made",
+      "What you film and the niches you know",
       "Where you are based"
     ],
     "mailto": {
