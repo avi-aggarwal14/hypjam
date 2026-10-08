@@ -101,11 +101,15 @@ def wordnum(w: str) -> int:
 def classify(spec: str) -> list[dict]:
     """Every quoted string with a kind and the marks the spec hangs on it."""
     toks = []
+    prev = None
     for text, s, e in quoted_spans(spec):
         before = spec[max(0, s - 34):s]
         after = spec[e:e + 160]   # long enough to see a following parenthetical
         kind = "row"
-        if re.search(r"(titled|[Hh]eader(?: row)?|heading|[Hh]eader:)\s*$", before):
+        if re.search(r"(titled|[Hh]eader(?: row)?:?|heading:?)\s*$", before):
+            kind = "title"
+        # "Header row: 'Brief · your brand' left, 'v2 · agreed' pill right" — the pill is the title's right side
+        elif prev and prev["kind"] == "title" and re.match(r"^\s*(?:pill|chip|tag)?\s*right\b", after):
             kind = "title"
         elif re.search(r"[Ff]ooter(?: line| chip| in grey|:)?\s*:?\s*$", before):
             kind = "footer"
@@ -119,6 +123,14 @@ def classify(spec: str) -> list[dict]:
             kind = "note"
         elif re.search(r"(a second small card|a narrow status card|note card)[^']{0,20}$", before):
             kind = "row"
+        # "three chips 'TikTok' 'Reels' 'Shorts'" — a chip followed only by spaces keeps the list going
+        # (a "·" item is a label · value row, so a comma list of those stays as rows)
+        gap = re.sub(r"\b(in jam|jam|ticked|tick|current|empty)\b|[()]", "", spec[prev["end"]:s]).strip() if prev else None
+        if kind == "row" and prev and prev["kind"] == "chip" and gap in ("", ",", "and", ", and") and "·" not in text:
+            kind = "chip"
+        # "a small 'notes · 2 open' chip in the footer"
+        if re.match(r"^\s*chip in the footer", after):
+            kind = "footer"
         if kind in ("row", "chip") and text.isupper() and len(text) <= 28 and kind == "row" and "·" not in text \
                 and not re.search(r"\d", text):
             kind = "label"
@@ -141,9 +153,41 @@ def classify(spec: str) -> list[dict]:
             marks.add("star")
         if "filled black" in a[:40] or re.search(r"filled black[^']{0,30}$", before.lower()):
             marks.add("ink")
-        toks.append({"text": text.replace(" ✓", "").replace("✓", "").replace(" · ★", "").replace("★", "").strip(),
-                     "kind": kind, "marks": marks, "before": before, "after": after})
+        tok = {"text": text.replace(" ✓", "").replace("✓", "").replace(" · ★", "").replace("★", "").strip(),
+               "kind": kind, "marks": marks, "before": before, "after": after, "start": s, "end": e}
+        toks.append(tok)
+        prev = tok
     return toks
+
+
+def label_fill(tok: dict) -> str:
+    """A label whose value the spec describes in words, not quotes
+    ("'THE ONE THING' → one sentence of grey text", "'BEATS' → five small numbered
+    stubs 01–05", "'MUST SAY' → two short lines with hairlines"). Drawn as the
+    site's usual skeleton lines or stubs, so the label never stands empty."""
+    prose = tok["after"].split(";")[0].split(". ")[0]
+    if not prose.lstrip().startswith("→") or "'" in prose:
+        return ""
+    p = prose.lower()
+    m = re.search(r"(\w+) small numbered stubs? (\d{2})\s*[–-]\s*(\d{2})", p)
+    if m:
+        a, b = int(m.group(2)), int(m.group(3))
+        return '<div class="mock-chips">' + "".join(chip(f"{k:02d}") for k in range(a, b + 1)) + "</div>"
+    dark = "black" in p
+    if "caret" in p:
+        return ('<p class="mock-fill mock-fill--caret"><span class="mock-line mock-line--w80 mock-line--dark"></span>'
+                '<span class="mock-caret" aria-hidden="true"></span></p>')
+    m = re.search(r"(\w+) (?:short |small )?(?:grey |black )?lines?\b", p)
+    n = wordnum(m.group(1)) if m else 0
+    if not n:
+        n = 1 if ("sentence" in p or "line of" in p or "text" in p) else 0
+    if not n:
+        return ""
+    widths = ["mock-line--w80"] if n == 1 else ["mock-line--w60", "mock-line--w45", "mock-line--w60", "mock-line--w45"]
+    lines = [f'<span class="mock-line {widths[k % len(widths)]}{" mock-line--dark" if dark else ""}"></span>' for k in range(n)]
+    if "hairline" in p:
+        return '<div class="mock-fill mock-fill--rules">' + "".join(f'<span class="mock-fill__row">{ln}</span>' for ln in lines) + "</div>"
+    return f'<div class="mock-fill">{"".join(lines)}</div>'
 
 
 def tick(jam: bool = True) -> str:
@@ -402,6 +446,10 @@ def list_card(spec: str, toks: list[dict], width: int | None, opts: dict, cls: s
     # explicit "N rows" with no quoted rows → skeleton rows
     quoted_rows = [t for t in body_toks if t["kind"] == "row"]
     n_stub = find_row_count(spec) if len(quoted_rows) <= 1 else 0
+    # when labels carry values the spec describes in words ("→ two short lines"),
+    # those counts belong to the values, not to extra skeleton rows
+    if any(label_fill(t) for t in body_toks if t["kind"] == "label"):
+        n_stub = 0
     marked = find_marked_rows(spec)
     # "(01 Problem, 02 Discovery, …)" — a numbered enumeration the spec writes in
     # parentheses instead of quotes. Real labels beat skeleton lines.
@@ -427,6 +475,21 @@ def list_card(spec: str, toks: list[dict], width: int | None, opts: dict, cls: s
             chip_for_marked = t["text"]
         if t["kind"] == "chip" and "strike" in t["marks"]:
             strike[len(strike) + 1] = t["text"]
+    # "six stage rows with status chips ('agreed', 'approved', …)": one status per row
+    if n_stub and re.search(r"rows? with status chips", s):
+        statuses = [t for t in body_toks if t["kind"] == "chip"][:n_stub]
+        out.append('<div class="mock-rows">')
+        widths = ["mock-line--w80", "mock-line--w60", "mock-line", "mock-line--w45"]
+        for k in range(n_stub):
+            st = statuses[k] if k < len(statuses) else None
+            jam = st is not None and ("jam" in st["marks"] or "current" in st["marks"])
+            tail = chip(st["text"], "mock-chip--jam" if jam else "") if st else ""
+            out.append(f'<div class="mock-row" style="--i:{k}"><span class="mock-row__n">{k + 1:02d}</span>'
+                       f'<span class="mock-row__t"><span class="mock-line {widths[k % 4]}" style="display:block;max-width:64%"></span></span>{tail}</div>')
+        out.append("</div>")
+        i = n_stub
+        body_toks = [t for t in body_toks if t["kind"] != "row" and t not in statuses]
+        n_stub = 0
     if n_stub and "grid" not in s:
         if "strikethrough" in s and quoted_rows:
             strike = {n_stub: quoted_rows[0]["text"]}
@@ -443,6 +506,7 @@ def list_card(spec: str, toks: list[dict], width: int | None, opts: dict, cls: s
             if rows_open:
                 out.append("</div>"); rows_open = False
             out.append(f'<p class="mock-label">{esc(t["text"])}</p>')
+            out.append(label_fill(t))
         elif t["kind"] in ("row", "note"):
             if pending_chips:
                 out.append(chips_row(pending_chips)); pending_chips = []
@@ -615,7 +679,7 @@ def seals_card(spec: str, toks: list[dict], width: int | None) -> str:
     return "".join(out)
 
 
-def cols_card(spec: str, toks: list[dict], width: int | None, opts: dict) -> str:
+def cols_card(spec: str, toks: list[dict], width: int | None, opts: dict, phone: bool = True) -> str:
     s = spec.lower()
     titles = [t for t in toks if t["kind"] == "title"]
     out = [card_open(titles[0]["text"] if titles else None, None, "", width)]
@@ -639,7 +703,7 @@ def cols_card(spec: str, toks: list[dict], width: int | None, opts: dict) -> str
         out.append("<div>")
         if col["label"]:
             out.append(f'<p class="mock-label">{esc(col["label"])}</p>')
-        if "phone frame" in s and ci == 0:
+        if "phone frame" in s and ci == 0 and phone:
             bub = [t for t in toks if t["kind"] == "bubble"]
             call = f'<span class="mock-call" style="position:static;display:block;margin-top:8px">{esc(bub[0]["text"])}</span>' if bub else ""
             out.append(f'<div class="mock-phone" style="width:96px;margin:4px 0 8px">{call}</div>')
@@ -658,9 +722,10 @@ def cols_card(spec: str, toks: list[dict], width: int | None, opts: dict) -> str
             out.append(row_html(tt, k, {"cross": cross, **opts})); k += 1
         if not col["items"] and "line" in s:
             n = 3 if "three lines" in s else 2
-            out.append(stub_rows(n, [1, 2, 3] if ticks else [], None, numbered=False, start=k))
-            if cross:
-                out.append("")
+            rows = stub_rows(n, [1, 2, 3] if ticks else [], None, numbered=False, start=k)
+            if cross:   # "'DON'T' with three lines and small crosses"
+                rows = rows.replace('</span></span></div>', '</span></span><span class="mock-x" aria-hidden="true">×</span></div>')
+            out.append(rows)
             k += n
         out.append("</div></div>")
         if eq and ci == 0:
@@ -819,7 +884,9 @@ def thumbs_card(spec: str, toks: list[dict], width: int | None, opts: dict) -> s
     out.append("</div>")
     rest = [t for t in toks if t not in labels and t["kind"] not in ("title", "footer")]
     if any(t["kind"] == "label" for t in rest):
-        out.append(cols_card(spec, [t for t in toks if t not in labels and t["kind"] != "title"], None, opts).split('class="mock-card"', 1)[1].split(">", 1)[1].rsplit("</div>", 1)[0])
+        # the columns sit inside this card: no second footer, and the phone frames here are the thumbnails above
+        out.append(cols_card(spec, [t for t in toks if t not in labels and t["kind"] not in ("title", "footer")], None, opts, phone=False)
+                   .split('class="mock-card"', 1)[1].split(">", 1)[1].rsplit("</div>", 1)[0])
     out.append(card_close([t for t in toks if t["kind"] == "footer"]))
     return "".join(out)
 
@@ -827,14 +894,14 @@ def thumbs_card(spec: str, toks: list[dict], width: int | None, opts: dict) -> s
 def creator_stack(spec: str, toks: list[dict], width: int | None) -> str:
     """Casting hero: three creator cards with avatar, name · city, three chips."""
     name = next((t for t in toks if "·" in t["text"] and t["kind"] == "row"), None)
-    chips = [t for t in toks if t["kind"] == "chip"][:3]
     short = next((t for t in toks if "shortlisted" in t["text"].lower()), None)
+    chips = [t for t in toks if t["kind"] == "chip" and t is not short][:3]   # the jam chip is not a tag
     out = ['<div class="mock-stage mock-stage--col" style="gap:10px">']
     for k in range(3):
         label = (name["text"] if name else "creator A · London").replace("creator A", f"creator {'ABC'[k]}")
         parts = split_parts(label)
         sl = chip(short["text"], "mock-chip--jam") if (short and k < 2) else ""
-        out.append(f'<div class="mock-card" style="--w:300px;padding:14px 16px"><div class="mock-row" style="--i:{k};border-top:0;min-height:0;padding:0"><span class="mock-avatar" aria-hidden="true"></span>'
+        out.append(f'<div class="mock-card mock-card--slim" style="--w:300px;padding:14px 16px"><div class="mock-row" style="--i:{k};border-top:0;min-height:0;padding:0"><span class="mock-avatar" aria-hidden="true"></span>'
                    f'<span class="mock-row__t">{esc(parts[0])}</span><span class="mock-row__v">{esc(" · ".join(parts[1:]))}</span>{sl}</div>'
                    f'<div class="mock-chips" style="padding-bottom:0">{"".join(chip(t["text"]) for t in chips)}</div></div>')
     strip = next((t for t in toks if "strip" in t["before"].lower()[-20:]), None)
@@ -936,7 +1003,13 @@ def build_mock(spec: str, hero: bool = False) -> str:
         hl = (f'<p class="mock-hl{" mock-hl--serif" if serif else ""}"><span class="mock-line mock-line--w80 mock-line--dark" style="display:inline-block;width:70%;height:{8 if serif else 6}px;vertical-align:middle"></span>{tag_html}</p>')
         extra_top = (f'<p class="mock-label">{esc(first_label["text"])}</p>' if first_label else "") + hl
         toks = [t for t in toks if t is not first_label and t is not tag]
-    card = list_card(main_spec, [t for t in toks if t in main_toks or t["kind"] == "footer"] if side_spec else toks, w, opts)
+    card_toks = [t for t in toks if t in main_toks or t["kind"] == "footer"] if side_spec else toks
+    if "ticker" in s:
+        at = s.index("ticker")
+        cut = spec.rfind(". ", 0, at)                        # the sentence that introduces the ticker
+        cut = cut + 1 if cut >= 0 else at
+        card_toks = [t for t in card_toks if t.get("start", 0) < cut]
+    card = list_card(main_spec, card_toks, w, opts)
     if extra_top:
         card = card.replace('</div>', '</div>' + extra_top, 1) if '<div class="mock-head">' in card else card.replace('>', '>' + extra_top, 1)
     side = ""
@@ -950,9 +1023,12 @@ def build_mock(spec: str, hero: bool = False) -> str:
     if strip:
         below += f'<p class="mock-strip">{esc(strip["text"])}</p>'
     stage_cls = "mock-stage mock-stage--col" if (below and not side) else "mock-stage"
+    # a stack of labelled values (the briefing brief) is taller than the panel's ratio on
+    # narrow screens: that panel grows to fit instead of clipping the card
+    panel_cls = "page-panel page-panel--fit" if "mock-fill" in card else "page-panel"
     if below and side:
-        return f'<div class="page-panel"><div class="mock-stage mock-stage--col"><div class="mock-stage" style="padding:0">{card}{side}</div>{below}</div></div>'
-    return f'<div class="page-panel"><div class="{stage_cls}">{card}{side}{below}</div></div>'
+        return f'<div class="{panel_cls}"><div class="mock-stage mock-stage--col"><div class="mock-stage" style="padding:0">{card}{side}</div>{below}</div></div>'
+    return f'<div class="{panel_cls}"><div class="{stage_cls}">{card}{side}{below}</div></div>'
 
 
 # ---------------------------------------------------------------------------
