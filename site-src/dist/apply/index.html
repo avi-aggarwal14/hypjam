@@ -29,7 +29,8 @@
    changes every day, so nobody is recognised from one day to the next.
    Events go through the first-party proxy at /jamjar (rewrites in vercel.json).
    Owner opt-out for one browser: open any page with ?internal=on (undo: ?internal=off).
-   Local preview: analytics stays off unless the URL carries ?hj_debug=1.
+   Test visits: add ?hj_debug=1 (logs to the console and marks events internal_test,
+   which the project's test-account filter excludes). Local previews send nothing without it.
    The event list is in README.md ("Analytics"). Change the privacy policy in the
    same commit as anything that changes what is collected. */
 (function () {
@@ -43,7 +44,7 @@
   } catch (e) {}
   var local = /^(localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\])$/.test(l.hostname) || l.protocol === 'file:';
   if (local && !dbg) return;
-  var seg = l.pathname.split('/')[1] || 'home';
+  var seg = /^page not found/i.test(document.title) ? '404' : (l.pathname.split('/')[1] || 'home');
   !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
   posthog.init('phc_zR9VB9hbrFTkMYN4sKBmnFquKeaFpX6hBxHAZYn6KMDw', {
     api_host: local ? 'https://eu.i.posthog.com' : '/jamjar',
@@ -59,6 +60,8 @@
     debug: dbg
   });
   posthog.register({ site: 'hypjam.com', page_type: seg });
+  /* test visits: flagged so the project's "filter out internal and test users" drops them */
+  if (dbg) posthog.register({ internal_test: true });
   /* hjTrack(name, props, opts): the one entry point the site's own scripts use */
   w.hjTrack = function (name, props, opts) {
     try { w.posthog.capture(name, props || {}, opts); } catch (e) {}

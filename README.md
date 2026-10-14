@@ -69,8 +69,9 @@ login avi@hypjam.com). Set up 14 October 2026.
   domains do not drop them. Do not rename it to anything obvious (`/analytics`, `/ingest`).
 - **Off for the owner.** Open any page with `?internal=on` to stop analytics in that
   browser (stored as `hypjam_internal` in localStorage); `?internal=off` turns it back
-  on. Local previews (localhost) send nothing unless the URL has `?hj_debug=1`, which
-  also logs PostHog and cal.com events to the console.
+  on. For a test visit add `?hj_debug=1`: events are logged to the console and tagged
+  `internal_test`, which the project's test-account filter drops from every chart.
+  Local previews (localhost) send nothing at all without it.
 - **Autocapture** (clicks, form changes), pageviews and page leaves with scroll depth,
   heatmaps, dead clicks, web vitals and JavaScript exceptions are on.
 
