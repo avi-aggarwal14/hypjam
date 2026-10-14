@@ -10,10 +10,10 @@
     "privacy": {
       "path": "/privacy",
       "title": "Privacy policy | hypjam",
-      "description": "How hypjam handles personal data on this site: what we collect when you get in touch, the services involved, your UK GDPR rights, and how to reach us.",
+      "description": "How hypjam handles personal data on this site: what we collect when you get in touch, how we measure visits without cookies, the services involved, your UK GDPR rights, and how to reach us.",
       "h1": "Privacy policy",
       "eyebrow": "Legal",
-      "last_updated": "8 October 2026",
+      "last_updated": "14 October 2026",
       "source": "/Users/vinee/Desktop/UGC Agency/hypjam-brand/legal/privacy.md",
       "theme": "light"
     },

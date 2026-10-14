@@ -47,9 +47,61 @@ elements built from `site-src/src/drawing/parts/`.
   performance figures. Proof slots are deliberately empty and marked "filled in at
   launch". Never add `aggregateRating`, `review` or invented quotes.
 - **"Studio" never appears** in visible copy. hypjam is a UGC agency.
-- **No cookies, no analytics, no trackers.** The cal.com booking embed loads only
-  after a click, which is what keeps the no-cookie-banner promise in the privacy policy.
+- **No cookies, no ad pixels, no cookie banner.** The only analytics is PostHog in
+  cookieless mode (see Analytics below). Anything that would set cookies, record
+  sessions or identify visitors needs a consent banner and a privacy policy update in
+  the same commit. The cal.com embed loads only on `/book`, as the privacy policy says.
 - The accent is `#ff6f1f`. Pink, purple and blue are not used.
+
+## Analytics
+
+PostHog, EU cloud, organisation **hypjam**, project **hypjam.com** (eu.posthog.com,
+login avi@hypjam.com). Set up 14 October 2026.
+
+- **Cookieless.** `site-src/src/partials/analytics.html` loads the PostHog snippet with
+  `cookieless_mode: 'always'` and `person_profiles: 'never'`: no cookies, no local or
+  session storage, no session recording, no surveys, no `identify()`. PostHog counts
+  visitors with a server-side hash whose salt changes daily (the project setting
+  "Cookieless tracking" must stay on). Side effect: no GeoIP, so location comes from
+  the browser's `$timezone` and language, not from the IP.
+- **First-party proxy.** Events go to `/jamjar/*`, which `vercel.json` rewrites to
+  `eu.i.posthog.com` / `eu-assets.i.posthog.com`, so blockers that filter PostHog's
+  domains do not drop them. Do not rename it to anything obvious (`/analytics`, `/ingest`).
+- **Off for the owner.** Open any page with `?internal=on` to stop analytics in that
+  browser (stored as `hypjam_internal` in localStorage); `?internal=off` turns it back
+  on. Local previews (localhost) send nothing unless the URL has `?hj_debug=1`, which
+  also logs PostHog and cal.com events to the console.
+- **Autocapture** (clicks, form changes), pageviews and page leaves with scroll depth,
+  heatmaps, dead clicks, web vitals and JavaScript exceptions are on.
+
+Custom events. All go through `window.hjTrack()`, which is a no-op when analytics is off.
+None carries personal data.
+
+| event | fired by | properties |
+|---|---|---|
+| `book_call_clicked` | `90-analytics.js`, any link to `/book` or the cal.com page | `cta_location`, `cta_text`, `destination` |
+| `apply_clicked` | `90-analytics.js`, any link to `/apply` | `cta_location`, `cta_text` |
+| `email_link_clicked` | `90-analytics.js`, any `mailto:` link | `cta_location`, `cta_text` |
+| `outbound_link_clicked` | `90-analytics.js`, any link off hypjam.com | `cta_location`, `cta_text`, `url_host`, `url` |
+| `page_not_found` | `90-analytics.js`, the 404 page | `missing_path`, `referrer` |
+| `booking_calendar_viewed` | `45-book.js`, the first of cal.com's `navigatedToBooker`/`availabilityLoaded` | `trigger`, `slots_loaded` |
+| `booking_calendar_failed` | `45-book.js`, cal.com's `linkFailed` | `code` |
+| `call_booked` | `45-book.js`, cal.com's `bookingSuccessfulV2` | `starts_at`, `days_ahead`, `duration_min`, `status`, `is_recurring` |
+| `call_rescheduled` / `call_cancelled` | `45-book.js` | timing only |
+| `creator_application_started` | `48-apply.js`, first edit of the form | `first_field` |
+| `creator_application_invalid` | `48-apply.js`, a submit that fails validation | `problem_count`, `first_problem` |
+| `creator_application_submitted` | `48-apply.js`, a valid submit | `method`, `found_us_via`, `biggest_following`, `made_ugc_before`, `content_types`, `niches`, `films_with`, `free_to_film`, `social_platforms`, `gave_discord`, `gave_rate` |
+| `creator_application_copied` / `_email_reopened` / `_failed` | `48-apply.js` | none |
+
+Never add names, emails, handles, links, free text or the cal.com booking title (it
+contains the booker's name) to an event. Bookings made straight on cal.com (links in
+emails) never touch this site, so they are not in PostHog; cal.com's own Insights has them.
+
+Tag links you share so PostHog can attribute them, for example
+`https://hypjam.com/?utm_source=linkedin&utm_medium=social&utm_campaign=vaya_post`.
+
+The free plan keeps events for 12 months, which is what the privacy policy says. A paid
+plan defaults to 7 years: change the retention setting or the policy if that happens.
 
 ## Restore points
 

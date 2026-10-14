@@ -15,6 +15,13 @@
    the privacy policy. Because the email can be long, the status line also
    offers "Copy my answers" in case the email app does not open or cuts it
    short. Swapping in an endpoint is one value in the JSON.
+
+   Analytics (see 90-analytics.js and README.md): creator_application_started,
+   creator_application_invalid, creator_application_submitted,
+   creator_application_copied and creator_application_email_reopened. Only the
+   multiple-choice answers go with them (where they found us, follower band,
+   formats, niches, kit). Never the name, email, location, handles, links,
+   rate or anything typed into a free-text box.
    ========================================================================== */
 (function () {
   'use strict';
@@ -41,6 +48,21 @@
   var lastText = '';
 
   function str(key, def) { return (strings && strings.getAttribute('data-' + key)) || def; }
+
+  /* ---------- analytics ---------- */
+  function track(name, props, opts) {
+    if (typeof window.hjTrack === 'function') window.hjTrack(name, props, opts);
+  }
+  var started = false;
+  function markStarted(e) {
+    if (started) return;
+    var t = e.target;
+    if (!t || !t.name && !t.id) return;
+    started = true;
+    track('creator_application_started', { first_field: t.id || t.name });
+  }
+  form.addEventListener('input', markStarted);
+  form.addEventListener('change', markStarted);
 
   /* ---------- conditional fields ---------- */
   function syncExperience() { if (profiles) profiles.hidden = !(expYes && expYes.checked); }
@@ -281,6 +303,7 @@
     copyBtn.addEventListener('click', function () {
       if (!lastText) return;
       copyText(lastText).then(function () {
+        track('creator_application_copied');
         copyBtn.textContent = 'Copied';
         say(str('copied', 'Copied. Paste them into an email to') + ' ' + fallback + '.', null, true);
         setTimeout(function () { copyBtn.textContent = copyBtn.getAttribute('data-label') || 'Copy my answers'; }, 2500);
@@ -290,11 +313,36 @@
     });
   }
 
+  if (reopen) {
+    reopen.addEventListener('click', function () { track('creator_application_email_reopened'); });
+  }
+
+  /* the multiple-choice answers only: nothing that identifies the applicant */
+  function summary(a, method) {
+    return {
+      method: method,
+      found_us_via: found.value || '',
+      biggest_following: a.audience || '',
+      made_ugc_before: a.experience || '',
+      content_types: a.content,
+      niches: a.niches,
+      films_with: a.kit,
+      free_to_film: a.times,
+      social_platforms: a.socials.map(function (x) { return x.platform; }),
+      gave_discord: !!a.discord,
+      gave_rate: !!a.rate
+    };
+  }
+
   /* ---------- submit ---------- */
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var problems = validate();
     if (problems.length) {
+      track('creator_application_invalid', {
+        problem_count: problems.length,
+        first_problem: (problems[0] && (problems[0].id || problems[0].name)) || ''
+      });
       say(str('fix', 'Some answers need a look. See the notes above.'), 'bad', false);
       if (problems[0] && problems[0].focus) problems[0].focus();
       return;
@@ -306,6 +354,7 @@
     if (reopen) reopen.setAttribute('href', href);
 
     if (!endpoint) {
+      track('creator_application_submitted', summary(a, 'email'), { send_instantly: true, transport: 'sendBeacon' });
       say(str('mail', 'Your email app should open with everything filled in. Send it and you are done. If nothing opens, copy your answers and email them to') + ' ' + fallback + '.', null, true);
       window.location.href = href;
       return;
@@ -321,11 +370,13 @@
       body: JSON.stringify(a)
     }).then(function (r) {
       if (!r.ok) throw new Error('bad status ' + r.status);
+      track('creator_application_submitted', summary(a, 'form'), { send_instantly: true });
       form.reset();
       syncExperience();
       syncOther();
       say('Thank you. A person reads every one of these; we will email you at ' + a.email + '.', null, false);
     }).catch(function () {
+      track('creator_application_failed', { method: 'form' });
       say('That did not send. Copy your answers and email them to ' + fallback + '.', 'bad', true);
     }).then(function () {
       if (btn) btn.disabled = false;

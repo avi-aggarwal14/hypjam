@@ -2239,6 +2239,12 @@
    ({originator:"CAL", method:"__dimensionChanged", arg:{iframeHeight}});
    when that arrives the frame grows to fit so the calendar never scrolls
    inside itself.
+
+   The same channel carries cal.com's embed events, which feed analytics
+   (see 90-analytics.js and README.md): booking_calendar_viewed,
+   booking_calendar_failed, call_booked, call_rescheduled, call_cancelled.
+   Only timing and status go to analytics, never the booking title or the
+   booker's details (cal.com's booking title contains the booker's name).
    ========================================================================== */
 (function () {
   'use strict';
@@ -2254,6 +2260,66 @@
   iframe.addEventListener('load', function () { box.setAttribute('data-loaded', 'true'); });
   if (iframe.complete) box.setAttribute('data-loaded', 'true');
 
+  /* ---------- analytics from cal.com's embed events ---------- */
+  var track = function (name, props, opts) {
+    if (typeof window.hjTrack === 'function') window.hjTrack(name, props, opts);
+  };
+  var seen = {};
+  var once = function (key) { if (seen[key]) return false; seen[key] = true; return true; };
+  var lastBooked = 0;
+
+  function bookingProps(data) {
+    var p = {};
+    var start = data.startTime || data.date;
+    var end = data.endTime;
+    var t0 = start ? Date.parse(start) : NaN;
+    var t1 = end ? Date.parse(end) : NaN;
+    if (isFinite(t0)) {
+      p.starts_at = new Date(t0).toISOString();
+      p.days_ahead = Math.round((t0 - Date.now()) / 864e5 * 10) / 10;
+    }
+    if (isFinite(t0) && isFinite(t1)) p.duration_min = Math.round((t1 - t0) / 6e4);
+    else if (typeof data.duration === 'number') p.duration_min = data.duration;
+    if (data.status) p.status = String(data.status).toLowerCase();
+    if (typeof data.confirmed === 'boolean') p.confirmed = data.confirmed;
+    if (typeof data.isRecurring === 'boolean') p.is_recurring = data.isRecurring;
+    if (typeof data.paymentRequired === 'boolean') p.payment_required = data.paymentRequired;
+    return p;
+  }
+
+  function calEvent(type, data) {
+    data = data || {};
+    if (window.hjDebug && window.console) console.log('[cal.com]', type);
+    switch (type) {
+      /* a plain iframe (no cal.com embed.js on this page) never gets linkReady or
+         bookerViewed; availabilityLoaded and navigatedToBooker are what arrive */
+      case 'availabilityLoaded':
+      case 'bookerReady':
+      case 'bookerViewed':
+      case 'linkReady':
+      case 'navigatedToBooker':
+        if (once('viewed')) track('booking_calendar_viewed', { trigger: type, slots_loaded: type === 'navigatedToBooker' ? false : data.slotsLoaded !== false });
+        break;
+      case 'linkFailed':
+        if (once('failed')) track('booking_calendar_failed', { code: String(data.code || '') });
+        break;
+      case 'bookingSuccessfulV2':
+      case 'bookingSuccessful':
+        /* cal.com fires both the old and the new event for one booking */
+        if (Date.now() - lastBooked < 15000) break;
+        lastBooked = Date.now();
+        track('call_booked', bookingProps(data), { send_instantly: true });
+        break;
+      case 'rescheduleBookingSuccessfulV2':
+      case 'rescheduleBookingSuccessful':
+        if (once('rescheduled')) track('call_rescheduled', bookingProps(data), { send_instantly: true });
+        break;
+      case 'bookingCancelled':
+        if (once('cancelled')) track('call_cancelled', {}, { send_instantly: true });
+        break;
+    }
+  }
+
   /* honour cal.com's height messages, and only cal.com's */
   window.addEventListener('message', function (e) {
     if (e.source !== iframe.contentWindow) return;
@@ -2266,6 +2332,8 @@
     if (d.method === '__dimensionChanged' || d.type === '__dimensionChanged') h = parseFloat(arg.iframeHeight);
     else if (typeof d.iframeHeight === 'number') h = d.iframeHeight;
     if (h && isFinite(h)) iframe.style.height = Math.min(MAX, Math.max(MIN, Math.ceil(h))) + 'px';
+    var type = typeof d.type === 'string' ? d.type : (typeof d.method === 'string' ? d.method : '');
+    if (type && type.charAt(0) !== '_') calEvent(type, arg);
   });
 })();
 
@@ -2287,6 +2355,13 @@
    the privacy policy. Because the email can be long, the status line also
    offers "Copy my answers" in case the email app does not open or cuts it
    short. Swapping in an endpoint is one value in the JSON.
+
+   Analytics (see 90-analytics.js and README.md): creator_application_started,
+   creator_application_invalid, creator_application_submitted,
+   creator_application_copied and creator_application_email_reopened. Only the
+   multiple-choice answers go with them (where they found us, follower band,
+   formats, niches, kit). Never the name, email, location, handles, links,
+   rate or anything typed into a free-text box.
    ========================================================================== */
 (function () {
   'use strict';
@@ -2313,6 +2388,21 @@
   var lastText = '';
 
   function str(key, def) { return (strings && strings.getAttribute('data-' + key)) || def; }
+
+  /* ---------- analytics ---------- */
+  function track(name, props, opts) {
+    if (typeof window.hjTrack === 'function') window.hjTrack(name, props, opts);
+  }
+  var started = false;
+  function markStarted(e) {
+    if (started) return;
+    var t = e.target;
+    if (!t || !t.name && !t.id) return;
+    started = true;
+    track('creator_application_started', { first_field: t.id || t.name });
+  }
+  form.addEventListener('input', markStarted);
+  form.addEventListener('change', markStarted);
 
   /* ---------- conditional fields ---------- */
   function syncExperience() { if (profiles) profiles.hidden = !(expYes && expYes.checked); }
@@ -2553,6 +2643,7 @@
     copyBtn.addEventListener('click', function () {
       if (!lastText) return;
       copyText(lastText).then(function () {
+        track('creator_application_copied');
         copyBtn.textContent = 'Copied';
         say(str('copied', 'Copied. Paste them into an email to') + ' ' + fallback + '.', null, true);
         setTimeout(function () { copyBtn.textContent = copyBtn.getAttribute('data-label') || 'Copy my answers'; }, 2500);
@@ -2562,11 +2653,36 @@
     });
   }
 
+  if (reopen) {
+    reopen.addEventListener('click', function () { track('creator_application_email_reopened'); });
+  }
+
+  /* the multiple-choice answers only: nothing that identifies the applicant */
+  function summary(a, method) {
+    return {
+      method: method,
+      found_us_via: found.value || '',
+      biggest_following: a.audience || '',
+      made_ugc_before: a.experience || '',
+      content_types: a.content,
+      niches: a.niches,
+      films_with: a.kit,
+      free_to_film: a.times,
+      social_platforms: a.socials.map(function (x) { return x.platform; }),
+      gave_discord: !!a.discord,
+      gave_rate: !!a.rate
+    };
+  }
+
   /* ---------- submit ---------- */
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var problems = validate();
     if (problems.length) {
+      track('creator_application_invalid', {
+        problem_count: problems.length,
+        first_problem: (problems[0] && (problems[0].id || problems[0].name)) || ''
+      });
       say(str('fix', 'Some answers need a look. See the notes above.'), 'bad', false);
       if (problems[0] && problems[0].focus) problems[0].focus();
       return;
@@ -2578,6 +2694,7 @@
     if (reopen) reopen.setAttribute('href', href);
 
     if (!endpoint) {
+      track('creator_application_submitted', summary(a, 'email'), { send_instantly: true, transport: 'sendBeacon' });
       say(str('mail', 'Your email app should open with everything filled in. Send it and you are done. If nothing opens, copy your answers and email them to') + ' ' + fallback + '.', null, true);
       window.location.href = href;
       return;
@@ -2593,16 +2710,114 @@
       body: JSON.stringify(a)
     }).then(function (r) {
       if (!r.ok) throw new Error('bad status ' + r.status);
+      track('creator_application_submitted', summary(a, 'form'), { send_instantly: true });
       form.reset();
       syncExperience();
       syncOther();
       say('Thank you. A person reads every one of these; we will email you at ' + a.email + '.', null, false);
     }).catch(function () {
+      track('creator_application_failed', { method: 'form' });
       say('That did not send. Copy your answers and email them to ' + fallback + '.', 'bad', true);
     }).then(function () {
       if (btn) btn.disabled = false;
     });
   });
+})();
+
+/* ---- src/js/90-analytics.js ---- */
+/* ==========================================================================
+   90-analytics.js — the site's own analytics events.
+
+   PostHog itself is set up in partials/analytics.html (cookieless, EU). This
+   file only names the moments that matter, so the dashboard does not have to
+   be rebuilt from raw autocapture clicks:
+
+     book_call_clicked     any link to /book or to the cal.com booking page
+     apply_clicked         any link to /apply (the creator application)
+     email_link_clicked    any mailto: link
+     outbound_link_clicked any link that leaves hypjam.com (create.hypjam.com,
+                           cal.com/privacy, social profiles ...)
+     page_not_found        the 404 page, with the referrer, to find broken links
+
+   cta_location says where on the page the click happened (nav, footer, the
+   section's id or first class). No personal data is ever sent: link text and
+   destinations only. hjTrack() is a no-op when analytics is off (the owner's
+   own browser, local previews, or a content blocker).
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  var track = function (name, props, opts) {
+    if (typeof window.hjTrack === 'function') window.hjTrack(name, props, opts);
+  };
+  /* the click is about to navigate away: send now rather than in the next batch */
+  var LEAVING = { send_instantly: true, transport: 'sendBeacon' };
+
+  function cleanText(el) {
+    var t = (el.getAttribute('aria-label') || el.textContent || '').replace(/\s+/g, ' ').trim();
+    return t.slice(0, 80);
+  }
+
+  function locationOf(el) {
+    var n = el;
+    while (n && n.nodeType === 1 && n !== document.body) {
+      var named = n.getAttribute('data-track-location');
+      if (named) return named;
+      var tag = n.tagName;
+      if (tag === 'NAV') return 'nav';
+      if (tag === 'FOOTER') return 'footer';
+      if (tag === 'HEADER') return n.className && typeof n.className === 'string' ? n.className.split(/\s+/)[0] : 'header';
+      if (tag === 'SECTION' || tag === 'ASIDE' || tag === 'FORM') {
+        if (n.id) return n.id;
+        if (n.className && typeof n.className === 'string' && n.className.trim()) return n.className.trim().split(/\s+/)[0];
+      }
+      n = n.parentNode;
+    }
+    return 'main';
+  }
+
+  var isBookingHost = function (u) {
+    return /(^|\.)cal\.com$/i.test(u.hostname) && /^\/avi-aggarwal-hypjam(\/|$)/.test(u.pathname);
+  };
+
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var u;
+    try { u = new URL(a.href, window.location.href); } catch (err) { return; }
+
+    var base = { cta_location: locationOf(a), cta_text: cleanText(a) };
+    var sameSite = u.origin === window.location.origin;
+    var path = u.pathname.replace(/\/+$/, '') || '/';
+
+    if (u.protocol === 'mailto:') {
+      track('email_link_clicked', base);
+      return;
+    }
+    if ((sameSite && path === '/book') || isBookingHost(u)) {
+      base.destination = sameSite ? '/book' : 'cal.com';
+      track('book_call_clicked', base, LEAVING);
+      return;
+    }
+    if (sameSite && path === '/apply') {
+      track('apply_clicked', base, LEAVING);
+      return;
+    }
+    if (!sameSite && /^https?:$/.test(u.protocol)) {
+      base.url_host = u.hostname;
+      base.url = u.origin + u.pathname;
+      track('outbound_link_clicked', base, LEAVING);
+    }
+  }, true);
+
+  if (document.body && document.body.classList.contains('page-404')) {
+    if (window.posthog && typeof window.posthog.register === 'function') {
+      try { window.posthog.register({ page_type: '404' }); } catch (err) { /* analytics off */ }
+    }
+    var ref = '';
+    try { ref = document.referrer ? new URL(document.referrer).origin + new URL(document.referrer).pathname : ''; } catch (err) { ref = ''; }
+    track('page_not_found', { missing_path: window.location.pathname, referrer: ref });
+  }
 })();
 
 /* ---- src/panels/brief.js ---- */

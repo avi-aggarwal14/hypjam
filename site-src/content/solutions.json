@@ -1040,7 +1040,7 @@
           { "label": "Creators",    "value": "2 to 5 per brief",   "body": "Two on Starter, four or five on Growth, a dedicated roster on Scale. Cast to differ on the axis being tested." },
           { "label": "Naming",      "value": "Matches your account", "body": "Every variant is named for hook, creator, format and placement, in the convention your ad account already uses." },
           { "label": "Debrief",     "value": "Monthly",             "body": "Included on Growth and Scale, written into the next brief. Starter includes the live tracker and our notes on what to run where." },
-          { "label": "Data",        "value": "Stays with you",      "body": "Performance data lives in your ad account. We read it with you; we do not hold it, and this site has no trackers." },
+          { "label": "Data",        "value": "Stays with you",      "body": "Performance data lives in your ad account. We read it with you; we do not hold it, and this site runs no ad pixels." },
           { "label": "Rights",      "value": "Organic and paid",    "body": "Every variant is licensed for organic and paid for the term, in writing with the creator before the shoot." }
         ],
         "link": { "label": "Rights and safety", "href": "/rights" }

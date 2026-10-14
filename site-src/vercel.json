@@ -62,5 +62,19 @@
       "destination": "/book",
       "permanent": true
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/jamjar/static/:path(.*)",
+      "destination": "https://eu-assets.i.posthog.com/static/:path"
+    },
+    {
+      "source": "/jamjar/array/:path(.*)",
+      "destination": "https://eu-assets.i.posthog.com/array/:path"
+    },
+    {
+      "source": "/jamjar/:path(.*)",
+      "destination": "https://eu.i.posthog.com/:path"
+    }
   ]
 }

@@ -146,7 +146,7 @@
       {
         "id": "uk-gdpr",
         "title": "UK GDPR data handling",
-        "desc": "Creator and client data handled under UK GDPR, as our privacy policy sets out. No cookies, no trackers.",
+        "desc": "Creator and client data handled under UK GDPR, as our privacy policy sets out. No cookies, no ad pixels.",
         "sealAlt": "Line-drawn seal: a padlock inside a ring of twelve dots"
       }
     ]
