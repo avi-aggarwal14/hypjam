@@ -1422,9 +1422,14 @@ def render_page(data: dict, i: int, item: dict) -> str:
                    f'<figcaption class="page-quote__attr"><span class="tag-soon tag-soon--static">{c(qp + ".name")}</span></figcaption></div>'
                    '<div class="page-quote__media"><span class="reserved__phone reserved__phone--lg" aria-hidden="true"></span></div></figure>')
     else:
+        # the founder's name links to his own site when the JSON carries a url
+        # (.person-link in 03-ui.css rests as plain text; the underline is hover/focus only)
+        name = c(qp + ".name")
+        if q.get("url"):
+            name = f'<a class="person-link" href="{esc(q["url"])}">{name}</a>'
         out.append('<figure class="page-quote"><div class="page-quote__body">'
                    f'<blockquote class="page-quote__text">“{c(qp + ".text")}”</blockquote>'
-                   f'<figcaption class="page-quote__attr"><p class="page-quote__name">{c(qp + ".name")}</p>'
+                   f'<figcaption class="page-quote__attr"><p class="page-quote__name">{name}</p>'
                    f'<p class="page-quote__role">{c(qp + ".role")} · {c(qp + ".meta")}</p></figcaption></div>'
                    f'<div class="page-quote__media"><img src="{c(qp + ".image.src")}" alt="{c(qp + ".image.alt")}" width="620" height="450" loading="lazy" decoding="async"></div></figure>')
     faq_items = []

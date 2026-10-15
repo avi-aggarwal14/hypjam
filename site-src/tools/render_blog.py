@@ -139,6 +139,23 @@ def btn_html(label: str, href: str, cls: str = "") -> str:
     return f'<a class="{c}" href="{esc(href)}">{label}<span class="btn__ico">{ARROW}</span></a>'
 
 
+def person_link(name_html: str, url: str, rel: str = "") -> str:
+    """The founder's name as a link to his own site. .person-link (03-ui.css) rests as the
+    plain text around it and only underlines on hover and keyboard focus."""
+    r = f' rel="{rel}"' if rel else ""
+    return f'<a class="person-link"{r} href="{esc(url)}">{name_html}</a>'
+
+
+def founder_ld(agency: dict) -> dict:
+    """The founder as a JSON-LD author: the sitewide #founder Person from partials/head.html,
+    referenced by @id so every page agrees on one node, plus his name and his own site."""
+    f = agency["founder"]
+    node = {"@type": "Person", "@id": BASE_URL + "/#founder", "name": f["name"]}
+    if f.get("url"):
+        node["url"] = f["url"]
+    return node
+
+
 # ---------------------------------------------------------------------------
 # line-drawn motifs for the blog cards (viewBox 0 0 240 160, monoline, 1.25px)
 # ---------------------------------------------------------------------------
@@ -204,6 +221,10 @@ def render_blog() -> None:
     arts = blog["articles"]
     link_map = blog.get("link_map", {})
     ap = blog["article_page"]
+    # the byline: the founder's name links to his own site (rel=author) when agency.json carries a url
+    byline_name = T("agency.founder.name")
+    if agency["founder"].get("url"):
+        byline_name = person_link(byline_name, agency["founder"]["url"], rel="author")
 
     # ---- index -----------------------------------------------------------
     filters = blog["filters"]
@@ -230,7 +251,7 @@ def render_blog() -> None:
         "description": blog["meta"]["description"],
         "publisher": {"@type": "Organization", "name": "hypjam", "url": BASE_URL},
         "blogPost": [{"@type": "BlogPosting", "headline": a["title"], "url": BASE_URL + a["href"],
-                      "datePublished": iso_date(a["date"]), "author": {"@type": "Person", "name": agency["founder"]["name"]}} for a in arts],
+                      "datePublished": iso_date(a["date"]), "author": founder_ld(agency)} for a in arts],
     })
     index_crumbs = breadcrumb_ld([
         ("Home", BASE_URL + "/"),
@@ -311,7 +332,7 @@ def render_blog() -> None:
             "url": canonical,
             "mainEntityOfPage": {"@type": "WebPage", "@id": canonical},
             "image": BASE_URL + "/assets/brand/og.png",
-            "author": {"@type": "Person", "name": agency["founder"]["name"], "jobTitle": agency["founder"]["role"], "url": BASE_URL + "/agency"},
+            "author": founder_ld(agency),
             "publisher": {"@type": "Organization", "name": "hypjam", "url": BASE_URL,
                           "logo": {"@type": "ImageObject", "url": BASE_URL + "/assets/brand/hook-icon-512.png"}},
         })
@@ -352,7 +373,7 @@ def render_blog() -> None:
             '  <section class="blog-art-body">',
             '    <aside class="blog-rail">',
             '      <dl class="blog-rail-list">',
-            f'        <div class="blog-rail-item"><dt class="blog-rail-k">Written by</dt><dd class="blog-rail-v">{T("agency.founder.name")}<br><span class="blog-rail-dim">{T("agency.founder.role")}</span></dd></div>',
+            f'        <div class="blog-rail-item"><dt class="blog-rail-k">Written by</dt><dd class="blog-rail-v">{byline_name}<br><span class="blog-rail-dim">{T("agency.founder.role")}</span></dd></div>',
             f'        <div class="blog-rail-item"><dt class="blog-rail-k">Published</dt><dd class="blog-rail-v">{T(f"blog.articles.{i}.date_label")}</dd></div>',
             f'        <div class="blog-rail-item"><dt class="blog-rail-k">Category</dt><dd class="blog-rail-v">{T(f"blog.articles.{i}.category")}</dd></div>',
             f'        <div class="blog-rail-item"><dt class="blog-rail-k">Reading time</dt><dd class="blog-rail-v">{T(f"blog.articles.{i}.reading_minutes")} min</dd></div>',
@@ -831,12 +852,25 @@ def render_agency() -> None:
         + "</div>"
         for fi, fc in enumerate(a["editorial"]["facts"]))
 
+    # the founder's name links to his own site when agency.json carries a url: in the founder
+    # block, and at its first mention in the story (the facts row gets its href from the JSON)
+    founder_url = a["founder"].get("url")
+    founder_name_html = person_link(T("agency.founder.name"), founder_url) if founder_url else T("agency.founder.name")
+    story_linked = False
+
     secs = []
     for si, s in enumerate(a["sections"]):
         sp = f"agency.sections.{si}"
         right = [f'<h2 class="agency-h2">{T(sp + ".h2")}</h2>']
-        if s.get("paragraphs"):
-            right += [f'<p class="agency-p">{T(f"{sp}.paragraphs.{pi}")}</p>' for pi in range(len(s["paragraphs"]))]
+        for pi, para in enumerate(s.get("paragraphs") or []):
+            if s.get("id") == "story" and founder_url and not story_linked and a["founder"]["name"] in para:
+                # build.py cannot split a {{content}} token around a link, so this one paragraph
+                # is written out (escaped) with the linked name; every other paragraph stays a token
+                before, _, after = para.partition(a["founder"]["name"])
+                right.append(f'<p class="agency-p">{html.escape(before, quote=False)}{founder_name_html}{html.escape(after, quote=False)}</p>')
+                story_linked = True
+            else:
+                right.append(f'<p class="agency-p">{T(f"{sp}.paragraphs.{pi}")}</p>')
         if s.get("p"):
             right.append(f'<p class="agency-p">{T(sp + ".p")}</p>')
         rows = numbered_rows(sp, s["items"], "agency") if s.get("items") else ""
@@ -893,7 +927,7 @@ def render_agency() -> None:
         f'    <p class="eyebrow agency-eyebrow">{T("agency.founder.eyebrow")}</p>',
         '    <figure class="agency-founder-body">',
         f'      <blockquote class="agency-quote t-quote t-hanging">“{T("agency.founder.quote")}”</blockquote>',
-        f'      <figcaption class="agency-founder-cap"><span class="agency-founder-name">{T("agency.founder.name")}</span><span class="agency-founder-role">{T("agency.founder.role")}</span></figcaption>',
+        f'      <figcaption class="agency-founder-cap"><span class="agency-founder-name">{founder_name_html}</span><span class="agency-founder-role">{T("agency.founder.role")}</span></figcaption>',
         "    </figure>",
         "  </section>",
         '  <section class="agency-cta">',

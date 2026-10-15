@@ -14,6 +14,7 @@ reference. Idempotent; run by build.py before the pages are expanded.
 Reference pages: ref/pages/security.jpg (→ rights), hotels.jpg (→ work),
 get-started.jpg (→ book). Every number in the CSS comments is measured there.
 """
+import html as _html
 import json
 import os
 from pathlib import Path
@@ -539,6 +540,12 @@ def book_page(d: dict) -> str:
         else:
             seals.append(f'          <li><img class="book-seal" src="{T(f"book.right.rights.badges.{i}.seal_file")}" alt="{T(f"book.right.rights.badges.{i}.label")}" width="40" height="40" loading="lazy" decoding="async"></li>')
 
+    # the founder's name links to his own site when book.json carries a url
+    # (.person-link in 03-ui.css rests as plain text; the underline is hover/focus only)
+    quote_name = T("book.right.quote.name")
+    if right["quote"].get("url"):
+        quote_name = f'<a class="person-link" href="{_html.escape(right["quote"]["url"], quote=True)}">{quote_name}</a>'
+
     nl = "\n"
     return f'''<!-- title: {T("book.meta.title")} -->
 <!-- description: {T("book.meta.description")} -->
@@ -587,7 +594,7 @@ def book_page(d: dict) -> str:
         <blockquote class="book-quote-mini-text">&ldquo;{T("book.right.quote.text")}&rdquo;</blockquote>
         <figcaption class="book-quote-mini-cap">
           <img class="book-quote-mini-mark" src="{T("book.right.quote.mark")}" alt="" width="28" height="28" loading="lazy" decoding="async">
-          <span><span class="book-quote-mini-name">{T("book.right.quote.name")}</span><span class="book-quote-mini-role">{T("book.right.quote.role")}</span></span>
+          <span><span class="book-quote-mini-name">{quote_name}</span><span class="book-quote-mini-role">{T("book.right.quote.role")}</span></span>
         </figcaption>
       </figure>
     </div>

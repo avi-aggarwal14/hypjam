@@ -7,6 +7,8 @@
      still (the owner asked for Avi's words on that picture and for the blurred
      studio slide, the reserved "On testimonials" slot and the thumbnail switcher
      to go). With one slide there is no autoplay.
+     The founder's name links to his own site (home.json quotes.items[0].url);
+     .person-link rests as plain text and underlines on hover/focus only.
      Copy: content/home.json → quotes. -->
 <section id="quotes" class="quo section section--quote section--black" data-nav="image" data-theme="dark" data-quo data-quo-interval="5000">
 
@@ -32,7 +34,7 @@
         <figure class="quo-slide is-active" data-quo-slide="0">
           <blockquote class="quo-quote"><p class="quo-text t-quote t-hanging" data-quo-words>“{{content:home.quotes.items.0.text}}”</p></blockquote>
           <figcaption class="quo-attr">
-            <p class="quo-sig" data-quo-fade="0">{{content:home.quotes.items.0.name}}</p>
+            <p class="quo-sig" data-quo-fade="0"><a class="person-link" href="{{content:home.quotes.items.0.url}}">{{content:home.quotes.items.0.name}}</a></p>
             <div class="quo-attr-row">
               <div class="quo-attr-lines">
                 <p class="quo-role" data-quo-fade="1">{{content:home.quotes.items.0.role}}</p>

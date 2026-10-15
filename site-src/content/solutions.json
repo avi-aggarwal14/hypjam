@@ -8,7 +8,7 @@
       "links": "Every href is a clean site URL from CONTRACT §3. Service links are NOT written inline: fields named 'service' hold an id into the top-level 'services' map, so if the services agent picked different slugs you remap them in ONE place (services.<id>.href).",
       "arrows": "the reference site prefixes inline links and list titles with '↳' and card links with 'Explore →'. The glyphs are supplied by CSS (::before), not stored in copy, except where a field is literally named 'link_label'.",
       "numbers": "Every numeral on these pages is an OFFER FACT (a commitment hypjam makes) taken from hypjam-brand/pages/hire.json or CONTRACT §10. None is a result, client count or performance figure. Do not add any.",
-      "quotes": "kind='founder' is the founder's own statement (Avi Aggarwal, founder, hypjam) — the single canonical statement shared with home.json, agency.json and book.json, flagged with 'sign_off': true. kind='reserved' is the held-open brand-quote slot from CONTRACT §10: same card, quote text 'We would rather show you nothing than words a brand never said.', signed 'hypjam', static-dotted tag 'On testimonials'. No invented names, ever.",
+      "quotes": "kind='founder' is the founder's own statement (Avi Aggarwal, founder, hypjam) — the single canonical statement shared with home.json, agency.json and book.json, flagged with 'sign_off': true; 'url' is the founder's own site and the renderer links the name to it. kind='reserved' is the held-open brand-quote slot from CONTRACT §10: same card, quote text 'We would rather show you nothing than words a brand never said.', signed 'hypjam', static-dotted tag 'On testimonials'. No invented names, ever.",
       "images": "Only files that exist under assets/ are referenced. Alt text describes what is in frame. The three shoot-bay stills are named studio-*.jpg on disk; that word never appears in copy or alt text, but a naive grep of the built HTML will hit the src attribute — see 'known_risks'."
     },
     "top_level": {
@@ -398,6 +398,7 @@
         "sign_off": true,
         "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
         "name": "Avi Aggarwal",
+        "url": "https://avi-aggarwal.com",
         "role": "Founder, hypjam",
         "visual": { "kind": "hq-room", "room": 1, "alt": "Line drawing of the brief desk at hypjam's HQ" }
       },
@@ -561,6 +562,7 @@
         "sign_off": true,
         "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
         "name": "Avi Aggarwal",
+        "url": "https://avi-aggarwal.com",
         "role": "Founder, hypjam",
         "visual": { "kind": "hq-room", "room": 2, "alt": "Line drawing of the writers' room at hypjam's HQ" }
       },
@@ -724,6 +726,7 @@
         "sign_off": true,
         "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
         "name": "Avi Aggarwal",
+        "url": "https://avi-aggarwal.com",
         "role": "Founder, hypjam",
         "visual": { "kind": "hq-room", "room": 4, "alt": "Line drawing of the shoot bay at hypjam's HQ" }
       },
@@ -887,6 +890,7 @@
         "sign_off": true,
         "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
         "name": "Avi Aggarwal",
+        "url": "https://avi-aggarwal.com",
         "role": "Founder, hypjam",
         "visual": { "kind": "hq-room", "room": 4, "alt": "Line drawing of the shoot bay at hypjam's HQ" }
       },
@@ -1050,6 +1054,7 @@
         "sign_off": true,
         "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
         "name": "Avi Aggarwal",
+        "url": "https://avi-aggarwal.com",
         "role": "Founder, hypjam",
         "visual": { "kind": "hq-room", "room": 2, "alt": "Line drawing of the writers' room at hypjam's HQ" }
       },
@@ -1213,6 +1218,7 @@
         "sign_off": true,
         "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
         "name": "Avi Aggarwal",
+        "url": "https://avi-aggarwal.com",
         "role": "Founder, hypjam",
         "visual": { "kind": "hq-room", "room": 5, "alt": "Line drawing of the edit suite at hypjam's HQ" }
       },

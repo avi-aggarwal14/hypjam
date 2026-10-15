@@ -53,6 +53,17 @@
   ],
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "hypjam.vercel.app"
+        }
+      ],
+      "destination": "https://hypjam.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/studio",
       "destination": "/agency",
       "permanent": true

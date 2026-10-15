@@ -888,9 +888,14 @@ def quote_block(data: dict, ref: str, quote: dict) -> str:
                 '<span class="reserved__phone reserved__phone--lg" aria-hidden="true"></span></div></figure>')
     v = quote.get("visual") or {}
     art = room_svg(int(v.get("room", 1)), esc(v.get("alt", "Line drawing of a room at hypjam's HQ")))
+    # the founder's name links to his own site when the JSON carries a url
+    # (.person-link in 03-ui.css rests as plain text; the underline is hover/focus only)
+    name = c(ref + ".name")
+    if quote.get("url"):
+        name = f'<a class="person-link" href="{esc(quote["url"])}">{name}</a>'
     return ('<figure class="page-quote"><div class="page-quote__body">'
             f'<blockquote class="page-quote__text">“{c(ref + ".text")}”</blockquote>'
-            f'<figcaption class="page-quote__attr"><p class="page-quote__name">{c(ref + ".name")}</p>'
+            f'<figcaption class="page-quote__attr"><p class="page-quote__name">{name}</p>'
             f'<p class="page-quote__role">{c(ref + ".role")}</p></figcaption></div>'
             f'<div class="page-quote__media sol-quote-media">{art}</div></figure>')
 

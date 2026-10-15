@@ -3,7 +3,7 @@
     "_about": "Copy for every home section after the hero, in page order: features → quotes → stories → rights. Hero copy lives in hero.json; nav/footer in nav.json/footer.json. Access with dot paths and numeric indices, e.g. {{content:home.features.items.0.title}}.",
     "meta": "{title ≤60 chars, description ≤155 chars, ogTitle, ogDescription}. Head tags for /.",
     "features": "the reference site 'Run smarter, serve better.' {heading (4 words, 42px display), sub (16px grey, the reference site 17 words), items[4]: {title (500 weight, inline before desc), desc (the reference site 9–10 words), href (optional: the service page this card mirrors), mockAlt (alt text for the card's mock image; the features agent draws the mock — no real screenshots)}}.",
-    "quotes": "the reference site's two big 36px quotes over full-bleed imagery. items[2]: {reserved: bool, text, name, role, tag (only on the reserved slot: a small jam-dotted tag), imageAlt}. Item 0 is the founder's real statement (CONTRACT §10); item 1 is the reserved slot with no invented name.",
+    "quotes": "the reference site's two big 36px quotes over full-bleed imagery. items[2]: {reserved: bool, text, name, url (founder only: his own site; the name is rendered as a link to it), role, tag (only on the reserved slot: a small jam-dotted tag), imageAlt}. Item 0 is the founder's real statement (CONTRACT §10); item 1 is the reserved slot with no invented name.",
     "stories": "the reference site 'Trusted by leading hotels / running every shift on the reference site' carousel. {eyebrow (replaces the reference site's '50+ hotels' stat with an offer fact, §10), heading: {line1 (white), line2 (rendered at 40% opacity)}, prev/next aria labels, cards[4]: {slot, reserved: true, quote, attribution, meta, read (inert), href (null = inert), format (hint for the phone silhouette's alt text only — not rendered), imageAlt}}. Cards keep the reference site's anatomy but are designed reserved slots: dashed hairline frame, line-drawn phone silhouette.",
     "rights": "the reference site 'Privacy and Security at Every Layer' on sand. {heading (6 words), sub (the reference site 11 words), learnMore: {label, href}, items[4]: {id, title (rendered uppercase eyebrow), desc (the reference site 14–21 words), sealAlt (our own line-drawn seal; only UK GDPR is backed by the privacy policy — none is a certification)}}."
   },
@@ -49,6 +49,7 @@
         "reserved": false,
         "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
         "name": "Avi Aggarwal",
+        "url": "https://avi-aggarwal.com",
         "role": "Founder, hypjam",
         "tag": ""
       }

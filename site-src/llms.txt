@@ -1,14 +1,15 @@
 # hypjam
 
 > hypjam is a new UGC (user-generated content) ad agency based in London, founded by Avi
-> Aggarwal. We brief, cast, direct and edit short-form creator ads for TikTok, Instagram
-> Reels, YouTube Shorts and other platforms, then clear usage rights in writing and report
-> back. hypjam has no clients yet. Packages start from £1,800 a month.
+> Aggarwal (https://avi-aggarwal.com). We brief, cast, direct and edit short-form creator
+> ads for TikTok, Instagram Reels, YouTube Shorts and other platforms, then clear usage
+> rights in writing and report back. hypjam has no clients yet. Packages start from £1,800
+> a month.
 
 ## About
 
 - [Home](https://hypjam.com/): What hypjam does, for brands and for creators.
-- [Agency](https://hypjam.com/agency): The London UGC agency behind the creators, founded by Avi Aggarwal.
+- [Agency](https://hypjam.com/agency): The London UGC agency behind the creators, founded by Avi Aggarwal (https://avi-aggarwal.com).
 - [Process](https://hypjam.com/process): How a brief runs week by week, and the three packages — Starter from £1,800/mo, Growth from £3,600/mo, Scale from £6,500/mo.
 - [Rights](https://hypjam.com/rights): Usage rights in writing, signed creator releases, ASA/CAP disclosure compliance and UK GDPR data handling.
 - [FAQ](https://hypjam.com/faq): Answers for brands hiring hypjam and for creators joining the roster.

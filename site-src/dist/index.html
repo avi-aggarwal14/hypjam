@@ -111,6 +111,15 @@
       "@id": "https://hypjam.com/#founder",
       "name": "Avi Aggarwal",
       "jobTitle": "Founder",
+      "url": "https://avi-aggarwal.com",
+      "sameAs": [
+        "https://avi-aggarwal.com",
+        "https://x.com/_avi_md",
+        "https://www.linkedin.com/in/avi-aggarwal-hypjam",
+        "https://github.com/avi-aggarwal14",
+        "https://www.instagram.com/_avi.md/",
+        "https://www.tiktok.com/@_avi.md"
+      ],
       "worksFor": { "@id": "https://hypjam.com/#org" }
     },
     {
@@ -1270,6 +1279,8 @@
      still (the owner asked for Avi's words on that picture and for the blurred
      studio slide, the reserved "On testimonials" slot and the thumbnail switcher
      to go). With one slide there is no autoplay.
+     The founder's name links to his own site (home.json quotes.items[0].url);
+     .person-link rests as plain text and underlines on hover/focus only.
      Copy: content/home.json → quotes. -->
 <section id="quotes" class="quo section section--quote section--black" data-nav="image" data-theme="dark" data-quo data-quo-interval="5000">
 
@@ -1295,7 +1306,7 @@
         <figure class="quo-slide is-active" data-quo-slide="0">
           <blockquote class="quo-quote"><p class="quo-text t-quote t-hanging" data-quo-words>“We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.”</p></blockquote>
           <figcaption class="quo-attr">
-            <p class="quo-sig" data-quo-fade="0">Avi Aggarwal</p>
+            <p class="quo-sig" data-quo-fade="0"><a class="person-link" href="https://avi-aggarwal.com">Avi Aggarwal</a></p>
             <div class="quo-attr-row">
               <div class="quo-attr-lines">
                 <p class="quo-role" data-quo-fade="1">Founder, hypjam</p>

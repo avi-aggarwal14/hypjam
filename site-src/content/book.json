@@ -4,7 +4,7 @@
     "meta": "{path, title, description, theme}",
     "header": "{logo:{file, alt, href}, right:{label, href}} - the reference had a timer at the right; we put the contact email there.",
     "left": "{h1, sub, embed:{provider, url, src, theme, layout, height_min, note, fallback:{label, href}}, expect:{label, items[]}, privacy:{text, link_label, href}} - embed.src is the exact iframe src. It has its own dark theme and must never be colour-inverted or restyled. The embed is the only third-party script on the site and loads only on this page (CONTRACT §11). fallback renders as a plain link under the iframe for viewers who block embeds. expect is a short list beside/under the h1 (14px grey).",
-    "right": "{background:{kind, alt}, quote:{text, name, role, signature, mark}, ships_to:{label, items:[{id, text}]}, rights:{label, badges:[{id, label, seal_file}]}} - background.kind = 'video-still': a darkened blurred frame from the hero video (no photography exists). quote is the founder's own statement (real; identical to home.json quotes.items[0].text and agency.json founder.quote). signature = 'name-text' means render the name in the display serif italic instead of a handwriting image. ships_to items render typographically at 60% opacity, monochrome. rights badges render as 40px seals; seal_file is the root-relative path of the SVG under /assets/badges/.",
+    "right": "{background:{kind, alt}, quote:{text, name, url, role, signature, mark}, ships_to:{label, items:[{id, text}]}, rights:{label, badges:[{id, label, seal_file}]}} - background.kind = 'video-still': a darkened blurred frame from the hero video (no photography exists). quote is the founder's own statement (real; identical to home.json quotes.items[0].text and agency.json founder.quote). signature = 'name-text' means render the name in the display serif italic instead of a handwriting image. url is the founder's own site; the renderer links the name to it. ships_to items render typographically at 60% opacity, monochrome. rights badges render as 40px seals; seal_file is the root-relative path of the SVG under /assets/badges/.",
     "dropped": "The reference's reserved-time countdown and the four form fields (first name, last name, work email, company website) are intentionally absent; the calendar collects those."
   },
   "meta": {
@@ -63,6 +63,7 @@
     "quote": {
       "text": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed.",
       "name": "Avi Aggarwal",
+      "url": "https://avi-aggarwal.com",
       "role": "Founder, hypjam",
       "signature": "name-text",
       "mark": "/assets/brand/logos/hypjam-mark-on-dark.svg"
