@@ -115,4 +115,4 @@ plan defaults to 7 years: change the retention setting or the policy if that hap
 git checkout identity-v1
 ```
 
-MIT licensed. © 2026 Avi Aggarwal.
+MIT licensed. © 2026 [Avi Aggarwal](https://avi-aggarwal.com).
