@@ -520,9 +520,15 @@ def iso_date(value: str) -> str:
     v = (value or "").strip()
     m = re.match(r"^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$", v)
     if m and m.group(2).lower() in _MONTHS:
-        return f"{m.group(3)}-{_MONTHS[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
-    if re.match(r"^\d{4}-\d{2}$", v):
-        return v + "-01"
+        v = f"{m.group(3)}-{_MONTHS[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
+    elif re.match(r"^\d{4}-\d{2}$", v):
+        v = v + "-01"
+    # Google's rich results want a full datetime with a timezone; use the start of that day in London.
+    if re.match(r"^\d{4}-\d{2}-\d{2}$", v):
+        from datetime import datetime
+        from zoneinfo import ZoneInfo
+        y, mo, d = (int(x) for x in v.split("-"))
+        return datetime(y, mo, d, tzinfo=ZoneInfo("Europe/London")).isoformat()
     return v
 
 
