@@ -150,7 +150,8 @@ def founder_ld(agency: dict) -> dict:
     """The founder as a JSON-LD author: the sitewide #founder Person from partials/head.html,
     referenced by @id so every page agrees on one node, plus his name and his own site."""
     f = agency["founder"]
-    node = {"@type": "Person", "@id": BASE_URL + "/#founder", "name": f["name"]}
+    # @id is his entity home on avi-aggarwal.com, so both sites describe one Person node.
+    node = {"@type": "Person", "@id": "https://avi-aggarwal.com/#person", "name": f["name"]}
     if f.get("url"):
         node["url"] = f["url"]
     return node
