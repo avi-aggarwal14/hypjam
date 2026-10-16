@@ -997,6 +997,9 @@
     if (stage) mountPanels(stage, reduce);
     stopButtons.forEach(function (b, e) { b.addEventListener('click', function () { goToStop(e); }); });
     els.skips.forEach(function (b) { b.addEventListener('click', skip); });
+    /* the clip's src lives in data-src so phones (where this stage is display:none) never fetch it;
+       attaching it here starts the download as soon as the desktop engine mounts */
+    if (els.video && !els.video.getAttribute('src') && els.video.dataset.src) els.video.setAttribute('src', els.video.dataset.src);
     if (els.video) { var p = els.video.play(); if (p && p.catch) p.catch(function () {}); }
 
     if (!gsap || !ST) {

@@ -11,6 +11,9 @@ Pipeline
   2. wipe dist/, copy assets/ -> dist/assets/
   3. concatenate src/css/*.css (+ src/panels/*.css) -> dist/assets/site.css
      concatenate src/js/*.js   (+ src/panels/*.js)  -> dist/assets/site.js
+     both minified with esbuild (npx -y esbuild; shipped as written when it is
+     unavailable) and referenced with ?v=<content hash> so vercel.json can cache
+     them as immutable; the two font stylesheets are inlined into <head>
   4. expand every src/pages/**/*.html and write it to its clean URL
   5. write dist/sitemap.xml, copy robots.txt and vercel.json
 
@@ -36,6 +39,7 @@ from __future__ import annotations
 import datetime as _dt
 import hashlib
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -72,6 +76,7 @@ PAGE_DEFAULTS = {
     "lang": "en-GB",
     "robots": "index, follow",
     "head-extra": "",
+    "fonthead": "",
 }
 
 MAX_DEPTH = 24
@@ -282,14 +287,73 @@ def copy_assets() -> None:
         warn("assets/ not found")
 
 
-def concat(sources: list[Path], out: Path, comment: str) -> None:
+def concat(sources: list[Path], comment: tuple[str, str]) -> str:
     parts = []
     for path in sources:
         rel = path.relative_to(ROOT)
         parts.append(f"{comment[0]} ---- {rel} ---- {comment[1]}\n{read_text(path).rstrip()}\n")
+    return "\n".join(parts)
+
+
+# esbuild (via `npx -y esbuild`, or the binary named by $ESBUILD) minifies the CSS
+# and JS bundles. It is the one tool outside the standard library, and it is
+# optional: when it cannot run, the bundles ship exactly as written and a warning
+# says so. No source maps are produced.
+_ESBUILD_FLAGS = ["--minify", "--charset=utf8", "--legal-comments=none", "--log-level=warning"]
+
+
+_esbuild_cmd: list[str] | None | bool = False   # False = not probed yet
+
+
+def esbuild_cmd() -> list[str] | None:
+    """The esbuild command line, probed once with --version; None when it is unusable."""
+    global _esbuild_cmd
+    if _esbuild_cmd is False:
+        exe = os.environ.get("ESBUILD", "").strip()
+        cmd = [exe] if exe else ["npx", "-y", "esbuild"]
+        try:
+            probe = subprocess.run(cmd + ["--version"], stdin=subprocess.DEVNULL, capture_output=True, timeout=120)
+            ok = probe.returncode == 0
+            detail = (probe.stdout or probe.stderr).decode("utf-8", "replace").strip()[:200]
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            ok, detail = False, str(exc)
+        if ok:
+            log(f"esbuild: {' '.join(cmd)} ({detail})")
+            _esbuild_cmd = cmd
+        else:
+            warn(f"esbuild unusable ({' '.join(cmd)}: {detail}); css and js shipped unminified. "
+                 "Set ESBUILD=/path/to/esbuild if npx hangs.")
+            _esbuild_cmd = None
+    return _esbuild_cmd
+
+
+def minify(text: str, loader: str) -> str:
+    """Return `text` minified by esbuild as `loader` (css|js), or unchanged when esbuild is unavailable."""
+    base = esbuild_cmd()
+    if not base:
+        return text
+    cmd = base + _ESBUILD_FLAGS + [f"--loader={loader}"]
+    try:
+        result = subprocess.run(cmd, input=text.encode("utf-8"), capture_output=True, timeout=300)
+    except (OSError, subprocess.TimeoutExpired) as exc:
+        warn(f"esbuild could not run ({exc}); {loader} shipped unminified")
+        return text
+    err = result.stderr.decode("utf-8", "replace").strip()
+    if result.returncode != 0 or not result.stdout:
+        warn(f"esbuild {loader} failed; shipped unminified: {err[:500]}")
+        return text
+    if err:
+        log(f"esbuild {loader}: {err[:500]}")
+    return result.stdout.decode("utf-8")
+
+
+def write_bundle(text: str, out: Path, url: str, nfiles: int) -> None:
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text("\n".join(parts), encoding="utf-8")
-    log(f"{out.relative_to(ROOT)}: {len(sources)} file(s)")
+    out.write_text(text, encoding="utf-8")
+    # /assets/site.css and site.js live only in dist/, so fingerprint_assets()
+    # cannot hash them from assets/; seed their content hash here instead.
+    _FP_CACHE[url] = hashlib.sha1(text.encode("utf-8")).hexdigest()[:8]
+    log(f"{out.relative_to(ROOT)}: {nfiles} file(s), {len(text.encode('utf-8')):,} bytes, ?v={_FP_CACHE[url]}")
 
 
 def bundle_css_js() -> None:
@@ -297,8 +361,26 @@ def bundle_css_js() -> None:
     css += sorted(PANELS.glob("*.css")) if PANELS.is_dir() else []
     js = sorted(JS_DIR.glob("*.js")) if JS_DIR.is_dir() else []
     js += sorted(PANELS.glob("*.js")) if PANELS.is_dir() else []
-    concat(css, DIST / "assets" / "site.css", ("/*", "*/"))
-    concat(js, DIST / "assets" / "site.js", ("/*", "*/"))
+    write_bundle(minify(concat(css, ("/*", "*/")), "css"), DIST / "assets" / "site.css", "/assets/site.css", len(css))
+    write_bundle(minify(concat(js, ("/*", "*/")), "js"), DIST / "assets" / "site.js", "/assets/site.js", len(js))
+
+
+# The two @font-face stylesheets are inlined into every <head>: that is two fewer
+# render-blocking requests before first paint, and their url()s then go through
+# fingerprint_assets() like everything else, so they request the same
+# ?v=<hash> URLs as the <link rel="preload"> tags (an external stylesheet cannot,
+# and the preloaded fonts were being downloaded a second time).
+FONT_CSS = [ASSETS / "fonts" / "newsreader.css", ASSETS / "fonts" / "geist.css"]
+
+
+def font_head() -> str:
+    missing = [p for p in FONT_CSS if not p.is_file()]
+    for p in missing:
+        warn(f"{p.relative_to(ROOT)} not found; linked instead of inlined")
+    present = [p for p in FONT_CSS if p.is_file()]
+    css = minify("\n".join(read_text(p) for p in present), "css").strip() if present else ""
+    links = "".join(f'<link rel="stylesheet" href="/assets/fonts/{p.name}">\n' for p in missing)
+    return (f"<style>{css}</style>\n" if css else "") + links
 
 
 def page_targets(src: Path) -> tuple[list[Path], str]:
@@ -330,7 +412,7 @@ def page_targets(src: Path) -> tuple[list[Path], str]:
 # changes with it, so `immutable` is correct and updates always land. It also
 # retires URLs that were already cached under the old, broken contract.
 _FP_CACHE: dict[str, str] = {}
-_ASSET_REF = re.compile(r"""(?<=["'])(/assets/[A-Za-z0-9_\-./]+\.[A-Za-z0-9]+)(?=["'])""")
+_ASSET_REF = re.compile(r"""(?<=["'(])(/assets/[A-Za-z0-9_\-./]+\.[A-Za-z0-9]+)(?=["')])""")
 
 
 def _asset_hash(url: str) -> str:
@@ -349,12 +431,35 @@ def _asset_hash(url: str) -> str:
 
 
 def fingerprint_assets(html: str) -> str:
-    """Append ?v=<content hash> to every root-relative /assets/ URL that exists."""
+    """Append ?v=<content hash> to every root-relative /assets/ URL that exists (quoted, or inside url())."""
     def sub(m: re.Match) -> str:
         url = m.group(1)
         digest = _asset_hash(url)
         return f"{url}?v={digest}" if digest else url
     return _ASSET_REF.sub(sub, html)
+
+
+# The image a page already marks as its above-the-fold priority (the first
+# <img fetchpriority="high">, or the hero's video poster on the home page) is also
+# preloaded from <head>, so the browser requests it before the stylesheet has
+# finished downloading. Same URL, same bytes: nothing about the page changes.
+LCP_MARK = "<!--lcp-preload-->"
+_IMG_HIGH_RE = re.compile(r'<img\b[^>]*\bfetchpriority="high"[^>]*>', re.I)
+_SRC_RE = re.compile(r'\bsrc="([^"]+)"')
+_HERO_POSTER_RE = re.compile(r'<video\b[^>]*\bclass="hero-video[^"]*"[^>]*\bposter="([^"]+)"')
+
+
+def lcp_preload(html: str) -> str:
+    url = ""
+    m = _IMG_HIGH_RE.search(html)
+    if m:
+        s = _SRC_RE.search(m.group(0))
+        url = s.group(1) if s else ""
+    if not url:
+        v = _HERO_POSTER_RE.search(html)
+        url = v.group(1) if v else ""
+    tag = f'<link rel="preload" as="image" href="{url}" fetchpriority="high">' if url else ""
+    return html.replace(LCP_MARK + "\n", tag + "\n" if tag else "").replace(LCP_MARK, tag)
 
 
 def build_pages() -> list[str]:
@@ -363,6 +468,7 @@ def build_pages() -> list[str]:
         warn("src/pages/ not found; no pages written")
         return urls
     defaults = site_defaults()
+    defaults["fonthead"] = font_head()
     for src in sorted(PAGES.rglob("*.html")):
         rel = src.relative_to(ROOT).as_posix()
         meta, body = split_meta(read_text(src))
@@ -378,6 +484,7 @@ def build_pages() -> list[str]:
                 page[key] = expand(value, page, f"{rel} <!-- {key} -->")
         html = expand(body, page, rel)
         html = html.replace("{{year}}", str(_dt.date.today().year))   # footer copyright, so it never goes stale
+        html = lcp_preload(html)
         html = fingerprint_assets(html)
         leftover = TOKEN_RE.findall(html)
         if leftover:

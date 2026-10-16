@@ -23,7 +23,7 @@
 
     <!-- 1 · video (opacity G.video, filter blur(G.blur)) -->
     <div class="hero-layer hero-video-layer" data-hero-video-layer>
-      <video class="hero-video" src="{{content:hero.video.src|assets/video/hero-studio-web.mp4}}" poster="{{content:hero.video.poster|assets/video/hero-poster.jpg}}" autoplay muted loop playsinline preload="auto" aria-label="{{content:hero.video.ariaLabel|Blurred footage of a phone shoot in progress}}"></video>
+      <video class="hero-video" data-src="{{content:hero.video.src|assets/video/hero-studio-web.mp4}}" poster="{{content:hero.video.poster|assets/video/hero-poster.jpg}}" autoplay muted loop playsinline preload="auto" aria-label="{{content:hero.video.ariaLabel|Blurred footage of a phone shoot in progress}}"></video>
     </div>
 
     <!-- 2 · overlay rgba(0,0,0,G.overlay) — starts .4 -->
@@ -59,21 +59,21 @@
       <div class="hero-marquee-wrap" data-hero-marquee>
         <div class="marquee hero-marquee" role="list" aria-label="{{content:hero.marquee.ariaLabel|Platforms hypjam ships to}}">
           <div class="marquee__track" data-hero-marquee-track>
-            <div class="marquee__group" aria-hidden="false">
-              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.0.file}}" alt="{{content:hero.marquee.items.0.alt}}" draggable="false" decoding="async"></div>
-              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.1.file}}" alt="{{content:hero.marquee.items.1.alt}}" draggable="false" decoding="async"></div>
-              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.2.file}}" alt="{{content:hero.marquee.items.2.alt}}" draggable="false" decoding="async"></div>
-              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.3.file}}" alt="{{content:hero.marquee.items.3.alt}}" draggable="false" decoding="async"></div>
-              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.4.file}}" alt="{{content:hero.marquee.items.4.alt}}" draggable="false" decoding="async"></div>
-              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.5.file}}" alt="{{content:hero.marquee.items.5.alt}}" draggable="false" decoding="async"></div>
+            <div class="marquee__group">
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.0.file}}" width="{{content:hero.marquee.items.0.w}}" height="{{content:hero.marquee.items.0.h}}" alt="{{content:hero.marquee.items.0.alt}}" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.1.file}}" width="{{content:hero.marquee.items.1.w}}" height="{{content:hero.marquee.items.1.h}}" alt="{{content:hero.marquee.items.1.alt}}" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.2.file}}" width="{{content:hero.marquee.items.2.w}}" height="{{content:hero.marquee.items.2.h}}" alt="{{content:hero.marquee.items.2.alt}}" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.3.file}}" width="{{content:hero.marquee.items.3.w}}" height="{{content:hero.marquee.items.3.h}}" alt="{{content:hero.marquee.items.3.alt}}" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.4.file}}" width="{{content:hero.marquee.items.4.w}}" height="{{content:hero.marquee.items.4.h}}" alt="{{content:hero.marquee.items.4.alt}}" draggable="false" decoding="async"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.5.file}}" width="{{content:hero.marquee.items.5.w}}" height="{{content:hero.marquee.items.5.h}}" alt="{{content:hero.marquee.items.5.alt}}" draggable="false" decoding="async"></div>
             </div>
             <div class="marquee__group" aria-hidden="true">
-              <div class="marquee__cell"><img src="{{content:hero.marquee.items.0.file}}" alt="" draggable="false" decoding="async"></div>
-              <div class="marquee__cell"><img src="{{content:hero.marquee.items.1.file}}" alt="" draggable="false" decoding="async"></div>
-              <div class="marquee__cell"><img src="{{content:hero.marquee.items.2.file}}" alt="" draggable="false" decoding="async"></div>
-              <div class="marquee__cell"><img src="{{content:hero.marquee.items.3.file}}" alt="" draggable="false" decoding="async"></div>
-              <div class="marquee__cell"><img src="{{content:hero.marquee.items.4.file}}" alt="" draggable="false" decoding="async"></div>
-              <div class="marquee__cell"><img src="{{content:hero.marquee.items.5.file}}" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.0.file}}" width="{{content:hero.marquee.items.0.w}}" height="{{content:hero.marquee.items.0.h}}" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.1.file}}" width="{{content:hero.marquee.items.1.w}}" height="{{content:hero.marquee.items.1.h}}" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.2.file}}" width="{{content:hero.marquee.items.2.w}}" height="{{content:hero.marquee.items.2.h}}" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.3.file}}" width="{{content:hero.marquee.items.3.w}}" height="{{content:hero.marquee.items.3.h}}" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.4.file}}" width="{{content:hero.marquee.items.4.w}}" height="{{content:hero.marquee.items.4.h}}" alt="" draggable="false" decoding="async"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.5.file}}" width="{{content:hero.marquee.items.5.w}}" height="{{content:hero.marquee.items.5.h}}" alt="" draggable="false" decoding="async"></div>
             </div>
             <!-- 20-hero.js clones the hidden group until six groups exist (the reference site renders six) -->
           </div>
@@ -232,21 +232,21 @@
       <div class="hero-m-marquee">
         <div class="marquee hero-marquee" role="list" aria-label="{{content:hero.marquee.ariaLabel|Platforms hypjam ships to}}">
           <div class="marquee__track" data-hero-marquee-track>
-            <div class="marquee__group" aria-hidden="false">
-              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.0.file}}" alt="{{content:hero.marquee.items.0.alt}}" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.1.file}}" alt="{{content:hero.marquee.items.1.alt}}" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.2.file}}" alt="{{content:hero.marquee.items.2.alt}}" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.3.file}}" alt="{{content:hero.marquee.items.3.alt}}" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.4.file}}" alt="{{content:hero.marquee.items.4.alt}}" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.5.file}}" alt="{{content:hero.marquee.items.5.alt}}" draggable="false" decoding="async" loading="lazy"></div>
+            <div class="marquee__group">
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.0.file}}" width="{{content:hero.marquee.items.0.w}}" height="{{content:hero.marquee.items.0.h}}" alt="{{content:hero.marquee.items.0.alt}}" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.1.file}}" width="{{content:hero.marquee.items.1.w}}" height="{{content:hero.marquee.items.1.h}}" alt="{{content:hero.marquee.items.1.alt}}" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.2.file}}" width="{{content:hero.marquee.items.2.w}}" height="{{content:hero.marquee.items.2.h}}" alt="{{content:hero.marquee.items.2.alt}}" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.3.file}}" width="{{content:hero.marquee.items.3.w}}" height="{{content:hero.marquee.items.3.h}}" alt="{{content:hero.marquee.items.3.alt}}" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.4.file}}" width="{{content:hero.marquee.items.4.w}}" height="{{content:hero.marquee.items.4.h}}" alt="{{content:hero.marquee.items.4.alt}}" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell" role="listitem"><img src="{{content:hero.marquee.items.5.file}}" width="{{content:hero.marquee.items.5.w}}" height="{{content:hero.marquee.items.5.h}}" alt="{{content:hero.marquee.items.5.alt}}" draggable="false" decoding="async" loading="lazy"></div>
             </div>
             <div class="marquee__group" aria-hidden="true">
-              <div class="marquee__cell"><img src="{{content:hero.marquee.items.0.file}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell"><img src="{{content:hero.marquee.items.1.file}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell"><img src="{{content:hero.marquee.items.2.file}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell"><img src="{{content:hero.marquee.items.3.file}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell"><img src="{{content:hero.marquee.items.4.file}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
-              <div class="marquee__cell"><img src="{{content:hero.marquee.items.5.file}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.0.file}}" width="{{content:hero.marquee.items.0.w}}" height="{{content:hero.marquee.items.0.h}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.1.file}}" width="{{content:hero.marquee.items.1.w}}" height="{{content:hero.marquee.items.1.h}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.2.file}}" width="{{content:hero.marquee.items.2.w}}" height="{{content:hero.marquee.items.2.h}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.3.file}}" width="{{content:hero.marquee.items.3.w}}" height="{{content:hero.marquee.items.3.h}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.4.file}}" width="{{content:hero.marquee.items.4.w}}" height="{{content:hero.marquee.items.4.h}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
+              <div class="marquee__cell"><img src="{{content:hero.marquee.items.5.file}}" width="{{content:hero.marquee.items.5.w}}" height="{{content:hero.marquee.items.5.h}}" alt="" draggable="false" decoding="async" loading="lazy"></div>
             </div>
           </div>
         </div>

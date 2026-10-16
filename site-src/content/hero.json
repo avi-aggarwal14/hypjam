@@ -141,32 +141,44 @@
    {
     "name": "TikTok",
     "file": "/assets/img/platforms/tiktok.svg",
-    "alt": "TikTok"
+    "alt": "TikTok",
+    "w": "114",
+    "h": "32"
    },
    {
     "name": "Instagram Reels",
     "file": "/assets/img/platforms/instagram.svg",
-    "alt": "Instagram Reels"
+    "alt": "Instagram Reels",
+    "w": "230",
+    "h": "32"
    },
    {
     "name": "YouTube Shorts",
     "file": "/assets/img/platforms/youtube.svg",
-    "alt": "YouTube Shorts"
+    "alt": "YouTube Shorts",
+    "w": "221",
+    "h": "32"
    },
    {
     "name": "Snapchat",
     "file": "/assets/img/platforms/snapchat.svg",
-    "alt": "Snapchat"
+    "alt": "Snapchat",
+    "w": "150",
+    "h": "32"
    },
    {
     "name": "Pinterest",
     "file": "/assets/img/platforms/pinterest.svg",
-    "alt": "Pinterest"
+    "alt": "Pinterest",
+    "w": "144",
+    "h": "32"
    },
    {
     "name": "Meta ads",
     "file": "/assets/img/platforms/meta.svg",
-    "alt": "Meta ads"
+    "alt": "Meta ads",
+    "w": "149",
+    "h": "32"
    }
   ]
  },

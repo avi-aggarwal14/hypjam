@@ -429,7 +429,7 @@ def work_page(d: dict) -> str:
 
   <!-- photo CTA · the reference site: relative flex h-svh min-h-[580px] flex-col justify-center overflow-hidden · still + h2 + p + pill -->
   <section class="work-cta" data-nav="image" data-nav-fill="bg-transparent" data-theme="dark">
-    <img class="work-cta-bg" src="/assets/img/stills/aerial-close.jpg" alt="{T("work.cta.background.alt", "")}" loading="lazy" decoding="async">
+    <img class="work-cta-bg" src="/assets/img/stills/aerial-close.jpg" alt="{T("work.cta.background.alt", "")}" width="1280" height="720" loading="lazy" decoding="async">
     <div class="work-cta-shade" aria-hidden="true"></div>
     <div class="work-cta-row">
       <div class="work-cta-text">
