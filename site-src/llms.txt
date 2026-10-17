@@ -10,6 +10,7 @@
 
 - [Home](https://hypjam.com/): What hypjam does, for brands and for creators.
 - [Agency](https://hypjam.com/agency): The London UGC agency behind the creators, founded by Avi Aggarwal (https://avi-aggarwal.com).
+- [Avi Aggarwal](https://hypjam.com/agency/avi-aggarwal): Profile of hypjam's founder, with links to his own site (https://avi-aggarwal.com), LinkedIn, X and GitHub.
 - [Process](https://hypjam.com/process): How a brief runs week by week, and the three packages — Starter from £1,800/mo, Growth from £3,600/mo, Scale from £6,500/mo.
 - [Rights](https://hypjam.com/rights): Usage rights in writing, signed creator releases, ASA/CAP disclosure compliance and UK GDPR data handling.
 - [FAQ](https://hypjam.com/faq): Answers for brands hiring hypjam and for creators joining the roster.

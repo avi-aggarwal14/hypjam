@@ -1,0 +1,76 @@
+{
+  "_schema": {
+    "_about": "Content for /agency/avi-aggarwal, the founder's profile page. Rendered by tools/render_blog.py (render_founder) from /agency's own components only: the hero, the editorial facts row (here holding his links), one eyebrow-led section and the closing CTA, whose h2 and p are agency.json's cta. Owner-approved facts only: no age, school, numbers, client names or results. The Person node lives once, in partials/head.html (@id https://avi-aggarwal.com/#person); this page's ProfilePage points at it by @id and never restates it. Linked from the /agency founder block (agency.json founder.profile). British English.",
+    "meta": "{path, title, description}",
+    "hero": "{eyebrow, h1, intro}",
+    "links": "{caption, items:[{label, value, href}]} - rendered as the agency facts row; every value is a link.",
+    "background": "{id, eyebrow, h2, paragraphs:[]}",
+    "cta": "{buttons:[{label, href, primary}], art:{alt}} - the h2 and p come from agency.json cta."
+  },
+  "meta": {
+    "path": "/agency/avi-aggarwal",
+    "title": "Avi Aggarwal, founder of hypjam | hypjam",
+    "description": "Avi Aggarwal is the founder of hypjam, a UGC agency in London that makes creator ads for startups and apps. His background and where to find him online."
+  },
+  "hero": {
+    "eyebrow": "Founder",
+    "h1": "Avi Aggarwal",
+    "intro": "Avi Aggarwal is the founder of hypjam, a UGC ad agency in London for startups and apps. He started it in August 2026."
+  },
+  "links": {
+    "caption": "Avi Aggarwal's website and profiles.",
+    "items": [
+      {
+        "label": "Website",
+        "value": "avi-aggarwal.com",
+        "href": "https://avi-aggarwal.com"
+      },
+      {
+        "label": "LinkedIn",
+        "value": "avi-aggarwal-hypjam",
+        "href": "https://www.linkedin.com/in/avi-aggarwal-hypjam"
+      },
+      {
+        "label": "X",
+        "value": "@_avi_md",
+        "href": "https://x.com/_avi_md"
+      },
+      {
+        "label": "GitHub",
+        "value": "avi-aggarwal14",
+        "href": "https://github.com/avi-aggarwal14"
+      },
+      {
+        "label": "Open source",
+        "value": "dare-mcp-server",
+        "href": "https://github.com/avi-aggarwal14/dare-mcp-server"
+      }
+    ]
+  },
+  "background": {
+    "id": "background",
+    "eyebrow": "Background",
+    "h2": "Other projects and roles.",
+    "paragraphs": [
+      "Avi is a co-founder of Yummers, a food-identification app. In August 2026 he was a marketing intern at Cluely in New York, and from June to July 2026 he was a founding engineer at 8x.",
+      "He built dare-mcp-server, an open-source MCP server that is listed on the official MCP Registry. In March 2026 he was elected a Barnet Youth Ambassador."
+    ]
+  },
+  "cta": {
+    "buttons": [
+      {
+        "label": "Book a call",
+        "href": "/book",
+        "primary": true
+      },
+      {
+        "label": "About hypjam",
+        "href": "/agency",
+        "primary": false
+      }
+    ],
+    "art": {
+      "alt": "Line drawing of hypjam's two-building HQ"
+    }
+  }
+}

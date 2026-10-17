@@ -8,6 +8,7 @@ Writes (all under src/pages/):
   process.html               the documentation-style page (process.json)→ /process
   faq.html                   two accordion groups (faq.json)            → /faq
   agency.html                the agency page (agency.json)              → /agency
+  agency/avi-aggarwal.html   the founder's profile (founder.json)       → /agency/avi-aggarwal
   join.html                  the creator roster page (join.json)        → /join
 
 Why one renderer for all of them: every one of these pages is a loop over
@@ -864,6 +865,11 @@ def render_agency() -> None:
     founder_url = a["founder"].get("url")
     founder_name_html = person_link(T("agency.founder.name"), founder_url) if founder_url else T("agency.founder.name")
     story_linked = False
+    # the founder block's one link to his profile page on this site (/agency/avi-aggarwal);
+    # his name above it keeps linking to his own site
+    profile = a["founder"].get("profile")
+    profile_html = (f'<a class="arrow-link" href="{esc(profile["href"])}">{T("agency.founder.profile.label")} {ARROW}</a>'
+                    if profile else "")
 
     secs = []
     for si, s in enumerate(a["sections"]):
@@ -934,7 +940,7 @@ def render_agency() -> None:
         f'    <p class="eyebrow agency-eyebrow">{T("agency.founder.eyebrow")}</p>',
         '    <figure class="agency-founder-body">',
         f'      <blockquote class="agency-quote t-quote t-hanging">“{T("agency.founder.quote")}”</blockquote>',
-        f'      <figcaption class="agency-founder-cap"><span class="agency-founder-name">{founder_name_html}</span><span class="agency-founder-role">{T("agency.founder.role")}</span></figcaption>',
+        f'      <figcaption class="agency-founder-cap"><span class="agency-founder-name">{founder_name_html}</span><span class="agency-founder-role">{T("agency.founder.role")}</span>{profile_html}</figcaption>',
         "    </figure>",
         "  </section>",
         '  <section class="agency-cta">',
@@ -949,6 +955,85 @@ def render_agency() -> None:
         "",
     ])
     write("agency.html", page)
+
+
+# ---------------------------------------------------------------------------
+# founder profile (/agency/avi-aggarwal)
+# ---------------------------------------------------------------------------
+
+def render_founder() -> None:
+    """The founder's profile page, built from /agency's own components (hero, the editorial
+    facts row, an eyebrow-led section, the closing CTA) so it adds no new design or CSS.
+    The Person node is the sitewide one in partials/head.html: the ProfilePage points at it
+    by the same @id the blog bylines use, so this page never restates or contradicts it."""
+    f = load("founder")
+    person_id = founder_ld(load("agency"))["@id"]
+    url = BASE_URL + f["meta"]["path"]
+
+    links = "".join(
+        f'<div class="agency-fact"><span class="agency-fact-k">{T(f"founder.links.items.{li}.label")}</span>'
+        f'<a class="agency-fact-v" href="{esc(it["href"])}">{T(f"founder.links.items.{li}.value")}</a></div>'
+        for li, it in enumerate(f["links"]["items"]))
+    bp = "founder.background"
+    paras = "".join(f'<p class="agency-p">{T(f"{bp}.paragraphs.{pi}")}</p>' for pi in range(len(f["background"]["paragraphs"])))
+
+    buttons = []
+    for bi, b in enumerate(f["cta"]["buttons"]):
+        buttons.append(btn_html(T(f"founder.cta.buttons.{bi}.label"), b["href"], "btn--lg" if b.get("primary") else "btn--lg btn--ghost"))
+    primary = next((b for b in f["cta"]["buttons"] if b.get("primary")), f["cta"]["buttons"][0])
+    pidx = f["cta"]["buttons"].index(primary)
+
+    ld = jsonld({
+        "@context": "https://schema.org",
+        "@type": "ProfilePage",
+        "name": f["hero"]["h1"],
+        "url": url,
+        "description": f["meta"]["description"],
+        "inLanguage": "en-GB",
+        "isPartOf": {"@id": BASE_URL + "/#website"},
+        "mainEntity": {"@id": person_id},
+    })
+    crumbs = breadcrumb_ld([
+        ("Home", BASE_URL + "/"),
+        ("Agency", BASE_URL + "/agency"),
+        (f["hero"]["h1"], url),
+    ])
+
+    page = "\n".join([
+        meta_block(f["meta"]["title"], f["meta"]["description"], "light", "bg-white", "page-founder", ld + crumbs),
+        # GEN with a colon for its dash: this comment ships in the built page, and the founder page carries none
+        GEN.replace(" \u2014 ", ": ") % "founder",
+        "{{include:partials/head.html}}",
+        "{{include:partials/nav.html}}",
+        '<main class="agency" data-theme="light">',
+        '  <section class="agency-hero">',
+        f'    <p class="agency-hero-eyebrow t-eyebrow">{T("founder.hero.eyebrow")}</p>',
+        f'    <h1 class="agency-h1 t-title">{T("founder.hero.h1")}</h1>',
+        f'    <p class="agency-intro">{T("founder.hero.intro")}</p>',
+        "    " + btn_html(T(f"founder.cta.buttons.{pidx}.label"), primary["href"]),
+        "  </section>",
+        '  <section class="agency-editorial">',
+        '    <div class="agency-facts-row">',
+        f'      <p class="agency-caption">{T("founder.links.caption")}</p>',
+        f'      <div class="agency-facts">{links}</div>',
+        "    </div>",
+        "  </section>",
+        f'  <section class="agency-sec" id="{esc(f["background"]["id"])}">',
+        f'    <p class="eyebrow agency-eyebrow">{T(bp + ".eyebrow")}</p>',
+        f'    <div class="agency-sec-body"><h2 class="agency-h2">{T(bp + ".h2")}</h2>{paras}</div>',
+        "  </section>",
+        '  <section class="agency-cta">',
+        f'    <img class="agency-cta-art" src="/assets/img/hq-footer.svg" alt="{esc(f["cta"]["art"]["alt"])}" width="280" height="120" loading="lazy" decoding="async" onerror="this.classList.add(\'is-missing\')">',
+        f'    <h2 class="agency-cta-h2 t-h2">{T("agency.cta.h2")}</h2>',
+        f'    <p class="agency-cta-p">{T("agency.cta.p")}</p>',
+        f'    <div class="agency-cta-btns">{"".join(buttons)}</div>',
+        "  </section>",
+        "</main>",
+        "{{include:partials/footer.html}}",
+        "{{include:partials/scripts.html}}",
+        "",
+    ])
+    write("agency/avi-aggarwal.html", page)
 
 
 # ---------------------------------------------------------------------------
@@ -1044,6 +1129,7 @@ def main() -> int:
     render_process()
     render_faq()
     render_agency()
+    render_founder()
     render_join()
     return 0
 

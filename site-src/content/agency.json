@@ -5,7 +5,7 @@
     "hero": "{eyebrow, h1, intro}",
     "editorial": "{image:{kind, alt}, caption, facts:[{label, value, href?}]} - image.kind = 'hq-drawing' asks the page agent to render the HQ line drawing (src/drawing/hq.svg) at the editorial image's aspect, on sand-s, in place of photography.",
     "sections": "[{id, eyebrow, h2, paragraphs?:[], p?, items?:[{n, name, blurb}]}] - story has paragraphs; method has p + items; roles and values have items. n is a two-digit string rendered in the tabular figure style.",
-    "founder": "{eyebrow, name, url, role, quote} - a short pull block; url is the founder's own site: the name here, its first mention in the story paragraphs and the blog bylines link to it; the quote is the founder's own statement, identical to home.json quotes.items[0].text and book.json right.quote.text.",
+    "founder": "{eyebrow, name, url, role, quote, profile?:{label, href}} - a short pull block; url is the founder's own site: the name here, its first mention in the story paragraphs and the blog bylines link to it; the quote is the founder's own statement, identical to home.json quotes.items[0].text and book.json right.quote.text. profile is the one link to his profile page on this site (/agency/avi-aggarwal, content/founder.json), shown under the role.",
     "cta": "{h2, p, buttons:[{label, href, primary}], art:{kind, alt}}"
   },
   "meta": {
@@ -155,6 +155,10 @@
     "name": "Avi Aggarwal",
     "url": "https://avi-aggarwal.com",
     "role": "Founder, hypjam · ex-Cluely",
+    "profile": {
+      "label": "More about Avi",
+      "href": "/agency/avi-aggarwal"
+    },
     "quote": "We started hypjam because brands kept hiring creators one by one and nobody was directing the work. We treat UGC like a production: one brief, one team, a script before anyone films, an edit built for the feed."
   },
   "cta": {
