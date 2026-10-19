@@ -1,0 +1,23 @@
+<script>
+/* growth canvases (/growth/<slug>): tag every event with the breakdown it came from,
+   and name the clicks that matter. Same rules as 90-analytics.js: no personal data. */
+(function () {
+  var slug = (location.pathname.split('/')[2] || '').toLowerCase();
+  try { if (window.posthog && typeof window.posthog.register === 'function') window.posthog.register({ breakdown: slug }); } catch (e) {}
+  var track = function (n, p, o) { if (typeof window.hjTrack === 'function') window.hjTrack(n, p, o); };
+  var LEAVING = { send_instantly: true, transport: 'sendBeacon' };
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var u; try { u = new URL(a.href, location.href); } catch (err) { return; }
+    var base = { cta_location: 'growth_canvas', breakdown: slug, cta_text: (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 80) };
+    if (u.protocol === 'mailto:') { track('email_link_clicked', base); return; }
+    if (/(^|\.)cal\.com$/i.test(u.hostname) && /^\/avi-aggarwal-hypjam(\/|$)/.test(u.pathname)) { base.destination = 'cal.com'; track('book_call_clicked', base, LEAVING); return; }
+    if (u.origin !== location.origin && /^https?:$/.test(u.protocol)) { base.url_host = u.hostname; base.url = u.origin + u.pathname; track('outbound_link_clicked', base, LEAVING); }
+  }, true);
+  var seen = {};
+  document.addEventListener('keydown', function (e) {
+    if ((e.key === 'p' || e.key === 'P') && !seen.present) { seen.present = true; track('growth_canvas_presented', { breakdown: slug }); }
+  });
+})();
+</script>

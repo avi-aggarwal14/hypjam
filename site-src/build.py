@@ -542,6 +542,38 @@ def copy_root_files() -> None:
         warn("assets/brand/favicon.ico not found")
 
 
+GROWTH = ROOT / "growth"
+GROWTH_MARK = "<!--hypjam:analytics-->"
+
+
+def copy_growth() -> list[str]:
+    """Growth canvases: site-src/growth/<slug>/ is copied as-is to dist/growth/<slug>/ (served at
+    hypjam.com/growth/<slug>). Each canvas is a self-contained page from the growth-breakdown engine;
+    its <!--hypjam:analytics--> marker is replaced with the site analytics plus the growth tracker.
+    Canvases are noindex and stay out of the sitemap."""
+    if not GROWTH.is_dir():
+        return []
+    snippet = expand("{{include:partials/analytics.html}}\n{{include:partials/growth-tracker.html}}",
+                     site_defaults(), "growth")
+    pages: list[str] = []
+    for src in sorted(GROWTH.rglob("*")):
+        if src.is_dir() or src.name.startswith("."):
+            continue
+        rel = src.relative_to(GROWTH)
+        dst = DIST / "growth" / rel
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        if src.suffix == ".html":
+            html = read_text(src)
+            if GROWTH_MARK not in html:
+                warn(f"growth/{rel.as_posix()}: no analytics marker")
+            dst.write_text(html.replace(GROWTH_MARK, snippet), encoding="utf-8")
+            pages.append("/growth/" + rel.parent.as_posix())
+        else:
+            shutil.copy2(src, dst)
+    log(f"growth: {len(pages)} canvas page(s)")
+    return pages
+
+
 def main() -> int:
     log(f"building {ROOT.name} -> dist/")
     copy_assets()
@@ -550,7 +582,8 @@ def main() -> int:
     urls = build_pages()
     write_sitemap(urls)
     copy_root_files()
-    print(f"done: {len(urls)} page(s), {len(warnings)} warning(s)")
+    growth = copy_growth()
+    print(f"done: {len(urls)} page(s), {len(growth)} growth canvas(es), {len(warnings)} warning(s)")
     return 0
 
 
