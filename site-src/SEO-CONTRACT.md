@@ -1,6 +1,6 @@
 # SEO pass — ground rules for every agent
 
-Repo root `/Users/vinee/Desktop/UGC Agency/hypjam` **is** the deployed site (static HTML,
+Repo root `/Users/vinee/Desktop/Money/UGC Agency/hypjam` **is** the deployed site (static HTML,
 served by Vercel). It is generated from source in `site-src/` by `site-src/build.py`.
 **You edit files under `site-src/` only.** Never edit the generated HTML at the repo root
 directly — it gets overwritten wholesale when the build is copied up, and any hand-edit
@@ -28,7 +28,7 @@ instead.
 ## Build and test
 
 ```bash
-cd "/Users/vinee/Desktop/UGC Agency/hypjam/site-src"
+cd "/Users/vinee/Desktop/Money/UGC Agency/hypjam/site-src"
 python3 build.py            # writes site-src/dist/
 ```
 

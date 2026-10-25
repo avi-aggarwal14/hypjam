@@ -61,7 +61,7 @@ the reference site → hypjam. Clean URLs (no `.html`).
 | `/privacy-policy`, `/terms-and-conditions` | `/privacy`, `/terms` | existing legal text, the reference site's legal template |
 | — | `/404` | |
 
-Existing hypjam content to reuse (rewrite into the reference site's structures, keep the facts): `/Users/vinee/Desktop/UGC Agency/hypjam-brand/` — `pages/*.json` (work, hire, join, studio→agency), `blog/*.md` (8 articles with `meta:` first line), `legal/*.md`.
+Existing hypjam content to reuse (rewrite into the reference site's structures, keep the facts): `/Users/vinee/Desktop/Money/UGC Agency/hypjam-brand/` — `pages/*.json` (work, hire, join, studio→agency), `blog/*.md` (8 articles with `meta:` first line), `legal/*.md`.
 
 ### Nav (exact the reference site structure, hypjam labels)
 
