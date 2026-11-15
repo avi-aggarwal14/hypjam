@@ -50,7 +50,7 @@
   }
 
   var isBookingHost = function (u) {
-    return /(^|\.)cal\.com$/i.test(u.hostname) && /^\/avi-aggarwal-hypjam(\/|$)/.test(u.pathname);
+    return /(^|\.)cal\.com$/i.test(u.hostname) && /^\/avi-aggarwal(\/|$)/.test(u.pathname);
   };
 
   document.addEventListener('click', function (e) {

@@ -12,7 +12,7 @@
     var u; try { u = new URL(a.href, location.href); } catch (err) { return; }
     var base = { cta_location: 'growth_canvas', breakdown: slug, cta_text: (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 80) };
     if (u.protocol === 'mailto:') { track('email_link_clicked', base); return; }
-    if (/(^|\.)cal\.com$/i.test(u.hostname) && /^\/avi-aggarwal-hypjam(\/|$)/.test(u.pathname)) { base.destination = 'cal.com'; track('book_call_clicked', base, LEAVING); return; }
+    if (/(^|\.)cal\.com$/i.test(u.hostname) && /^\/avi-aggarwal(\/|$)/.test(u.pathname)) { base.destination = 'cal.com'; track('book_call_clicked', base, LEAVING); return; }
     if (u.origin !== location.origin && /^https?:$/.test(u.protocol)) { base.url_host = u.hostname; base.url = u.origin + u.pathname; track('outbound_link_clicked', base, LEAVING); }
   }, true);
   var seen = {};
